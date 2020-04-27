@@ -1,28 +1,28 @@
 [[chap03]]
-== Functions
+== Funções
 
-In the context of programming, a _function_ is a named sequence of statements that performs a computation. When you define a function, you specify the name and the sequence of statements. Later, you can “call” the function by name.
-(((function)))
+No contexto da programação, uma _função_ é uma sequência nomeada de instruções que executa uma tarefa. Ao definir uma função, você especifica o nome e a sequência de instruções. Mais tarde, você pode "chamar" a função pelo nome.
+(((função)))
 
-=== Function Calls
+=== Chamada de Funções
 
-We have already seen one example of a function call:
-(((function call)))
+Nós já vimos um exemplo de chamada de função:
+(((chamada de função)))
 
 [source,@julia-repl-test]
 ----
-julia> println("Hello, World!")
-Hello, World!
+julia> println("Olá, Mundo!")
+Olá, Mundo!
 ----
 
-The name of the function is +println+. The expression in parentheses is called the _argument_ of the function.
-(((argument)))(((parentheses)))
+O nome da função é +println+. A expressão entre parênteses é chamada de _argumento_ da função.
+(((argumento)))(((parênteses)))
 
-It is common to say that a function “takes” an argument and “returns” a result. The result is also called the _return value_.
-(((return value)))
+É comum dizer que uma função "pega" um argumento e "retorna" um resultado. O resultado também é chamado de _valor de retorno_.
+(((valor de retorno)))
 
-Julia provides functions that convert values from one type to another. The +parse+ function takes a string and converts it to any number type, if it can, or complains otherwise:
-(((type conversion)))((("function", "Base", "parse", see="parse")))(((ArgumentError)))((("error", "Core", "ArgumentError", see="ArgumentError")))
+Julia fornece funções que convertem valores de um tipo para outro. A função +parse+ recebe uma string e a converte em qualquer tipo de número, se puder, ou caso contrário mostra o erro:
+(((conversão de tipo)))(((("função","Base","converter", veja ="parse")))(((erro no argumento)))(((("erro","centro","erro no argumento", see="ArgumentError")))
 
 [source,@julia-repl-test]
 ----
@@ -30,12 +30,12 @@ julia> parse(Int64, "32")
 32
 julia> parse(Float64, "3.14159")
 3.14159
-julia> parse(Int64, "Hello")
-ERROR: ArgumentError: invalid base 10 digit 'H' in "Hello"
+julia> parse(Int64, "Olá")
+ERROR: ArgumentError: invalid base 10 digit 'O' in "Olá"
 ----
 
-+trunc+ can convert floating-point values to integers, but it doesn’t round off; it chops off the fraction part:
-(((trunc)))((("function", "Base", "trunc", see="trunc")))
++trunc+ pode converter valores de ponto flutuante em valores inteiros, mas não os arredonda; o comando trunca a parte fracionária:
+(((truncar)))((("função", "Base", "truncar", see="trunc")))
 
 [source,@julia-repl-test]
 ----
@@ -45,8 +45,8 @@ julia> trunc(Int64, -2.3)
 -2
 ----
 
-+float+ converts integers to floating-point numbers:
-(((float)))((("function", "Base", "float", see="float")))
++float+ converte números inteiros em números de ponto flutuante:
+(((float)))((("função", "Base", "float", see="float")))
 
 [source,@julia-repl-test]
 ----
@@ -54,8 +54,8 @@ julia> float(32)
 32.0
 ----
 
-Finally, +string+ converts its argument to a string:
-(((string)))((("function", "Base", "string", see="string")))
+Por último, +string+ converte o seu argumento em uma string:
+(((string)))((("função", "Base", "string", see="string")))
 
 [source,@julia-repl-test]
 ----
@@ -66,44 +66,50 @@ julia> string(3.14159)
 ----
 
 
-=== Math Functions
+=== Funções Matemáticas
 
-In Julia, most of the familiar mathematical functions are directly available:
-(((math function)))(((log10)))((("function", "Base", "log10", see="log10")))
-
-[source,julia]
-----
-ratio = signal_power / noise_power
-decibels = 10 * log10(ratio)
-----
-
-This first example uses +log10+ to compute a signal-to-noise ratio in decibels (assuming that +signal_power+ and +noise_power+ are defined). +log+, which computes natural logarithms, is also provided.
-(((log)))((("function", "Base", "log", see="log")))((("logarithmic function", see="log")))
+Em Júlia, a maioria das familiares funções matemáticas estão diretamente disponíveis:
+(((função matemática)))(((log10)))((("função", "Base", "log10", see="log10")))
 
 [source,julia]
 ----
-radians = 0.7
-height = sin(radians)
+razão = potência_sinal / potência_ruído
+decibels = 10 * log10(razão)
 ----
 
-This second example finds the sine of +radians+. The name of the variable is a hint that +sin+ and the other trigonometric functions (+cos+, +tan+, etc.) take arguments in radians. To convert from degrees to radians, divide by 180 and multiply by latexmath:[\(\pi\)]:
-(((sin)))((("function", "Base", "sin", see="sin")))(((trigonometric function)))
+Este primeiro exemplo usa +log10+ para calcular uma relação sinal-ruído em decibéis (assumindo que +potência_sinal+ e +potência_ruído+ estão definidos). +log+, que calcula logaritmos naturais, também é fornecido.
+(((log)))((("função", "Base", "log", see="log")))((("função logarítmica", see="log")))
+
+[source,julia]
+----
+radianos = 0.7
+altura = sin(radianos)
+----
+
+Este segundo exemplo calcula o seno de +radianos+. O nome da variável é uma dica de que +sin+ e de que as outras funções trigonométricas (+cos+, +tan+, etc.) recebem argumentos em radianos. Para converter de graus em radianos, divida por 180 e multiplique pelo latexmath:[\(\pi\)]:
+(((seno)))((("função", "Base", "seno", see="sin")))(((função trigonométrica)))
 
 [source,@julia-repl-test]
 ----
-julia> degrees = 45
+julia> graus = 45
 45
-julia> radians = degrees / 180 * π
+julia> radianos = graus / 180 * π
 0.7853981633974483
-julia> sin(radians)
+julia> sin(radianos)
 0.7071067811865475
 ----
 
 The value of the variable +π+ is a floating-point approximation of latexmath:[\(\pi\)], accurate to about 16 digits.
 (((pi)))
 
+O valor da variável +π+ é uma aproximação do ponto flutuante de latexmath:[\(\pi\)], com precisão de aproximadamente de 16 dígitos.
+(((pi)))
+
 If you know trigonometry, you can check the previous result by comparing it to the square root of two divided by two:
 (((sqrt)))((("function", "Base", "sqrt", see="sqrt")))((("square function", see="sqrt")))
+
+Se você tem conhecimento de trigonometria, pode verificar o resultado anterior comparando-o com a raiz quadrada de dois dividido por dois:
+(((raiz quadrada)))((("função", "Base", "raiz quadrada", see="sqrt")))((("função quadrática", see="sqrt")))
 
 [source,@julia-repl-test]
 ----
@@ -111,67 +117,73 @@ julia> sqrt(2) / 2
 0.7071067811865476
 ----
 
-
 === Composition
 
-So far, we have looked at the elements of a program—variables, expressions, and statements—in isolation, without talking about how to combine them.
-(((composition)))
+Até este momento, vimos os elementos de um programa—variáveis, expressões e afirmações—isoladamente, sem detalhar em como combiná-las.
+(((composição)))
 
-One of the most useful features of programming languages is their ability to take small building blocks and compose them. For example, the argument of a function can be any kind of expression, including arithmetic operators:
+Um dos recursos mais úteis das linguagens de programação é a sua capacidade de manipular com pequenos blocos de montar e compô-los. Por exemplo, o argumento de uma função pode ser qualquer tipo de expressão, incluindo operadores aritméticos:
 
 [source,julia]
 ----
-x = sin(degrees / 360 * 2 * π)
+x = sin(graus / 360 * 2 * π)
 ----
 
-And even function calls:
-(((exp)))((("function", "Base", "exp", see="exp")))((("exponential function", see="exp")))
+E até mesmo as chamadas de função:
+(((exp)))((("função", "Base", "exp", see="exp")))((("função exponencial", see="exp")))
 
 [source,julia]
 ----
 x = exp(log(x+1))
 ----
 
-Almost anywhere you can put a value, you can put an arbitrary expression, with one exception: the left side of an assignment statement has to be a variable name. Any other expression on the left side is a syntax error (we will see exceptions to this rule later).
-(((syntax error)))
+Em quase todos os lugares onde você pode colocar um valor, você pode colocar uma expressão arbitrária, com uma exceção: o lado esquerdo de uma declaração de atribuição tem que ser um nome de variável. Qualquer outra expressão do lado esquerdo é um erro de sintaxe (veremos exceções a esta regra mais tarde).
+(((erro de sintaxe)))
 
 [source,@julia-eval chap03]
 ----
-hours = 2;
+horas = 2;
 ----
 
 [source,@julia-repl-test chap03]
 ----
-julia> minutes = hours * 60 # right
+julia> minutos = horas * 60 # right
 120
-julia> hours * 60 = minutes # wrong!
+julia> horas * 60 = minutos # wrong!
 ERROR: syntax: "60" is not a valid function argument name
 ----
 
-=== Adding New Functions
+=== Adição de Novas Funções
 
 So far, we have only been using the functions that come with Julia, but it is also possible to add new functions. A _function definition_ specifies the name of a new function and the sequence of statements that run when the function is called. Here is an example:
 (((function)))(((function definition)))(((programmer-defined function)))(((printlyrics)))((("function", "programmer-defined", "printlyrics", see="printlyrics")))
 
+Embora tenhamos usado só as funções que vêm com Julia até agora, também é possível adicionar novas funções. A _definição de função_ especifica o nome de uma nova função e a seqüência de comandos que são executados quando a função é chamada. Aqui está um exemplo:
+
 [source,@julia-setup chap03]
 ----
-function printlyrics()
+function imprimirletrademúsica()
     println("I'm a lumberjack, and I'm okay.")
     println("I sleep all night and I work all day.")
 end
 ----
 
-+function+ is a keyword that indicates that this is a function definition. The name of the function is +printlyrics+. The rules for function names are the same as for variable names: they can contain almost all Unicode characters (see <<characters>>), but the first character can’t be a number. You can’t use a keyword as the name of a function, and you should avoid having a variable and a function with the same name.
-((("keyword", "function", see="function")))(((argument)))(((Unicode character)))
++função+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimirletrademúsica+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracters>>), mas o primeiro caractere não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
+((("palavra chave", "função", see="function")))(((argumento)))(((caracteres Unicode)))
 
-The empty parentheses after the name indicate that this function doesn’t take any arguments.
-(((parentheses, empty)))
+Os parênteses vazios após o nome da função indicam que esta função não recebe nenhum argumento.
+(((parênteses, vazio)))
 
 The first line of the function definition is called the _header_; the rest is called the _body_. The body is terminated with the keyword +end+ and it can contain any number of statements. For readability the body of the function should be indented.
 (((header)))(((body)))(((end)))((("keyword", "end", see="end")))(((indentation)))
 
+A primeira linha da definição da função é chamada de _cabeçalho_; o restante é chamado de _corpo_. Finaliza-se o corpo com a palavra-chave +end+ e pode conter qualquer número de comandos. Para facilitar a leitura, o corpo da função deve estar indentado.
+(((cabeçalho)))(((corpo)))(((end)))((("palavra chave", "end", see="end")))(((indentação)))
+
 The quotation marks must be “straight quotes”, usually located next to Enter on the keyboard. “Curly quotes”, like the ones in this sentence, are not legal in Julia.
 (((quotation mark)))
+
+As aspas devem ser "aspas retas", geralmente localizadas ao lado do Enter no teclado. As "aspas encaracoladas", como as que estão nesta frase, não são legais em Júlia.
 
 If you type a function definition in interactive mode, the REPL indents to let you know that the definition isn’t complete:
 
