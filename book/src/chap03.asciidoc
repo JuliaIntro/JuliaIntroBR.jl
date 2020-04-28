@@ -4,7 +4,7 @@
 No contexto da programação, uma _função_ é uma sequência nomeada de instruções que executa uma tarefa. Ao definir uma função, você especifica o nome e a sequência de instruções. Mais tarde, você pode "chamar" a função pelo nome.
 (((função)))
 
-=== Chamada de Funções
+=== Chamada de funções
 
 Nós já vimos um exemplo de chamada de função:
 (((chamada de função)))
@@ -22,7 +22,7 @@ O nome da função é +println+. A expressão entre parênteses é chamada de _a
 (((valor de retorno)))
 
 Julia fornece funções que convertem valores de um tipo para outro. A função +parse+ recebe uma string e a converte em qualquer tipo de número, se puder, ou caso contrário mostra o erro:
-(((conversão de tipo)))(((("função","Base","converter", veja ="parse")))(((erro no argumento)))(((("erro","centro","erro no argumento", see="ArgumentError")))
+(((conversão de tipo)))(((("função","Base","parse", see="parse")))(((ArgumentError)))((("error", "Core", "ArgumentError", see="ArgumentError")))
 
 [source,@julia-repl-test]
 ----
@@ -35,7 +35,7 @@ ERROR: ArgumentError: invalid base 10 digit 'O' in "Olá"
 ----
 
 +trunc+ pode converter valores de ponto flutuante em valores inteiros, mas não os arredonda; o comando trunca a parte fracionária:
-(((truncar)))((("função", "Base", "truncar", see="trunc")))
+(((truncar)))((("função", "Base", "trunc", see="trunc")))
 
 [source,@julia-repl-test]
 ----
@@ -66,7 +66,7 @@ julia> string(3.14159)
 ----
 
 
-=== Funções Matemáticas
+=== Funções matemáticas
 
 Em Júlia, a maioria das familiares funções matemáticas estão diretamente disponíveis:
 (((função matemática)))(((log10)))((("função", "Base", "log10", see="log10")))
@@ -99,17 +99,11 @@ julia> sin(radianos)
 0.7071067811865475
 ----
 
-The value of the variable +π+ is a floating-point approximation of latexmath:[\(\pi\)], accurate to about 16 digits.
-(((pi)))
-
 O valor da variável +π+ é uma aproximação do ponto flutuante de latexmath:[\(\pi\)], com precisão de aproximadamente de 16 dígitos.
 (((pi)))
 
-If you know trigonometry, you can check the previous result by comparing it to the square root of two divided by two:
-(((sqrt)))((("function", "Base", "sqrt", see="sqrt")))((("square function", see="sqrt")))
-
 Se você tem conhecimento de trigonometria, pode verificar o resultado anterior comparando-o com a raiz quadrada de dois dividido por dois:
-(((raiz quadrada)))((("função", "Base", "raiz quadrada", see="sqrt")))((("função quadrática", see="sqrt")))
+(((raiz quadrada)))((("função", "Base", "sqrt", see="sqrt")))((("função quadrada", see="sqrt")))
 
 [source,@julia-repl-test]
 ----
@@ -117,7 +111,8 @@ julia> sqrt(2) / 2
 0.7071067811865476
 ----
 
-=== Composition
+
+=== Composição
 
 Até este momento, vimos os elementos de um programa—variáveis, expressões e afirmações—isoladamente, sem detalhar em como combiná-las.
 (((composição)))
@@ -153,173 +148,176 @@ julia> horas * 60 = minutos # wrong!
 ERROR: syntax: "60" is not a valid function argument name
 ----
 
-=== Adição de Novas Funções
-
-So far, we have only been using the functions that come with Julia, but it is also possible to add new functions. A _function definition_ specifies the name of a new function and the sequence of statements that run when the function is called. Here is an example:
-(((function)))(((function definition)))(((programmer-defined function)))(((printlyrics)))((("function", "programmer-defined", "printlyrics", see="printlyrics")))
+=== Adição de novas funções
 
 Embora tenhamos usado só as funções que vêm com Julia até agora, também é possível adicionar novas funções. A _definição de função_ especifica o nome de uma nova função e a seqüência de comandos que são executados quando a função é chamada. Aqui está um exemplo:
+(((função)))(((definição de função)))(((função definida pelo programador)))(((imprimirletras)))((("função", "definido pelo programador", "imprimirletras", see="imprimirletras")))
 
 [source,@julia-setup chap03]
 ----
-function imprimirletrademúsica()
-    println("I'm a lumberjack, and I'm okay.")
-    println("I sleep all night and I work all day.")
+function imprimirletras()
+    println("O cravo brigou com a rosa")
+    println("Debaixo de uma sacada.")
 end
 ----
 
 +função+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimirletrademúsica+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracters>>), mas o primeiro caractere não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
-((("palavra chave", "função", see="function")))(((argumento)))(((caracteres Unicode)))
+((("palavra chave", "função", see="função")))(((argumento)))(((caracter Unicode)))
 
 Os parênteses vazios após o nome da função indicam que esta função não recebe nenhum argumento.
 (((parênteses, vazio)))
 
-The first line of the function definition is called the _header_; the rest is called the _body_. The body is terminated with the keyword +end+ and it can contain any number of statements. For readability the body of the function should be indented.
-(((header)))(((body)))(((end)))((("keyword", "end", see="end")))(((indentation)))
-
 A primeira linha da definição da função é chamada de _cabeçalho_; o restante é chamado de _corpo_. Finaliza-se o corpo com a palavra-chave +end+ e pode conter qualquer número de comandos. Para facilitar a leitura, o corpo da função deve estar indentado.
-(((cabeçalho)))(((corpo)))(((end)))((("palavra chave", "end", see="end")))(((indentação)))
+(((cabeçalho)))(((corpo)))(((end)))((("palavra chave", "final", see="final")))(((indentação)))
 
-The quotation marks must be “straight quotes”, usually located next to Enter on the keyboard. “Curly quotes”, like the ones in this sentence, are not legal in Julia.
-(((quotation mark)))
+As aspas devem ser "aspas retas" (""), geralmente localizadas abaixo do Esc no teclado. As "aspas encaracoladas" ou "aspas inglesas" (“”), como as que estão nesta frase, não são legais em Júlia.
+(((aspas)))
 
-As aspas devem ser "aspas retas", geralmente localizadas ao lado do Enter no teclado. As "aspas encaracoladas", como as que estão nesta frase, não são legais em Júlia.
-
-If you type a function definition in interactive mode, the REPL indents to let you know that the definition isn’t complete:
+Se você definir uma função no modo interativo, o REPL indentará para informar que a definição está finalizada:
 
 [source,jlcon]
 ----
-julia> function printlyrics()
-       println("I'm a lumberjack, and I'm okay.")
+julia> function imprimirletras()
+       println("O cravo brigou com a rosa")
 
 ----
 
-To end the function, you have to enter +end+.
+Para terminar a função, deve-se inserir +end+.
 
-The syntax for calling the new function is the same as for built-in functions:
+A sintaxe para chamar a nova função é a mesma que para as funções internas:
 
 [source,@julia-repl-test chap03]
 ----
-julia> printlyrics()
-I'm a lumberjack, and I'm okay.
-I sleep all night and I work all day.
+julia> imprimirletras()
+O cravo brigou com a rosa
+Debaixo de uma sacada.
 ----
 
-Once you have defined a function, you can use it inside another function. For example, to repeat the previous refrain, we could write a function called +repeatlyrics+:
-(((repeatlyrics)))((("function", "programmer-defined", "repeatlyrics", see="repeatlyrics")))
+Uma vez que você definiu uma função, você pode usá-la dentro de outra função. Por exemplo, para repetir o refrão anterior, poderíamos escrever uma função chamada +repetirletras+:
+(((repetirletras)))((("função", "definido pelo programador", "repetirletras", see="repetirletras")))
 
 [source,@julia-setup chap03]
 ----
-function repeatlyrics()
-    printlyrics()
-    printlyrics()
+function repetirletras()
+    imprimirletras()
+    imprimirletras()
 end
 ----
 
-And then call +repeatlyrics+:
+E depois é só chamar +repetirletras+:
 
 [source,@julia-repl-test chap03]
 ----
-julia> repeatlyrics()
-I'm a lumberjack, and I'm okay.
-I sleep all night and I work all day.
-I'm a lumberjack, and I'm okay.
-I sleep all night and I work all day.
+julia> repetirletras()
+O cravo brigou com a rosa
+Debaixo de uma sacada.
+O cravo brigou com a rosa
+Debaixo de uma sacada.
 ----
 
-But that’s not really how the song goes.
+Mas não é bem assim que a música é.
 
 
-=== Definitions and Uses
+=== Definições e usos
 
-Pulling together the code fragments from the previous section, the whole program looks like this:
+Reunindo os fragmentos de código da seção anterior, todo o programa inteiro fica assim:
 
 [source,julia]
 ----
-function printlyrics()
-    println("I'm a lumberjack, and I'm okay.")
-    println("I sleep all night and I work all day.")
+function imprimirletras()
+    println("O cravo brigou com a rosa")
+    println("Debaixo de uma sacada.")
 end
 
-function repeatlyrics()
-    printlyrics()
-    printlyrics()
+function repetirletras()
+    imprimirletras()
+    imprimirletras()
 end
 
-repeatlyrics()
+repetirletras()
 ----
 
-This program contains two function definitions: +printlyrics+ and +repeatlyrics+. Function definitions get executed just like other statements, but the effect is to create function objects. The statements inside the function do not run until the function is called, and the function definition generates no output.
+Este programa contém duas definições de funções: +imprimirletras+ e +repetirletras+. As definições de funções são executadas exatamente como outras instruções, e o resultado é a criação de objetos de função. Os comandos dentro da função não são executados até que a função seja chamada, e a definição da função não gera saída.
 
-As you might expect, you have to create a function before you can run it. In other words, the function definition has to run before the function gets called.
+Como você pode esperar, você tem que criar uma função antes de poder executá-la. Em outras palavras, a definição da função tem que ser executada antes de chamá-la.
 
-===== Exercise 3-1
+===== Exercício 3-1
 
-Move the last line of this program to the top, so the function call appears before the definitions. Run the program and see what error message you get.
+Mova a última linha deste programa para o topo, para que a chamada de função apareça antes das definições. Execute o programa e veja qual mensagem de erro você recebe.
 
 Now move the function call back to the bottom and move the definition of +printlyrics+ after the definition of +repeatlyrics+. What happens when you run this program?
 
+Agora mova a chamada de função de volta para a parte inferior e mova a definição de +imprimirletras+ após a definição de +repetirletras+. Ao executar este programa, o que acontece?
 
-=== Flow of Execution
 
-To ensure that a function is defined before its first use, you have to know the order statements run in, which is called the _flow of execution_.
-(((flow of execution)))
+=== Fluxo de execução
 
-Execution always begins at the first statement of the program. Statements are run one at a time, in order from top to bottom.
+Para garantir a definição de uma função antes de sua primeira chamada, é necessário conhecer a ordem das instruções executadas, chamadas de _fluxo de execução_.
+(((fluxo de execução)))
 
-Function definitions do not alter the flow of execution of the program, but remember that statements inside the function don’t run until the function is called.
+A execução é feita sempre a partir da primeira instrução do programa. As instruções são executadas uma de cada vez, de cima para baixo.
+
+As definições das funções não mudam o fluxo de execução do programa, mas lembre-se que as instruções dentro da função são executadas somente quando a função é chamada.
 
 A function call is like a detour in the flow of execution. Instead of going to the next statement, the flow jumps to the body of the function, runs the statements there, and then comes back to pick up where it left off.
 
 That sounds simple enough, until you remember that one function can call another. While in the middle of one function, the program might have to run the statements in another function. Then, while running that new function, the program might have to run yet another function!
 
+Quando função é chamada, é como um desvio no fluxo de execução. Em vez de ir para a instrução seguinte, o fluxo salta para o corpo da função, executa as instruções lá e depois volta para continuar de onde parou.
+
+Isso parece bastante simples, até você lembrar que uma função pode chamar outra. Enquanto estiver no meio de uma função, o programa pode ter a necessidade de executar as instruções em uma outra função. Logo, ao executar essa nova função, o programa pode precisar executar outra função!
+
 Fortunately, Julia is good at keeping track of where it is, so each time a function completes, the program picks up where it left off in the function that called it. When it gets to the end of the program, it terminates.
 
 In summary, when you read a program, you don’t always want to read from top to bottom. Sometimes it makes more sense if you follow the flow of execution.
 
+Felizmente, Julia é uma bom em monitorar seus passos, portanto, toda vez que uma função é concluída, o programa retoma de onde parou na função que a chamou. Chegando no final do programa, ele é encerrado.
 
-=== Parameters and Arguments
+Em resumo, quando você lê um programa, nem sempre deseja ler de cima para baixo. Às vezes, é mais lógico seguir o fluxo de execução.
 
-Some of the functions we have seen require arguments. For example, when you call +sin+ you pass a number as an argument. Some functions take more than one argument: +parse+ takes two, a number type and a string.
-(((parameter)))(((argument)))(((parse)))(((sin)))
 
-Inside the function, the arguments are assigned to variables called _parameters_. Here is a definition for a function that takes an argument:
-(((printtwice)))((("function", "programmer-defined", "printtwice", see="printtwice")))
+=== Parâmetros e argumentos
+
+Algumas das funções que vimos exigem argumentos. Por exemplo, quando você chama +sin+, um número é passado como argumento. Algumas funções usam mais de um argumento: +parse+ necessita de dois, um tipo de número e uma string.
+(((parâmetro)))(((argumento)))(((analisar)))(((sin)))
+
+Dentro da função, os argumentos são atribuídos a variáveis denominadas _parâmetros_. Aqui está uma definição para uma função que exige um argumento:
+(((imprimir2vezes)))((("função", "definido pelo programador", "imprimir2vezes", see="imprimir2vezes")))
 
 [source,@julia-setup chap03]
 ----
-function printtwice(bruce)
+function imprimir2vezes(bruce)
     println(bruce)
     println(bruce)
 end
 ----
 
-This function assigns the argument to a parameter named +bruce+. When the function is called, it prints the value of the parameter (whatever it is) twice.
+Esta função atribui o argumento a um parâmetro denominado +bruce+. Quando a função é chamada, imprime-se o valor do parâmetro (qualquer que seja) duas vezes.
 
-This function works with any value that can be printed.
+Esta função funciona com qualquer valor que possa ser impresso.
 
 [source,@julia-repl-test chap03]
 ----
-julia> printtwice("Spam")
+julia> imprimir2vezes("Spam")
 Spam
 Spam
-julia> printtwice(42)
+julia> imprimir2vezes(42)
 42
 42
-julia> printtwice(π)
+julia> imprimir2vezes(π)
 π
 π
 ----
 
-The same rules of composition that apply to built-in functions also apply to programmer-defined functions, so we can use any kind of expression as an argument for +printtwice+:
-(((composition)))(((programmer-defined function)))
+As mesmas regras de composição que se aplicam às funções embutidas também se aplicam às funções definidas pelo programador, portanto podemos usar qualquer tipo de expressão como argumento para +imprimir2vezes+:
+(((composição)))(((função definida pelo programador)))
 
 [source,@julia-repl-test chap03]
 ----
-julia> printtwice("Spam "^4)
+julia> imprimir2vezes("Spam "^4)
 Spam Spam Spam Spam
 Spam Spam Spam Spam
-julia> printtwice(cos(π))
+julia> imprimir2vezes(cos(π))
 -1.0
 -1.0
 ----
@@ -329,47 +327,52 @@ The argument is evaluated before the function is called, so in the examples the 
 
 You can also use a variable as an argument:
 
+O argumento é avaliado antes da chamada da função, de modo que nos exemplos as expressões +"Spam" ^4+ e +cos(π)+ são avaliadas apenas uma vez.
+(((argumento)))(((cos)))((("função", "Base", "cos", see="cos"))))
+
+Também pode-se usar uma variável como argumento:
+
 [source,@julia-repl-test chap03]
 ----
-julia> michael = "Eric, the half a bee."
-"Eric, the half a bee."
-julia> printtwice(michael)
-Eric, the half a bee.
-Eric, the half a bee.
+julia> ana = "Uma andorinha sozinha não faz verão."
+"Uma andorinha sozinha não faz verão."
+julia> imprimir2vezes(ana)
+Uma andorinha sozinha não faz verão.
+Uma andorinha sozinha não faz verão.
 ----
 
-The name of the variable we pass as an argument (+michael+) has nothing to do with the name of the parameter (+bruce+). It doesn’t matter what the value was called back home (in the caller); here in +printtwice+, we call everybody +bruce+.
+O nome da variável que passamos como argumento (+ana+) não tem nada a ver com o nome do parâmetro (+bruce+). Para a função +imprimir2vezes+ todos os parâmetros são chamados +bruce+, independentemente do nome da variável que passamos como argumento (neste caso, +ana+)
 
 
-=== Variables and Parameters Are Local
+=== As variáveis e os parâmetros são locais
 
-When you create a variable inside a function, it is _local_, which means that it only exists inside the function. For example:
-(((local variable)))(((variable, local)))(((cattwice)))((("function", "programmer-defined", "cattwice", see="cattwice")))
+Ao criar uma variável dentro de uma função, ela é _local_, isto é, ela existe apenas dentro da função. Por exemplo:
+(((variável local)))(((variável, local)))(((concatenar2partes)))((("função", "definido pelo programador", "concatenar2partes", see="concatenar2partes")))
 
 [source,@julia-setup chap03]
 ----
-function cattwice(part1, part2)
-    concat = part1 * part2
-    printtwice(concat)
+function concatenar2partes(parte1, parte2)
+    concat = parte1 * parte2
+    imprimir2vezes(concat)
 end
 ----
 
-This function takes two arguments, concatenates them, and prints the result twice. Here is an example that uses it:
-(((concatenate)))(((repetition)))
+Esta função exige dois argumentos, concatena-os e imprime o resultado duas vezes. A seguir um exemplo que a usa:
+(((concatenar)))(((repetição)))
 
 [source,@julia-repl-test chap03]
 ----
-julia> line1 = "Bing tiddle "
-"Bing tiddle "
-julia> line2 = "tiddle bang."
-"tiddle bang."
-julia> cattwice(line1, line2)
-Bing tiddle tiddle bang.
-Bing tiddle tiddle bang.
+julia> linha1 = "Lava outra, "
+"Lava outra, "
+julia> linha2 = "lava uma."
+"lava uma."
+julia> concatenar2partes(linha1, linha2)
+Lava outra, lava uma.
+Lava outra, lava uma.
 ----
 
-When +cattwice+ terminates, the variable +concat+ is destroyed. If we try to print it, we get an exception:
-(((run-time error)))(((UndefVarError)))((("error", "Core", "UndefVarError", see="UndefVarError")))
+Após o término de +concatenar2partes+, a variável +concat+ é destruída. Se tentarmos imprimi-la, aparece uma exceção:
+(((erro em tempo de execução)))(((UndefVarError)))((("error", "Core", "UndefVarError", see="UndefVarError")))
 
 [source,@julia-repl-test chap03]
 ----
@@ -377,61 +380,61 @@ julia> println(concat)
 ERROR: UndefVarError: concat not defined
 ----
 
-Parameters are also local. For example, outside +printtwice+, there is no such thing as +bruce+.
-(((parameter)))
+Os parâmetros também são locais. Por exemplo, fora do +imprimir2vezes+, não existe o +bruce+.
+(((parâmetro)))
 
 
 [[stack_diagrams]]
-=== Stack Diagrams
+=== Diagramas de Pilha
 
-To keep track of which variables can be used where, it is sometimes useful to draw a _stack diagram_. Like state diagrams, stack diagrams show the value of each variable, but they also show the function each variable belongs to.
-(((stack diagram)))((("diagram", "stack", see="stack diagram")))
+Verificar quais variáveis podem ser usadas e onde, às vezes é prático desenhar um _diagrama de pilha_. Da mesma maneira dos diagramas de estado, os diagramas de pilha mostram o valor de cada variável, assim como mostram a função à qual cada variável pertence.
+(((diagrama da pilha))) ((("diagrama", "pilha", see= "diagrama da pilha"))))
 
-Each function is represented by a _frame_. A frame is a box with the name of a function beside it and the parameters and variables of the function inside it. The stack diagram for the previous example is shown in <<fig03-1>>.
-(((frame)))
+Cada função é representada por um _quadro_. Um quadro é representado por uma caixa com o nome de uma função ao lado e os parâmetros e as variáveis da respectiva função dentro dele. O diagrama de pilha do exemplo anterior é ilustrado em <<fig03-1>>.
+(((quadro)))
 
 [[fig03-1]]
 .Stack diagram
 image::images/fig31.svg[]
 
-The frames are arranged in a stack that indicates which function called which, and so on. In this example, +printtwice+ was called by +cattwice+, and +cattwice+ was called by +Main+, which is a special name for the topmost frame. When you create a variable outside of any function, it belongs to +Main+.
+Os quadros são dispostos em uma pilha que mostra qual função é chamada por outra, e assim por diante. Neste exemplo, +imprimir2vezes+ foi chamada por +concatenar2partes+, e +concatenar2partes+ foi chamada por +Main+, que é um nome especial para o frame superior. Criando uma variável fora de qualquer função, ela pertence a +Main+.
 
-Each parameter refers to the same value as its corresponding argument. So, +part1+ has the same value as +line1+, +part2+ has the same value as +line2+, and +bruce+ has the same value as +concat+.
+Cada parâmetro recebe o mesmo valor que o seu argumento correspondente. Logo, +parte1+ tem o mesmo valor que +linha1+, da mesma forma que +parte2+ tem o mesmo valor que +linha2+, e +bruce+ tem o mesmo valor que +concat+.
 
-If an error occurs during a function call, Julia prints the name of the function, the name of the function that called it, and the name of the function that called _that_, all the way back to +Main+.
+Em um caso de erro durante uma chamada de função, Julia imprime o nome da função, o nome da função que a chamou, e o nome da função que chamou por ela, e assim vai até chegar no +Main+.
 (((Main)))
 
-For example, if you try to access +concat+ from within +printtwice+, you get a +UndefVarError+:
+Por exemplo, se você tentar acessar +concat+ de dentro de +imprimir2vezes+, você recebe um +UndefVarError+:
 (((UndefVarError)))
 
 ----
 ERROR: UndefVarError: concat not defined
 Stacktrace:
- [1] printtwice at ./REPL[1]:2 [inlined]
- [2] cattwice(::String, ::String) at ./REPL[2]:3
+ [1] imprimir2vezes at ./REPL[1]:2 [inlined]
+ [2] concatenar2partes(::String, ::String) at ./REPL[2]:3
 ----
 
-This list of functions is called a _stacktrace_. It tells you what program file the error occurred in, and what line, and what functions were executing at the time. It also shows the line of code that caused the error.
-(((stacktrace)))
+Esta lista de funções é chamada de _rastreamento de pilha_, que informa em qual arquivo de programa ocorreu o erro e em qual linha e quais funções estavam sendo executadas no momento. Também indica a linha de código que causou o erro.
+(((rastreamento de pilha)))
 
-The order of the functions in the stacktrace is the inverse of the order of the frames in the stack diagram. The function that is currently running is at the top.
+A ordem das funções no stacktrace é a ordem inversa dos quadros no diagrama de pilha. A função atualmente em execução fica no topo.
 
 
-=== Fruitful Functions and Void Functions
+=== Funções produtivas e funções nulas
 
-Some of the functions we have used, such as the math functions, return results; for lack of a better name, I call them _fruitful functions_. Other functions, like +printtwice+, perform an action but don’t return a value. They are called _void functions_.
-(((fruitful function)))(((void function)))
+Algumas das funções que usamos, como as funções matemáticas que retornam resultados; por falta de um nome melhor, chamaremos de _funções produtivas_. As outras funções, como +imprimir2vezes+, que executam uma ação sem retornar um valor serão chamadas de _funções nulas_.
+(((funções produtivas))) (((funções nulas))))
 
-When you call a fruitful function, you almost always want to do something with the result; for example, you might assign it to a variable or use it as part of an expression:
+Quando você chama uma função produtiva, quase sempre deseja-se fazer algo com o resultado; por exemplo, atribuí-lo a uma variável ou usá-lo como parte de uma expressão:
 
 [source,julia]
 ----
-x = cos(radians)
-golden = (sqrt(5) + 1) / 2
+x = cos(radianos)
+propAurea = (sqrt(5) + 1) / 2
 ----
 
-When you call a function in interactive mode, Julia displays the result:
-(((interactive mode)))
+Ao chamar uma função no modo interativo, Julia exibe o seguinte resultado:
+(((modo interativo)))
 
 [source,@julia-repl-test]
 ----
@@ -442,30 +445,33 @@ julia> sqrt(5)
 But in a script, if you call a fruitful function all by itself, the return value is lost forever!
 (((script mode)))
 
+Porém em um script, se chamar uma função produtiva por si só, o valor de retorno será perdido para sempre!
+(((modo script)))
+
 [source,@julia-run]
 ----
 sqrt(5)
 ----
 
-This script computes the square root of 5, but since it doesn’t store or display the result, it is not very useful.
+Este script calcula a raiz quadrada de 5, no entanto já que não armazena nem exibe o resultado, não é muito útil.
 
-Void functions might display something on the screen or have some other effect, but they don’t have a return value. If you assign the result to a variable, you get a special value called +nothing+.
+As funções nulas podem exibir algo na tela ou ter algum outro efeito, mas não retorna um valor. Se atribuir o resultado a uma variável, obterá um valor especial chamado +nothing+.
 (((nothing)))
 
 [source,@julia-repl-test chap03]
 ----
-julia> result = printtwice("Bing")
+julia> resultado = imprimir2vezes("Bing")
 Bing
 Bing
-julia> show(result)
+julia> show(resultado)
 nothing
 ----
 
-To print the value +nothing+, you have to use the function +show+ which is like +print+ but can handle the value +nothing+.
-(((show)))((("function", "Base", "show", see="show")))
+Para imprimir o valor +nothing+, usa-se a função +show+ que é similar a +print+ mas que pode lidar com o valor +nothing+.
+(((show)))((("função", "Base", "show", see="show"))))
 
-The value +nothing+ is not the same as the string +"nothing"+. It is a special value that has its own type:
-(((Nothing)))((("type", "Base", "Nothing", see="Nothing")))
+O valor +nothing+ não é o mesmo que a string +"nothing"+. Pois é um valor especial que tem seu próprio tipo:
+(((Nothing)))((("tipo", "Base", "Nothing", see="Nothing")))
 
 [source,@julia-repl-test]
 ----
@@ -473,7 +479,7 @@ julia> typeof(nothing)
 Nothing
 ----
 
-The functions we have written so far are all void. We will start writing fruitful functions in a few chapters.
+As funções que temos escrito até o momento são todas nulas. Começaremos a escrever funções produtivas em alguns capítulos.
 
 
 === Why Functions?
