@@ -38,13 +38,13 @@ Programadores geralmente escolhem nomes para suas variáveis que são significat
 
 Nomes de variáveis podem ser o quão longas você desejar. Eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas não podem começar com um número. É permitido usar letras maiúsculas, mas é convencional utilizar somente letras minúsculas para nomes de variáveis.
 
-Caracteres Unicode podem ser inseridos através do autopreenchimento de abreviações LaTeX no REPL do Julia.
+Caracteres Unicode podem ser inseridos através do autocompletar do tab de abreviações similares à LaTeX no REPL do Julia.
 (((Unicode character)))
 
 O caracter sublinhado, +_+, pode aparecer em um nome. É comumente utilizado em nomes com multiplas palavras, como +seu_nome+ ou +velocidade_de_uma_andorinha_sem_carga+.
 (((underscore character)))(((LaTeX-like abbreviations)))
 
-Se um nome inválido for dado a uma variável, recebemos um erro de syntaxe:
+Se um nome inválido for dado a uma variável, recebemos um erro de sintaxe:
 (((syntax error)))((("error", "syntax", see="syntax error")))
 
 [source,jlcon]
@@ -56,6 +56,7 @@ ERROR: syntax: extra token "@" after end of expression
 julia> struct = "Zimologia Teórica Avançado"
 ERROR: syntax: unexpected "="
 ----
+
 +76trombones+ é inválido pois começa com um número. +mais@+ é inválido pois contem um caracter inválido, +@+. Mas o que há de errado com +struct+?
 
 Acontece que +struct+ é uma das palavras chave do Julia. O REPL usa palavras chaves para reconhecer a estrutura do programa, e elas não podem ser usadas como nomes de variáveis.
@@ -90,7 +91,7 @@ julia> n + 25
 42
 ----
 
-Quando nós digitamos uma expressão no prompt, o REPL _avalia_-a, o que significa que ele acha o valor da expressão. Neste exemplo, +n+ tem valor 17 e +n + 25+ valor 42.
+Quando nós digitamos uma expressão no prompt, o REPL a _avalia_, o que significa que ele acha o valor da expressão. Neste exemplo, +n+ tem valor 17 e +n + 25+ valor 42.
 (((evaluate)))
 
 Uma _declaração_ é uma unidade de código que possui um efeito, como criar uma variável ou exibir um valor.
@@ -104,9 +105,9 @@ julia> println(n)
 17
 ----
 
-A primeira linha é uma declaração de atribuição que da valor a n. A segunda linha é uma declaração de impressão que exibe o valor de +n+.
+A primeira linha é uma declaração de atribuição que da valor a +n+. A segunda linha é uma declaração de impressão que exibe o valor de +n+.
 
-Quando nós digitamos uma declaração, o REPL _executa_-o, o que significa que ele faz o que a declaração diz.
+Quando nós digitamos uma declaração, o REPL a _executa_, o que significa que ele faz o que a declaração diz.
 (((execute)))
 
 
@@ -180,30 +181,30 @@ x + 1
 
 Agora coloque o mesmo trecho em um script e rode-o. Qual é o resultado? Modifique o script transformando cada expressão em uma declaração de impressão, e em seguida rode-o novamente.
 
-=== Antecedência de Operadores
+=== Precedência de Operadores
 
-Quando uma expressão contém mais de um operador, a ordem de avaliação depende da _antecedência de operador_. Para operadores matemáticos, Julia segue convenções matemáticas. O acrônimo _PEMDAS_ é uma maneira útil de lembrar as regras:
+Quando uma expressão contém mais de um operador, a ordem de avaliação depende da _precedência de operador_. Para operadores matemáticos, Julia segue convenções matemáticas. O acrônimo _PEMDAS_ é uma maneira útil de lembrar as regras:
 (((operator precedence)))(((PEMDAS)))
 
-* __P__arênteses possuem a maior antecedência e podem ser usados para forçar uma expressão a ser avaliada na ordem que nós desejarmos. Já que expressões em parênteses são avaliadas primeiro, +2*(3-1)+ é 4, e +pass:[(1+1)^(5-2)]+ é 8. Nós também podemos utilizar parênteses para fazer com que uma expressão seja mais fácil de ler, como em +(minuto * 100) / 60+, mesmo que não altere o resultado.
+* __P__arênteses possuem a maior precedência e podem ser usados para forçar uma expressão a ser avaliada na ordem que nós desejarmos. Já que expressões em parênteses são avaliadas primeiro, +2*(3-1)+ é 4, e +pass:[(1+1)^(5-2)]+ é 8. Nós também podemos utilizar parênteses para fazer com que uma expressão seja mais fácil de ler, como em +(minuto * 100) / 60+, mesmo que não altere o resultado.
 (((parentheses)))
 
-* __E__xponenciação possui a próxima antecedência, então +pass:[1+2^3]+ é 9, e não 27, e +2*3^2+ é 18, não 36.
+* __E__xponenciação possui a próxima precedência, então +pass:[1+2^3]+ é 9, e não 27, e +2*3^2+ é 18, não 36.
 (((pass:[^])))
 
-* __M__ultiplicação e __D__ivisão possuem maior antecedência que __A__dição e __S__ubtração. Então +2*3-1+ é 5, não 4, e +pass:[6+4/2]+ é 8, não 5.
+* __M__ultiplicação e __D__ivisão possuem maior precedência que __A__dição e __S__ubtração. Então +2*3-1+ é 5, não 4, e +pass:[6+4/2]+ é 8, não 5.
 (((pass:[*])))(((pass:[/])))(((pass:[+])))(((pass:[-])))
 
-* Operadores com a mesma antecedência são avaliados da esquerda à direita (exceto exponenciação). Então na expressão +graus / 2 * π+, a divisão acontece primeiro e o resultado é multiplicado por +π+. Para dividir por latexmath:[\(2\pi\)], podemos usar parênteses, escrevendo +graus / 2 / π+ ou +graus / 2π+.
+* Operadores com a mesma precedência são avaliados da esquerda à direita (exceto exponenciação). Então na expressão +graus / 2 * π+, a divisão acontece primeiro e o resultado é multiplicado por +π+. Para dividir por latexmath:[\(2\pi\)], podemos usar parênteses, escrevendo +graus / 2 / π+ ou +graus / 2π+.
 
 [TIP]
 ====
-Eu não me esforço muito para lembrar a antecedência dos operadores. Se eu não consigo me lembrar ao olhar para a expressão, eu utilizo parênteses para fazer com que seja óbvio.
+Não nos esforçamos muito para lembrar a precedência dos operadores. Se nós não consigormos lembrar ao olhar para a expressão, utilizamos parênteses para fazer com que seja óbvio.
 ====
 
 === Operações com Strings
 
-Em geral, não podemos executar operações matemáticas em strings, mesmo se as strings pareçam-se com números, então o que segue-se abaixo é inválido.
+Em geral, não podemos executar operações matemáticas em strings, mesmo se as strings pareçam-se com números, então o que se segue abaixo é inválido.
 (((string operation)))(((operator, string)))
 
 [source,julia]
@@ -242,7 +243,7 @@ Por esta razão, é uma boa ideia adicionar anotações em nossos programas para
 
 [source,julia]
 ----
-# computa a porcentagem da hora que já se passou
+# calcula a porcentagem da hora que já se passou
 porcentagem = (minuto * 100) / 60
 ----
 
@@ -253,9 +254,9 @@ Neste caso, o comentário aparece numa linha por si só. Nós também podemos co
 porcentagem = (minuto * 100) / 60   # porcentagem de uma hora
 ----
 
-Tudo que está antes do +#+ até o final da linha é ignorado e não causa efeito algum na execução do programa.
+Tudo a partir do +#+ até o final da linha é ignorado e não causa efeito algum na execução do programa.
 
-Comentários são bastante utéis quando eles documentam características não óbvias do código. É razoável assumir que o leitor consegue descobrir _oque_ o código faz; é mais útil explicar o _por quê_.
+Comentários são bastante utéis quando eles documentam características não óbvias do código. É razoável assumir que o leitor consegue descobrir _o que_ o código faz; é mais útil explicar o _por quê_.
 
 Esse comentário é redundante com o código e inútil:
 
@@ -279,17 +280,17 @@ Bons nomes de variável podem reduzir a necessidade de comentários, mas nomes l
 
 === Debugando
 
-Três tipos de erros podem ocorrer em um programa: erros de syntaxe, erros de execução e erros de semântica. É útil distinguir entre eles a fim de localizá-los mais rapidamente.
+Três tipos de erros podem ocorrer em um programa: erros de sintaxe, erros de execução e erros de semântica. É útil distinguir entre eles a fim de localizá-los mais rapidamente.
 (((debugging)))
 
-Erro de syntaxe::
-“Syntaxe” refere-se à estrutura de um programa e as regras sobre esta estrutura. Por exemplo, parênteses precisam vir em pares iguais, então +(1 + 2)+ é válido, mas +8)+ é um erro de syntaxe.
+Erro de sintaxe::
+“sintaxe” refere-se à estrutura de um programa e as regras sobre esta estrutura. Por exemplo, parênteses precisam vir em pares correspondentes, então +(1 + 2)+ é válido, mas +8)+ é um erro de sintaxe.
 +
-Se existe algum erro de syntaxe em algum lugar do nosso programa, o Julia exibirá uma mensagem de erro e encerrará, e nós não poderemos rodar o programa. Durante as primeiras semanas da sua carreira de programador, você deverá passar bastante tempo localizando erros de syntaxe. Conforme você vai ganhando experiência, você irá cometer menos erros e achá-los mais rapidamente.
+Se existe algum erro de sintaxe em algum lugar do nosso programa, o Julia exibirá uma mensagem de erro e encerrará, e nós não poderemos rodar o programa. Durante as primeiras semanas da sua carreira de programador, você deverá passar bastante tempo localizando erros de sintaxe. Conforme você vai ganhando experiência, você irá cometer menos erros e achá-los mais rapidamente.
 (((syntax error)))(((error message)))
 
 Erro de execução::
-O segundo tipo de erro é o erro de execução, assim denominado pois o erro não aparece até que o programa finalmente esteja rodando. Estes erros também são chamados de _execeções_ pois eles geralmente indicam que algo exepçional (e ruim) aconteceu.
+O segundo tipo de erro é o erro de execução, assim denominado pois o erro não aparece até que o programa finalmente esteja rodando. Estes erros também são chamados de _exceções_ pois eles geralmente indicam que algo excepcional (e ruim) aconteceu.
 +
 Erros de execução são raros nos programas simples que você verá nos primeiros capítulos, então pode demorar um pouco até que você encontre um.
 (((runtime error)))((("error", "runtime", see="runtime error")))(((exception, see="runtime error")))
@@ -331,7 +332,7 @@ Simplificar uma expressão através da execução de operações a fim de produz
 (((evaluate)))
 
 declaração::
-Uma secção de código que representa um comando ou ação. Até agora, as declarações que nós vimos são atribuições e declarações de impressão.
+Uma seção de código que representa um comando ou ação. Até agora, as declarações que nós vimos são atribuições e declarações de impressão.
 (((statement)))
 
 executar::
@@ -350,7 +351,7 @@ script::
 Um programa guardado em um arquivo.
 (((script)))
 
-antecedência de operador::
+precedência de operador::
 Regras que governam a ordem na qual as expressões que envolvem múltiplos operadores matemáticos são avaliados.
 (((operator precedence)))
 
@@ -362,7 +363,7 @@ comentário::
 Informação em um programa destinada a outros programadores (ou qualquer um lendo o código fonte) que não tem nenhum efeito na execução do programa.
 (((comment)))
 
-erro de syntaxe::
+erro de sintaxe::
 Um erro em um programa que faz com que seja impossível analisar (e consequentemente interpretar).
 (((syntax error)))
 
@@ -384,9 +385,9 @@ Um erro em um programa que faz com que ele faça algo diferente do que o program
 [[ex02-1]]
 ===== Exercício 2-2
 
-Repetindo o meu conselho do capítulo anterior, sempre que você aprende novas funcionalidades, você deve experimentá-las no modo interativo e cometer erros de propósito para ver o que acontece de errado.
+Repetindo o conselho do capítulo anterior, sempre que você aprende novas funcionalidades, você deve experimentá-las no modo interativo e cometer erros de propósito para ver o que acontece de errado.
 
-. Nos vimos que +n = 42+ é válido. E +42 = n+ ?
+. Nós vimos que +n = 42+ é válido. E +42 = n+ ?
 
 . E que tal +x = y = 1+?
 
@@ -402,8 +403,9 @@ Repetindo o meu conselho do capítulo anterior, sempre que você aprende novas f
 
 Pratique usando o REPL do Julia como uma calculadora:
 (((calculator)))
+
 . O volume de uma esfera com raio latexmath:[\(r\)] é latexmath:[\(\frac{4}{3} \pi r^3\)]. Qual é o volume de uma esfera de raio 5?
 
-. Suponha que o preço de cobertura de um livro é 24,95 R$, mas as livrarias possuem desconto de 40%. A entrega custa 3,00 R$ para a primeira cópia e 0,75 R$ para cada cópia adicional. Qual é o preço total do atacado para 60 cópias?
+. Suponha que o preço de cobertura de um livro é R$ 24,95, mas as livrarias possuem desconto de 40%. A entrega custa R$ 3,00 para a primeira cópia e R$ 0,75 para cada cópia adicional. Qual é o preço total do atacado para 60 cópias?
 
-. Se eu saio de casa às 6:52 da manhã e corro uma milha em um ritmo tranquilo (8:15 minutos por milha), em seguida 3 milhas em ritmo (7:12 minutos por milha) e 1 milha em um ritmo tranquilo novamente, a que horas eu chego em casa para o café da manhã?
+. Se eu saio de casa às 6:52 da manhã e corro uma milha em um ritmo tranquilo (8min15s por milha), em seguida 3 milhas em ritmo (7min12seg por milha) e 1 milha em um ritmo tranquilo novamente, a que horas eu chego em casa para o café da manhã?
