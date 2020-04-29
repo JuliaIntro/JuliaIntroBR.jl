@@ -113,58 +113,38 @@ Como exemplo, suponha que você queira determinar a distância entre dois pontos
 \end{equation}
 ++++
 
-The first step is to consider what a distance function should look like in Julia. In other words, what are the inputs (parameters) and what is the output (return value)?
+O primeiro passo é avaliar como deve ser uma função de distância em Julia. Em outras palavras, quais são as entradas (os parâmetros) e qual é a saída (o valor de retorno)?
 
-In this case, the inputs are two points, which you can represent using four numbers. The return value is the distance represented by a floating-point value.
+Neste exemplo, as entradas são dois pontos, que pode ser representado por quatro números. Já o valor de retorno é a distância representada por um valor de ponto flutuante.
 
-Immediately you can write an outline of the function:
-(((distance)))((("função", "definido pelo programador", "distance", see="distance")))
-
-O primeiro passo é considerar como deve ser uma função de distância em Julia. Em outras palavras, quais são as entradas (parâmetros) e qual é a saída (valor de retorno)?
-
-O primeiro passo é considerar como deve ser uma função à distância em Júlia. Em outras palavras, o que são os inputs (parâmetros) e o que é o output (valor de retorno)?
-
-**O primeiro passo é pensar como uma função distance deveria ser no Python. Em outras palavras, quais são as entradas (parâmetros) e qual é a saída (valor de retorno)?
-
-Nesse caso, as entradas são dois pontos, que você pode representar usando quatro números. O valor de retorno é a distância representada por um valor de ponto flutuante.
-
-Neste caso, os inputs são dois pontos, que você pode representar utilizando quatro números. O valor de retorno é a distância representada por um valor de vírgula flutuante.
-
-**Nesse caso, as entradas são dois pontos que você pode representar usando quatro números. O valor de retorno é a distância representada por um valor de ponto flutuante.
-
-Imediatamente você pode escrever um esboço da função:
-(((distance))) (((("função", "definido pelo programador", "distance", veja = "distance"))))
-
-Imediatamente você pode escrever um esboço da função:
-(((distância)))((("função", "definido pelo programador", "distância", veja="distância"))))
-
-**Imediatamente, é possível escrever um rascunho da função:
+Com isso, pode-se esboçar a função:
+(((distância))) (((("função", "definido pelo programador", "distância", see="distância"))))
 
 [source,@julia-setup chap06]
 ----
-function distance(x₁, y₁, x₂, y₂)
+function distância(x₁, y₁, x₂, y₂)
     0.0
 end
 ----
 
-Obviously, this version doesn’t compute distances; it always returns zero. But it is syntactically correct, and it runs, which means that you can test it before you make it more complicated. The subscript numbers are available in the Unicode character encoding (*+\_1 TAB+*, *+\_2 TAB+*, etc.).
-(((Unicode character)))
+Obviamente que esta versão da função não computa as distâncias pois ela sempre retorna zero. Mas é sintaticamente correta, e roda, o que significa que você pode testá-la antes de complicá-la. Os números dos subscritos estão disponíveis na codificação de caracteres Unicode (*+\_1 TAB+*, *+\_2 TAB+*, etc.).
+(((caracter Unicode)))
 
-To test the new function, call it with sample arguments:
+Para testar a nova função, chame-a com argumentos do exemplo abaixo:
 
 [source,@julia-repl-test chap06]
 ----
-distance(1, 2, 4, 6)
+distância(1, 2, 4, 6)
 ----
 
-I chose these values so that the horizontal distance is 3 and the vertical distance is 4; that way, the result is 5, the hypotenuse of a 3-4-5 triangle. When testing a function, it is useful to know the right answer.
+Escolhi estes valores para que a distância horizontal seja 3 e a vertical seja 4; logo, o resultado é 5 porque é a hipotenusa de um triângulo retângulo 3-4-5. Quando testar uma função, é conveniente saber a resposta correta.
 
-At this point we have confirmed that the function is syntactically correct, and we can start adding code to the body. A reasonable next step is to find the differences latexmath:[\(x_2 - x_1\)] and latexmath:[\(y_2 - y_1\)]. The next version stores those values in temporary variables and prints them with the +@show+ macro.
+Nesse ponto, como já confirmamos que a função está sintaticamente correta então podemos começar a adicionar código ao corpo. Um próximo passo razoável é encontrar as diferenças latexmath:[\(x_2 - x_1\)] e latexmath:[\(y_2 - y_1\)]. A próxima versão armazena esses valores em variáveis temporárias que são mostradas com a macro +@show+.
 ((("@show")))((("macro", "Base", "@show", see="@show")))
 
 [source,@julia-setup]
 ----
-function distance(x₁, y₁, x₂, y₂)
+function distância(x₁, y₁, x₂, y₂)
     dx = x₂ - x₁
     dy = y₂ - y₁
     @show dx dy
@@ -172,13 +152,13 @@ function distance(x₁, y₁, x₂, y₂)
 end
 ----
 
-If the function is working, it should display +dx = 3+ and +dy = 4+. If so, we know that the function is getting the right arguments and performing the first computation correctly. If not, there are only a few lines to check.
+Se a função estiver funcionando, ela deve exibir +dx = 3+ e +dy = 4+. Nesse caso, sabemos que a função está obtendo os argumentos certos e executando os primeiros cálculos corretamente. Caso contrário, há apenas poucas linhas para analisar.
 
-Next we compute the sum of squares of +dx+ and +dy+:
+Em seguida, somamos os quadrados +dx+ e +dy+:
 
 [source,@julia-setup]
 ----
-function distance(x₁, y₁, x₂, y₂)
+function distância(x₁, y₁, x₂, y₂)
     dx = x₂ - x₁
     dy = y₂ - y₁
     d² = dx^2 + dy^2
@@ -187,12 +167,12 @@ function distance(x₁, y₁, x₂, y₂)
 end
 ----
 
-Again, you would run the program at this stage and check the output (which should be 25). Superscript numbers are also available (*+\^2 TAB+*). Finally, you can use +sqrt+ to compute and return the result:
+Você executaria o programa mais uma vez nesse estágio e verificaria a saída (que deveria ser 25). Números sobrescritos também estão disponíveis (*+\^2 TAB+*). Por fim, você pode usar +sqrt+ para calcular e retornar o resultado:
 (((sqrt)))
 
 [source,@julia-setup]
 ----
-function distance(x₁, y₁, x₂, y₂)
+function distância(x₁, y₁, x₂, y₂)
     dx = x₂ - x₁
     dy = y₂ - y₁
     d² = dx^2 + dy^2
@@ -200,24 +180,24 @@ function distance(x₁, y₁, x₂, y₂)
 end
 ----
 
-If that works correctly, you are done. Otherwise, you might want to print the value of +sqrt(d²)+ before the +return+ statement.
+Se a função rodar corretamente, pronto. Caso contrário, convém mostrar o valor de +sqrt(d²)+ antes da instrução +return+.
 
-The final version of the function doesn’t display anything when it runs; it only returns a value. The print statements we wrote are useful for debugging, but once you get the function working, you should remove them. Code like that is called _scaffolding_ because it is helpful for building the program but is not part of the final product.
-(((scaffolding)))
+A versão final da função não exibe nada quando é executada, retornando apenas um valor. As instruções de impressão que escrevemos são úteis para o debugging, mas depois que a função estiver funcionando, deve-se removê-las. Um código como esse é chamado _andaime_ porque é útil para criar o programa, mas não faz parte do produto final.
+(((andaime)))
 
-When you start out, you should add only a line or two of code at a time. As you gain more experience, you might find yourself writing and debugging bigger chunks. Either way, incremental development can save you a lot of debugging time.
+Ao iniciar, você deve adicionar apenas uma ou duas linhas de código por vez. À medida que você ganha mais experiência, pode se escrever e debugar pedaços maiores. De qualquer forma, o desenvolvimento incremental pode economizar muito tempo de debugging.
 
-The key aspects of the process are:
+Os principais aspectos do processo são:
 
-. Start with a working program and make small incremental changes. At any point, if there is an error, you should have a good idea where it is.
+. Comece com um programa funcional e faça pequenas alterações incrementais. A qualquer momento, se houver um erro, você deverá ter uma boa idéia de onde está.
 
-. Use variables to hold intermediate values so you can display and check them.
+. Use variáveis para armazenar valores intermediários de modo que você possa visualizá-los e verificá-los.
 
-. Once the program is working, you might want to remove some of the scaffolding or consolidate multiple statements into compound expressions, but only if it does not make the program difficult to read.
+. Uma vez que o programa esteja funcionando, você pode querer retirar algumass das instruções andaimes ou consolidar múltiplos comandos em expressões compostas, mas desde que não dificulte a leitura do programa.
 
 ===== Exercício 6-2
 
-Use incremental development to write a function called +hypotenuse+ that returns the length of the hypotenuse of a right triangle given the lengths of the other two legs as arguments. Record each stage of the development process as you go.
+Use o desenvolvimento incremental para escrever uma função chamada +hipotenusa+ que retorna o comprimento da hipotenusa de um triângulo retângulo, considerando os comprimentos dos outros dois catetos como argumentos. Registre cada estágio do processo de desenvolvimento à medida que avança.
 
 
 === Composition
