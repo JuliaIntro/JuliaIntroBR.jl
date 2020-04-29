@@ -1,52 +1,52 @@
 [[chap06]]
 == Funções produtivas
 
-Many of the Julia functions we have used, such as the math functions, produce return values. But the functions we’ve written are all void: they have an effect, like printing a value or moving a turtle, but they return +nothing+. In this chapter you will learn to write fruitful functions.
-(((fruitful function)))
+Muitas das funções de Julia usadas, como as funções matemáticas, produzem valores de retorno. Contudo, as funções que escrevemos são todas nulas: têm um efeito, como imprimir um valor ou mover uma tartaruga, mas retornam +nothing+. Neste capítulo você aprenderá a elaborar funções produtivas.
+(((função produtiva)))
 
 
-=== Return Values
+=== Valores de retorno
 
-Calling the function generates a return value, which we usually assign to a variable or use as part of an expression.
+A chamada de uma função gera um valor de retorno, que geralmente atribuímos a uma variável ou utilizamos como parte de uma expressão.
 
 [source,julia]
 ----
 e = exp(1.0)
-height = radius * sin(radians)
+altura = raio * sin(radianos)
 ----
 
-The functions we have written so far are void. Speaking casually, they have no return value; more precisely, their return value is +nothing+. In this chapter, we are (finally) going to write fruitful functions. The first example is +area+, which returns the area of a circle with the given radius:
-(((nothing)))(((area)))((("function", "programmer-defined", "area", see="area")))
+As funções escritas até o momento são nulas, que significa que elas não têm valor de retorno; mais precisamente, seu valor de retorno é +nothing+. Neste capítulo, (finalmente) vamos escrever funções produtivas. O primeiro exemplo é +área+, que retorna a área de um círculo dado um raio:
+(((nothing)))(((área)))((("função", "definido pelo programador", "área", see="área")))
 
 [source,@julia-setup]
 ----
-function area(radius)
-    a = π * radius^2
+function área(raio)
+    a = π * raio^2
     return a
 end
 ----
 
-We have seen the +return+ statement before, but in a fruitful function the +return+ statement includes an expression. This statement means: “Return immediately from this function and use the following expression as a return value.” The expression can be arbitrarily complicated, so we could have written this function more concisely:
-(((return statement)))
+Já vimos a declaração +return+ anteriormente, mas em uma função produtiva a declaração +retorno+ inclui uma expressão. Esta declaração significa: "Retorne imediatamente a partir desta função e leve a expressão seguinte como um valor de retorno". A expressão pode ser arbitrariamente complicada, e então poderíamos ter escrito uma função mais sucinta:
+(((declaração de retorno)))
 
 [source,@julia-setup]
 ----
-function area(radius)
-    π * radius^2
+function área(raio)
+    π * raio^2
 end
 ----
 
-The value returned by a function is the value of the last expression evaluated, which, by default, is the last expression in the body of the function definition.
+O valor retornado por uma função é o valor da última expressão executada, que, por padrão, é a última expressão no corpo da definição da função.
 
-On the other hand, _temporary variables_ like +a+ and explicit +return+ statements can make debugging easier.
-(((temporary variable)))
+Além disso, _variáveis temporárias_ como +a+ e as intruções explícitas +return+ podem contribuir para a depuração.
+(((variável temporária)))
 
-Sometimes it is useful to have multiple +return+ statements, one in each branch of a conditional:
-(((absvalue)))((("function", "programmer-defined", "absvalue", see="absvalue")))
+Às vezes, é prático ter diversas instruções +return+, uma em cada ramo de uma condicional:
+(((valorAbsoluto)))((("função", "definido pelo programador", "valorAbsoluto", see="valorAbsoluto")))
 
 [source,@julia-setup chap06]
 ----
-function absvalue(x)
+function valorAbsoluto(x)
     if x < 0
         return -x
     else
@@ -55,17 +55,17 @@ function absvalue(x)
 end
 ----
 
-Since these return statements are in an alternative conditional, only one runs.
-(((alternative conditional)))
+Já que estas instruções de retorno estão em uma alternativa condicional, somente uma é executada.
+(((alternativa condicional)))
 
-As soon as a +return+ statement runs, the function terminates without executing any subsequent statements. Code that appears after a +return+ statement, or any other place the flow of execution can never reach, is called _dead code_.
-(((flow of execution)))(((dead code)))
+Assim que um comando +return+ é executado, a função termina sem executar qualquer comando posterior. O código que aparece após um comando +return+, ou qualquer outro lugar que o fluxo de execução não alcance, é chamado de _código morto_.
+(((fluxo de execução)))(((código morto)))
 
-In a fruitful function, it is a good idea to ensure that every possible path through the program hits a return statement. For example:
+Em uma função produtiva, recomendamos garantir que todos os caminhos possíveis através do programa chegue em uma declaração de retorno. Por exemplo:
 
 [source,@julia-setup chap06]
 ----
-function absvalue(x)
+function valorAbsoluto(x)
     if x < 0
         return -x
     end
@@ -75,7 +75,7 @@ function absvalue(x)
 end
 ----
 
-This function is incorrect because if +x+ happens to be 0, neither condition is true, and the function ends without hitting a +return+ statement. If the flow of execution gets to the end of a function, the return value is +nothing+, which is not the absolute value of 0.
+Esta função está incorreta porque se +x+ for 0, nenhuma das condições é verdadeira, e a função termina sem chegar a uma instrução +retorno+. Quando o fluxo de execução chegar ao final de uma função, o valor de retorno é +nothing+, que não é o valor absoluto de 0.
 
 [source,@julia-repl-test chap06]
 ----
@@ -85,26 +85,26 @@ nothing
 
 [TIP]
 ====
-Julia provides a built-in function called +abs+ that computes absolute values.
-(((abs)))((("function", "Base", "abs", see="abs")))
+Julia tem uma função interna chamada +abs+ que calcula valores absolutos.
+(((abs)))((("função", "Base", "abs", see="abs")))
 ====
 
-===== Exercise 6-1
+===== Exercício 6-1
 
-Write a +compare+ function takes two values, +x+ and +y+, and returns +1+ if +x > y+, +0+ if +x == y+, and +-1+ if +x < y+.
+Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1+ se +x > y+, +0+ se +x == y+ e +-1+ se +x < y+.
 
 
 [[incremental_development]]
-=== Incremental Development
+=== Desenvolvimento incremental
 
-As you write larger functions, you might find yourself spending more time debugging.
+À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo depurando.
 (((debugging)))
 
-To deal with increasingly complex programs, you might want to try a process called _incremental development_. The goal of incremental development is to avoid long debugging sessions by adding and testing only a small amount of code at a time.
-(((incremental development)))
+Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
+(((desenvolvimento incremental)))
 
-As an example, suppose you want to find the distance between two points, given by the coordinates latexmath:[\(\left(x_1, y_1\right)\)] and latexmath:[\(\left(x_2, y_2\right)\)]. By the Pythagorean theorem, the distance is:
-(((Pythagorean theorem)))
+Como exemplo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
+(((teorema de Pitágoras)))
 
 [latexmath]
 ++++
@@ -118,7 +118,27 @@ The first step is to consider what a distance function should look like in Julia
 In this case, the inputs are two points, which you can represent using four numbers. The return value is the distance represented by a floating-point value.
 
 Immediately you can write an outline of the function:
-(((distance)))((("function", "programmer-defined", "distance", see="distance")))
+(((distance)))((("função", "definido pelo programador", "distance", see="distance")))
+
+O primeiro passo é considerar como deve ser uma função de distância em Julia. Em outras palavras, quais são as entradas (parâmetros) e qual é a saída (valor de retorno)?
+
+O primeiro passo é considerar como deve ser uma função à distância em Júlia. Em outras palavras, o que são os inputs (parâmetros) e o que é o output (valor de retorno)?
+
+**O primeiro passo é pensar como uma função distance deveria ser no Python. Em outras palavras, quais são as entradas (parâmetros) e qual é a saída (valor de retorno)?
+
+Nesse caso, as entradas são dois pontos, que você pode representar usando quatro números. O valor de retorno é a distância representada por um valor de ponto flutuante.
+
+Neste caso, os inputs são dois pontos, que você pode representar utilizando quatro números. O valor de retorno é a distância representada por um valor de vírgula flutuante.
+
+**Nesse caso, as entradas são dois pontos que você pode representar usando quatro números. O valor de retorno é a distância representada por um valor de ponto flutuante.
+
+Imediatamente você pode escrever um esboço da função:
+(((distance))) (((("função", "definido pelo programador", "distance", veja = "distance"))))
+
+Imediatamente você pode escrever um esboço da função:
+(((distância)))((("função", "definido pelo programador", "distância", veja="distância"))))
+
+**Imediatamente, é possível escrever um rascunho da função:
 
 [source,@julia-setup chap06]
 ----
@@ -195,7 +215,7 @@ The key aspects of the process are:
 
 . Once the program is working, you might want to remove some of the scaffolding or consolidate multiple statements into compound expressions, but only if it does not make the program difficult to read.
 
-===== Exercise 6-2
+===== Exercício 6-2
 
 Use incremental development to write a function called +hypotenuse+ that returns the length of the hypotenuse of a right triangle given the lengths of the other two legs as arguments. Record each stage of the development process as you go.
 
@@ -220,7 +240,7 @@ result = area(radius)
 ----
 
 Encapsulating these steps in a function, we get:
-(((circlearea)))((("function", "programmer-defined", "circlearea", see="circlearea")))
+(((circlearea)))((("função", "definido pelo programador", "circlearea", see="circlearea")))
 
 [source,@julia-setup]
 ----
@@ -246,7 +266,7 @@ end
 === Boolean Functions
 
 Functions can return booleans, which is often convenient for hiding complicated tests inside functions. For example:
-(((boolean function)))(((isdivisible)))((("function", "programmer-defined", "isdivisible", see="isdivisible")))
+(((boolean function)))(((isdivisible)))((("função", "definido pelo programador", "isdivisible", see="isdivisible")))
 
 [source,@julia-setup chap06]
 ----
@@ -302,7 +322,7 @@ end
 
 But the extra comparison with +true+ is unnecessary.
 
-===== Exercise 6-3
+===== Exercício 6-3
 
 Write a function +isbetween(x, y, z)+ that returns +true+ if +x ≤ y ≤ z+ or +false+ otherwise.
 
@@ -339,7 +359,7 @@ This definition says that the factorial of 0 is 1, and the factorial of any othe
 So latexmath:[\(3!\)] is 3 times latexmath:[\(2!\)], which is 2 times latexmath:[\(1!\)], which is 1 times latexmath:[\(0!\)]. Putting it all together, latexmath:[\(3!\)] equals 3 times 2 times 1 times 1, which is 6.
 
 If you can write a recursive definition of something, you can write a Julia program to evaluate it. The first step is to decide what the parameters should be. In this case it should be clear that factorial takes an integer:
-(((fact)))((("function", "programmer-defined", "fact", see="fact")))
+(((fact)))((("função", "definido pelo programador", "fact", see="fact")))
 
 [source,@julia-setup]
 ----
@@ -407,7 +427,7 @@ In the last frame, the local variables +recurse+ and +result+ do not exist, beca
 [TIP]
 ====
 Julia provides the function +factorial+ to calculate the factorial of an integer number.
-(((factorial)))((("function", "Base", "factorial", see="factorial")))
+(((factorial)))((("função", "Base", "factorial", see="factorial")))
 ====
 
 
@@ -443,7 +463,7 @@ After factorial, the most common example of a recursively defined mathematical f
 ++++
 
 Translated into Julia, it looks like this:
-(((fib)))((("function", "programmer-defined", "fib", see="fib")))
+(((fib)))((("função", "definido pelo programador", "fib", see="fib")))
 
 [source,@julia-setup chap06]
 ----
@@ -590,10 +610,10 @@ A programming pattern that uses a conditional statement to check for and handle 
 (((guardian)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex06-1]]
-===== Exercise 6-4
+===== Exercício 6-4
 
 Draw a stack diagram for the following program. What does the program print?
 
@@ -622,7 +642,7 @@ println(c(x, y+3, x+y))
 ----
 
 [[ex06-2]]
-===== Exercise 6-5
+===== Exercício 6-5
 
 The Ackermann function, latexmath:[\(A(m, n)\)], is defined:
 (((Ackermann function)))
@@ -639,16 +659,16 @@ A(m-1, A(m, n-1))& \textrm{if}\ m > 0\ \textrm{and}\ n > 0.
 \end{equation}
 ++++
 See https://en.wikipedia.org/wiki/Ackermann_function. Write a function named +ack+ that evaluates the Ackermann function. Use your function to evaluate +ack(3, 4)+, which should be 125. What happens for larger values of +m+ and +n+?
-(((ack)))((("function", "programmer-defined", "ack", see="ack")))
+(((ack)))((("função", "definido pelo programador", "ack", see="ack")))
 
 [[ex06-3]]
-===== Exercise 6-6
+===== Exercício 6-6
 
 A palindrome is a word that is spelled the same backward and forward, like “noon” and “redivider”. Recursively, a word is a palindrome if the first and last letters are the same and the middle is a palindrome.
 (((palindrome)))
 
 The following are functions that take a string argument and return the first, last, and middle letters:
-(((first)))((("function", "programmer-defined", "first", see="first")))(((last)))((("function", "programmer-defined", "last", see="last")))(((middle)))((("function", "programmer-defined", "middle", see="middle")))
+(((first)))((("função", "definido pelo programador", "first", see="first")))(((last)))((("função", "definido pelo programador", "last", see="last")))(((middle)))((("função", "definido pelo programador", "middle", see="middle")))
 
 [source,@julia-setup]
 ----
@@ -674,13 +694,13 @@ We’ll see how they work in <<chap08>>
 . Test these functions out. What happens if you call middle with a string with two letters? One letter? What about the empty string, which is written +""+ and contains no letters?
 
 . Write a function called +ispalindrome+ that takes a string argument and returns +true+ if it is a palindrome and +false+ otherwise. Remember that you can use the built-in function +length+ to check the length of a string.
-(((ispalindrome)))((("function", "programmer-defined", "ispalindrome", see="ispalindrome")))(((length)))
+(((ispalindrome)))((("função", "definido pelo programador", "ispalindrome", see="ispalindrome")))(((length)))
 
 [[ex06-4]]
-===== Exercise 6-7
+===== Exercício 6-7
 
 A number, latexmath:[\(a\)], is a power of latexmath:[\(b\)] if it is divisible by latexmath:[\(b\)] and latexmath:[\(\frac{a}{b}\)] is a power of latexmath:[\(b\)]. Write a function called +ispower+ that takes parameters +a+ and +b+ and returns +true+ if +a+ is a power of +b+.
-(((ispower)))((("function", "programmer-defined", "ispower", see="ispower")))
+(((ispower)))((("função", "definido pelo programador", "ispower", see="ispower")))
 
 [TIP]
 ====
@@ -688,13 +708,13 @@ You will have to think about the base case.
 ====
 
 [[ex06-5]]
-===== Exercise 6-8
+===== Exercício 6-8
 
 The greatest common divisor (GCD) of latexmath:[\(a\)] and latexmath:[\(b\)] is the largest number that divides both of them with no remainder.
 
 One way to find the GCD of two numbers is based on the observation that if latexmath:[\(r\)] is the remainder when latexmath:[\(a\)] is divided by latexmath:[\(b\)], then +gcd(a, b) = gcd(b, r)+. As a base case, we can use +gcd(a, 0) = a+.
 
 Write a function called +gcd+ that takes parameters +a+ and +b+ and returns their greatest common divisor.
-(((gcd)))((("function", "programmer-defined", "gcd", see="gcd")))
+(((gcd)))((("função", "definido pelo programador", "gcd", see="gcd")))
 
 Credit: This exercise is based on an example from Abelson and Sussman’s _Structure and Interpretation of Computer Programs_.
