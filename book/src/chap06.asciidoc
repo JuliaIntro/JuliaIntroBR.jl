@@ -1,5 +1,5 @@
 [[chap06]]
-== Fruitful Functions
+== Funções produtivas
 
 Many of the Julia functions we have used, such as the math functions, produce return values. But the functions we’ve written are all void: they have an effect, like printing a value or moving a turtle, but they return +nothing+. In this chapter you will learn to write fruitful functions.
 (((fruitful function)))
@@ -327,7 +327,7 @@ If you saw that definition in the dictionary, you might be annoyed. On the other
 [latexmath]
 ++++
 \begin{equation}
-{n! = 
+{n! =
 \begin{cases}
   1& \textrm{if}\  n = 0 \\
   n (n-1)!& \textrm{if}\  n > 0
@@ -437,7 +437,7 @@ After factorial, the most common example of a recursively defined mathematical f
 \begin{cases}
     0& \textrm{if}\  n = 0 \\
     1& \textrm{if}\  n = 1 \\
-    fib(n-1) + fib(n-2)& \textrm{if}\  n > 1 
+    fib(n-1) + fib(n-2)& \textrm{if}\  n > 1
 \end{cases}}
 \end{equation}
 ++++
@@ -698,4 +698,3 @@ Write a function called +gcd+ that takes parameters +a+ and +b+ and returns thei
 (((gcd)))((("function", "programmer-defined", "gcd", see="gcd")))
 
 Credit: This exercise is based on an example from Abelson and Sussman’s _Structure and Interpretation of Computer Programs_.
-
