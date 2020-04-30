@@ -1,8 +1,8 @@
 [[chap05]]
-
 == Condicionais e Recursão
 
 O principal tópico deste capítulo é a atribuição +if+, da qual executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: divisão floor e módulo.
+
 
 === Divisão Floor e Módulo
 
@@ -36,7 +36,6 @@ julia> restante = minutos - houras * 60
 Uma alternativa é usar o _operador módulo_, +%+, que divide dois números e retorna o restante.
 (((operador módulo)))((("operador", "Base", "%", see="operador módulo")))((("%", see="operador módulo")))
 
-
 [source,@julia-repl-test chap05]
 ----
 julia> remainder = minutes % 60
@@ -48,8 +47,8 @@ julia> remainder = minutes % 60
 O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é disívell por outro — se +x % y+ é zero, então +x+ é divisível por +y+.
 
 Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produtos os últimos dois dígitos.
-
 ====
+
 
 === Expressões Booleanas
 
@@ -92,10 +91,10 @@ O operador +==+ é um operador de relação; os outros são:
 
 [WARNING]
 ====
-
 Embora essas operações sejam provavelmente familiares para você, os símbolos Julia são diferentes dos símbolos matemáticos. Um erro comum é usar um único sinal de igual (+=+) em vez de um duplo sinal de igual (+==+). Lembre-se de que +=+ é um operador de atribuição e +==+ é um operador relacional. Não existe +=<+ ou +pass:[=>]+.
 (((≠)))((("operador", "Base", "≠", see="≠")))((("!=", see="≠")))((("operador", "Base", "!=", see="≠")))(((>)))((("operador", "Base", ">", see=">")))(((<)))((("operador", "Base", "<", see="<")))(((≥)))((("operador", "Base", "≥", see="≥")))(((">=", see="≥")))((("operador", "Base", ">=", see="≥")))(((≤)))((("operador", "Base", "≤", see="≤")))((("pass:[&lt;=]", see="≤")))((("operador", "Base", "pass:[&lt;=]", see="≤")))
 ====
+
 
 === Operadores Lógicos
 
@@ -108,9 +107,11 @@ Ambos +&&+ e +||+ associam à direita, mas +&&+ tem maior precedência que +||+.
 
 Por fim, o operador +!+ nega uma expressão booleana, então +!(x > y)+ é verdadeira se +x > y+ é falsa, isto é, se +x+ é menor ou igual a +y+.
 
+
 === Execução Condicional
 
-Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações Condicionais_ nos fornece essa habilidade. A forma mais simples é a atribuição _se_ (_if_ em Inglês). (((atribuição condicional)))(((if)))((("palavra-chave", "se", see="se")))(((atribuição se)))((("atribuição", "se", see="atribuição se")))
+Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações Condicionais_ nos fornece essa habilidade. A forma mais simples é a atribuição _se_ (_if_ em Inglês).
+(((atribuição condicional)))(((if)))((("palavra-chave", "se", see="se")))(((atribuição se)))((("atribuição", "se", see="atribuição se")))
 
 [source,julia]
 ----
@@ -133,6 +134,7 @@ if x < 0
 end
 ----
 
+
 === Execuções Alternativas
 
 Uma segunda maneira de usar a atribuição _se_ é a "execução alternativa", da qual há duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
@@ -147,11 +149,14 @@ else
 end
 ----
 
-Se o resto quando +x+ é dividido por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de declarações é executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.(((ramos)))
+Se o resto quando +x+ é dividido por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de declarações é executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.
+(((ramos)))
+
 
 === Condicionais Encadeadas
 
-Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um cálculo como esse é através das _condicionais encadeadas_:(((condicionais encadeadas)))(((se então)))((("palavra-chave", "se então", see="se então")))
+Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um cálculo como esse é através das _condicionais encadeadas_:
+(((condicionais encadeadas)))(((se então)))((("palavra-chave", "se então", see="se então")))
 
 [source,julia]
 ----
@@ -166,7 +171,6 @@ end
 
 Novamente, exatamente um dos ramos será executado. Não há limites para o número de declarações +else if+. Se existir uma cláusula +else+, essa deve estar no final, mas não precisa haver uma.
 
-
 [source,julia]
 ----
 if escolha == "a"
@@ -177,7 +181,9 @@ elseif esculha == "c"
     draw_c()
 end
 ----
+
 Cada condição é checada em ordem. Se a primeira for falsa, a próxima é checada e assim por diante. Se uma delas é verdadeira, o ramo correspondente é executado e a atribuição é encerrada. Se mais de uma condição é verdadeira, apenas o primeiro ramo verdadeiro é executado.
+
 
 === Condicionais Aninhadas
 
@@ -199,7 +205,8 @@ end
 
 O condicional externo contém dois ramos. O primeiro ramo contém uma atribuição simples. O segundo ramo contém outra atribuição +if+, da qual possui dois ramos inserida nela. Esses dois ramos são declarações simples, embora também possam ter sido declarações condicionais.
 
-Embora a indentação não obrigatório das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder. (((indentação)))
+Embora a indentação não obrigatório das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder.
+(((indentação)))
 
 Operadores lógicos geralmente fornecem uma maneira de simplificar instruções condicionais aninhadas. Por exemplo, podemos reescrever o seguinte código usando uma única condicional:
 
@@ -229,6 +236,7 @@ if 0 < x < 10
     println("x é um número positivo de um dígito.")
 end
 ----
+
 
 [[recursion]]
 === Recursão
@@ -274,7 +282,8 @@ A contagem regressiva que obteve +n = 3+ retorna.
 
 E então você voltará para +Main+.
 
-Uma função que chama a si mesma é chamada de _recursiva_; o processo de executar ela é chamada de _recursão_.(((função recursiva)))(((recursão)))
+Uma função que chama a si mesma é chamada de _recursiva_; o processo de executar ela é chamada de _recursão_.
+(((função recursiva)))(((recursão)))
 
 Um outro exemplo, podemos escrever uma função que imprime uma string latexmath:[\(n\)] vezes.
 (((printn)))((("função", "definido pelo programador", "printn", see="printn")))
@@ -290,7 +299,8 @@ function imprima_n(s, n)
 end
 ----
 
-Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para o chamador e as linhas restantes da função não são executadas.(((return)))((("palavra-chave", "return", see="return")))(((return statement)))((("atribuição", "return", see="atribuição de retorno")))
+Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para o chamador e as linhas restantes da função não são executadas.
+(((return)))((("palavra-chave", "return", see="return")))(((return statement)))((("atribuição", "return", see="atribuição de retorno")))
 
 O restante da função é similar a +contador_regressivo+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
@@ -308,6 +318,7 @@ Sempre que uma função é chamada, o Julia cria um quadro para conter as variá
 .Diagrama de Pilha
 image::images/fig51.svg[]
 
+
 <<fig05-1>> mostra um diagrama de pilha para +contagem_regressiva+ chamada com +n = 3+.
 
 Como sempre, o topo para pilha é o quadro para +Main+. Está vazio porque não criamos nenhuma variável em +Main+ ou passamos algum argumentos para ela.
@@ -321,7 +332,8 @@ Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Ol
 
 === Recursão Infinita
 
-Se uma recursão nunca atinge o caso base, ele continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. Aqui está um programa pequeno com uma recursão infinita: (((recursão infinita)))(((recursão)))((("função", "definido pelo programador", "recursão", see="recursão")))
+Se uma recursão nunca atinge o caso base, ele continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. Aqui está um programa pequeno com uma recursão infinita:
+(((recursão infinita)))(((recursão)))((("função", "definido pelo programador", "recursão", see="recursão")))
 
 [source,julia]
 ----
@@ -345,11 +357,12 @@ Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior.
 
 Se você encontrar uma recursão infinita por acidente, revise sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver um caso base, verifique se você está garantindo para alcançá-lo.
 
-=== Keyboard Input
 
-The programs we have written so far accept no input from the user. They just do the same thing every time.
+=== Entradas de Teclado
 
-Julia provides a built-in function called +readline+ that stops the program and waits for the user to type something. When the user presses +RETURN+ or +ENTER+, the program resumes and +readline+ returns what the user typed as a string.
+Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa todas as vezes.
+
+Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma seqüência de caracteres.
 (((readline)))((("function", "Base", "readline", see="readline")))
 
 [source,jlcon]
@@ -359,7 +372,7 @@ O que você está esperando?
 "O que você está esperando?"
 ----
 
-Before getting input from the user, it is a good idea to print a prompt telling the user what to type:
+Antes de receber informações do usuário, é uma boa ideia imprimir um prompt informando ao usuário o que digitar:
 (((prompt)))
 
 [source,jlcon]
@@ -369,7 +382,8 @@ Quem és tu? Sou Hermanoteu da Pentescopéia, irmão da Micalatéia.
 "Sou Hermanoteu da Pentescopéia, irmão da Micalatéia."
 ----
 
-Um ponto e vírgula +;+ permite colocar multiplas atribuições na mesma linha. No REPL apenas a última atribuição retornará seu valor.(((;)))
+Um ponto e vírgula +;+ permite colocar multiplas atribuições na mesma linha. No REPL apenas a última atribuição retornará seu valor.
+(((;)))
 
 Se você espera que o usuário digite um número inteiro, tente converter o valor de retorno para +Int64+:
 
@@ -383,7 +397,8 @@ julia> parse(Int64, speed)
 42
 ----
 
-Mas se o usuário digitar algo diferente de uma sequência de dígitos, você receberá um erro:(((analisar)))
+Mas se o usuário digitar algo diferente de uma sequência de dígitos, você receberá um erro:
+(((analisar)))
 
 [source,jlcon]
 ----
@@ -402,7 +417,8 @@ Veremos como lidar com esse tipo de erro posteriormente.
 
 === Debugando
 
-Quando ocorre um erro de sintaxe ou de tempo de execução, a mensagem de erro contém muitas informações, mas pode ser avassaladora. As partes mais úteis são geralmente: (((debugando)))
+Quando ocorre um erro de sintaxe ou de tempo de execução, a mensagem de erro contém muitas informações, mas pode ser avassaladora. As partes mais úteis são geralmente:
+(((debugando)))
 
 * Que tipo de erro foi, e
 
@@ -588,7 +604,6 @@ Os exercícios a seguir usam o módulo +ThinkJulia+, descrito no <<chap04>>:
 [[ex05-5]]
 ===== Exercício 5-6
 
-92/5000
 Leia a função a seguir e veja se você consegue descobrir o que ela faz (veja os exemplos em <<chap04>>). Em seguida, execute-o e veja se você acertou.
 
 [source,julia]
