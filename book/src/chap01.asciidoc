@@ -8,6 +8,7 @@ A ((("resolução de problemas")))habilidade mais importante para um cientista d
 
 À princípio, você estará aprendendo a programar, uma habilidade muito útil à você. Após, você usará a programação como um significado para o fim. Na medida que formos evoluindo, esse fim ficará mais claro.
 
+
 === O que é um Programa?
 
 Um _programa_ ((("programa")))é uma sequência de instruções que especifica como deve ser a computação. A computação poderá ser algo matemático, como resolver um sistema de equações ou encontrar as raízes de um polinômio, mas pode ser também uma computação simbólica, como uma busca ou substituição de texto num documento, ou algo gráfico, como o processamento de uma imagem ou reprodução de um vídeo.
@@ -30,6 +31,7 @@ Repetição::
 Realiza ((("repetição", see="iteração")))alguma ação repetidamente, geralmente com alguma variação.
 
 Acredite ou não, isso é tudo que existe. Todo programa que você já usou, por mais complicado que seja, é composto de instruções que são muito similares a essas. Portanto, você pode pensar em programação como o processo de dividir uma tarefa grande e complexa em subtarefas cada vez menores até que as subtarefas sejam simples o suficiente para serem executadas com uma dessas instruções básicas.
+
 
 === Executando o Julia
 
@@ -63,6 +65,7 @@ Os trechos de códigos podem ser copiados e colados literalmente, incluindo o pr
 
 Agora você está pronto para começar. Daqui em diante, irei assumir que você sabe como iniciar o Julia REPL e executar o código.
 
+
 === O primeiro programa
 
 Tradicionalmente, o primeiro programa que você escreve em uma nova linguagem de programação é chamado de "Olá, Mundo!" porque tudo que faz é exibir as palavras "Olá, Mundo!". Em Julia, se parece com isso:
@@ -75,9 +78,11 @@ Olá, Mundo!
 
 Este ((("declaração de impressão", "função println")))((("saída", "declaração de impressão")))é um exemplo de uma declaração de impressão, embora não imprima nada no papel. Ele exibe o resultado na tela.
 
+
 As aspas no programa marcam o início e o final do texto a ser exibido; eles não aparecem no resultado.
 
 Os parênteses indicam que +printl+ é uma função. Nós chegaremos em funções no <<Capítulo 3>>. ((("<<chap03>>"")))
+
 
 === Operações Aritméticas
 
@@ -155,7 +160,9 @@ Não era o que esperávamos! Julia analisa +1,000,000+ como uma sequência separ
 
 Contudo, ((("sublinhado ($$_$$)", "em inteiros")))((("$$_$$ (sublinhado)", "em inteiros", primary-sortas="* sublinhado"))) você pode obter o resultado esperado usando +1_000_000+.
 
+
 === Linguagem Formal e Natural
+
 _Linguagens Naturais_ ((("linguagem natural", id="ch1nat", range="startofrange"))) são aquelas linguagens que as pessoas falam, como Inglês, Espanhol, Português e o Francês. Eles não são projetados por pessoas (embora pessoas tentem impor-lhes alguma ordem); eles evoluíram naturalmente.
 
 _Linguagens Formais_ ((("linguagem formal", id="ch1nat2", range="startofrange"))) são linguagens projetadas por pessoas para aplicações específicas. Por exemplo, a notação que os matemáticos utilizam é uma linguagem formal que em particular é boa para denotar a relação entre números e símbolos. Químicos usam uma linguagem formal para representar a estrutura química das moléculas. E ((("linguagem de programação", id="ch1nat3", range="startofrange")))mais importante, linguagens de programação são linguagens formais projetadas para expressar cálculos.
@@ -192,14 +199,14 @@ O significado literal das palavras é mais importante e a estrutura contribui co
 Programas::
 O significado de um programa de computador é inequívoco e literal e pode ser entendido inteiramente pela análise dos tokens e da estrutura.
 
-As linguagens formais são mais densas que as linguagens naturais, por isso leva mais tempo para lê-las. Além disso, a estrutura é importante, portanto nem sempre é melhor ler de cima para baixo, da esquerda para a direita. Em vez disso, você aprenderá a analisar o programa em sua cabeça, identificando os tokens e interpretando a estrutura. Finalmente, os detalhes são importantes. Pequenos erros de ortografia e pontuação, com os quais você pode se dar bem em idiomas naturais, podem fazer uma grande diferença na linguagem formal.
-(((range="endofrange", startref="ch1nat")))(((range="endofrange", startref="ch1nat2")))(((range="endofrange", startref="ch1nat3")))(((range="endofrange", startref="ch1nat4")))(((range="endofrange", startref="ch1nat5")))(((range="endofrange", startref="ch1nat6")))
+As linguagens formais são mais densas que as linguagens naturais, por isso leva mais tempo para lê-las. Além disso, a estrutura é importante, portanto nem sempre é melhor ler de cima para baixo, da esquerda para a direita. Em vez disso, você aprenderá a analisar o programa em sua cabeça, identificando os tokens e interpretando a estrutura. Finalmente, os detalhes são importantes. Pequenos erros de ortografia e pontuação, com os quais você pode se dar bem em idiomas naturais, podem fazer uma grande diferença na linguagem formal. (((range="endofrange", startref="ch1nat")))(((range="endofrange", startref="ch1nat2")))(((range="endofrange", startref="ch1nat3")))(((range="endofrange", startref="ch1nat4")))(((range="endofrange", startref="ch1nat5")))(((range="endofrange", startref="ch1nat6")))
 
-=== Depuração
 
-Programadores ((("erros (bugs)")))((("depuração", "emoções de, lidando com")))cometem erros. Por motivos caprichosos, erros de programação são chamados de _bugs_ e o processo de rastrea-los é chamado de _depuração_.
+=== Debug
 
-A programação e, especialmente, a depuração, às vezes traz emoções fortes. Se você está lutando com um bug difícil, pode sentir raiva, desânimo ou vergonha.
+Programadores ((("erros (bugs)")))((("debugar", "emoções de, lidando com")))cometem erros. Por motivos caprichosos, erros de programação são chamados de _bugs_ e o processo de rastrea-los é chamado de _debugar_.
+
+A programação e, especialmente, a debugação, às vezes traz emoções fortes. Se você está lutando com um bug difícil, pode sentir raiva, desânimo ou vergonha.
 
 Há evidências de que as pessoas respondem naturalmente aos computadores como se fossem pessoas. Quando eles funcionam bem, pensamos neles como companheiros de equipe e, quando são obstinados ou rudes, respondemos a eles da mesma maneira que respondemos a pessoas rudes e obstinadas.footnote:[Reeves, Byron, e Clifford Ivar Nass. 1996. “The Media Equation: How People Treat Computers, Television, and New Media Like Real People and Places.” Chicago, IL: Center for the Study of Language and Information; New York: Cambridge University Press.]
 
@@ -207,7 +214,8 @@ A preparação para essas reações pode ajudá-lo a lidar com elas. Uma abordag
 
 Seu trabalho é ser um bom gerente: encontre maneiras de aproveitar os pontos fortes e atenuar os pontos fracos. E encontre maneiras de usar suas emoções para se envolver com o problema, sem deixar que suas reações interfiram na sua capacidade de trabalhar de maneira eficaz.
 
-Aprender a depurar pode ser frustrante, mas é uma habilidade valiosa que é útil para muitas atividades além da programação. No final de cada capítulo, há uma seção, como esta, com minhas sugestões para depuração. Espero que eles ajudem!
+Aprender a depurar pode ser frustrante, mas é uma habilidade valiosa que é útil para muitas atividades além da programação. No final de cada capítulo, há uma seção, como esta, com minhas sugestões para debugar. Espero que eles ajudem!
+
 
 === Glossário
 
@@ -263,10 +271,11 @@ análise::
 Para ((("análise"))) examinar um programa e analisar uma estrutra de sintaxe.
 
 bug::
-Um ((("erros (bugs)", seealso="depuração")))((("bugs", see="errors"))) erro de um programa.
+Um ((("erros (bugs)", seealso="debug")))((("bugs", see="errors"))) erro de um programa.
 
-depurar::
-O ((("depuração", seealso="erros (bugs); testes"))) processo de encontrar e corrigir bugs.
+debugar::
+O ((("debugar", seealso="erros (bugs); testes"))) processo de encontrar e corrigir bugs.
+
 
 === Exercícios
 
@@ -277,6 +286,7 @@ O ((("depuração", seealso="erros (bugs); testes"))) processo de encontrar e co
 
 [[ex01-1]]
 ===== Exercício 1-1
+
 Sempre que você estiver experimentando um novo recurso, tente cometer erros. Por exemplo, no "Olá, mundo!" programa, o que acontece se você deixar de fora uma das aspas? E se você deixar de fora os dois? E se você soletrar +println+ errado?
 
 Esse tipo de experimento ajuda a lembrar o que você lê; também ajuda quando você está programando, porque você sabe o que significam as mensagens de erro. É melhor cometer erros agora e de propósito, e não mais tarde e acidentalmente.
@@ -287,9 +297,10 @@ Esse tipo de experimento ajuda a lembrar o que você lê; também ajuda quando v
 
 . Você pode usar um sinal de menos para fazer um número negativo como +-2+. O que acontece se você colocar um sinal de mais antes de um número? E a respeito de +pass:[2++2]+?
 
-. Em noração matemática, zeros à esquerda estão corretos, como em +02+. O que acontece se você tentar isso em Julia?
+. Em notação matemática, zeros à esquerda estão corretos, como em +02+. O que acontece se você tentar isso em Julia?
 
 . O que acontece se você tem dois valores com nenhum operador entre eles?
+
 
 [[ex01-2]]
 ===== Exercício 1-2
