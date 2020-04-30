@@ -151,17 +151,17 @@ ERROR: syntax: "60" is not a valid function argument name
 === Adicionando novas funções
 
 Embora tenhamos usado só as funções que vêm com Julia até agora, também é possível adicionar novas funções. A _definição da função_ especifica o nome de uma nova função e a sequência de comandos que são executados quando a função é chamada. Aqui está um exemplo:
-(((função)))(((definição de função)))(((função definida pelo programador)))(((imprimirletras)))((("função", "definido pelo programador", "imprimirletras", see="imprimirletras")))
+(((função)))(((definição de função)))(((função definida pelo programador)))(((imprimir_letras)))((("função", "definido pelo programador", "imprimir_letras", see="imprimir_letras")))
 
 [source,@julia-setup chap03]
 ----
-function imprimirletras()
+function imprimir_letras()
     println("O cravo brigou com a rosa")
     println("Debaixo de uma sacada.")
 end
 ----
 
-+function+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimirletras+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas o primeiro caracter não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
++function+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimir_letras+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas o primeiro caracter não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
 ((("palavra-chave", "função", see="função")))(((argumento)))(((caracter Unicode)))
 
 Os parênteses vazios após o nome da função indicam que esta função não recebe nenhum argumento.
@@ -177,7 +177,7 @@ Se você definir uma função no modo interativo, o REPL indentará para informa
 
 [source,jlcon]
 ----
-julia> function imprimirletras()
+julia> function imprimir_letras()
        println("O cravo brigou com a rosa")
 
 ----
@@ -188,27 +188,27 @@ A sintaxe para chamar a nova função é a mesma das funções internas:
 
 [source,@julia-repl-test chap03]
 ----
-julia> imprimirletras()
+julia> imprimir_letras()
 O cravo brigou com a rosa
 Debaixo de uma sacada.
 ----
 
-Uma vez definida uma função, você pode usá-la dentro de outra função. Por exemplo, para repetir o refrão anterior, poderíamos escrever uma função chamada +repetirletras+:
-(((repetirletras)))((("função", "definido pelo programador", "repetirletras", see="repetirletras")))
+Uma vez definida uma função, você pode usá-la dentro de outra função. Por exemplo, para repetir o refrão anterior, poderíamos escrever uma função chamada +repetir_letras+:
+(((repetir_letras)))((("função", "definido pelo programador", "repetir_letras", see="repetir_letras")))
 
 [source,@julia-setup chap03]
 ----
-function repetirletras()
-    imprimirletras()
-    imprimirletras()
+function repetir_letras()
+    imprimir_letras()
+    imprimir_letras()
 end
 ----
 
-E depois é só chamar +repetirletras+:
+E depois é só chamar +repetir_letras+:
 
 [source,@julia-repl-test chap03]
 ----
-julia> repetirletras()
+julia> repetir_letras()
 O cravo brigou com a rosa
 Debaixo de uma sacada.
 O cravo brigou com a rosa
@@ -224,20 +224,20 @@ Reunindo os pedaços de código da seção anterior, o programa completo fica as
 
 [source,julia]
 ----
-function imprimirletras()
+function imprimir_letras()
     println("O cravo brigou com a rosa")
     println("Debaixo de uma sacada.")
 end
 
-function repetirletras()
-    imprimirletras()
-    imprimirletras()
+function repetir_letras()
+    imprimir_letras()
+    imprimir_letras()
 end
 
-repetirletras()
+repetir_letras()
 ----
 
-Este programa contém duas definições de funções: +imprimirletras+ e +repetirletras+. As definições de funções são executadas exatamente como outros comandos, e o resultado é a criação de objetos do tipo função. Os comandos dentro da função não são executados até que a função seja chamada, e a definição da função não gera saída.
+Este programa contém duas definições de funções: +imprimir_letras+ e +repetir_letras+. As definições de funções são executadas exatamente como outros comandos, e o resultado é a criação de objetos do tipo função. Os comandos dentro da função não são executados até que a função seja chamada, e a definição da função não gera saída.
 
 Como você pode esperar, deve-se criar uma função antes de poder executá-la. Em outras palavras, a definição da função tem que ser executada antes de chamá-la.
 
@@ -245,7 +245,7 @@ Como você pode esperar, deve-se criar uma função antes de poder executá-la. 
 
 Mova a última linha deste programa para o topo, para que a chamada de função apareça antes das definições. Execute o programa e veja qual mensagem de erro você recebe.
 
-Agora mova a chamada de função de volta para a parte inferior e mova a definição de +imprimirletras+ após a definição de +repetirletras+. Ao executar este programa, o que acontece?
+Agora mova a chamada de função de volta para a parte inferior e mova a definição de +imprimir_letras+ após a definição de +repetir_letras+. Ao executar este programa, o que acontece?
 
 
 === Fluxo de execução
@@ -620,16 +620,16 @@ function fazer2vezes(f)
 end
 ----
 
-Veja um exemplo que usa +fazer2vezes+ para chamar a função +imprimirspam+ duas vezes.
-(((imprimirspam)))((("função", "definido pelo programador", "imprimirspam", see="imprimirspam")))
+Veja um exemplo que usa +fazer2vezes+ para chamar a função +imprimir_spam+ duas vezes.
+(((imprimir_spam)))((("função", "definido pelo programador", "imprimir_spam", see="imprimir_spam")))
 
 [source,julia]
 ----
-function imprimirspam()
+function imprimir_spam()
     println("spam")
 end
 
-fazer2vezes(imprimirspam)
+fazer2vezes(imprimir_spam)
 ----
 
 . Copie este exemplo em um script e teste-o.
@@ -645,12 +645,12 @@ fazer2vezes(imprimirspam)
 [[ex03-3]]
 ===== Exercício 3-4
 
-. Escreva uma função +imprimirgrade+ que desenha uma grade da seguinte maneira:
-(((imprimirgrade)))((("função", "definido pelo programador", "imprimirgrade", see="imprimirgrade")))
+. Escreva uma função +imprimir_grade+ que desenha uma grade da seguinte maneira:
+(((imprimir_grade)))((("função", "definido pelo programador", "imprimir_grade", see="imprimir_grade")))
 +
 [source,@julia-repl-test chap03-ex]
 ----
-julia> imprimirgrade()
+julia> imprimir_grade()
 + - - - - + - - - - +
 |         |         |
 |         |         |
