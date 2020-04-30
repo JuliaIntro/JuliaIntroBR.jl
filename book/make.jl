@@ -61,7 +61,7 @@ if "pdf" in ARGS
     title = "notes"
   end
   println("Run ASCIIDoctor")
-  run(`/Users/ben/Source/asciidoctor-htmlbook/exe/asciidoctor-htmlbook build/$(title).asciidoc`)
+  run(`asciidoctor-htmlbook build/$(title).asciidoc`)
   println("Cleanup equations")
   book = read("build/$(title).html", String)
   book = replace(book, "\\\\(\\("=> "\\(")
