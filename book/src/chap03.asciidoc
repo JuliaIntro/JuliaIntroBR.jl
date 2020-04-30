@@ -1,10 +1,10 @@
 [[chap03]]
 == Funções
 
-No contexto da programação, uma _função_ é uma sequência nomeada de instruções que executa uma tarefa. Ao definir uma função, você especifica o nome e a sequência de instruções. Mais tarde, você pode "chamar" a função pelo nome dado.
+No contexto da programação, uma _função_ é uma sequência nomeada de comandos que executa uma tarefa. Ao definir uma função, você especifica o nome e a sequência de comandos. Mais tarde, você pode "chamar" a função pelo nome dado.
 (((função)))
 
-=== Chamada de funções
+=== Chamadas de funções
 
 Nós já vimos um exemplo de chamada de função:
 (((chamada de função)))
@@ -21,7 +21,7 @@ O nome da função é +println+. A expressão entre parênteses é o _argumento_
 É comum dizer que uma função "pega" um argumento e "retorna" um resultado que também é chamado de _valor de retorno_.
 (((valor de retorno)))
 
-Julia fornece funções que convertem valores de um tipo para outro. A função +parse+ recebe uma string e a converte em qualquer tipo de número, se puder, ou caso contrário mostra o erro:
+Julia fornece funções que convertem valores de um tipo para outro. A função +parse+ recebe uma string e a converte em qualquer tipo de número se puder, ou dá erro caso contrário:
 (((conversão de tipo)))(((("função","Base","parse", see="parse")))(((ArgumentError)))((("error", "Core", "ArgumentError", see="ArgumentError")))
 
 [source,@julia-repl-test]
@@ -68,13 +68,13 @@ julia> string(3.14159)
 
 === Funções matemáticas
 
-Em Julia, a maioria das familiares funções matemáticas estão diretamente disponíveis:
+Em Julia, a maioria das funções matemáticas tradicionais estão diretamente disponíveis:
 (((função matemática)))(((log10)))((("função", "Base", "log10", see="log10")))
 
 [source,julia]
 ----
 razão = potência_sinal / potência_ruído
-decibels = 10 * log10(razão)
+decibéis = 10 * log10(razão)
 ----
 
 Este primeiro exemplo usa +log10+ para calcular uma relação sinal-ruído em decibéis (assumindo que +potência_sinal+ e +potência_ruído+ estão definidos). +log+, que calcula logaritmos naturais, também é dado.
@@ -87,7 +87,7 @@ altura = sin(radianos)
 ----
 
 Este segundo exemplo calcula o seno de +radianos+. O nome da variável é uma dica de que +sin+ e de que as outras funções trigonométricas (+cos+, +tan+, etc.) recebem argumentos em radianos. Para converter de graus em radianos, divida por 180 e multiplique pelo latexmath:[\(\pi\)]:
-(((seno)))((("função", "Base", "seno", see="sin")))(((função trigonométrica)))
+(((seno)))((("função", "Base", "sin", see="sin")))(((função trigonométrica)))
 
 [source,@julia-repl-test]
 ----
@@ -114,7 +114,7 @@ julia> sqrt(2) / 2
 
 === Composição
 
-Até este momento, vimos os elementos de um programa—variáveis, expressões e afirmações—isoladamente, sem detalhar em como combiná-las.
+Até este momento, vimos os elementos de um programa—variáveis, expressões e comandos—isoladamente, sem detalhar em como combiná-las.
 (((composição)))
 
 Um dos recursos mais úteis das linguagens de programação é a sua capacidade de manipular pequenos blocos de montar e compô-los. Por exemplo, o argumento de uma função pode ser qualquer tipo de expressão, incluindo operadores aritméticos:
@@ -132,7 +132,7 @@ E até mesmo as chamadas de função:
 x = exp(log(x+1))
 ----
 
-Em quase todos os lugares onde você pode colocar um valor, pode-se colocar uma expressão arbitrária, com uma exceção: o lado esquerdo de uma declaração de atribuição tem que ser um nome de variável. Qualquer outra expressão do lado esquerdo resulta em um erro de sintaxe (veremos exceções a esta regra mais tarde).
+Em quase todos os lugares onde você pode colocar um valor, pode-se colocar uma expressão arbitrária, com uma exceção: o lado esquerdo de uma atribuição tem que ser um nome de variável. Qualquer outra expressão do lado esquerdo resulta em um erro de sintaxe (veremos exceções a esta regra mais tarde).
 (((erro de sintaxe)))
 
 [source,@julia-eval chap03]
@@ -142,15 +142,15 @@ horas = 2;
 
 [source,@julia-repl-test chap03]
 ----
-julia> minutos = horas * 60 # right
+julia> minutos = horas * 60 # correto
 120
-julia> horas * 60 = minutos # wrong!
+julia> horas * 60 = minutos # errado!
 ERROR: syntax: "60" is not a valid function argument name
 ----
 
-=== Adição de novas funções
+=== Adicionando novas funções
 
-Embora tenhamos usado só as funções que vêm com Julia até agora, também é possível adicionar novas funções. A _definição de função_ especifica o nome de uma nova função e a sequência de comandos que são executados quando a função é chamada. Aqui está um exemplo:
+Embora tenhamos usado só as funções que vêm com Julia até agora, também é possível adicionar novas funções. A _definição da função_ especifica o nome de uma nova função e a sequência de comandos que são executados quando a função é chamada. Aqui está um exemplo:
 (((função)))(((definição de função)))(((função definida pelo programador)))(((imprimirletras)))((("função", "definido pelo programador", "imprimirletras", see="imprimirletras")))
 
 [source,@julia-setup chap03]
@@ -161,7 +161,7 @@ function imprimirletras()
 end
 ----
 
-+função+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimirletras+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas o primeiro caracter não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
++function+ é uma palavra-chave que indica a definição de função. O nome da função é +imprimirletras+. As regras para nomes de funções são as mesmas dos nomes de variáveis: eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas o primeiro caracter não pode ser um número. Você não pode usar uma palavra-chave como nome de uma função, e evite ter uma variável e uma função com o mesmo nome.
 ((("palavra-chave", "função", see="função")))(((argumento)))(((caracter Unicode)))
 
 Os parênteses vazios após o nome da função indicam que esta função não recebe nenhum argumento.
@@ -173,7 +173,7 @@ A primeira linha da definição da função é o _cabeçalho_; o restante é cha
 As aspas devem ser "aspas retas" (""), geralmente localizadas abaixo do Esc no teclado. As "aspas encaracoladas" ou "aspas inglesas" (“”), como as que estão nesta frase, não são legais em Julia.
 (((aspas)))
 
-Se você definir uma função no modo interativo, o REPL indentará para informar que a definição está finalizada:
+Se você definir uma função no modo interativo, o REPL indentará para informar que a definição não está finalizada:
 
 [source,jlcon]
 ----
@@ -220,7 +220,7 @@ Mas não é bem assim que a música é.
 
 === Definições e usos
 
-Reunindo os pedaços de código da seção anterior, todo o programa inteiro fica assim:
+Reunindo os pedaços de código da seção anterior, o programa completo fica assim:
 
 [source,julia]
 ----
@@ -237,9 +237,9 @@ end
 repetirletras()
 ----
 
-Este programa contém duas definições de funções: +imprimirletras+ e +repetirletras+. As definições de funções são executadas exatamente como outras instruções, e o resultado é a criação de objetos de função. Os comandos dentro da função não são executados até que a função seja chamada, e a definição da função não gera saída.
+Este programa contém duas definições de funções: +imprimirletras+ e +repetirletras+. As definições de funções são executadas exatamente como outros comandos, e o resultado é a criação de objetos do tipo função. Os comandos dentro da função não são executados até que a função seja chamada, e a definição da função não gera saída.
 
-Como você pode esperar, você tem que criar uma função antes de poder executá-la. Em outras palavras, a definição da função tem que ser executada antes de chamá-la.
+Como você pode esperar, deve-se criar uma função antes de poder executá-la. Em outras palavras, a definição da função tem que ser executada antes de chamá-la.
 
 ===== Exercício 3-1
 
@@ -250,18 +250,18 @@ Agora mova a chamada de função de volta para a parte inferior e mova a defini�
 
 === Fluxo de execução
 
-Para garantir a definição de uma função antes de sua primeira chamada, é necessário conhecer a ordem das instruções executadas, conhecido como _fluxo de execução_.
+Para garantir a definição de uma função antes de sua primeira chamada, é necessário conhecer a ordem dos comandos executados, conhecido como _fluxo de execução_.
 (((fluxo de execução)))
 
-A execução é feita sempre a partir da primeira instrução do programa. As instruções são executadas uma de cada vez, de cima para baixo.
+A execução é feita sempre a partir do primeiro comando do programa. Os comandos são executados uma de cada vez, de cima para baixo.
 
-As definições das funções não mudam o fluxo de execução do programa, mas lembre-se que as instruções dentro da função são executadas somente quando a função é chamada.
+As definições das funções não mudam o fluxo de execução do programa, mas lembre-se que os comandos dentro da função são executados somente quando a função é chamada.
 
-Quando função é chamada, é como um desvio no fluxo de execução. Em vez de ir para a instrução seguinte, o fluxo salta para o corpo da função, executa as instruções lá e depois volta para continuar de onde parou.
+Quando a função é chamada, é como um desvio no fluxo de execução. Em vez de ir para o comando seguinte, o fluxo salta para o corpo da função, executa os comandos lá e depois volta para continuar de onde parou.
 
-Isso parece bastante simples, até você lembrar que uma função pode chamar outra. Enquanto estiver no meio de uma função, o programa pode ter a necessidade de executar as instruções em uma outra função. Logo, ao executar essa nova função, o programa pode precisar executar outra função!
+Isso parece bastante simples, até você lembrar que uma função pode chamar outra. Enquanto estiver no meio de uma função, o programa pode ter a necessidade de executar os comandos em uma outra função. Logo, ao executar essa nova função, o programa pode precisar executar outra função!
 
-Felizmente, Julia é bom em monitorar seus passos, portanto, toda vez que uma função é concluída, o programa retoma de onde parou na função que a chamou. Chegando no final do programa, ele é encerrado.
+Felizmente, Julia é bom em monitorar seus passos, portanto, toda vez que uma função é concluída, o programa retoma de onde parou na função que a chamou. Chegando ao final do programa, ele é encerrado.
 
 Em resumo, quando você lê um programa, nem sempre deseja ler de cima para baixo. Às vezes, é mais lógico seguir o fluxo de execução.
 
@@ -276,13 +276,13 @@ Dentro da função, os argumentos são atribuídos a variáveis denominadas _par
 
 [source,@julia-setup chap03]
 ----
-function imprimir2vezes(bruce)
-    println(bruce)
-    println(bruce)
+function imprimir2vezes(bruno)
+    println(bruno)
+    println(bruno)
 end
 ----
 
-Esta função atribui o argumento a um parâmetro denominado +bruce+. Quando a função é chamada, imprime-se o valor do parâmetro (qualquer que seja) duas vezes.
+Esta função atribui o argumento a um parâmetro denominado +bruno+. Quando a função é chamada, imprime-se o valor do parâmetro (qualquer que seja) duas vezes.
 
 Esta função funciona com qualquer valor que possa ser impresso.
 
@@ -326,17 +326,17 @@ Uma andorinha sozinha não faz verão.
 Uma andorinha sozinha não faz verão.
 ----
 
-O nome da variável que passamos como argumento (+ana+) não tem nada a ver com o nome do parâmetro (+bruce+). Para a função +imprimir2vezes+, todos os parâmetros são chamados +bruce+, independentemente do nome da variável que passamos como argumento (neste caso, +ana+)
+O nome da variável que passamos como argumento (+ana+) não tem nada a ver com o nome do parâmetro (+bruno+). Para a função +imprimir2vezes+, todos os parâmetros são chamados +bruno+, independentemente do nome da variável que passamos como argumento (neste caso, +ana+)
 
 
 === As variáveis e os parâmetros são locais
 
 Ao criar uma variável dentro de uma função, ela é _local_, isto é, ela existe apenas dentro da função. Por exemplo:
-(((variável local)))(((variável, local)))(((concatenar2partes)))((("função", "definido pelo programador", "concatenar2partes", see="concatenar2partes")))
+(((variável local)))(((variável, local)))(((concat_imprimir2vezes)))((("função", "definido pelo programador", "concat_imprimir2vezes", see="concat_imprimir2vezes")))
 
 [source,@julia-setup chap03]
 ----
-function concatenar2partes(parte1, parte2)
+function concat_imprimir2vezes(parte1, parte2)
     concat = parte1 * parte2
     imprimir2vezes(concat)
 end
@@ -351,12 +351,12 @@ julia> linha1 = "Lava outra, "
 "Lava outra, "
 julia> linha2 = "lava uma."
 "lava uma."
-julia> concatenar2partes(linha1, linha2)
+julia> concat_imprimir2vezes(linha1, linha2)
 Lava outra, lava uma.
 Lava outra, lava uma.
 ----
 
-Após o término de +concatenar2partes+, a variável +concat+ é destruída. Se tentarmos imprimi-la, aparece uma exceção:
+Após o término de +concat_imprimir2vezes+, a variável +concat+ é destruída. Se tentarmos imprimi-la, aparece uma exceção:
 (((erro em tempo de execução)))(((UndefVarError)))((("error", "Core", "UndefVarError", see="UndefVarError")))
 
 [source,@julia-repl-test chap03]
@@ -365,7 +365,7 @@ julia> println(concat)
 ERROR: UndefVarError: concat not defined
 ----
 
-Os parâmetros também são locais. Por exemplo, fora do +imprimir2vezes+, não existe o +bruce+.
+Os parâmetros também são locais. Por exemplo, fora do +imprimir2vezes+, não existe o +bruno+.
 (((parâmetro)))
 
 
@@ -375,16 +375,16 @@ Os parâmetros também são locais. Por exemplo, fora do +imprimir2vezes+, não 
 Para verificar quais variáveis podem ser usadas e onde, às vezes é prático desenhar um _diagrama de pilha_. Da mesma maneira dos diagramas de estado, os diagramas de pilha mostram o valor de cada variável, e mostram também a função à qual cada variável pertence.
 (((diagrama da pilha))) ((("diagrama", "pilha", see= "diagrama da pilha"))))
 
-Cada função é representada por um _quadro_, que é representado por uma caixa com o nome de uma função ao lado e os parâmetros e as variáveis da respectiva função dentro dele. O diagrama de pilha do exemplo anterior é ilustrado em <<fig03-1>>.
+Cada função é indicada por um _quadro_, que é representado por uma caixa com o nome de uma função ao lado e os parâmetros e as variáveis da respectiva função dentro dele. O diagrama de pilha do exemplo anterior é ilustrado em <<fig03-1>>.
 (((quadro)))
 
 [[fig03-1]]
 .Stack diagram
 image::images/fig31.svg[]
 
-Os quadros são dispostos em uma pilha que mostra qual função é chamada por outra, e assim por diante. Neste exemplo, +imprimir2vezes+ foi chamada por +concatenar2partes+, e +concatenar2partes+ foi chamada por +Main+, que é um nome especial para o quadro superior. Criando uma variável fora de qualquer função, ela pertence a +Main+.
+Os quadros são dispostos em uma pilha que mostra qual função é chamada por outra, e assim por diante. Neste exemplo, +imprimir2vezes+ foi chamada por +concat_imprimir2vezes+, e +concat_imprimir2vezes+ foi chamada por +Main+, que é um nome especial para o quadro superior. Criando uma variável fora de qualquer função, ela pertence a +Main+.
 
-Cada parâmetro recebe o mesmo valor que o seu argumento correspondente. Logo, +parte1+ tem o mesmo valor que +linha1+, da mesma forma que +parte2+ tem o mesmo valor que +linha2+, e +bruce+ tem o mesmo valor que +concat+.
+Cada parâmetro recebe o mesmo valor que o seu argumento correspondente. Logo, +parte1+ tem o mesmo valor que +linha1+, da mesma forma que +parte2+ tem o mesmo valor que +linha2+, e +bruno+ tem o mesmo valor que +concat+.
 
 Em um caso de erro durante uma chamada de função, Julia imprime o nome da função, o nome da função que a chamou, e o nome da função que chamou por ela, e assim por diante até chegar no +Main+.
 (((Main)))
@@ -396,13 +396,13 @@ Por exemplo, se você tentar acessar +concat+ de dentro de +imprimir2vezes+, voc
 ERROR: UndefVarError: concat not defined
 Stacktrace:
  [1] imprimir2vezes at ./REPL[1]:2 [inlined]
- [2] concatenar2partes(::String, ::String) at ./REPL[2]:3
+ [2] concat_imprimir2vezes(::String, ::String) at ./REPL[2]:3
 ----
 
 Esta lista de funções é chamada de _rastreamento de pilha_, que informa em qual arquivo de programa ocorreu o erro, em qual linha e quais funções estavam sendo executadas no momento. Também indica a linha de código que causou o erro.
 (((rastreamento de pilha)))
 
-A ordem das funções no stacktrace (ou rastreamento de pilha) é a ordem inversa dos quadros no diagrama de pilha. A função atualmente em execução fica no topo.
+A ordem das funções no rastreamento de pilha é a ordem inversa dos quadros no diagrama de pilha. A função atualmente em execução fica no topo.
 
 
 === Funções produtivas e funções nulas
@@ -415,7 +415,7 @@ Quando você chama uma função produtiva, quase sempre deseja-se fazer algo com
 [source,julia]
 ----
 x = cos(radianos)
-propAurea = (sqrt(5) + 1) / 2
+áurea = (sqrt(5) + 1) / 2
 ----
 
 Ao chamar uma função no modo interativo, Julia exibe o seguinte resultado:
@@ -481,6 +481,8 @@ Pode não estar claro o motivo de fragmentar um programa em funções, mas exist
 
 === Debugging
 
+NTD: Debugging é oficialmente traduzido como "depuração". No entanto, o termo mais usado entre os programadores é a palavra em inglês.
+
 Uma das habilidades mais significativas que você vai adquirir é o debugging. Ainda que possa ser frustrante, o debugging é uma das partes da programação mais intelectualmente rica, desafiadora e interessante.
 (((debugging)))
 
@@ -490,13 +492,13 @@ O debugging também é como uma ciência experimental. Uma vez que você tem uma
 
 [quote, A. Conan Doyle, O Signo dos Quatro]
 ____
-Quando você elimina o impossível, o que sobra por mais incrível que pareça só pode ser a verdade.
+Tendo eliminado o impossível, aquilo que resta, ainda que improvável, deve ser a verdade.
 ____
-(((debugging experimental debugging)))(((Holmes, Sherlock)))(((Doyle, Arthur Conan)))
+(((debugging experimental)))(((Holmes, Sherlock)))(((Doyle, Arthur Conan)))
 
-Algumas pessoas consideram que a programação e o debugging são a mesma coisa, já que a programação é o processo de debugar gradualmente um programa até que ele faça o que o programador deseja. A ideia é começar com um programa funcional e fazer pequenas mudanças, depurando-as à medida que avança.
+Algumas pessoas consideram que a programação e o debugging são a mesma coisa, já que a programação é o processo de debugar gradualmente um programa até que ele faça o que o programador deseja. A ideia é começar com um programa funcional e fazer pequenas mudanças, debugando-as à medida que avança.
 
-Por exemplo, o Linux é um sistema operacional com milhões de linhas de código, mas começou como um programa simples que Linus Torvalds usava para examinar o chip Intel 80386. De acordo com Larry Greenfield, "um dos primeiros projetos de Linus era um programa que alternava entre imprimir "AAAA" e "BBBB". Este mais tarde evoluiu para Linux. ” (_The Linux Users’ Guide_ Versão Beta 1).
+Por exemplo, o Linux é um sistema operacional com milhões de linhas de código, mas começou como um programa simples que Linus Torvalds usava para examinar o chip Intel 80386. De acordo com Larry Greenfield, "um dos primeiros projetos de Linus era um programa que alternava entre imprimir "AAAA" e "BBBB". Este mais tarde evoluiu para Linux. ” (_The Linux Users' Guide_ Versão Beta 1).
 (((Linux))) (((Torvalds, Linus))))
 
 
@@ -504,14 +506,15 @@ Por exemplo, o Linux é um sistema operacional com milhões de linhas de código
 
 função::
 Uma sequência nomeada de comandos que realiza alguma operação útil. As funções podem ou não nessitar de argumentos e podem ou não gerar um resultado.
+(((função)))
 
 definição de função::
-Uma instrução que cria uma nova função, e com especificação do seu nome, seus parâmetros e das instruções que ela contém.
+Um comando que cria uma nova função, e com especificação do seu nome, seus parâmetros e dos comandos que ela contém.
 (((definição de função)))
 
-objeto da função::
-Um valor criado por uma definição de função. O nome da função é uma variável que se refere a um objeto de função.
-(((objeto da função)))
+objeto do tipo função::
+Um valor criado por uma definição de função. O nome da função é uma variável que se refere a um objeto do tipo função.
+(((objeto do tipo função)))
 
 cabeçalho::
 A primeira linha de uma definição de função.
@@ -526,7 +529,7 @@ Um nome usado dentro de uma função para se referir ao valor passado como argum
 (((parâmetro)))
 
 chamada de função::
-Uma instrução que executa uma função. Consiste no nome da função seguido de uma lista de argumentos entre parênteses.
+Um comando que executa uma função. Consiste no nome da função seguido de uma lista de argumentos entre parênteses.
 (((chamada de função)))
 
 argumento::
@@ -554,11 +557,11 @@ Um valor especial devolvido por funções nulas.
 (((nothing)))
 
 composição::
-Usar uma expressão como parte de uma expressão maior ou uma instrução como parte de uma instrução maior.
+Usar uma expressão como parte de uma expressão maior ou um comando como parte de um comando maior.
 (((composição)))
 
 fluxo de execução::
-A ordem da execução das instruções.
+A ordem da execução dos comandos.
 (((fluxo de execução)))
 
 diagrama da pilha::
@@ -578,14 +581,14 @@ Uma lista das funções que estão sendo executadas, mostrada quando ocorre uma 
 
 [TIP]
 ====
-Esses exercícios devem ser realizados usando apenas as instruções e outros recursos que aprendemos até o momento.
+Esses exercícios devem ser realizados usando apenas os comandos e outros recursos aprendidos até o momento.
 ====
 
 [[ex03-1]]
 ===== Exercício 3-2
 
-Escreva uma função denominada +alinharADireita+ que recebe uma string denominada +s+ como parâmetro e imprime a string com espaços suficientes à esquerda de modo que a última letra da string esteja na coluna 70 da exibição.
-(((alinharADireita)))((("função", "definido pelo programador", "alinharADireita", see="alinharADireita")))
+Escreva uma função denominada +alinhar_a_direita+ que recebe uma string denominada +s+ como parâmetro e imprime a string com espaços suficientes à esquerda de modo que a última letra da string esteja na coluna 70 da exibição.
+(((alinhar_a_direita)))((("função", "definido pelo programador", "alinhar_a_direita", see="alinhar_a_direita")))
 
 [source,@julia-eval chap03-ex]
 ----
@@ -594,7 +597,7 @@ using ThinkJulia
 
 [source,@julia-repl chap03-ex]
 ----
-alinharADireita("trapalhões")
+alinhar_a_direita("trapalhões")
 ----
 
 [TIP]
@@ -606,8 +609,8 @@ Use concatenação e repetição de string. Além disso, Julia fornece uma funç
 [[ex03-2]]
 ===== Exercício 3-3
 
-Um objeto de função é um valor que você pode associar a uma variável ou passar como argumento. Por exemplo, +fazer2vezes+ é uma função que pega um objeto de função como argumento e o chama duas vezes:
-(((objeto de função)))(((fazer2vezes)))((("função", "definido pelo programador", "dotwice", see="fazer2vezes")))
+Um objeto do tipo função é um valor que você pode associar a uma variável ou passar como argumento. Por exemplo, +fazer2vezes+ é uma função que pega um objeto do tipo função como argumento e o chama duas vezes:
+(((objeto do tipo função)))(((fazer2vezes)))((("função", "definido pelo programador", "dotwice", see="fazer2vezes")))
 
 [source,julia]
 ----
@@ -631,23 +634,23 @@ fazer2vezes(imprimirspam)
 
 . Copie este exemplo em um script e teste-o.
 
-. Modifique +fazer2vezes+ para que ele receba dois argumentos, um objeto de função e um valor, e chame a função duas vezes, passando o valor como argumento.
+. Modifique +fazer2vezes+ para que ele receba dois argumentos, um objeto do tipo função e um valor, e chame a função duas vezes, passando o valor como argumento.
 
 . Copie a definição de +imprimir2vezes+ apresentada no início deste capítulo para o seu script.
 
 . Use a versão modificada de +fazer2vezes+ para chamar +imprimir2vezes+ duas vezes, e passando +"spam"+ como argumento.
 
-. Defina uma nova função chamada +fazer4vezes+ que recebe um objeto de função e um valor e chama a função quatro vezes, passando o valor como parâmetro. Esta função deve ter apenas duas instruções no corpo dessa função, e não quatro.
+. Defina uma nova função chamada +fazer4vezes+ que recebe um objeto do tipo função e um valor e chama a função quatro vezes, passando o valor como parâmetro. Esta função deve ter apenas dois comandos no corpo dessa função, e não quatro.
 
 [[ex03-3]]
 ===== Exercício 3-4
 
-. Escreva uma função +imprimirGrid+ que desenha uma grade da seguinte maneira:
-(((imprimirGrid)))((("função", "definido pelo programador", "imprimirGrid", see="imprimirGrid")))
+. Escreva uma função +imprimirgrade+ que desenha uma grade da seguinte maneira:
+(((imprimirgrade)))((("função", "definido pelo programador", "imprimirgrade", see="imprimirgrade")))
 +
 [source,@julia-repl-test chap03-ex]
 ----
-julia> imprimirGrid()
+julia> imprimirgrade()
 + - - - - + - - - - +
 |         |         |
 |         |         |
@@ -682,6 +685,6 @@ print("+ ")
 println("-")
 ----
 
-A saída dessas instruções é +pass:["+ -"]+ na mesma linha. A saída da próxima instrução é a impressão que começaria na seguinte linha.
+A saída desses comandos é +pass:["+ -"]+ na mesma linha. A saída do próximo comando é a impressão que começaria na seguinte linha.
 ====
 (((println)))(((print)))((("função", "Base", "print", see="print")))
