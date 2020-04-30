@@ -261,113 +261,113 @@ end
 
 Frequentemente se atribui nomes de funções booleanas que soam como perguntas de sim/não; neste caso, +é_divisível+ retorna +true+ ou +false+ para saber se +x+ é divisível por +y+.
 
-Here is an example:
+Eis um exemplo:
 
 [source,@julia-repl-test chap06]
 ----
-julia> isdivisible(6, 4)
+julia> é_divisível(6, 4)
 false
-julia> isdivisible(6, 3)
+julia> é_divisível(6, 3)
 true
 ----
 
-The result of the +==+ operator is a boolean, so we can write the function more concisely by returning it directly:
+O resultado do operador +==+ é um booleano, logo podemos escrever a função de forma mais sucinta por meio de um comando direto:
 (((==)))
 
 [source,@julia-setup]
 ----
-function isdivisible(x, y)
+function é_divisível(x, y)
     x % y == 0
 end
 ----
 
-Boolean functions are often used in conditional statements:
-(((conditional statement)))
+Funções booleanas são constantemente utilizadas em estruturas condicionais:
+(((estrutura condicional)))
 
 [source,julia]
 ----
-if isdivisible(x, y)
-    println("x is divisible by y")
+if é_divisível(x, y)
+    println("x é divisível por y")
 end
 ----
 
-It might be tempting to write something like:
+Talvez seja tentador escrever algo como:
 
 [source,julia]
 ----
-if isdivisible(x, y) == true
-    println("x is divisible by y")
+if é_divisível(x, y) == true
+    println("x é divisível por y")
 end
 ----
 
-But the extra comparison with +true+ is unnecessary.
+No entanto, a comparação adicional com +true+ é desnecessária.
 
 ===== Exercício 6-3
 
-Write a function +isbetween(x, y, z)+ that returns +true+ if +x ≤ y ≤ z+ or +false+ otherwise.
+Escreva uma função +está_entre(x, y, z)+ que retorna +true+ se +x ≤ y ≤ z+ ou +false+ caso contrário.
 
 
-=== More Recursion
+=== Mais recursividade
 
-We have only covered a small subset of Julia, but you might be interested to know that this subset is a _complete_ programming language, which means that anything that can be computed can be expressed in this language. Any program ever written could be rewritten using only the language features you have learned so far (actually, you would need a few commands to control devices like the mouse, disks, etc., but that’s all).
-(((recursion)))(((complete programming language)))((("programming language", "complete", see="complete programming language")))
+Mostramos apenas uma pequena fração de Julia, mas você pode estar interessado em saber que essa fração é uma linguagem de programação _completa_, significando que qualquer coisa que possa ser calculada pode ser expressa nessa linguagem. Qualquer programa já escrito pode ser reescrito usando apenas os recursos da linguagem que você aprendeu até o momento (na verdade, você precisaria de alguns comandos para controlar dispositivos como mouse, discos, etc., mas isso é tudo).
+(((recursão))) (((linguagem de programação completa))) ((("linguagem de programação", "completa", veja = "linguagem de programação completa"))))
 
-Proving that claim is a nontrivial exercise first accomplished by Alan Turing, one of the first computer scientists (some would argue that he was a mathematician, but a lot of early computer scientists started as mathematicians). Accordingly, it is known as the Turing Thesis. For a more complete (and accurate) discussion of the Turing Thesis, I recommend Michael Sipser’s book _Introduction to the Theory of Computation_.
-(((Turing, Alan)))(((Turing thesis)))
+Essa afirmação é um exercício não trivial provada pela primeira vez por Alan Turing, um dos primeiros cientistas da computação (alguns argumentariam que ele era matemático, mas muitos dos primeiros cientistas da computação começaram como matemáticos). Por isso, esta prova é conhecida como a Tese de Turing. Para uma discussão mais completa (e precisa) da Tese de Turing, recomendo o livro de Michael Sipser _Introdução à teoria da computação_.
+(((Turing, Alan))) (((tese de Turing))))
 
-To give you an idea of what you can do with the tools you have learned so far, we’ll evaluate a few recursively defined mathematical functions. A recursive definition is similar to a circular definition, in the sense that the definition contains a reference to the thing being defined. A truly circular definition is not very useful:
-(((recursive definition)))(((circular definition)))
+Para ter uma noção do que você pode fazer com as ferramentas que sabe até agora, avaliaremos algumas funções matemáticas definidas recursivamente. Uma definição recursiva é semelhante a uma definição circular, no sentido de que a definição inclui uma referência de si própria. Uma definição totalmente circular não é muito adequado:
+(((definição recursiva))) (((definição circular))))
 
 vorpal::
-An adjective used to describe something that is vorpal.
+Um adjetivo usado para descrever algo que é vorpal.
 
-If you saw that definition in the dictionary, you might be annoyed. On the other hand, if you looked up the definition of the factorial function, denoted with the symbol latexmath:[\(!\)], you might get something like this:
-(((factorial function)))
+Ver essa definição no dicionário pode ser irritante. Por outro lado, se consultar a definição da função fatorial, denotada com o símbolo latexmath:[\(!\)], poderá obter algo assim:
+(((função fatorial)))
 
 [latexmath]
 ++++
 \begin{equation}
 {n! =
 \begin{cases}
-  1& \textrm{if}\  n = 0 \\
-  n (n-1)!& \textrm{if}\  n > 0
+  1& \textrm{se}\  n = 0 \\
+  n (n-1)!& \textrm{se}\  n > 0
 \end{cases}}
 \end{equation}
 ++++
-This definition says that the factorial of 0 is 1, and the factorial of any other value, latexmath:[\(n\)], is latexmath:[\(n\)] multiplied by the factorial of latexmath:[\(n-1\)].
+Esta definição diz que o fatorial de 0 é 1, e o fatorial de qualquer outro valor latexmath:[n] é latexmath:[n] multiplicado pelo fatorial de latexmath:[n-1]].
 
-So latexmath:[\(3!\)] is 3 times latexmath:[\(2!\)], which is 2 times latexmath:[\(1!\)], which is 1 times latexmath:[\(0!\)]. Putting it all together, latexmath:[\(3!\)] equals 3 times 2 times 1 times 1, which is 6.
+Então latexmath:[\(3!\)] é 3 vezes latexmath:[\(2!\)], que é 2 vezes latexmath:[\(1!\)], que é 1 vezes latexmath:[\(0!\)]. Colocando tudo junto, látexmath:[\(3!\)] é igual a 3 vezes 2 vezes 1 vezes 1, que dá 6.
 
-If you can write a recursive definition of something, you can write a Julia program to evaluate it. The first step is to decide what the parameters should be. In this case it should be clear that factorial takes an integer:
-(((fact)))((("função", "definido pelo programador", "fact", see="fact")))
-
-[source,@julia-setup]
-----
-function fact(n) end
-----
-
-If the argument happens to be +0+, all we have to do is return +1+:
+Se puder escrever uma definição recursiva de algo, pode-se escrever um programa em Julia para testá-la. A primeiro etapa é decidir quais devem ser os parâmetros. E neste caso, é evidente que o fatorial deve recebe um número inteiro:
+(((fatorial))) (((("função", "definido pelo programador", "fatorial", see="fatorial"))))
 
 [source,@julia-setup]
 ----
-function fact(n)
+function fatorial(n) end
+----
+
+Se o argumento for +0+, basta retornar +1+:
+
+[source,@julia-setup]
+----
+function fatorial(n)
     if n == 0
         return 1
     end
 end
 ----
 
-Otherwise, and this is the interesting part, we have to make a recursive call to find the factorial of +n-1+ and then multiply it by +n+:
+Caso contrário, e esta é a parte interessante, temos que fazer uma chamada recursiva para encontrar o fatorial de +n-1+ para depois multiplicá-lo por +n+:
 
 [source,@julia-setup]
 ----
-function fact(n)
+function fatorial(n)
     if n == 0
         return 1
     else
-        recurse = fact(n-1)
-        result = n * recurse
-        return result
+        recursão = fatorial(n-1)
+        resultado = n * recursão
+        return resultado
     end
 end
 ----
