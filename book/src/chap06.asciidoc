@@ -202,55 +202,55 @@ Use o desenvolvimento incremental para escrever uma função chamada +hipotenusa
 
 === Composition
 
-As you should expect by now, you can call one function from within another. As an example, we’ll write a function that takes two points, the center of the circle and a point on the perimeter, and computes the area of the circle.
-(((composition)))
+Como já esperado, você pode chamar uma função de dentro da outra. Para exemplificar isto, escreveremos uma função que calcula a área do círculo a partir de dois pontos, o centro do círculo e um ponto no perímetro.
+(((composição)))
 
-Assume that the center point is stored in the variables +xc+ and +yc+, and the perimeter point is in +xp+ and +yp+. The first step is to find the radius of the circle, which is the distance between the two points. We just wrote a function, distance, that does that:
-
-[source,julia]
-----
-radius = distance(xc, yc, xp, yp)
-----
-
-The next step is to find the area of a circle with that radius; we just wrote that, too:
+Suponha que o ponto central é indicado pelas variáveis +xc+ e +yc+, e o ponto de perímetro indicado por +xp+ e +yp+. O primeiro passo é encontrar o raio do círculo, dado pela distância entre estes dois pontos. Para isso, elaboramos a função distância:
 
 [source,julia]
 ----
-result = area(radius)
+raio = distância(xc, yc, xp, yp)
 ----
 
-Encapsulating these steps in a function, we get:
-(((circlearea)))((("função", "definido pelo programador", "circlearea", see="circlearea")))
+O próximo passo é calcular a área de um círculo a partir desse raio, e por isso também escrevemos isso:
+
+[source,julia]
+----
+resultado = área(raio)
+----
+
+Encapsulando esses passos em uma função, temos:
+(((área_círculo)))((("função", "definido pelo programador", "área_círculo", see="área_círculo")))
 
 [source,@julia-setup]
 ----
-function circlearea(xc, yc, xp, yp)
-    radius = distance(xc, yc, xp, yp)
-    result = area(radius)
-    return result
+function área_círculo(xc, yc, xp, yp)
+    raio = distância(xc, yc, xp, yp)
+    resultado = área(raio)
+    return resultado
 end
 ----
 
-The temporary variables +radius+ and +result+ are useful for development and debugging, but once the program is working, we can make it more concise by composing the function calls:
-(((temporary variable)))
+As variáveis temporárias +raio+ e +resultado+ são úteis para o desenvolvimento e o debugging, mas depois que o programa estiver funcionando, podemos torná-lo mais conciso fazendo:
+(((variável temporária)))
 
 [source,@julia-setup]
 ----
-function circlearea(xc, yc, xp, yp)
-    area(distance(xc, yc, xp, yp))
+function área_círculo(xc, yc, xp, yp)
+    área(distância(xc, yc, xp, yp))
 end
 ----
 
 
 [[boolean_functions]]
-=== Boolean Functions
+=== Funções booleanas
 
-Functions can return booleans, which is often convenient for hiding complicated tests inside functions. For example:
-(((boolean function)))(((isdivisible)))((("função", "definido pelo programador", "isdivisible", see="isdivisible")))
+As funções podem retornar variáveis booleanas, o que muitas vezes é conveniente para ocultar testes complicados dentro de funções. Por exemplo:
+(((função booleana))) (((é_divisível))) ((("função", "definido pelo programador", "é_divisível", consulte = "é_divisível")))
 
 [source,@julia-setup chap06]
 ----
-function isdivisible(x, y)
+function é_divisível(x, y)
     if x % y == 0
         return true
     else
@@ -259,7 +259,7 @@ function isdivisible(x, y)
 end
 ----
 
-It is common to give boolean functions names that sound like yes/no questions; +isdivisible+ returns either +true+ or +false+ to indicate whether +x+ is divisible by +y+.
+Frequentemente se atribui nomes de funções booleanas que soam como perguntas de sim/não; neste caso, +é_divisível+ retorna +true+ ou +false+ para saber se +x+ é divisível por +y+.
 
 Here is an example:
 
