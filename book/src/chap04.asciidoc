@@ -1,9 +1,9 @@
 [[chap04]]
-== Estudo de Caso: Desing de Interface
+== Estudo de Caso: Design de Interface
 
 Este capítulo apresenta um estudo de caso que demonstra o processo de design de funções que trabalham juntas.
 
-Ele introduz o turtle graphics, um jeito de criar desenhos programáticos. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o modulo ThinkJulia tem que ser adicionado na sua configuração do Julia.
+Ele introduz o turtle graphics, um jeito de criar desenhos programáveis. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo ThinkJulia tem que ser adicionado na sua configuração do Julia.
 
 Os exemplos neste capítulo podem ser executados em um notebook gráfico no JuliaBox, que combina código, texto formatado, matemática e multimídia em um único docoumento (ver <<juliabox>>).
 (((JuliaBox, notebook gráfico)))
@@ -78,7 +78,7 @@ end
 
 ===== Exercício 4-1
 
-Agora modifique o macro para desenhar um quadrado. Não vá até que você faça-o funcionar!
+Agora modifique o macro para desenhar um quadrado. Não vá até que você o faça funcionar!
 
 
 [[simple_repetition]]
@@ -115,7 +115,7 @@ Olá!
 Olá!
 ----
 
-Esse é o uso mais simples da declaração +for+; nós veremos mais usos mais tarde. Mas isso deve ser o suficiente para que você possa reescrever o seu programa que desenha um quadrado. Não vá até que você faça-o.
+Esse é o uso mais simples da declaração +for+; nós veremos mais usos mais tarde. Mas isso deve ser o suficiente para que você possa reescrever o seu programa que desenha um quadrado. Não vá até que você o faça.
 
 Aqui está uma declaração +for+ que desenha um quadrado:
 
