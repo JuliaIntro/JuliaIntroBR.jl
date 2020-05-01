@@ -1,8 +1,8 @@
 [[chap02]]
 == Variáveis, Expressões e Declarações
-Uma das características mais poderosas de uma linguagem de programação é a sua habilidade de manipular _variáveis_. Uma variável é um nome que refere-se a um valor.
+Uma das caractereísticas mais poderosas de uma linguagem de programação é a sua habilidade de manipular _variáveis_. Uma variável é um nome que refere-se a um valor.
 
-(((variable)))(((value)))
+(((variável)))(((valor)))
 
 
 === Declarações de Atribuição
@@ -24,7 +24,7 @@ Este exemplo faz três atribuições. A primeira atribui uma string à uma nova 
 
 Um jeito comum de representar variáveis no papel é escrevendo o nome com uma flecha apontando para o seu valor. Este tipo de figura é denominado de _diagrama de estado_ pois mostra em que estado cada variável encontra-se (imagine isso como sendo o estado de espirito da variável) <<fig02-1>> mostra o resultado do exemplo anterior.
 
-(((state diagram)))((("diagram", "state", see="state diagram")))
+(((diagrama de estado)))((("diagrama", "estado", see="diagrama de estado")))
 
 [[fig02-1]]
 .Diagrama de estado
@@ -32,20 +32,20 @@ image::images/fig21.svg[]
 
 
 === Nomes de variáveis
-(((variable)))
+(((variáveis)))
 
 Programadores geralmente escolhem nomes para suas variáveis que são significativos—eles documentam para o que a variável é usada.
 
 Nomes de variáveis podem ser o quão longas você desejar. Eles podem conter quase todos os caracteres Unicode (veja <<caracteres>>), mas não podem começar com um número. É permitido usar letras maiúsculas, mas é convencional utilizar somente letras minúsculas para nomes de variáveis.
 
-Caracteres Unicode podem ser inseridos através do autocompletar do tab de abreviações similares à LaTeX no REPL do Julia.
-(((Unicode character)))
+caracteres Unicode podem ser inseridos através do autocompletar do tab de abreviações similares à LaTeX no REPL do Julia.
+(((caractere Unicode)))
 
-O caracter sublinhado, +_+, pode aparecer em um nome. É comumente utilizado em nomes com multiplas palavras, como +seu_nome+ ou +velocidade_de_uma_andorinha_sem_carga+.
-(((underscore character)))(((LaTeX-like abbreviations)))
+O caractere sublinhado, +_+, pode aparecer em um nome. É comumente utilizado em nomes com multiplas palavras, como +seu_nome+ ou +velocidade_de_uma_andorinha_sem_carga+.
+(((caractere sublinhado)))(((abreviações similares à LaTeX)))
 
 Se um nome inválido for dado a uma variável, recebemos um erro de sintaxe:
-(((syntax error)))((("error", "syntax", see="syntax error")))
+(((erro de sintaxe)))((("erro", "sintaxe", see="erro de sintaxe")))
 
 [source,jlcon]
 ----
@@ -57,10 +57,10 @@ julia> struct = "Zimologia Teórica Avançado"
 ERROR: syntax: unexpected "="
 ----
 
-+76trombones+ é inválido pois começa com um número. +mais@+ é inválido pois contem um caracter inválido, +@+. Mas o que há de errado com +struct+?
++76trombones+ é inválido pois começa com um número. +mais@+ é inválido pois contem um caractere inválido, +@+. Mas o que há de errado com +struct+?
 
 Acontece que +struct+ é uma das palavras chave do Julia. O REPL usa palavras chaves para reconhecer a estrutura do programa, e elas não podem ser usadas como nomes de variáveis.
-(((keyword)))
+(((palavra-chave)))
 
 O Julia possui as seguintes palavras chave:
 
@@ -79,7 +79,7 @@ Nós não precisamos memorizar esta lista. Na maior parte dos ambientes desenvol
 
 === Expressões e Declarações
 Uma _expressão_ é uma combinação de valores, variáveis e operadores. Um valor por si só é considerado uma expressão, assim como uma variável, então as expressões a seguir são todas válidas:
-(((expression)))
+(((expressão)))
 
 [source,@julia-repl-test chap02]
 ----
@@ -92,10 +92,10 @@ julia> n + 25
 ----
 
 Quando nós digitamos uma expressão no prompt, o REPL a _avalia_, o que significa que ele acha o valor da expressão. Neste exemplo, +n+ tem valor 17 e +n + 25+ valor 42.
-(((evaluate)))
+(((avaliar)))
 
 Uma _declaração_ é uma unidade de código que possui um efeito, como criar uma variável ou exibir um valor.
-(((statement)))
+(((declaração)))
 
 [source,@julia-repl-test chap02]
 ----
@@ -108,19 +108,19 @@ julia> println(n)
 A primeira linha é uma declaração de atribuição que da valor a +n+. A segunda linha é uma declaração de impressão que exibe o valor de +n+.
 
 Quando nós digitamos uma declaração, o REPL a _executa_, o que significa que ele faz o que a declaração diz.
-(((execute)))
+(((executar)))
 
 
 === Modo Script
 
 Até agora nós rodamos o Julia em _modo interativo_, o que significa que nós interagimos diretamente com o REPL. O modo interativo é uma boa maneira de começar, mas se nós estamos trabalhando com mais do que poucas linhas de código, ele pode ser inadequado.
-(((interactive mode)))
+(((modo interativo)))
 
 A alternativa é salvar o código em um arquivo chamado _script_ e em seguida rodar o Julia em _modo script_ para executar o script. Por convenção, scripts Julia possuem nomes que terminam com _.jl_.
-(((script)))(((script mode)))
+(((script)))(((modo script)))
 
 Se você sabe como criar e rodar um script no seu computador, você está pronto pra utilizar. No entanto eu recomendaria utilizar o JuliaBox novamente. Abrir um arquivo de texto, escrever um script e salvá-lo com a extensão _.jl_. O script pode ser executado em um terminal com o comando *+julia nome_do_script.jl+*.
-(((extension, .jl)))(((JuliaBox)))
+(((extensão, .jl)))(((JuliaBox)))
 
 Como o Julia nos fornece ambos os modos, podemos testar pequenos trechos de código no modo interativo antes de colocá-los num script. Mas há diferenças entre o modo interativo e o modo script que podem ser um pouco confusas.
 
@@ -205,7 +205,7 @@ Não nos esforçamos muito para lembrar a precedência dos operadores. Se nós n
 === Operações com Strings
 
 Em geral, não podemos executar operações matemáticas em strings, mesmo se as strings pareçam-se com números, então o que se segue abaixo é inválido.
-(((string operation)))(((operator, string)))
+(((operação com string)))(((operador, string)))
 
 [source,julia]
 ----
@@ -216,7 +216,7 @@ Mas existem duas exceções, +*+ e +pass:[^]+.
 (((pass:[*])))(((pass:[^])))
 
 O operador +pass:[*]+ executa a _concatenação de strings_, o que signifca que ele junta as strings ligando-as de ponta-a-ponta. Por exemplo:
-((("string", "concatenation", see="concatenate")))((("concatenate")))
+((("string", "concatenação", see="concatenar")))((("concatenação")))
 
 [source,@julia-repl-test]
 ----
@@ -229,7 +229,7 @@ julia> primeira_str * segunda_str
 ----
 
 O operador +^+ também funciona em strings; ele executa a repetição. Por exemplo, +"Spam"pass:[^]3+ é +"SpamSpamSpam"+. Se um dos valores é uma string, o outro deve ser um inteiro.
-((("string", "repetition", see="repetition")))((("repetition")))
+((("string", "repetição", see="repetição")))((("repetição")))
 
 Este uso de +pass:[*]+ e +^+ faz sentido com analogia à multiplicação e exponenciação. Assim como +4pass:[^]3+ é equivalente a +4*4*4+, nós esperamos que +"Spam"pass:[^]3+ seja igual a +pass:["Spam"*"Spam"*"Spam"]+, e é.
 
@@ -239,7 +239,7 @@ Este uso de +pass:[*]+ e +^+ faz sentido com analogia à multiplicação e expon
 À medida que os programas ficam maiores e mais complicados, eles ficam mais dificéis de ler. Linguagens formais são densas, e é comum ser difícil olhar para um pedaço de código e descobrir o que está acontecendo, ou por quê.
 
 Por esta razão, é uma boa ideia adicionar anotações em nossos programas para explicar em uma linguagem natural o que o programa esta fazendo. Estas anotações são chamadas de _comentários_, e eles começam com o símbolo +#+:
-(((comment)))((("pass:[#]", see="comment")))
+(((comentário)))((("pass:[#]", see="comentário")))
 
 [source,julia]
 ----
@@ -256,7 +256,7 @@ porcentagem = (minuto * 100) / 60   # porcentagem de uma hora
 
 Tudo a partir do +#+ até o final da linha é ignorado e não causa efeito algum na execução do programa.
 
-Comentários são bastante utéis quando eles documentam características não óbvias do código. É razoável assumir que o leitor consegue descobrir _o que_ o código faz; é mais útil explicar o _por quê_.
+Comentários são bastante utéis quando eles documentam caractereísticas não óbvias do código. É razoável assumir que o leitor consegue descobrir _o que_ o código faz; é mais útil explicar o _por quê_.
 
 Esse comentário é redundante com o código e inútil:
 
@@ -281,71 +281,71 @@ Bons nomes de variável podem reduzir a necessidade de comentários, mas nomes l
 === Debugando
 
 Três tipos de erros podem ocorrer em um programa: erros de sintaxe, erros de execução e erros de semântica. É útil distinguir entre eles a fim de localizá-los mais rapidamente.
-(((debugging)))
+(((debugando)))
 
 Erro de sintaxe::
 “sintaxe” refere-se à estrutura de um programa e as regras sobre esta estrutura. Por exemplo, parênteses precisam vir em pares correspondentes, então +(1 + 2)+ é válido, mas +8)+ é um erro de sintaxe.
 +
 Se existe algum erro de sintaxe em algum lugar do nosso programa, o Julia exibirá uma mensagem de erro e encerrará, e nós não poderemos rodar o programa. Durante as primeiras semanas da sua carreira de programador, você deverá passar bastante tempo localizando erros de sintaxe. Conforme você vai ganhando experiência, você irá cometer menos erros e achá-los mais rapidamente.
-(((syntax error)))(((error message)))
+(((erro de sintaxe)))(((mensagem de erro)))
 
 Erro de execução::
 O segundo tipo de erro é o erro de execução, assim denominado pois o erro não aparece até que o programa finalmente esteja rodando. Estes erros também são chamados de _exceções_ pois eles geralmente indicam que algo excepcional (e ruim) aconteceu.
 +
 Erros de execução são raros nos programas simples que você verá nos primeiros capítulos, então pode demorar um pouco até que você encontre um.
-(((runtime error)))((("error", "runtime", see="runtime error")))(((exception, see="runtime error")))
+(((erro de execução)))((("erro", "execução", see="erro de execução")))(((exceção, see="erro de execução")))
 
 Erros de semântica::
 O terceiro tipo de erro é o de “semântica”, o que significa que ele é relacionado a significado. Se há um erro de semântica no seu programa, ele irá rodar sem gerar nenhuma mensagem de erro, mas não irá fazer a coisa certa. Ele irá fazer outra coisa. Mais especificamente, ele irá fazer o que nós mandamos-o fazer.
 +
 Identificar erros de semântica pode ser complicado, pois requer que nós trabalhemos em sentido contrário ao olhar o resultado do programa e tentar descobrir o que ele está fazendo.
-(((semantic error)))((("error", "semantic", see="semantic error")))
+(((erro de semântica)))((("erro", "semântica", see="erro de semântica")))
 
 === Glossário
 
 variável::
 Um nome que refere-se a um valor.
-(((variable)))
+(((variável)))
 
 atribuição::
 Uma declaração que atribui um valor a uma variável.
-(((assignment)))
+(((atribuição)))
 
 diagrama de estado::
 Uma representação gráfica de um conjunto de variáveis e os valores que elas referem-se.
-(((state diagram)))
+(((diagrama de estado)))
 
 palavra-chave::
 Uma palavra reservada que é usada para analisar o programa; você não pode usar palavras-chave como +if+, +function+, e +while+ como nomes de variáveis.
-(((keyword)))
+(((palavra-chave)))
 
 operando::
 Um dos valores no qual um operador opera sobre.
-(((operand)))
+(((operando)))
 
 expressão::
 Uma combinação de variáveis, operadores, e valores que representam um único resultado.
-(((expression)))
+(((expressão)))
 
 avaliar::
 Simplificar uma expressão através da execução de operações a fim de produzir um único valor.
-(((evaluate)))
+(((avaliar)))
 
 declaração::
 Uma seção de código que representa um comando ou ação. Até agora, as declarações que nós vimos são atribuições e declarações de impressão.
-(((statement)))
+(((declaração)))
 
 executar::
 Rodar uma declaração e fazer o que ela indica.
-(((execute)))
+(((executar)))
 
 modo interativo::
 Um modo de usar o REPL do Julia digitando código no prompt.
-(((interactive mode)))
+(((modo interativo)))
 
 modo script::
 Um modo de usar o Julia para ler código de um script e executá-lo.
-(((script mode)))
+(((modo script)))
 
 script::
 Um programa guardado em um arquivo.
@@ -353,31 +353,31 @@ Um programa guardado em um arquivo.
 
 precedência de operador::
 Regras que governam a ordem na qual as expressões que envolvem múltiplos operadores matemáticos são avaliados.
-(((operator precedence)))
+(((precedência de operador)))
 
 concatenar::
 Juntar duas strings ponta-a-ponta.
-(((string concatenation)))
+(((concatenação de strings)))
 
 comentário::
 Informação em um programa destinada a outros programadores (ou qualquer um lendo o código fonte) que não tem nenhum efeito na execução do programa.
-(((comment)))
+(((comentário)))
 
 erro de sintaxe::
 Um erro em um programa que faz com que seja impossível analisar (e consequentemente interpretar).
-(((syntax error)))
+(((erro de sintaxe)))
 
 erro de execução ou exceção::
 Um erro que é detectado enquanto um programa está rodando.
-(((runtime error)))
+(((erro de execução)))
 
 semântica::
 O significado de um programa.
-(((semantics)))
+(((semântica)))
 
 erro de semântica::
 Um erro em um programa que faz com que ele faça algo diferente do que o programador pretendia.
-(((semantic error)))
+(((erro de semântica)))
 
 
 === Exercícios
