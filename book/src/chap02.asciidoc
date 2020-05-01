@@ -220,12 +220,12 @@ O operador +pass:[*]+ executa a _concatenação de strings_, o que signifca que 
 
 [source,@julia-repl-test]
 ----
-julia> primeira_str = "garganta"
-"garganta"
-julia> segunda_str = "warbler"
-"warbler"
+julia> primeira_str = "tanga"
+"tanga"
+julia> segunda_str = "mandápio"
+"mandápio"
 julia> primeira_str * segunda_str
-"gargantawarbler"
+"tangamandápio"
 ----
 
 O operador +^+ também funciona em strings; ele executa a repetição. Por exemplo, +"Spam"pass:[^]3+ é +"SpamSpamSpam"+. Se um dos valores é uma string, o outro deve ser um inteiro.
