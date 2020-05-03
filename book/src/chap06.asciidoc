@@ -1,11 +1,11 @@
 [[chap06]]
-== Funções produtivas
+== Funções Produtivas
 
 Muitas das funções de Julia que usamos, como as funções matemáticas, produzem valores de retorno. Contudo, as funções que escrevemos são todas nulas: têm um efeito, como imprimir um valor ou mover uma tartaruga, mas retornam +nothing+. Neste capítulo você aprenderá a elaborar funções produtivas.
 (((função produtiva)))
 
 
-=== Valores de retorno
+=== Valores de Retorno
 
 A chamada de uma função gera um valor de retorno, que geralmente atribuímos a uma variável ou utilizamos como parte de uma expressão.
 
@@ -26,7 +26,7 @@ function área(raio)
 end
 ----
 
-Já vimos a declaração +return+ anteriormente, mas em uma função produtiva a declaração +retorno+ inclui uma expressão. Esta declaração significa: "Retorne imediatamente a partir desta função e leve a expressão seguinte como um valor de retorno". Como esta expressão pode ser arbitrariamente complicada, então poderíamos ter escrito uma função mais sucinta:
+Já vimos o comando +return+ anteriormente, mas em uma função produtiva o comando +return+ inclui uma expressão. Este comando significa: "Retorne imediatamente a partir desta função e leve a expressão seguinte como um valor de retorno". Como essa expressão pode ser arbitrariamente complicada, então poderíamos ter escrito uma função mais sucinta:
 (((declaração de retorno)))
 
 [source,@julia-setup]
@@ -38,7 +38,7 @@ end
 
 O valor retornado por uma função é o valor do último comando executado, que, por padrão, é a última expressão no corpo da definição da função.
 
-Além disso, _variáveis temporárias_ como +var_área+ e as intruções explícitas +return+ podem contribuir para a depuração.
+Além disso, _variáveis temporárias_ como +var_área+ e as intruções explícitas +return+ podem contribuir para o debugging.
 (((variável temporária)))
 
 Às vezes, é prático ter diversos comandos +return+, uma em cada ramo de uma condicional:
@@ -55,10 +55,10 @@ function valorAbsoluto(x)
 end
 ----
 
-E já que estas instruções de retorno estão em uma alternativa condicional, somente uma é executada.
-(((alternativa condicional)))
+E já que estas instruções de retorno estão em alternativas exclusivas, somente uma é executada.
+(((alternativa exclusiva)))
 
-Assim que um comando +return+ é executado, a função termina sem executar qualquer comando posterior. O código que aparece após um comando +return+, ou qualquer outro lugar que o fluxo de execução não alcance, é chamado de _código morto_.
+Assim que um comando +return+ é executado, a função termina sem executar qualquer comando posterior. O código que aparece após um comando +return+, ou qualquer outro lugar que o fluxo de execução jamais possa alcançar, é chamado de _código morto_.
 (((fluxo de execução)))(((código morto)))
 
 Em uma função produtiva, recomendamos garantir que todos os caminhos possíveis através do programa chegue em um comando de retorno. Por exemplo:
@@ -75,7 +75,7 @@ function valorAbsoluto(x)
 end
 ----
 
-Esta função está incorreta porque se +x+ for 0, nenhuma das condições é verdadeira, e a função termina sem chegar a um comando de +retorno+. Quando o fluxo de execução chegar ao final de uma função, o valor de retorno é +nothing+, que não é o valor absoluto de 0.
+Essa função está incorreta porque se +x+ for 0, nenhuma das condições é verdadeira, e a função termina sem chegar a um comando de +retorno+. Quando o fluxo de execução chega ao final de uma função, o valor de retorno é +nothing+, que não é o valor absoluto de 0.
 
 [source,@julia-repl-test chap06]
 ----
@@ -95,7 +95,7 @@ Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1
 
 
 [[incremental_development]]
-=== Desenvolvimento incremental
+=== Desenvolvimento Incremental
 
 À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo debugando.
 (((debugging)))
@@ -103,7 +103,7 @@ Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1
 Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
 (((desenvolvimento incremental)))
 
-Para exemplificar este processo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
+Para exemplificar esse processo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
 (((teorema de Pitágoras)))
 
 [latexmath]
@@ -127,7 +127,7 @@ function distância(x₁, y₁, x₂, y₂)
 end
 ----
 
-Obviamente que esta versão não determina as distâncias pois ela sempre retorna zero. Mas é sintaticamente correta, e roda, o que significa que você pode testá-la antes de complicá-la. Os números dos subscritos estão disponíveis na codificação de caracteres Unicode (*+\_1 TAB+*, *+\_2 TAB+*, etc.).
+Obviamente que essa versão não determina as distâncias pois ela sempre retorna zero. Mas é sintaticamente correta, e roda, o que significa que você pode testá-la antes de complicá-la. Os números dos subscritos estão disponíveis na codificação de caracteres Unicode (*+\_1 TAB+*, *+\_2 TAB+*, etc.).
 (((caracter Unicode)))
 
 Para testar a nova função, chame-a com argumentos exemplificados a seguir:
@@ -185,11 +185,11 @@ Se a função rodar corretamente, pronto. Caso contrário, convém mostrar o val
 A versão final da função não exibe nada quando é executada, retornando apenas um valor. As instruções de impressão que escrevemos são úteis para o debugging, mas depois que a função estiver funcionando, devemos removê-las. Um código como esse é chamado _andaime_ porque é útil para criar o programa, embora não faça parte do produto final.
 (((andaime)))
 
-Ao iniciar, você deve adicionar apenas uma ou duas linhas de código por vez. À medida que você ganha mais experiência, pode se escrever e debugar pedaços maiores. De qualquer forma, o desenvolvimento incremental pode economizar muito tempo de debugging.
+Ao iniciar, você deve adicionar apenas uma ou duas linhas de código por vez. À medida que você adquire mais experiência, pode se escrever e debugar pedaços maiores. De qualquer forma, o desenvolvimento incremental pode economizar muito tempo de debugging.
 
 Os principais aspectos do processo são:
 
-. Comece com um programa funcional e faça pequenas alterações incrementais. A qualquer momento, se houver um erro, você deverá ter uma boa idéia de onde ele está.
+. Comece com um programa funcional e faça pequenas alterações incrementais. A qualquer momento, se houver um erro, você deverá ter uma boa ideia de onde ele está.
 
 . Use variáveis para armazenar valores intermediários de modo que você possa visualizá-los e conferi-los.
 
@@ -202,17 +202,17 @@ Use o desenvolvimento incremental para escrever uma função chamada +hipotenusa
 
 === Composição
 
-Como já esperado, você pode chamar uma função de dentro da outra. Para exemplificar isto, escreveremos uma função que calcula a área do círculo a partir de dois pontos, o centro do círculo e um ponto no perímetro.
+Como já esperado, você pode chamar uma função de dentro da outra. Para exemplificar isso, escreveremos uma função que calcula a área do círculo a partir de dois pontos, o centro do círculo e um ponto no perímetro.
 (((composição)))
 
-Suponha que o ponto central é indicado pelas variáveis +xc+ e +yc+, e o ponto de perímetro indicado por +xp+ e +yp+. O primeiro passo é encontrar o raio do círculo, dado pela distância entre estes dois pontos. Note que acabamos de escrever a função distância:
+Suponha que o ponto central é indicado pelas variáveis +xc+ e +yc+, e o ponto de perímetro é indicado por +xp+ e +yp+. O primeiro passo é encontrar o raio do círculo, dado pela distância entre estes dois pontos. Note que acabamos de escrever a função distância:
 
 [source,julia]
 ----
 raio = distância(xc, yc, xp, yp)
 ----
 
-O próximo passo é calcular a área de um círculo a partir desse raio, e por isso também escrevemos esta função:
+O próximo passo é calcular a área de um círculo a partir desse raio, e por isso também escrevemos essa função:
 
 [source,julia]
 ----
@@ -243,9 +243,9 @@ end
 
 
 [[boolean_functions]]
-=== Funções booleanas
+=== Funções Booleanas
 
-As funções podem retornar variáveis booleanas, o que muitas vezes é conveniente para ocultar testes complicados dentro de funções. Por exemplo:
+As funções podem retornar valores booleanos, o que muitas vezes é conveniente para ocultar testes complicados dentro de funções. Por exemplo:
 (((função booleana))) (((é_divisível))) ((("função", "definido pelo programador", "é_divisível", consulte = "é_divisível")))
 
 [source,@julia-setup chap06]
@@ -271,7 +271,7 @@ julia> é_divisível(6, 3)
 true
 ----
 
-O resultado do operador +==+ é um booleano, logo podemos escrever a função de forma mais sucinta por meio de um comando direto:
+O resultado do operador +==+ é um valor booleano, logo podemos escrever a função de forma mais sucinta por meio de um comando direto:
 (((==)))
 
 [source,@julia-setup]
@@ -307,7 +307,7 @@ No entanto, a comparação adicional com +true+ é desnecessária.
 Escreva uma função +está_entre(x, y, z)+ que retorna +true+ se +x ≤ y ≤ z+ ou +false+ caso contrário.
 
 
-=== Mais recursividade
+=== Mais Recursividade
 
 Mostramos apenas uma pequena fração de Julia, mas você pode estar interessado em saber que essa fração é uma linguagem de programação _completa_, significando que qualquer coisa que possa ser calculada pode ser expressa nessa linguagem. Qualquer programa já escrito pode ser reescrito usando apenas os recursos da linguagem que você aprendeu até o momento (na verdade, você precisaria de alguns comandos para controlar dispositivos como mouse, discos, etc., mas isso é tudo).
 (((recursão))) (((linguagem de programação completa))) ((("linguagem de programação", "completa", veja = "linguagem de programação completa"))))
@@ -315,7 +315,7 @@ Mostramos apenas uma pequena fração de Julia, mas você pode estar interessado
 Essa afirmação é um exercício não trivial provado pela primeira vez por Alan Turing, um dos primeiros cientistas da computação (alguns argumentariam que ele era matemático, mas muitos dos primeiros cientistas da computação começaram como matemáticos). Por isso, esta prova é conhecida como a Tese de Turing. Para uma discussão mais completa (e precisa) da Tese de Turing, recomendo o livro _Introdução à teoria da computação_ de Michael Sipser.
 (((Turing, Alan))) (((tese de Turing))))
 
-Para ter uma noção do que você pode fazer com as ferramentas que sabe até agora, avaliaremos algumas funções matemáticas definidas recursivamente. Uma definição recursiva é semelhante a uma definição circular, no sentido de que a definição contém uma chamada de si própria. Uma definição totalmente circular não é muito vantajoso:
+Para ter uma noção do que você pode fazer com as ferramentas que sabe até agora, avaliaremos algumas funções matemáticas definidas recursivamente. Uma definição recursiva é semelhante a uma definição circular, no sentido de que a definição contém uma chamada de si própria. Uma definição totalmente circular não é muito vantajosa:
 (((definição recursiva))) (((definição circular))))
 
 vorpal::
@@ -334,11 +334,11 @@ Ver essa definição no dicionário pode ser irritante. Por outro lado, se consu
 \end{cases}}
 \end{equation}
 ++++
-Esta definição diz que o fatorial de 0 é 1, e o fatorial de qualquer outro valor latexmath:[n] é latexmath:[n] multiplicado pelo fatorial de latexmath:[n-1]].
+Essa definição diz que o fatorial de 0 é 1, e o fatorial de qualquer outro valor latexmath:[n] é latexmath:[n] multiplicado pelo fatorial de latexmath:[n-1]].
 
 Então latexmath:[\(3!\)] é 3 vezes latexmath:[\(2!\)], que é 2 vezes latexmath:[\(1!\)], que é 1 vezes latexmath:[\(0!\)]. Colocando tudo junto, látexmath:[\(3!\)] é igual a 3 vezes 2 vezes 1 vezes 1, que dá 6.
 
-Se puder escrever uma definição recursiva de algo, pode-se escrever um programa em Julia para testá-la. A primeiro etapa é decidir quais devem ser os parâmetros. E neste caso, é evidente que o fatorial recebe um número inteiro:
+Se puder escrever uma definição recursiva de algo, pode-se escrever um programa em Julia para testá-la. A primeiro etapa é decidir quais devem ser os parâmetros. E nesse caso, é evidente que o fatorial recebe um número inteiro:
 (((fatorial))) (((("função", "definido pelo programador", "fatorial", see="fatorial"))))
 
 [source,@julia-setup]
@@ -389,11 +389,11 @@ pass:[&#8193;&#8193;]O valor de retorno (= +1+) é multiplicado por +n+ (que é 
 
 pass:[&#8193;]O valor de retorno (= +1+), é multiplicado por +n+ (que é +2+), e o +resultado+ é devolvido.
 
-O valor de retorno +2+ é multiplicado por +n+ (que é +3+), e o resultado (= +6+), torna-se o valor de retorno da chamada da função que iniciou todo esse processo.
+O valor de retorno (= +2+) é multiplicado por +n+ (que é +3+), e o resultado (= +6+), torna-se o valor de retorno da chamada da função que iniciou todo esse processo.
 --
 
 [[fig06-1]]
-.Stack diagram
+.Diagrama de Pilha
 image::images/fig61.svg[]
 
 
@@ -411,21 +411,21 @@ Em Julia, a função +factorial+ calcula o fatorial de um número inteiro.
 ====
 
 
-=== Salto de fé
+=== Salto de Fé
 
 Ler programas seguindo o fluxo de execução pode se tornar rapidamente exaustivo. Uma alternativa que eu chamo de "salto de fé" faz a leitura conforme o fluxo de execução e quando se chega a uma chamada de função, _assume_-se que a função funciona corretamente e devolve o resultado correto.
 (((salto de fé)))
 
 Na verdade, você já está praticando este salto de fé no uso de funções embutidas. Quando você chama +cos+ ou +exp+, você não investiga os corpos dessas funções. Você apenas assume que funcionam já que as pessoas que escreveram as funções embutidas eram bons programadores.
 
-A mesma prática ocorre quando você chama uma de suas próprias funções. Por exemplo, em <<funções booleanas>>, escrevemos a função +é_divisível+ que determina se um número é divisível por outro. Depois de nos convencermos de que essa função está correta ao examinar seu código e testar, podemos usá-la sem olhar para o corpo novamente.
+A mesma prática ocorre quando você chama uma de suas próprias funções. Por exemplo, em <<boolean_functions>>, escrevemos a função +é_divisível+ que determina se um número é divisível por outro. Depois de nos convencermos de que essa função está correta ao examinar seu código e testar, podemos usá-la sem olhar para o corpo novamente.
 
 O mesmo se aplica aos programas recursivos. Ao chegar na chamada recursiva, em vez de acompanhar o fluxo de execução, deve-se assumir que a chamada recursiva funciona (retorna o resultado correto) e depois se perguntar: “Supondo que possa encontrar o fatorial do latexmath:[\(n-1\)], posso calcular o fatorial do latexmath:[\(n\)]?” Sim, multiplicando por latexmath:[\(n\)].
 
 É claro que é um pouco estranho assumir que a função funciona corretamente quando ainda não se terminou de escrevê-la, mas é por isso que se chama salto de fé!
 
 [[one_more_example]]
-=== Mais um exemplo
+=== Mais Um Exemplo
 
 Após fatorial, o exemplo mais familiar de uma função matemática definida recursivamente é a sequência de fibonacci, cuja definição é (consulte https://pt.wikipedia.org/wiki/Sequência_de_Fibonacci):
 (((função de fibonacci)))
@@ -461,7 +461,7 @@ end
 Se tentar acompanhar o fluxo de execução aqui, mesmo para valores razoavelmente pequenos de +n+, sua cabeça vai enlouquecer. No entanto, de acordo com o salto de fé, se presumir que as duas chamadas recursivas funcionam sem erros, fica nítido que o resultado certo é obtido a partir da soma delas.
 
 
-=== Verificação de tipos
+=== Verificação de Tipos
 
 O que ocorre se chamarmos +fatorial+ e atribuirmos +1,5+ como argumento?
 (((StackOverflowError)))
@@ -500,7 +500,7 @@ function fatorial(n)
 end
 ----
 
-Enquanto o primeiro caso-base aborda os não-inteiros; o segundo aborda os inteiros negativos. Para estes dois casos, o programa exibe uma mensagem de erro e devolve +nothing+ para indicar que algo deu errado:
+Enquanto o primeiro caso-base aborda os não-inteiros; o segundo aborda os inteiros negativos. Para esses dois casos, o programa exibe uma mensagem de erro e devolve +nothing+ para indicar que algo deu errado:
 
 [source,@julia-repl-test chap06]
 ----
@@ -512,7 +512,7 @@ ERROR: Fatorial não é definido para números inteiros negativos.
 
 Se passarmos pelas duas verificações, concluímos que +n+ é positivo ou zero, logo, conseguimos provar que a recursão termina.
 
-Este programa demonstra um padrão às vezes de _guardião_. Os dois primeiros condicionais atuam como guardiões, protegendo o código de valores que podem causar um erro. Além disso, os guardiões tornam possível provar a execução sem erro do código.
+Esse programa demonstra um padrão às vezes de _guardião_. Os dois primeiros condicionais atuam como guardiões, protegendo o código de valores que podem causar um erro. Além disso, os guardiões tornam possível provar a execução sem erro do código.
 (((guardião)))
 
 Em <<catching_exceptions>>, veremos uma alternativa mais flexível para mostrar uma mensagem de erro: levantando uma exceção.
@@ -567,7 +567,7 @@ fatorial(4)
 Caso o fluxo de execução não esteja claro, esse tipo de saída de impressões pode ser útil. Leva algum tempo para usar andaimes eficientemente, mas um pouco de andaime pode economizar muito debugging.
 
 
-=== Glossary
+=== Glossário
 
 variável temporária::
 Uma variável que armazena um valor intermediário em um cálculo difícil.
@@ -624,8 +624,8 @@ println(c(x, y+3, x+y))
 [[ex06-2]]
 ===== Exercício 6-5
 
-Veja a função Ackermann, latexmath:[\(A(m, n)\)], definida como:
-(((função Ackermann)))
+Veja a função de Ackermann, latexmath:[\(A(m, n)\)], definida como:
+(((função de Ackermann)))
 
 [latexmath]
 ++++
@@ -638,7 +638,7 @@ A(m-1, A(m, n-1))& \textrm{se}\ m > 0\ \textrm{e}\ n > 0.
 \end{cases}}
 \end{equation}
 ++++
-Consulte https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_de_Ackermann. Escreva uma função chamada +ack+ que calcula a função Ackermann. Use sua função para avaliar +ack(3, 4)+, que é 125. O que ocorre quando aumentam os valores de +m+ e +n+?
+Consulte https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_de_Ackermann. Escreva uma função chamada +ack+ que calcula a função de Ackermann. Use sua função para avaliar +ack(3, 4)+, que é 125. O que ocorre quando aumentam os valores de +m+ e +n+?
 ((((ack)))((("função", "definido pelo programador", "ack", see="ack")))
 
 [[ex06-3]]
