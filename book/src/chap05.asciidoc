@@ -1,13 +1,13 @@
 [[chap05]]
 == Condicionais e Recursão
 
-O principal tópico deste capítulo é a atribuição +if+, da qual executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: divisão floor e módulo.
+O principal tópico deste capítulo é a atribuição +if+, da qual executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: Divisão Inteira e módulo.
 
 
-=== Divisão Floor e Módulo
+=== Divisão Inteira e Módulo
 
-O operador _divisão floor_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de execução de um filme seja de 105 minutos. Você talvez saiba o quanto equivale em horas. Convencionalmente retorna um número em ponto-flutuante:
-(((operador divisão floor)))((("operador", "Base", "÷", see="operador divisão floor")))((("÷", see="operador divisão floor")))
+O operador de _Divisão Inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de execução de um filme seja de 105 minutos. Você talvez saiba o quanto equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
+(((operador Divisão Inteira)))((("operador", "Base", "÷", see="operador Divisão Inteira")))((("÷", see="operador Divisão Inteira")))
 
 [source,@julia-repl-test chap05]
 ----
@@ -17,11 +17,11 @@ julia> minutos / 60
 1.75
 ----
 
-Porém normalmente não escrevemos horas com pontos decimais. Divisão Floor retorna um número inteiro de horas, arredondando para baixo:
+Porém normalmente não escrevemos horas com pontos decimais. Divisão Inteira retorna um número inteiro de horas, arredondando para baixo:
 
 [source,@julia-repl-test chap05]
 ----
-julia> houras = minutos ÷ 60
+julia> horas = minutos ÷ 60
 1
 ----
 
@@ -33,7 +33,7 @@ julia> restante = minutos - houras * 60
 45
 ----
 
-Uma alternativa é usar o _operador módulo_, +%+, que divide dois números e retorna o restante.
+Uma alternativa é usar o _operador módulo_, +%+, que divide dois números e retorna o resto.
 (((operador módulo)))((("operador", "Base", "%", see="operador módulo")))((("%", see="operador módulo")))
 
 [source,@julia-repl-test chap05]
@@ -44,9 +44,9 @@ julia> remainder = minutes % 60
 
 [TIP]
 ====
-O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é disívell por outro — se +x % y+ é zero, então +x+ é divisível por +y+.
+O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é divisível por outro — se +x % y+ é zero, então +x+ é divisível por +y+.
 
-Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produtos os últimos dois dígitos.
+Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produz os últimos dois dígitos.
 ====
 
 
@@ -123,7 +123,7 @@ end
 A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então a atribuição identada é executada. Se não, nada acontece. (((condição)))
 
 A atribuição _se_ possui a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Declarações como essa são chamadas de _declarações compostas_.
-(((declrações compostas)))(((end)))(((fim)))
+(((declarações compostas)))(((end)))
 
 Não há limites para o número de declarações que podem aparecer no corpo. Ocasionalmente, é útil ter um corpo sem declarações (geralmente como detentor de um lugar para o código que você ainda não escreveu).
 
@@ -177,7 +177,7 @@ if escolha == "a"
     draw_a()
 elseif escolha == "b"
     draw_b()
-elseif esculha == "c"
+elseif escolha == "c"
     draw_c()
 end
 ----
@@ -242,7 +242,7 @@ end
 === Recursão
 
 É permitido que uma função chame outra; também é permitido uma função se chamar. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
-(((contador regressivo)))((("função", "programmer-defined", "contador regressivo", see="contador")))
+(((contador regressivo)))((("função", "definido pelo programador", "contador regressivo", see="contador")))
 
 [source,@julia-setup chap05]
 ----
@@ -362,7 +362,7 @@ Se você encontrar uma recursão infinita por acidente, revise sua função para
 
 Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa todas as vezes.
 
-Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma seqüência de caracteres.
+Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
 (((readline)))((("function", "Base", "readline", see="readline")))
 
 [source,jlcon]
@@ -442,7 +442,7 @@ Em Julia, você pode escrever algo como isto:
 potência_do_sinal = 9
 potência_do_ruido = 10
 razão = potência_do_sinal ÷ potência_do_ruido
-decibeis = 10 * log10(razão)
+decibéis = 10 * log10(razão)
 print(decibeis)
 ----
 
@@ -455,7 +455,7 @@ E você obtém:
 
 Esse não era um resultado que você estava esperando.
 
-Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a divisão do piso em vez da divisão do ponto flutuante.
+Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a Divisão do piso em vez da Divisão do ponto flutuante.
 
 [WARNING]
 ====
@@ -465,9 +465,9 @@ Você deve ler atentamente as mensagens de erro, mas não presuma que tudo o que
 
 === Glossário
 
-divisão floor::
+Divisão Inteira::
 Um operador, denotado +÷+, que divide dois números e arredonda para baixo (em direção ao infinito negativo) para um número inteiro.
-(((divisão floor)))
+(((Divisão Inteira)))
 
 operador módulo::
 Um operador, indicado com um sinal de porcentagem (%), que trabalha com números inteiros e retorna o restante quando um número é dividido por outro.
@@ -557,7 +557,7 @@ O Último Teorema de Fermat diz que não existem inteiros positivos latexmath:[\
 para qualquer valor de latexmath:[\(n\)] maior que 2.
 
 . Escreva uma função chamada +fermat+ que coleta quatro parâmetros — +a+, +b+, +c+ e +n+ — e verifica se o Teorema de Fermat é valido. Se +n+ é maior que 2 e +pass:[a^n + b^n == c^n]+ o programa deve imprimir, "Oloco, Fermat estava errado!" caso contrário o programa deve imprimir, "Não, isso não funciona."
-(((fermat)))((("function", "definido pelo programador", "fermat", see="fermat")))
+(((fermat)))((("função", "definido pelo programador", "fermat", see="fermat")))
 
 . Escreva uma função que solicite ao usuário que insira valores para +a+, +b+, +c+ e +n+, converta-os em números inteiros e use +fermat+ para verificar se violam o teorema de Fermat.
 
@@ -640,7 +640,7 @@ A curva de Koch é um fractal que se parece com <<fig05-2>>. Para desenhar uma c
 
 . Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
-. Fire 120° para direita.
+. Gire 120° para direita.
 
 . Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
