@@ -38,7 +38,7 @@ Luxor.Turtle(0.0, 0.0, true, 0.0, (0.0, 0.0, 0.0))
 O módulo +ThinkJulia+ módulo proporciona a função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, no qual o atribuimos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
 (((Turtle)))((("tipo", "Luxor", "Turtle", see="Turtle")))
 
-Logo após criarmos a tartaruga, podemos chamar a função que move-a ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
+Logo após criarmos a tartaruga, podemos chamar a função que a move ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
 (((para a frente)))((("função", "ThinkJulia", "para a frente", see="para a frente")))
 
 [source,julia]
@@ -130,18 +130,18 @@ Aqui está uma declaração +for+ que desenha um quadrado:
 end
 ----
 
-A syntaxe de uma declaração +for+ é similar à uma definição de função. Ela possui um cabeçalho e um corpo que termina com a palavra-chave +end+. O corpo pode conter qualquer número de declarações.
+A sintaxe de uma declaração +for+ é similar à uma definição de função. Ela possui um cabeçalho e um corpo que termina com a palavra-chave +end+. O corpo pode conter qualquer número de declarações.
 (((end)))
 
-Uma declaração +for+ também é chamada de _loop_, pois o fluxo de execução percorre o corpo e em seguida retorna até o topo em um ciclo. Neste caso, ela percorre o corpo quatro vezes.
-(((loop)))
+Uma declaração +for+ também é chamada de _laço_, pois o fluxo de execução percorre o corpo e em seguida retorna até o topo em um ciclo. Neste caso, ela percorre o corpo quatro vezes.
+(((laço)))
 
-Essa versão é na verdade um pouco diferente do código que desenha um quadrado visto anteriormente, pois faz mais uma curva depois de desenhar o último lado do quadrado. A curva adicional leva mais tempo, mas simplifica o código se fizermos a mesma coisa toda vez que percorre o loop. Essa versão também tem o efeito de retornar a tartaruga para sua posição inicial, de frente à direção inicial.
+Essa versão é na verdade um pouco diferente do código que desenha um quadrado visto anteriormente, pois faz mais uma curva depois de desenhar o último lado do quadrado. A curva adicional leva mais tempo, mas simplifica o código se fizermos a mesma coisa toda vez que percorre o laço. Essa versão também tem o efeito de retornar a tartaruga para sua posição inicial, de frente à direção inicial.
 
 
 === Exercícios
 
-A seguir estão uma série de exercícios utilizando turtles. Elas tem o propósito de serem divertidas, mas tem um objetivo/ponto também. Enquanto você trabalha com elas, pense sobre qual é o objetivo/ponto.
+A seguir estão uma série de exercícios utilizando turtles. Elas tem o propósito de serem divertidas, mas tem um objetivo também. Enquanto você trabalha com elas, pense sobre qual é o objetivo.
 
 [TIP]
 ====
@@ -176,7 +176,7 @@ Os ângulos externos de um polígono regular de latexmath:[\(n\)] lados somam la
 [[ex04-5]]
 ===== Exercício 4-6
 
-Escreva uma função chamada +circulo+ que recebe uma tartaruga< +t+, e raio< +r+, como parâmetros e que desenha um círculo aproximado através da chamada de +polígono+ com um comprimento e número de lados apropriados. Teste sua função com uma série de valores de +r+.
+Escreva uma função chamada +círculo+ que recebe uma tartaruga< +t+, e raio< +r+, como parâmetros e que desenha um círculo aproximado através da chamada de +polígono+ com um comprimento e número de lados apropriados. Teste sua função com uma série de valores de +r+.
 
 [TIP]
 ====
@@ -186,7 +186,7 @@ Descubra a circumferência do círculo e garanta que +com * n == circumferência
 [[ex04-6]]
 ===== Exercício 4-7
 
-Faça uma versão mais genérica de +circulo+ chamada +arc+ que recebe um parâmetro adicional +ângulo+, que determina qual fração de círculo desenhar. +ângulo+ é uma unidade de graus, então quando +ângulo = 360+, +arc+ deve desenhar um círculo completo.
+Faça uma versão mais genérica de +círculo+ chamada +arc+ que recebe um parâmetro adicional +ângulo+, que determina qual fração de círculo desenhar. +ângulo+ é uma unidade de graus, então quando +ângulo = 360+, +arc+ deve desenhar um círculo completo.
 
 
 === Encapsulamento
@@ -208,7 +208,7 @@ end
 end
 ----
 
-As declarações +forward+ e +turn+ são indentadas duas vezes para mostrar que elas estão dentro do loop +for+, que está dentro da definição da função.
+As declarações +forward+ e +turn+ são indentadas duas vezes para mostrar que elas estão dentro do laço +for+, que está dentro da definição da função.
 (((indentação)))
 
 Dentro da função, +t+ refere-se à mesma tartaruga +🐢+, então +turn(t, -90)+ tem o mesmo efeito que +turn(🐢+, -90+. Neste caso, por que não chamar o parâmetro +🐢+ ? A idéia é que +t+ pode ser qualquer tartaruga, não somente +🐢+, então você pode criar uma segunda tartaruga e passar como argumento para +quadrado+.
@@ -472,9 +472,9 @@ declaração using::
 Uma declaração que lê um arquivo módulo e cria um objeto módulo.
 (((declaração using)))
 
-loop::
-Uma parte do programa que executa repeditamente.
-(((loop)))
+laço::
+Uma parte do programa que executa repetidamente.
+(((laço)))
 
 encapsulamento::
 O processo de transformar a sequência de declarações em uma definição de função.
