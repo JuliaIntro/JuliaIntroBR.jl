@@ -50,6 +50,7 @@ function printgrid()
   dotwice(printrow)
   printbeams()
 end
+imprimir_grade = printgrid
 
 function onefourone(f, g, h)
   f()

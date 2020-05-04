@@ -333,9 +333,6 @@ julia> p = Point(3.0, 4.0)
 Point(3.0, 4.0)
 julia> p.z = 1.0
 ERROR: type Point has no field z
-Stacktrace:
- [1] setproperty!(::Point, ::Symbol, ::Float64) at ./sysimg.jl:19
- [2] top-level scope at none:0
 ----
 
 If you are not sure what type an object is, you can ask:

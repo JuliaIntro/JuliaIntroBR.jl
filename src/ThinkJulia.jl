@@ -26,7 +26,7 @@ module ThinkJulia
   #import Base.+
 
   export printlyrics, repeatlyrics, printtwice, cattwice
-  export rightjustify, printgrid
+  export rightjustify, imprimir_grade
   export Turtle, forward, turn, penup, pendown, @svg
   #export countdown, printn, recurse
   #export area, absvalue, distance, circlearea, isdivisible, fact, fib
