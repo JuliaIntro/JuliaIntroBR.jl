@@ -242,7 +242,7 @@ end
 === Recursão
 
 É permitido que uma função chame outra; também é permitido uma função se chamar. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
-(((contador regressivo)))((("função", "definido pelo programador", "contador regressivo", see="contador")))
+(((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem")))
 
 [source,@julia-setup chap05]
 ----
@@ -302,7 +302,7 @@ end
 Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para o chamador e as linhas restantes da função não são executadas.
 (((return)))((("palavra-chave", "return", see="return")))(((return statement)))((("atribuição", "return", see="atribuição de retorno")))
 
-O restante da função é similar a +contador_regressivo+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
+O restante da função é similar a +contagem_regressiva+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
 Para exemplos simples como esse, provavelmente é mais fácil usar um loop +for+. Mas veremos exemplos mais tarde que são difíceis de escrever com um loop +for+ e fáceis de escrever com recursão; portanto, é bom começar cedo.
 
