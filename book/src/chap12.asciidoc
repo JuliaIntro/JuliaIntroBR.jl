@@ -1,13 +1,28 @@
 [[chap12]]
-== Tuples
+== Tuplas
 
 This chapter presents one more built-in type, the tuple, and then shows how arrays, dictionaries, and tuples work together. I also present a useful feature for variable-length argument arrays, the gather and scatter operators.
+
+Este capítulo apresenta mais um tipo interno, a tupla, e mostra como matrizes, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para matrizes de argumentos de comprimento variável, operadores de coleta e dispersão.
+
+Este capítulo apresenta mais um tipo embutido, o tuple, e então mostra como matrizes, dicionários e tupilos trabalham juntos. Eu também apresento um recurso útil para arrays de argumentos de comprimento variável, os operadores de agrupamento e dispersão.
+
+**Este capítulo apresenta mais um tipo integrado, a tupla, e descreve como as listas, os dicionários e as tuplas trabalham juntos. Além disso, apresento um recurso útil para listas de argumentos de comprimento variável: os operadores gather e scatter.
 
 [NOTE]
 ====
 There is no consensus on how to pronounce “tuple”. Some people say “tuh-ple”, which rhymes with “supple”. But in the context of programming, most people say “too-ple”, which rhymes with “quadruple”.
 ====
 
+[NOTA]
+====
+Não há consenso sobre como pronunciar "tupla". Algumas pessoas dizem "tuh-ple", que rima com "flexível". Mas, no contexto da programação, a maioria das pessoas diz "muito ple", que rima com "quádruplo".
+
+[NOTA].
+
+Não há consenso sobre como pronunciar "tuple". Algumas pessoas dizem "tuh-ple", que rima com "suave". Mas no contexto da programação, a maioria das pessoas diz "too-ple", que rima com "quadruplicar".
+
+**Uma observação: não há consenso sobre como pronunciar “tuple” (em inglês). Algumas pessoas dizem “tuhple”, que rima com “supple”. Porém, no contexto da programação, a maioria das pessoas diz “too-ple”, que rima com “quadruple”.
 
 === Tuples Are Immutable
 
@@ -575,7 +590,7 @@ Two words form a “metathesis pair” if you can transform one into the other b
 
 [TIP]
 ====
-Don’t test all pairs of words, and don’t test all possible swaps. 
+Don’t test all pairs of words, and don’t test all possible swaps.
 ====
 
 Credit: This exercise is inspired by an example at http://puzzlers.org.
@@ -611,4 +626,3 @@ This exercise is a little more challenging than most, so here are some suggestio
 . To improve the performance of your program, you might want to memoize the words that are known to be reducible.
 (((memo)))
 ====
-
