@@ -1,15 +1,15 @@
 [[chap09]]
 == Estudo de caso: jogo de palavras
 
-Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um quebra-cabeças onde devemos encontrar palavras com certas propriedades. Por exemplo, encontraremos os palíndromos mais longos em inglês e as palavras cujas letras aparecem em ordem alfabética. Além disso, apresentarei outro plano de desenvolvimento de programa: redução até um problema resolvido anteriormente.
+Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um quebra-cabeças onde devemos encontrar palavras com certas propriedades. Por exemplo, encontraremos os palíndromos mais longos em inglês e as palavras cujas letras aparecem em ordem alfabética. Além disso, apresentarei outro plano de desenvolvimento de programa: redução até um problema previamente resolvido.
 
 [[reading_word_lists]]
 === Lendo listas de palavras
 
-Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Há muitas listas de palavras disponíveis na Web, e a mais ideal para o nosso propósito é uma das listas de palavras coletadas por Grady Ward e que contribuiu para o domínio público como parte do projeto de léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos de palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/words.txt.
-(((Mobi léxico)))
+Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Existem muitas listas de palavras disponíveis na internet, e a mais adequada para o nosso propósito é uma das listas de palavras coletadas e disponibilizadas em domínio público por Grady Ward como parte do projeto léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos com palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/words.txt.
+(((Moby léxico)))
 
-Este arquivo está em texto sem formatação, portanto, pode ser aberto com um editor de texto, mas também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _objeto de fluxo de arquivo_ usado para a leitura do arquivo.
+Este arquivo está em texto sem formatação e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _objeto de fluxo de arquivo_ usado para a leitura do arquivo.
 (((open)))((("função", "Base", "open", see="open")))
 
 [source,@julia-eval chap09]
@@ -24,7 +24,7 @@ julia> arquivo_entrada = open("palavras.txt")
 IOStream(<file palavras.txt>)
 ----
 
-+arquivo_entrada+ é um objeto de fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(fin)+.
++arquivo_entrada+ é um objeto de fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(arquivo_entrada)+.
 
 Julia fornece várias funções para leitura, como a +readline+, que lê caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
 (((objeto de fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((fechar)))
@@ -50,7 +50,7 @@ Você também pode usar um objeto de arquivo em um laço de repetição +for+. E
 
 [source,julia]
 ----
-for linha in eachline("words.txt")
+for linha in eachline("palavras.txt")
     println(linha)
 end
 ----
@@ -61,22 +61,22 @@ end
 [[ex09-1]]
 ===== Exercício 9-1
 
-Escreva um programa que leia +palavras.txt + e imprima somente as palavras com mais de 20 caracteres (sem contar os espaços em branco).
+Escreva um programa que leia +palavras.txt+ e imprima somente as palavras com mais de 20 caracteres (sem contar os espaços em branco).
 
 [[ex09-2]]
 ===== Exercício 9-2
 
-Em 1939, Ernest Vincent Wright publicou um romance de 50.000 palavras chamado Gadsby que não contém a letra +'e'+. Como +'e'+ é a letra mais comum em inglês, escrever um romance assim não é fácil.
+Em 1939, Ernest Vincent Wright publicou um romance de 50.000 palavras chamado Gadsby que não contém a letra +'e'+. Como +'e'+ é a letra mais usada em inglês, escrever um romance assim não é fácil.
 (((Wright, Ernest Vincent)))
 
-De fato, é difícil elaborar um único pensamento sem usar essa letra mais comum. É lento no início, mas com cautela e horas de treinamento, você pode gradualmente aprimorar essa habilidade até ficar mais fácil.
+De fato, é difícil elaborar um único pensamento sem conter essa letra mais usada. É lento no início, mas com cautela e horas de treinamento, você pode gradualmente aprimorar essa habilidade até ficar mais fácil.
 
 Tudo bem, vou parar agora.
 
 Escreva uma função chamada +sem_e+ que informa +true+ se a palavra especificada não contém a letra +'e'+.
 (((sem_e))) ((("função", "definido pelo programador", "sem_e", see="sem_e"))))
 
-Modifique o seu programa da seção anterior (+sem_e+) de modo que ele imprima apenas as palavras que não possuem +'e'+ e informe a porcentagem de palavras na lista que não possuem +'e'+.
+Altere o programa que você acabou de escrever para que ele imprima apenas as palavras que não possuem +'e'+ e informe a porcentagem de palavras na lista que não possuem +'e'+.
 
 [[ex09-3]]
 ===== Exercício 9-3
@@ -84,7 +84,7 @@ Modifique o seu programa da seção anterior (+sem_e+) de modo que ele imprima a
 Escreva uma função chamada +evita+ que recebe uma palavra e uma string de letras proibidas e devolve +true+ se a palavra não contém nenhuma das letras proibidas.
 (((evita))))((("função", "definido pelo programador", "evita", see="evita")))
 
-Modifique seu programa para receber uma string de letras proibidas digitada pelo usuário e imprimir o número de palavras que não contêm nenhuma dessas letras. Você consegue encontrar uma combinação de 5 letras proibidas que exclua a menor quantidade de palavras?
+Modifique o seu programa para receber uma string de letras proibidas digitada pelo usuário e imprimir o número de palavras que não contêm nenhuma dessas letras. Você consegue encontrar uma combinação de 5 letras proibidas que exclua a menor quantidade de palavras?
 
 [[ex09-4]]
 ===== Exercício 9-4
@@ -95,7 +95,7 @@ Escreva uma função denominada +usa_somente+ que recebe uma palavra e uma strin
 [[ex09-5]]
 ===== Exercício 9-5
 
-Escreva uma função chamada +usa_todas+ que recebe uma palavra e uma string de letras exigidas, e que informa +true+ se a palavra usar todas as letras exigidas ao menos uma vez. Quantas palavras existem que usam todas as vogais +aeiou+? E que tal +aeiouy+?
+Escreva uma função chamada +usa_todas+ que recebe uma palavra e uma string de letras obrigatórias, e devolve +true+ se a palavra usar todas as letras obrigatórias ao menos uma vez. Quantas palavras existem que usam todas as vogais +aeiou+? E que tal +aeiouy+?
 (((usa_todas)))((("função", "definido pelo programador", "usa_todas", veja="usa_todas")))
 
 [[ex09-6]]
@@ -122,12 +122,12 @@ function sem_e(palavra)
 end
 ----
 
-O laço +for+ percorre os caracteres das palavras. Se encontrarmos a letra +'e'+, podemos retornar imediatamente +false+; caso contrário, temos que avançar para a próxima letra. Se sairmos do laço do modo convencional, isso significa que não encontramos um +'e'+, então retornamos +true+.
+O laço +for+ percorre os caracteres das palavras. Se encontrarmos a letra +'e'+, podemos retornar imediatamente +false+; caso contrário, temos que avançar para a próxima letra. Se sairmos do laço do modo convencional, isso significa que não encontramos um +'e'+, por isso retornamos +true+.
 
 Você poderia escrever esta função de forma mais sucinta usando o operador +∉+ (*+\notin TAB+*), mas comecei com essa versão porque ela mostra a lógica do padrão de pesquisa.
 (((∉))) ((("operador", "Base", "∉", see="∉")))
 
-+evita+ é uma versão mais geral do +sem_e+ apesar de ter a mesma estrutura:
++evita+ é uma versão mais geral do +sem_e+, apesar de ter a mesma estrutura:
 (((evita)))
 
 [source,@julia-setup chap09]
@@ -144,12 +144,12 @@ end
 
 Devolvemos +false+ assim que encontrarmos uma letra proibida e se chegarmos ao final do laço, retornamos +true+.
 
-+usa_apenas+ é parecido, exceto que o sentido da condição se inverte:
-(((usa_apenas)))
++usa_somente+ é parecido, exceto que o sentido da condição se inverte:
+(((usa_somente)))
 
 [source,@julia-setup chap09]
 ----
-function usa_apenas(palavra, válido)
+function usa_somente(palavra, válido)
     for letra in palavra
         if letra ∉ válido
             return false
@@ -183,7 +183,7 @@ Se você estivesse realmente pensando como um cientista da computação, você t
 [source,@julia-setup chap09]
 ----
 function usa_todas(palavra, obrigatórias)
-    usa_apenas(obrigatória, palavra)
+    usa_somente(obrigatória, palavra)
 end
 ----
 
@@ -193,7 +193,7 @@ Este é um exemplo de um plano de desenvolvimento para um programa chamado _redu
 
 === Laço com Índices
 
-Escrevi as funções da seção anterior com laços +for+ porque só precisava dos caracteres nas strings, sem precisar mexer com os índices.
+Escrevi as funções da seção anterior com laços +for+ porque só precisava dos caracteres nas strings, sem precisar operar com os índices.
 
 Em +é_abecedário+, temos que comparar letras adjacentes, o que é um pouco trabalhoso com um laço +for+:
 (((é_abecedário)))(((declaração for)))
@@ -232,7 +232,7 @@ function é_abecedário(palavra)
 end
 ----
 
-Outra opção é usar um laço +while+:
+Uma outra opção é usar um laço +while+:
 (((declaração while)))
 
 [source,@julia-setup chap09]
@@ -255,7 +255,7 @@ O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(p
 
 Se a posição do próximo caractere é alfabeticamente antecedente à posição do caractere atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
 
-Se chegarmos ao final do laço sem uma falha, a palavra passa no teste. Para se convencer de que o laço termina corretamente, considere a palavra +"acenos"+ como um exemplo.
+Ao chegarmos ao final do laço sem uma falha, então a palavra passa no teste. Para se convencer de que o laço termina corretamente, considere a palavra +"acenos"+ como um exemplo.
 
 Aqui está uma versão de +é_palíndromo+ que usa dois índices; um está no início e sobe, e o outro está no final e desce.
 (((é_palíndromo)))
@@ -276,16 +276,16 @@ function é_palíndromo(palavra)
 end
 ----
 
-Ou podemos fazer a redução a um problema resolvido anteriormente e escrever:
+Ou podemos fazer a redução para um problema resolvido anteriormente e escrever:
 
 [source,@julia-setup chap08]
 ----
 function é_palíndromo(palavra)
-    isreverse(palavra, palavra)
+    é_inversa(palavra, palavra)
 end
 ----
 
-usando +isreverse+ de <<deb08>>.
+usando +é_inversa+ de <<deb08>>.
 (((isreverse)))
 
 
@@ -294,12 +294,12 @@ usando +isreverse+ de <<deb08>>.
 Testar programas é difícil. As funções neste capítulo são relativamente fáceis de testar já que você pode verificar os resultados manualmente. Mesmo assim, é difícil ou impossível escolher um conjunto de palavras para testar todos os erros possíveis.
 (((debugging)))
 
-Selecionando +sem_e+ como exemplo, há dois casos óbvios a serem testados: palavras com +'e'+ devem retornar +false+ e palavras sem +'e'+ devem retornar +true+. Você não deve ter dificuldades para encontrar um caso de cada.
+Selecionando +sem_e+ como exemplo, há dois casos óbvios a serem avaliados: palavras com +'e'+ devem retornar +false+ e palavras sem +'e'+ devem retornar +true+. Não vai ser difícil encontrar um exemplo de cada.
 
-Dentro de cada caso, existem subcasos menos óbvios. Entre as palavras que possuem um "e", você deve testar as palavras com "e" no início, no final e em algum lugar no meio. Deve-se testar palavras longas, curtas e muito curtas, como a string vazia. A string vazia é um exemplo de um _caso especial_, que é um dos casos não óbvios onde os erros geralmente se ocultam.
+Dentro de cada caso, existem subcasos menos óbvios. Entre as palavras que possuem um "e", você deve testar as palavras com "e" no início, no final e em algum lugar no meio. Devem-se testar palavras longas, curtas e muito curtas, como a string vazia. A string vazia é um exemplo de um _caso especial_, que é um dos casos não óbvios onde geralmente os erros se ocultam.
 (((caso especial)))
 
-Além dos casos de teste gerados, você também pode testar seu programa com uma lista de palavras como +palavras.txt+. Ao avaliar a saída, pode-se detectar erros, mas tenha cuidado: você pode detectar um tipo de erro (palavras que não devem ser incluídas, mas são) e não o outro tipo
+Além dos casos de teste gerados, você também pode testar seu programa com uma lista de palavras como +palavras.txt+. Ao avaliar a saída, podem-se detectar erros, mas tenha cuidado: você pode encontrar um tipo de erro (palavras que não devem ser incluídas, mas são) e não o outro tipo (palavras que devem ser incluídas, mas não são).
 
 Em geral, o teste pode te ajudar a encontrar bugs, embora não seja fácil gerar um bom conjunto de casos de teste e, mesmo que você consiga, não é possível ter certeza de que seu programa está correto. De acordo com um lendário cientista da computação:
 (((Dijkstra, Edsger W.)))
@@ -316,7 +316,7 @@ Um valor que representa um arquivo aberto.
 (((objeto de fluxo de arquivo)))
 
 redução a um problema previamente resolvido::
-Uma maneira de resolver um problema, expressando-o como um caso de um problema resolvido anteriormente.
+Uma maneira de resolver um problema, tratando-o como um caso de um problema resolvido anteriormente.
 (((redução a um problema previamente resolvido)))
 
 caso especial::
@@ -334,7 +334,7 @@ Esta pergunta é baseada em um quebra-cabeças que foi transmitido no programa d
 
 [quote]
 ____
-Diga-me uma palavra com três letras duplas consecutivas. Darei a você algumas palavras que quase se qualificam, mas não acontece. Por exemplo, a palavra committee (comitê em inglês), c-o-m-m-i-t-t-e-e. Seria ótimo, exceto pelo 'i' que está infiltrado na palavra. Ou Mississippi: M-i-s-s-i-s-s-i-p-p-i. Se você pudesse tirar aqueles i's, funcionaria. Mas há uma palavra que possui três pares consecutivos de letras e, pelo que sei, essa pode ser a única palavra. Claro que há provavelmente mais 500, mas só consigo pensar em uma. Qual é a palavra?
+Diga-me uma palavra com três letras duplas consecutivas. Darei a você algumas palavras que quase se qualificam, mas não são. Por exemplo, a palavra committee (comitê em inglês), c-o-m-m-i-t-t-e-e. Seria ótimo, exceto pelo 'i' que está infiltrado na palavra. Ou Mississippi: M-i-s-s-i-s-s-i-p-p-i. Se você pudesse tirar aqueles i's, funcionaria. Mas há uma palavra que possui três pares consecutivos de letras e, pelo que sei, essa pode ser a única palavra. Claro que há provavelmente mais 500, mas só consigo pensar em uma. Qual é a palavra?
 ____
 
 Escreva um programa para encontrar essa palavra em inglês.
@@ -346,30 +346,30 @@ Aqui está outro desafio de _Car Talk_ (https://www.cartalk.com/puzzler/browse):
 
 [quote]
 ____
-Eu estava dirigindo na estrada outro dia e notei meu odômetro. Conforme a maioria dos odômetros, ele mostra seis dígitos, em milhas inteiras. Por exemplo, se meu carro tivesse percorrido 300.000 milhas, então eu veria 3-0-0-0-0-0.
+Eu estava dirigindo na estrada outro dia e notei meu odômetro. Conforme a maioria dos odômetros, seis dígitos são mostrados, em milhas inteiras. Por exemplo, se meu carro tivesse percorrido 300.000 milhas, então eu veria 3-0-0-0-0-0.
 
 Agora, o que vi naquele dia foi muito interessante. Percebi que os últimos quatro dígitos eram palíndromos; ou seja, eles são lidos tanto para a frente como para trás. Por exemplo, 5-4-4-5 é um palíndromo, então meu odômetro poderia ter lido 3-1-5-4-4-5.
 
-Uma milha depois, os últimos 5 números se tornaram um palíndromo. Por exemplo, poderia ter lido 3-6-5-4-5-6. Uma milha depois disso, os 4 dos 6 números do meio eram palíndromos. E você está pronto para isso? Uma milha depois, todos os 6 eram palíndromos!
+Uma milha depois, os últimos 5 números se tornaram um palíndromo. Por exemplo, poderia ter lido 3-6-5-4-5-6. Uma milha depois disso, os 4 dos 6 números do meio formaram um palíndromo. E você está pronto para isso? Uma milha depois, todos os 6 se tornaram um palíndromo!
 
 A pergunta é, qual o número que estava no odômetro quando olhei pela primeira vez?
 ____
 
-Escreva um programa Julia que teste todos os números de seis dígitos e mostre qualquer número que atende esses requisitos.
+Escreva um programa em Julia que teste todos os números de seis dígitos e mostre qualquer número que atenda esses requisitos.
 
 [[ex09-9]]
 ===== Exercício 9-9
 
-Aqui está outro desafio _Car Talk_ que você pode resolver com uma busca (https://www.cartalk.com/puzzler/browse):
+Eis um outro desafio _Car Talk_ que você pode resolver com uma busca (https://www.cartalk.com/puzzler/browse):
 
 [quote]
 ____
-Recentemente, visitei minha mãe e percebemos que os dois dígitos que compõem minha idade quando trocados resultavam em sua idade. Por exemplo, se ela tem 73 anos, tenho 37 anos. Imaginávamos com que frequência isso acontecia ao longo dos anos, mas nos desviamos de outros tópicos e nunca chegamos a uma resposta.
+Recentemente, visitei minha mãe e percebemos que os dois dígitos que compõem minha idade quando trocados resultavam em sua idade. Por exemplo, se ela tem 73 anos, tenho 37 anos. Imaginávamos com que frequência isso acontecia ao longo dos anos, mas acabamos mudamos de assunto e nunca chegamos a uma resposta.
 
-Quando cheguei em casa, descobri que os dígitos de nossas idades foram trocados seis vezes até agora. Também descobri que, se tivermos sorte, isso acontecerá novamente em alguns anos, e se tivermos muita sorte, isso acontecerá mais uma vez depois disso. Em outras palavras, isso teria acontecido 8 vezes. Então a pergunta é: qual a minha idade agora?
+Quando cheguei em casa, descobri que os dígitos de nossas idades foram trocados seis vezes até agora. Também descobri que, se tivermos sorte, isso acontecerá novamente em alguns anos, e se tivermos muita sorte, isso acontecerá mais uma vez depois disso. Ou seja, isso teria acontecido oito vezes. Então a pergunta é: qual a minha idade agora?
 ____
 
-Escreva um programa em Julia que procure as soluções para este desafio.
+Escreva um programa em Julia que procure as soluções deste desafio.
 
 [TIP]
 ====
