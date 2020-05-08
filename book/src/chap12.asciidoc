@@ -1,7 +1,7 @@
 [[chap12]]
 == Tuplas
 
-Este capítulo apresenta mais um tipo interno, a tupla, e mostra como vetores, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para vetores de argumentos de tamanho variável, operadores de coleta e de dispersão.
+Este capítulo apresenta mais um tipo interno, a tupla, e mostra como arrays, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para arrays de argumentos de tamanho variável, operadores de coleta e de dispersão.
 
 //[NOTE]
 //====
@@ -11,7 +11,7 @@ Este capítulo apresenta mais um tipo interno, a tupla, e mostra como vetores, d
 
 === Tuplas são Imutáveis
 
-Uma tupla é uma sequência de valores. Os valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a vetores. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
+Uma tupla é uma sequência de valores. Os valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a arrays. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
 (((tupla)))(((imutável)))
 
 Sintaticamente, uma tupla é uma lista de valores separados por vírgula:
@@ -22,8 +22,8 @@ julia> t = 'a', 'b', 'c', 'd', 'e'
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-Although it is not necessary, it is common to enclose tuples in parentheses:
-(((parentheses)))
+Embora não seja necessário, é comum colocar tuplas entre parênteses:
+(((parênteses)))
 
 [source,@julia-repl-test]
 ----
@@ -31,8 +31,8 @@ julia> t = ('a', 'b', 'c', 'd', 'e')
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-To create a tuple with a single element, you have to include a final comma:
-(((final comma)))(((typeof)))(((Tuple)))((("type", "Base", "Tuple", see="Tuple")))
+Para criar uma tupla com um único elemento, é preciso inserir uma vírgula final:
+(((vírgula final)))(((typeof)))(((Tuple)))((("tipo", "Base", "Tuple", see="Tuple")))
 
 [source,@julia-repl-test]
 ----
@@ -44,7 +44,7 @@ Tuple{Char}
 
 [WARNING]
 ====
-A value in parentheses without comma is not a tuple:
+Um único valor entre parênteses sem vírgula não é uma tupla:
 
 [source,@julia-repl-test]
 ----
@@ -56,8 +56,8 @@ Char
 
 ====
 
-Another way to create a tuple is the built-in function tuple. With no argument, it creates an empty tuple:
-(((tuple)))((("function", "Base", "tuple", see="tuple")))
+Outra maneira de criar uma tupla é por meio da função interna tuple. Sem nenhum argumento, cria-se uma tupla vazia:
+(((tupla)))((("função", "Base", "tuple", see="tuple")))
 
 [source,@julia-repl-test]
 ----
@@ -180,7 +180,7 @@ Strictly speaking, a function can only return one value, but if the value is a t
 (((÷)))(((%)))
 
 The built-in function +divrem+ takes two arguments and returns a tuple of two values, the quotient and remainder. You can store the result as a tuple:
-(((divrem)))((("function", "Base", "divrem", see="divrem")))
+(((divrem)))((("função", "Base", "divrem", see="divrem")))
 
 [source,@julia-repl-test]
 ----
@@ -200,7 +200,7 @@ r = 1
 ----
 
 Here is an example of a function that returns a tuple:
-(((minmax)))((("function", "programmer-defined", "minmax", see="minmax")))
+(((minmax)))((("função", "definido pelo programador", "minmax", see="minmax")))
 
 [source,@julia-setup]
 ----
@@ -210,12 +210,12 @@ end
 ----
 
 +maximum+ and +minimum+ are built-in functions that find the largest and smallest elements of a sequence. +minmax+ computes both and returns a tuple of two values. The built-in function +extrema+ is more efficient.
-(((maximum)))(((minimum)))(((extrema)))((("function", "Base", "maximum", see="maximum")))((("function", "Base", "minimum", see="minimum")))((("function", "Base", "extrema", see="extrema")))
+(((maximum)))(((minimum)))(((extrema)))((("função", "Base", "maximum", see="maximum")))((("função", "Base", "minimum", see="minimum")))((("função", "Base", "extrema", see="extrema")))
 
 === Variable-length Argument Tuples
 
 Functions can take a variable number of arguments. A parameter name that ends with +pass:[...]+ _gathers_ arguments into a tuple. For example, +printall+ takes any number of arguments and prints them:
-(((gather)))(((...)))(((printall)))((("function", "programmer-defined", "printall", see="printall")))
+(((gather)))(((...)))(((printall)))((("função", "definido pelo programador", "printall", see="printall")))
 
 [source,@julia-setup chap12]
 ----
@@ -252,7 +252,7 @@ julia> divrem(t...)
 ----
 
 Many of the built-in functions use variable-length argument tuples. For example, +max+ and +min+ can take any number of arguments:
-(((max)))(((min)))((("function", "Base", "max", see="max")))((("function", "Base", "min", see="min")))
+(((max)))(((min)))((("função", "Base", "max", see="max")))((("função", "Base", "min", see="min")))
 
 [source,@julia-repl-test]
 ----
@@ -269,10 +269,10 @@ julia> sum(1, 2, 3)
 ERROR: MethodError: no method matching sum(::Int64, ::Int64, ::Int64)
 ----
 
-===== Exercise 12-1
+===== Exercício 12-1
 
 Write a function called +sumall+ that takes any number of arguments and returns their sum.
-(((sumall)))((("function", "programmer-defined", "sumall", see="sumall")))
+(((sumall)))((("função", "definido pelo programador", "sumall", see="sumall")))
 
 In the Julia world, gather is often called “slurp” and scatter “splat”.
 
@@ -280,7 +280,7 @@ In the Julia world, gather is often called “slurp” and scatter “splat”.
 === Arrays and Tuples
 
 +zip+ is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. The name of the function refers to a zipper, which joins and interleaves two rows of teeth.
-(((zip)))((("function", "Base", "zip", see="zip")))
+(((zip)))((("função", "Base", "zip", see="zip")))
 
 This example zips a string and an array:
 
@@ -354,7 +354,7 @@ Each time through the loop, Julia selects the next tuple in the array and assign
 (((parentheses)))
 
 If you combine +zip+, +for+ and tuple assignment, you get a useful idiom for traversing two (or more) sequences at the same time. For example, +hasmatch+ takes two sequences, +t1+ and +t2+, and returns +true+ if there is an index +i+ such that +t1[i] == t2[i]+:
-(((hasmatch)))((("function", "Base", "hasmatch", see="hasmatch")))
+(((hasmatch)))((("função", "Base", "hasmatch", see="hasmatch")))
 
 [source,@julia-setup chap12]
 ----
@@ -369,7 +369,7 @@ end
 ----
 
 If you need to traverse the elements of a sequence and their indices, you can use the built-in function +enumerate+:
-(((enumerate)))((("function", "Base", "enumerate", see="enumerate")))
+(((enumerate)))((("função", "Base", "enumerate", see="enumerate")))
 
 [source,@julia-repl-test chap12]
 ----
@@ -487,7 +487,7 @@ Arrays are more common than tuples, mostly because they are mutable. But there a
 * For performance reasons. The compiler can specialize on the type.
 
 Because tuples are immutable, they don’t provide functions like +sort!+ and +reverse!+, which modify existing arrays. But Julia provides the built-in function +sort+, which takes an array and returns a new array with the same elements in sorted order, and +reverse+, which takes any sequence and returns a sequence of the same type in reverse order.
-(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("function", "Base", "reverse", see="reverse")))(((zip)))((("function", "Base", "reverse!", see="reverse!")))
+(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("função", "Base", "reverse", see="reverse")))(((zip)))((("função", "Base", "reverse!", see="reverse!")))
 
 
 === Debugging
@@ -533,16 +533,16 @@ An error caused because a value has the wrong shape; that is, the wrong type or 
 (((shape error)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex12-1]]
-===== Exercise 12-2
+===== Exercício 12-2
 
 Write a function called +mostfrequent+ that takes a string and prints the letters in decreasing order of frequency. Find text samples from several different languages and see how letter frequency varies between languages. Compare your results with the tables at https://en.wikipedia.org/wiki/Letter_frequencies.
-(((mostfrequent)))((("function", "programmer-defined", "mostfrequent", see="mostfrequent")))
+(((mostfrequent)))((("função", "definido pelo programador", "mostfrequent", see="mostfrequent")))
 
 [[ex12-2]]
-===== Exercise 12-3
+===== Exercício 12-3
 
 More anagrams!
 
@@ -568,7 +568,7 @@ You might want to build a dictionary that maps from a collection of letters to a
 . In Scrabble a “bingo” is when you play all seven tiles in your rack, along with a letter on the board, to form an eight-letter word. What collection of 8 letters forms the most possible bingos?
 
 [[ex12-3]]
-===== Exercise 12-4
+===== Exercício 12-4
 
 Two words form a “metathesis pair” if you can transform one into the other by swapping two letters; for example, “converse” and “conserve”. Write a program that finds all of the metathesis pairs in the dictionary.
 (((metathesis pair)))
@@ -581,7 +581,7 @@ Don’t test all pairs of words, and don’t test all possible swaps.
 Credit: This exercise is inspired by an example at http://puzzlers.org.
 
 [[ex12-4]]
-===== Exercise 12-5
+===== Exercício 12-5
 
 Here’s another Car Talk Puzzler (https://www.cartalk.com/puzzler/browse):
 (((Car Talk)))
