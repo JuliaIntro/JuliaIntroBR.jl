@@ -74,7 +74,7 @@ De fato, é difícil elaborar um único pensamento sem conter essa letra mais us
 Tudo bem, vou parar agora.
 
 Escreva uma função chamada +sem_e+ que informa +true+ se a palavra especificada não contém a letra +'e'+.
-(((sem_e))) ((("função", "definido pelo programador", "sem_e", see="sem_e"))))
+(((sem_e)))((("função", "definido pelo programador", "sem_e", see="sem_e")))
 
 Altere o programa que você acabou de escrever para que ele imprima apenas as palavras que não possuem +'e'+ e informe a porcentagem de palavras na lista que não possuem +'e'+.
 
@@ -82,7 +82,7 @@ Altere o programa que você acabou de escrever para que ele imprima apenas as pa
 ===== Exercício 9-3
 
 Escreva uma função chamada +evita+ que recebe uma palavra e uma string de letras proibidas e devolve +true+ se a palavra não contém nenhuma das letras proibidas.
-(((evita))))((("função", "definido pelo programador", "evita", see="evita")))
+(((evita)))((("função", "definido pelo programador", "evita", see="evita")))
 
 Modifique o seu programa para receber uma string de letras proibidas digitada pelo usuário e imprimir o número de palavras que não contêm nenhuma dessas letras. Você consegue encontrar uma combinação de 5 letras proibidas que exclua a menor quantidade de palavras?
 
@@ -125,7 +125,7 @@ end
 O laço +for+ percorre os caracteres das palavras. Se encontrarmos a letra +'e'+, podemos retornar imediatamente +false+; caso contrário, temos que avançar para a próxima letra. Se sairmos do laço do modo convencional, isso significa que não encontramos um +'e'+, por isso retornamos +true+.
 
 Você poderia escrever esta função de forma mais sucinta usando o operador +∉+ (*+\notin TAB+*), mas comecei com essa versão porque ela mostra a lógica do padrão de pesquisa.
-(((∉))) ((("operador", "Base", "∉", see="∉")))
+(((∉)))((("operador", "Base", "∉", see="∉")))
 
 +evita+ é uma versão mais geral do +sem_e+, apesar de ter a mesma estrutura:
 (((evita)))
@@ -188,7 +188,7 @@ end
 ----
 
 Este é um exemplo de um plano de desenvolvimento para um programa chamado _redução para um problema previamente resolvido_, onde você reconhece o problema em que está trabalhando como uma instância de um problema resolvido e aplica uma solução existente.
-(((plano de desenvolvimento para um programa)))(((redução para um problema previamente resolvido))))
+(((plano de desenvolvimento para um programa)))(((redução para um problema previamente resolvido)))
 
 
 === Laço com Índices
@@ -286,7 +286,7 @@ end
 ----
 
 usando +é_inversa+ de <<deb08>>.
-(((isreverse)))
+(((é_inversa)))
 
 
 === Debugging
