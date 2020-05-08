@@ -575,5 +575,5 @@ Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenh
 Leia sobre espirais em https://pt.wikipedia.org/wiki/Espiral; em seguida escreva um programa que desenha uma espiral de Arquimedes como em <<fig04-4>>.
 
 [[fig04-4]]
-.Espiral de archimedes
+.Espiral de Archimedes
 image::images/fig44.svg[]
