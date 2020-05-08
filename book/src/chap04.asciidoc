@@ -35,7 +35,7 @@ julia> 🐢 = Turtle()
 Luxor.Turtle(0.0, 0.0, true, 0.0, (0.0, 0.0, 0.0))
 ----
 
-O módulo +ThinkJulia+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, no qual o atribuimos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
+O módulo +ThinkJulia+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, no qual o atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
 (((Turtle)))((("tipo", "Luxor", "Turtle", see="Turtle")))
 
 Logo após criarmos a tartaruga, podemos chamar uma função que a move ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
@@ -102,7 +102,7 @@ end
 ----
 
 Nós podemos fazer a mesma coisa de forma mais concisa com uma declaração +for+:
-(((declaração for)))((("declaração", "for", see="declaração for)))(((for)))((("palavra-chave", "for", see="for")))(((in)))((("palavra-chave", "in", see="in")))
+(((declaração for)))((("declaração", "for", see="declaração for")))(((for)))((("palavra-chave", "for", see="for")))(((in)))((("palavra-chave", "in", see="in")))
 
 [source,@julia-repl-test]
 ----
@@ -141,11 +141,11 @@ Essa versão é na verdade um pouco diferente do código que desenha um quadrado
 
 === Exercícios
 
-A seguir estão uma série de exercícios utilizando turtles. Elas tem o propósito de serem divertidas, mas tem um propósito também. Enquanto você trabalha com elas, pense sobre qual é o propósito.
+A seguir estão uma série de exercícios utilizando turtles. Elas tem o propósito de serem divertidas, mas tem um objetivo também. Enquanto você trabalha com elas, pense sobre qual é o objetivo.
 
 [TIP]
 ====
-A secção seguinte contém soluções para os exercícios, então não olhe até que você termine-os (ou pelo menos tentou).
+A seção seguinte contém soluções para os exercícios, então não olhe até você terminar (ou pelo menos tentar).
 ====
 
 [[ex04-1]]
@@ -211,7 +211,7 @@ end
 As declarações +forward+ e +turn+ são indentadas duas vezes para mostrar que elas estão dentro do laço +for+, que está dentro da definição da função.
 (((indentação)))
 
-Dentro da função, +t+ refere-se à mesma tartaruga +🐢+, então +turn(t, -90)+ tem o mesmo efeito que +turn(🐢+, -90)+. Neste caso, por que não chamar o parâmetro +🐢+ ? A idéia é que +t+ pode ser qualquer tartaruga, não somente +🐢+, então você pode criar uma segunda tartaruga e passá-la como argumento para +quadrado+.
+Dentro da função, +t+ refere-se à mesma tartaruga +🐢+, então +turn(t, -90)+ tem o mesmo efeito que +turn(🐢+, -90)+. Neste caso, por que não chamar o parâmetro +🐢+ ? A ideia é que +t+ pode ser qualquer tartaruga, não somente +🐢+, então você pode criar uma segunda tartaruga e passá-la como argumento para +quadrado+.
 
 [source,julia]
 ----
@@ -270,7 +270,7 @@ Este exemplo desenha um heptágono de lado medindo 70.
 
 === Design de Interface
 
-O próximo passo é escrever +círculo+, que recebe um raio, +r+ como parâmetro. Aqui está uma solução simples que usa +polígono+ para desenhar um polígono de 50 lados:
+O próximo passo é escrever +círculo+, que recebe um raio +r+ como parâmetro. Aqui está uma solução simples que usa +polígono+ para desenhar um polígono de 50 lados:
 (((círculo)))((("função", "definido pelo programador", "círculo", see="círculo")))
 
 [source,julia]
@@ -312,7 +312,7 @@ Adicionar 3 a +n+ garante que o polígono tenha no mínimo 3 lados.
 [[reestruturação]]
 === Reestruturação
 
-Quando eu escrevi +círculo+, eu pude reutilizar +polígono+ pois um polígono com vários lados é uma boa aproximação de um círculo. Mas +arco+ não é igualmente cooperativo; não podemos usar +polígono+ ou +círculo+ para desenhar um arcoo.
+Quando eu escrevi +círculo+, eu pude reutilizar +polígono+ pois um polígono com vários lados é uma boa aproximação de um círculo. Mas +arco+ não é igualmente cooperativo; não podemos usar +polígono+ ou +círculo+ para desenhar um arco.
 
 Uma alternativa é começar com uma cópia de +polígono+ e transformá-lo em +arco+. O resultado pode parecer algo como:
 (((arco)))((("função", "definido pelo programador", "arco", see="arco")))
@@ -331,7 +331,7 @@ function arco(t, r, ângulo)
 end
 ----
 
-A segunda metade dessa função parece-se com +polígono+, mas nós não podemos reusar +polígono+ sem mudar a interface. Nós poderíamos generalizar +polígono+ para receber +ângulo+ como terceiro argumento, mas então +polígono+ não seria mais um nome apropriado! Ao invéz disso, chamaremos a função mais geral +polílinha+:
+A segunda metade dessa função parece-se com +polígono+, mas nós não podemos reusar +polígono+ sem mudar a interface. Nós poderíamos generalizar +polígono+ para receber +ângulo+ como terceiro argumento, mas então +polígono+ não seria mais um nome apropriado! Ao invés disso, chamaremos a função mais geral +polílinha+:
 (((polílinha)))((("função", "definido pelo programador", "polílinha", see="polílinha")))
 
 [source,julia]
@@ -373,10 +373,10 @@ function círculo(t, r)
 end
 ----
 
-Este processo-reorganizar um programa para melhorar interface e facilitar reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nos “fatoramos-o” para dentro de +polílinha+.
+Este processo de reorganização de um programa para melhorar interface e facilitar o reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nós “fatoramos-o” para dentro de +polílinha+.
 (((refactoring)))
 
-Se nós tivéssemos planejado com antecedência, nós poderiamos ter escrito +polílinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. As vezes refatoração é um sinal de que você aprendeu alguma coisa.
+Se nós tivéssemos planejado com antecedência, nós poderiamos ter escrito +polílinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
 
 
 === Um Plano de Desenvolvimento
@@ -394,13 +394,13 @@ Um _plano de desenvolvimento_ é um processo para escrever programas. O processo
 
 . Busque por oportunidades de melhora no programa através da refatoração. Por exemplo, se você tem um código similar em vários lugares, considere fatorá-lo em uma função geral apropriada.
 
-Esse processo tem algumas desvantagens-nós veremos as alternativas mais tarde mas pode ser utíl se você não sabe previamente como dividir o programa em funções. Essa abordagem permite que você planeje conforme você vai projetando.
+Esse processo tem algumas desvantagens-nós veremos as alternativas mais tarde-mas pode ser útil se você não sabe previamente como dividir o programa em funções. Essa abordagem permite que você planeje conforme você vai projetando.
 
 
 === Docstring
 
 Um _docstring_ é uma string que vem antes de uma função, e descreve sua interface (“doc” refere-se a “documentação”). Aqui está um exemplo:
-(((docstring)))(((aspas triplas)))((("pass:[&quot;&quot;&quot;]", see="triple quotes")))
+(((docstring)))(((aspas triplas)))((("pass:[&quot;&quot;&quot;]", see="aspas triplas")))
 
 [source,julia]
 ----
@@ -424,7 +424,7 @@ A documentação pode ser acessada no REPL ou em um notebook digitando ? seguido
 
 ----
 help?> polílinha
-searcoh:
+search:
 
   polílinha(t, n, com, ângulo)
 
@@ -446,7 +446,7 @@ Escrever esse tipo de documentação é uma parte importante do design de interf
 Uma interface é como um contrato entre a função e quem a chama. Quem chama concorda em fornecer certos parâmetros e a função concorda em fazer um certo trabalho.
 (((debugando)))
 
-Por exemplo, +polílinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que é assume-se ser uma medida em graus.
+Por exemplo, +polílinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que assume-se ser uma medida em graus.
 
 Esses requerimentos são chamados de _precondições_ pois eles deveriam ser verdadeiros antes que a função execute. Inversamente, condições no final da função são chamadas de _pós-condições_. Pós-condições incluem o efeito desejado da função (como desenhar segmentos de linha) e qualquer efeito colateral (como mover a tartaruga ou fazer outra mudança).
 (((precondição)))(((pós-condição)))
@@ -459,7 +459,7 @@ Se as precondições são satisfeitas e as pós-condições não, então o bug e
 === Glossário
 
 módulo::
-Um arquivo que contém uma coleção de funções relacionadas e outras definições.
+Um arquivo que contém uma coleção de funções e outras definições relacionadas.
 (((módulo)))
 
 pacote::
@@ -471,7 +471,7 @@ Uma declaração que lê um arquivo módulo e cria um objeto módulo.
 (((declaração using)))
 
 laço::
-Uma parte do programa que é executado repetidamente.
+Uma parte do programa que é executada repetidamente.
 (((laço)))
 
 encapsulamento::
@@ -479,7 +479,7 @@ O processo de transformar uma sequência de comandos em uma definição de funç
 (((encapsulamento)))
 
 generalização::
-O processo de substituir algo desnecessariamente específico (como um número) por algo mais adequadamento irrestrito (como uma variável ou parâmetro).
+O processo de substituir algo desnecessariamente específico (como um número) por algo mais adequadamente irrestrito (como uma variável ou parâmetro).
 (((generalização)))
 
 interface::
@@ -527,7 +527,7 @@ arco(t, r, ângulo)
 Desenha um arcoo dado o raio e ângulo:
     t: tartaruga
     r: raio
-    ângulo: ângulo feito pelo arcoo, em graus
+    ângulo: ângulo feito pelo arco, em graus
 """
 function arco(t, r, ângulo)
     com_arco = 2 * π * r * abs(ângulo) / 360
@@ -565,7 +565,7 @@ image::images/fig43.svg[]
 [[ex04-10]]
 ===== Exercício 4-11
 
-As letras do alfabeto podem ser construídas a partir de um número moderado de elementos básicos, como linhas verticais, horizontais e algumas curvas. Projete um alfabeto que pode ser desenhado com o menor número de elementos básicos e em seguida escreva funções que podem desenhar letras.
+As letras do alfabeto podem ser construídas a partir de um número moderado de elementos básicos, como linhas verticais, horizontais e algumas curvas. Projete um alfabeto que pode ser desenhado com o menor número de elementos básicos e em seguida escreva funções que desenhem letras.
 
 Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenha_b+, etc. E coloque suas funções em um arquivo chamado _letras.jl_.
 
@@ -575,5 +575,5 @@ Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenh
 Leia sobre espirais em https://pt.wikipedia.org/wiki/Espiral; em seguida escreva um programa que desenha uma espiral de Arquimedes como em <<fig04-4>>.
 
 [[fig04-4]]
-.Espiral de arcohimedes
+.Espiral de archimedes
 image::images/fig44.svg[]
