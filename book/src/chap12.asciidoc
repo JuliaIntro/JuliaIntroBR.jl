@@ -1,35 +1,20 @@
 [[chap12]]
 == Tuplas
 
-This chapter presents one more built-in type, the tuple, and then shows how arrays, dictionaries, and tuples work together. I also present a useful feature for variable-length argument arrays, the gather and scatter operators.
+Este capítulo apresenta mais um tipo interno, a tupla, e mostra como vetores, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para vetores de argumentos de tamanho variável, operadores de coleta e de dispersão.
 
-Este capítulo apresenta mais um tipo interno, a tupla, e mostra como matrizes, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para matrizes de argumentos de comprimento variável, operadores de coleta e dispersão.
+//[NOTE]
+//====
+//Observação: Não há consenso sobre a pronúncia de "tupla" em inglês. Algumas pessoas dizem "tuh-ple", que rima com "supple". Mas no contexto da programação, a maioria das pessoas fala "too-ple", que rima com "quadruple".
+//====
 
-Este capítulo apresenta mais um tipo embutido, o tuple, e então mostra como matrizes, dicionários e tupilos trabalham juntos. Eu também apresento um recurso útil para arrays de argumentos de comprimento variável, os operadores de agrupamento e dispersão.
 
-**Este capítulo apresenta mais um tipo integrado, a tupla, e descreve como as listas, os dicionários e as tuplas trabalham juntos. Além disso, apresento um recurso útil para listas de argumentos de comprimento variável: os operadores gather e scatter.
+=== Tuplas são Imutáveis
 
-[NOTE]
-====
-There is no consensus on how to pronounce “tuple”. Some people say “tuh-ple”, which rhymes with “supple”. But in the context of programming, most people say “too-ple”, which rhymes with “quadruple”.
-====
+Uma tupla é uma sequência de valores. Os valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a vetores. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
+(((tupla)))(((imutável)))
 
-[NOTA]
-====
-Não há consenso sobre como pronunciar "tupla". Algumas pessoas dizem "tuh-ple", que rima com "flexível". Mas, no contexto da programação, a maioria das pessoas diz "muito ple", que rima com "quádruplo".
-
-[NOTA].
-
-Não há consenso sobre como pronunciar "tuple". Algumas pessoas dizem "tuh-ple", que rima com "suave". Mas no contexto da programação, a maioria das pessoas diz "too-ple", que rima com "quadruplicar".
-
-**Uma observação: não há consenso sobre como pronunciar “tuple” (em inglês). Algumas pessoas dizem “tuhple”, que rima com “supple”. Porém, no contexto da programação, a maioria das pessoas diz “too-ple”, que rima com “quadruple”.
-
-=== Tuples Are Immutable
-
-A tuple is a sequence of values. The values can be of any type, and they are indexed by integers, so in that respect tuples are a lot like arrays. The important difference is that tuples are immutable and that each element can have its own type.
-(((tuple)))(((immutable)))
-
-Syntactically, a tuple is a comma-separated list of values:
+Sintaticamente, uma tupla é uma lista de valores separados por vírgula:
 
 [source,@julia-repl-test]
 ----
