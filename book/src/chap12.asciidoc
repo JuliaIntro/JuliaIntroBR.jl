@@ -65,7 +65,7 @@ julia> tuple()
 ()
 ----
 
-If multiple arguments are provided, the result is a tuple with the given arguments:
+Se vários argumentos são fornecidos, o resultado é uma tupla com os argumentos dados:
 
 [source,@julia-repl-test]
 ----
@@ -73,10 +73,10 @@ julia> t3 = tuple(1, 'a', pi)
 (1, 'a', π)
 ----
 
-Because tuple is the name of a built-in function, you should avoid using it as a variable name.
+Como a tupla é o nome de uma função interna, você deve evitar usá-la como um nome de variável.
 
-Most array operators also work on tuples. The bracket operator indexes an element:
-(((bracket operator)))
+A maioria dos operadores de array também funciona com as tuplas. Veja o operador colchete que indexa um elemento:
+(((operador colchete)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -86,8 +86,8 @@ julia> t[1]
 'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 
-And the slice operator selects a range of elements:
-(((slice operator)))
+E o operador de fatia seleciona uma série de elementos:
+(((operador de fatia)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -95,7 +95,7 @@ julia> t[2:4]
 ('b', 'c', 'd')
 ----
 
-But if you try to modify one of the elements of the tuple, you get an error:
+E caso você tente modificar um dos elementos da tupla, uma mensagem de erro aparecerá:
 (((MethodError)))
 
 [source,@julia-repl-test chap12]
@@ -104,10 +104,10 @@ julia> t[1] = 'A'
 ERROR: MethodError: no method matching setindex!(::NTuple{5,Char}, ::Char, ::Int64)
 ----
 
-Because tuples are immutable, you can’t modify the elements.
+Já que as tuplas são imutáveis, você não pode modificar os elementos.
 
-The relational operators work with tuples and other sequences; Julia starts by comparing the first element from each sequence. If they are equal, it goes on to the next elements, and so on, until it finds elements that differ. Subsequent elements are not considered (even if they are really big).
-(((relational operator)))
+Os operadores relacionais trabalham com tuplas e outras seqüências; em Julia, começa-se comparando o primeiro elemento de cada sequência. Se forem iguais, passa-se para os elementos seguintes, e assim por diante, até encontrar elementos que diferem. Já os elementos seguintes não são considerados (ainda que sejam realmente grandes).
+(((operador relacional)))
 
 [source,@julia-repl-test]
 ----
@@ -118,10 +118,10 @@ true
 ----
 
 
-=== Tuple Assignment
+=== Atribuição de Tuplas
 
-It is often useful to swap the values of two variables. With conventional assignments, you have to use a temporary variable. For example, to swap a and b:
-(((assignment)))
+Muitas vezes é útil permutar os valores de duas variáveis. Nas atribuições convencionais, você tem que usar uma variável temporária. Por exemplo, para permutar as variáveis a e b:
+(((atribuição)))
 
 [source,julia]
 ----
@@ -130,17 +130,17 @@ a = b
 b = temp
 ----
 
-This solution is cumbersome; tuple assignment is more elegant:
-(((tuple assignment)))
+Essa solução é trabalhosa; já a atribuição da tupla é mais elegante:
+(((atribuição de tupla)))
 
 [source,julia]
 ----
 a, b = b, a
 ----
 
-The left side is a tuple of variables; the right side is a tuple of expressions. Each value is assigned to its respective variable. All the expressions on the right side are evaluated before any of the assignments.
+O lado esquerdo é uma tupla de variáveis; o lado direito é uma tupla de expressões. Cada valor é atribuído à sua correspondente variável. Todas as expressões no lado direito são avaliadas antes de qualquer uma das atribuições.
 
-The number of variables on the left has to be fewer than the number of values on the right:
+O número de variáveis do lado esquerdo deve ser menor do que o número de valores do lado direito:
 (((BoundsError)))
 
 [source,@julia-repl-test]
@@ -152,35 +152,35 @@ ERROR: BoundsError: attempt to access (1, 2)
   at index [3]
 ----
 
-More generally, the right side can be any kind of sequence (string, array or tuple). For example, to split an email address into a user name and a domain, you could write:
-(((split)))
+Geralmente, o lado direito pode ser qualquer tipo de seqüência (string, array ou tuple). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, você poderia escrever:
+(((dividir)))
 
 [source,@julia-repl-test chap12]
 ----
-julia> addr = "julius.caesar@rome"
-"julius.caesar@rome"
-julia> uname, domain = split(addr, '@');
+julia> email = "júlio.césar@roma"
+"júlio.césar@roma"
+julia> nome_usuário, domínio = split(email, '@');
 
 ----
 
-The return value from +split+ is an array with two elements; the first element is assigned to +uname+, the second to +domain+.
+O valor de retorno de +split+ é um array com dois elementos; o primeiro elemento é atribuído a +nome_usuário+ e o segundo a +domínio+.
 
 [source,@julia-repl-test chap12]
 ----
-julia> uname
-"julius.caesar"
-julia> domain
-"rome"
+julia> nome_usuário
+"júlio.césar"
+julia> domínio
+"roma"
 ----
 
 
-=== Tuples as Return Values
+=== Tuplas como Valores de Retorno
 
-Strictly speaking, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. For example, if you want to divide two integers and compute the quotient and remainder, it is inefficient to compute +x ÷ y+ and then +x % y+. It is better to compute them both at the same time.
-(((÷)))(((%)))
+A princípio, uma função pode retornar apenas um valor, mas se o valor for uma tupla, é como se devolvesse vários valores. Por exemplo, se você deseja dividir dois números inteiros e calcular o quociente e o restante, é ineficiente calcular +x ÷ y+ e depois +x % y+. É melhor calcular os dois ao mesmo tempo.
+(((÷))) (((%)))
 
-The built-in function +divrem+ takes two arguments and returns a tuple of two values, the quotient and remainder. You can store the result as a tuple:
-(((divrem)))((("função", "Base", "divrem", see="divrem")))
+A função embutida +divrem+ recebe dois argumentos e retorna uma tupla de dois valores, o quociente e o restante, respectivamente. Você pode armazenar o resultado como uma tupla:
+(((divrem)))((("função", "Base", "divrem", see= "divrem")))
 
 [source,@julia-repl-test]
 ----
@@ -188,7 +188,7 @@ julia> t = divrem(7, 3)
 (2, 1)
 ----
 
-Or use tuple assignment to store the elements separately:
+Ou use a atribuição de tupla para armazenar os elementos separadamente:
 
 [source,@julia-repl-test]
 ----
@@ -199,8 +199,8 @@ q = 2
 r = 1
 ----
 
-Here is an example of a function that returns a tuple:
-(((minmax)))((("função", "definido pelo programador", "minmax", see="minmax")))
+Segue um exemplo de uma função que retorna uma tupla:
+(((minmax)))((("função","definido pelo programador","minmax", see="minmax")))
 
 [source,@julia-setup]
 ----
