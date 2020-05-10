@@ -209,13 +209,13 @@ function minmax(t)
 end
 ----
 
-+maximum+ and +minimum+ are built-in functions that find the largest and smallest elements of a sequence. +minmax+ computes both and returns a tuple of two values. The built-in function +extrema+ is more efficient.
-(((maximum)))(((minimum)))(((extrema)))((("função", "Base", "maximum", see="maximum")))((("função", "Base", "minimum", see="minimum")))((("função", "Base", "extrema", see="extrema")))
++maximum+ e +minimum+ são funções internas que encontram o maior e o menor elementos de uma sequência. +minmax+ calcula os dois e retorna-os por meio de uma tupla. Já a função interna +extrema+ é mais eficiente.
+(((maximum)))(((minimum)))(((extrema)))((("função", "Base", "maximum", see="maximum")))((("função" , "Base", "minimum", see="minimum")))((("função","Base", "extrema", see="extrema")))
 
-=== Variable-length Argument Tuples
+=== Tuplas com Argumentos de Comprimento Variável
 
-Functions can take a variable number of arguments. A parameter name that ends with +pass:[...]+ _gathers_ arguments into a tuple. For example, +printall+ takes any number of arguments and prints them:
-(((gather)))(((...)))(((printall)))((("função", "definido pelo programador", "printall", see="printall")))
+As funções podem receber um número variável de argumentos. Um nome de parâmetro que termina com +pass:[...]+ _agrupa_ argumentos em uma tupla. Por exemplo, +printall+ pega qualquer número de argumentos e os imprime:
+(((gather)))((((...)))((((printall)))((("função", "definido pelo programador", "printall", see="printall")))
 
 [source,@julia-setup chap12]
 ----
@@ -224,7 +224,7 @@ function printall(args...)
 end
 ----
 
-The gather parameter can have any name you like, but +args+ is conventional. Here’s how the function works:
+O parâmetro de agrupamento pode ter qualquer nome que você goste, mas +args+ é convencional. Veja como funciona a função:
 
 [source,@julia-repl-test chap12]
 ----
@@ -232,8 +232,8 @@ julia> printall(1, 2.0, '3')
 (1, 2.0, '3')
 ----
 
-The complement of gather is _scatter_. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the +pass:[...]+ operator. For example, +divrem+ takes exactly two arguments; it doesn’t work with a tuple:
-(((scatter)))(((MethodError)))
+O complemento do agrupamento é a _separação_. Se você tem uma seqüência de valores e quiser passá-la para uma função com diversos argumentos, pode-se usar o operador +pass:[...]+. No exemplo seguinte, +divrem+ recebe exatamente dois argumentos e não funciona com uma tupla:
+(((separação)))(((MethodError)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -243,7 +243,7 @@ julia> divrem(t)
 ERROR: MethodError: no method matching divrem(::Tuple{Int64,Int64})
 ----
 
-But if you scatter the tuple, it works:
+Mas se você separar a tupla, ela funcionará:
 
 [source,@julia-repl-test chap12]
 ----
@@ -251,7 +251,7 @@ julia> divrem(t...)
 (2, 1)
 ----
 
-Many of the built-in functions use variable-length argument tuples. For example, +max+ and +min+ can take any number of arguments:
+Muitas das funções embutidas usam tuplas com argumentos de comprimento variável. Por exemplo, +max+ e +min+ podem receber qualquer número de argumentos:
 (((max)))(((min)))((("função", "Base", "max", see="max")))((("função", "Base", "min", see="min")))
 
 [source,@julia-repl-test]
@@ -260,7 +260,7 @@ julia> max(1, 2, 3)
 3
 ----
 
-But +sum+ does not:
+Mas +sum+, não:
 (((sum)))
 
 [source,@julia-repl-test]
@@ -271,18 +271,18 @@ ERROR: MethodError: no method matching sum(::Int64, ::Int64, ::Int64)
 
 ===== Exercício 12-1
 
-Write a function called +sumall+ that takes any number of arguments and returns their sum.
-(((sumall)))((("função", "definido pelo programador", "sumall", see="sumall")))
+Escreva uma função chamada +soma_tudo+ que recebe qualquer número de argumentos e devolve o resultado da soma deles.
+((((soma_tudo)))((("função", "definido pelo programador", "soma_tudo", see="soma_tudo"))))
 
-In the Julia world, gather is often called “slurp” and scatter “splat”.
+No mundo de Julia, agrupar é chamado de "slurp" e separar de "splat".
 
 
-=== Arrays and Tuples
+=== Arrays e Tuplas
 
-+zip+ is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. The name of the function refers to a zipper, which joins and interleaves two rows of teeth.
++zip+ é uma função interna que recebe duas ou mais seqüências e retorna uma coleção de tuplas em que cada tupla contém um elemento de cada sequência. O nome da função refere-se a um zíper, que une e intercala duas faixas de dentes.
 (((zip)))((("função", "Base", "zip", see="zip")))
 
-This example zips a string and an array:
+Este exemplo intercala uma string com uma matriz:
 
 [source,@julia-repl-test chap12]
 ----
@@ -294,13 +294,13 @@ julia> zip(s, t)
 Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))
 ----
 
-The result is a _zip object_ that knows how to iterate through the pairs. The most common use of +zip+ is in a +for+ loop:
-(((zip object)))(((for statement)))
+O resultado é um _objeto do tipo zip_ que sabe como iterar através dos pares. O uso mais comum de +zip+ ocorre em um laço +for+:
+(((objeto do tipo zip)))(((declaração for)))
 
 [source,@julia-repl-test chap12]
 ----
-julia> for pair in zip(s, t)
-           println(pair)
+julia> for par in zip(s, t)
+           println(par)
        end
 ('a', 1)
 ('b', 2)
@@ -322,28 +322,28 @@ julia> collect(zip(s, t))
  ('c', 3)
 ----
 
-The result is an array of tuples; in this example, each tuple contains a character from the string and the corresponding element from the array.
+O resultado é um array de tuplas; e neste exemplo, cada tupla contém um caractere da string e o elemento correspondente do array.
 
-If the sequences are not the same length, the result has the length of the shorter one.
+Se as seqüências não tiverem o mesmo comprimento, o resultado terá o comprimento da menor sequência.
 
 [source,@julia-repl-test]
 ----
-julia> collect(zip("Anne", "Elk"))
+julia> collect(zip("Anna", "Rui"))
 3-element Array{Tuple{Char,Char},1}:
- ('A', 'E')
- ('n', 'l')
- ('n', 'k')
+ ('A', 'R')
+ ('n', 'u')
+ ('n', 'i')
 ----
 
-You can use tuple assignment in a +for+ loop to traverse an array of tuples:
-(((tuple assignment)))
+Você pode usar a atribuição de tupla em um laço +for+ para percorrer um array de tupla:
+(((atribuição de tupla)))
 
 [source,@julia-repl-test]
 ----
 julia> t = [('a', 1), ('b', 2), ('c', 3)];
 
-julia> for (letter, number) in t
-           println(number, " ", letter)
+julia> for (letra, número) in t
+           println(número, " ", letra)
        end
 1 a
 2 b
@@ -355,6 +355,20 @@ Each time through the loop, Julia selects the next tuple in the array and assign
 
 If you combine +zip+, +for+ and tuple assignment, you get a useful idiom for traversing two (or more) sequences at the same time. For example, +hasmatch+ takes two sequences, +t1+ and +t2+, and returns +true+ if there is an index +i+ such that +t1[i] == t2[i]+:
 (((hasmatch)))((("função", "Base", "hasmatch", see="hasmatch")))
+
+Cada vez que o loop é selecionado, Julia seleciona a próxima tupla na matriz e atribui os elementos à letra e ao número. Os parênteses em torno de + (letra, número) + são obrigatórios.
+(((parênteses)))
+
+Cada vez através do loop, Julia seleciona o próximo tuple no array e atribui os elementos à letra e ao número. Os parênteses em torno de +(letra, número)+ são obrigatórios.
+(((parênteses)+))
+
+**Se combinar zip, for e atribuição de tuplas, você pode fazer uma expressão útil para percorrer duas (ou mais) sequências ao mesmo tempo. Por exemplo, has_match recebe duas sequências, t1 e t2 e retorna True se houver um índice i tal que t1[i] == t2[i]:
+
+Se você combinar +zip+, +for+ e tuple, você obtém uma linguagem útil para atravessar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +hasmatch+ toma duas seqüências, +t1+ e +t2+, e retorna +true+ se houver um índice +i+ tal que +t1[i] == t2[i]+:
+(((hasmatch)))((("função", "Base", "hasmatch", veja="hasmatch"))))
+
+Se você combinar + zip +, + para + e atribuição de tupla, obterá um idioma útil para percorrer duas (ou mais) seqüências ao mesmo tempo. Por exemplo, + hasmatch + usa duas seqüências, + t1 + e + t2 +, e retorna + true + se houver um índice + i + tal que + t1 [i] == t2 [i] +:
+(((hasmatch))) ((("função", "Base", "hasmatch", consulte = "hasmatch"))))
 
 [source,@julia-setup chap12]
 ----
