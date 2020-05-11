@@ -1,7 +1,7 @@
 [[chap12]]
 == Tuplas
 
-Este capítulo apresenta mais um tipo interno, a tupla, e mostra como arrays, dicionários e tuplas funcionam juntos. Também apresento um recurso útil para arrays de argumentos de tamanho variável, operadores de coleta e de dispersão.
+Este capítulo apresenta mais um tipo interno, a tupla, e mostra como os arrays, dicionários e as tuplas trabalham juntos. Também apresento um recurso útil para os arrays de argumentos de tamanho variável, operadores de agrupamento e de separação.
 
 //[NOTE]
 //====
@@ -11,7 +11,7 @@ Este capítulo apresenta mais um tipo interno, a tupla, e mostra como arrays, di
 
 === Tuplas são Imutáveis
 
-Uma tupla é uma sequência de valores. Os valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a arrays. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
+Uma tupla é uma sequência de valores. Estes valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a arrays. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
 (((tupla)))(((imutável)))
 
 Sintaticamente, uma tupla é uma lista de valores separados por vírgula:
@@ -22,7 +22,7 @@ julia> t = 'a', 'b', 'c', 'd', 'e'
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-Embora não seja necessário, é comum colocar tuplas entre parênteses:
+Apesar de não ser necessário, é comum colocar tuplas entre parênteses:
 (((parênteses)))
 
 [source,@julia-repl-test]
@@ -31,7 +31,7 @@ julia> t = ('a', 'b', 'c', 'd', 'e')
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-Para criar uma tupla com um único elemento, é preciso inserir uma vírgula final:
+Para criar uma tupla com um único elemento, tem que inserir uma vírgula final:
 (((vírgula final)))(((typeof)))(((Tuple)))((("tipo", "Base", "Tuple", see="Tuple")))
 
 [source,@julia-repl-test]
@@ -56,7 +56,7 @@ Char
 
 ====
 
-Outra maneira de criar uma tupla é por meio da função interna tuple. Sem nenhum argumento, cria-se uma tupla vazia:
+Outra maneira de criar uma tupla é por meio da função interna +tuple+. Sem nenhum argumento, uma tupla vazia é criada:
 (((tupla)))((("função", "Base", "tuple", see="tuple")))
 
 [source,@julia-repl-test]
@@ -73,9 +73,9 @@ julia> t3 = tuple(1, 'a', pi)
 (1, 'a', π)
 ----
 
-Como a tupla é o nome de uma função interna, você deve evitar usá-la como um nome de variável.
+Já que +tuple+ é o nome de uma função interna, deve-se evitar usá-lo como o nome de variável.
 
-A maioria dos operadores de array também funciona com as tuplas. Veja o operador colchete que indexa um elemento:
+A maioria dos operadores de array também funciona com as tuplas. O operador colchete indexa um elemento:
 (((operador colchete)))
 
 [source,@julia-repl-test chap12]
@@ -86,7 +86,7 @@ julia> t[1]
 'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 
-E o operador de fatia seleciona uma série de elementos:
+E o operador de fatia seleciona uma faixa de elementos:
 (((operador de fatia)))
 
 [source,@julia-repl-test chap12]
@@ -106,7 +106,7 @@ ERROR: MethodError: no method matching setindex!(::NTuple{5,Char}, ::Char, ::Int
 
 Já que as tuplas são imutáveis, você não pode modificar os elementos.
 
-Os operadores relacionais trabalham com tuplas e outras seqüências; em Julia, começa-se comparando o primeiro elemento de cada sequência. Se forem iguais, passa-se para os elementos seguintes, e assim por diante, até encontrar elementos que diferem. Já os elementos seguintes não são considerados (ainda que sejam realmente grandes).
+Os operadores relacionais trabalham com tuplas e outras sequências; em Julia, começa-se comparando o primeiro elemento de cada sequência. Se forem iguais, passa-se para os elementos seguintes, e assim por diante, até encontrar elementos que diferem. Após isso, os elementos seguintes são desconsiderados (ainda que sejam realmente grandes).
 (((operador relacional)))
 
 [source,@julia-repl-test]
@@ -120,7 +120,7 @@ true
 
 === Atribuição de Tuplas
 
-Muitas vezes é útil permutar os valores de duas variáveis. Nas atribuições convencionais, você tem que usar uma variável temporária. Por exemplo, para permutar as variáveis a e b:
+Muitas vezes, deseja-se permutar os valores de duas variáveis. Nas atribuições convencionais, você tem que usar uma variável temporária. Por exemplo, para permutar as variáveis a e b:
 (((atribuição)))
 
 [source,julia]
@@ -140,7 +140,7 @@ a, b = b, a
 
 O lado esquerdo é uma tupla de variáveis; o lado direito é uma tupla de expressões. Cada valor é atribuído à sua correspondente variável. Todas as expressões no lado direito são avaliadas antes de qualquer uma das atribuições.
 
-O número de variáveis do lado esquerdo deve ser menor do que o número de valores do lado direito:
+O número de variáveis do lado esquerdo não deve ser maior do que o número de valores do lado direito:
 (((BoundsError)))
 
 [source,@julia-repl-test]
@@ -152,7 +152,7 @@ ERROR: BoundsError: attempt to access (1, 2)
   at index [3]
 ----
 
-Geralmente, o lado direito pode ser qualquer tipo de seqüência (string, array ou tuple). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, você poderia escrever:
+Geralmente, o lado direito pode ser qualquer tipo de sequência (string, array ou tupla). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, poderia-se escrever:
 (((dividir)))
 
 [source,@julia-repl-test chap12]
@@ -176,10 +176,10 @@ julia> domínio
 
 === Tuplas como Valores de Retorno
 
-A princípio, uma função pode retornar apenas um valor, mas se o valor for uma tupla, é como se devolvesse vários valores. Por exemplo, se você deseja dividir dois números inteiros e calcular o quociente e o restante, é ineficiente calcular +x ÷ y+ e depois +x % y+. É melhor calcular os dois ao mesmo tempo.
+A princípio, uma função pode retornar apenas um valor, mas se o valor for uma tupla, é como se devolvesse vários valores. Por exemplo, se você deseja dividir dois números inteiros e calcular o quociente e o restante, é ineficiente calcular +x ÷ y+ e depois +x % y+. É melhor fazer os dois cálculos ao mesmo tempo.
 (((÷))) (((%)))
 
-A função embutida +divrem+ recebe dois argumentos e retorna uma tupla de dois valores, o quociente e o restante, respectivamente. Você pode armazenar o resultado como uma tupla:
+A função embutida +divrem+ recebe dois argumentos e retorna uma tupla de dois valores: o quociente e o restante, respectivamente. O resultado pode ser armazenado como uma tupla:
 (((divrem)))((("função", "Base", "divrem", see= "divrem")))
 
 [source,@julia-repl-test]
@@ -199,7 +199,7 @@ q = 2
 r = 1
 ----
 
-Segue um exemplo de uma função que retorna uma tupla:
+Eis um exemplo de uma função que retorna uma tupla:
 (((minmax)))((("função","definido pelo programador","minmax", see="minmax")))
 
 [source,@julia-setup]
@@ -209,13 +209,13 @@ function minmax(t)
 end
 ----
 
-+maximum+ e +minimum+ são funções internas que encontram o maior e o menor elementos de uma sequência. +minmax+ calcula os dois e retorna-os por meio de uma tupla. Já a função interna +extrema+ é mais eficiente.
++maximum+ e +minimum+ são funções internas que encontram o maior e o menor elemento de uma sequência. +minmax+ calcula os dois e retorna-os por meio de uma tupla. Já a função interna +extrema+ é mais eficiente.
 (((maximum)))(((minimum)))(((extrema)))((("função", "Base", "maximum", see="maximum")))((("função" , "Base", "minimum", see="minimum")))((("função","Base", "extrema", see="extrema")))
 
 === Tuplas com Argumentos de Comprimento Variável
 
 As funções podem receber um número variável de argumentos. Um nome de parâmetro que termina com +pass:[...]+ _agrupa_ argumentos em uma tupla. Por exemplo, +printall+ pega qualquer número de argumentos e os imprime:
-(((gather)))((((...)))((((printall)))((("função", "definido pelo programador", "printall", see="printall")))
+(((agrupa)))((((...)))((((printall)))((("função", "definido pelo programador", "printall", see="printall")))
 
 [source,@julia-setup chap12]
 ----
@@ -224,7 +224,7 @@ function printall(args...)
 end
 ----
 
-O parâmetro de agrupamento pode ter qualquer nome que você goste, mas +args+ é convencional. Veja como funciona a função:
+O parâmetro de agrupamento pode ter qualquer nome que você goste, mas +args+ é padronizado. Veja como funciona a função:
 
 [source,@julia-repl-test chap12]
 ----
@@ -243,7 +243,7 @@ julia> divrem(t)
 ERROR: MethodError: no method matching divrem(::Tuple{Int64,Int64})
 ----
 
-Mas se você separar a tupla, ela funcionará:
+Mas se você separar a tupla, o comando funcionará:
 
 [source,@julia-repl-test chap12]
 ----
@@ -279,7 +279,7 @@ No mundo de Julia, agrupar é chamado de "slurp" e separar de "splat".
 
 === Arrays e Tuplas
 
-+zip+ é uma função interna que recebe duas ou mais seqüências e retorna uma coleção de tuplas em que cada tupla contém um elemento de cada sequência. O nome da função refere-se a um zíper, que une e intercala duas faixas de dentes.
++zip+ é uma função interna que recebe duas ou mais sequências e retorna uma coleção de tuplas em que cada tupla contém um elemento de cada sequência. O nome da função refere-se a um zíper, que une e intercala duas faixas de dentes.
 (((zip)))((("função", "Base", "zip", see="zip")))
 
 Este exemplo intercala uma string com uma matriz:
@@ -307,10 +307,10 @@ julia> for par in zip(s, t)
 ('c', 3)
 ----
 
-A zip object is a kind of _iterator_, which is any object that iterates through a sequence. Iterators are similar to arrays in some ways, but unlike arrays, you can’t use an index to select an element from an iterator.
-(((iterator)))
+O objeto zip é um tipo de _iterador_, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares aos arrays, e o que difere dos arrays é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
+(((iterador)))
 
-If you want to use array operators and functions, you can use a zip object to make an array:
+Se você quiser usar operadores e funções de arrays, pode-se usar um objeto zip para gerar um array:
 (((collect)))
 
 [source,@julia-repl-test chap12]
@@ -324,7 +324,7 @@ julia> collect(zip(s, t))
 
 O resultado é um array de tuplas; e neste exemplo, cada tupla contém um caractere da string e o elemento correspondente do array.
 
-Se as seqüências não tiverem o mesmo comprimento, o resultado terá o comprimento da menor sequência.
+Se as sequências não tiverem o mesmo comprimento, o resultado terá o comprimento da menor sequência.
 
 [source,@julia-repl-test]
 ----
@@ -353,7 +353,7 @@ julia> for (letra, número) in t
 A cada iteração do laço, Julia seleciona a próxima tupla no array e atribui os elementos à letra e ao número. Os parênteses em torno de +(letra, número)+ são necessários.
 (((parênteses)))
 
-Se você combinar +zip+, +for+ e a atribuição de tuplas, você chega em uma função prática para analisar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +tem_combinação+ considera duas seqüências, +t1+ e +t2+, e devolve +true+ se existir um índice +i+ tal que +t1[i] == t2[i]+:
+Se você combinar +zip+, +for+ e a atribuição de tuplas, obtém-se uma função prática para analisar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +tem_combinação+ considera duas seqüências, +t1+ e +t2+, e devolve +true+ se existir um índice +i+ tal que +t1[i] == t2[i]+:
 (((tem_combinação)))((("função", "definido pelo programador", "tem_combinação", see="tem_combinação")))
 
 [source,@julia-setup chap12]
@@ -428,7 +428,7 @@ Dict{Char,Int64} with 3 entries:
   'b' => 2
 ----
 
-É comum utilizar tuplas como chaves nos dicionários. Por exemplo, uma lista telefônica pode mapear de pares de sobrenome e nome até números de telefone. Supondo que definimos +sobrenome+, +nome+ e +número+, poderíamos escrever:
+É comum utilizar tuplas como chaves nos dicionários. Por exemplo, uma lista telefônica pode mapear os pares de sobrenome e nome até os números de telefone. Supondo que definimos +sobrenome+, +nome+ e +número+, poderíamos escrever:
 
 [source,julia]
 ----
@@ -444,10 +444,10 @@ for ((sobrenome, nome), número) in diretório
 end
 ----
 
-Este laço percorre os pares chave-valor em +diretório+, que são tuplas. Ele atribui os elementos da chave em cada tupla +sobrenome+ e +nome+ ao valor em +número+, e então imprime o nome e o número de telefone correspondente.
+Este laço percorre os pares chave-valor em +diretório+, que são tuplas. Ele atribui os elementos da chave em cada tupla +sobrenome+ e +nome+ ao valor em +número+, e então imprime o nome completo e o número de telefone correspondente.
 
-Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em um array. Por exemplo, a tupla +("Ciclano", "João")+ apareceria como no <<fig12-1>>.
-((diagrama de estado)))
+Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em um array. Por exemplo, a tupla +("Carlos", "João")+ apareceria como no <<fig12-1>>.
+(((diagrama de estado)))
 
 [[fig12-1]]
 .Diagrama de estado
@@ -455,14 +455,14 @@ image::images/fig121.svg[]
 
 
 Mas em um diagrama maior, você pode ocultar os detalhes. Por exemplo, um diagrama da lista telefônica pode ser impresso como em <<fig12-2>>.
-((diagrama de estado)))
+(((diagrama de estado)))
 
 [[fig12-2]]
-.Diagrama do Estado
+.Diagrama de estado
 image::images/fig122.svg[]
 
 
-Aqui, as tuplas são mostradas com a sintaxe do Julia para simplificar o diagrama. O número de telefone no diagrama é a linha de reclamações da BBC; portanto, não ligue para lá.
+Aqui, as tuplas são mostradas com a sintaxe do Julia para simplificar o diagrama. O número de telefone no diagrama é a linha de reclamações da BBC; sendo assim, não ligue para lá.
 
 
 === Sequências de Sequências
@@ -473,15 +473,15 @@ Tenho focado em arrays de tuplas, mas quase todos os exemplos neste capítulo ta
 Em muitos contextos, os diferentes tipos de seqüências (strings, arrays e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
 (((string)))(((array)))(((tupla)))
 
-Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres. E também são imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar um array de caracteres em seu lugar.
+Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar um array de caracteres em seu lugar.
 ((((imutável)))
 
 Arrays são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
 (((mutável)))
 
-* Em alguns contextos, como uma declaração return, sintaticamente é mais simples criar uma tupla do que um array.
+* Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que um array.
 
-* Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado provocado por um alias.
+* Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado causado por um alias.
 (((alias)))
 
 * Por motivos de desempenho. O compilador pode ser especializado neste tipo.
@@ -492,29 +492,29 @@ Como as tuplas são imutáveis, elas não dispõem de funções como +sort!+ e +
 
 === Debugging
 
-Arrays, dicionários e tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostos são práticas, mas são propensas ao que chamo de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
+Arrays, dicionários e tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
 (((debugging)))(((estruturas de dados)))(((erro de forma))))
 
-Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está no <<chap17>>. A especificação do tipo elimina muitos erros de forma.
+Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está em <<chap17>>. A especificação do tipo elimina muitos erros de forma.
 
 
 === Glossário
 
 tupla::
-Uma sequência imutável de elementos em que cada elemento pode ter seu próprio tipo.
+Uma sequência imutável de elementos onde cada elemento pode ter seu próprio tipo.
 (((tupla)))
 
 atribuição de tupla::
 Uma atribuição com uma sequência no lado direito e uma tupla de variáveis no lado esquerdo. O lado direito é avaliado para que seus elementos sejam atribuídos às variáveis do lado esquerdo.
 ((((atribuição de tupla)))
 
-agrupar::
-A operação de montagem de uma tupla com argumentos de comprimento variável.
-(((agrupar)))
+agrupamento::
+A operação de geração de uma tupla com argumentos de comprimento variável.
+(((agrupamento)))
 
-separar::
-A operação de tratar uma sequência como uma lista de argumentos.
-(((separar)))
+separação::
+A operação de tratamento de uma sequência como uma lista de argumentos.
+(((separação)))
 
 objeto zip::
 O resultado da chamada de uma função interna +zip+; um objeto que itera através de uma sequência de tuplas.
@@ -538,7 +538,7 @@ Um erro causado quando um valor tem a forma errada; ou seja, o tipo ou tamanho e
 [[ex12-1]]
 ===== Exercício 12-2
 
-Escreva uma função chamada +mais_frequente+ que recebe uma string e imprime as letras em ordem decrescente de frequência. Encontre amostras de texto de diversos idiomas diferentes e verifique como a frequência das letras varia entre os idiomas. Compare seus resultados com as tabelas em https://pt.wikipedia.org/wiki/Frequência_de_letras.
+Escreva uma função chamada +mais_frequente+ que recebe uma string e imprime as letras em ordem decrescente de frequência. Procure amostras de texto de diversos idiomas diferentes e verifique como a frequência das letras varia entre os idiomas. Compare seus resultados com as tabelas em https://pt.wikipedia.org/wiki/Frequência_de_letras.
 (((mais_frequente)))((("função", "definido pelo programador", "mais_frequente", see="mais_frequente")))
 
 [[ex12-2]]
@@ -565,7 +565,7 @@ Você pode querer construir um dicionário que mapeia uma coleção de letras at
 
 . Modifique o programa anterior para imprimir primeiro o maior array de anagramas, seguida pelo segundo mais longo e assim por diante.
 
-. No Scrabble, um "bingo" é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual a coleção de oito letras que forma o maior número possível de bingos?
+. No Scrabble, um "bingo" é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual é a coleção de oito letras que forma o maior número possível de bingos?
 
 [[ex12-3]]
 ===== Exercício 12-4
@@ -590,9 +590,9 @@ Aqui está outro desafio do programa Car Talk (https://www.cartalk.com/puzzler/b
 ____
 Qual é a palavra em inglês mais longa, que permanece uma palavra válida em inglês à medida que você remove as letras uma de cada vez?
 
-Agora, as letras podem ser removidas de qualquer posição e você não pode rearranjar nenhuma das letras. Toda vez que você retira uma letra, você termina com outra palavra em inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
+Agora, as letras podem ser removidas de qualquer posição e não pode rearranjar nenhuma das letras. Toda vez que você retira uma letra, você termina com outra palavra em inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
 
-Vou dar um exemplo modesto: Sprite. OK? Você começa com sprite, tira a letra r no meio da palavra e ficamos com a palavra spite, depois tiramos o e do final e ficamos com spit, tiramos o s e ficamos com pit, it e I.
+Vou dar um exemplo modesto: Sprite. OK? Você começa com sprite, tira a letra r no meio da palavra e ficamos com a palavra spite, depois tiramos a letra e no final e ficamos com spit, tiramos a letra s e ficamos com pit, it e I.
 ____
 
 Escreva um programa para encontrar todas as palavras em inglês que podem ser reduzidas desta forma, e depois encontre a mais longa.
@@ -601,12 +601,12 @@ Escreva um programa para encontrar todas as palavras em inglês que podem ser re
 ====
 Este exercício é um pouco mais desafiador do que a maioria, então aqui vai algumas sugestões:
 
-. Você pode escrever uma função que recebe uma palavra e obtenha um array de todas as palavras que podem ser formadas removendo uma letra. Este array contém os "filhos" da palavra.
+. Você pode escrever uma função que recebe uma palavra e obtenha um array de todas as palavras que podem ser formadas removendo uma letra. Este array contém os “filhos” da palavra.
 
 . Recursivamente, uma palavra é redutível se algum de seus filhos for redutível. Como caso base, pode-se considerar a string vazia redutível.
-((redutível)))
+(((redutível)))
 
-. A lista de palavras que disponibilizei, _palavras.txt_, não contém palavras com uma única letra. Então, você pode querer a adição de "I", "a" e a string vazia.
+. A lista de palavras que disponibilizei ( _palavras.txt_ do cap. 9) não contém palavras com uma única letra. Então, você pode querer colocar “I”, “a” e a string vazia.
 
 . Para melhorar o desempenho do seu programa, convém guardar as palavras que são conhecidas por serem redutíveis.
 (((memorando)))
