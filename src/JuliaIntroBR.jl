@@ -1,4 +1,4 @@
-module ThinkJulia
+module JuliaIntroBR
 
   __precompile__(false)
 
@@ -12,7 +12,7 @@ module ThinkJulia
 
   const depsjl_path = joinpath(dirname(@__FILE__), "..", "deps", "deps.jl")
   if !isfile(depsjl_path)
-      error("ThinkJulia not installed properly, run Pkg.build(\"ThinkJulia\"), restart Julia and try again")
+      error("JuliaIntroBR not installed properly, run Pkg.build(\"JuliaIntroBR\"), restart Julia and try again")
   end
   include(depsjl_path)
 

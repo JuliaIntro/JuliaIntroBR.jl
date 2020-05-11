@@ -67,9 +67,9 @@ This element indicates a warning or caution.
 
 === Using Code Examples
 
-All ((("code examples in this book")))((("Git")))((("GitHub")))((("repository")))((("online resources", "Julia")))code used in this book is available from a Git repository on GitHub: https://github.com/BenLauwens/ThinkJulia.jl. If you are not familiar with Git, it is a version control system that allows you to keep track of the files that make up a project. A collection of files under Git's control is called a “repository.” GitHub is a hosting service that provides storage for Git repositories and a convenient web interface.
+All ((("code examples in this book")))((("Git")))((("GitHub")))((("repository")))((("online resources", "Julia")))code used in this book is available from a Git repository on GitHub: https://github.com/JuliaIntro/JuliaIntroBR.jl. If you are not familiar with Git, it is a version control system that allows you to keep track of the files that make up a project. A collection of files under Git's control is called a “repository.” GitHub is a hosting service that provides storage for Git repositories and a convenient web interface.
 
-A ((("packages", "installing")))((("add command, in REPL")))convenience package is provided that can be directly added to Julia. Just type pass:[<code>add <a href="https://github.com/BenLauwens/ThinkJulia.jl">https://github.com/BenLauwens/ThinkJulia.jl</a></code>] in the REPL in Pkg mode, see <<turtles>>.
+A ((("packages", "installing")))((("add command, in REPL")))convenience package is provided that can be directly added to Julia. Just type pass:[<code>add <a https://github.com/JuliaIntro/JuliaIntroBR.jl">https://github.com/JuliaIntro/JuliaIntroBR.jl</a></code>] in the REPL in Pkg mode, see <<turtles>>.
 
 The ((("Julia", "running")))easiest way to run Julia code is by going to https://juliabox.com and starting a free session. Both the REPL and a notebook interface are available. If ((("Julia", "installing")))you want to have Julia locally installed on your computer, you can download https://juliacomputing.com/products/juliapro.html[JuliaPro] for free from Julia Computing. It consists of a recent Julia version, the Juno interactive development environment based on Atom, and a number of preinstalled Julia packages. If you are more adventurous, you can download Julia from https://julialang.org, install the editor you like (e.g., Atom or Visual Studio Code), and activate the plug-ins for Julia integration. To ((("IJulia package")))a local install, you can also add the +IJulia+ package and run a Jupyter notebook on your computer.
 
@@ -87,7 +87,7 @@ Thanks to all the students who worked with an early version of this book and all
 
 === Contributor List
 
-If you have a suggestion or correction, please send email to ben.lauwens@gmail.com or open an issue on https://github.com/BenLauwens/ThinkJulia.jl[GitHub]. If I make a change based on your feedback, I will add you to the contributor list (unless you ask to be omitted).
+If you have a suggestion or correction, please send email to ben.lauwens@gmail.com or open an issue on https://github.com/JuliaIntro/JuliaIntroBR.jl[GitHub]. If I make a change based on your feedback, I will add you to the contributor list (unless you ask to be omitted).
 
 Let me know what version of the book you are working with, and what format. If you include at least part of the sentence the error appears in, that will make it easy for me to search. Page and section numbers are fine, too, but not quite as easy to work with. Thanks!
 

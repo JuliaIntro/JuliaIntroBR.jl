@@ -592,7 +592,7 @@ Escreva uma função denominada +alinhar_a_direita+ que recebe uma string denomi
 
 [source,@julia-eval chap03-ex]
 ----
-using ThinkJulia
+using JuliaIntroBR
 ----
 
 [source,@julia-repl chap03-ex]

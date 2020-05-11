@@ -3,7 +3,7 @@
 
 Este capítulo apresenta um estudo de caso que demonstra o processo de design de funções que trabalham juntas.
 
-Ele introduz o turtle graphics, um jeito de criar desenhos por meio de um programa. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo ThinkJulia tem que ser adicionado na sua configuração do Julia.
+Ele introduz o turtle graphics, um jeito de criar desenhos por meio de um programa. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo JuliaIntroBR tem que ser adicionado na sua configuração do Julia.
 
 Os exemplos neste capítulo podem ser executados em um notebook gráfico no JuliaBox, que combina código, texto formatado, matemática e multimídia em um único documento (ver <<juliabox>>).
 (((JuliaBox, notebook gráfico)))
@@ -15,11 +15,11 @@ Um _módulo_ é um arquivo que contém uma coleção de funções relacionadas. 
 (((módulo)))(((pacote)))
 
 Pacotes podem ser instalados no REPL através do modo Pkg usando a tecla +]+.
-(((pass:[&#93;])))(((ThinkJulia)))((("módulo", "ThinkJulia", see="ThinkJulia")))
+(((pass:[&#93;])))(((JuliaIntroBR)))((("módulo", "JuliaIntroBR", see="JuliaIntroBR")))
 
 [source,jlcon]
 ----
-(v1.0) pkg> add https://github.com/BenLauwens/ThinkJulia.jl
+(v1.0) pkg> add https://github.com/JuliaIntro/JuliaIntroBR.jl
 ----
 
 Isso pode demorar um pouco.
@@ -29,17 +29,17 @@ Antes de podermos usar as funções de um módulo, temos que importá-lo usando 
 
 [source,@julia-repl-test]
 ----
-julia> using ThinkJulia
+julia> using JuliaIntroBR
 
 julia> 🐢 = Turtle()
 Luxor.Turtle(0.0, 0.0, true, 0.0, (0.0, 0.0, 0.0))
 ----
 
-O módulo +ThinkJulia+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, que atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
+O módulo +JuliaIntroBR+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, que atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
 (((Turtle)))((("tipo", "Luxor", "Turtle", see="Turtle")))
 
 Logo após criarmos a tartaruga, podemos chamar uma função que a move ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
-(((para a frente)))((("função", "ThinkJulia", "para a frente", see="para a frente")))
+(((para a frente)))((("função", "JuliaIntroBR", "para a frente", see="para a frente")))
 
 [source,julia]
 ----
@@ -59,10 +59,10 @@ A palavra-chave +@svg+ executa uma macro que desenha uma imagem SVG. Macros são
 Os argumentos de +forward+ são a tartaruga e a distância em pixels, portanto o tamanho real do movimento depende do seu monitor.
 
 Outra função que nós podemos chamar com tartaruga como argumento é +turn+, para virar. O segundo argumento para +turn+ é o ângulo em graus.
-(((turn)))((("função", "ThinkJulia", "turn", see="turn")))
+(((turn)))((("função", "JuliaIntroBR", "turn", see="turn")))
 
 Além disso, cada tartaruga está segurando uma caneta, que pode estar tanto para baixo ou para cima; se a caneta está para baixo, a tartaruga deixa uma trilha quando ela se move. <<fig04-1>> mostra a trilha deixada pela tartaruga. As funções +penup+ e +pendown+ significam respectivamente “caneta para cima” e “caneta para baixo”.
-(((penup)))((("função", "ThinkJulia", "penup", see="penup")))(((pendown)))((("função", "ThinkJulia", "pendown", see="pendown")))
+(((penup)))((("função", "JuliaIntroBR", "penup", see="penup")))(((pendown)))((("função", "JuliaIntroBR", "pendown", see="pendown")))
 
 Para desenhar um ângulo reto, modifique a chamada de macro:
 
