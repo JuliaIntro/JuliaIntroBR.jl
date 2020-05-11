@@ -163,19 +163,19 @@ Contudo, ((("sublinhado ($$_$$)", "em inteiros")))((("$$_$$ (sublinhado)", "em i
 
 === Linguagens Formais e Naturais
 
-_Linguagens Naturais_ ((("linguagem natural", id="ch1nat", range="startofrange"))) são aquelas linguagens que as pessoas falam, como Inglês, Espanhol, Português e o Francês. Elas não são projetados por pessoas (embora pessoas tentem lhes impor alguma ordem); eles evoluíram naturalmente.
+_Linguagens Naturais_ ((("linguagem natural", id="ch1nat", range="startofrange"))) são aquelas linguagens que as pessoas falam, como Inglês, Espanhol, Português e o Francês. Elas não são projetadas por pessoas (embora pessoas tentem lhes impor alguma ordem); elas evoluíram naturalmente.
 
 _Linguagens Formais_ ((("linguagem formal", id="ch1nat2", range="startofrange"))) são linguagens projetadas por pessoas para aplicações específicas. Por exemplo, a notação que os matemáticos utilizam é uma linguagem formal que em particular é boa para denotar a relação entre números e símbolos. Químicos usam uma linguagem formal para representar a estrutura química das moléculas. E ((("linguagem de programação", id="ch1nat3", range="startofrange")))mais importante, linguagens de programação são linguagens formais projetadas para expressar cálculos.
 
 Linguagens ((("sintaxe", id="ch1nat4", range="startofrange")))formais tendem a ter regras rígidas de _sintaxe_ que governam a estrutura das declarações. Por exemplo, em matemática a declaração latexmath:[\(3 + 3 = 6\)] tem sintaxe correta, mas latexmath:[\(3 += 3 \$ 6\)] não. Em química, latexmath:[\(\mathrm{H_2O}\)] é uma fórmula sintaticamente correta, mas latexmath:[\(\mathrm{_2Zz}\)] não.
 
-Regras ((("símbolo", id="ch1nat5", range="startofrange")))((("estrutura", id="ch1nat6", range="startofrange")))de sintaxe são fornecidas em dois tipos, pertencentes a _símbolo_ e _estrutura_. Símbolos são elementos básicos da linguagem, como palavras, números e elementos químicos. Um dos problemas com latexmath:[\(3 += 3 \$ 6\)] é que latexmath:[\(\$\)] não é um símbolo permitido em matemática (pelo menos até onde eu sei). Da mesma forma, latexmath:[\(\mathrm{_2Zz}\)] não é permitido pois não há elemento com abreviação latexmath:[\(\mathrm{Zz}\)].
+Regras ((("símbolo", id="ch1nat5", range="startofrange")))((("estrutura", id="ch1nat6", range="startofrange")))de sintaxe são fornecidas em dois tipos, pertencentes a _símbolos_ e _estruturas_. Símbolos são elementos básicos da linguagem, como palavras, números e elementos químicos. Um dos problemas com latexmath:[\(3 += 3 \$ 6\)] é que latexmath:[\(\$\)] não é um símbolo permitido em matemática (pelo menos até onde eu sei). Da mesma forma, latexmath:[\(\mathrm{_2Zz}\)] não é permitido pois não há elemento com abreviação latexmath:[\(\mathrm{Zz}\)].
 
-O segundo tipo de regra de sintaxe pertence ao caminho que símbolos são combinados. A equação latexmath:[\(3 +=3\)] não é permitida porque mesmo que latexmath:[\(+\)] e latexmath:[\(=\)] sejam símbolos permitidos, você não pode ter um logo após o outro. Da mesma forma, em uma fórmula química, o subscrito vem depois do nome do elemento, e não antes.
+O segundo tipo de regra de sintaxe pertence à maneira que símbolos são combinados. A equação latexmath:[\(3 +=3\)] não é permitida porque mesmo que latexmath:[\(+\)] e latexmath:[\(=\)] sejam símbolos permitidos, você não pode ter um logo após o outro. Da mesma forma, em uma fórmula química, o subscrito vem depois do nome do elemento, e não antes.
 
 Essa é um@ sentença bem estruturada em portuguê$ com t*kens inválidos. Essa frase possui todos os símbolos válidos, mas com estrutura invalida.
 
-Quando ((("análise"))) você lê uma sentença em Poruguês ou uma declaração numa linguagem formal, você tem que descrever a estrutura (apesar de que em uma linguagem natural você faz isso subconscientemente). Esse processo é chamado de _análise_.
+Quando ((("análise"))) você lê uma sentença em Português ou uma declaração numa linguagem formal, você tem que descrever a estrutura (apesar de que em uma linguagem natural você faz isso subconscientemente). Esse processo é chamado de _análise_.
 
 Embora as linguagens formais e naturais tenham muito recursos em comuns — símbolos, estruturas, e sintaxes —  existem algumas diferenças:
 
@@ -183,7 +183,7 @@ Ambiguidade::
 As linguagens naturais são cheias de ambiguidades, com as quais as pessoas lidam usando pistas contextuais e outras informações. As linguagens formais são projetadas para serem quase ou completamente inequívocas, o que significa que qualquer afirmação tem exatamente um significado, independentemente do contexto.
 
 Redundância::
-Para compensar a ambiguidade e reduzir os mal-entendidos, as linguagens naturais empregam muita redundância. Como resultado, eles geralmente são detalhadas. Linguagens formais são menos redundantes e mais concisas.
+Para compensar a ambiguidade e reduzir os mal-entendidos, as linguagens naturais empregam muita redundância. Como resultado, elas geralmente são detalhadas. Linguagens formais são menos redundantes e mais concisas.
 
 Literalidade::
 As línguas naturais estão cheias de expressões idiomáticas e metáforas. Se eu disser: "Caiu a ficha!", provavelmente não há ficha e nada está caindo (nesse idioma significa que alguém entendeu alguma coisa após um período de confusão). Linguagens formais significam exatamente o que dizem.
@@ -204,7 +204,7 @@ As linguagens formais são mais densas que as linguagens naturais, por isso leva
 
 === Debug
 
-Programadores ((("erros (bugs)")))((("debugar", "emoções de, lidando com")))cometem erros. Por motivos lúdicos, erros de programação são chamados de _bugs_ e o processo de rastrea-los é chamado de _debugar_.
+Programadores ((("erros (bugs)")))((("debugar", "emoções de, lidando com")))cometem erros. Por motivos lúdicos, erros de programação são chamados de _bugs_ e o processo de rastreá-lo é chamado de _debugar_.
 
 A programação e, especialmente, a debugação, às vezes traz emoções fortes. Se você está lutando com um bug difícil, pode sentir raiva, desânimo ou vergonha.
 
