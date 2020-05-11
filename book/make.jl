@@ -1,4 +1,4 @@
-using ThinkJulia: makefigs, expandcodeblocks, deploybook
+using JuliaIntroBR: makefigs, expandcodeblocks, deploybook
 
 const root = dirname(@__FILE__)
 const src = joinpath(root, "src")
@@ -134,7 +134,7 @@ if "deploy" in ARGS
   end
   deploybook(
     root = root,
-    repo = "github.com/BenLauwens/ThinkJulia.jl",
+    repo = "github.com/JuliaIntro/JuliaIntroBR.jl",
     target = target,
     branch = "gh-pages",
     latest = "master",
