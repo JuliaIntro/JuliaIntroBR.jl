@@ -294,8 +294,8 @@ julia> zip(s, t)
 Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))
 ----
 
-O resultado é um _objeto do tipo zip_ que sabe como iterar através dos pares. O uso mais comum de +zip+ ocorre em um laço +for+:
-(((objeto do tipo zip)))(((declaração for)))
+O resultado é um _objeto zip_ que sabe como iterar através dos pares. O uso mais comum de +zip+ ocorre em um laço +for+:
+(((objeto zip)))(((declaração for)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -350,29 +350,15 @@ julia> for (letra, número) in t
 3 c
 ----
 
-Each time through the loop, Julia selects the next tuple in the array and assigns the elements to letter and number. The parentheses around +(letter, number)+ are compulsory.
-(((parentheses)))
-
-If you combine +zip+, +for+ and tuple assignment, you get a useful idiom for traversing two (or more) sequences at the same time. For example, +hasmatch+ takes two sequences, +t1+ and +t2+, and returns +true+ if there is an index +i+ such that +t1[i] == t2[i]+:
-(((hasmatch)))((("função", "Base", "hasmatch", see="hasmatch")))
-
-Cada vez que o loop é selecionado, Julia seleciona a próxima tupla na matriz e atribui os elementos à letra e ao número. Os parênteses em torno de + (letra, número) + são obrigatórios.
+A cada iteração do laço, Julia seleciona a próxima tupla no array e atribui os elementos à letra e ao número. Os parênteses em torno de +(letra, número)+ são necessários.
 (((parênteses)))
 
-Cada vez através do loop, Julia seleciona o próximo tuple no array e atribui os elementos à letra e ao número. Os parênteses em torno de +(letra, número)+ são obrigatórios.
-(((parênteses)+))
-
-**Se combinar zip, for e atribuição de tuplas, você pode fazer uma expressão útil para percorrer duas (ou mais) sequências ao mesmo tempo. Por exemplo, has_match recebe duas sequências, t1 e t2 e retorna True se houver um índice i tal que t1[i] == t2[i]:
-
-Se você combinar +zip+, +for+ e tuple, você obtém uma linguagem útil para atravessar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +hasmatch+ toma duas seqüências, +t1+ e +t2+, e retorna +true+ se houver um índice +i+ tal que +t1[i] == t2[i]+:
-(((hasmatch)))((("função", "Base", "hasmatch", veja="hasmatch"))))
-
-Se você combinar + zip +, + para + e atribuição de tupla, obterá um idioma útil para percorrer duas (ou mais) seqüências ao mesmo tempo. Por exemplo, + hasmatch + usa duas seqüências, + t1 + e + t2 +, e retorna + true + se houver um índice + i + tal que + t1 [i] == t2 [i] +:
-(((hasmatch))) ((("função", "Base", "hasmatch", consulte = "hasmatch"))))
+Se você combinar +zip+, +for+ e a atribuição de tuplas, você chega em uma função prática para analisar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +tem_combinação+ considera duas seqüências, +t1+ e +t2+, e devolve +true+ se existir um índice +i+ tal que +t1[i] == t2[i]+:
+(((tem_combinação)))((("função", "definido pelo programador", "tem_combinação", see="tem_combinação")))
 
 [source,@julia-setup chap12]
 ----
-function hasmatch(t1, t2)
+function tem_combinação(t1, t2)
     for (x, y) in zip(t1, t2)
         if x == y
             return true
@@ -382,42 +368,42 @@ function hasmatch(t1, t2)
 end
 ----
 
-If you need to traverse the elements of a sequence and their indices, you can use the built-in function +enumerate+:
+Se você precisa percorrer os elementos de uma sequência e os seus índices, pode-se usar a função interna +enumerate+:
 (((enumerate)))((("função", "Base", "enumerate", see="enumerate")))
 
 [source,@julia-repl-test chap12]
 ----
-julia> for (index, element) in enumerate("abc")
-           println(index, " ", element)
+julia> for (índice, elemento) in enumerate("abc")
+           println(índice, " ", elemento)
        end
 1 a
 2 b
 3 c
 ----
 
-The result from +enumerate+ is an enumerate object, which iterates a sequence of pairs; each pair contains an index (starting from 1) and an element from the given sequence.
+O resultado de +enumerate+ é um objeto enumerado, que itera sobre uma seqüência de pares onde cada par contém um índice (a partir de 1) e um elemento da seqüência dada.
 
 
-=== Dictionaries and Tuples
+=== Dicionários e Tuplas
 
-Dictionaries can be used as iterators that iterate the key-value pairs. You can use it in a +for+ loop like this:
-(((key-value pair)))(((for statement)))
+Os dicionários podem ser usados como iteradores dos pares chave-valor. Você pode usá-lo em um laço +for+ como este:
+(((par chave-valor)))(((declaração for)))
 
 [source,@julia-repl-test]
 ----
 julia> d = Dict('a'=>1, 'b'=>2, 'c'=>3);
 
-julia> for (key, value) in d
-           println(key, " ", value)
+julia> for (chave, valor) in d
+           println(chave, " ", valor)
        end
 a 1
 c 3
 b 2
 ----
 
-As you should expect from a dictionary, the items are in no particular order.
+Como é de se esperar de um dicionário, os itens não estão em nenhuma específica ordem.
 
-Going in the other direction, you can use an array of tuples to initialize a new dictionary:
+Indo na outra direção, você pode usar um array de tuplas para inicializar um novo dicionário:
 
 [source,@julia-repl-test]
 ----
@@ -430,7 +416,7 @@ Dict{Char,Int64} with 3 entries:
   'b' => 2
 ----
 
-Combining +Dict+ with +zip+ yields a concise way to create a dictionary:
+A combinação de +Dict+ com +zip+ resulta numa maneira concisa de criar um dicionário:
 (((zip)))
 
 [source,@julia-repl-test]
@@ -442,109 +428,109 @@ Dict{Char,Int64} with 3 entries:
   'b' => 2
 ----
 
-It is common to use tuples as keys in dictionaries. For example, a telephone directory might map from last-name, first-name pairs to telephone numbers. Assuming that we have defined +last+, +first+ and +number+, we could write:
+É comum utilizar tuplas como chaves nos dicionários. Por exemplo, uma lista telefônica pode mapear de pares de sobrenome e nome até números de telefone. Supondo que definimos +sobrenome+, +nome+ e +número+, poderíamos escrever:
 
 [source,julia]
 ----
-directory[last, first] = number
+diretório[sobrenome, nome] = número
 ----
 
-The expression in brackets is a tuple. We could use tuple assignment to traverse this dictionary.
+A expressão entre parênteses é uma tupla. Poderíamos usar a atribuição de tuplas para percorrer este dicionário.
 
 [source,julia]
 ----
-for ((last, first), number) in directory
-    println(first, " ", last, " ", number)
+for ((sobrenome, nome), número) in diretório
+    println(nome, " ", sobrenome, " ", número)
 end
 ----
 
-This loop traverses the key-value pairs in +directory+, which are tuples. It assigns the elements of the key in each tuple to +last+ and +first+, and the value to +number+, then prints the name and corresponding telephone number.
+Este laço percorre os pares chave-valor em +diretório+, que são tuplas. Ele atribui os elementos da chave em cada tupla +sobrenome+ e +nome+ ao valor em +número+, e então imprime o nome e o número de telefone correspondente.
 
-There are two ways to represent tuples in a state diagram. The more detailed version shows the indices and elements just as they appear in an array. For example, the tuple +("Cleese", "John")+ would appear as in <<fig12-1>>.
-(((state diagram)))
+Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em um array. Por exemplo, a tupla +("Ciclano", "João")+ apareceria como no <<fig12-1>>.
+((diagrama de estado)))
 
 [[fig12-1]]
-.State diagram
+.Diagrama de estado
 image::images/fig121.svg[]
 
 
-But in a larger diagram you might want to leave out the details. For example, a diagram of the telephone directory might appear as in <<fig12-2>>.
-(((state diagram)))
+Mas em um diagrama maior, você pode ocultar os detalhes. Por exemplo, um diagrama da lista telefônica pode ser impresso como em <<fig12-2>>.
+((diagrama de estado)))
 
 [[fig12-2]]
-.State diagram
+.Diagrama do Estado
 image::images/fig122.svg[]
 
 
-Here the tuples are shown using Julia syntax as a graphical shorthand. The telephone number in the diagram is the complaints line for the BBC, so please don’t call it.
+Aqui, as tuplas são mostradas com a sintaxe do Julia para simplificar o diagrama. O número de telefone no diagrama é a linha de reclamações da BBC; portanto, não ligue para lá.
 
 
-=== Sequences of Sequences
+=== Sequências de Sequências
 
-I have focused on arrays of tuples, but almost all of the examples in this chapter also work with arrays of arrays, tuples of tuples, and tuples of arrays. To avoid enumerating the possible combinations, it is sometimes easier to talk about sequences of sequences.
-(((sequence of sequences)))
+Tenho focado em arrays de tuplas, mas quase todos os exemplos neste capítulo também funcionam com arrays de arrays, tuplas de tuplas, e tuplas de arrays. Para evitar listar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
+(((seqüência de seqüências)))
 
-In many contexts, the different kinds of sequences (strings, arrays and tuples) can be used interchangeably. So how should you choose one over the others?
-(((string)))(((array)))(((tuple)))
+Em muitos contextos, os diferentes tipos de seqüências (strings, arrays e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
+(((string)))(((array)))(((tupla)))
 
-To start with the obvious, strings are more limited than other sequences because the elements have to be characters. They are also immutable. If you need the ability to change the characters in a string (as opposed to creating a new string), you might want to use an array of characters instead.
-(((immutable)))
+Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres. E também são imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar um array de caracteres em seu lugar.
+((((imutável)))
 
-Arrays are more common than tuples, mostly because they are mutable. But there are a few cases where you might prefer tuples:
-(((mutable)))
+Arrays são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
+(((mutável)))
 
-* In some contexts, like a return statement, it is syntactically simpler to create a tuple than an array.
+* Em alguns contextos, como uma declaração return, sintaticamente é mais simples criar uma tupla do que um array.
 
-* If you are passing a sequence as an argument to a function, using tuples reduces the potential for unexpected behavior due to aliasing.
-(((aliasing)))
+* Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado provocado por um alias.
+(((alias)))
 
-* For performance reasons. The compiler can specialize on the type.
+* Por motivos de desempenho. O compilador pode ser especializado neste tipo.
 
-Because tuples are immutable, they don’t provide functions like +sort!+ and +reverse!+, which modify existing arrays. But Julia provides the built-in function +sort+, which takes an array and returns a new array with the same elements in sorted order, and +reverse+, which takes any sequence and returns a sequence of the same type in reverse order.
-(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("função", "Base", "reverse", see="reverse")))(((zip)))((("função", "Base", "reverse!", see="reverse!")))
+Como as tuplas são imutáveis, elas não dispõem de funções como +sort!+ e +reverse!+, que modificam os arrays existentes. Mas Julia possui a função interna +sort+, que recebe um array e devolve um novo array com os mesmos elementos na ordem classificada, e +reverse+, que recebe qualquer sequência e devolve uma sequência do mesmo tipo na ordem contrária.
+(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("função", "Base", "reverse ", see="reverse")))(((zip)))((("função","Base","reverse!", see="reverse!")))
 
 
 === Debugging
 
-Arrays, dictionaries and tuples are examples of _data structures_; in this lecture we are starting to see compound data structures, like arrays of tuples, or dictionaries that contain tuples as keys and arrays as values. Compound data structures are useful, but they are prone to what I call _shape errors_; that is, errors caused when a data structure has the wrong type, size, or structure. For example, if you are expecting an array with one integer and I give you a plain old integer (not in an array), it won’t work.
-(((debugging)))(((data structures)))(((shape error)))
+Arrays, dicionários e tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostos são práticas, mas são propensas ao que chamo de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
+(((debugging)))(((estruturas de dados)))(((erro de forma))))
 
-Julia allows to attach a type to elements of a sequence. How this is done is detailed in <<chap17>>. Specifying the type eliminates a lot of shape errors.
+Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está no <<chap17>>. A especificação do tipo elimina muitos erros de forma.
 
 
-=== Glossary
+=== Glossário
 
-tuple::
-An immutable sequence of elements where every element can have its own type.
-(((tuple)))
+tupla::
+Uma sequência imutável de elementos em que cada elemento pode ter seu próprio tipo.
+(((tupla)))
 
-tuple assignment::
-An assignment with a sequence on the right side and a tuple of variables on the left. The right side is evaluated and then its elements are assigned to the variables on the left.
-(((tuple assignment)))
+atribuição de tupla::
+Uma atribuição com uma sequência no lado direito e uma tupla de variáveis no lado esquerdo. O lado direito é avaliado para que seus elementos sejam atribuídos às variáveis do lado esquerdo.
+((((atribuição de tupla)))
 
-gather::
-The operation of assembling a variable-length argument tuple.
-(((gather)))
+agrupar::
+A operação de montagem de uma tupla com argumentos de comprimento variável.
+(((agrupar)))
 
-scatter::
-The operation of treating a sequence as a list of arguments.
-(((scatter)))
+separar::
+A operação de tratar uma sequência como uma lista de argumentos.
+(((separar)))
 
-zip object::
-The result of calling a built-in function +zip+; an object that iterates through a sequence of tuples.
-(((zip object)))
+objeto zip::
+O resultado da chamada de uma função interna +zip+; um objeto que itera através de uma sequência de tuplas.
+(((objeto zip)))
 
-iterator::
-An object that can iterate through a sequence, but which does not provide array operators and functions.
-(((iterator)))
+iterador::
+Um objeto que pode iterar por uma sequência, mas que não dispõe de operadores e funções de array.
+(((iterador)))
 
-data structure::
-A collection of related values, often organized in array, dictionaries, tuples, etc.
-(((data structure)))
+estrutura de dados::
+Uma coleção de valores relacionados, frequentemente estruturados em array, dicionários, tuplas, etc.
+(((estrutura de dados)))
 
-shape error::
-An error caused because a value has the wrong shape; that is, the wrong type or size.
-(((shape error)))
+erro de forma::
+Um erro causado quando um valor tem a forma errada; ou seja, o tipo ou tamanho errado.
+(((erro de forma)))
 
 
 === Exercícios
@@ -552,17 +538,17 @@ An error caused because a value has the wrong shape; that is, the wrong type or 
 [[ex12-1]]
 ===== Exercício 12-2
 
-Write a function called +mostfrequent+ that takes a string and prints the letters in decreasing order of frequency. Find text samples from several different languages and see how letter frequency varies between languages. Compare your results with the tables at https://en.wikipedia.org/wiki/Letter_frequencies.
-(((mostfrequent)))((("função", "definido pelo programador", "mostfrequent", see="mostfrequent")))
+Escreva uma função chamada +mais_frequente+ que recebe uma string e imprime as letras em ordem decrescente de frequência. Encontre amostras de texto de diversos idiomas diferentes e verifique como a frequência das letras varia entre os idiomas. Compare seus resultados com as tabelas em https://pt.wikipedia.org/wiki/Frequência_de_letras.
+(((mais_frequente)))((("função", "definido pelo programador", "mais_frequente", see="mais_frequente")))
 
 [[ex12-2]]
 ===== Exercício 12-3
 
-More anagrams!
+Mais anagramas!
 
-. Write a program that reads a word list from a file (see <<reading_word_lists>>) and prints all the sets of words that are anagrams.
+. Escreva um programa que leia uma lista de palavras de um arquivo (veja <<reading_word_lists>>) e mostre todos os conjuntos de palavras que são anagramas.
 +
-Here is an example of what the output might look like:
+Aqui está um exemplo de como pode ser a saída:
 +
 [source,julia]
 ----
@@ -574,54 +560,54 @@ Here is an example of what the output might look like:
 +
 [TIP]
 ====
-You might want to build a dictionary that maps from a collection of letters to an array of words that can be spelled with those letters. The question is, how can you represent the collection of letters in a way that can be used as a key?
+Você pode querer construir um dicionário que mapeia uma coleção de letras até um array de palavras que podem ser soletradas com essas letras. A questão é: como você pode representar a coleção de letras de uma forma que ela possa ser usada como chave?
 ====
 
-. Modify the previous program so that it prints the longest array of anagrams first, followed by the second longest, and so on.
+. Modifique o programa anterior para imprimir primeiro o maior array de anagramas, seguida pelo segundo mais longo e assim por diante.
 
-. In Scrabble a “bingo” is when you play all seven tiles in your rack, along with a letter on the board, to form an eight-letter word. What collection of 8 letters forms the most possible bingos?
+. No Scrabble, um "bingo" é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual a coleção de oito letras que forma o maior número possível de bingos?
 
 [[ex12-3]]
 ===== Exercício 12-4
 
-Two words form a “metathesis pair” if you can transform one into the other by swapping two letters; for example, “converse” and “conserve”. Write a program that finds all of the metathesis pairs in the dictionary.
-(((metathesis pair)))
+Duas palavras formam um “par de metátese“ se você puder transformar uma na outra trocando duas letras, como no caso de "converse" e "conserve". Escreva um programa que encontre todos os pares de metáteses no dicionário.
+(((par de metátese)))
 
 [TIP]
 ====
-Don’t test all pairs of words, and don’t test all possible swaps.
+Não teste todos os pares de palavras e nem todas as trocas possíveis.
 ====
 
-Credit: This exercise is inspired by an example at http://puzzlers.org.
+Crédito: Este exercício é inspirado em um exemplo em http://puzzlers.org.
 
 [[ex12-4]]
 ===== Exercício 12-5
 
-Here’s another Car Talk Puzzler (https://www.cartalk.com/puzzler/browse):
+Aqui está outro desafio do programa Car Talk (https://www.cartalk.com/puzzler/browse):
 (((Car Talk)))
 
 [quote]
 ____
-What is the longest English word, that remains a valid English word, as you remove its letters one at a time?
+Qual é a palavra em inglês mais longa, que permanece uma palavra válida em inglês à medida que você remove as letras uma de cada vez?
 
-Now, letters can be removed from either end, or the middle, but you can’t rearrange any of the letters. Every time you drop a letter, you wind up with another English word. If you do that, you’re eventually going to wind up with one letter and that too is going to be an English word—one that’s found in the dictionary. I want to know what’s the longest word and how many letters does it have?
+Agora, as letras podem ser removidas de qualquer posição e você não pode rearranjar nenhuma das letras. Toda vez que você retira uma letra, você termina com outra palavra em inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
 
-I’m going to give you a little modest example: Sprite. Ok? You start off with sprite, you take a letter off, one from the interior of the word, take the r away, and we’re left with the word spite, then we take the e off the end, we’re left with spit, we take the s off, we’re left with pit, it, and I.
+Vou dar um exemplo modesto: Sprite. OK? Você começa com sprite, tira a letra r no meio da palavra e ficamos com a palavra spite, depois tiramos o e do final e ficamos com spit, tiramos o s e ficamos com pit, it e I.
 ____
 
-Write a program to find all words that can be reduced in this way, and then find the longest one.
+Escreva um programa para encontrar todas as palavras em inglês que podem ser reduzidas desta forma, e depois encontre a mais longa.
 
 [TIP]
 ====
-This exercise is a little more challenging than most, so here are some suggestions:
+Este exercício é um pouco mais desafiador do que a maioria, então aqui vai algumas sugestões:
 
-. You might want to write a function that takes a word and computes an array of all the words that can be formed by removing one letter. These are the “children” of the word.
+. Você pode escrever uma função que recebe uma palavra e obtenha um array de todas as palavras que podem ser formadas removendo uma letra. Este array contém os "filhos" da palavra.
 
-. Recursively, a word is reducible if any of its children are reducible. As a base case, you can consider the empty string reducible.
-(((reducible)))
+. Recursivamente, uma palavra é redutível se algum de seus filhos for redutível. Como caso base, pode-se considerar a string vazia redutível.
+((redutível)))
 
-. The word list I provided, _words.txt_, doesn’t contain single letter words. So you might want to add “I”, “a”, and the empty string.
+. A lista de palavras que disponibilizei, _palavras.txt_, não contém palavras com uma única letra. Então, você pode querer a adição de "I", "a" e a string vazia.
 
-. To improve the performance of your program, you might want to memoize the words that are known to be reducible.
-(((memo)))
+. Para melhorar o desempenho do seu programa, convém guardar as palavras que são conhecidas por serem redutíveis.
+(((memorando)))
 ====
