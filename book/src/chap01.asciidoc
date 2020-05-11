@@ -173,7 +173,7 @@ Regras ((("símbolo", id="ch1nat5", range="startofrange")))((("estrutura", id="c
 
 O segundo tipo de regra de sintaxe pertence à maneira que símbolos são combinados. A equação latexmath:[\(3 +=3\)] não é permitida porque mesmo que latexmath:[\(+\)] e latexmath:[\(=\)] sejam símbolos permitidos, você não pode ter um logo após o outro. Da mesma forma, em uma fórmula química, o subscrito vem depois do nome do elemento, e não antes.
 
-Essa é um@ sentença bem estruturada em portuguê$ com t*kens inválidos. Essa frase possui todos os símbolos válidos, mas com estrutura invalida.
+Essa é um@ sentença bem estruturada em portuguê$ com 5ímb0l05 inválidos. Essa frase possui todos os símbolos válidos, mas com estrutura invalida.
 
 Quando ((("análise"))) você lê uma sentença em Português ou uma declaração numa linguagem formal, você tem que descrever a estrutura (apesar de que em uma linguagem natural você faz isso subconscientemente). Esse processo é chamado de _análise_.
 
