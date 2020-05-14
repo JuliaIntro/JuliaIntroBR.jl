@@ -1,71 +1,71 @@
 [[chap15]]
-== Structs and Objects
+== Estruturas e Objetos
 
-At this point you know how to use functions to organize code and built-in types to organize data. The next step is to learn how to build your own types to organize both code and data. This is a big topic; it will take a few chapters to get there.
+A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar dados. O próximo passo é aprender a criar seus próprios tipos para organizar o código e os dados. Este é um tópico importante e serão necessários alguns capítulos para tratar do tema.
 
 
-=== Composite Types
+=== Tipos Compostos
 
-We have used many of Julia’s built-in types; now we are going to define a new type. As an example, we will create a type called +Point+ that represents a point in two-dimensional space.
-(((type)))(((Point)))((("type", "programmer-defined", "Point", see="Point")))
+Nós usamos muitos tipos internos do Julia e agora definiremos um novo tipo. Como exemplo, vamos criar um tipo chamado +Ponto+ que representa um ponto no espaço bidimensional.
+(((tipo)))(((Ponto)))((("tipo", "definido pelo programador", "Ponto", see="Ponto")))
 
-In mathematical notation, points are often written in parentheses with a comma separating the coordinates. For example, latexmath:[\(\left(0,0\right)\)] represents the origin, and latexmath:[\(\left(x,y\right)\)] represents the point latexmath:[\(x\)] units to the right and latexmath:[\(y\)] units up from the origin.
+Na notação matemática, os pontos geralmente são escritos entre parênteses com uma vírgula separando as coordenadas. Por exemplo, latexmath:[\(\left(0,0\right)\)] representa a origem e latexmath:[\(\left(x,y\right)\)] se estiver no 1o. quadrante representa o ponto latexmath:[\(x\)] unidades à direita e latexmath:[\(y\)] unidades acima da origem.
 
-There are several ways we might represent points in Julia:
+Existem diversas maneiras de representar pontos no Julia:
 
-* We could store the coordinates separately in two variables, +x+ and +y+.
+* Podemos armazenar as coordenadas separadamente em duas variáveis, +x+ e +y+.
 
-* We could store the coordinates as elements in an array or tuple.
+* Poderíamos armazenar as coordenadas como elementos de um array ou de uma tupla.
 
-* We could create a new type to represent points as objects.
+* Poderíamos criar um novo tipo para representar os pontos como objetos.
 
-Creating a new type is more complicated than the other options, but it has advantages that will be apparent soon.
+A criação de um novo tipo é mais complicado que as outras opções, mas possui vantagens que serão mostradas em breve.
 
-A programmer-defined _composite type_ is also called a _struct_. The +struct+ definition for a point looks like this:
-(((composite type)))(((struct)))((("keyword", "struct", see="struct")))(((end)))
+Um _tipo composto_ definido pelo programador também é denominado de _estrutura_. A definição +struct+ para um ponto é dada por:
+(((tipo composto)))(((struct)))((("palavra-chave", "struct", see="struct")))(((end)))
 
 [source,@julia-setup chap15]
 ----
-struct Point
+struct Ponto
     x
     y
 end
 ----
 
-The header indicates that the new struct is called +Point+. The body defines the _attributes_ or _fields_ of the struct. The +Point+ struct has two fields: +x+ and +y+.
-(((attribute)))((("field", see="attribute")))
+O cabeçalho indica que a nova struct é chamada de +Ponto+ enquanto o corpo define os _atributos_ ou _campos_ da struct. A struct +Ponto+ possui dois campos: +x+ e +y+.
+(((atributo)))((("campo", see="atributo")))
 
-A struct is like a factory for creating objects. To create a point, you call +Point+ as if it were a function having as arguments the values of the fields. When +Point+ is used as a function, it is called a _constructor_.
-(((constructor)))
+A struct é como se fosse uma fábrica para criar objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
+(((construtor)))
 
 [source,@julia-repl-test chap15]
 ----
-julia> p = Point(3.0, 4.0)
-Point(3.0, 4.0)
+julia> p = Ponto(3.0, 4.0)
+Ponto(3.0, 4.0)
 ----
 
-The return value is a reference to a +Point+ object, which we assign to +p+.
-(((reference)))
+O valor de retorno é uma referência a um objeto +Ponto+, que atribuímos a +p+.
+(((referência)))
 
-Creating a new object is called _instantiation_, and the object is an _instance_ of the type.
-(((instatiation)))(((instance)))
+A criação de um novo objeto é chamada _instanciação_, e o objeto é uma _instância_ do tipo.
+(((instanciação)))(((instância)))
 
-When you print an instance, Julia tells you what type it belongs to and what the values of the atributes are.
+Quando você imprime uma instância, Julia informa a que tipo pertence e quais os valores dos atributos.
 
-Every object is an instance of some type, so “object” and “instance” are interchangeable. But in this chapter I use “instance” to indicate that I am talking about a programmer-defined type.
+Todo objeto é uma instância de algum tipo; portanto, "objeto" e "instância" são permutáveis. Mas neste capítulo, eu uso "instância" para indicar que estou falando de um tipo definido pelo programador.ador.
 
-A state diagram that shows an object and its fields is called an _object diagram_; see <<fig15-1>>.
-(((object diagram)))((("diagram", "object", see="object diagram")))
+Um diagrama de estado que mostra um objeto e seus campos é denominado de _diagrama do objeto_, conforme <<fig15-1>>.
+(((diagrama do objeto)))((("diagrama", "objeto", see="diagrama do objeto")))
 
 [[fig15-1]]
-.Object diagram
+.Diagrama do objeto
 image::images/fig151.svg[]
 
 
-=== Structs are Immutable
+=== Structs são Imutáveis
 
-You can get the values of the fields using +.+ notation:
-(((.)))((("dot notation", see=".")))
+Você pode acessar os valores dos campos usando a notação +.+:
+(((.)))((("notação do ponto", see=".")))
 
 [source,@julia-repl-test chap15]
 ----
@@ -75,62 +75,62 @@ julia> p.y
 4.0
 ----
 
-The expression +p.x+ means, “Go to the object +p+ refers to and get the value of +x+.” In the example, we assign that value to a variable named +x+. There is no conflict between the variable +x+ and the field +x+.
+A expressão +p.x+ significa: "Vá até a referência do objeto +p+ e obtenha o valor de +x+". No exemplo, atribuímos esse valor a uma variável +x+. Não há conflito entre a variável +x+ e o campo +x+.
 
-You can use dot notation as part of any expression. For example:
+Você pode usar a notação do ponto como parte de qualquer expressão. Por exemplo:
 
 [source,@julia-repl-test chap15]
 ----
-julia> distance = sqrt(p.x^2 + p.y^2)
+julia> distância = sqrt(p.x^2 + p.y^2)
 5.0
 ----
 
-Structs are however by default immutable, after construction the fields can not change value:
-(((immutable)))
+Por padrão, as structs são  imutáveis, isto é, após a construção, os campos não podem mudar de valor:
+((((imutável)))
 
 [source,@julia-repl-test chap15]
 ----
 julia> p.y = 1.0
-ERROR: setfield! immutable struct of type Point cannot be changed
+ERROR: setfield! immutable struct of type Ponto cannot be changed
 ----
 
-This may seem odd at first, but it has several advantages:
+Isso pode parecer estranho de início, mas tem várias vantagens:
 
-* It can be more efficient.
+* Pode ser mais eficiente.
 
-* It is not possible to violate the invariants provided by the type's constructors (see <<constructor>>).
+* Não é possível violar os invariantes dos construtores do tipo (veja <<constructor>>).
 
-* Code using immutable objects can be easier to reason about.
+* O código usando objetos imutáveis pode ser mais fácil de ler e entender.
 
 
-=== Mutable Structs
+=== Structs Mutáveis
 
-Where required, mutable composite types can be declared with the keyword +mutable struct+. Here is the definition of a mutable point:
-(((mutable composite type)))(((mutable struct)))((("keyword", "mutable struct", see="mutable struct")))(((MPoint)))((("type", "programmer-defined", "MPoint", see="MPoint")))
+Quando necessário, os tipos compostos mutáveis podem ser declarados com a palavra-chave +mutable struct+. Aqui está a definição de um ponto mutável:
+(((tipo composto mutável)))(((struct mutável)))((("palavra-chave", "mutable struct", see="mutable struct")))(((MPonto)))((("tipo", "definido pelo programador", "MPonto", see="MPonto")))
 
 [source,@julia-setup chap15]
 ----
-mutable struct MPoint
+mutable struct MPonto
     x
     y
 end
 ----
 
-You can assign values to an instance of a mutable struct using dot notation:
+Você pode atribuir valores a uma instância de uma struct mutável usando a notação de ponto:
 (((.)))
 
 [source,@julia-repl-test chap15]
 ----
-julia> blank = MPoint(0.0, 0.0)
-MPoint(0.0, 0.0)
-julia> blank.x = 3.0
+julia> origem = MPonto(0.0, 0.0)
+MPonto(0.0, 0.0)
+julia> origem.x = 3.0
 3.0
-julia> blank.y = 4.0
+julia> origem.y = 4.0
 4.0
 ----
 
 
-=== Rectangles
+=== Retângulos
 
 Sometimes it is obvious what the fields of an object should be, but other times you have to make decisions. For example, imagine you are designing a type to represent rectangles. What fields would you use to specify the location and size of a rectangle? You can ignore angle; to keep things simple, assume that the rectangle is either vertical or horizontal.
 
@@ -141,7 +141,7 @@ There are at least two possibilities:
 * You could specify two opposing corners.
 
 At this point it is hard to say whether either is better than the other, so we’ll implement the first one, just as an example.
-(((Rectangle)))((("type", "programmer-defined", "Rectangle", see="Rectangle")))
+(((Rectangle)))((("type", "definido pelo programador", "Rectangle", see="Rectangle")))
 
 [source,@julia-setup chap15]
 ----
@@ -181,7 +181,7 @@ image::images/fig152.svg[]
 === Instances as Arguments
 
 You can pass an instance as an argument in the usual way. For example:
-(((printpoint)))((("function", "programmer-defined", "printpoint", see="printpoint")))
+(((printpoint)))((("function", "definido pelo programador", "printpoint", see="printpoint")))
 
 [source,@julia-setup chap15]
 ----
@@ -201,10 +201,10 @@ julia> printpoint(blank)
 ===== Exercise 15-1
 
 Write a function called +distancebetweenpoints+ that takes two points as arguments and returns the distance between them.
-(((distancebetweenpoints)))((("function", "programmer-defined", "distancebetweenpoints", see="distancebetweenpoints")))
+(((distancebetweenpoints)))((("function", "definido pelo programador", "distancebetweenpoints", see="distancebetweenpoints")))
 
 If a mutable struct object is passed to a function as an argument, the function can modify the fields of the object. For example, +movepoint!+ takes a mutable +Point+ object and two numbers, +dx+ and +dy+, and adds the numbers to respectively the +x+ and the +y+ attribute of the +Point+:
-(((movepoint!)))((("function", "programmer-defined", "movepoint!", see="movepoint!")))
+(((movepoint!)))((("function", "definido pelo programador", "movepoint!", see="movepoint!")))
 
 [source,@julia-setup chap15]
 ----
@@ -274,7 +274,7 @@ ERROR: setfield! immutable struct of type Rectangle cannot be changed
 === Instances as Return Values
 
 Functions can return instances. For example, +findcenter+ takes a +Rectangle+ as an argument and returns a +Point+ that contains the coordinates of the center of the rectangle:
-(((findcenter)))((("function", "programmer-defined", "findcenter", see="findcenter")))
+(((findcenter)))((("function", "definido pelo programador", "findcenter", see="findcenter")))
 
 [source,@julia-setup chap15]
 ----
@@ -379,7 +379,7 @@ The first argument can be any object; the second argument is a symbol, +:+ follo
 === Glossary
 
 struct::
-A composite type. 
+A composite type.
 (((struct)))
 
 constructor::
@@ -417,25 +417,24 @@ A diagram that shows objects, their fields, and the values of the fields.
 ===== Exercise 15-3
 
 . Write a definition for a type named +Circle+ with fields +center+ and +radius+, where +center+ is a +Point+ object and +radius+ is a number.
-(((Circle)))((("type", "programmer-defined", "Circle", see="Circle")))
+(((Circle)))((("type", "definido pelo programador", "Circle", see="Circle")))
 
 . Instantiate a circle object that represents a circle with its center at latexmath:[\(\left(150, 100\right)\)] and radius 75.
 
 . Write a function named +pointincircle+ that takes a +Circle+ object and a +Point+ object and returns +true+ if the point lies in or on the boundary of the circle.
-(((pointincircle)))((("function", "programmer-defined", "pointincircle", see="pointincircle")))
+(((pointincircle)))((("function", "definido pelo programador", "pointincircle", see="pointincircle")))
 
 . Write a function named +rectincircle+ that takes a +Circle+ object and a +Rectangle+ object and returns +true+ if the rectangle lies entirely in or on the boundary of the circle.
-(((rectincircle)))((("function", "programmer-defined", "rectincircle", see="rectincircle")))
+(((rectincircle)))((("function", "definido pelo programador", "rectincircle", see="rectincircle")))
 
 . Write a function named +rectcircleoverlap+ that takes a +Circle+ object and a +Rectangle+ object and returns +true+ if any of the corners of the rectangle fall inside the circle. Or as a more challenging version, return +true+ if any part of the rectangle falls inside the circle.
-(((rectcircleoverlap)))((("function", "programmer-defined", "rectcircleoverlap", see="rectcircleoverlap")))
+(((rectcircleoverlap)))((("function", "definido pelo programador", "rectcircleoverlap", see="rectcircleoverlap")))
 
 [[ex15-2]]
 ===== Exercise 15-4
 
 . Write a function called +drawrect+ that takes a turtle object and a +Rectangle+ object and uses the turtle to draw the rectangle. See Chapter 4 for examples using +Turtle+ objects.
-(((drawrect)))((("function", "programmer-defined", "drawrect", see="drawrect")))
+(((drawrect)))((("function", "definido pelo programador", "drawrect", see="drawrect")))
 
 . Write a function called +drawcircle+ that takes a +Turtle+ object and a +Circle+ object and draws the circle.
-(((drawcircle)))((("function", "programmer-defined", "drawcircle", see="drawcircle")))
-
+(((drawcircle)))((("function", "definido pelo programador", "drawcircle", see="drawcircle")))
