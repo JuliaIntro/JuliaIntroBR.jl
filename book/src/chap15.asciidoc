@@ -121,139 +121,139 @@ Você pode atribuir valores a uma instância de uma struct mutável usando a not
 
 [source,@julia-repl-test chap15]
 ----
-julia> origem = MPonto(0.0, 0.0)
+julia> lacuna = MPonto(0.0, 0.0)
 MPonto(0.0, 0.0)
-julia> origem.x = 3.0
+julia> lacuna.x = 3.0
 3.0
-julia> origem.y = 4.0
+julia> lacuna.y = 4.0
 4.0
 ----
 
 
 === Retângulos
 
-Sometimes it is obvious what the fields of an object should be, but other times you have to make decisions. For example, imagine you are designing a type to represent rectangles. What fields would you use to specify the location and size of a rectangle? You can ignore angle; to keep things simple, assume that the rectangle is either vertical or horizontal.
+Às vezes, é óbvio quais devem ser os campos de um objeto, mas outras vezes você precisa escolher entre as opções. Por exemplo, imagine que você está estruturando um tipo para representar retângulos. Quais campos você usaria para especificar a localização e o tamanho de um retângulo? Desconsidere o ângulo e para simplificar, suponha que o retângulo seja vertical ou horizontal.
 
-There are at least two possibilities:
+Existem pelo menos duas possibilidades:
 
-* You could specify one corner of the rectangle (or the center), the width, and the height.
+* Você poderia especificar um vértice do retângulo (ou o centro), a largura e a altura.
 
-* You could specify two opposing corners.
+* Você poderia especificar dois vértices opostos.
 
-At this point it is hard to say whether either is better than the other, so we’ll implement the first one, just as an example.
-(((Rectangle)))((("type", "definido pelo programador", "Rectangle", see="Rectangle")))
+Nesse momento, é difícil dizer se um é melhor que o outro e portanto, implementaremos o primeiro, apenas como exemplo.
+(((Retângulo)))((("tipo", "definido pelo programador", "Retângulo", see="Retângulo")))
 
 [source,@julia-setup chap15]
 ----
 """
-Represents a rectangle.
+Representa um retângulo.
 
-fields: width, height, corner.
+campos: largura, altura, vértice.
 """
-struct Rectangle
-    width
-    height
-    corner
+struct Retângulo
+    largura
+    altura
+    vértice
 end
 ----
 
-The docstring lists the fields: width and height are numbers; corner is a +Point+ object that specifies the lower-left corner.
+O docstring lista os campos: a largura e a altura são números enquanto o vértice é um objeto +Ponto+ que indica o vértice inferior esquerdo.
 (((docstring)))
 
-To represent a rectangle, you have to instantiate a +Rectangle+ object:
+Para a representação de um retângulo, você tem que instanciar um objeto +Retângulo+:
 
 [source,@julia-repl-test chap15]
 ----
-julia> origin = MPoint(0.0, 0.0)
-MPoint(0.0, 0.0)
-julia> box = Rectangle(100.0, 200.0, origin)
-Rectangle(100.0, 200.0, MPoint(0.0, 0.0))
+julia> origem = MPonto(0.0, 0.0)
+MPonto(0.0, 0.0)
+julia> caixa = Retângulo(100.0, 200.0, origem)
+Retângulo(100.0, 200.0, MPonto(0.0, 0.0))
 ----
 
-<<fig15-2>> shows the state of this object. An object that is a field of another object is _embedded_. Because the +corner+ attribute refers to a mutable object, the latter is drawn outside the +Rectangle+ object.
-(((embedded)))(((object diagram)))
+<<fig15-2>> mostra o estado deste objeto. Um objeto que é um campo de outro objeto é _embutido_. Perceba que o atributo +vértice+ se refere a um objeto mutável, por isso ele é desenhado fora do objeto +Retângulo+.
+(((embutido)))(((diagrama do objeto)))
 
 [[fig15-2]]
-.Object diagram
+.Diagrama do objeto
 image::images/fig152.svg[]
 
 
-=== Instances as Arguments
+=== Instâncias como Argumentos
 
-You can pass an instance as an argument in the usual way. For example:
-(((printpoint)))((("function", "definido pelo programador", "printpoint", see="printpoint")))
+Você pode passar uma instância como um argumento, da maneira tradicional. Por exemplo:
+(((imprimir_ponto)))((("função", "definido pelo programador", "imprimir_ponto", see="imprimir_ponto")))
 
 [source,@julia-setup chap15]
+function imprimir_ponto(p)
 ----
-function printpoint(p)
     println("($(p.x), $(p.y))")
 end
 ----
 
-+printpoint+ takes a +Point+ as an argument and displays it in mathematical notation. To invoke it, you can pass +p+ as an argument:
++imprimir_ponto+ toma como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
 
 [source,@julia-repl-test chap15]
 ----
-julia> printpoint(blank)
+julia> imprimir_ponto(lacuna)
 (3.0, 4.0)
 ----
 
-===== Exercise 15-1
+===== Exercício 15-1
 
-Write a function called +distancebetweenpoints+ that takes two points as arguments and returns the distance between them.
-(((distancebetweenpoints)))((("function", "definido pelo programador", "distancebetweenpoints", see="distancebetweenpoints")))
+Escreva uma função chamada +distância_entre_pontos+ que recebe dois pontos como argumentos e retorna a distância entre eles.
+(((distância_entre_pontos))) (((("função", "definido pelo programador", "distância_entre_pontos", see = "distância_entre_pontos"))))
 
-If a mutable struct object is passed to a function as an argument, the function can modify the fields of the object. For example, +movepoint!+ takes a mutable +Point+ object and two numbers, +dx+ and +dy+, and adds the numbers to respectively the +x+ and the +y+ attribute of the +Point+:
-(((movepoint!)))((("function", "definido pelo programador", "movepoint!", see="movepoint!")))
+Se um objeto de struct mutável for passado para uma função como argumento, a função poderá modificar os campos do objeto. Por exemplo, +move_ponto!+ recebe um objeto mutável +MPonto+ e dois números +dx+ e +dy+, e adiciona os números respectivamente aos atributos +x+ e +y+ de +MPonto+:
+(((move_ponto!)))((("função", "definido pelo programador", "move_ponto!", see="move_ponto!")))
 
 [source,@julia-setup chap15]
 ----
-function movepoint!(p, dx, dy)
+function move_ponto!(p, dx, dy)
     p.x += dx
     p.y += dy
     nothing
 end
 ----
 
-Here is an example that demonstrates the effect:
+Aqui está um exemplo que mostra o resultado:
 
 [source,@julia-repl-test chap15]
 ----
-julia> origin = MPoint(0.0, 0.0)
-MPoint(0.0, 0.0)
-julia> movepoint!(origin, 1.0, 2.0)
+julia> origem = MPonto(0.0, 0.0)
+MPonto(0.0, 0.0)
+julia> move_ponto!(origem, 1.0, 2.0)
 
-julia> origin
-MPoint(1.0, 2.0)
+julia> origem
+MPonto(1.0, 2.0)
 ----
 
-Inside the function, +p+ is an alias for +origin+, so when the function modifies +p+, +origin+ changes.
-(((aliasing)))
+Dentro da função, +p+ é um alias (ou pseudônimo) para +origem+, então quando a função modifica +p+, +origem+ também muda.
+(((alias)))
 
-Passing an immutable +Point+ object to +movepoint!+ causes an error:
+Passar um objeto +Ponto+ imutável para +move_ponto!+ faz uma mensagem de erro aparecer:
 
 [source,@julia-repl-test chap15]
 ----
-julia> movepoint!(p, 1.0, 2.0)
-ERROR: setfield! immutable struct of type Point cannot be changed
+julia> move_ponto!(p, 1.0, 2.0)
+ERROR: setfield! immutable struct of type Ponto cannot be changed
 ----
 
-You can however modify the value of a mutable attribute of an immutable object. For example, +moverectangle!+ has as arguments a +Rectangle+ object and two numbers, +dx+ and +dy+, and uses +movepoint!+ to move the corner of the rectangle:
+No entanto, você pode modificar o valor de um atributo mutável de um objeto imutável. Por exemplo, +move_retângulo!+ tem como argumentos um objeto +Retângulo+ e dois números +dx+ e +dy+, e usa +move_ponto!+ para mover o canto do retângulo:
 
 [source,@julia-setup chap15]
 ----
-function moverectangle!(rect, dx, dy)
-  movepoint!(rect.corner, dx, dy)
+function move_retângulo!(ret, dx, dy)
+  move_ponto!(ret.vértice, dx, dy)
 end
 ----
 
-Now +p+ in +movepoint!+ is an alias for +rect.corner+, so when +p+ is modified, +rect.corner+ changes also:
+Agora +p+ em +move_ponto!+ é um pseudônimo para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
 
 [source,@julia-repl-test chap15]
 ----
-julia> box
-Rectangle(100.0, 200.0, MPoint(0.0, 0.0))
-julia> moverectangle!(box, 1.0, 2.0)
+julia> caixa
+Retângulo(100.0, 200.0, MPonto(0.0, 0.0))
+julia> move_retângulo!(caixa, 1.0, 2.0)
 
 julia> box
 Rectangle(100.0, 200.0, MPoint(1.0, 2.0))
@@ -261,109 +261,112 @@ Rectangle(100.0, 200.0, MPoint(1.0, 2.0))
 
 [WARNING]
 ====
-You cannot reassign a mutable attribute of an immutable object:
-(((reassignment)))
+Você não pode reatribuir um atributo mutável a um objeto imutável:
+(((reatribuição)))
 
 [source,@julia-repl-test chap15]
 ----
-julia> box.corner = MPoint(1.0, 2.0)
-ERROR: setfield! immutable struct of type Rectangle cannot be changed
+julia> caixa.vértice = MPonto(1.0, 2.0)
+ERROR: setfield! immutable struct of type Retângulo cannot be changed
 ----
 ====
 
-=== Instances as Return Values
+=== Instâncias como Valores de Retorno
 
-Functions can return instances. For example, +findcenter+ takes a +Rectangle+ as an argument and returns a +Point+ that contains the coordinates of the center of the rectangle:
-(((findcenter)))((("function", "definido pelo programador", "findcenter", see="findcenter")))
+Funções podem retornar instâncias. Por exemplo, +encontra_centro+ recebe um +Retângulo+ como argumento e retorna um +Ponto+ que contém as coordenadas do centro do retângulo:
+(((encontra_centro)))((("função", "definido pelo programador", "encontra_centro", see="encontra_centro")))
 
 [source,@julia-setup chap15]
 ----
-function findcenter(rect)
-    Point(rect.corner.x + rect.width / 2, rect.corner.y + rect.height / 2)
+function encontra_centro(ret)
+    Ponto(ret.vértice.x + ret.largura / 2, ret.vértice.y + ret.altura / 2)
 end
 ----
 
-The expression +rect.corner.x+ means, “Go to the object +rect+ refers to and select the field named +corner+; then go to that object and select the field named +x+.”
+A expressão +ret.vértice.x+ significa: "Vá ao objeto +ret+ e selecione o campo +vértice+; depois vá a esse objeto e selecione o campo +x+".
 
-Here is an example that passes +box+ as an argument and assigns the resulting +Point+ to +center+:
-
-[source,@julia-repl-test chap15]
-----
-julia> center = findcenter(box)
-Point(51.0, 102.0)
-----
-
-
-=== Copying
-
-Aliasing can make a program difficult to read because changes in one place might have unexpected effects in another place. It is hard to keep track of all the variables that might refer to a given object.
-(((aliasing)))
-
-Copying an object is often an alternative to aliasing. Julia provides a function called +deepcopy+ that can duplicate any object:
-(((copying)))(((deepcopy)))((("function", "Base", "deepcopy", see="deepcopy")))(((deep copy)))
+Aqui está um exemplo que passa +caixa+ como argumento e atribui o +Ponto+ recebido ao +centro+:
 
 [source,@julia-repl-test chap15]
 ----
-julia> p1 = MPoint(3.0, 4.0)
-MPoint(3.0, 4.0)
+julia> centro = encontra_centro(caixa)
+Ponto(51.0, 102.0)
+----
+
+
+=== Cópia ou Copiando? Copying
+//coloquei a definição de aliasing antes de traduzir o parágrafo
+Alias ocorre quando um mesmo local da memória é acessado por diferentes variáveis. Além disso, alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um dado objeto.
+(((alias)))
+
+A cópia de um objeto é muitas vezes uma alternativa ao alias. Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
+(((cópia)))(((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))(((deep copy)))
+
+[source,@julia-repl-test chap15]
+----
+julia> p1 = MPonto(3.0, 4.0)
+MPonto(3.0, 4.0)
 julia> p2 = deepcopy(p1)
-MPoint(3.0, 4.0)
+MPonto(3.0, 4.0)
 julia> p1 ≡ p2
 false
 julia> p1 == p2
 false
 ----
 
-The +≡+ operator indicates that +p1+ and +p2+ are not the same object, which is what we expected. But you might have expected +==+ to yield +true+ because these points contain the same data. In that case, you will be disappointed to learn that for mutable objects, the default behavior of the +==+ operator is the same as the +===+ operator; it checks object identity, not object equivalence. That’s because for mutable composite types, Julia doesn’t know what should be considered equivalent. At least, not yet.
+O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que imaginávamos. Mas você pode ter esperado que +==+ devolvesse +true+ porque esses pontos contêm os mesmos dados. Nesse caso, você ficará desapontado ao saber que, para objetos mutáveis, o comportamento padrão do operador +==+ é o mesmo do operador +===+ pois verifica-se a identidade do objeto e não a equivalência do objeto. Isso ocorre porque, para tipos compostos mutáveis, Julia não sabe o que deve ser considerado equivalente. Pelo menos, ainda não.
 (((==)))(((≡)))
 
-===== Exercise 15-2
+===== Exercício 15-2
 
-Create a +Point+ instance, make a copy of it and check the equivalence and the egality of both. The result can surprise you but it explains why aliasing is a non issue for an immutable object.
+Crie uma instância +Ponto+, faça uma cópia dela e verifique a equivalências e a igualdade de ambas. O resultado pode surpreendê-lo, além de explicar porque o alias não é um problema para um objeto imutável.
 
 
 === Debugging
 
-When you start working with objects, you are likely to encounter some new exceptions. If you try to access a field that doesn’t exist, you get:
+Quando você começa a trabalhar com objetos, é provável que encontre algumas novas exceções. Se você tentar acessar um campo que não existe, tem-se:
 (((debugging)))
 
 [source,@julia-repl-test chap15]
 ----
-julia> p = Point(3.0, 4.0)
-Point(3.0, 4.0)
+julia> p = Ponto(3.0, 4.0)
+Ponto(3.0, 4.0)
 julia> p.z = 1.0
-ERROR: type Point has no field z
+ERROR: type Ponto has no field z
+Stacktrace:
+ [1] setproperty!(::Ponto, ::Symbol, ::Float64) at ./sysimg.jl:19
+ [2] top-level scope at none:0
 ----
 
-If you are not sure what type an object is, you can ask:
+Se não tem certeza de qual é o tipo de objeto, você pode perguntar:
 (((typeof)))
 
 [source,@julia-repl-test chap15]
 ----
 julia> typeof(p)
-Point
+Ponto
 ----
 
-You can also use +isa+ to check whether an object is an instance of a type:
-(((isa)))((("operator", "Base", "isa", see="isa")))
+Você também pode usar +isa+ para verificar se um objeto é uma instância de um certo tipo:
+(((isa)))((("operador", "Base", "isa", see="isa")))
 
 [source,@julia-repl-test chap15]
 ----
-julia> p isa Point
+julia> p isa Ponto
 true
 ----
 
-If you are not sure whether an object has a particular attribute, you can use the built-in function +fieldnames+:
-(((deepcopy)))((("function", "Base", "deepcopy", see="deepcopy")))
+Se você não tem certeza se um objeto tem um determinado atributo, pode-se usar a função interna +fieldnames+:
+(((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))
 
 [source,@julia-repl-test chap15]
 ----
-julia> fieldnames(Point)
+julia> fieldnames(Ponto)
 (:x, :y)
 ----
 
-or the function +isdefined+:
-(((isdefined)))((("function", "Base", "isdefined", see="isdefined")))
+ou a função +isdefined+:
+(((isdefined)))((("função", "Base", "isdefined", see="isdefined")))
 
 [source,@julia-repl-test chap15]
 ----
@@ -373,68 +376,68 @@ julia> isdefined(p, :z)
 false
 ----
 
-The first argument can be any object; the second argument is a symbol, +:+ followed by the name of the field.
-(((:)))(((Symbol)))((("type", "Base", "Symbol", see="Symbol")))
+O primeiro argumento pode ser qualquer objeto enquanto o segundo argumento é um símbolo, +:+ seguido do nome do campo.
+(((:)))(((Símbolo)))((("tipo", "Base", "Symbol", see="Symbol")))
 
-=== Glossary
+=== Glossário
 
 struct::
-A composite type.
+Um tipo composto.
 (((struct)))
 
-constructor::
-A function with the same name as a type that creates instances of the type.
-(((constructor)))
+construtor::
+Uma função que tem o mesmo nome que um tipo e que cria as instâncias deste tipo.
+(((construtor)))
 
-instance::
-An object that belongs to a type.
-(((instance)))
+instância::
+Um objeto que pertence a um tipo.
+(((instância)))
 
-instantiate::
-To create a new object.
-(((instantiate)))
+instanciar::
+Criar um novo objeto.
+(((instanciar)))
 
-attribute or field::
-One of the named values associated with an object.
-(((attribute)))
+atributo ou campo::
+Um dos valores nomeados associados a um objeto.
+(((atributo)))
 
-embedded object::
-An object that is stored as a field of another object.
-(((embedded object)))
+objeto embutido::
+Um objeto que é armazenado como um campo de outro objeto.
+(((objeto embutido)))
 
 deep copy::
-To copy the contents of an object as well as any embedded objects, and any objects embedded in them, and so on; implemented by the +deepcopy+ function.
+Cópia do conteúdo de um objeto, bem como quaisquer objetos embutidos e quaisquer objetos embutidos a eles, e assim por diante; é implementado pela função +deepcopy+.
 (((deep copy)))
 
-object diagram::
-A diagram that shows objects, their fields, and the values of the fields.
-(((object diagram)))
+diagrama de objetos::
+Um diagrama que mostra objetos, seus campos e os respectivos valores dos campos.
+(((diagrama de objetos)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex15-1]]
-===== Exercise 15-3
+===== Exercício 15-3
 
-. Write a definition for a type named +Circle+ with fields +center+ and +radius+, where +center+ is a +Point+ object and +radius+ is a number.
-(((Circle)))((("type", "definido pelo programador", "Circle", see="Circle")))
+. Escreva uma definição para um tipo chamado +Círculo+ com os campos +centro+ e +raio+, em que +centro+ é um objeto +Ponto+ e +raio+ é um número.
+(((Círculo)))((("tipo", "definido pelo programador", "Círculo", see="Círculo")))
 
-. Instantiate a circle object that represents a circle with its center at latexmath:[\(\left(150, 100\right)\)] and radius 75.
+. Instancie um objeto círculo que represente um círculo com seu centro em latexmath:[\(\left(150, 100\right)\)] e raio 75.
 
-. Write a function named +pointincircle+ that takes a +Circle+ object and a +Point+ object and returns +true+ if the point lies in or on the boundary of the circle.
-(((pointincircle)))((("function", "definido pelo programador", "pointincircle", see="pointincircle")))
+. Escreva uma função denominada +ponto_no_círculo+ que recebe um objeto +Círculo+ e um objeto +Ponto+ e retorna +true+ se o ponto estiver dentro ou no contorno do círculo.
+(((ponto_no_círculo)))((("função", "definido pelo programador", "ponto_no_círculo", see="ponto_no_círculo")))
 
-. Write a function named +rectincircle+ that takes a +Circle+ object and a +Rectangle+ object and returns +true+ if the rectangle lies entirely in or on the boundary of the circle.
-(((rectincircle)))((("function", "definido pelo programador", "rectincircle", see="rectincircle")))
+. Escreva uma função denominada +ret_no_círculo+ que recebe um objeto +Círculo+ e um objeto +Retângulo+ e retorna +true+ se o retângulo estiver inteiramente dentro ou nos contornos do círculo.
+(((ret_no_círculo)))((("função", "definido pelo programador", "ret_no_círculo", see="ret_no_círculo")))
 
-. Write a function named +rectcircleoverlap+ that takes a +Circle+ object and a +Rectangle+ object and returns +true+ if any of the corners of the rectangle fall inside the circle. Or as a more challenging version, return +true+ if any part of the rectangle falls inside the circle.
-(((rectcircleoverlap)))((("function", "definido pelo programador", "rectcircleoverlap", see="rectcircleoverlap")))
+. Escreva uma função denominada +ret_círc_sobreposição+ que recebe um objeto +Círculo+ e um objeto +Retângulo+ e devolve +true+ se algum dos vértices do retângulo estiver dentro do círculo. Ou, como uma versão mais desafiadora, devolva +true+ se alguma parte do retângulo estiver dentro do círculo.
+(((ret_círc_sobreposição)))((("função", "definido pelo programador", "ret_círc_sobreposição", see="ret_círc_sobreposição")))
 
 [[ex15-2]]
-===== Exercise 15-4
+===== Exercício 15-4
 
-. Write a function called +drawrect+ that takes a turtle object and a +Rectangle+ object and uses the turtle to draw the rectangle. See Chapter 4 for examples using +Turtle+ objects.
-(((drawrect)))((("function", "definido pelo programador", "drawrect", see="drawrect")))
+. Escreva uma função chamada +desenha_ret+ que recebe um objeto do tipo turtle e um objeto +Retângulo+ e use a tartaruga para desenhar o retângulo. Verifique o Capítulo 4 para os exemplos que usam objetos +Turtle+.
+(((desenha_ret)))((("função","definido pelo programador","desenha_ret", see="desenha_ret")))
 
-. Write a function called +drawcircle+ that takes a +Turtle+ object and a +Circle+ object and draws the circle.
-(((drawcircle)))((("function", "definido pelo programador", "drawcircle", see="drawcircle")))
+. Escreva uma função chamada +desenha_círculo+ que recebe um objeto +Turtle+ e um objeto +Círculo+ e desenha o círculo.
+(((desenha_círculo)))((("função", "definido pelo programador", "desenha_círculo", see="desenha_círculo")))
