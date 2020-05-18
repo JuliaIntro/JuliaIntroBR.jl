@@ -1,15 +1,15 @@
 [[chap15]]
 == Estruturas e Objetos
 
-A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar dados. O próximo passo é aprender a criar seus próprios tipos para organizar o código e os dados. Este é um tópico importante e serão necessários alguns capítulos para tratar do tema.
+A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar os dados. O próximo passo é aprender a criar seus próprios tipos para organizar o código e os dados. Este é um tópico importante e serão necessários alguns capítulos para abordar o tema.
 
 
 === Tipos Compostos
 
-Nós usamos muitos tipos internos do Julia e agora definiremos um novo tipo. Como exemplo, vamos criar um tipo chamado +Ponto+ que representa um ponto no espaço bidimensional.
+Temos usado muitos tipos internos do Julia e agora definiremos um novo tipo. Como exemplo, vamos criar um tipo chamado +Ponto+ que representa um ponto no espaço bidimensional.
 (((tipo)))(((Ponto)))((("tipo", "definido pelo programador", "Ponto", see="Ponto")))
 
-Na notação matemática, os pontos geralmente são escritos entre parênteses com uma vírgula separando as coordenadas. Por exemplo, latexmath:[\(\left(0,0\right)\)] representa a origem e latexmath:[\(\left(x,y\right)\)] se estiver no 1o. quadrante representa o ponto latexmath:[\(x\)] unidades à direita e latexmath:[\(y\)] unidades acima da origem.
+Na notação matemática, os pontos geralmente são escritos entre parênteses com uma vírgula separando as coordenadas. Por exemplo, latexmath:[\(\left(0,0\right)\)] representa a origem e latexmath:[\(\left(x,y\right)\)] representa o ponto latexmath:[\(x\)] unidades à direita e latexmath:[\(y\)] unidades acima da origem, se estiver no 1o. quadrante.
 
 Existem diversas maneiras de representar pontos no Julia:
 
@@ -32,10 +32,10 @@ struct Ponto
 end
 ----
 
-O cabeçalho indica que a nova struct é chamada de +Ponto+ enquanto o corpo define os _atributos_ ou _campos_ da struct. A struct +Ponto+ possui dois campos: +x+ e +y+.
+O cabeçalho indica que a nova struct é chamada de +Ponto+ enquanto o corpo define os _atributos_ ou os _campos_ da struct. Nesse caso, a struct +Ponto+ possui dois campos: +x+ e +y+.
 (((atributo)))((("campo", see="atributo")))
 
-A struct é como se fosse uma fábrica para criar objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
+A struct é como se fosse uma fábrica para criar os objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
 (((construtor)))
 
 [source,@julia-repl-test chap15]
@@ -52,7 +52,7 @@ A criação de um novo objeto é chamada _instanciação_, e o objeto é uma _in
 
 Quando você imprime uma instância, Julia informa a que tipo pertence e quais os valores dos atributos.
 
-Todo objeto é uma instância de algum tipo; portanto, "objeto" e "instância" são permutáveis. Mas neste capítulo, eu uso "instância" para indicar que estou falando de um tipo definido pelo programador.ador.
+Todo objeto é uma instância de algum tipo; portanto, "objeto" e "instância" são permutáveis. Mas neste capítulo, eu uso "instância" para indicar que estou falando de um tipo definido pelo programador.
 
 Um diagrama de estado que mostra um objeto e seus campos é denominado de _diagrama do objeto_, conforme <<fig15-1>>.
 (((diagrama do objeto)))((("diagrama", "objeto", see="diagrama do objeto")))
@@ -86,7 +86,7 @@ julia> distância = sqrt(p.x^2 + p.y^2)
 ----
 
 Por padrão, as structs são  imutáveis, isto é, após a construção, os campos não podem mudar de valor:
-((((imutável)))
+(((imutável)))
 
 [source,@julia-repl-test chap15]
 ----
@@ -100,7 +100,7 @@ Isso pode parecer estranho de início, mas tem várias vantagens:
 
 * Não é possível violar os invariantes dos construtores do tipo (veja <<constructor>>).
 
-* O código usando objetos imutáveis pode ser mais fácil de ler e entender.
+* O código que usa os objetos imutáveis pode ser mais fácil de ler e entender.
 
 
 === Structs Mutáveis
@@ -157,7 +157,7 @@ struct Retângulo
 end
 ----
 
-O docstring lista os campos: a largura e a altura são números enquanto o vértice é um objeto +Ponto+ que indica o vértice inferior esquerdo.
+O docstring lista os campos: a largura e a altura, que são números, e o vértice, que é um objeto +Ponto+ que indica o vértice inferior esquerdo.
 (((docstring)))
 
 Para a representação de um retângulo, você tem que instanciar um objeto +Retângulo+:
@@ -190,7 +190,7 @@ function imprimir_ponto(p)
 end
 ----
 
-+imprimir_ponto+ toma como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
++imprimir_ponto+ recebe como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
 
 [source,@julia-repl-test chap15]
 ----
@@ -201,9 +201,9 @@ julia> imprimir_ponto(lacuna)
 ===== Exercício 15-1
 
 Escreva uma função chamada +distância_entre_pontos+ que recebe dois pontos como argumentos e retorna a distância entre eles.
-(((distância_entre_pontos))) (((("função", "definido pelo programador", "distância_entre_pontos", see = "distância_entre_pontos"))))
+(((distância_entre_pontos)))(((("função", "definido pelo programador", "distância_entre_pontos", see = "distância_entre_pontos")))
 
-Se um objeto de struct mutável for passado para uma função como argumento, a função poderá modificar os campos do objeto. Por exemplo, +move_ponto!+ recebe um objeto mutável +MPonto+ e dois números +dx+ e +dy+, e adiciona os números respectivamente aos atributos +x+ e +y+ de +MPonto+:
+Se um objeto da struct mutável for passado para uma função como argumento, a função poderá modificar os campos do objeto. Por exemplo, +move_ponto!+ recebe um objeto mutável +MPonto+ e dois números +dx+ e +dy+, e adiciona os números respectivamente aos atributos +x+ e +y+ de +MPonto+:
 (((move_ponto!)))((("função", "definido pelo programador", "move_ponto!", see="move_ponto!")))
 
 [source,@julia-setup chap15]
@@ -227,7 +227,7 @@ julia> origem
 MPonto(1.0, 2.0)
 ----
 
-Dentro da função, +p+ é um alias (ou pseudônimo) para +origem+, então quando a função modifica +p+, +origem+ também muda.
+Dentro da função, +p+ é um alias (ou apelido) para +origem+, então quando a função modifica +p+, +origem+ também muda.
 (((alias)))
 
 Passar um objeto +Ponto+ imutável para +move_ponto!+ faz uma mensagem de erro aparecer:
@@ -247,7 +247,7 @@ function move_retângulo!(ret, dx, dy)
 end
 ----
 
-Agora +p+ em +move_ponto!+ é um pseudônimo para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
+Agora +p+ em +move_ponto!+ é um apelido para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
 
 [source,@julia-repl-test chap15]
 ----
@@ -255,8 +255,8 @@ julia> caixa
 Retângulo(100.0, 200.0, MPonto(0.0, 0.0))
 julia> move_retângulo!(caixa, 1.0, 2.0)
 
-julia> box
-Rectangle(100.0, 200.0, MPoint(1.0, 2.0))
+julia> caixa
+Retângulo(100.0, 200.0, MPonto(1.0, 2.0))
 ----
 
 [WARNING]
@@ -294,13 +294,13 @@ Ponto(51.0, 102.0)
 ----
 
 
-=== Cópia ou Copiando? Copying
+=== Cópia
 //coloquei a definição de aliasing antes de traduzir o parágrafo
 Alias ocorre quando um mesmo local da memória é acessado por diferentes variáveis. Além disso, alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um dado objeto.
 (((alias)))
 
 A cópia de um objeto é muitas vezes uma alternativa ao alias. Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
-(((cópia)))(((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))(((deep copy)))
+(((cópia)))(((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))(((cópia profunda)))
 
 [source,@julia-repl-test chap15]
 ----
@@ -319,12 +319,12 @@ O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que i
 
 ===== Exercício 15-2
 
-Crie uma instância +Ponto+, faça uma cópia dela e verifique a equivalências e a igualdade de ambas. O resultado pode surpreendê-lo, além de explicar porque o alias não é um problema para um objeto imutável.
+Crie uma instância +Ponto+, faça uma cópia dela e verifique a equivalência e a igualdade de ambas. O resultado pode surpreendê-lo, além de explicar porque o alias não é um problema para um objeto imutável.
 
 
 === Debugging
 
-Quando você começa a trabalhar com objetos, é provável que encontre algumas novas exceções. Se você tentar acessar um campo que não existe, tem-se:
+Quando você começa a trabalhar com os objetos, é provável que encontre algumas novas exceções. Se você tentar acessar um campo que não existe, tem-se:
 (((debugging)))
 
 [source,@julia-repl-test chap15]
@@ -376,8 +376,8 @@ julia> isdefined(p, :z)
 false
 ----
 
-O primeiro argumento pode ser qualquer objeto enquanto o segundo argumento é um símbolo, +:+ seguido do nome do campo.
-(((:)))(((Símbolo)))((("tipo", "Base", "Symbol", see="Symbol")))
+O primeiro argumento pode ser qualquer objeto enquanto o segundo argumento é um símbolo +:+ seguido do nome do campo.
+(((:)))(((Símbolo)))((("tipo", "Base", "Símbolo", see="Símbolo")))
 
 === Glossário
 
@@ -405,12 +405,12 @@ objeto embutido::
 Um objeto que é armazenado como um campo de outro objeto.
 (((objeto embutido)))
 
-deep copy::
+cópia profunda::
 Cópia do conteúdo de um objeto, bem como quaisquer objetos embutidos e quaisquer objetos embutidos a eles, e assim por diante; é implementado pela função +deepcopy+.
-(((deep copy)))
+(((cópia profunda)))
 
 diagrama de objetos::
-Um diagrama que mostra objetos, seus campos e os respectivos valores dos campos.
+Um diagrama que mostra os objetos, os seus campos e os respectivos valores dos campos.
 (((diagrama de objetos)))
 
 
@@ -436,7 +436,7 @@ Um diagrama que mostra objetos, seus campos e os respectivos valores dos campos.
 [[ex15-2]]
 ===== Exercício 15-4
 
-. Escreva uma função chamada +desenha_ret+ que recebe um objeto do tipo turtle e um objeto +Retângulo+ e use a tartaruga para desenhar o retângulo. Verifique o Capítulo 4 para os exemplos que usam objetos +Turtle+.
+. Escreva uma função chamada +desenha_ret+ que recebe um objeto do tipo turtle e um objeto +Retângulo+ e use a tartaruga para desenhar o retângulo. Verifique o Capítulo 4 para os exemplos que usam os objetos +Turtle+.
 (((desenha_ret)))((("função","definido pelo programador","desenha_ret", see="desenha_ret")))
 
 . Escreva uma função chamada +desenha_círculo+ que recebe um objeto +Turtle+ e um objeto +Círculo+ e desenha o círculo.
