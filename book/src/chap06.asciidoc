@@ -100,7 +100,7 @@ Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1
 À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo debugando.
 (((debugging)))
 
-Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
+Ao lidar com programas cada vez mais complexos, tente um processo chamado _Desenvolvimento Incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
 (((desenvolvimento incremental)))
 
 Para exemplificar esse processo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
