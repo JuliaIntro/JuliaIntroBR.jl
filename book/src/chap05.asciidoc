@@ -25,7 +25,7 @@ julia> horas = minutos ÷ 60
 1
 ----
 
-Para obter um restante, você pode subtrair uma hora em minutos:
+Para obter o restante, você pode subtrair uma hora em minutos:
 
 [source,@julia-repl-test chap05]
 ----
@@ -53,7 +53,7 @@ Além disso, você pode extrair o dígito ou dígitos mais à direita de um núm
 === Expressões Booleanas
 
 Uma _expressão booleana_ é uma expressão que é ou verdadeira ou falsa.  Os seguintes exemplos usam o operador +==+, que compara dois operandos e gera +true+ se forem iguais e +false+ footnote:[_True_ e _False_ são comunente utilizadas nas linguagens de programação e são traduzidas, respectivamente como _verdadeiro_ e _falso_]
-(((boolean expression)))(((true)))(((false)))
+(((expressão booleana)))(((true)))(((false)))
 
 [source,@julia-repl-test]
 ----
@@ -120,7 +120,8 @@ if x > 0
 end
 ----
 
-A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então a atribuição identada é executada. Se não, nada acontece. (((condição)))
+A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então a atribuição indentada é executada. Se não, nada acontece. 
+(((condição)))
 
 A atribuição _se_ possui a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Declarações como essa são chamadas de _declarações compostas_.
 (((declarações compostas)))(((end)))
@@ -138,7 +139,7 @@ end
 === Execuções Alternativas
 
 Uma segunda maneira de usar a atribuição _se_ é a "execução alternativa", da qual há duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
-(((execução alternativa)))(((se não)))((("palavra-chame", "senão", see="se não")))
+(((execução alternativa)))(((se não)))((("palavra-chave", "se não", see="se não")))
 
 [source,julia]
 ----
@@ -149,13 +150,13 @@ else
 end
 ----
 
-Se o resto quando +x+ é dividido por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de declarações é executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.
+Se o resto da divisão de +x+ por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de declarações é executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.
 (((ramos)))
 
 
 === Condicionais Encadeadas
 
-Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um cálculo como esse é através das _condicionais encadeadas_:
+Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um comando como esse é através das _condicionais encadeadas_:
 (((condicionais encadeadas)))(((se então)))((("palavra-chave", "se então", see="se então")))
 
 [source,julia]
@@ -205,7 +206,7 @@ end
 
 O condicional externo contém dois ramos. O primeiro ramo contém uma atribuição simples. O segundo ramo contém outra atribuição +if+, da qual possui dois ramos inserida nela. Esses dois ramos são declarações simples, embora também possam ter sido declarações condicionais.
 
-Embora a indentação não obrigatório das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder.
+Embora a indentação não obrigatória das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder.
 (((indentação)))
 
 Operadores lógicos geralmente fornecem uma maneira de simplificar instruções condicionais aninhadas. Por exemplo, podemos reescrever o seguinte código usando uma única condicional:
@@ -228,7 +229,7 @@ if 0 < x && x < 10
 end
 ----
 
-Para esse tipo de condição, Julia fornece uma sintaxe mais concisa:
+Para esse tipo de condição, o Julia fornece uma sintaxe mais concisa:
 
 [source,julia]
 ----
@@ -241,7 +242,7 @@ end
 [[recursion]]
 === Recursão
 
-É permitido que uma função chame outra; também é permitido uma função se chamar. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
+É permitido que uma função chame outra; também é permitido uma função chamar si mesmo. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
 (((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem")))
 
 [source,@julia-setup chap05]
@@ -256,7 +257,7 @@ function contagem_regressiva(n)
 end
 ----
 
-Se +n+ é 0 ou negativo, será exibido a palavra, +"Vai!"+ de outra forma, exibirá +n+ e executará a função chamada +contagem_regressiva+ — a própria — passando +n-1+ como argumento.
+Se +n+ é 0 ou negativo, será exibido a palavra, +"Vai!"+, por outro lado, exibirá +n+ e executará a função chamada +contagem_regressiva+ — ela mesma — passando +n-1+ como argumento.
 
 O que acontece se chamarmos uma função como essa?
 
@@ -299,8 +300,8 @@ function imprima_n(s, n)
 end
 ----
 
-Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para o chamador e as linhas restantes da função não são executadas.
-(((return)))((("palavra-chave", "return", see="return")))(((return statement)))((("atribuição", "return", see="atribuição de retorno")))
+Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para quem a chamou e as linhas restantes da função não são executadas.
+(((return)))((("palavra-chave", "return", see="return")))(((declaração de retorno)))((("declaração", "return", see="declaração de retorno")))
 
 O restante da função é similar a +contagem_regressiva+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
@@ -321,14 +322,14 @@ image::images/fig51.svg[]
 
 <<fig05-1>> mostra um diagrama de pilha para +contagem_regressiva+ chamada com +n = 3+.
 
-Como sempre, o topo para pilha é o quadro para +Main+. Está vazio porque não criamos nenhuma variável em +Main+ ou passamos algum argumentos para ela.
+Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou nem passamos argumentos para ela.
 
-Os quatro quadros de +contagem_regressiva+ têm valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Não faz uma chamada recursiva, portanto não há mais quadros.
+Os quatro quadros de +contagem_regressiva+ têm valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
 (((caso base)))
 
 ===== Exercício 5-1
 
-Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +do_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] times.
+Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +do_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] vezes.
 
 === Recursão Infinita
 
@@ -424,7 +425,7 @@ Quando ocorre um erro de sintaxe ou de tempo de execução, a mensagem de erro c
 
 * Onde ocorreu.
 
-Os erros de sintaxe geralmente são fáceis de encontrar, mas existem algumas dicas. Em geral, as mensagens de erro indicam onde o problema foi descoberto, mas o erro real pode ser anterior no código, às vezes em uma linha anterior.
+Os erros de sintaxe geralmente são fáceis de encontrar, mas existem algumas dicas. Em geral, as mensagens de erro indicam onde o problema foi descoberto, mas o verdadeiro erro pode estar antes no código, às vezes em uma linha anterior.
 
 O mesmo vale para erros de tempo de execução. Suponha que você esteja tentando calcular uma taxa de sinal/ruído em decibéis. A fórmula é
 
@@ -510,7 +511,7 @@ Uma atribuição condicional que aparece em um dos ramos de outra atribuição c
 (((condicional aninhada)))
 
 atribuição de retorno::
-Uma atribuição que faz com que uma função pare de executar imediatamente e retorne para o chamador da função.
+Uma atribuição que faz com que uma função pare de executar imediatamente e retorne para quem chamou.
 (((atribuição de retorno)))
 
 recursão::
@@ -571,15 +572,15 @@ Se você receber três gravetos, poderá ou não ser capaz de organizá-los em u
 Se qualquer um dos três comprimentos for maior que a soma dos outros dois, não será possível formar um triângulo. Caso contrário, você pode. (Se a soma de dois comprimentos for igual ao terceiro, eles formarão o que é chamado de triângulo "degenerado".)
 ====
 
-. Escreva uma função chamada +triangulo+ que aceite três números inteiros como argumentos e imprima “Sim” ou “Não”, dependendo de você poder ou não formar um triângulo a partir de gravetos com os comprimentos especificados.
-(((triangulo)))((("função", "definido pelo programador", "é triângulo", see="é triângulo")))
+. Escreva uma função chamada +triângulo+ que aceite três números inteiros como argumentos e imprima “Sim” ou “Não”, dependendo da possibilidade de formar ou não um triângulo a partir de gravetos com os comprimentos especificados.
+(((triângulo)))((("função", "definido pelo programador", "é triângulo", see="é triângulo")))
 
 . Escreva uma função que solicite ao usuário a inserção de três comprimentos de gravetos, os converta em números inteiros e use +triangulo+ para verificar se os gravetos com os comprimentos especificados podem formar um triângulo.
 
 [[ex05-4]]
 ===== Exercício 5-5
 
-Qual é a saída do seguinte programa? Desenhe um diagrama de pilha que mostre o estado do programa quando imprimir o resultado.
+Qual é a saída do seguinte programa? Desenhe um diagrama de pilha que mostre o estado do programa quando ele imprimir o resultado.
 (((diagrama de pilha)))(((recursão)))
 
 [source,julia]
