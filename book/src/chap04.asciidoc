@@ -35,7 +35,7 @@ julia> 🐢 = Turtle()
 Luxor.Turtle(0.0, 0.0, true, 0.0, (0.0, 0.0, 0.0))
 ----
 
-O módulo +ThinkJulia+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, no qual o atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
+O módulo +ThinkJulia+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, que atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
 (((Turtle)))((("tipo", "Luxor", "Turtle", see="Turtle")))
 
 Logo após criarmos a tartaruga, podemos chamar uma função que a move ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
@@ -376,7 +376,7 @@ end
 Este processo de reorganização de um programa para melhorar interface e facilitar o reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nós “fatoramos-o” para dentro de +polílinha+.
 (((refactoring)))
 
-Se nós tivéssemos planejado com antecedência, nós poderiamos ter escrito +polílinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
+Se nós tivéssemos planejado com antecedência, nós poderíamos ter escrito +polílinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
 
 
 === Um Plano de Desenvolvimento
@@ -575,5 +575,5 @@ Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenh
 Leia sobre espirais em https://pt.wikipedia.org/wiki/Espiral; em seguida escreva um programa que desenha uma espiral de Arquimedes como em <<fig04-4>>.
 
 [[fig04-4]]
-.Espiral de Archimedes
+.Espiral de Arquimedes
 image::images/fig44.svg[]
