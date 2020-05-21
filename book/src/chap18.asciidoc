@@ -14,10 +14,10 @@ Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma d
 
 Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Estadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais possuíam maior valor ou naipe.
 
-An alternative is to use integers to _encode_ the ranks and suits. In this context, “encode” means that we are going to define a mapping between numbers and suits, or between numbers and ranks. This kind of encoding is not meant to be a secret (that would be “encryption”).
-(((encode)))
+Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não pretende ser um segredo (isso seria "criptografia").
+(((codificar)))
 
-For example, this table shows the suits and the corresponding integer codes:
+Por exemplo, esta tabela mostra a correspondência dos naipes com os números inteiros:
 
 * +♠+  latexmath:[\(\mapsto\)]  4
 
@@ -27,36 +27,36 @@ For example, this table shows the suits and the corresponding integer codes:
 
 * +♣+  latexmath:[\(\mapsto\)]  1
 
-This code makes it easy to compare cards; because higher suits map to higher numbers, we can compare suits by comparing their codes.
+Este código facilita a comparação das cartas; já que os naipes mais valorizados estão relacionados com números mais altos, podemos comparar naipes comparando seus números.
 
-I am using the latexmath:[\(\mapsto\)] symbol to make it clear that these mappings are not part of the Julia program. They are part of the program design, but they don’t appear explicitly in the code.
+Estou usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, mas não aparecem explicitamente no código.
 
-The struct definition for +Card+ looks like this:
-(((Card)))((("type", "programmer-defined", "Card", see="Card")))
+A definição para struct +Carta+ é parecida com esta:
+(((Carta)))((("tipo", "definido pelo programador", "Carta", see="Carta")))
 
 [source,@julia-setup chap18]
 ----
-struct Card
+struct Carta
     suit :: Int64
     rank :: Int64
-    function Card(suit::Int64, rank::Int64)
-        @assert(1 ≤ suit ≤ 4, "suit is not between 1 and 4")
-        @assert(1 ≤ rank ≤ 13, "rank is not between 1 and 13")
-        new(suit, rank)
+    function Carta(suit::Int64, rank::Int64)
+        @assert(1 ≤ naipe ≤ 4, "naipe não está entre 1 e 4")
+        @assert(1 ≤ valor ≤ 13, "valor não está entre 1 e 13")
+        new(naipe, valor)
     end
 end
 ----
 
-To create a +Card+, you call +Card+ with the suit and rank of the card you want:
+Para criar uma +Carta+, você chama +Carta+ com o naipe e o valor da carta que você deseja:
 
 [source,@julia-repl-test chap18]
 ----
-julia> queen_of_diamonds = Card(2, 12)
-Card(2, 12)
+julia> rainha_de_ouro = Carta(2, 12)
+Carta(2, 12)
 ----
 
 
-=== Global Variables
+=== Variáveis Globais
 
 In order to print +Card+ objects in a way that people can easily read, we need a mapping from the integer codes to the corresponding ranks and suits. A natural way to do that is with arrays of strings:
 
@@ -141,7 +141,7 @@ Test Passed
 Now that we have Cards, the next step is to define Decks. Since a deck is made up of cards, it is natural for each Deck to contain an array of cards as an attribute.
 
 The following is a struct definition for +Deck+. The constructor creates the fields cards and generates the standard set of fifty-two cards:
-(((Deck)))((("type", "programmer-defined", "Deck", see="Deck")))
+(((Deck)))((("tipo", "definido pelo programador", "Deck", see="Deck")))
 
 [source,@julia-setup chap18]
 ----
@@ -242,7 +242,7 @@ So we need a way to group related _concrete types_. In Julia this is done by def
 (((concrete type)))(((abstract type)))(((subtyping)))
 
 Let's call this abstract type +CardSet+:
-(((CardSet)))((("type", "programmer-defined", "CardSet", see="CardSet")))
+(((CardSet)))((("tipo", "definido pelo programador", "CardSet", see="CardSet")))
 
 [source,@julia-eval chap18a]
 ----
@@ -316,7 +316,7 @@ true
 ----
 
 A hand is also a kind of +CardSet+:
-(((Hand)))((("type", "programmer-defined", "Hand", see="Hand")))
+(((Hand)))((("tipo", "definido pelo programador", "Hand", see="Hand")))
 
 [source,@julia-setup chap18a]
 ----
@@ -373,7 +373,7 @@ push!(hand, card)
 ----
 
 A natural next step is to encapsulate this code in a function called +move!+:
-(((move!)))((("function", "programmer-defined", "move!", see="move!")))
+(((move!)))((("function", "definido pelo programador", "move!", see="move!")))
 
 [source,@julia-setup chap18a]
 ----
@@ -397,7 +397,7 @@ In some games, cards are moved from one hand to another, or from a hand back to 
 So far we have seen stack diagrams, which show the state of a program, and object diagrams, which show the attributes of an object and their values. These diagrams represent a snapshot in the execution of a program, so they change as the program runs.
 
 They are also highly detailed; for some purposes, too detailed. A _type diagram_ is a more abstract representation of the structure of a program. Instead of showing individual objects, it shows types and the relationships between them.
-(((type diagram)))((("diagram", "type", see="type diagram")))
+(((type diagram)))((("diagram", "tipo", see="type diagram")))
 
 There are several kinds of relationship between types:
 
@@ -486,7 +486,7 @@ prefix = []
 Because these variables are global, we can only run one analysis at a time. If we read two texts, their prefixes and suffixes would be added to the same data structures (which makes for some interesting generated text).
 
 To run multiple analyses, and keep them separate, we can encapsulate the state of each analysis in an object. Here’s what that looks like:
-(((Markov)))((("type", "programmer-defined", "Markov", see="Markov")))
+(((Markov)))((("tipo", "definido pelo programador", "Markov", see="Markov")))
 
 [source,@julia-setup chap18b]
 ----
@@ -502,7 +502,7 @@ end
 ----
 
 Next, we transform the functions into methods. For example, here’s +processword+:
-(((processword)))((("function", "programmer-defined", "processword", see="processword")))
+(((processword)))((("function", "definido pelo programador", "processword", see="processword")))
 
 [source,@julia-setup chap18b]
 ----
@@ -631,7 +631,7 @@ addping(pong, ping)
 ===== Exercise 18-5
 
 Write a method called +deal!+ that takes three parameters, a +Deck+, the number of hands and the number of cards per hand. It should create the appropriate number of +Hand+ objects, deal the appropriate number of cards per hand, and return an array of +Hand+s.
-(((deal!)))((("function", "programmer-defined", "deal!", see="deal!")))
+(((deal!)))((("function", "definido pelo programador", "deal!", see="deal!")))
 
 [[ex18-3]]
 ===== Exercise 18-6
@@ -665,10 +665,10 @@ five cards in sequence (as defined above) and with the same suit
 The goal of this exercise is to estimate the probability of drawing these various hands.
 
 . Add methods named +haspair+, +hastwopair+, etc. that return +true+ or +false+ according to whether or not the hand meets the relevant criteria. Your code should work correctly for “hands” that contain any number of cards (although 5 and 7 are the most common sizes).
-(((haspair)))((("function", "programmer-defined", "haspair", see="haspair")))(((hastwopair)))((("function", "programmer-defined", "hastwopair", see="hastwopair")))
+(((haspair)))((("function", "definido pelo programador", "haspair", see="haspair")))(((hastwopair)))((("function", "definido pelo programador", "hastwopair", see="hastwopair")))
 
 . Write a method named +classify+ that figures out the highest-value classification for a hand and sets the +label+ field accordingly. For example, a 7-card hand might contain a flush and a pair; it should be labeled “flush”.
-(((classify)))((("function", "programmer-defined", "classify", see="classify")))
+(((classify)))((("function", "definido pelo programador", "classify", see="classify")))
 
 . When you are convinced that your classification methods are working, the next step is to estimate the probabilities of the various hands. Write a function that shuffles a deck of cards, divides it into hands, classifies the hands, and counts the number of times various classifications appear.
 
