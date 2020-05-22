@@ -61,7 +61,7 @@ Os argumentos de +forward+ são a tartaruga e a distância em pixels, portanto o
 Outra função que nós podemos chamar com tartaruga como argumento é +turn+, para virar. O segundo argumento para +turn+ é o ângulo em graus.
 (((turn)))((("função", "ThinkJulia", "turn", see="turn")))
 
-Além disso, cada tartaruga está segurando uma caneta, que pode estar tanto para baixo ou para cima; se a caneta está para baixo, a tartaruga deixa uma trilha quando ela se move. <<fig04-1>> mostra a trilha deixada pela tartaruga. As funções +penup+ e +pendown+ significam respectivamente “caneta acima” e “caneta abaixo”.
+Além disso, cada tartaruga está segurando uma caneta, que pode estar tanto para baixo ou para cima; se a caneta está para baixo, a tartaruga deixa uma trilha quando ela se move. <<fig04-1>> mostra a trilha deixada pela tartaruga. As funções +penup+ e +pendown+ significam respectivamente “caneta para cima” e “caneta para baixo”.
 (((penup)))((("função", "ThinkJulia", "penup", see="penup")))(((pendown)))((("função", "ThinkJulia", "pendown", see="pendown")))
 
 Para desenhar um ângulo reto, modifique a chamada de macro:
@@ -170,7 +170,7 @@ Faça uma cópia de +quadrado+ e mude o nome para +polígono+. Adicione outro pa
 
 [TIP]
 ====
-Os ângulos externos de um polígono regular de latexmath:[\(n\)] lados somam latexmath:[\(\frac{360}{n}\)] graus.
+Os ângulos externos de um polígono regular de latexmath:[\(n\)] lados são iguais a latexmath:[\(\frac{360}{n}\)] graus.
 ====
 
 [[ex04-5]]
@@ -247,7 +247,7 @@ end
 Adicionar um parâmetro a uma função é chamado de _generalização_ pois faz com que a função seja mais abrangente: na versão anterior, o quadrado sempre tem o mesmo tamanho; nesta versão ele pode ter qualquer tamanho.
 (((generalização)))
 
-O próximo passo também é a generalização. Ao invés de desenhar quadrados, +polígono+ desenha polígonos regulares com qualquer número de lados. Aqui está a solução:
+O próximo passo também é uma generalização. Ao invés de desenhar quadrados, +polígono+ desenha polígonos regulares com qualquer número de lados. Aqui está a solução:
 (((polígono)))((("função", "definido pelo programador", "polígono", see="polígono")))
 
 [source,julia]
@@ -312,9 +312,9 @@ Adicionar 3 a +n+ garante que o polígono tenha no mínimo 3 lados.
 [[reestruturação]]
 === Reestruturação
 
-Quando eu escrevi +círculo+, eu pude reutilizar +polígono+ pois um polígono com vários lados é uma boa aproximação de um círculo. Mas +arco+ não é igualmente cooperativo; não podemos usar +polígono+ ou +círculo+ para desenhar um arco.
+Quando escrevemos +círculo+, pudemos reutilizar +polígono+ pois um polígono com vários lados é uma boa aproximação de um círculo. Mas +arco+ não é igualmente cooperativo; não podemos usar +polígono+ ou +círculo+ para desenhar um arco.
 
-Uma alternativa é começar com uma cópia de +polígono+ e transformá-lo em +arco+. O resultado pode parecer algo como:
+Uma alternativa é começar com uma cópia de +polígono+ e transformá-la em +arco+. O resultado pode parecer algo como:
 (((arco)))((("função", "definido pelo programador", "arco", see="arco")))
 
 [source,julia]
@@ -331,12 +331,12 @@ function arco(t, r, ângulo)
 end
 ----
 
-A segunda metade dessa função parece-se com +polígono+, mas nós não podemos reusar +polígono+ sem mudar a interface. Nós poderíamos generalizar +polígono+ para receber +ângulo+ como terceiro argumento, mas então +polígono+ não seria mais um nome apropriado! Ao invés disso, chamaremos a função mais geral +polílinha+:
-(((polílinha)))((("função", "definido pelo programador", "polílinha", see="polílinha")))
+A segunda metade dessa função parece-se com +polígono+, mas nós não podemos reusar +polígono+ sem mudar a interface. Nós poderíamos generalizar +polígono+ para receber +ângulo+ como terceiro argumento, mas então +polígono+ não seria mais um nome apropriado! Ao invés disso, chamaremos a função mais geral +polilinha+:
+(((polilinha)))((("função", "definido pelo programador", "polilinha", see="polilinha")))
 
 [source,julia]
 ----
-function polílinha(t, n, com, ângulo)
+function polilinha(t, n, com, ângulo)
     for i in 1:n
         forward(t, com)
         turn(t, -ângulo)
@@ -344,14 +344,14 @@ function polílinha(t, n, com, ângulo)
 end
 ----
 
-Agora nós podemos reescrever +polígono+ e +arco+ para usar +polílinha+:
+Agora nós podemos reescrever +polígono+ e +arco+ para usar +polilinha+:
 (((polígono)))(((arco)))
 
 [source,julia]
 ----
 function polígono(t, n, com)
     ângulo = 360 / n
-    polílinha(t, n, com, ângulo)
+    polilinha(t, n, com, ângulo)
 end
 
 function arco(t, r, ângulo)
@@ -359,7 +359,7 @@ function arco(t, r, ângulo)
     n = trunc(com_arco / 3) + 1
     com_passo = com_arco / n
     ang_passo = ângulo / n
-    polílinha(t, n, com_passo, ang_passo)
+    polilinha(t, n, com_passo, ang_passo)
 end
 ----
 
@@ -373,10 +373,10 @@ function círculo(t, r)
 end
 ----
 
-Este processo de reorganização de um programa para melhorar interface e facilitar o reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nós “fatoramos-o” para dentro de +polílinha+.
+Este processo de reorganização de um programa para melhorar interface e facilitar o reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nós o “fatoramos” para dentro de +polilinha+.
 (((refactoring)))
 
-Se nós tivéssemos planejado com antecedência, nós poderíamos ter escrito +polílinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
+Se nós tivéssemos planejado com antecedência, nós poderíamos ter escrito +polilinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
 
 
 === Um Plano de Desenvolvimento
@@ -399,19 +399,18 @@ Esse processo tem algumas desvantagens-nós veremos as alternativas mais tarde-m
 
 === Docstring
 
-Um _docstring_ é uma string que vem antes de uma função, e descreve sua interface (“doc” refere-se a “documentação”). Aqui está um exemplo:
+Uma _docstring_ é uma string que vem antes de uma função e descreve sua interface (“doc” refere-se a “documentação”). Aqui está um exemplo:
 (((docstring)))(((aspas triplas)))((("pass:[&quot;&quot;&quot;]", see="aspas triplas")))
 
 [source,julia]
 ----
 """
-polílinha(t, n, com, ângulo)
+polilinha(t, n, com, ângulo)
 
 Desenha n segmentos de linha dado o comprimento
-e o ângulo (em graus) entre eles.
-t é uma tartaruga.
+e o ângulo (em graus) entre eles.  t é uma tartaruga.
 """
-function polílinha(t, n, com, ângulo)
+function polilinha(t, n, com, ângulo)
     for i in 1:n
         forward(t, com)
         turn(t, -ângulo)
@@ -423,10 +422,10 @@ A documentação pode ser acessada no REPL ou em um notebook digitando ? seguido
 (((ajuda)))((("?", see="ajuda")))
 
 ----
-help?> polílinha
+help?> polilinha
 search:
 
-  polílinha(t, n, com, ângulo)
+  polilinha(t, n, com, ângulo)
 
   Desenha n segmentos de linha dado o comprimento e o ângulo (em graus) entre eles. t é uma tartaruga.
 ----
@@ -446,12 +445,12 @@ Escrever esse tipo de documentação é uma parte importante do design de interf
 Uma interface é como um contrato entre a função e quem a chama. Quem chama concorda em fornecer certos parâmetros e a função concorda em fazer um certo trabalho.
 (((debugando)))
 
-Por exemplo, +polílinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que assume-se ser uma medida em graus.
+Por exemplo, +polilinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que assume-se ser uma medida em graus.
 
 Esses requerimentos são chamados de _precondições_ pois eles deveriam ser verdadeiros antes que a função execute. Inversamente, condições no final da função são chamadas de _pós-condições_. Pós-condições incluem o efeito desejado da função (como desenhar segmentos de linha) e qualquer efeito colateral (como mover a tartaruga ou fazer outra mudança).
 (((precondição)))(((pós-condição)))
 
-precondições são de responsabilidade de quem chama a função. Se quem chama viola uma (propriamente documentada!) precondição e a função não funciona adequadamente, o bug está em quem chamou, e não na função.
+precondições são de responsabilidade de quem chama a função. Se quem chama viola uma precondição (propriamente documentada!) e a função não funciona adequadamente, o bug está em quem chamou, e não na função.
 
 Se as precondições são satisfeitas e as pós-condições não, então o bug está na função. Se as suas pré- e pós-condições forem claras, elas podem ajudar na hora de debugar.
 
@@ -490,9 +489,9 @@ refatoração::
 O processo de modificar um programa funcional para melhorar a interface da função e outras qualidades do código.
 (((refatoração)))
 
-Plano de desenvolvimento::
+plano de desenvolvimento::
 Um processo para escrever programas.
-(((Plano de desenvolvimento)))
+(((plano de desenvolvimento)))
 
 docstring::
 Uma string que aparece no topo de uma definição de função para documentar a interface da função.
@@ -524,7 +523,8 @@ Digite o código deste capítulo em um notebook.
 """
 arco(t, r, ângulo)
 
-Desenha um arcoo dado o raio e ângulo:
+Desenha um arco dado o raio e ângulo:
+
     t: tartaruga
     r: raio
     ângulo: ângulo feito pelo arco, em graus
@@ -535,11 +535,10 @@ function arco(t, r, ângulo)
     com_passo = com_arco / n
     ang_passo = ângulo / n
 
-    # fazendo uma leve curva para a esquerda antes de
-    # iniciar reduz o erro causado pela aproximação
-    # linear do arco
+    # fazendo uma leve curva para a esquerda antes de iniciar
+    # reduz o erro causado pela aproximação linear do arco
     turn(t, -ang_passo/2)
-    polílinha(t, n, com_passo, ang_passo)
+    polilinha(t, n, com_passo, ang_passo)
     turn(t, ang_passo/2)
 end
 ----
@@ -567,7 +566,7 @@ image::images/fig43.svg[]
 
 As letras do alfabeto podem ser construídas a partir de um número moderado de elementos básicos, como linhas verticais, horizontais e algumas curvas. Projete um alfabeto que pode ser desenhado com o menor número de elementos básicos e em seguida escreva funções que desenhem letras.
 
-Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenha_b+, etc. E coloque suas funções em um arquivo chamado _letras.jl_.
+Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenha_b+, etc., e coloque suas funções em um arquivo chamado _letras.jl_.
 
 [[ex04-11]]
 ===== Exercício 4-12
