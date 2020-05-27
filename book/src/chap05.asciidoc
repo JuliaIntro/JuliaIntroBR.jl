@@ -6,8 +6,8 @@ O principal tópico deste capítulo é a atribuição +if+, que executa diferent
 
 === Divisão Inteira e Módulo
 
-O operador de _Divisão Inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de execução de um filme seja de 105 minutos. Você talvez saiba o quanto equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
-(((operador Divisão Inteira)))((("operador", "Base", "÷", see="operador Divisão Inteira")))((("÷", see="operador Divisão Inteira")))
+O operador de _Divisão Inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Você talvez saiba o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
+(((operador divisão inteira)))((("operador", "Base", "÷", see="operador divisão inteira")))((("÷", see="operador divisão inteira")))
 
 [source,@julia-repl-test chap05]
 ----
@@ -17,7 +17,7 @@ julia> minutos / 60
 1.75
 ----
 
-Porém normalmente não escrevemos horas com pontos decimais. Divisão Inteira retorna um número inteiro de horas, arredondando para baixo:
+Porém normalmente não escrevemos horas com pontos decimais. A divisão inteira retorna um número inteiro de horas, arredondando para baixo:
 
 [source,@julia-repl-test chap05]
 ----
@@ -25,11 +25,11 @@ julia> horas = minutos ÷ 60
 1
 ----
 
-Para obter o restante, você pode subtrair uma hora em minutos:
+Para obter o resto, você pode subtrair uma hora em minutos:
 
 [source,@julia-repl-test chap05]
 ----
-julia> restante = minutos - houras * 60
+julia> resto = minutos - horas * 60
 45
 ----
 
@@ -110,7 +110,7 @@ Por fim, o operador +!+ nega uma expressão booleana, então +!(x > y)+ é verda
 
 === Execução Condicional
 
-Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações Condicionais_ nos fornece essa habilidade. A forma mais simples é a atribuição _se_ (_if_ em Inglês).
+Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações Condicionais_ nos fornecem essa habilidade. A forma mais simples é a atribuição _se_ (_if_ em Inglês).
 (((atribuição condicional)))(((if)))((("palavra-chave", "se", see="se")))(((atribuição se)))((("atribuição", "se", see="atribuição se")))
 
 [source,julia]
@@ -157,7 +157,7 @@ Se o resto da divisão de +x+ por 2 é 0, então sabemos que +x+ é par, e o pro
 === Condicionais Encadeadas
 
 Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um comando como esse é através das _condicionais encadeadas_:
-(((condicionais encadeadas)))(((se então)))((("palavra-chave", "se então", see="se então")))
+(((condicionais encadeadas)))(((elseif)))((("palavra-chave", "elseif", see="elseif")))
 
 [source,julia]
 ----
@@ -170,7 +170,7 @@ else
 end
 ----
 
-Novamente, exatamente um dos ramos será executado. Não há limites para o número de declarações +else if+. Se existir uma cláusula +else+, essa deve estar no final, mas não precisa haver uma.
+Novamente, exatamente um dos ramos será executado. Não há limites para o número de declarações +elseif+. Se existir uma cláusula +else+, essa deve estar no final, mas não precisa haver uma.
 
 [source,julia]
 ----
@@ -243,7 +243,7 @@ end
 === Recursão
 
 É permitido que uma função chame outra; também é permitido uma função chamar si mesmo. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
-(((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem")))
+(((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem regressiva")))
 
 [source,@julia-setup chap05]
 ----
@@ -287,7 +287,7 @@ Uma função que chama a si mesma é chamada de _recursiva_; o processo de execu
 (((função recursiva)))(((recursão)))
 
 Um outro exemplo, podemos escrever uma função que imprime uma string latexmath:[\(n\)] vezes.
-(((printn)))((("função", "definido pelo programador", "printn", see="printn")))
+(((imprima_n)))((("função", "definido pelo programador", "imprima_n", see="imprima_n")))
 
 [source,julia]
 ----
@@ -301,11 +301,11 @@ end
 ----
 
 Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para quem a chamou e as linhas restantes da função não são executadas.
-(((return)))((("palavra-chave", "return", see="return")))(((declaração de retorno)))((("declaração", "return", see="declaração de retorno")))
+(((return)))((("palavra-chave", "return", see="return")))(((declaração return)))((("declaração", "return", see="declaração return")))
 
 O restante da função é similar a +contagem_regressiva+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
-Para exemplos simples como esse, provavelmente é mais fácil usar um loop +for+. Mas veremos exemplos mais tarde que são difíceis de escrever com um loop +for+ e fáceis de escrever com recursão; portanto, é bom começar cedo.
+Para exemplos simples como esse, provavelmente é mais fácil usar um laço +for+. Mas veremos exemplos mais tarde que são difíceis de escrever com um laço +for+ e fáceis de escrever com recursão; portanto, é bom começar cedo.
 
 === Diagramas de Pilhas para funções recursivas
 
@@ -322,18 +322,18 @@ image::images/fig51.svg[]
 
 <<fig05-1>> mostra um diagrama de pilha para +contagem_regressiva+ chamada com +n = 3+.
 
-Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou nem passamos argumentos para ela.
+Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou passamos algum argumento para ela.
 
-Os quatro quadros de +contagem_regressiva+ têm valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
+Os quatro quadros de +contagem_regressiva+ tem valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
 (((caso base)))
 
 ===== Exercício 5-1
 
-Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +do_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] vezes.
+Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +faça_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] vezes.
 
 === Recursão Infinita
 
-Se uma recursão nunca atinge o caso base, ele continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. Aqui está um programa pequeno com uma recursão infinita:
+Se uma recursão nunca atinge o caso base, ela continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. Aqui está um programa pequeno com uma recursão infinita:
 (((recursão infinita)))(((recursão)))((("função", "definido pelo programador", "recursão", see="recursão")))
 
 [source,julia]
@@ -356,7 +356,7 @@ Stacktrace:
 Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior. Quando o erro ocorre, existem 80000 quadros de +recursão+ na pilha!
 (((rastreamento de pilha)))(((StackOverflowError)))((("Erro", "Core", "StackOverflowError", see="StackOverflowError")))
 
-Se você encontrar uma recursão infinita por acidente, revise sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver um caso base, verifique se você está garantindo para alcançá-lo.
+Se você encontrar uma recursão infinita por acidente, revise sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver um caso base, verifique que você está garantido a alcançá-lo.
 
 
 === Entradas de Teclado
@@ -364,7 +364,7 @@ Se você encontrar uma recursão infinita por acidente, revise sua função para
 Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa todas as vezes.
 
 Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
-(((readline)))((("function", "Base", "readline", see="readline")))
+(((readline)))((("função, "Base", "readline", see="readline")))
 
 [source,jlcon]
 ----
@@ -418,7 +418,7 @@ Veremos como lidar com esse tipo de erro posteriormente.
 
 === Debugando
 
-Quando ocorre um erro de sintaxe ou de tempo de execução, a mensagem de erro contém muitas informações, mas pode ser avassaladora. As partes mais úteis são geralmente:
+Quando um erro de sintaxe ou de tempo de execução ocorrer, a mensagem de erro contém muitas informações, mas ela pode ser avassaladora. As partes mais úteis são geralmente:
 (((debugando)))
 
 * Que tipo de erro foi, e
@@ -436,7 +436,7 @@ O mesmo vale para erros de tempo de execução. Suponha que você esteja tentand
 \end{equation}
 ++++
 
-Em Julia, você pode escrever algo como isto:
+Em Julia, você pode escrever algo como:
 
 [source,julia]
 ----
@@ -511,7 +511,7 @@ Uma atribuição condicional que aparece em um dos ramos de outra atribuição c
 (((condicional aninhada)))
 
 atribuição de retorno::
-Uma atribuição que faz com que uma função pare de executar imediatamente e retorne para quem chamou.
+Uma atribuição que faz com que uma função pare de executar imediatamente e retorne para quem a chamou.
 (((atribuição de retorno)))
 
 recursão::
@@ -519,7 +519,7 @@ O processo de chamar a função que está sendo executada.
 (((recursão)))
 
 caso base::
-Uma ramo condicional de uma função recursiva que não faz um chamado recursivo.
+Uma ramo condicional de uma função recursiva que não faz um chamado recursiva.
 (((caso base)))
 
 recursão infinita::
@@ -560,7 +560,7 @@ para qualquer valor de latexmath:[\(n\)] maior que 2.
 . Escreva uma função chamada +fermat+ que coleta quatro parâmetros — +a+, +b+, +c+ e +n+ — e verifica se o Teorema de Fermat é valido. Se +n+ é maior que 2 e +pass:[a^n + b^n == c^n]+ o programa deve imprimir, "Oloco, Fermat estava errado!" caso contrário o programa deve imprimir, "Não, isso não funciona."
 (((fermat)))((("função", "definido pelo programador", "fermat", see="fermat")))
 
-. Escreva uma função que solicite ao usuário que insira valores para +a+, +b+, +c+ e +n+, converta-os em números inteiros e use +fermat+ para verificar se violam o teorema de Fermat.
+. Escreva uma função que solicite ao usuário que insira valores para +a+, +b+, +c+ e +n+, converta-os em números inteiros e use +fermat+ para verificar se eles violam o teorema de Fermat.
 
 [[ex05-3]]
 ===== Exercise 5-4
@@ -572,10 +572,10 @@ Se você receber três gravetos, poderá ou não ser capaz de organizá-los em u
 Se qualquer um dos três comprimentos for maior que a soma dos outros dois, não será possível formar um triângulo. Caso contrário, você pode. (Se a soma de dois comprimentos for igual ao terceiro, eles formarão o que é chamado de triângulo "degenerado".)
 ====
 
-. Escreva uma função chamada +triângulo+ que aceite três números inteiros como argumentos e imprima “Sim” ou “Não”, dependendo da possibilidade de formar ou não um triângulo a partir de gravetos com os comprimentos especificados.
-(((triângulo)))((("função", "definido pelo programador", "é triângulo", see="é triângulo")))
+. Escreva uma função chamada +é_triângulo+ que aceite três números inteiros como argumentos e imprima “Sim” ou “Não”, dependendo da possibilidade de formar ou não um triângulo a partir de gravetos com os comprimentos especificados.
+(((triângulo)))((("função", "definido pelo programador", "é_triângulo", see="é_triângulo")))
 
-. Escreva uma função que solicite ao usuário a inserção de três comprimentos de gravetos, os converta em números inteiros e use +triangulo+ para verificar se os gravetos com os comprimentos especificados podem formar um triângulo.
+. Escreva uma função que solicite ao usuário a inserção de três comprimentos de gravetos, os converta em números inteiros e use +é_triângulo+ para verificar se os gravetos com os comprimentos especificados podem formar um triângulo.
 
 [[ex05-4]]
 ===== Exercício 5-5
@@ -652,9 +652,9 @@ A curva de Koch é um fractal que se parece com <<fig05-2>>. Para desenhar uma c
 A exceção é se latexmath:[\(x\)] for menor que 3: neste caso, você só desenha uma linha reta de comprimento latexmath:[\(x\)].
 
 . Escreva uma função chamada +koch+ que considere uma tartaruga e um comprimento como parâmetros e que use a tartaruga para desenhar uma curva de Koch com o comprimento especificado.
-(((koch)))((("function", "definido pelo programador", "koch", see="koch")))
+(((koch)))((("função", "definido pelo programador", "koch", see="koch")))
 
-. Escreva uma função chamada + floco de neve + que desenhe três curvas de Koch para fazer o contorno de um floco de neve.
-(((floco de neve)))((("function", "definido pelo programador", "floco de neve", see="floco de neve")))
+. Escreva uma função chamada + floco_de_neve + que desenhe três curvas de Koch para fazer o contorno de um floco de neve.
+(((floco_de_neve)))((("function", "definido pelo programador", "floco_de_neve", see="floco _de_neve")))
 
 . A curva de Koch pode ser generalizada de várias maneiras. Veja https://en.wikipedia.org/wiki/Koch_snowflake para exemplos e implemente o seu favorito.
