@@ -9,7 +9,7 @@ Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um que
 Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Existem muitas listas de palavras disponíveis na internet, e a mais adequada para o nosso propósito é uma das listas de palavras coletadas e disponibilizadas em domínio público por Grady Ward como parte do projeto léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos com palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/words.txt.
 (((Moby léxico)))
 
-Este arquivo está em texto sem formatação e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _objeto de fluxo de arquivo_ usado para a leitura do arquivo.
+Este arquivo está em texto não formatado e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _objeto de fluxo de arquivo_ usado para a leitura do arquivo.
 (((open)))((("função", "Base", "open", see="open")))
 
 [source,@julia-eval chap09]
@@ -46,7 +46,7 @@ readline(arquivo_entrada)
 O termo subsequente em inglês é "aah", que é perfeitamente legítima, então pare de me olhar desse jeito.
 
 Você também pode usar um objeto de arquivo em um laço de repetição +for+. Este programa lê +palavras.txt+ e imprime cada palavra, uma por linha:
-(((laço for)))(((eachline)))((("função", "Base", "eachline", see="eachline")))
+(((declaração for)))(((eachline)))((("função", "Base", "eachline", see="eachline")))
 
 [source,julia]
 ----
@@ -124,7 +124,7 @@ end
 
 O laço +for+ percorre os caracteres das palavras. Se encontrarmos a letra +'e'+, podemos retornar imediatamente +false+; caso contrário, temos que avançar para a próxima letra. Se sairmos do laço do modo convencional, isso significa que não encontramos um +'e'+, por isso retornamos +true+.
 
-Você poderia escrever esta função de forma mais sucinta usando o operador +∉+ (*+\notin TAB+*), mas comecei com essa versão porque ela mostra a lógica do padrão de pesquisa.
+Você poderia escrever esta função de forma mais sucinta usando o operador +∉+ (*+\notin TAB+*), mas comecei com essa versão porque ela mostra a lógica do padrão de busca.
 (((∉)))((("operador", "Base", "∉", see="∉")))
 
 +evita+ é uma versão mais geral do +sem_e+, apesar de ter a mesma estrutura:
