@@ -1,7 +1,7 @@
 [[chap05]]
 == Condicionais e Recursão
 
-O principal tópico deste capítulo é a atribuição +if+, da qual executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: Divisão Inteira e módulo.
+O principal tópico deste capítulo é a atribuição +if+, que executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: Divisão Inteira e módulo.
 
 
 === Divisão Inteira e Módulo
