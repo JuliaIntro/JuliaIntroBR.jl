@@ -1,23 +1,23 @@
 [[chap18]]
 == Subtipagem
 
-No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A não especificação do tipo dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto de tipos permitidos na assinatura de um método é um passo lógico seguinte.
+No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação do tipo dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.
 
 Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.
 
-Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki/P%C3%B4quer, mas não precisa pois vou lhe dizer o que você tem que saber para os exercícios.
+Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki/P%C3%B4quer, mas não precisa pois vou lhe dizer o que se tem que saber para os exercícios.
 
 
-=== Cards
+=== Cartas
 
-Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (+♠+), Copas (+♥+), Ouro (+♦+) e Paus (+♣+). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um ás pode ser maior que rei ou menor que 2.
+Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (+♠+), Copas (+♥+), Ouro (+♦+) e Paus (+♣+). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um ás pode ser maior que o rei ou menor que 2.
 
-Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Estadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais possuíam maior valor ou naipe.
+Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Espadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais possuíam maior valor ou naipe.
 
-Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não pretende ser um segredo (isso seria "criptografia").
-(((codificar)))
+Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria "criptografia").
+(((codificação)))
 
-Por exemplo, esta tabela mostra a correspondência dos naipes com os números inteiros:
+Por exemplo, esta tabela mostra a correspondência dos naipes para os números inteiros:
 
 * +♠+  latexmath:[\(\mapsto\)]  4
 
@@ -27,9 +27,9 @@ Por exemplo, esta tabela mostra a correspondência dos naipes com os números in
 
 * +♣+  latexmath:[\(\mapsto\)]  1
 
-Este código facilita a comparação das cartas; já que os naipes mais valorizados estão relacionados com números mais altos, podemos comparar naipes comparando seus números.
+Este código facilita a comparação das cartas; já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.
 
-Estou usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, mas não aparecem explicitamente no código.
+Estou usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.
 
 A definição para struct +Carta+ é parecida com esta:
 (((Carta)))((("tipo", "definido pelo programador", "Carta", see="Carta")))
@@ -37,9 +37,9 @@ A definição para struct +Carta+ é parecida com esta:
 [source,@julia-setup chap18]
 ----
 struct Carta
-    suit :: Int64
-    rank :: Int64
-    function Carta(suit::Int64, rank::Int64)
+    naipe :: Int64
+    valor :: Int64
+    function Carta(naipe::Int64, valor::Int64)
         @assert(1 ≤ naipe ≤ 4, "naipe não está entre 1 e 4")
         @assert(1 ≤ valor ≤ 13, "valor não está entre 1 e 13")
         new(naipe, valor)
@@ -47,7 +47,7 @@ struct Carta
 end
 ----
 
-Para criar uma +Carta+, você chama +Carta+ com o naipe e o valor da carta que você deseja:
+Para criar uma +Carta+, você chama +Carta+ com o naipe e o valor desejado:
 
 [source,@julia-repl-test chap18]
 ----
@@ -58,63 +58,63 @@ Carta(2, 12)
 
 === Variáveis Globais
 
-In order to print +Card+ objects in a way that people can easily read, we need a mapping from the integer codes to the corresponding ranks and suits. A natural way to do that is with arrays of strings:
+Para imprimir objetos +Carta+ de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com arrays de strings:
 
 [source,@julia-setup chap18]
 ----
-const suit_names = ["♣", "♦", "♥", "♠"]
-const rank_names = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+const nomes_naipes = ["♣", "♦", "♥", "♠"]
+const nomes_valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 ----
 
-The variables +suit_names+ and +rank_names+ are global variables. The +const+ declaration means that the variable can only be assigned once. This solves the performance problem of global variables.
-(((global statement)))(((const)))((("keyword", "const", see="const")))
+As variáveis +nomes_naipes+ e +nomes_valores+ são variáveis globais. A declaração +const+ significa que a variável só pode ser atribuída uma vez. Isso resolve o problema de desempenho das variáveis globais.
+(((declaração global)))(((const)))((("palavra-chave", "const", see="const")))
 
-Now we can implement an appropriate +show+ method:
+Agora podemos implementar um método +show+ apropriado:
 (((show)))
 
 [source,@julia-setup chap18]
 ----
-function Base.show(io::IO, card::Card)
-    print(io, rank_names[card.rank], suit_names[card.suit])
+function Base.show(io::IO, carta::Carta)
+    print(io, nomes_valores[carta.valor], nomes_naipes[carta.naipe])
 end
 ----
 
-The expression +rank_names[card.rank]+ means “use the field +rank+ from the object +card+ as an index into the array +rank_names+, and select the appropriate string.”
+A expressão +nomes_valores[carta.valor]+ significa “use o campo +valor+ do objeto +carta+ como um índice na matriz +nomes_valores+, e selecione a string apropriada.”
 
-With the methods we have so far, we can create and print cards:
+Com os métodos que temos até agora, podemos criar e imprimir as cartas:
 
 [source,@julia-repl-test chap18]
 ----
-julia> Card(3, 11)
+julia> Carta(3, 11)
 J♥
 ----
 
 
-=== Comparing Cards
+=== Comparando Cartas
 
-For built-in types, there are relational operators (+<+, +>+, +==+, etc.) that compare values and determine when one is greater than, less than, or equal to another. For programmer-defined types, we can override the behavior of the built-in operators by providing a method named: +<+.
+Para os tipos embutidos, existem operadores relacionais (+<+, +>+, +==+ etc.) que comparam os valores e determinam quando um é maior que, menor que ou igual ao outro. Para os tipos definidos pelo programador, podemos sobrepor o comportamento dos operadores embutidos ao estabelecer um método chamado +<+.
 
-The correct ordering for cards is not obvious. For example, which is better, the 3 of Clubs or the 2 of Diamonds? One has a higher rank, but the other has a higher suit. In order to compare cards, you have to decide whether rank or suit is more important.
+A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou naipe é mais importante.
 
-The answer might depend on what game you are playing, but to keep things simple, we’ll make the arbitrary choice that suit is more important, so all of the Spades outrank all of the Diamonds, and so on.
+A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante  para que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.
 
-With that decided, we can write +<+
+Decidido isso, podemos escrever +<+
 
 [source,@julia-setup chap18]
 ----
 import Base.<
 
-function <(c1::Card, c2::Card)
-    (c1.suit, c1.rank) < (c2.suit, c2.rank)
+function <(c1::Carta, c2::Carta)
+    (c1.naipe, c1.valor) < (c2.naipe, c2.valor)
 end
 ----
 
-===== Exercise 18-1
+===== Exercício 18-1
 
-Write a +<+ method for +MyTime+ objects. You can use tuple comparison, but you also might consider comparing integers.
+Escreva um método +<+ para os objetos +MeuTime+ . Você pode usar a comparação de tupla, mas você também pode considerar a comparação de inteiros.
 
 
-=== Unit Testing
+=== Teste da Unidade
 
 
 _Unit testing_ allows you to verify the correctness of your code by comparing the results of your code to what you expect. This can be useful to be sure that your code still is correct after modifications, and it is also a way to predefine the correct behaviour of your code during development.
@@ -226,7 +226,7 @@ function Random.shuffle!(deck::Deck)
 end
 ----
 
-===== Exercise 18-2
+===== Exercício 18-2
 
 Write a function named +sort!+ that uses the function +sort!+ to sort the cards in a Deck. +sort!+ uses the +isless+ method we defined to determine the order.
 (((sort!)))
@@ -531,7 +531,7 @@ This example suggests a development plan for designing types:
 
 * Transform the associated functions into methods with as argument objects of the new type.
 
-===== Exercise 18-3
+===== Exercício 18-3
 
 Download my Markov code from https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/src/solutions/chap13.jl, and follow the steps described above to encapsulate the global variables as attributes of a new struct called +Markov+.
 
@@ -595,10 +595,10 @@ A program development plan that involves a prototype using global variables and 
 (((data encapsulation)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex18-1]]
-===== Exercise 18-4
+===== Exercício 18-4
 
 For the following program, draw a type diagram that shows these types and the relationships among them.
 
@@ -628,13 +628,13 @@ addping(pong, ping)
 ----
 
 [[ex18-2]]
-===== Exercise 18-5
+===== Exercício 18-5
 
 Write a method called +deal!+ that takes three parameters, a +Deck+, the number of hands and the number of cards per hand. It should create the appropriate number of +Hand+ objects, deal the appropriate number of cards per hand, and return an array of +Hand+s.
 (((deal!)))((("function", "definido pelo programador", "deal!", see="deal!")))
 
 [[ex18-3]]
-===== Exercise 18-6
+===== Exercício 18-6
 
 The following are the possible hands in poker, in increasing order of value and decreasing order of probability:
 
