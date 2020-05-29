@@ -1,7 +1,7 @@
 [[chap14]]
 == Arquivos
 
-Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e bases de dados.
+Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e databases.
 
 === Persistência
 
@@ -15,12 +15,12 @@ Exemplos de programas persistentes são sistemas operacionais, que são executad
 
 Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo _arquivos de texto_. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.
 
-Uma alternativa é armazenar o estado do programa em uma base de dados. Neste capítulo eu também irei apresentar como usar uma base de dados simples.
+Uma alternativa é armazenar o estado do programa em uma database. Neste capítulo eu também irei apresentar como usar uma database simples.
 
 [[reading_and_writing]]
 === Lendo e Escrevendo
 
-Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rigído, ou memória flash. Nós vimos como abrir e ler um arquivo em <<reading_word_lists>>.
+Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido, ou memória flash. Nós vimos como abrir e ler um arquivo em <<reading_word_lists>>.
 
 Para escrever um arquivo, você tem que abri-lo com modo +"w"+ como segundo parâmetro:
 (((open)))
