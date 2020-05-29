@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.590689229967109e9</code></pre>
+1.590768172490554e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10829,7 +10829,7 @@ plot(x, y)</code></pre>
 <h2 id="chap14">17. Arquivos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e bases de dados.</p>
+<p>Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e databases.</p>
 </div>
 <div class="sect2">
 <h3 id="_persistência">Persistência</h3>
@@ -10848,13 +10848,13 @@ plot(x, y)</code></pre>
 <p>Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo <em>arquivos de texto</em>. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.</p>
 </div>
 <div class="paragraph">
-<p>Uma alternativa é armazenar o estado do programa em uma base de dados. Neste capítulo eu também irei apresentar como usar uma base de dados simples.</p>
+<p>Uma alternativa é armazenar o estado do programa em uma database. Neste capítulo eu também irei apresentar como usar uma database simples.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="reading_and_writing">Lendo e Escrevendo</h3>
 <div class="paragraph">
-<p>Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rigído, ou memória flash. Nós vimos como abrir e ler um arquivo em <a href="#reading_word_lists">Reading Word Lists</a>.</p>
+<p>Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido, ou memória flash. Nós vimos como abrir e ler um arquivo em <a href="#reading_word_lists">Reading Word Lists</a>.</p>
 </div>
 <div class="paragraph">
 <p>Para escrever um arquivo, você tem que abri-lo com modo <code>"w"</code> como segundo parâmetro:
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♦ A♦ 10♠ 6♣ 2♦ 7♠ 2♠ 10♥ 2♥ 9♥ 2♣ Q♠ K♥ 5♣ 4♣ 7♥ J♠ A♠ 3♣ 9♣ 9♠ 7♦ J♦ 5♥ K♣ K♠ 8♣ Q♦ J♥ 3♦ 5♠ Q♣ 6♦ J♣ A♥ 10♦ 9♦ 7♣ 6♥ 4♦ 10♣ 8♠ K♦ 8♥ 3♥ 3♠ 6♠ 4♠ A♣ 4♥ Q♥ 5♦
+6♦ A♥ K♥ 3♦ 3♥ 3♠ 4♣ 9♥ 2♥ 4♦ 8♣ 9♣ 7♥ 6♥ Q♠ 4♥ 3♣ 5♣ Q♣ 10♠ J♥ 5♠ 5♦ 7♠ J♣ 10♣ 2♠ J♦ 8♥ K♦ A♣ 7♦ 8♠ 9♠ K♠ A♦ 6♣ 8♦ 6♠ 5♥ 10♥ 7♣ K♣ A♠ 2♣ Q♥ 2♦ 10♦ 9♦ Q♦ 4♠ J♠
 julia&gt; card = pop!(deck)
-5♦
+J♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-28 18:07:06 UTC
+Last updated 2020-05-29 16:02:49 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
