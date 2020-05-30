@@ -1,12 +1,12 @@
 [[chap05]]
 == Condicionais e Recursão
 
-O principal tópico deste capítulo é a atribuição +if+, que executa diferentes códigos dependendo do critério do programa. Mas antes eu quero introduzir dois novos operadores: Divisão Inteira e módulo.
+O principal tópico deste capítulo é o comando +if+, que executa diferentes códigos dependendo do estado do programa. Mas antes vamos introduzir dois novos operadores: divisão inteira e módulo.
 
 
 === Divisão Inteira e Módulo
 
-O operador de _Divisão Inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Você talvez saiba o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
+O operador de _divisão inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Você talvez queira saber o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
 (((operador divisão inteira)))((("operador", "Base", "÷", see="operador divisão inteira")))((("÷", see="operador divisão inteira")))
 
 [source,@julia-repl-test chap05]
@@ -44,7 +44,7 @@ julia> remainder = minutes % 60
 
 [TIP]
 ====
-O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é divisível por outro — se +x % y+ é zero, então +x+ é divisível por +y+.
+O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é divisível por outro—se +x % y+ é zero, então +x+ é divisível por +y+.
 
 Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produz os últimos dois dígitos.
 ====
@@ -52,7 +52,7 @@ Além disso, você pode extrair o dígito ou dígitos mais à direita de um núm
 
 === Expressões Booleanas
 
-Uma _expressão booleana_ é uma expressão que é ou verdadeira ou falsa.  Os seguintes exemplos usam o operador +==+, que compara dois operandos e gera +true+ se forem iguais e +false+ footnote:[_True_ e _False_ são comunente utilizadas nas linguagens de programação e são traduzidas, respectivamente como _verdadeiro_ e _falso_]
+Uma _expressão booleana_ é uma expressão que é ou verdadeira ou falsa.  Os seguintes exemplos usam o operador +==+, que compara dois operandos e gera +true+ se forem iguais e +false+--do inglês, verdadeiro e falso.
 (((expressão booleana)))(((true)))(((false)))
 
 [source,@julia-repl-test]
@@ -91,14 +91,14 @@ O operador +==+ é um operador de relação; os outros são:
 
 [WARNING]
 ====
-Embora essas operações sejam provavelmente familiares para você, os símbolos Julia são diferentes dos símbolos matemáticos. Um erro comum é usar um único sinal de igual (+=+) em vez de um duplo sinal de igual (+==+). Lembre-se de que +=+ é um operador de atribuição e +==+ é um operador relacional. Não existe +=<+ ou +pass:[=>]+.
+Embora essas operações sejam provavelmente familiares para você, os símbolos em Julia são diferentes dos símbolos matemáticos. Um erro comum é usar um único sinal de igual (+=+) em vez de um duplo sinal de igual (+==+). Lembre-se de que +=+ é um operador de atribuição e +==+ é um operador relacional. Não existe +=<+ ou +pass:[=>]+.
 (((≠)))((("operador", "Base", "≠", see="≠")))((("!=", see="≠")))((("operador", "Base", "!=", see="≠")))(((>)))((("operador", "Base", ">", see=">")))(((<)))((("operador", "Base", "<", see="<")))(((≥)))((("operador", "Base", "≥", see="≥")))(((">=", see="≥")))((("operador", "Base", ">=", see="≥")))(((≤)))((("operador", "Base", "≤", see="≤")))((("pass:[&lt;=]", see="≤")))((("operador", "Base", "pass:[&lt;=]", see="≤")))
 ====
 
 
 === Operadores Lógicos
 
-Existem três _Operadores Lógicos_: +&&+ (e), +||+ (ou) e +!+ (não). A semântica (significado) destes operadores são similiares aos seus significados em Português. Por exemplo, +x > 0 && x < 10+ é verdadeiro se e somente se +x+ é maior que 0 _e_ menor que +10+.
+Existem três _operadores lógicos_: +&&+ (e), +||+ (ou) e +!+ (não). A semântica (significado) destes operadores são similiares aos seus significados em Português. Por exemplo, +x > 0 && x < 10+ é verdadeiro se e somente se +x+ é maior que 0 _e_ menor que +10+.
 (((operador lógico)))(((&&)))(((||)))(((!)))
 
 +n % 2 == 0 || n % 3 == 0+ é verdadeiro se _uma ou ambas_ condições são verdadeiras, isto é, se o número é divisível por 2 _ou_ por 3.
@@ -110,8 +110,8 @@ Por fim, o operador +!+ nega uma expressão booleana, então +!(x > y)+ é verda
 
 === Execução Condicional
 
-Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações Condicionais_ nos fornecem essa habilidade. A forma mais simples é a atribuição _se_ (_if_ em Inglês).
-(((atribuição condicional)))(((if)))((("palavra-chave", "se", see="se")))(((atribuição se)))((("atribuição", "se", see="atribuição se")))
+Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações condicionais_ nos fornecem essa habilidade. A forma mais simples é o comando _if_ (da conjunção se em Inglês).
+(((declaração condicional)))(((if)))((("palavra-chave", "if", see="if")))(((comando if)))((("comando", "if", see="comando if")))
 
 [source,julia]
 ----
@@ -120,10 +120,10 @@ if x > 0
 end
 ----
 
-A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então a atribuição indentada é executada. Se não, nada acontece. 
+A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então o comando indentado é executado. Se não, nada acontece. 
 (((condição)))
 
-A atribuição _se_ possui a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Declarações como essa são chamadas de _declarações compostas_.
+Declarações _if_ possuem a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Declarações como essa são chamadas de _declarações compostas_.
 (((declarações compostas)))(((end)))
 
 Não há limites para o número de declarações que podem aparecer no corpo. Ocasionalmente, é útil ter um corpo sem declarações (geralmente como detentor de um lugar para o código que você ainda não escreveu).
@@ -131,15 +131,15 @@ Não há limites para o número de declarações que podem aparecer no corpo. Oc
 [source,julia]
 ----
 if x < 0
-    # TODO: precisa lidar com valores negativos!
+    # LEMBRETE: precisa lidar com valores negativos!
 end
 ----
 
 
 === Execuções Alternativas
 
-Uma segunda maneira de usar a atribuição _se_ é a "execução alternativa", da qual há duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
-(((execução alternativa)))(((se não)))((("palavra-chave", "se não", see="se não")))
+Uma segunda maneira de usar o comando _if_ é a "execução alternativa", da qual há duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
+(((execução alternativa)))(((else)))((("palavra-chave", "else", see="else")))
 
 [source,julia]
 ----
@@ -204,7 +204,7 @@ else
 end
 ----
 
-O condicional externo contém dois ramos. O primeiro ramo contém uma atribuição simples. O segundo ramo contém outra atribuição +if+, da qual possui dois ramos inserida nela. Esses dois ramos são declarações simples, embora também possam ter sido declarações condicionais.
+O condicional externo contém dois ramos. O primeiro ramo contém uma declaração simples. O segundo ramo contém outro condicional +if+, que possui dois ramos inseridos nele. Esses dois ramos são declarações simples, embora também possam ter sido declarações condicionais.
 
 Embora a indentação não obrigatória das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder.
 (((indentação)))
@@ -220,7 +220,7 @@ if 0 < x
 end
 ----
 
-A atribuição +print+ executa somente se passarmos pelos dois condicionais, para que possamos obter o mesmo efeito com operador +&&+:
+O comando +print+ executa somente se passarmos pelos dois condicionais, para que possamos obter o mesmo efeito com operador +&&+:
 
 [source,julia]
 ----
@@ -257,7 +257,7 @@ function contagem_regressiva(n)
 end
 ----
 
-Se +n+ é 0 ou negativo, será exibido a palavra, +"Vai!"+, por outro lado, exibirá +n+ e executará a função chamada +contagem_regressiva+ — ela mesma — passando +n-1+ como argumento.
+Se +n+ é 0 ou negativo, será exibido a palavra +"Vai!"+. Caso contrário, a função exibe +n+ e chama uma função chamada +contagem_regressiva+—ela mesma— passando +n-1+ como argumento.
 
 O que acontece se chamarmos uma função como essa?
 
@@ -267,13 +267,13 @@ julia> contagem_regressiva(3)
 3 2 1 Vai!
 ----
 
-A execução de +contagem_regressiva+ começa com +n = 3+, e desde que +n+ seja maior que 0, terá como saída o valor 3, e depois executa ela mesma...
+A execução de +contagem_regressiva+ começa com +n = 3+, e como +n+ é maior que 0, terá como saída o valor 3, e depois executa ela mesma...
 
-pass:[&#8193;]A execução de +contagem_regressiva+ começa com +n = 2+, e desde que +n+ seja maior que 0, pass:[<br/>&#8193;&#8193;]terá como saída o valor 2, e depois executa ela mesma ...
+pass:[&#8193;]A execução de +contagem_regressiva+ começa com +n = 2+, e como +n+ é maior que 0, pass:[<br/>&#8193;&#8193;]terá como saída o valor 2, e depois executa ela mesma ...
 
-pass:[&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 1+, e desde que +n+ seja maior que 0, pass:[<br/>&#8193;&#8193;&#8193;]terá como saída o valor 1, e depois executa ela mesma ...
+pass:[&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 1+, e como  +n+ é maior que 0, pass:[<br/>&#8193;&#8193;&#8193;]terá como saída o valor 1, e depois executa ela mesma ...
 
-pass:[&#8193;&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 0+, e desde que +n+ seja maior que pass:[<br/>&#8193;&#8193;&#8193;&#8193;]0, terá como saída uma palavra, +"Vai!"+ e depois retorna.
+pass:[&#8193;&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 0+, e como +n+ não é maior que pass:[<br/>&#8193;&#8193;&#8193;&#8193;]0, terá como saída uma palavra, +"Vai!"+ e depois retorna.
 
 pass:[&#8193;&#8193;]A contagem regressiva que obteve +n = 1+ retorna.
 
@@ -300,14 +300,14 @@ function imprima_n(s, n)
 end
 ----
 
-Se +n pass:[&lt;]= 0+ a atribuição +return+ sai da função. O fluxo de execução retorna imediatamente para quem a chamou e as linhas restantes da função não são executadas.
+Se +n pass:[&lt;]= 0+ o comando +return+ sai da função. O fluxo de execução retorna imediatamente para quem a chamou e as linhas restantes da função não são executadas.
 (((return)))((("palavra-chave", "return", see="return")))(((declaração return)))((("declaração", "return", see="declaração return")))
 
-O restante da função é similar a +contagem_regressiva+: Exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
+O restante da função é similar a +contagem_regressiva+: Ela exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
 Para exemplos simples como esse, provavelmente é mais fácil usar um laço +for+. Mas veremos exemplos mais tarde que são difíceis de escrever com um laço +for+ e fáceis de escrever com recursão; portanto, é bom começar cedo.
 
-=== Diagramas de Pilhas para funções recursivas
+=== Diagramas de Pilhas para Funções Recursivas
 
 Em <<stack_diagrams>>, usamos um diagrama de pilha para representar o estado de um programa durante uma chamada de função. O mesmo tipo de diagrama pode ajudar a interpretar uma função recursiva.
 (((diagrama de pilha)))
@@ -324,12 +324,12 @@ image::images/fig51.svg[]
 
 Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou passamos algum argumento para ela.
 
-Os quatro quadros de +contagem_regressiva+ tem valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
+Os quatro quadros de +contagem_regressiva+ têm valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
 (((caso base)))
 
 ===== Exercício 5-1
 
-Como exercício, desenhe um diagrama de pilha para +printn+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +faça_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] vezes.
+Como exercício, desenhe um diagrama de pilha para +imprima_n+ chamado com +s = "Olá"+ e +n = 2+. Depois, escreva uma função chamada +faça_n+ que pega um objeto de função e um número, +n+, como argumento, e que chama a função dada latexmath:[\(n\)] vezes.
 
 === Recursão Infinita
 
@@ -359,7 +359,7 @@ Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior.
 Se você encontrar uma recursão infinita por acidente, revise sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver um caso base, verifique que você está garantido a alcançá-lo.
 
 
-=== Entradas de Teclado
+=== Entradas do Teclado
 
 Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa todas as vezes.
 
@@ -383,15 +383,15 @@ Quem és tu? Sou Hermanoteu da Pentescopéia, irmão da Micalatéia.
 "Sou Hermanoteu da Pentescopéia, irmão da Micalatéia."
 ----
 
-Um ponto e vírgula +;+ permite colocar multiplas atribuições na mesma linha. No REPL apenas a última atribuição retornará seu valor.
+Um ponto e vírgula +;+ permite colocar múltiplos comandos na mesma linha. No REPL apenas o último comando retornará seu valor.
 (((;)))
 
 Se você espera que o usuário digite um número inteiro, tente converter o valor de retorno para +Int64+:
 
 [source,jlcon]
 ----
-julia> println("Qual é a velocidade da velocidade do ar de uma andorinha sem carga? "); speed = readline()
-Qual é a velocidade da velocidade do ar de uma andorinha sem carga?
+julia> println("Qual é a velocidade de vôo de uma andorinha sem carga?"); velocidade = readline()
+Qual é a velocidade de vôo de uma andorinha sem carga?
 42
 "42"
 julia> parse(Int64, speed)
@@ -403,8 +403,8 @@ Mas se o usuário digitar algo diferente de uma sequência de dígitos, você re
 
 [source,jlcon]
 ----
-julia> println("Qual é a velocidade da velocidade do ar de uma andorinha sem carga? "); velocidade = readline()
-Qual é a velocidade da velocidade do ar de uma andorinha sem carga?
+julia> println("Qual é a velocidade de vôo de uma andorinha sem carga?"); velocidade = readline()
+Qual é a velocidade de vôo de uma andorinha sem carga?
 Como assim, uma andorinha africana ou européia?
 "Como assim, uma andorinha africana ou européia?"
 julia> parse(Int64, speed)
@@ -413,7 +413,7 @@ ERROR: ArgumentError: invalid base 10 digit 'C' in "Como assim, uma andorinha af
 ----
 
 Veremos como lidar com esse tipo de erro posteriormente.
-(((Erro de Argumento)))
+(((ArgumentError)))
 
 
 === Debugando
@@ -425,7 +425,7 @@ Quando um erro de sintaxe ou de tempo de execução ocorrer, a mensagem de erro 
 
 * Onde ocorreu.
 
-Os erros de sintaxe geralmente são fáceis de encontrar, mas existem algumas dicas. Em geral, as mensagens de erro indicam onde o problema foi descoberto, mas o verdadeiro erro pode estar antes no código, às vezes em uma linha anterior.
+Os erros de sintaxe geralmente são fáceis de encontrar, mas existem algumas ressalvas. Em geral, as mensagens de erro indicam onde o problema foi descoberto, mas o verdadeiro erro pode estar antes no código, às vezes em uma linha anterior.
 
 O mesmo vale para erros de tempo de execução. Suponha que você esteja tentando calcular uma taxa de sinal/ruído em decibéis. A fórmula é
 
@@ -456,7 +456,7 @@ E você obtém:
 
 Esse não era um resultado que você estava esperando.
 
-Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a Divisão do piso em vez da Divisão do ponto flutuante.
+Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a divisão do piso em vez da divisão do ponto flutuante.
 
 [WARNING]
 ====
@@ -466,9 +466,9 @@ Você deve ler atentamente as mensagens de erro, mas não presuma que tudo o que
 
 === Glossário
 
-Divisão Inteira::
+divisão inteira::
 Um operador, denotado +÷+, que divide dois números e arredonda para baixo (em direção ao infinito negativo) para um número inteiro.
-(((Divisão Inteira)))
+(((divisão inteira)))
 
 operador módulo::
 Um operador, indicado com um sinal de porcentagem (%), que trabalha com números inteiros e retorna o restante quando um número é dividido por outro.
@@ -486,17 +486,17 @@ operador lógico::
 Um dos operadores que combina expressões booleanas: +&&+ (e), +||+ (ou), e +!+ (não).
 (((operador lógico)))
 
-atribuição condicional::
-Uma atribuição que controla o fluxo de execução dependendo de alguma condição.
-(((atribuição condicional)))
+declaração condicional::
+Uma declaração que controla o fluxo de execução dependendo de alguma condição.
+(((declaração condicional)))
 
 condição::
-A expressão boleana em uma atribuição condicional que determina qual ramo executará.
+A expressão boleana em uma declaração condicional que determina qual ramo executará.
 (((condição)))
 
-atribuição composta::
-Uma atribuição que consiste em um cabeçalho e um corpo. O corpo é terminado com a palavra-chave +end+.
-(((atribuição composta)))
+declaração composta::
+Uma declaração que consiste em um cabeçalho e um corpo. O corpo é terminado com a palavra-chave +end+.
+(((declaração composta)))
 
 ramos::
 Uma das sequências alternativas de atribuições em uma atribuição condicional.
@@ -532,12 +532,12 @@ Uma recursão que não tem um caso base, ou nunca atinge ela. Eventualmente, uma
 [[ex05-1]]
 ===== Exercício 5-2
 
-A função +tempo+ retorna o tempo médio atual de Greenwich em segundos desde “a época”, que é um tempo arbitrário usado como ponto de referência. Nos sistemas UNIX, a época é 1 de janeiro de 1970.
-(((tempo)))((("função", "Base", "hora", see="hora")))
+A função +time+ retorna o tempo médio atual de Greenwich em segundos desde “a época”, que é um tempo arbitrário usado como ponto de referência. Nos sistemas UNIX, a época é 1 de janeiro de 1970.
+(((time)))((("função", "Base", "time", see="time")))
 
 [source,@julia-repl]
 ----
-tempo()
+time()
 ----
 
 Escreva um script que leia a hora atual e a converta para uma hora do dia em horas, minutos e segundos, mais o número de dias desde a época.
@@ -565,7 +565,7 @@ para qualquer valor de latexmath:[\(n\)] maior que 2.
 [[ex05-3]]
 ===== Exercise 5-4
 
-Se você receber três gravetos, poderá ou não ser capaz de organizá-los em um triângulo. Por exemplo, se um dos gravetos tiver 12 centímetros de comprimento e os outros dois um centímetro, você não conseguirá colocar os gravetos curtos no meio. Para três comprimentos, há um teste simples para verificar se é possível formar um triângulo:
+Se você receber três gravetos, poderá ou não ser capaz de organizá-los em um triângulo. Por exemplo, se um dos gravetos tiver 12 centímetros de comprimento e os outros dois um centímetro, você não conseguirá fazer com que os gravetos curtos se toquem no meio. Para três comprimentos, há um teste simples para verificar se é possível formar um triângulo:
 
 [TIP]
 ====
