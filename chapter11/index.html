@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.590945250644024e9</code></pre>
+1.590945752371255e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9295,7 +9295,7 @@ end</code></pre>
 <p>This was sent in by a fellow named Dan O’Leary. He came upon a common one-syllable, five-letter word recently that has the following unique property. When you remove the first letter, the remaining letters form a homophone of the original word, that is a word that sounds exactly the same. Replace the first letter, that is, put it back and remove the second letter and the result is yet another homophone of the original word. And the question is, what’s the word?</p>
 </div>
 <div class="paragraph">
-<p>Now I’m going to give you an exemplo that doesn’t work. Let’s look at the five-letter word, ‘wrack.’ W-R-A-C-K, you know like to ‘wrack with pain.’ If I remove the first letter, I am left with a four-letter word, ’R-A-C-K.’ As in, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ It’s a perfect homophone. If you put the ‘w’ back, and remove the ‘r,’ instead, you’re left with the word, ‘wack,’ which is a real word, it’s just not a homophone of the other two words.</p>
+<p>Now I’m going to give you an example that doesn’t work. Let’s look at the five-letter word, ‘wrack.’ W-R-A-C-K, you know like to ‘wrack with pain.’ If I remove the first letter, I am left with a four-letter word, ’R-A-C-K.’ As in, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ It’s a perfect homophone. If you put the ‘w’ back, and remove the ‘r,’ instead, you’re left with the word, ‘wack,’ which is a real word, it’s just not a homophone of the other two words.</p>
 </div>
 <div class="paragraph">
 <p>But there is, however, at least one word that Dan and we know of, which will yield two homophones if you remove either of the first two letters to make two, new four-letter words. The question is, what’s the word?</p>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-10♥ 3♠ 6♣ Q♣ 10♣ 4♦ Q♦ 9♥ 6♠ 5♥ 5♦ 3♥ J♣ 7♦ 8♠ J♠ 2♠ A♠ 3♣ K♣ 10♠ Q♠ K♥ J♥ 4♣ A♣ 5♠ 6♥ 7♥ 6♦ J♦ 4♠ A♦ 10♦ K♠ K♦ 3♦ 2♣ 5♣ 9♦ 9♠ 8♥ 7♣ A♥ 8♣ 2♦ 7♠ 4♥ 9♣ Q♥ 8♦ 2♥
+A♠ J♣ 9♣ 2♦ 4♦ 4♣ 3♥ Q♥ J♠ 7♦ K♣ A♦ 9♠ 3♣ 3♠ 8♣ 7♣ 2♣ 6♣ 7♠ 10♠ Q♦ 7♥ 5♦ Q♠ 4♥ 2♥ 5♠ Q♣ 5♣ A♥ A♣ K♠ J♥ 8♦ J♦ 10♦ K♥ K♦ 10♥ 6♠ 8♠ 6♥ 6♦ 4♠ 8♥ 3♦ 10♣ 5♥ 9♥ 2♠ 9♦
 julia&gt; card = pop!(deck)
-2♥
+9♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20468(double, double) {
+define double @julia_squaresum_20477(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-31 17:14:06 UTC
+Last updated 2020-05-31 17:22:29 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
