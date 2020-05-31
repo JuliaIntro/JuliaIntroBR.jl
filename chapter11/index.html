@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.590943864631348e9</code></pre>
+1.590945250644024e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8466,7 +8466,7 @@ false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp = Dict()
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp = Dict()
 Dict{Any,Any} with 0 entries</code></pre>
 </div>
 </div>
@@ -8480,7 +8480,7 @@ Dict{Any,Any} with 0 entries</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp["um"] = "uno";</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp["um"] = "uno";</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8489,7 +8489,7 @@ Dict{Any,Any} with 0 entries</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp
 Dict{Any,Any} with 1 entry:
   "um" =&gt; "uno"</code></pre>
 </div>
@@ -8499,7 +8499,7 @@ Dict{Any,Any} with 1 entry:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp = Dict("um" =&gt; "uno", "dois" =&gt; "dos", "três" =&gt; "tres")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp = Dict("um" =&gt; "uno", "dois" =&gt; "dos", "três" =&gt; "tres")
 Dict{String,String} with 3 entries:
   "dois"   =&gt; "dos"
   "um"   =&gt; "uno"
@@ -8528,7 +8528,7 @@ Dict{String,String} with 3 entries:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp["dois"]
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp["dois"]
 "dos"</code></pre>
 </div>
 </div>
@@ -8541,7 +8541,7 @@ Dict{String,String} with 3 entries:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp["quatro"]
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por_para_esp["quatro"]
 ERROR: KeyError: key "quatro" not found</code></pre>
 </div>
 </div>
@@ -8551,7 +8551,7 @@ ERROR: KeyError: key "quatro" not found</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; length(por2sp)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; length(por_para_esp)
 3</code></pre>
 </div>
 </div>
@@ -8561,7 +8561,7 @@ ERROR: KeyError: key "quatro" not found</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; ks = keys(por2sp);
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; ks = keys(por_para_esp);
 
 julia&gt; print(ks)
 ["dois", "um", "três"]</code></pre>
@@ -8585,7 +8585,7 @@ false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; vs = values(por2sp);
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; vs = values(por_para_esp);
 
 julia&gt; "uno" ∈ vs
 true</code></pre>
@@ -8647,7 +8647,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>A primeira linha da função cria um dicionário vazio. O loop <code>for</code> percorre a string. Toda vez que o loop é percorrido, se o caractere <code>c</code> não está no dicionário, nós criamos um novo item com a chave <code>c</code> e o valor inicial <code>1</code> (já que nós vimos esta letra uma vez). Se <code>c</code> já está no dicionário, nós incrementamos <code>d[c]</code>.</p>
+<p>A primeira linha da função cria um dicionário vazio. O laço <code>for</code> percorre a string. Toda vez que o laço é percorrido, se o caractere <code>c</code> não está no dicionário, nós criamos um novo item com a chave <code>c</code> e o valor inicial <code>1</code> (já que nós vimos esta letra uma vez). Se <code>c</code> já está no dicionário, nós incrementamos <code>d[c]</code>.</p>
 </div>
 <div class="paragraph">
 <p>Funciona da seguinte forma:</p>
@@ -8661,8 +8661,8 @@ Dict{Any,Any} with 8 entries:
   'a' =&gt; 1
   'r' =&gt; 2
   't' =&gt; 1
-  'o' =&gt; 2
-  'u' =&gt; 2
+  'o' =&gt; 3
+  'u' =&gt; 1
   'b' =&gt; 1</code></pre>
 </div>
 </div>
@@ -8753,7 +8753,7 @@ p 2</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function consultainvertida(d, v)
+<pre class="pygments highlight"><code data-lang="julia">function consulta_inversa(d, v)
     for k in keys(d)
         if d[k] == v
             return k
@@ -8768,16 +8768,16 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Se nós chegarmos no final do loop, isso significa que <code>v</code> não aparece no dicionário como um valor, então geramos uma exceção.</p>
+<p>Se nós chegarmos no final do laço, isso significa que <code>v</code> não aparece no dicionário como um valor, então geramos uma exceção.</p>
 </div>
 <div class="paragraph">
-<p>Aqui está um exemplo de uma consulta invertida bem-sucedida:</p>
+<p>Aqui está um exemplo de uma consulta inversa bem-sucedida:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; h = histograma("papagaio");
 
-julia&gt; chave = consultainvertida(h, 2)
+julia&gt; chave = consulta_inversa(h, 2)
 'p': ASCII/Unicode U+0072 (category Ll: Letter, lowercase)</code></pre>
 </div>
 </div>
@@ -8786,15 +8786,15 @@ julia&gt; chave = consultainvertida(h, 2)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; chave = reverselookup(h, 4)
-ERROR: LookupError</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; chave = consulta_inversa(h, 4)
+ERROR: Erro de Consulta</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>O resultado de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.</p>
 </div>
 <div class="paragraph">
-<p>Julia fornece uma maneira otimizada de fazer uma consulta invertida: <code>findall(isequal(3), h)</code>.
+<p>Julia fornece uma maneira otimizada de fazer uma consulta inversa: <code>findall(isequal(3), h)</code>.
 </p>
 </div>
 <div class="admonitionblock warning">
@@ -8805,7 +8805,7 @@ ERROR: LookupError</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Uma consulta invertida é muito mais demorada que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, o desempenho do seu programa diminuirá.</p>
+<p>Uma consulta inversa é muito mais demorada que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, o desempenho do seu programa diminuirá.</p>
 </div>
 </td>
 </tr>
@@ -8823,22 +8823,22 @@ ERROR: LookupError</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function invertdict(d)
-    inverse = Dict()
-    for key in keys(d)
-        val = d[key]
-        if val ∉ keys(inverse)
-            inverse[val] = [key]
+<pre class="pygments highlight"><code data-lang="julia">function inverte_dict(d)
+    inverso = Dict()
+    for chave in keys(d)
+        valor = d[chave]
+        if valor ∉ keys(inverso)
+            inverso[valor] = [chave]
         else
-            push!(inverse[val], key)
+            push!(inverso[valor], chave)
         end
     end
-    inverse
+    inverso
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Cada vez que o loop é percorrido, <code>key</code> recebe uma chave de <code>d</code> e <code>val</code> recebe o valor correspondente. Se <code>val</code> não está em <code>inverse</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
+<p>Cada vez que o laço é percorrido, <code>chave</code> recebe uma chave de <code>d</code> e <code>valor</code> recebe o valor correspondente. Se <code>valor</code> não está em <code>inverso</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
 </p>
 </div>
 <div class="paragraph">
@@ -8848,7 +8848,7 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; hist = histograma("papagaio");
 
-julia&gt; inverse = invertdict(hist)
+julia&gt; inverso = inverte_dict(hist)
 Dict{Any,Any} with 2 entries:
   3 =&gt; ['a']
   2 =&gt; ['p']
@@ -8873,7 +8873,7 @@ Dict{Any,Any} with 2 entries:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Eu mencionei anteriormente que um dicionário é implementado usando uma tabela hash e isso significa que as chaves devem ser <em>hashable</em>.
+<p>Eu mencionei anteriormente que um dicionário é implementado usando uma tabela hash e isso significa que as chaves devem ser <em>hashable</em>, ou de um tipo que permite que uma função hash atuem sobre elas.
 </p>
 </div>
 <div class="paragraph">
@@ -8902,7 +8902,7 @@ Dict{Any,Any} with 2 entries:
 <div class="title">Figure 17. Grafo de chamada</div>
 </div>
 <div class="paragraph">
-<p>Um grafo de chamada mostra um conjunto de quadros de função, com linhas conectando cada quadro à quadros no qual a função chama. No topo do grafo, <code>fibonacci</code> com <code>n = 4</code> chama <code>fibonacci</code> com <code>n = 3</code> e <code>n = 2</code>. Por sua vez, <code>fibonacci</code> com <code>n = 3</code> chama <code>fibonacci</code> com <code>n = 2</code> e <code>n = 1</code>. E assim em diante.</p>
+<p>Um grafo de chamada mostra um conjunto de quadros da função, com linhas conectando cada quadro aos quadros que a função chama. No topo do grafo, <code>fibonacci</code> com <code>n = 4</code> chama <code>fibonacci</code> com <code>n = 3</code> e <code>n = 2</code>. Por sua vez, <code>fibonacci</code> com <code>n = 3</code> chama <code>fibonacci</code> com <code>n = 2</code> e <code>n = 1</code>. E assim em diante.</p>
 </div>
 <div class="paragraph">
 <p>Conte quantas vezes <code>fibonacci(0)</code> e <code>fibonacci(1)</code> são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida em que o argumento aumenta.</p>
@@ -8929,7 +8929,7 @@ end</code></pre>
 <p><code>conhecido</code> é um dicionáro que guarda os números de Fibonacci que já sabemos. Ele começa com dois itens: <code>0</code> mapeia para <code>0</code> e <code>1</code> mapeia para <code>1</code>.</p>
 </div>
 <div class="paragraph">
-<p>Toda vez que <code>fibonacci</code> é chamada, ela checa <code>conhecidos</code>. Se o resultado já está lá, ela retorna imediatamente. Por outro lado ela tem que computar um novo valor, adicionar ao dicionário, e retorná-lo.</p>
+<p>Toda vez que <code>fibonacci</code> é chamada, ela checa <code>conhecidos</code>. Se o resultado já está lá, ela retorna imediatamente. Por outro lado ela tem que computar um novo valor, adicionar ele ao dicionário, e retorná-lo.</p>
 </div>
 <div class="paragraph">
 <p>Se você executar esta versão de <code>fibonacci</code> e comparar com a original, você verá que a atual é muito mais rápida.</p>
@@ -8942,7 +8942,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>É comum usar variáveis globais para <em>flags</em>; isto é, variáveis booleanas que indicam (“flag”) se uma condição é verdadeira. Por exemplo, alguns programas usam uma flag chamada <code>verbose</code> para controlar o nível de detalhe na saída:
+<p>É comum usar variáveis globais para <em>flags</em>; isto é, variáveis booleanas que indicam (“sinal”) se uma condição é verdadeira. Por exemplo, alguns programas usam uma flag chamada <code>verbose</code> para controlar o nível de detalhamento na saída:
 </p>
 </div>
 <div class="listingblock">
@@ -9050,7 +9050,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Por razões de performance, você deve declarar uma variável global como constante. Você não pode mais re-atribuir a variável mas se ela refere-se a um valor mutável, você pode modificar o valor.
+<p>Por razões de performance, deve-se declarar uma variável global como constante. Não é mais possível reatribuir a variável mas caso ela faça referência a um valor mutável, você pode modificar o valor.
 </p>
 </div>
 <div class="listingblock">
@@ -9070,7 +9070,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Variáveis globais podem ser utéis, mas se você tem muitas delas, e você as modifica frequentemente, elas podem fazer com que programas sejam dificéis de debugar e possuam performance ruim.</p>
+<p>Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-as frequentemente, elas podem ser a causa dos programas serem dificéis de debugar e terem mau desempenho.</p>
 </div>
 </td>
 </tr>
@@ -9246,13 +9246,13 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Se você fez <a href="#ex10-10">Exercise 10-10</a>, você pode comparar a velocidade desta implementação com o operador <code>∈</code> em arrays e a busca bissecção.</p>
+<p>Se você fez <a href="#ex10-10">Exercise 10-10</a>, você pode comparar a velocidade desta implementação com o operador <code>∈</code> em arrays e na busca em bissecção.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex11-2">Exercício 11-3</h5>
 <div class="paragraph">
-<p>Leia a documentação da função de dicionário <code>get!</code> e use-a para escrever uma versão mais concisa de <code>invertdict</code>.
+<p>Leia a documentação da função de dicionário <code>get!</code> e use-a para escrever uma versão mais concisa de <code>inverte_dict</code>.
 </p>
 </div>
 </div>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-9♣ J♣ 9♥ 3♦ 8♥ 3♣ K♥ 5♦ A♦ 2♥ 3♠ 9♦ 5♣ J♦ 2♣ 10♠ 8♣ 4♣ 4♥ 7♣ 7♥ A♣ 8♦ 6♦ 10♦ 9♠ 2♠ Q♥ K♦ 7♦ 6♣ A♠ 8♠ A♥ J♠ Q♣ 6♥ 4♠ 10♣ 5♥ 7♠ 6♠ 3♥ J♥ Q♦ Q♠ 5♠ K♣ K♠ 2♦ 10♥ 4♦
+10♥ 3♠ 6♣ Q♣ 10♣ 4♦ Q♦ 9♥ 6♠ 5♥ 5♦ 3♥ J♣ 7♦ 8♠ J♠ 2♠ A♠ 3♣ K♣ 10♠ Q♠ K♥ J♥ 4♣ A♣ 5♠ 6♥ 7♥ 6♦ J♦ 4♠ A♦ 10♦ K♠ K♦ 3♦ 2♣ 5♣ 9♦ 9♠ 8♥ 7♣ A♥ 8♣ 2♦ 7♠ 4♥ 9♣ Q♥ 8♦ 2♥
 julia&gt; card = pop!(deck)
-4♦
+2♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-31 16:51:01 UTC
+Last updated 2020-05-31 17:14:06 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
