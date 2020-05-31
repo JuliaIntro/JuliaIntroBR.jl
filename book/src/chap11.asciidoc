@@ -1,18 +1,18 @@
 [[chap11]]
 == Dicionários
 
-Este capítulo apresenta outra estrutura de dados embutida chamada de dicionário.
+Este capítulo apresenta outra estrutura de dados embutida chamado dicionário.
 
 
 === Um Dicionário é um Mapeamento
 
-Um _dicionário_ é como um array, mas mais geral. Em um array, os indíces tem que ser inteiros; em um dicionário eles podem ser (quase) de qualquer tipo.
+Um _dicionário_ é como um array, mas mais geral. Em um array, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
 (((dicionário)))
 
-Um dicionário contém uma coleção de indíces, que são chamados de _chaves_, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de _par chave-valor_ ou, as vezes, um item.
+Um dicionário contém uma coleção de índices, que são chamados de _chaves_, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de _par chave-valor_ ou, às vezes, de item.
 (((chave)))(((valor)))(((par chave-valor)))(((item)))
 
-Em linguagem matemática, um dicionário representa um _mapeamento_ de chave para valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, então as chaves e os valores são todos strings.
+Na linguagem matemática, um dicionário representa um _mapeamento_ da chave para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
 (((mapeamento)))
 
 A função +Dict+ cria um novo dicionário sem items. Como +Dict+ é um nome de uma função embutida, devemos evitar usar ele como um nome de variável.
@@ -24,7 +24,7 @@ julia> por2sp = Dict()
 Dict{Any,Any} with 0 entries
 ----
 
-O tipo de dicionário é cercado por chaves: as chaves são do tipo +Any+ e os valores também são do tipo +Any+.
+O tipo do dicionário é cercado por chaves: as chaves são do tipo +Any+ e os valores também são do tipo +Any+.
 (((chaves)))((("{}", see="chaves")))(((Any)))((("tipo", "Base", "Any", see="Any")))
 
 O dicionário está vazio. Para adicionar items no dicionário, podemos usar os colchetes:
@@ -36,7 +36,7 @@ julia> por2sp["um"] = "uno";
 
 ----
 
-Essa linha cria um item que mapeia a chave "um" para o valor "uno". Se nós imprimirmos o dicionário novamente, nós vemos o par chave-valor com a flecha +pass:[=&gt;]+ entre a chave e o valor:
+Essa linha cria um item que mapeia a chave "um" para o valor "uno". Se imprimirmos o dicionário novamente, nós vemos o par chave-valor com a flecha +pass:[=&gt;]+ entre a chave e o valor:
 (((pass:[=&gt;])))
 
 [source,@julia-repl-test chap11]
@@ -46,7 +46,7 @@ Dict{Any,Any} with 1 entry:
   "um" => "uno"
 ----
 
-Esse formato de resultado também é um formato de entrada. Por exemplo, você pode criar um novo dicionário com três itens:
+Essa formatação de saída também é uma formatação de entrada. Por exemplo, você pode criar um novo dicionário com três itens:
 
 [source,@julia-repl-test chap11]
 ----
@@ -61,10 +61,10 @@ Todas as chaves e os valores iniciais são strings, então um +Dict{String, Stri
 
 [WARNING]
 ====
-A ordem do par chave-valor pode não ser a mesma. Se você digitar o mesmo exemplo no seu computador, você pode obter um resultado diferente. Em geral, a ordem dos itens em um dicionário é imprevisível.
+A ordem do par chave-valor pode não ser a mesma. Se você digitar o mesmo exemplo no seu computador, pode obter um resultado diferente. Em geral, a ordem dos itens em um dicionário é imprevisível.
 ====
 
-Mas isso não é um problema pois os elementos de um dicionário nunca são indexados com indíces inteiros. Ao invés disso, nós usamos as chaves para consultar os valores correspondentes:
+Mas isso não é um problema pois os elementos de um dicionário nunca são indexados com índices inteiros. Ao invés disso, nós usamos as chaves para consultar os valores correspondentes:
 
 [source,@julia-repl-test chap11]
 ----
@@ -72,7 +72,7 @@ julia> por2sp["dois"]
 "dos"
 ----
 
-A chave "dois" sempre é mapeada par ao valor "dos", então a ordem dos itens não importa.
+A chave "dois" sempre é mapeada para o valor "dos", então a ordem dos itens não importa.
 
 Se a chave não está no dicionário, nós recebemos uma exceção:
 (((KeyError)))((("error", "Base", "KeyError", see="KeyError")))
@@ -80,10 +80,10 @@ Se a chave não está no dicionário, nós recebemos uma exceção:
 [source,@julia-repl-test chap11]
 ----
 julia> por2sp["quatro"]
-ERROR: KeyError: key "four" not found
+ERROR: KeyError: key "quatro" not found
 ----
 
-A função +length+ funciona em dicionários; ela retorna o número de pares chave-valor:
+A função +length+ funciona nos dicionários e retorna o número de pares chave-valor:
 (((length)))
 
 [source,@julia-repl-test chap11]
@@ -114,7 +114,7 @@ julia> "uno" ∈ ks
 false
 ----
 
-Para verificar se algo aparece como um valor em um dicionário, você pode usar a função +values+, que retorna uma coleção de valores, e em seguida usar o operador +∈+:
+Para verificar se algo aparece como um valor em um dicionário, você pode usar a função +values+ que retorna uma coleção de valores, e em seguida usar o operador +∈+:
 (((valores)))((("função", "Base", "valores", see="valores")))
 
 [source,@julia-repl-test chap11]
@@ -125,25 +125,25 @@ julia> "uno" ∈ vs
 true
 ----
 
-O operador +∈+ utiliza algoritmos diferentes para arrays e dicionários. Para arrays, ele busca os elementos do array em ordem, como em <<searching>>. À medida que o array fica maior, o tempo de busca cresce em proporção direta.
+O operador +∈+ utiliza algoritmos diferentes para os arrays e dicionários. Para os arrays, ele busca os elementos do array em ordem, como em <<searching>>. À medida que o array fica maior, o tempo de busca cresce diretamente proporcional.
 
-Para dicionários, o Julia usa um algoritmo chamado de _tabela hash_ que possui uma propriedade expecional: o operador +∈+ leva aproximadamente o mesmo não importa quantos itens o dicionário possui.
+Para os dicionários, o Julia usa um algoritmo chamado _tabela hash_ (ou tabela de dispersão ou tabela de espalhamento) que possui uma propriedade excepcional: o operador +∈+ leva aproximadamente o mesmo tempo independente da quantidade de itens do dicionário.
 (((tabela hash)))
 
 [[dictionary_collection_counters]]
 === Dicionários como uma Coleção de Contadores
 
-Suponha que é dado à você uma string e você gostaria de contar quantas vezes cada letra aparece. Existem muitas maneiras de fazer isso:
+Suponha que é dado a você uma string e você gostaria de contar quantas vezes cada letra aparece. Existem muitas maneiras de fazer isso:
 
-* Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provávelmente usando um condicional encadeado.
+* Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provavelmente usando um condicional encadeado.
 
-* Você poderia criar um array com 26 elementos. Em seguida você poderia converter cada caractere para um número (usando a função embutida +Int+), usar o número como um indíce para o array, e incrementar o contador adequado.
+* Você poderia criar um array com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida +Int+), usar o número como um índice para o array, e incrementar o contador adequado.
 
-* Você poderia criar um dicionário com caracteres como chaves e contadores como seus valores correspondentes. A primeira vez que você vê um caractere, você adicionaria um item no dicionário. Após isso você incrementaria o valor de um item existente.
+* Você poderia criar um dicionário com os caracteres como as chaves e os contadores como seus valores correspondentes. A primeira vez que você vê um caractere, adicionaria um item no dicionário. Após isso, você só incrementaria o valor de um item existente.
 
-Cada uma dessas opções efetua o mesmo cálculo, mas cada uma delas implementa este cálculo de maneiras diferentes.
+Cada uma dessas opções efetua o mesmo cálculo, mas cada uma delas implementa este cálculo de formas diferentes.
 
-Uma _implementação_ é uma maneira de efetuar um cálculo; algumas implementações são melhores que outras. Por exemplo, uma vantagem da implementação do dicionário é que nós não temos que saber antecipadamente quais letras aparecem na string, e nós temos que somente criar espaço para as letras que aparecem.
+Uma _implementação_ é uma maneira de efetuar um cálculo e algumas implementações são melhores que outras. Por exemplo, uma vantagem da implementação do dicionário é que nós não temos que saber antecipadamente quais letras aparecem na string, e sim criar espaço só para as letras que aparecem.
 (((implementação)))
 
 O código pode parecer com algo como:
@@ -172,7 +172,7 @@ Funciona da seguinte forma:
 
 [source,@julia-repl-test chap11]
 ----
-julia> h = histograma("brontosaurus")
+julia> h = histograma("brontossauro")
 Dict{Any,Any} with 8 entries:
   'n' => 1
   's' => 2
@@ -184,9 +184,9 @@ Dict{Any,Any} with 8 entries:
   'b' => 1
 ----
 
-O histograma indica que as letras +'a'+ e +'b'+ aparecem uma vez; +'o'+ aparece duas, e assim em diante.
+O histograma indica que as letras +'a'+ e +'b'+ aparecem uma vez; +'o'+ aparece três, e assim em diante.
 
-Dicionários possuem uma função chamada +get+ que recebe uma chave e uma valor padrão. Se a chave aparece no dicionário, +get+ retorna o valor correspondente; caso contrário ela retorna o valor padrão. Por exemplo:
+Dicionários possuem uma função chamada +get+ que recebe uma chave e um valor padrão. Se a chave aparece no dicionário, +get+ retorna o valor correspondente; caso contrário ela retorna o valor padrão. Por exemplo:
 (((get)))((("função", "Base", "get", see="get")))
 
 [source,@julia-repl-test chap11]
@@ -205,7 +205,7 @@ julia> get(h, 'b', 0)
 Use +get+ para escrever +histograma+ de uma maneira mais concisa. Você deve ser capaz de eliminar a declaração +if+.
 
 
-=== Dando Laços e Dicionários
+=== Laços e Dicionários
 
 Você pode percorrer as chaves de um dicionário em uma declaração +for+. Por exemplo, +imprimehist+ exibe cada chave e o seu valor correspondente:
 (((imprimehist)))((("função", "definido pelo programador", "imprimehist", see="imprimehist")))
@@ -233,7 +233,7 @@ i 1
 o 1
 ----
 
-Novamente, as chaves não estão em nenhuma ordem específica. Para percorrer as chaves em ordem, você pode combinar +sort+ e +collect+:
+Novamente as chaves não estão em nenhuma ordem específica. Para percorrer as chaves em ordem, você pode combinar +sort+ e +collect+:
 (((sort)))(((collect)))
 
 [source,@julia-repl-test chap11]
@@ -249,12 +249,12 @@ p 2
 ----
 
 
-=== Consulta Invertida
+=== Consulta Inversa
 
 Dado um dicionário +d+ e uma chave +k+, é fácil achar o valor correspondente +v = d[k]+. Esta operação é chamada de _consulta_.
 (((consulta)))
 
-Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo da aplicação, você poderia escolher um, ou você teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta invertida_ ; você tem que procurar.
+Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta invertida_; você tem que procurar.
 (((consulta invertida)))
 
 Aqui está uma função que recebe um valor e retorna a primeira chave que mapeia a este valor:
@@ -294,20 +294,20 @@ julia> chave = reverselookup(h, 4)
 ERROR: LookupError
 ----
 
-O efeito de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.
+O resultado de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.
 
 Julia fornece uma maneira otimizada de fazer uma consulta invertida: +findall(isequal(3), h)+.
 (((findall)))((("função", "Base", "findall", see="findall")))(((isequal)))((("função", "Base", "isequal", see="isequal")))
 
 [WARNING]
 ====
-Uma consulta invertida é muito  mais devagar que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, a performance do seu programa irá diminiuir.
+Uma consulta invertida é muito mais demorada que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, o desempenho do seu programa diminuirá.
 ====
 
 
 === Dicionários e Arrays
 
-Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras à frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências para letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.
+Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.
 
 Aqui está uma função que inverte um dicionário:
 (((invertdict)))((("função", "definido pelo programador", "invertdict", see="invertdict")))
@@ -328,7 +328,7 @@ function invertdict(d)
 end
 ----
 
-Cada vez que o loop é percorrido, +key+ recebe uma chave de +d+ e +val+ recebe o valor correspondente. Se +vaç+ não está em +inverse+, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um _singleton_ (um array que contém um único elemento). Caso contrário nós já vimos esse valor, então nós acrescentamos a chave correspondente ao array.
+Cada vez que o loop é percorrido, +key+ recebe uma chave de +d+ e +val+ recebe o valor correspondente. Se +val+ não está em +inverse+, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um _singleton_ (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
 (((singleton)))
 
 Aqui está um exemplo:
@@ -349,7 +349,7 @@ Dict{Any,Any} with 2 entries:
 image::images/fig111.svg[]
 
 
-<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverse+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Se os valores são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, mas eu normalmente desenho arrays fora da caixa, só para simplificar o diagrama.
+<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverse+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
 (((diagrama de estado)))
 
 [NOTE]
@@ -364,10 +364,10 @@ Uma _hash_ é uma função que recebe um valor (de qualquer tipo) e retorna um i
 [[memos]]
 === Memos
 
-Se você já brincou com a função +fibonacci+ de <<one_more_exemplo>>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
-(((fibonnaci)))
+Se você já brincou com a função +fibonacci+ de <<one_more_exemple>>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
+(((fibonacci)))
 
-Para entender o por que, considere <<fig11-2>>, que mostra um _grafo de chamada_ para +fibonacci+ com +n = 4+:
+Para entender o porquê, considere <<fig11-2>>, que mostra um _grafo de chamada_ para +fibonacci+ com +n = 4+:
 (((grafo de chamada)))((("diagram", "grafo de chamada", see="grafo de chamada")))
 
 [[fig11-2]]
@@ -377,9 +377,9 @@ image::images/fig112.svg[]
 
 Um grafo de chamada mostra um conjunto de quadros de função, com linhas conectando cada quadro à quadros no qual a função chama. No topo do grafo, +fibonacci+ com +n = 4+ chama +fibonacci+ com +n = 3+ e +n = 2+. Por sua vez, +fibonacci+ com +n = 3+ chama +fibonacci+ com +n = 2+ e +n = 1+. E assim em diante.
 
-Conte quantas vezes +fibonacci(0)+ e +fibonacci(1)+ são chamadas. Está é uma solução ineficiente do problema, e fica pior a medida em que o argumento aumenta.
+Conte quantas vezes +fibonacci(0)+ e +fibonacci(1)+ são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida em que o argumento aumenta.
 
-Uma solução é acompanhar os valores que já foram calculados armazenando eles em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de _memo_. Aqui está uma versão “memoizada” de fibonacci:
+Uma solução é acompanhar os valores já calculados armazenando-os em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de _memo_. Aqui está uma versão “memoizada” de fibonacci:
 (((memo)))
 
 [source,@julia-setup]
@@ -396,17 +396,17 @@ function fibonacci(n)
 end
 ----
 
-+conhecido+ é um dicionáro que acompanha os números de fibonacci que já sabemos. Ele começa com dois itens: +0+ mapeia para +0+ e +1+ mapeia para +1+.
++conhecido+ é um dicionáro que guarda os números de Fibonacci que já sabemos. Ele começa com dois itens: +0+ mapeia para +0+ e +1+ mapeia para +1+.
 
 Toda vez que +fibonacci+ é chamada, ela checa +conhecidos+. Se o resultado já está lá, ela retorna imediatamente. Por outro lado ela tem que computar um novo valor, adicionar ao dicionário, e retorná-lo.
 
-Se você executar esta versão de +fibonacci+ e comparar com a original, você verá que ela é muito mais rápida.
+Se você executar esta versão de +fibonacci+ e comparar com a original, você verá que a atual é muito mais rápida.
 
 [[global_variables]]
 === Variáveis Globais
 
-No exemplo anterior, conhecidos é criado fora da função, então ela pertence ao quadro especial chamado +Main+. Variáveis em +Main+ são as vezes chamadas de _globais_ pois podem ser acessadas de qualquer função. Diferente de variáveis locais, que desaparecem quando a função acaba, variáveis globais persistem de uma chamada de função para a próxima.
-(((global)))((("palavra-chave", "global", see="global")))(((global variable)))
+No exemplo anterior, conhecidos é criado fora da função, então ela pertence ao quadro especial chamado +Main+. Variáveis em +Main+ são às vezes chamadas de _globais_ pois podem ser acessadas de qualquer função. Diferente de variáveis locais, que desaparecem quando a função acaba, variáveis globais persistem de uma chamada de função para a próxima.
+(((global)))((("palavra-chave", "global", see="global")))(((variável global)))
 
 É comum usar variáveis globais para _flags_; isto é, variáveis booleanas que indicam (“flag”) se uma condição é verdadeira. Por exemplo, alguns programas usam uma flag chamada +verbose+ para controlar o nível de detalhe na saída:
 (((flag)))
@@ -422,7 +422,7 @@ function exemplo1()
 end
 ----
 
-Se você tentar re-atribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:
+Se tentar reatribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:
 
 [source,@julia-setup]
 ----
@@ -433,10 +433,10 @@ function exemplo2()
 end
 ----
 
-Mas se você executar ela você verá que o valor de +foi_chamada+ não muda. O problema é que +exemplo2+ cria uma nova variável local chamada +foi_chamada+. A variável local vai embora quando a função termina, e não tem nenhum efeito sobre a variável global.
+Mas se você executar a função, você verá que o valor de +foi_chamada+ não muda. O problema é que +exemplo2+ cria uma nova variável local denominada +foi_chamada+. A variável local é removida quando a função termina, e não tem nenhum efeito sobre a variável global.
 
-Para re-atribuir uma variável global dentro de uma função você deve _declarar_ a variável global antes de usá-la:
-(((declaração)))(((re-atribuição)))
+Para reatribuir uma variável global dentro de uma função, você deve _declarar_ a variável global antes de usá-la:
+(((declaração)))(((reatribuição)))
 
 [source,@julia-setup]
 ----
@@ -448,7 +448,7 @@ function exemplo2()
 end
 ----
 
-A _declaração global_ indica ao interpretador algo como, “Nesta função, quando eu digo +foi_chamada+, eu quero dizer a variável global; não crie uma local”
+A _declaração global_ indica ao interpretador algo como “Nesta função, quando eu digo +foi_chamada+, eu quero dizer a variável global; não crie uma local.”
 (((declaração global)))((("declaração", "global", see="declaração global")))
 
 Aqui está um exemplo que tenta atualizar uma variável global:
@@ -457,21 +457,21 @@ Aqui está um exemplo que tenta atualizar uma variável global:
 ----
 conta = 0
 
-function exrmplo3()
+function exemplo3()
     conta = conta + 1          # ERRADO
 end
 ----
 
-Se você executá-la, você recebe:
+Ao executar a função, você recebe:
 (((UndefVarError)))
 
 [source,@julia-repl-test chap11]
 ----
 julia> exemplo3()
-ERROR: UndefVarError: count not defined
+ERROR: UndefVarError: conta not defined
 ----
 
-O Julia assume que +conta+ é local, e a partir desta suposição, de que você está lendo antes de escrevê-la. A solução, novamente, é declarar +conta+ como global.
+O Julia assume que +conta+ é local, partindo da suposição de que você está lendo a função antes de escrevê-la. A solução, novamente, é declarar +conta+ como global.
 
 [source,@julia-setup]
 ----
@@ -494,7 +494,7 @@ function exemplo4()
 end
 ----
 
-Então você pode adicionar, remover e substituir elementos de um array global ou dicionário, mas se você quiser re-atribuir uma variável, você deve declarar ela como global:
+Então você pode adicionar, remover e substituir os elementos de um array global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:
 
 [source,@julia-setup]
 ----
@@ -525,26 +525,26 @@ Variáveis globais podem ser utéis, mas se você tem muitas delas, e você as m
 
 === Debugando
 
-A medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
+Na medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
 (((debugando)))
 
 * Diminua a entrada:
 +
-Se possível, reduza o tamanho do dataset. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que você encontre que gere um erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele somente leia as primeiras latexmath:[\(n\)] linhas.
+Se possível, reduza o tamanho do dataset. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que dá erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele leia somente as primeiras latexmath:[\(n\)] linhas.
 (((redução de tamanho)))
 +
-Se existe um erro, você pode reduzir latexmath:[\(n\)] para o menor valor que gera um erro, e em seguida incrementá-lo gradualmente a medida em que você encontra e corrige erros.
+Se existe um erro, você pode reduzir de latexmath:[\(n\)] para o menor valor que dá erro, e em seguida incrementá-lo gradualmente à medida que você encontra e corrige os erros.
 
-* Verifique os resumos e tipos:
+* Verifique os resumos e os tipos:
 +
 Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de um array de números.
-(((verificar)))
+(((verificação)))
 +
-Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, é geralmente suficiente imprimir o tipo de um valor.
+Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.
 
 * Escreva auto-verificações:
 +
-Algumas vezes você pode escrever código para checar erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não é maior que o maior elemento do array ou menor que o menor elemento. Isso é chamado de “verificação de sanidade”.
+Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não está acima do maior elemento do array ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
 (((auto-verificação)))(((verificação de sanidade)))
 +
 Outro tipo de verificação compara o resultado de dois cálculos diferentes para verificar se eles são consistentes. Isso é chamado de “verificação de consistência”.
@@ -552,11 +552,11 @@ Outro tipo de verificação compara o resultado de dois cálculos diferentes par
 
 * Formate a saída:
 +
-Resultados de depuração formatados podem facilitar a detecção de erros. Nós vimos um exemplo em <<deb06>>.
-(((Formatação)))
+Resultados de debugging formatados podem facilitar a detecção de erros, como visto em um exemplo em <<deb06>>.
+(((formatação)))
 +
-Novamente, tempo que você gasta construindo andaimes pode reduzir o tempo gasto debugando.
-(((andaimes)))(((debugando)))
+E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto no debugging.
+(((andaime)))(((debugging)))
 
 
 === Glossário
@@ -566,7 +566,7 @@ Uma relação na qual cada elemento de um conjunto corresponde a um elemento de 
 (((mapeamento)))
 
 dicionário::
-Um mapeamento de chaves para seus valores correspondentes.
+Um mapeamento de chaves para os seus valores correspondentes.
 (((dicionário)))
 
 par chave-valor::
@@ -602,11 +602,11 @@ Um tipo que tem uma função hash.
 (((hashable)))
 
 consulta::
-Uma operação de dicionário que recebe uma chave e encontra o valor correspondente.
+Uma operação em um dicionário que recebe uma chave e encontra o valor correspondente.
 (((consulta)))
 
 consulta inversa::
-Uma operação de dicionário que recebe um valor e encontra uma ou mais chaves que o mapeiam.
+Uma operação em um dicionário que recebe um valor e encontra uma ou mais chaves mapeadas para ele.
 (((consulta inversa)))
 
 singleton::
@@ -614,11 +614,11 @@ Um array (ou outra sequência) com um único elemento.
 (((singleton)))
 
 grafo de chamada::
-Um diagrama que mostra todo quadro criado durante a execução do programa, com uma flecha que vai de quem chama para quem é chamado.
+Um diagrama que mostra todo quadro criado durante a execução de um programa, com uma flecha que vai de quem chama para quem é chamado.
 (((grafo de chamada)))
 
 memo::
-Um valor computado guardado para evitar cálculos futuros desnecessários.
+Um valor já computado e guardado para evitar cálculos futuros desnecessários.
 (((memo)))
 
 variável global::
@@ -626,19 +626,19 @@ Uma variável definida fora da função. Variáveis globais podem ser acessadas 
 (((variável global)))
 
 declaração global::
-Uma declaração que declara um nome de variável como global.
+Uma declaração para tornar um nome de variável como global.
 (((declaração global)))
 
 flag::
-Uma variável booleana usada para inidicar se uma condição é verdadeira.
+Uma variável booleana usada para indicar se uma condição é verdadeira.
 (((flag)))
 
 declaração::
-Uma declaração como +global+ que indica ao interpretador algo sobre a variável.
+Uma declaração como +global+ que informa ao interpretador algo sobre a variável.
 (((declaração)))
 
 variável global constante::
-Uma variável global que não pode ser re-atribuida.
+Uma variável global que não pode ser reatribuída.
 (((variável global constante)))
 
 
@@ -647,7 +647,7 @@ Uma variável global que não pode ser re-atribuida.
 [[ex11-1]]
 ===== Exercício 11-2
 
-Escreva uma função que leia palavras em _words.txt_ e as guarde como chaves em um dicionário. Não importa quais sejam os valores. Em seguida você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
+Escreva uma função que leia palavras em _palavras.txt_ e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
 (((in)))
 
 Se você fez <<ex10-10>>, você pode comparar a velocidade desta implementação com o operador +∈+ em arrays e a busca bissecção.
@@ -655,22 +655,22 @@ Se você fez <<ex10-10>>, você pode comparar a velocidade desta implementação
 [[ex11-2]]
 ===== Exercício 11-3
 
-Leia a documentação da função de dicionário +get!+ e a use para escrever uma versão mais concisa de +invertdict+.
+Leia a documentação da função de dicionário +get!+ e use-a para escrever uma versão mais concisa de +invertdict+.
 (((get!)))((("função", "Base", "get!", see="get!")))
 
 [[ex11-3]]
 ===== Exercício 11-4
 
-Memoize a função Ackermann de <<ex06-2>> e verifique se a memoização faz possível avaliar a função com argumentos maiores.
-(((memo)))(((Ackermann function)))
+Memoize a função de Ackermann de <<ex06-2>> e verifique se a memoização possibilita a avaliação da função com argumentos maiores.
+(((memo)))(((função de Ackermann)))
 
 [[ex11-4]]
 ===== Exercício 11-5
 
-Se você fez <<ex10-7>>, você já possui uma função chamada +hasduplicates+ que recebe um array como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez em um array.
-(((hasduplicates)))
+Se você fez <<ex10-7>>, então já possui uma função chamada +tem_duplas+ que recebe um array como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez no array.
+(((tem_duplas)))
 
-Use um dicionário para escrever uma versão mais rápida, e mais simples de +hasduplicates+.
+Use um dicionário para escrever uma versão mais rápida e simplificada de +tem_duplas+.
 
 [[ex11-5]]
 ===== Exercício 11-6
@@ -678,7 +678,7 @@ Use um dicionário para escrever uma versão mais rápida, e mais simples de +ha
 Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver +rotacionapalavra+ em <<ex08-5>>).
 (((rotacionapalavra)))
 
-Escreva um programa que lê um array e ache todos os pares rotacionados.
+Escreva um programa que lê um array e encontra todos os pares rotacionados.
 
 [[ex11-6]]
 ===== Exercício 11-7
@@ -695,11 +695,11 @@ Now I’m going to give you an exemplo that doesn’t work. Let’s look at the 
 But there is, however, at least one word that Dan and we know of, which will yield two homophones if you remove either of the first two letters to make two, new four-letter words. The question is, what’s the word?
 ____
 
-Você pode usar um dicionário de <<ex11-1>> para verificar se uma string está no array de palavras.
+Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está no array de palavras.
 
 [TIP]
 ====
-Para verificar se duas palavras são homofones, você pode usar o Dicionário CMU de Pronunciação. Você pode baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
+Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. Pode-se baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
 ====
 
 Escreva um programa que lista todas as palavras que resolvem o quebra cabeça.
