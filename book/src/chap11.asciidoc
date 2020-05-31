@@ -3,6 +3,7 @@
 
 Este capítulo apresenta outra estrutura de dados embutida chamada de dicionário.
 
+
 === Um Dicionário é um Mapeamento
 
 Um _dicionário_ é como um array, mas mais geral. Em um array, os indíces tem que ser inteiros; em um dicionário eles podem ser (quase) de qualquer tipo.
