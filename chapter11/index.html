@@ -1074,7 +1074,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   (_)     | (_) (_)    |
    _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
   | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.4.1 (2020-04-14)
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
  _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
 |__/                   |
 
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.58956240555804e9</code></pre>
+1.59094186655095e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-10♥ 8♣ 7♥ K♠ A♥ K♣ 6♠ 7♣ Q♠ 2♦ 5♦ J♥ 10♣ 10♠ A♠ 2♥ 8♠ A♣ K♦ J♦ 4♥ 7♦ 10♦ 4♠ 9♦ 4♦ 5♠ K♥ A♦ 5♥ 3♥ 8♥ 4♣ 8♦ 6♦ Q♥ 7♠ Q♣ 3♣ Q♦ 9♥ 9♣ 2♣ 3♦ 5♣ J♠ 2♠ 6♣ 9♠ 3♠ 6♥ J♣
+8♥ 9♠ Q♥ 7♦ J♥ 9♦ 10♠ 4♠ J♠ 5♠ A♠ 3♠ J♣ 2♦ 8♦ 6♠ 10♦ 5♦ A♣ Q♦ 5♥ 7♣ 6♦ K♥ 7♥ K♠ 4♣ K♦ 4♦ 6♣ 10♥ 3♣ 5♣ 2♠ J♦ 10♣ A♥ Q♣ 2♥ 6♥ 8♣ K♣ Q♠ 9♥ 8♠ 3♦ 4♥ 7♠ A♦ 9♣ 3♥ 2♣
 julia&gt; card = pop!(deck)
-J♣
+2♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20491(double, double) {
+define double @julia_squaresum_20467(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-15 17:06:42 UTC
+Last updated 2020-05-31 16:17:43 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
