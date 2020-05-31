@@ -606,8 +606,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_um_dicionário_é_um_mapeamento">Um Dicionário é um Mapeamento</a></li>
 <li><a href="#dictionary_collection_counters">Dicionários como uma Coleção de Contadores</a></li>
-<li><a href="#_dando_laços_e_dicionários">Dando Laços e Dicionários</a></li>
-<li><a href="#_consulta_invertida">Consulta Invertida</a></li>
+<li><a href="#_laços_e_dicionários">Laços e Dicionários</a></li>
+<li><a href="#_consulta_inversa">Consulta Inversa</a></li>
 <li><a href="#_dicionários_e_arrays">Dicionários e Arrays</a></li>
 <li><a href="#memos">Memos</a></li>
 <li><a href="#global_variables">Variáveis Globais</a></li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59094186655095e9</code></pre>
+1.590943864631348e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8444,20 +8444,20 @@ false</code></pre>
 <h2 id="chap11">14. Dicionários</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo apresenta outra estrutura de dados embutida chamada de dicionário.</p>
+<p>Este capítulo apresenta outra estrutura de dados embutida chamado dicionário.</p>
 </div>
 <div class="sect2">
 <h3 id="_um_dicionário_é_um_mapeamento">Um Dicionário é um Mapeamento</h3>
 <div class="paragraph">
-<p>Um <em>dicionário</em> é como um array, mas mais geral. Em um array, os indíces tem que ser inteiros; em um dicionário eles podem ser (quase) de qualquer tipo.
+<p>Um <em>dicionário</em> é como um array, mas mais geral. Em um array, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
 </p>
 </div>
 <div class="paragraph">
-<p>Um dicionário contém uma coleção de indíces, que são chamados de <em>chaves</em>, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de <em>par chave-valor</em> ou, as vezes, um item.
+<p>Um dicionário contém uma coleção de índices, que são chamados de <em>chaves</em>, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de <em>par chave-valor</em> ou, às vezes, de item.
 </p>
 </div>
 <div class="paragraph">
-<p>Em linguagem matemática, um dicionário representa um <em>mapeamento</em> de chave para valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, então as chaves e os valores são todos strings.
+<p>Na linguagem matemática, um dicionário representa um <em>mapeamento</em> da chave para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
 </p>
 </div>
 <div class="paragraph">
@@ -8471,7 +8471,7 @@ Dict{Any,Any} with 0 entries</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O tipo de dicionário é cercado por chaves: as chaves são do tipo <code>Any</code> e os valores também são do tipo <code>Any</code>.
+<p>O tipo do dicionário é cercado por chaves: as chaves são do tipo <code>Any</code> e os valores também são do tipo <code>Any</code>.
 </p>
 </div>
 <div class="paragraph">
@@ -8484,7 +8484,7 @@ Dict{Any,Any} with 0 entries</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Essa linha cria um item que mapeia a chave "um" para o valor "uno". Se nós imprimirmos o dicionário novamente, nós vemos o par chave-valor com a flecha <code>=&gt;</code> entre a chave e o valor:
+<p>Essa linha cria um item que mapeia a chave "um" para o valor "uno". Se imprimirmos o dicionário novamente, nós vemos o par chave-valor com a flecha <code>=&gt;</code> entre a chave e o valor:
 </p>
 </div>
 <div class="listingblock">
@@ -8495,7 +8495,7 @@ Dict{Any,Any} with 1 entry:
 </div>
 </div>
 <div class="paragraph">
-<p>Esse formato de resultado também é um formato de entrada. Por exemplo, você pode criar um novo dicionário com três itens:</p>
+<p>Essa formatação de saída também é uma formatação de entrada. Por exemplo, você pode criar um novo dicionário com três itens:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8517,14 +8517,14 @@ Dict{String,String} with 3 entries:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A ordem do par chave-valor pode não ser a mesma. Se você digitar o mesmo exemplo no seu computador, você pode obter um resultado diferente. Em geral, a ordem dos itens em um dicionário é imprevisível.</p>
+<p>A ordem do par chave-valor pode não ser a mesma. Se você digitar o mesmo exemplo no seu computador, pode obter um resultado diferente. Em geral, a ordem dos itens em um dicionário é imprevisível.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Mas isso não é um problema pois os elementos de um dicionário nunca são indexados com indíces inteiros. Ao invés disso, nós usamos as chaves para consultar os valores correspondentes:</p>
+<p>Mas isso não é um problema pois os elementos de um dicionário nunca são indexados com índices inteiros. Ao invés disso, nós usamos as chaves para consultar os valores correspondentes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8533,7 +8533,7 @@ Dict{String,String} with 3 entries:
 </div>
 </div>
 <div class="paragraph">
-<p>A chave "dois" sempre é mapeada par ao valor "dos", então a ordem dos itens não importa.</p>
+<p>A chave "dois" sempre é mapeada para o valor "dos", então a ordem dos itens não importa.</p>
 </div>
 <div class="paragraph">
 <p>Se a chave não está no dicionário, nós recebemos uma exceção:
@@ -8542,11 +8542,11 @@ Dict{String,String} with 3 entries:
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; por2sp["quatro"]
-ERROR: KeyError: key "four" not found</code></pre>
+ERROR: KeyError: key "quatro" not found</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A função <code>length</code> funciona em dicionários; ela retorna o número de pares chave-valor:
+<p>A função <code>length</code> funciona nos dicionários e retorna o número de pares chave-valor:
 </p>
 </div>
 <div class="listingblock">
@@ -8580,7 +8580,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para verificar se algo aparece como um valor em um dicionário, você pode usar a função <code>values</code>, que retorna uma coleção de valores, e em seguida usar o operador <code>∈</code>:
+<p>Para verificar se algo aparece como um valor em um dicionário, você pode usar a função <code>values</code> que retorna uma coleção de valores, e em seguida usar o operador <code>∈</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -8592,36 +8592,36 @@ true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O operador <code>∈</code> utiliza algoritmos diferentes para arrays e dicionários. Para arrays, ele busca os elementos do array em ordem, como em <a href="#searching">Searching</a>. À medida que o array fica maior, o tempo de busca cresce em proporção direta.</p>
+<p>O operador <code>∈</code> utiliza algoritmos diferentes para os arrays e dicionários. Para os arrays, ele busca os elementos do array em ordem, como em <a href="#searching">Searching</a>. À medida que o array fica maior, o tempo de busca cresce diretamente proporcional.</p>
 </div>
 <div class="paragraph">
-<p>Para dicionários, o Julia usa um algoritmo chamado de <em>tabela hash</em> que possui uma propriedade expecional: o operador <code>∈</code> leva aproximadamente o mesmo não importa quantos itens o dicionário possui.
+<p>Para os dicionários, o Julia usa um algoritmo chamado <em>tabela hash</em> (ou tabela de dispersão ou tabela de espalhamento) que possui uma propriedade excepcional: o operador <code>∈</code> leva aproximadamente o mesmo tempo independente da quantidade de itens do dicionário.
 </p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="dictionary_collection_counters">Dicionários como uma Coleção de Contadores</h3>
 <div class="paragraph">
-<p>Suponha que é dado à você uma string e você gostaria de contar quantas vezes cada letra aparece. Existem muitas maneiras de fazer isso:</p>
+<p>Suponha que é dado a você uma string e você gostaria de contar quantas vezes cada letra aparece. Existem muitas maneiras de fazer isso:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provávelmente usando um condicional encadeado.</p>
+<p>Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provavelmente usando um condicional encadeado.</p>
 </li>
 <li>
-<p>Você poderia criar um array com 26 elementos. Em seguida você poderia converter cada caractere para um número (usando a função embutida <code>Int</code>), usar o número como um indíce para o array, e incrementar o contador adequado.</p>
+<p>Você poderia criar um array com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida <code>Int</code>), usar o número como um índice para o array, e incrementar o contador adequado.</p>
 </li>
 <li>
-<p>Você poderia criar um dicionário com caracteres como chaves e contadores como seus valores correspondentes. A primeira vez que você vê um caractere, você adicionaria um item no dicionário. Após isso você incrementaria o valor de um item existente.</p>
+<p>Você poderia criar um dicionário com os caracteres como as chaves e os contadores como seus valores correspondentes. A primeira vez que você vê um caractere, adicionaria um item no dicionário. Após isso, você só incrementaria o valor de um item existente.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Cada uma dessas opções efetua o mesmo cálculo, mas cada uma delas implementa este cálculo de maneiras diferentes.</p>
+<p>Cada uma dessas opções efetua o mesmo cálculo, mas cada uma delas implementa este cálculo de formas diferentes.</p>
 </div>
 <div class="paragraph">
-<p>Uma <em>implementação</em> é uma maneira de efetuar um cálculo; algumas implementações são melhores que outras. Por exemplo, uma vantagem da implementação do dicionário é que nós não temos que saber antecipadamente quais letras aparecem na string, e nós temos que somente criar espaço para as letras que aparecem.
+<p>Uma <em>implementação</em> é uma maneira de efetuar um cálculo e algumas implementações são melhores que outras. Por exemplo, uma vantagem da implementação do dicionário é que nós não temos que saber antecipadamente quais letras aparecem na string, e sim criar espaço só para as letras que aparecem.
 </p>
 </div>
 <div class="paragraph">
@@ -8654,7 +8654,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; h = histograma("brontosaurus")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; h = histograma("brontossauro")
 Dict{Any,Any} with 8 entries:
   'n' =&gt; 1
   's' =&gt; 2
@@ -8667,10 +8667,10 @@ Dict{Any,Any} with 8 entries:
 </div>
 </div>
 <div class="paragraph">
-<p>O histograma indica que as letras <code><em>a</em></code> e <code><em>b</em></code> aparecem uma vez; <code><em>o</em></code> aparece duas, e assim em diante.</p>
+<p>O histograma indica que as letras <code><em>a</em></code> e <code><em>b</em></code> aparecem uma vez; <code><em>o</em></code> aparece três, e assim em diante.</p>
 </div>
 <div class="paragraph">
-<p>Dicionários possuem uma função chamada <code>get</code> que recebe uma chave e uma valor padrão. Se a chave aparece no dicionário, <code>get</code> retorna o valor correspondente; caso contrário ela retorna o valor padrão. Por exemplo:
+<p>Dicionários possuem uma função chamada <code>get</code> que recebe uma chave e um valor padrão. Se a chave aparece no dicionário, <code>get</code> retorna o valor correspondente; caso contrário ela retorna o valor padrão. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8692,7 +8692,7 @@ julia&gt; get(h, 'b', 0)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dando_laços_e_dicionários">Dando Laços e Dicionários</h3>
+<h3 id="_laços_e_dicionários">Laços e Dicionários</h3>
 <div class="paragraph">
 <p>Você pode percorrer as chaves de um dicionário em uma declaração <code>for</code>. Por exemplo, <code>imprimehist</code> exibe cada chave e o seu valor correspondente:
 </p>
@@ -8722,7 +8722,7 @@ o 1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Novamente, as chaves não estão em nenhuma ordem específica. Para percorrer as chaves em ordem, você pode combinar <code>sort</code> e <code>collect</code>:
+<p>Novamente as chaves não estão em nenhuma ordem específica. Para percorrer as chaves em ordem, você pode combinar <code>sort</code> e <code>collect</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -8739,13 +8739,13 @@ p 2</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_consulta_invertida">Consulta Invertida</h3>
+<h3 id="_consulta_inversa">Consulta Inversa</h3>
 <div class="paragraph">
 <p>Dado um dicionário <code>d</code> e uma chave <code>k</code>, é fácil achar o valor correspondente <code>v = d[k]</code>. Esta operação é chamada de <em>consulta</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo da aplicação, você poderia escolher um, ou você teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta invertida</em> ; você tem que procurar.
+<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta invertida</em>; você tem que procurar.
 </p>
 </div>
 <div class="paragraph">
@@ -8791,7 +8791,7 @@ ERROR: LookupError</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O efeito de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.</p>
+<p>O resultado de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.</p>
 </div>
 <div class="paragraph">
 <p>Julia fornece uma maneira otimizada de fazer uma consulta invertida: <code>findall(isequal(3), h)</code>.
@@ -8805,7 +8805,7 @@ ERROR: LookupError</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Uma consulta invertida é muito  mais devagar que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, a performance do seu programa irá diminiuir.</p>
+<p>Uma consulta invertida é muito mais demorada que uma consulta normal; se você tiver que executá-la várias vezes, ou se o dicionário ficar muito grande, o desempenho do seu programa diminuirá.</p>
 </div>
 </td>
 </tr>
@@ -8815,7 +8815,7 @@ ERROR: LookupError</code></pre>
 <div class="sect2">
 <h3 id="_dicionários_e_arrays">Dicionários e Arrays</h3>
 <div class="paragraph">
-<p>Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras à frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências para letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.</p>
+<p>Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.</p>
 </div>
 <div class="paragraph">
 <p>Aqui está uma função que inverte um dicionário:
@@ -8838,7 +8838,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Cada vez que o loop é percorrido, <code>key</code> recebe uma chave de <code>d</code> e <code>val</code> recebe o valor correspondente. Se <code>vaç</code> não está em <code>inverse</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (um array que contém um único elemento). Caso contrário nós já vimos esse valor, então nós acrescentamos a chave correspondente ao array.
+<p>Cada vez que o loop é percorrido, <code>key</code> recebe uma chave de <code>d</code> e <code>val</code> recebe o valor correspondente. Se <code>val</code> não está em <code>inverse</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
 </p>
 </div>
 <div class="paragraph">
@@ -8862,7 +8862,7 @@ Dict{Any,Any} with 2 entries:
 <div class="title">Figure 16. Diagrama de Estado</div>
 </div>
 <div class="paragraph">
-<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverse</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Se os valores são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, mas eu normalmente desenho arrays fora da caixa, só para simplificar o diagrama.
+<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverse</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
 </p>
 </div>
 <div class="admonitionblock note">
@@ -8888,11 +8888,11 @@ Dict{Any,Any} with 2 entries:
 <div class="sect2">
 <h3 id="memos">Memos</h3>
 <div class="paragraph">
-<p>Se você já brincou com a função <code>fibonacci</code> de <a href="#one_more_exemplo">[one_more_exemplo]</a>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
+<p>Se você já brincou com a função <code>fibonacci</code> de <a href="#one_more_exemple">[one_more_exemple]</a>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
 </p>
 </div>
 <div class="paragraph">
-<p>Para entender o por que, considere <a href="#fig11-2">Grafo de chamada</a>, que mostra um <em>grafo de chamada</em> para <code>fibonacci</code> com <code>n = 4</code>:
+<p>Para entender o porquê, considere <a href="#fig11-2">Grafo de chamada</a>, que mostra um <em>grafo de chamada</em> para <code>fibonacci</code> com <code>n = 4</code>:
 </p>
 </div>
 <div id="fig11-2" class="imageblock">
@@ -8905,10 +8905,10 @@ Dict{Any,Any} with 2 entries:
 <p>Um grafo de chamada mostra um conjunto de quadros de função, com linhas conectando cada quadro à quadros no qual a função chama. No topo do grafo, <code>fibonacci</code> com <code>n = 4</code> chama <code>fibonacci</code> com <code>n = 3</code> e <code>n = 2</code>. Por sua vez, <code>fibonacci</code> com <code>n = 3</code> chama <code>fibonacci</code> com <code>n = 2</code> e <code>n = 1</code>. E assim em diante.</p>
 </div>
 <div class="paragraph">
-<p>Conte quantas vezes <code>fibonacci(0)</code> e <code>fibonacci(1)</code> são chamadas. Está é uma solução ineficiente do problema, e fica pior a medida em que o argumento aumenta.</p>
+<p>Conte quantas vezes <code>fibonacci(0)</code> e <code>fibonacci(1)</code> são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida em que o argumento aumenta.</p>
 </div>
 <div class="paragraph">
-<p>Uma solução é acompanhar os valores que já foram calculados armazenando eles em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de <em>memo</em>. Aqui está uma versão “memoizada” de fibonacci:
+<p>Uma solução é acompanhar os valores já calculados armazenando-os em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de <em>memo</em>. Aqui está uma versão “memoizada” de fibonacci:
 </p>
 </div>
 <div class="listingblock">
@@ -8926,19 +8926,19 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>conhecido</code> é um dicionáro que acompanha os números de fibonacci que já sabemos. Ele começa com dois itens: <code>0</code> mapeia para <code>0</code> e <code>1</code> mapeia para <code>1</code>.</p>
+<p><code>conhecido</code> é um dicionáro que guarda os números de Fibonacci que já sabemos. Ele começa com dois itens: <code>0</code> mapeia para <code>0</code> e <code>1</code> mapeia para <code>1</code>.</p>
 </div>
 <div class="paragraph">
 <p>Toda vez que <code>fibonacci</code> é chamada, ela checa <code>conhecidos</code>. Se o resultado já está lá, ela retorna imediatamente. Por outro lado ela tem que computar um novo valor, adicionar ao dicionário, e retorná-lo.</p>
 </div>
 <div class="paragraph">
-<p>Se você executar esta versão de <code>fibonacci</code> e comparar com a original, você verá que ela é muito mais rápida.</p>
+<p>Se você executar esta versão de <code>fibonacci</code> e comparar com a original, você verá que a atual é muito mais rápida.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="global_variables">Variáveis Globais</h3>
 <div class="paragraph">
-<p>No exemplo anterior, conhecidos é criado fora da função, então ela pertence ao quadro especial chamado <code>Main</code>. Variáveis em <code>Main</code> são as vezes chamadas de <em>globais</em> pois podem ser acessadas de qualquer função. Diferente de variáveis locais, que desaparecem quando a função acaba, variáveis globais persistem de uma chamada de função para a próxima.
+<p>No exemplo anterior, conhecidos é criado fora da função, então ela pertence ao quadro especial chamado <code>Main</code>. Variáveis em <code>Main</code> são às vezes chamadas de <em>globais</em> pois podem ser acessadas de qualquer função. Diferente de variáveis locais, que desaparecem quando a função acaba, variáveis globais persistem de uma chamada de função para a próxima.
 </p>
 </div>
 <div class="paragraph">
@@ -8957,7 +8957,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se você tentar re-atribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:</p>
+<p>Se tentar reatribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8969,10 +8969,10 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Mas se você executar ela você verá que o valor de <code>foi_chamada</code> não muda. O problema é que <code>exemplo2</code> cria uma nova variável local chamada <code>foi_chamada</code>. A variável local vai embora quando a função termina, e não tem nenhum efeito sobre a variável global.</p>
+<p>Mas se você executar a função, você verá que o valor de <code>foi_chamada</code> não muda. O problema é que <code>exemplo2</code> cria uma nova variável local denominada <code>foi_chamada</code>. A variável local é removida quando a função termina, e não tem nenhum efeito sobre a variável global.</p>
 </div>
 <div class="paragraph">
-<p>Para re-atribuir uma variável global dentro de uma função você deve <em>declarar</em> a variável global antes de usá-la:
+<p>Para reatribuir uma variável global dentro de uma função, você deve <em>declarar</em> a variável global antes de usá-la:
 </p>
 </div>
 <div class="listingblock">
@@ -8986,7 +8986,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A <em>declaração global</em> indica ao interpretador algo como, “Nesta função, quando eu digo <code>foi_chamada</code>, eu quero dizer a variável global; não crie uma local”
+<p>A <em>declaração global</em> indica ao interpretador algo como “Nesta função, quando eu digo <code>foi_chamada</code>, eu quero dizer a variável global; não crie uma local.”
 </p>
 </div>
 <div class="paragraph">
@@ -8996,23 +8996,23 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">conta = 0
 
-function exrmplo3()
+function exemplo3()
     conta = conta + 1          # ERRADO
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se você executá-la, você recebe:
+<p>Ao executar a função, você recebe:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; exemplo3()
-ERROR: UndefVarError: count not defined</code></pre>
+ERROR: UndefVarError: conta not defined</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O Julia assume que <code>conta</code> é local, e a partir desta suposição, de que você está lendo antes de escrevê-la. A solução, novamente, é declarar <code>conta</code> como global.</p>
+<p>O Julia assume que <code>conta</code> é local, partindo da suposição de que você está lendo a função antes de escrevê-la. A solução, novamente, é declarar <code>conta</code> como global.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9037,7 +9037,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Então você pode adicionar, remover e substituir elementos de um array global ou dicionário, mas se você quiser re-atribuir uma variável, você deve declarar ela como global:</p>
+<p>Então você pode adicionar, remover e substituir os elementos de um array global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9080,7 +9080,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_debugando_2">Debugando</h3>
 <div class="paragraph">
-<p>A medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
+<p>Na medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
 </p>
 </div>
 <div class="ulist">
@@ -9088,27 +9088,27 @@ end</code></pre>
 <li>
 <p>Diminua a entrada:</p>
 <div class="paragraph">
-<p>Se possível, reduza o tamanho do dataset. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que você encontre que gere um erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele somente leia as primeiras \(n\) linhas.
+<p>Se possível, reduza o tamanho do dataset. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que dá erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele leia somente as primeiras \(n\) linhas.
 </p>
 </div>
 <div class="paragraph">
-<p>Se existe um erro, você pode reduzir \(n\) para o menor valor que gera um erro, e em seguida incrementá-lo gradualmente a medida em que você encontra e corrige erros.</p>
+<p>Se existe um erro, você pode reduzir de \(n\) para o menor valor que dá erro, e em seguida incrementá-lo gradualmente à medida que você encontra e corrige os erros.</p>
 </div>
 </li>
 <li>
-<p>Verifique os resumos e tipos:</p>
+<p>Verifique os resumos e os tipos:</p>
 <div class="paragraph">
 <p>Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de um array de números.
 </p>
 </div>
 <div class="paragraph">
-<p>Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, é geralmente suficiente imprimir o tipo de um valor.</p>
+<p>Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.</p>
 </div>
 </li>
 <li>
 <p>Escreva auto-verificações:</p>
 <div class="paragraph">
-<p>Algumas vezes você pode escrever código para checar erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não é maior que o maior elemento do array ou menor que o menor elemento. Isso é chamado de “verificação de sanidade”.
+<p>Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não está acima do maior elemento do array ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
 </p>
 </div>
 <div class="paragraph">
@@ -9119,11 +9119,11 @@ end</code></pre>
 <li>
 <p>Formate a saída:</p>
 <div class="paragraph">
-<p>Resultados de depuração formatados podem facilitar a detecção de erros. Nós vimos um exemplo em <a href="#deb06">Debugging</a>.
+<p>Resultados de debugging formatados podem facilitar a detecção de erros, como visto em um exemplo em <a href="#deb06">Debugging</a>.
 </p>
 </div>
 <div class="paragraph">
-<p>Novamente, tempo que você gasta construindo andaimes pode reduzir o tempo gasto debugando.
+<p>E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto no debugging.
 </p>
 </div>
 </li>
@@ -9141,7 +9141,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">dicionário</dt>
 <dd>
-<p>Um mapeamento de chaves para seus valores correspondentes.
+<p>Um mapeamento de chaves para os seus valores correspondentes.
 </p>
 </dd>
 <dt class="hdlist1">par chave-valor</dt>
@@ -9186,12 +9186,12 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">consulta</dt>
 <dd>
-<p>Uma operação de dicionário que recebe uma chave e encontra o valor correspondente.
+<p>Uma operação em um dicionário que recebe uma chave e encontra o valor correspondente.
 </p>
 </dd>
 <dt class="hdlist1">consulta inversa</dt>
 <dd>
-<p>Uma operação de dicionário que recebe um valor e encontra uma ou mais chaves que o mapeiam.
+<p>Uma operação em um dicionário que recebe um valor e encontra uma ou mais chaves mapeadas para ele.
 </p>
 </dd>
 <dt class="hdlist1">singleton</dt>
@@ -9201,12 +9201,12 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">grafo de chamada</dt>
 <dd>
-<p>Um diagrama que mostra todo quadro criado durante a execução do programa, com uma flecha que vai de quem chama para quem é chamado.
+<p>Um diagrama que mostra todo quadro criado durante a execução de um programa, com uma flecha que vai de quem chama para quem é chamado.
 </p>
 </dd>
 <dt class="hdlist1">memo</dt>
 <dd>
-<p>Um valor computado guardado para evitar cálculos futuros desnecessários.
+<p>Um valor já computado e guardado para evitar cálculos futuros desnecessários.
 </p>
 </dd>
 <dt class="hdlist1">variável global</dt>
@@ -9216,22 +9216,22 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">declaração global</dt>
 <dd>
-<p>Uma declaração que declara um nome de variável como global.
+<p>Uma declaração para tornar um nome de variável como global.
 </p>
 </dd>
 <dt class="hdlist1">flag</dt>
 <dd>
-<p>Uma variável booleana usada para inidicar se uma condição é verdadeira.
+<p>Uma variável booleana usada para indicar se uma condição é verdadeira.
 </p>
 </dd>
 <dt class="hdlist1">declaração</dt>
 <dd>
-<p>Uma declaração como <code>global</code> que indica ao interpretador algo sobre a variável.
+<p>Uma declaração como <code>global</code> que informa ao interpretador algo sobre a variável.
 </p>
 </dd>
 <dt class="hdlist1">variável global constante</dt>
 <dd>
-<p>Uma variável global que não pode ser re-atribuida.
+<p>Uma variável global que não pode ser reatribuída.
 </p>
 </dd>
 </dl>
@@ -9242,7 +9242,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex11-1">Exercício 11-2</h5>
 <div class="paragraph">
-<p>Escreva uma função que leia palavras em <em>words.txt</em> e as guarde como chaves em um dicionário. Não importa quais sejam os valores. Em seguida você pode usar o operador <code>∈</code> como uma maneira rápida de verificar se uma string está ou não no dicionário.
+<p>Escreva uma função que leia palavras em <em>palavras.txt</em> e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador <code>∈</code> como uma maneira rápida de verificar se uma string está ou não no dicionário.
 </p>
 </div>
 <div class="paragraph">
@@ -9252,25 +9252,25 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex11-2">Exercício 11-3</h5>
 <div class="paragraph">
-<p>Leia a documentação da função de dicionário <code>get!</code> e a use para escrever uma versão mais concisa de <code>invertdict</code>.
+<p>Leia a documentação da função de dicionário <code>get!</code> e use-a para escrever uma versão mais concisa de <code>invertdict</code>.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex11-3">Exercício 11-4</h5>
 <div class="paragraph">
-<p>Memoize a função Ackermann de <a href="#ex06-2">Exercise 6-5</a> e verifique se a memoização faz possível avaliar a função com argumentos maiores.
+<p>Memoize a função de Ackermann de <a href="#ex06-2">Exercise 6-5</a> e verifique se a memoização possibilita a avaliação da função com argumentos maiores.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex11-4">Exercício 11-5</h5>
 <div class="paragraph">
-<p>Se você fez <a href="#ex10-7">Exercise 10-7</a>, você já possui uma função chamada <code>hasduplicates</code> que recebe um array como parâmetro e retorna <code>true</code> se há qualquer objeto que aparece mais de uma vez em um array.
+<p>Se você fez <a href="#ex10-7">Exercise 10-7</a>, então já possui uma função chamada <code>tem_duplas</code> que recebe um array como parâmetro e retorna <code>true</code> se há qualquer objeto que aparece mais de uma vez no array.
 </p>
 </div>
 <div class="paragraph">
-<p>Use um dicionário para escrever uma versão mais rápida, e mais simples de <code>hasduplicates</code>.</p>
+<p>Use um dicionário para escrever uma versão mais rápida e simplificada de <code>tem_duplas</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -9280,7 +9280,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Escreva um programa que lê um array e ache todos os pares rotacionados.</p>
+<p>Escreva um programa que lê um array e encontra todos os pares rotacionados.</p>
 </div>
 </div>
 <div class="sect4">
@@ -9303,7 +9303,7 @@ end</code></pre>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Você pode usar um dicionário de <a href="#ex11-1">Exercício 11-2</a> para verificar se uma string está no array de palavras.</p>
+<p>Você pode usar o dicionário de <a href="#ex11-1">Exercício 11-2</a> para verificar se uma string está no array de palavras.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9313,7 +9313,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para verificar se duas palavras são homofones, você pode usar o Dicionário CMU de Pronunciação. Você pode baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
+<p>Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. Pode-se baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
 </div>
 </td>
 </tr>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♥ 9♠ Q♥ 7♦ J♥ 9♦ 10♠ 4♠ J♠ 5♠ A♠ 3♠ J♣ 2♦ 8♦ 6♠ 10♦ 5♦ A♣ Q♦ 5♥ 7♣ 6♦ K♥ 7♥ K♠ 4♣ K♦ 4♦ 6♣ 10♥ 3♣ 5♣ 2♠ J♦ 10♣ A♥ Q♣ 2♥ 6♥ 8♣ K♣ Q♠ 9♥ 8♠ 3♦ 4♥ 7♠ A♦ 9♣ 3♥ 2♣
+9♣ J♣ 9♥ 3♦ 8♥ 3♣ K♥ 5♦ A♦ 2♥ 3♠ 9♦ 5♣ J♦ 2♣ 10♠ 8♣ 4♣ 4♥ 7♣ 7♥ A♣ 8♦ 6♦ 10♦ 9♠ 2♠ Q♥ K♦ 7♦ 6♣ A♠ 8♠ A♥ J♠ Q♣ 6♥ 4♠ 10♣ 5♥ 7♠ 6♠ 3♥ J♥ Q♦ Q♠ 5♠ K♣ K♠ 2♦ 10♥ 4♦
 julia&gt; card = pop!(deck)
-2♣
+4♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20467(double, double) {
+define double @julia_squaresum_20468(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-31 16:17:43 UTC
+Last updated 2020-05-31 16:51:01 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
