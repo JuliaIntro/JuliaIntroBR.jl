@@ -268,7 +268,7 @@ julia> y = (x + a/x) / 2
 2.0000000000262146
 ----
 
-Em geral, não sabemos antecipadamente quantas etapas são necessárias para obter a resposta certa, mas sabemos quando chegamos lá porque a estimativa para de mudar:
+Em geral, não sabemos antecipadamente quantos passos são necessários para obter a resposta certa, mas sabemos quando chegamos lá porque a estimativa para de mudar:
 
 [source,@julia-repl-test chap07]
 ----
@@ -296,7 +296,7 @@ while true
 end
 ----
 
-Esta função funciona bem para a maior parte dos valores de a, mas em geral é perigoso testar igualdade com pontos flutuantes. Pontos flutuantes não são totalmente corretos: a maioria dos números racionais como latexmath:[(\frac{1}{3})], e números irracionais como latexmath:[(\sqrt 2)], não podem ser representados exatamente com um tipo +Float64+.
+Esta função funciona bem para a maior parte dos valores de a, mas em geral é perigoso testar igualdade com pontos flutuantes. Pontos flutuantes não são totalmente corretos: a maioria dos números racionais, como latexmath:[(\frac{1}{3})], e números irracionais, como latexmath:[(\sqrt 2)], não podem ser representados exatamente com um tipo +Float64+.
 
 Em vez de verificar se +x+ e +y+ são exatamente iguais, é mais seguro usar a função interna +abs+ para calcular o valor absoluto, ou magnitude, da diferença entre eles:
 (((abs)))
@@ -322,7 +322,7 @@ Mas se você fosse "preguiçoso", talvez tivesse aprendido alguns truques. Por e
 
 Similarmente, as técnicas que você aprendeu para a adição com transporte de unidades, a subtração com empréstimos e a divisão longa são todos algoritmos. Uma das características dos algoritmos é que eles não exigem nenhuma inteligência para serem executados. São processos mecânicos em que cada etapa segue a partir da última, de acordo com um conjunto simples de regras.
 
-A execução de algoritmos é chata, mas elaborá-los é interessante, intelectualmente desafiador e uma parte central da ciência da computação.
+Apesar da execução de algoritmos seja chata, a construção é interessante, intelectualmente desafiadora e uma parte central da ciência da computação.
 
 Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou pensamento consciente, são as mais difíceis de expressar por algoritmos. Compreender a linguagem natural é um bom exemplo. Todos fazemos isso, mas até agora ninguém foi capaz de explicar como fazemos, pelo menos não na forma de um algoritmo.
 
@@ -372,11 +372,11 @@ Execução repetida de um conjunto de comandos usando uma chamada de função re
 (((iteração)))
 
 declaração while::
-declração que permite iterações controladas por uma condição.
+Declaração que permite iterações controladas por uma condição.
 (((declaração while)))
 
 declaração break::
-declração que permite saltar fora de um laço.
+Declaração que permite saltar fora de um laço.
 (((declaração break)))
 
 declaração continue::
@@ -397,11 +397,11 @@ Um processo geral para resolver uma categoria de problemas.
 [[ex07-1]]
 ===== Exercício 7-2
 
-Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raiz+ que use +a+ como parâmetro, e escolha um valor razoável de +x+ e retorne uma estimativa da raiz quadrada de +a+.
+Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raiz+ que use a variável +a+ como parâmetro, e escolha um valor razoável de +x+ que retorne uma estimativa da raiz quadrada de +a+.
 (((minha_raiz)))((("função", "definido pelo programador", "minha_raiz", see = "minha_raiz"))))
 
 Para testá-la, escreva uma função chamada +testa_raiz+ que imprime uma tabela como esta:
-(((testa_raiz)))((("função", "definido pelo programador", "testa_raiz", see = "testa_raiz"))))
+(((testa_raiz)))((("função", "definido pelo programador", "testa_raiz", see="testa_raiz"))))
 
 [fonte, @ julia-eval]
 ----
@@ -437,7 +437,7 @@ julia> eval (expr)
 1.7724538509055159
 ----
 
-Escreva uma função chamada +avalie_laço+ que solicite iterativamente ao usuário, e então pegue a entrada recebida e a avalie usando +eval+ e depois imprima o resultado. Ele deve continuar até o usuário digitar +concluído+ e retornar o valor da última expressão avaliada.
+Escreva uma função chamada +avalie_laço+ que solicite iterativamente ao usuário, e então pegue a entrada recebida, avalie-na usando +eval+ e depois imprima o resultado. Ele deve continuar até o usuário digitar +concluído+ e retornar o valor da última expressão avaliada.
 
 (((avalie_laço)))((("função", "definido pelo programador", "avalie_laço", see= "avalie_laço")))
 
@@ -453,5 +453,5 @@ O matemático Srinivasa Ramanujan encontrou uma série infinita que pode ser usa
 \end{equation}
 ++++
 
-Escreva uma função chamada +estimativa_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação Julia para latexmath:[(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
-(((estimativa_pi)))((("função", "definido pelo programador", "estimativa_pi", see = "estimativa_pi"))))
+Escreva uma função chamada +estimativa_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação Julia para latexmath:[\(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
+(((estimativa_pi)))((("função", "definido pelo programador", "estimativa_pi", see="estimativa_pi"))))
