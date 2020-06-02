@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591123905119375e9</code></pre>
+1.591124501808997e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8745,7 +8745,7 @@ p 2</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta invertida</em>; você tem que procurar.
+<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta inversa</em>; você tem que procurar.
 </p>
 </div>
 <div class="paragraph">
@@ -8862,7 +8862,7 @@ Dict{Any,Any} with 2 entries:
 <div class="title">Figure 16. Diagrama de Estado</div>
 </div>
 <div class="paragraph">
-<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverse</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
+<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverso</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
 </p>
 </div>
 <div class="admonitionblock note">
@@ -8905,7 +8905,7 @@ Dict{Any,Any} with 2 entries:
 <p>Um grafo de chamada mostra um conjunto de quadros da função, com linhas conectando cada quadro aos quadros que a função chama. No topo do grafo, <code>fibonacci</code> com <code>n = 4</code> chama <code>fibonacci</code> com <code>n = 3</code> e <code>n = 2</code>. Por sua vez, <code>fibonacci</code> com <code>n = 3</code> chama <code>fibonacci</code> com <code>n = 2</code> e <code>n = 1</code>. E assim em diante.</p>
 </div>
 <div class="paragraph">
-<p>Conte quantas vezes <code>fibonacci(0)</code> e <code>fibonacci(1)</code> são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida em que o argumento aumenta.</p>
+<p>Conte quantas vezes <code>fibonacci(0)</code> e <code>fibonacci(1)</code> são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida que o argumento aumenta.</p>
 </div>
 <div class="paragraph">
 <p>Uma solução é acompanhar os valores já calculados armazenando-os em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de <em>memo</em>. Aqui está uma versão “memoizada” de fibonacci:
@@ -9313,7 +9313,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. Pode-se baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
+<p>Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
 </div>
 </td>
 </tr>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♣ 10♥ 7♦ A♥ K♠ 3♥ Q♠ 3♠ Q♣ Q♥ K♣ 2♣ 4♣ 6♦ 4♠ 5♠ 9♦ 4♦ 9♥ 7♠ 8♠ A♣ J♥ 8♣ J♠ Q♦ 7♣ 7♥ 3♣ 6♠ 3♦ 10♦ 2♥ 8♦ 8♥ A♠ J♣ 5♦ 10♠ A♦ 5♥ K♥ 5♣ 2♦ J♦ 10♣ 6♥ 9♠ 9♣ 4♥ K♦ 2♠
+7♦ 5♣ 9♦ 2♣ 3♥ K♥ 3♦ J♦ A♣ Q♣ 10♠ 6♣ A♦ 4♣ 4♦ Q♠ 5♦ 5♥ 7♣ J♣ 9♥ 10♦ Q♦ 5♠ 2♦ 3♠ 8♠ 8♦ A♠ 10♣ 6♥ J♠ 6♠ 8♣ 2♥ 4♥ 3♣ 9♣ 9♠ 8♥ Q♥ 2♠ K♣ 6♦ 7♥ K♦ A♥ 10♥ J♥ 4♠ K♠ 7♠
 julia&gt; card = pop!(deck)
-2♠
+7♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20470(double, double) {
+define double @julia_squaresum_20468(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-02 18:51:41 UTC
+Last updated 2020-06-02 19:01:38 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
