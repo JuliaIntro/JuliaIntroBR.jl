@@ -52,7 +52,7 @@ Essa formatação de saída também é uma formatação de entrada. Por exemplo,
 ----
 julia> por_para_esp = Dict("um" => "uno", "dois" => "dos", "três" => "tres")
 Dict{String,String} with 3 entries:
-  "dois"   => "dos"
+  "dois" => "dos"
   "um"   => "uno"
   "três" => "tres"
 ----
@@ -650,7 +650,7 @@ Uma variável global que não pode ser reatribuída.
 Escreva uma função que leia palavras em _palavras.txt_ e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
 (((in)))
 
-Se você fez <<ex10-10>>, você pode comparar a velocidade desta implementação com o operador +∈+ em arrays e na busca em bissecção.
+Se o exercício <<ex10-10>> foi feito, você pode comparar a velocidade desta implementação com o operador +∈+ em arrays e na busca em bissecção.
 
 [[ex11-2]]
 ===== Exercício 11-3
@@ -667,7 +667,7 @@ Memoize a função de Ackermann de <<ex06-2>> e verifique se a memoização poss
 [[ex11-4]]
 ===== Exercício 11-5
 
-Se você fez <<ex10-7>>, então já possui uma função chamada +tem_duplas+ que recebe um array como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez no array.
+Se <<ex10-7>> foi feito, então já possui uma função chamada +tem_duplas+ que recebe um array como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez no array.
 (((tem_duplas)))
 
 Use um dicionário para escrever uma versão mais rápida e simplificada de +tem_duplas+.
