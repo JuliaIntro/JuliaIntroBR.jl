@@ -254,7 +254,7 @@ p 2
 Dado um dicionário +d+ e uma chave +k+, é fácil achar o valor correspondente +v = d[k]+. Esta operação é chamada de _consulta_.
 (((consulta)))
 
-Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta invertida_; você tem que procurar.
+Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta inversa_; você tem que procurar.
 (((consulta inversa)))
 
 Aqui está uma função que recebe um valor e retorna a primeira chave que mapeia a este valor:
@@ -349,7 +349,7 @@ Dict{Any,Any} with 2 entries:
 image::images/fig111.svg[]
 
 
-<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverse+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
+<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverso+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
 (((diagrama de estado)))
 
 [NOTE]
@@ -377,7 +377,7 @@ image::images/fig112.svg[]
 
 Um grafo de chamada mostra um conjunto de quadros da função, com linhas conectando cada quadro aos quadros que a função chama. No topo do grafo, +fibonacci+ com +n = 4+ chama +fibonacci+ com +n = 3+ e +n = 2+. Por sua vez, +fibonacci+ com +n = 3+ chama +fibonacci+ com +n = 2+ e +n = 1+. E assim em diante.
 
-Conte quantas vezes +fibonacci(0)+ e +fibonacci(1)+ são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida em que o argumento aumenta.
+Conte quantas vezes +fibonacci(0)+ e +fibonacci(1)+ são chamadas. Está é uma solução ineficiente do problema, e fica pior à medida que o argumento aumenta.
 
 Uma solução é acompanhar os valores já calculados armazenando-os em um dicionário. Um valor previamente calculado que é armazenado para uso posterior é chamado de _memo_. Aqui está uma versão “memoizada” de fibonacci:
 (((memo)))
@@ -699,7 +699,7 @@ Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está n
 
 [TIP]
 ====
-Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. Pode-se baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
+Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
 ====
 
 Escreva um programa que lista todas as palavras que resolvem o quebra cabeça.
