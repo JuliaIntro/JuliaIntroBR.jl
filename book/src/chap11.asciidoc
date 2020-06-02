@@ -688,11 +688,11 @@ Aqui está outro quebra cabeça de Car Talk (https://www.cartalk.com/puzzler/bro
 
 [quote]
 ____
-This was sent in by a fellow named Dan O’Leary. He came upon a common one-syllable, five-letter word recently that has the following unique property. When you remove the first letter, the remaining letters form a homophone of the original word, that is a word that sounds exactly the same. Replace the first letter, that is, put it back and remove the second letter and the result is yet another homophone of the original word. And the question is, what’s the word?
+Essa foi enviada por um sujeito chamado Dan O’Leary. ele encontrou uma palavra comum de uma sílaba e cinco letras recentemente que possui a seguinte propriedade. Quando você remove a primeira letra, as letras restantes formam um homófono da palavra original, isto é, uma palavra que soa exatamente igual. Substituia a primeira letra, isto é, coloque-a novamente e remova a segunda letra, e o resultado é outro homófono da palavra original. E a pergunta é, qual é a palavra?
 
-Now I’m going to give you an example that doesn’t work. Let’s look at the five-letter word, ‘wrack.’ W-R-A-C-K, you know like to ‘wrack with pain.’ If I remove the first letter, I am left with a four-letter word, ’R-A-C-K.’ As in, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ It’s a perfect homophone. If you put the ‘w’ back, and remove the ‘r,’ instead, you’re left with the word, ‘wack,’ which is a real word, it’s just not a homophone of the other two words.
+Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cinco letras, ‘wrack.’ W-R-A-C-K, sabe como ‘wrack with pain.’ Se você remover a primeira letra, tenho uma palavra de quatro letras, ’R-A-C-K.’ como em, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ é um homófono perfeito. Se você colocar o ‘w’ novamente, e remover o ‘r,’ ao invés disso, você tem uma palavra, ‘wack,’ que é uma palavra real, só não é um homófono das outras duas palavras.
 
-But there is, however, at least one word that Dan and we know of, which will yield two homophones if you remove either of the first two letters to make two, new four-letter words. The question is, what’s the word?
+Mas há, no entanto, pelo menos uma palavra que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as primeiras duas letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?
 ____
 
 Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está no array de palavras.
