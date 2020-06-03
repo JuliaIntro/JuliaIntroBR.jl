@@ -111,179 +111,179 @@ end
 
 ===== Exercício 18-1
 
-Escreva um método +<+ para os objetos +MeuTime+ . Você pode usar a comparação de tupla, mas você também pode considerar a comparação de inteiros.
+Escreva um método +<+ para os objetos +MeuTime+. Você pode usar a comparação de tupla, mas você também pode considerar a comparação de inteiros.
 
 
 === Teste da Unidade
 
 
-_Unit testing_ allows you to verify the correctness of your code by comparing the results of your code to what you expect. This can be useful to be sure that your code still is correct after modifications, and it is also a way to predefine the correct behaviour of your code during development.
-(((unit testing)))
+_Unit testing_ permite verificar a correção do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
+(((teste de unidade)))
 
-Simple unit testing can be performed with the +@test+ macros:
-(((Test)))((("module", "Test", see="Test")))(((@test)))((("macro", "Test", "@test", see="@test")))
+Os testes unitários simples podem ser realizados com as macros +@test+:
+(((Test)))((("módulo", "Test", see="Test")))(((@test)))((("macro", "Test", "@test", see="@test")))
 
 [source,@julia-repl-test chap18]
 ----
 julia> using Test
 
-julia> @test Card(1, 4) < Card(2, 4)
+julia> @test Carta(1, 4) < Carta(2, 4)
 Test Passed
-julia> @test Card(1, 3) < Card(1, 4)
+julia> @test Carta(1, 3) < Carta(1, 4)
 Test Passed
 ----
 
-+@test+ returns a +"Test Passed"+ if the expression following it is +true+, a +"Test Failed"+ if it is +false+, and an +"Error Result"+ if it could not be evaluated.
++@test+ retorna +"Test Passed"+ se a expressão seguinte for +true+, +"Test Failed"+ se for +false+, e +"Error Result"+ se não puder ser avaliado.
 
 
-=== Decks
+=== Baralhos
 
-Now that we have Cards, the next step is to define Decks. Since a deck is made up of cards, it is natural for each Deck to contain an array of cards as an attribute.
+Agora que temos Cartas, o próximo passo é a definição dos baralhos. Como um baralho é composto de cartas, é natural que cada baralho contenha um array de cartas como um atributo.
 
-The following is a struct definition for +Deck+. The constructor creates the fields cards and generates the standard set of fifty-two cards:
+A seguir, define-se uma struct para +Baralho+. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
 (((Deck)))((("tipo", "definido pelo programador", "Deck", see="Deck")))
 
 [source,@julia-setup chap18]
 ----
-struct Deck
-    cards :: Array{Card, 1}
+struct Baralho
+    cartas :: Array{Carta, 1}
 end
 
-function Deck()
-    deck = Deck(Card[])
-    for suit in 1:4
-        for rank in 1:13
-            push!(deck.cards, Card(suit, rank))
+function Baralho()
+    baralho = Baralho(Carta[])
+    for naipe in 1:4
+        for valor in 1:13
+            push!(baralho.cartas, Carta(naipe, valor))
         end
     end
-    deck
+    baralho
 end
 ----
 
-The easiest way to populate the deck is with a nested loop. The outer loop enumerates the suits from 1 to 4. The inner loop enumerates the ranks from 1 to 13. Each iteration creates a new +Card+ with the current suit and rank, and pushes it to +deck.cards+.
+A maneira mais fácil de preencher o barulho é com um laço aninhado. O laço externo enumera os naipes de 1 a 4. O laço interno enumera os valores de 1 a 13. Cada iteração cria uma nova +Carta+ com o naipe e o valor correntes e envia-na para +baralho.cartas+.
 
-Here is a +show+ method for +Deck+:
+Aqui está um método +show+ para +Baralho+:
 
 [source,@julia-setup chap18]
 ----
-function Base.show(io::IO, deck::Deck)
-    for card in deck.cards
-        print(io, card, " ")
+function Base.show(io::IO, baralho::Barulho)
+    for carta in barulho.cartas
+        print(io, carta, " ")
     end
     println()
 end
 ----
 
-Here’s what the result looks like:
+Veja como ficou o resultado:
 
 [source,@julia-repl-test chap18]
 ----
-julia> Deck()
+julia> Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 ----
 
 
-=== Add, Remove, Shuffle and Sort
+=== Adicionar, Remover, Baralhar e Ordenar
 
-To deal cards, we would like a function that removes a card from the deck and returns it. The function +pop!+ provides a convenient way to do that:
+Para distribuir as cartas, gostaríamos de uma função que remove uma carta do baralho e devolve-a. A função +pop!+ fornece uma maneira apropriada de fazer isso:
 (((pop!)))
 
 [source,@julia-setup chap18]
 ----
-function Base.pop!(deck::Deck)
-    pop!(deck.cards)
+function Base.pop!(baralho::Baralho)
+    pop!(baralho.cartas)
 end
 ----
 
-Since +pop!+ removes the last card in the array, we are dealing from the bottom of the deck.
+Como +pop!+ remove a última carta do baralho, estamos distribuindo a partir do fundo do baralho.
 
-To add a card, we can use the function +push!+:
+Para adicionar uma carta, podemos usar a função +push!+:
 (((push!)))
 
 [source,@julia-setup chap18]
 ----
-function Base.push!(deck::Deck, card::Card)
-    push!(deck.cards, card)
-    deck
+function Base.push!(baralho::Baralho, carta::Carta)
+    push!(baralho.cartas, carta)
+    baralho
 end
 ----
 
-A method like this that uses another method without doing much work is sometimes called a _veneer_. The metaphor comes from woodworking, where a veneer is a thin layer of good quality wood glued to the surface of a cheaper piece of wood to improve the appearance.
-(((veneer)))
+Um método como esse, que usa outro método sem fazer muito trabalho, às vezes é chamado de _folheado_. A metáfora vem do trabalho com madeira, onde um folheado de madeira é uma fina camada de madeira de boa qualidade colada à superfície de um pedaço de madeira mais barato para melhorar a aparência.
+(((folheado)))
 
-In this case +push!+ is a “thin” method that expresses an array operation in terms appropriate for decks. It improves the appearance, or interface, of the implementation.
+Neste caso, +push!+ é um método "fino" que expressa uma operação de array relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.
 
-As another example, we can write a method named +shuffle!+ using the function +Random.shuffle!+:
-(((Random)))((("module", "Random", see="Random")))(((shuffle!)))((("function", "Random", "shuffle!", see="shuffle!")))
+Como um outro exemplo, podemos escrever um método chamado +shuffle!+ usando a função +Random.shuffle!+:
+(((Random)))((("módulo", "Random", see="Random")))(((shuffle!)))((("função", "Random", "shuffle!", see="shuffle!")))
 
 [source,@julia-setup chap18]
 ----
 using Random
 
-function Random.shuffle!(deck::Deck)
-    shuffle!(deck.cards)
-    deck
+function Random.shuffle!(baralho::Baralho)
+    shuffle!(baralho.cartas)
+    baralho
 end
 ----
 
 ===== Exercício 18-2
 
-Write a function named +sort!+ that uses the function +sort!+ to sort the cards in a Deck. +sort!+ uses the +isless+ method we defined to determine the order.
+Escreva uma função chamada +sort!+ que usa a função +sort!+ para ordenar as cartas em um Baralho. A função +sort!+ usa o método +isless+ na nossa definição para a ordenação.
 (((sort!)))
 
 
-=== Abstract Types and Subtyping
+=== Tipos abstratos e Subtipagem
 
-We want a type to represent a “hand”, that is, the cards held by one player. A hand is similar to a deck: both are made up of a collection of cards, and both require operations like adding and removing cards.
+Queremos um tipo que represente uma "mão", ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.
 
-A hand is also different from a deck; there are operations we want for hands that don’t make sense for a deck. For example, in poker we might compare two hands to see which one wins. In bridge, we might compute a score for a hand in order to make a bid.
+Uma mão também é diferente de um baralho; existem operações que queremos para as mãos de cartas que não faz sentido para um baralho. Por exemplo, no pôquer, podemos comparar duas mãos para ver qual delas vence. No bridge, podemos calcular uma pontuação para uma mão para fazer um lance.
 
-So we need a way to group related _concrete types_. In Julia this is done by defining an _abstract type_ that serves as a parent for both +Deck+ and +Hand+. This is called _subtyping_
-(((concrete type)))(((abstract type)))(((subtyping)))
+Portanto, precisamos de uma maneira de agrupar os _tipos concretos_ relacionados. No Julia, isso é feito ao definir um _tipo abstrato_ que serve como o progenitor de +Baralho+ e +Mão+. Isso é chamado _subtipagem_.
+(((tipo concreto)))(((tipo abstrato)))(((subtipagem))))
 
-Let's call this abstract type +CardSet+:
-(((CardSet)))((("tipo", "definido pelo programador", "CardSet", see="CardSet")))
+Vamos chamar esse tipo abstrato de +Conjunto_Carta+:
+(((Conjunto_Carta)))((("tipo", "definido pelo programador", "Conjunto_Carta", see="Conjunto_Carta")))
 
 [source,@julia-eval chap18a]
 ----
-struct Card
-    suit :: Int64
-    rank :: Int64
-    function Card(suit::Int64, rank::Int64)
-        @assert(1 ≤ suit ≤ 4, "suit is between 1 and 4")
-        @assert(1 ≤ rank ≤ 13, "rank is between 1 and 13")
-        new(suit, rank)
+struct Carta
+    naipe :: Int64
+    valor :: Int64
+    function Carta(naipe::Int64, valor::Int64)
+        @assert(1 ≤ naipe ≤ 4, "naipe está entre 1 e 4")
+        @assert(1 ≤ valor ≤ 13, "valor está entre 1 e 13")
+        new(naipe, valor)
     end
 end;
 ----
 
 [source,@julia-setup chap18a]
 ----
-abstract type CardSet end
+abstract type Conjunto_Carta end
 ----
 
-A new abstract type is created with the +abstract type+ keyword. An optional “parent” type can be specified by putting after the name +<:+ followed by the name of an already-existing abstract type.
-(((abstract type)))((("keyword", "abstract type", see="abstract type")))(((type)))
+Um novo tipo abstrato é criado com a palavra-chave +abstract type+. Um tipo "progenitor" opcional pode ser especificado colocando +<:+ após o nome seguido do nome de um tipo abstrato já existente.
+(((tipo abstrato)))((("palavra-chave", "abstract type", see="abstract type")))(((tipo)))
 
-When no _supertype_ is given, the default supertype is +Any+ – a predefined abstract type that all objects are instances of and all types are _subtypes_ of.
-(((supertype)))(((subtype)))
+Quando nenhum _supertipo_ é dado, o supertipe padrão é +Any+ - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são _subtipos_.
+(((supertipo)))(((subtipo)))
 
-We can now express that +Deck+ is a descendant of +CardSet+:
+Agora podemos expressar que +Baralho+ é um descendente de +Conjunto_Carta+:
 
 [source,@julia-setup chap18a]
 ----
-struct Deck <: CardSet
-    cards :: Array{Card, 1}
+struct Baralho <: Conjunto_Carta
+    cartas :: Array{Carta, 1}
 end
 
-function Deck()
-    deck = Deck(Card[])
-    for suit in 1:4
-        for rank in 1:13
-            push!(deck.cards, Card(suit, rank))
+function Baralho()
+    baralho = Baralho(Carta[])
+    for naipe in 1:4
+        for valor in 1:13
+            push!(baralho.cartas, Carta(naipe, valor))
         end
     end
-    deck
+    baralho
 end
 ----
 
@@ -291,97 +291,97 @@ end
 ----
 using Random
 
-const suit_names = ["♣", "♦", "♥", "♠"];
-const rank_names = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const nomes_naipes = ["♣", "♦", "♥", "♠"];
+const nomes_valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
-function Base.show(io::IO, card::Card)
-    print(io, rank_names[card.rank], suit_names[card.suit])
+function Base.show(io::IO, carta::Carta)
+    print(io, nomes_valores[carta.valor], nomes_naipes[carta.naipe])
 end
 
-function Random.shuffle!(deck::Deck)
-    shuffle!(deck.cards)
-    deck
+function Random.shuffle!(baralho::Baralho)
+    shuffle!(baralho.cartas)
+    baralho
 end
 ----
 
-The operator +isa+ checks whether an object is of a given type:
-(((isa)))((("operator", "Base", "isa", see="isa")))
+O operador +isa+ verifica se um objeto é de um determinado tipo:
+(((isa)))((("operador", "Base", "isa", see="isa")))
 
 [source,@julia-repl-test chap18a]
 ----
-julia> deck = Deck();
+julia> baralho = Baralho();
 
-julia> deck isa CardSet
+julia> baralho isa Conjunto_Carta
 true
 ----
 
-A hand is also a kind of +CardSet+:
-(((Hand)))((("tipo", "definido pelo programador", "Hand", see="Hand")))
+Uma mão também é um tipo de +CardSet+:
+(((Mão)))((("tipo", "definido pelo programador", "Mão", see="Mão")))
 
 [source,@julia-setup chap18a]
 ----
-struct Hand <: CardSet
-    cards :: Array{Card, 1}
-    label :: String
+struct Mão <: Conjunto_Carta
+    carta :: Array{Carta, 1}
+    identificação :: String
 end
 
-function Hand(label::String="")
-    Hand(Card[], label)
+function Mão(identificação::String="")
+    Mão(Carta[], identificação)
 end
 ----
 
-Instead of populating the hand with 52 new cards, the constructor for +Hand+ initializes +cards+ with an empty array. An optional argument can be passed to the constructor giving a label to the +Hand+.
+Em vez de encher a mão com 52 novas cartas, o construtor de +Mão+ inicializa +cartas+ com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para +Mão+.
 
 [source,@julia-repl-test chap18a]
 ----
-julia> hand = Hand("new hand")
-Hand(Card[], "new hand")
+julia> mão = Mão("nova mão")
+Mão(Carta[], "nova mão")
 ----
 
 
-=== Abstract Types and Functions
+=== Tipos Abstratos e Funções
 
-We can now express the common operations between +Deck+ and +Hand+ as functions having as argument +CardSet+:
+Agora podemos expressar as operações comuns entre +Baralho+ e +Mão+ como funções tendo como argumento +Conjunto_Carta+:
 (((show)))(((pop!)))(((push!)))
 
 [source,@julia-setup chap18a]
 ----
-function Base.show(io::IO, cs::CardSet)
-    for card in cs.cards
-        print(io, card, " ")
+function Base.show(io::IO, cc::Conjunto_Carta)
+    for carta in cc.cartas
+        print(io, carta, " ")
     end
 end
 
-function Base.pop!(cs::CardSet)
-    pop!(cs.cards)
+function Base.pop!(cc::Conjunto_Carta)
+    pop!(cc.cartas)
 end
 
-function Base.push!(cs::CardSet, card::Card)
-    push!(cs.cards, card)
+function Base.push!(cc::Conjunto_Carta, carta::Carta)
+    push!(cc.cartas, carta)
     nothing
 end
 ----
 
-We can use +pop!+ and +push!+ to deal a card:
+Podemos usar +pop!+ e +push!+ para dar um carta:
 
 [source,@julia-repl chap18a]
 ----
-deck = Deck()
-shuffle!(deck)
-card = pop!(deck)
-push!(hand, card)
+baralho = Baralho()
+shuffle!(baralho)
+carta = pop!(baralho)
+push!(mão, carta)
 ----
 
-A natural next step is to encapsulate this code in a function called +move!+:
-(((move!)))((("function", "definido pelo programador", "move!", see="move!")))
+Um próximo passo natural é encapsular esse código em uma função chamada +move!+:
+(((move!)))((("função", "definido pelo programador", "move!", see="move!")))
 
 [source,@julia-setup chap18a]
 ----
-function move!(cs1::CardSet, cs2::CardSet, n::Int)
-    @assert 1 ≤ n ≤ length(cs1.cards)
+function move!(cc1::Conjunto_Carta, cc2::Conjunto_Carta, n::Int)
+    @assert 1 ≤ n ≤ length(cc1.cartas)
     for i in 1:n
-        card = pop!(cs1)
-        push!(cs2, card)
+        carta = pop!(cc1)
+        push!(cc2, carta)
     end
     nothing
 end
@@ -389,8 +389,15 @@ end
 
 +move!+ takes three arguments, two +Cardset+ objects and the number of cards to deal. It modifies both +Cardset+ objects, and returns +nothing+.
 
++ mover! + recebe três argumentos, dois + Conjunto de cartões + objetos e o número de cartões a serem negociados. Ele modifica os objetos + Cardset + e retorna + nada +.
+
++move!+ leva três argumentos, dois objetos +Cardset+ e o número de cartões a serem distribuídos. Ele modifica os dois objetos +Cardset+, e retorna +nada+.
+
 In some games, cards are moved from one hand to another, or from a hand back to the deck. You can use +move!+ for any of these operations: +cs1+ and +cs2+ can be either a +Deck+ or a +Hand+.
 
+Em alguns jogos, as cartas são movidas de uma mão para outra ou de uma mão para o baralho. Você pode usar + mover! + Para qualquer uma dessas operações: + cs1 + e + cs2 + podem ser um + Deck + ou uma + Mão +.
+
+Em alguns jogos, as cartas são movidas de uma mão para outra, ou de uma mão de volta para o baralho. Você pode usar +move!+ para qualquer uma destas operações: +cs1+ e +cs2+ pode ser um +Deck+ ou um +Hand+.
 
 === Type Diagrams
 
@@ -458,7 +465,7 @@ If you violate this rule, which is called the “Liskov substitution principle�
 (((Liskov substitution principle)))
 
 The function +supertype+ can be used to find the direct supertype of a type.
-(((supertype)))((("function", "Base", "supertype", see="supertype")))
+(((supertype)))((("função", "Base", "supertype", see="supertype")))
 
 [source,@julia-repl-test chap18a]
 ----
@@ -502,7 +509,7 @@ end
 ----
 
 Next, we transform the functions into methods. For example, here’s +processword+:
-(((processword)))((("function", "definido pelo programador", "processword", see="processword")))
+(((processword)))((("função", "definido pelo programador", "processword", see="processword")))
 
 [source,@julia-setup chap18b]
 ----
@@ -631,7 +638,7 @@ addping(pong, ping)
 ===== Exercício 18-5
 
 Write a method called +deal!+ that takes three parameters, a +Deck+, the number of hands and the number of cards per hand. It should create the appropriate number of +Hand+ objects, deal the appropriate number of cards per hand, and return an array of +Hand+s.
-(((deal!)))((("function", "definido pelo programador", "deal!", see="deal!")))
+(((deal!)))((("função", "definido pelo programador", "deal!", see="deal!")))
 
 [[ex18-3]]
 ===== Exercício 18-6
@@ -665,10 +672,10 @@ five cards in sequence (as defined above) and with the same suit
 The goal of this exercise is to estimate the probability of drawing these various hands.
 
 . Add methods named +haspair+, +hastwopair+, etc. that return +true+ or +false+ according to whether or not the hand meets the relevant criteria. Your code should work correctly for “hands” that contain any number of cards (although 5 and 7 are the most common sizes).
-(((haspair)))((("function", "definido pelo programador", "haspair", see="haspair")))(((hastwopair)))((("function", "definido pelo programador", "hastwopair", see="hastwopair")))
+(((haspair)))((("função", "definido pelo programador", "haspair", see="haspair")))(((hastwopair)))((("função", "definido pelo programador", "hastwopair", see="hastwopair")))
 
 . Write a method named +classify+ that figures out the highest-value classification for a hand and sets the +label+ field accordingly. For example, a 7-card hand might contain a flush and a pair; it should be labeled “flush”.
-(((classify)))((("function", "definido pelo programador", "classify", see="classify")))
+(((classify)))((("função", "definido pelo programador", "classify", see="classify")))
 
 . When you are convinced that your classification methods are working, the next step is to estimate the probabilities of the various hands. Write a function that shuffles a deck of cards, divides it into hands, classifies the hands, and counts the number of times various classifications appear.
 
