@@ -502,15 +502,15 @@ ramos::
 Uma das sequências alternativas de comandos em um comando condicional.
 (((ramos)))
 
-atribuição encadeada::
-Uma atribuição condicional com uma série de ramos alternativos.
-(((atribuição encadeada)))
+comando encadeado::
+Um comando condicional com uma série de ramos alternativos.
+(((comando encadeado)))
 
 condicional aninhada::
 Um comando condicional que aparece em um dos ramos de outro comando condicional.
 (((condicional aninhada)))
 
-atribuição de retorno::
+comando de retorno::
 Um comando que faz com que uma função pare de executar imediatamente e retorne para quem a chamou.
 (((comando de retorno)))
 
