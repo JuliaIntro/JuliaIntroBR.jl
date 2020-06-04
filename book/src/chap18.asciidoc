@@ -387,79 +387,80 @@ function move!(cc1::Conjunto_Carta, cc2::Conjunto_Carta, n::Int)
 end
 ----
 
-+move!+ takes three arguments, two +Cardset+ objects and the number of cards to deal. It modifies both +Cardset+ objects, and returns +nothing+.
++move!+ recebe três argumentos, dois objetos +Conjunto_Carta+ e o número de cartas a serem distribuídas. Ele modifica os objetos +Conjunto_Carta+ e retorna +nothing+.
 
-+ mover! + recebe três argumentos, dois + Conjunto de cartões + objetos e o número de cartões a serem negociados. Ele modifica os objetos + Cardset + e retorna + nada +.
+Em alguns jogos, as cartas são transferidas de uma mão para outra ou de uma mão para o baralho. Você pode usar +mover!+ para qualquer uma dessas operações, +cc1+ e +cc2+ podem ser ou um +Baralho+ ou uma +Mão+.
 
-+move!+ leva três argumentos, dois objetos +Cardset+ e o número de cartões a serem distribuídos. Ele modifica os dois objetos +Cardset+, e retorna +nada+.
 
-In some games, cards are moved from one hand to another, or from a hand back to the deck. You can use +move!+ for any of these operations: +cs1+ and +cs2+ can be either a +Deck+ or a +Hand+.
+=== Diagramas de Tipos
 
-Em alguns jogos, as cartas são movidas de uma mão para outra ou de uma mão para o baralho. Você pode usar + mover! + Para qualquer uma dessas operações: + cs1 + e + cs2 + podem ser um + Deck + ou uma + Mão +.
+Até agora temos visto diagramas de pilha, que mostram o estado de um programa, e diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.
 
-Em alguns jogos, as cartas são movidas de uma mão para outra, ou de uma mão de volta para o baralho. Você pode usar +move!+ para qualquer uma destas operações: +cs1+ e +cs2+ pode ser um +Deck+ ou um +Hand+.
+Eles também são muito detalhados e dependendo de alguns propósitos, demasiadamente detalhados. Um _diagrama de tipo_ é uma representação mais abstrata da estrutura de um programa. Ao invés de mostrar objetos individuais, ele mostra os tipos e as relações entre eles.
+(((diagrama de tipo)))((("diagrama", "tipo", see="diagrama de tipo")))
 
-=== Type Diagrams
+Existem vários tipos de relacionamento entre os tipos:
 
-So far we have seen stack diagrams, which show the state of a program, and object diagrams, which show the attributes of an object and their values. These diagrams represent a snapshot in the execution of a program, so they change as the program runs.
+* Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um conjunto de Cartas. Este tipo de relacionamento é chamado de _TEM-UM_, como em “um Retângulo tem um Ponto”.
+(((TEM-UM)))
 
-They are also highly detailed; for some purposes, too detailed. A _type diagram_ is a more abstract representation of the structure of a program. Instead of showing individual objects, it shows types and the relationships between them.
-(((type diagram)))((("diagram", "tipo", see="type diagram")))
+* Um tipo concreto pode ter um tipo abstrato como um supertipo. Esse relacionamento é chamado de _É-UM_, como em “uma Mão é uma espécie de Conjunto_Carta”.
+(((É-UM)))
 
-There are several kinds of relationship between types:
-
-* Objects of a concrete type might contain references to objects of another type. For example, each Rectangle contains a reference to a Point, and each Deck contains references to an array of Cards. This kind of relationship is called _HAS-A_, as in, “a Rectangle has a Point”.
-(((HAS-A)))
-
-* A concrete type can have an abstract type as a supertype. This relationship is called _IS-A_, as in, “a Hand is a kind of a CardSet.”
-(((IS-A)))
-
-* One type might depend on another in the sense that objects of one type take objects of the second type as parameters, or use objects of the second type as part of a computation. This kind of relationship is called a _dependency_.
-(((dependency)))
+* Um tipo pode depender de outro no sentido de que os objetos de um tipo recebem os objetos do segundo tipo como parâmetros ou usam os objetos do segundo tipo como parte de um cálculo. Esse tipo de relacionamento é denominado _dependência_.
+(((dependência)))
 
 [[fig18-1]]
-.Type diagram
+.Diagrama de Tipo
 image::images/fig181.svg[]
 
-The arrow with a hollow triangle head represents an IS-A relationship; in this case it indicates that Hand has as supertype CardSet.
+A flecha com uma ponta de triângulo oco representa um relacionamento É-UM; neste caso, indica que a Mão tem como supertipo o Conjunto_Carta.
 
-The standard arrow head represents a HAS-A relationship; in this case a Deck has references to Card objects.
+A ponta da seta padrão representa um relacionamento TEM-UM e neste caso, um Baralho tem referências aos objetos de Carta.
 
-The star (+pass:[*]+) near the arrow head is a _multiplicity_; it indicates how many Cards a Deck has. A multiplicity can be a simple number, like +52+, a range, +like 5:7+ or a star, which indicates that a Deck can have any number of Cards.
-(((multiplicity)))
+A estrela (+pass:[*]+) perto da ponta da seta é uma _multiplicidade_ que indica a quantidade de Cartas que um Baralho tem. Uma multiplicidade pode ser um número simples, como +52+, um intervalo, +como 5:7+ ou uma estrela, o que indica que um Baralho pode ter qualquer número de Cartas.
+((((multiplicidade)))
 
-There are no dependencies in this diagram. They would normally be shown with a dashed arrow. Or if there are a lot of dependencies, they are sometimes omitted.
+Não há dependências neste diagrama. Elas usualmente seriam mostradas com uma seta tracejada. E caso haja muitas dependências, elas são às vezes omitidas.
 
-A more detailed diagram might show that a Deck actually contains an array of Cards, but built-in types like array and dictionnaries are usually not included in type diagrams.
+Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma array de Cartas, mas tipos internos como array e dicionários geralmente não são inclusos nos diagramas de tipo.
 
 [[interactive]]
 === Debugging
 
-Subtyping can make debugging difficult because when you call a function with an object as argument, it might be hard to figure out which method will be invoked.
+A subtipagem pode dificultar o debugging, porque quando você chama uma função com um objeto como argumento, pode ser difícil descobrir qual método será chamado.
 
-Suppose you are writing a function that works with +Hand+ objects. You would like it to work with all kinds of +Hand+s, like +PokerHand+s, +BridgeHand+s, etc. If you invoke a method like +sort!+, you might get the one defined for an abstract type +Hand+, but if a method +sort!+ with as argument any of the subtypes exists, you’ll get that version instead. This behavior is usually a good thing, but it can be confusing.
+Suponha que você está escrevendo uma função que funciona com os objetos +Mão+. Você gostaria que ela funcionasse com todos os tipos de +Mão+s, como +Mãos de Pôquer+, +Mãos de Bridge+, etc. Se você chamar um método como +sort!+, você pode ter chamado o que definido para um tipo abstrato +Mão+, mas se um método +sort!+ com qualquer um dos subtipos existentes como argumento, você terá essa versão em seu lugar. Este comportamento é normalmente uma coisa boa, mas pode ser confuso.
 
 [source,@julia-setup chap18a]
 ----
-function Base.sort!(hand::Hand)
-    sort!(hand.cards)
+function Base.sort!(mão::Mão)
+    sort!(mão.cartas)
 end
 ----
 
-Any time you are unsure about the flow of execution through your program, the simplest solution is to add print statements at the beginning of the relevant methods. If +shuffle!+ prints a message that says something like +Running shuffle! Deck+, then as the program runs it traces the flow of execution.
+Sempre que você não tiver certeza sobre o fluxo de execução do seu programa, a solução mais simples é adicionar comandos de impressão no início dos métodos relevantes. Se +shuffle!+ imprime uma mensagem que diz algo como +Executando Baralho shuffle!+, à medida que o programa é executado, rastreia-se o fluxo de execução.
 
-As better alternative, you can also use the +@which+ macro:
-(((InteractiveUtils)))((("module", "InteractiveUtils", see="InteractiveUtils")))(((@which)))((("macro", "InteractiveUtils", "@which", see="@which")))
+Como uma alternativa melhor, você também pode usar a macro +@which+:
+(((InteractiveUtils)))((("módulo", "InteractiveUtils", see="InteractiveUtils")))(((@which)))((("macro", "InteractiveUtils", "@which", see="@which")))
 
 [source,jlcon]
 ----
-julia> @which sort!(hand)
-sort!(hand::Hand) in Main at REPL[5]:1
+julia> @which sort!(mão)
+sort!(mão::Mão) in Main at REPL[5]:1
 ----
 
 So the +sort!+ method for +hand+ is the one having as argument an object of type +Hand+.
 
+Portanto, o método + sort! + Para + hand + é aquele que tem como argumento um objeto do tipo + Hand +.
+
+Então o método +sort!+ para +hand+ é aquele que tem como argumento um objeto do tipo +Hand+.
+
 Here’s a design suggestion: when you override a method, the interface of the new method should be the same as the old. It should take the same parameters, return the same type, and obey the same preconditions and postconditions. If you follow this rule, you will find that any function designed to work with an instance of a supertype, like a +CardSet+, will also work with instances of its subtypes +Deck+ and +Hand+.
+
+Aqui está uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve tomar os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas condições prévias e pós-condições. Se você seguir esta regra, você verá que qualquer função projetada para trabalhar com uma instância de um supertipo, como um +CardSet+, também funcionará com instâncias de seus subtipos +Deck+ e +Hand+.
+
+Aqui está uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma do antigo. Ele deve usar os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas pré-condições e pós-condições. Se você seguir esta regra, descobrirá que qualquer função projetada para funcionar com uma instância de um supertipo, como um + CardSet +, também funcionará com instâncias de seus subtipos + Deck + e + Hand +.
 
 If you violate this rule, which is called the “Liskov substitution principle”, your code will collapse like (sorry) a house of cards.
 (((Liskov substitution principle)))
