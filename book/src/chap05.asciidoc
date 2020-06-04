@@ -1,13 +1,13 @@
 [[chap05]]
 == Condicionais e Recursão
 
-O principal tópico deste capítulo é o comando +if+, que executa diferentes códigos dependendo do estado do programa. Mas antes vamos introduzir dois novos operadores: divisão inteira e módulo.
+O principal tópico deste capítulo é o comando +if+, que executa diferentes códigos dependendo do estado do programa. Mas antes gostaria de introduzir dois novos operadores: divisão inteira e módulo.
 
 
 === Divisão Inteira e Módulo
 
-O operador de _divisão inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Você talvez queira saber o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
-(((operador divisão inteira)))((("operador", "Base", "÷", see="operador divisão inteira")))((("÷", see="operador divisão inteira")))
+O operador de _divisão inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Talvez voc"e queira saber o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
+(((operador de divisão inteira)))((("operador", "Base", "÷", see="operador de divisão inteira")))((("÷", see="operador de divisão inteira")))
 
 [source,@julia-repl-test chap05]
 ----
@@ -17,7 +17,7 @@ julia> minutos / 60
 1.75
 ----
 
-Porém normalmente não escrevemos horas com pontos decimais. A divisão inteira retorna um número inteiro de horas, arredondando para baixo:
+Porém, normalmente não escrevemos horas com pontos decimais. A divisão inteira retorna um número inteiro de horas, arredondando para baixo:
 
 [source,@julia-repl-test chap05]
 ----
@@ -38,7 +38,7 @@ Uma alternativa é usar o _operador módulo_, +%+, que divide dois números e re
 
 [source,@julia-repl-test chap05]
 ----
-julia> remainder = minutes % 60
+julia> resto = minutos % 60
 45
 ----
 
@@ -46,13 +46,13 @@ julia> remainder = minutes % 60
 ====
 O operador módulo é mais útil do que parece. Por exemplo, você pode verificar se um número é divisível por outro—se +x % y+ é zero, então +x+ é divisível por +y+.
 
-Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produz os últimos dois dígitos.
+Além disso, você pode extrair o dígito ou dígitos mais à direita de um número. Por exemplo, +x % 10+ gera o dígito mais à direita de um inteiro +x+ (na base 10). Da mesma forma +x % 100+ produz os dois últimos dígitos.
 ====
 
 
 === Expressões Booleanas
 
-Uma _expressão booleana_ é uma expressão que é ou verdadeira ou falsa.  Os seguintes exemplos usam o operador +==+, que compara dois operandos e gera +true+ se forem iguais e +false+--do inglês, verdadeiro e falso.
+Uma _expressão booleana_ é uma expressão que é ou verdadeira ou falsa.  Os seguintes exemplos usam o operador +==+, que compara dois operandos e gera +true+ se forem iguais e +false+--do inglês, verdadeiro e falso, respectivamente.
 (((expressão booleana)))(((true)))(((false)))
 
 [source,@julia-repl-test]
@@ -74,7 +74,7 @@ julia> typeof(false)
 Bool
 ----
 
-O operador +==+ é um operador de relação; os outros são:
+O operador +==+ é um dos operadores de relação; os outros são:
 (((operador de relação)))(((==)))((("operador", "Base", "==", see="==")))
 
 [source,julia]
@@ -91,7 +91,7 @@ O operador +==+ é um operador de relação; os outros são:
 
 [WARNING]
 ====
-Embora essas operações sejam provavelmente familiares para você, os símbolos em Julia são diferentes dos símbolos matemáticos. Um erro comum é usar um único sinal de igual (+=+) em vez de um duplo sinal de igual (+==+). Lembre-se de que +=+ é um operador de atribuição e +==+ é um operador relacional. Não existe +=<+ ou +pass:[=>]+.
+Embora essas operações provavelmente possam ser familiares à você, os símbolos em Julia são diferentes dos símbolos matemáticos. Um erro comum é usar um único sinal de igual (+=+) em vez de um duplo sinal de igual (+==+). Lembre-se de que +=+ é um operador de atribuição e +==+ é um operador relacional. Não existe +=<+ ou +pass:[=>]+.
 (((≠)))((("operador", "Base", "≠", see="≠")))((("!=", see="≠")))((("operador", "Base", "!=", see="≠")))(((>)))((("operador", "Base", ">", see=">")))(((<)))((("operador", "Base", "<", see="<")))(((≥)))((("operador", "Base", "≥", see="≥")))(((">=", see="≥")))((("operador", "Base", ">=", see="≥")))(((≤)))((("operador", "Base", "≤", see="≤")))((("pass:[&lt;=]", see="≤")))((("operador", "Base", "pass:[&lt;=]", see="≤")))
 ====
 
@@ -103,15 +103,15 @@ Existem três _operadores lógicos_: +&&+ (e), +||+ (ou) e +!+ (não). A semânt
 
 +n % 2 == 0 || n % 3 == 0+ é verdadeiro se _uma ou ambas_ condições são verdadeiras, isto é, se o número é divisível por 2 _ou_ por 3.
 
-Ambos +&&+ e +||+ associam à direita, mas +&&+ tem maior precedência que +||+.
+Tanto +&&+ quanto +||+ associam à direita, mas +&&+ tem maior precedência que +||+.
 
 Por fim, o operador +!+ nega uma expressão booleana, então +!(x > y)+ é verdadeira se +x > y+ é falsa, isto é, se +x+ é menor ou igual a +y+.
 
 
 === Execução Condicional
 
-Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Declarações condicionais_ nos fornecem essa habilidade. A forma mais simples é o comando _if_ (da conjunção se em Inglês).
-(((declaração condicional)))(((if)))((("palavra-chave", "if", see="if")))(((comando if)))((("comando", "if", see="comando if")))
+Para escrever bons programas, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Comandos condicionais_ nos fornecem essa habilidade. A forma mais simples é o comando _if_ (da conjunção se em Inglês).
+(((comando condicional)))(((if)))((("palavra-chave", "if", see="if")))(((comando if)))((("comando", "if", see="comando if")))
 
 [source,julia]
 ----
@@ -120,13 +120,13 @@ if x > 0
 end
 ----
 
-A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então o comando indentado é executado. Se não, nada acontece. 
+A expressão booleana depois de +if+ é chamada de _condição_. Se é verdadeira, então o comando indentado é executado. Se não, nada acontece.
 (((condição)))
 
-Declarações _if_ possuem a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Declarações como essa são chamadas de _declarações compostas_.
-(((declarações compostas)))(((end)))
+O comando _if_ possui a mesma estrutura das definições de funções: Um cabeçalho seguido de um corpo terminado com a palavra-chave _end_. Comandos como esse são chamadas de _comandos compostos_.
+(((comandos compostos)))(((end)))
 
-Não há limites para o número de declarações que podem aparecer no corpo. Ocasionalmente, é útil ter um corpo sem declarações (geralmente como detentor de um lugar para o código que você ainda não escreveu).
+Não há limites para o número de comandos que podem aparecer no corpo. Ocasionalmente, é útil ter um corpo sem comandos (geralmente como detentor de um lugar para o código que você ainda não escreveu).
 
 [source,julia]
 ----
@@ -138,7 +138,7 @@ end
 
 === Execuções Alternativas
 
-Uma segunda maneira de usar o comando _if_ é a "execução alternativa", da qual há duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
+Uma segunda maneira de usar o comando _if_ é através da "execução alternativa", que oferece duas possibilidades e a condição determina qual delas deverá ser executada. A sintaxe é a seguinte:
 (((execução alternativa)))(((else)))((("palavra-chave", "else", see="else")))
 
 [source,julia]
@@ -150,13 +150,13 @@ else
 end
 ----
 
-Se o resto da divisão de +x+ por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de declarações é executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.
+Se o resto da divisão de +x+ por 2 é 0, então sabemos que +x+ é par, e o programa irá exibir a mensagem apropriada. Se a condição for falsa, o segundo conjunto de comandos será executado. Desde que a condição seja verdadeira ou falsa, exatamente uma das alternativas irá ser executada. Essas alternativas são chamadas de _ramos_ (_branches_ em inglês), porque são ramos de um fluxo de execução.
 (((ramos)))
 
 
 === Condicionais Encadeadas
 
-Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um comando como esse é através das _condicionais encadeadas_:
+Algumas vezes há mais do que duas possibilidades e precisamos de mais que dois ramos. Uma maneira de expressar um comando como esse é através de _condicionais encadeadas_:
 (((condicionais encadeadas)))(((elseif)))((("palavra-chave", "elseif", see="elseif")))
 
 [source,julia]
@@ -170,25 +170,25 @@ else
 end
 ----
 
-Novamente, exatamente um dos ramos será executado. Não há limites para o número de declarações +elseif+. Se existir uma cláusula +else+, essa deve estar no final, mas não precisa haver uma.
+Novamente, exatamente um dos ramos será executado. Não há limites para o número de comandos +elseif+. Se existir uma cláusula +else+, essa deve estar no final, mas não precisa haver uma.
 
 [source,julia]
 ----
 if escolha == "a"
-    draw_a()
+    desenhe_a()
 elseif escolha == "b"
-    draw_b()
+    desenhe_b()
 elseif escolha == "c"
-    draw_c()
+    desenhe_c()
 end
 ----
 
-Cada condição é checada em ordem. Se a primeira for falsa, a próxima é checada e assim por diante. Se uma delas é verdadeira, o ramo correspondente é executado e a atribuição é encerrada. Se mais de uma condição é verdadeira, apenas o primeiro ramo verdadeiro é executado.
+Cada condição é checada em ordem. Se a primeira for falsa, a próxima é checada e assim por diante. Se uma delas é verdadeira, o ramo correspondente é executado e o comando é encerrado. Se mais de uma condição é verdadeira, apenas o primeiro ramo verdadeiro é executado.
 
 
 === Condicionais Aninhadas
 
-Uma condicional também pode ser aninhada com outra. Poderíamos ter escrito no exemplo da seção anterior da seguinte forma:
+Uma condicional também pode ser aninhada com outra. O exemplo da seção anterior poderia ter sido escrito da seguinte maneira:
 (((condicionais aninhadas)))
 
 [source,julia]
@@ -204,12 +204,12 @@ else
 end
 ----
 
-O condicional externo contém dois ramos. O primeiro ramo contém uma declaração simples. O segundo ramo contém outro condicional +if+, que possui dois ramos inseridos nele. Esses dois ramos são declarações simples, embora também possam ter sido declarações condicionais.
+O condicional externo contém dois ramos. O primeiro ramo contém um comando simples. O segundo ramo contém outro condicional +if+, que possui dois ramos inseridos nele. Esses dois ramos são comandos simples, embora também possam ter sido declarações condicionais.
 
-Embora a indentação não obrigatória das declarações torne a estrutura aparente, _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. É uma boa ideia evitá-los quando puder.
+Embora a indentação não obrigatória das declarações torne a estrutura aparente, as _condicionais aninhadas_ tornam-se difíceis de ler muito rapidamente. Uma boa ideia é evitá-las quando puder.
 (((indentação)))
 
-Operadores lógicos geralmente fornecem uma maneira de simplificar instruções condicionais aninhadas. Por exemplo, podemos reescrever o seguinte código usando uma única condicional:
+Operadores lógicos geralmente produzem uma maneira de simplificar instruções condicionais aninhadas. Por exemplo, podemos reescrever o seguinte código usando uma única condicional:
 
 [source,julia]
 ----
@@ -220,7 +220,7 @@ if 0 < x
 end
 ----
 
-O comando +print+ executa somente se passarmos pelos dois condicionais, para que possamos obter o mesmo efeito com operador +&&+:
+O comando +print+ executa somente se for verdadeira nas duas condições, para que possamos obter o mesmo efeito com operador +&&+:
 
 [source,julia]
 ----
@@ -242,14 +242,14 @@ end
 [[recursion]]
 === Recursão
 
-É permitido que uma função chame outra; também é permitido uma função chamar si mesmo. Pode não ser óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
+É possível fazer com que uma função chame outra; também é possível uma função chamar si mesma. Pode não parecer óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
 (((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem regressiva")))
 
 [source,@julia-setup chap05]
 ----
 function contagem_regressiva(n)
     if n ≤ 0
-        println("Vai!")
+        println("Feliz Ano Novo!")
     else
         print(n, " ")
         contagem_regressiva(n-1)
@@ -257,23 +257,23 @@ function contagem_regressiva(n)
 end
 ----
 
-Se +n+ é 0 ou negativo, será exibido a palavra +"Vai!"+. Caso contrário, a função exibe +n+ e chama uma função chamada +contagem_regressiva+—ela mesma— passando +n-1+ como argumento.
+Se +n+ é 0 ou negativo, será exibido a frase +"Feliz Ano Novo!"+. Caso contrário, a função exibe +n+ e chama uma função chamada +contagem_regressiva+—ela mesma— passando +n-1+ como argumento.
 
 O que acontece se chamarmos uma função como essa?
 
 [source,@julia-repl-test chap05]
 ----
 julia> contagem_regressiva(3)
-3 2 1 Vai!
+3 2 1 Feliz Ano Novo!
 ----
 
-A execução de +contagem_regressiva+ começa com +n = 3+, e como +n+ é maior que 0, terá como saída o valor 3, e depois executa ela mesma...
+A execução de +contagem_regressiva+ começa com +n = 3+, e como +n+ é maior que 0, terá como saída o valor 3, e depois executa a si mesma...
 
-pass:[&#8193;]A execução de +contagem_regressiva+ começa com +n = 2+, e como +n+ é maior que 0, pass:[<br/>&#8193;&#8193;]terá como saída o valor 2, e depois executa ela mesma ...
+pass:[&#8193;]A execução de +contagem_regressiva+ começa com +n = 2+, e como +n+ é maior que 0, pass:[<br/>&#8193;&#8193;]terá como saída o valor 2, e depois executa a si mesma ...
 
-pass:[&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 1+, e como  +n+ é maior que 0, pass:[<br/>&#8193;&#8193;&#8193;]terá como saída o valor 1, e depois executa ela mesma ...
+pass:[&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 1+, e como  +n+ é maior que 0, pass:[<br/>&#8193;&#8193;&#8193;]terá como saída o valor 1, e depois executa a si mesma ...
 
-pass:[&#8193;&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 0+, e como +n+ não é maior que pass:[<br/>&#8193;&#8193;&#8193;&#8193;]0, terá como saída uma palavra, +"Vai!"+ e depois retorna.
+pass:[&#8193;&#8193;&#8193;]A execução de +contagem_regressiva+ começa com +n = 0+, e como +n+ não é maior que pass:[<br/>&#8193;&#8193;&#8193;&#8193;]0, terá como saída uma frase, +"Feliz Ano Novo!"+ e depois retorna.
 
 pass:[&#8193;&#8193;]A contagem regressiva que obteve +n = 1+ retorna.
 
@@ -281,12 +281,12 @@ pass:[&#8193;]A contagem regressiva que obteve +n = 2+ retorna.
 
 A contagem regressiva que obteve +n = 3+ retorna.
 
-E então você voltará para +Main+.
+E então você retornará para +Main+.
 
-Uma função que chama a si mesma é chamada de _recursiva_; o processo de executar ela é chamada de _recursão_.
+Uma função que chama a si mesma é dita _recursiva_; o processo de execução desta função é chamada de _recursão_.
 (((função recursiva)))(((recursão)))
 
-Um outro exemplo, podemos escrever uma função que imprime uma string latexmath:[\(n\)] vezes.
+Um outro exemplo é que podemos escrever uma função que imprime uma string latexmath:[\(n\)] vezes.
 (((imprima_n)))((("função", "definido pelo programador", "imprima_n", see="imprima_n")))
 
 [source,julia]
@@ -301,18 +301,18 @@ end
 ----
 
 Se +n pass:[&lt;]= 0+ o comando +return+ sai da função. O fluxo de execução retorna imediatamente para quem a chamou e as linhas restantes da função não são executadas.
-(((return)))((("palavra-chave", "return", see="return")))(((declaração return)))((("declaração", "return", see="declaração return")))
+(((return)))((("palavra-chave", "return", see="return")))(((comando return)))((("comando", "return", see="comando return")))
 
-O restante da função é similar a +contagem_regressiva+: Ela exibirá +s+ e chamará a si mesmo para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
+O restante da função é similar a +contagem_regressiva+: Ela exibirá +s+ e chamará a si mesma para exibir +s+ latexmath:[\(n-1\)] várias vezes. Portanto, o número de linhas de saída é latexmath:[\(1 + (n - 1)\)], o que soma latexmath:[\(n\)].
 
-Para exemplos simples como esse, provavelmente é mais fácil usar um laço +for+. Mas veremos exemplos mais tarde que são difíceis de escrever com um laço +for+ e fáceis de escrever com recursão; portanto, é bom começar cedo.
+Para exemplos simples como esse, provavelmente é mais fácil usar um laço +for+. Veremos exemplos em que são difíceis de escrever com um laço +for+ e fáceis de escrever com recursão; portanto, é uma boa ideia começar cedo.
 
 === Diagramas de Pilhas para Funções Recursivas
 
 Em <<stack_diagrams>>, usamos um diagrama de pilha para representar o estado de um programa durante uma chamada de função. O mesmo tipo de diagrama pode ajudar a interpretar uma função recursiva.
 (((diagrama de pilha)))
 
-Sempre que uma função é chamada, o Julia cria um quadro para conter as variáveis e parâmetros locais da função. Para uma função recursiva, pode haver mais de um quadro na pilha ao mesmo tempo.
+Sempre que uma função é chamada, o Julia cria um quadro para conter os parâmetros e as variáveis locais da função. Para uma função recursiva, pode haver mais de um quadro na pilha ao mesmo tempo.
 (((quadro)))
 
 [[fig05-1]]
@@ -322,9 +322,9 @@ image::images/fig51.svg[]
 
 <<fig05-1>> mostra um diagrama de pilha para +contagem_regressiva+ chamada com +n = 3+.
 
-Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou passamos algum argumento para ela.
+Como sempre, o topo da pilha é o quadro para +Main+. Ele está vazio porque não criamos nenhuma variável em +Main+ ou nem passamos algum argumento para ela.
 
-Os quatro quadros de +contagem_regressiva+ têm valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n=0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
+Os quatro quadros de +contagem_regressiva+ contém valores diferentes para o parâmetro +n+. A parte inferior da pilha, onde +n = 0+, é chamada de _caso base_. Ele não faz uma chamada recursiva, portanto não há mais quadros.
 (((caso base)))
 
 ===== Exercício 5-1
@@ -333,7 +333,7 @@ Como exercício, desenhe um diagrama de pilha para +imprima_n+ chamado com +s = 
 
 === Recursão Infinita
 
-Se uma recursão nunca atinge o caso base, ela continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. Aqui está um programa pequeno com uma recursão infinita:
+Se uma recursão nunca atinge o caso base, ela continua fazendo chamadas recursivas para sempre e o programa nunca termina. Isso é conhecido como _recursão infinita_, e geralmente isso não é uma boa ideia. À seguir, um pequeno programa com uma recursão infinita:
 (((recursão infinita)))(((recursão)))((("função", "definido pelo programador", "recursão", see="recursão")))
 
 [source,julia]
@@ -350,20 +350,20 @@ Na maioria dos ambientes de programação, um programa com recursão infinita re
 julia> recursão()
 ERROR: StackOverflowError:
 Stacktrace:
- [1] recurse() at ./REPL[1]:2 (repeats 80000 times)
+ [1] recursão() at ./REPL[1]:2 (repeats 80000 times)
 ----
 
 Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior. Quando o erro ocorre, existem 80000 quadros de +recursão+ na pilha!
 (((rastreamento de pilha)))(((StackOverflowError)))((("Erro", "Core", "StackOverflowError", see="StackOverflowError")))
 
-Se você encontrar uma recursão infinita por acidente, revise sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver um caso base, verifique que você está garantido a alcançá-lo.
+Se você encontrar uma recursão infinita por acidente, revise a sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver, verifique que você está garantindo o alcance do caso base.
 
 
-=== Entradas do Teclado
+=== Entradas de Teclado
 
-Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa todas as vezes.
+Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa toda hora.
 
-Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
+O Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +return+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
 (((readline)))((("função, "Base", "readline", see="readline")))
 
 [source,jlcon]
@@ -390,24 +390,24 @@ Se você espera que o usuário digite um número inteiro, tente converter o valo
 
 [source,jlcon]
 ----
-julia> println("Qual é a velocidade de vôo de uma andorinha sem carga?"); velocidade = readline()
-Qual é a velocidade de vôo de uma andorinha sem carga?
+julia> println("Qual é a velocidade de voo de uma andorinha sem carga?"); velocidade = readline()
+Qual é a velocidade de voo de uma andorinha sem carga?
 42
 "42"
-julia> parse(Int64, speed)
+julia> parse(Int64, velocidade)
 42
 ----
 
 Mas se o usuário digitar algo diferente de uma sequência de dígitos, você receberá um erro:
-(((analisar)))
+(((parse)))
 
 [source,jlcon]
 ----
-julia> println("Qual é a velocidade de vôo de uma andorinha sem carga?"); velocidade = readline()
-Qual é a velocidade de vôo de uma andorinha sem carga?
+julia> println("Qual é a velocidade de voo de uma andorinha sem carga?"); velocidade = readline()
+Qual é a velocidade de voo de uma andorinha sem carga?
 Como assim, uma andorinha africana ou européia?
 "Como assim, uma andorinha africana ou européia?"
-julia> parse(Int64, speed)
+julia> parse(Int64, velocidade)
 ERROR: ArgumentError: invalid base 10 digit 'C' in "Como assim, uma andorinha africana ou européia?"
 [...]
 ----
@@ -436,7 +436,7 @@ O mesmo vale para erros de tempo de execução. Suponha que você esteja tentand
 \end{equation}
 ++++
 
-Em Julia, você pode escrever algo como:
+No Julia você pode escrever desta forma:
 
 [source,julia]
 ----
@@ -444,7 +444,7 @@ potência_do_sinal = 9
 potência_do_ruido = 10
 razão = potência_do_sinal ÷ potência_do_ruido
 decibéis = 10 * log10(razão)
-print(decibeis)
+print(decibéis)
 ----
 
 E você obtém:
@@ -454,9 +454,9 @@ E você obtém:
 -Inf
 ----
 
-Esse não era um resultado que você estava esperando.
+Com certeza não era um resultado que você estava esperando.
 
-Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a divisão do piso em vez da divisão do ponto flutuante.
+Para encontrar o erro, pode ser útil imprimir o valor da razão, que acaba sendo 0. O problema está na linha 3, que usa a divisão de piso em vez da divisão do ponto flutuante.
 
 [WARNING]
 ====
@@ -486,20 +486,20 @@ operador lógico::
 Um dos operadores que combina expressões booleanas: +&&+ (e), +||+ (ou), e +!+ (não).
 (((operador lógico)))
 
-declaração condicional::
-Uma declaração que controla o fluxo de execução dependendo de alguma condição.
-(((declaração condicional)))
+comando condicional::
+Um comando que controla o fluxo de execução dependendo de alguma condição.
+(((comando condicional)))
 
 condição::
-A expressão boleana em uma declaração condicional que determina qual ramo executará.
+A expressão boleana em um comando condicional que determina qual ramo executará.
 (((condição)))
 
-declaração composta::
-Uma declaração que consiste em um cabeçalho e um corpo. O corpo é terminado com a palavra-chave +end+.
-(((declaração composta)))
+comando composto::
+Um comando que consiste em um cabeçalho e um corpo. O corpo é terminado com a palavra-chave +end+.
+(((comando composto)))
 
 ramos::
-Uma das sequências alternativas de atribuições em uma atribuição condicional.
+Uma das sequências alternativas de comandos em um comando condicional.
 (((ramos)))
 
 atribuição encadeada::
@@ -507,12 +507,12 @@ Uma atribuição condicional com uma série de ramos alternativos.
 (((atribuição encadeada)))
 
 condicional aninhada::
-Uma atribuição condicional que aparece em um dos ramos de outra atribuição condicional.
+Um comando condicional que aparece em um dos ramos de outro comando condicional.
 (((condicional aninhada)))
 
 atribuição de retorno::
-Uma atribuição que faz com que uma função pare de executar imediatamente e retorne para quem a chamou.
-(((atribuição de retorno)))
+Um comando que faz com que uma função pare de executar imediatamente e retorne para quem a chamou.
+(((comando de retorno)))
 
 recursão::
 O processo de chamar a função que está sendo executada.
@@ -523,7 +523,7 @@ Uma ramo condicional de uma função recursiva que não faz um chamado recursiva
 (((caso base)))
 
 recursão infinita::
-Uma recursão que não tem um caso base, ou nunca atinge ela. Eventualmente, uma recursão infinita causa um erro de tempo de execução.
+Uma recursão que não tem um caso base ou que nunca atinge ela. Eventualmente, uma recursão infinita causa um erro de tempo de execução.
 (((recursão infinita)))
 
 
@@ -532,7 +532,7 @@ Uma recursão que não tem um caso base, ou nunca atinge ela. Eventualmente, uma
 [[ex05-1]]
 ===== Exercício 5-2
 
-A função +time+ retorna o tempo médio atual de Greenwich em segundos desde “a época”, que é um tempo arbitrário usado como ponto de referência. Nos sistemas UNIX, a época é 1 de janeiro de 1970.
+A função +time+ retorna o Horário do Meridiano de Greenwich em segundos desde "a época", que é um horário arbitrário usado como ponto de referência. Nos sistemas UNIX, a época é 1 de janeiro de 1970.
 (((time)))((("função", "Base", "time", see="time")))
 
 [source,@julia-repl]
@@ -565,7 +565,7 @@ para qualquer valor de latexmath:[\(n\)] maior que 2.
 [[ex05-3]]
 ===== Exercise 5-4
 
-Se você receber três gravetos, poderá ou não ser capaz de organizá-los em um triângulo. Por exemplo, se um dos gravetos tiver 12 centímetros de comprimento e os outros dois um centímetro, você não conseguirá fazer com que os gravetos curtos se toquem no meio. Para três comprimentos, há um teste simples para verificar se é possível formar um triângulo:
+Se você receber três gravetos, poderá ou não ser capaz de organizá-los em um triângulo. Por exemplo, se um dos gravetos tiver 12 centímetros de comprimento e os outros dois um centímetro, você não conseguirá formar um triângulo. Para três comprimentos dados, há um teste simples para verificar se é possível formar um triângulo:
 
 [TIP]
 ====
@@ -598,14 +598,14 @@ recursão(3, 0)
 
 . O que aconteceria se você chamasse essa função assim: +recursão(-1, 0)+?
 
-. Escreva uma sequência de documentos que explique tudo o que alguém precisa saber para usar essa função (e nada mais).
+. Escreva uma docstring que explique tudo o que alguém precisaria saber para usar esta função (e nada mais).
 
 Os exercícios a seguir usam o módulo +ThinkJulia+, descrito no <<chap04>>:
 
 [[ex05-5]]
 ===== Exercício 5-6
 
-Leia a função a seguir e veja se você consegue descobrir o que ela faz (veja os exemplos em <<chap04>>). Em seguida, execute-o e veja se você acertou.
+Leia a função a seguir e veja se você consegue descobrir o que ela faz (veja os exemplos em <<chap04>>). Em seguida, execute-a e veja se você acertou.
 
 [source,julia]
 ----
@@ -613,14 +613,14 @@ function desenhe(t, comprimento, n)
     if n == 0
         return
     end
-    angulo = 50
-    forward(t, comprimento*n)
-    turn(t, -angulo)
-    draw(t, comprimento, n-1)
-    turn(t, 2*angle)
-    draw(t, comprimento, n-1)
-    turn(t, -angulo)
-    forward(t, -comprimento*n)
+    ângulo = 50
+    avance(t, comprimento*n)
+    gire(t, -ângulo)
+    desenhe(t, comprimento, n-1)
+    gire(t, 2*angle)
+    desenhe(t, comprimento, n-1)
+    gire(t, -ângulo)
+    avance(t, -comprimento*n)
 end
 ----
 
@@ -632,26 +632,26 @@ end
 image::images/fig52.svg[]
 
 
-A curva de Koch é um fractal que se parece com <<fig05-2>>. Para desenhar uma curva de Koch com comprimento latexmath:[\(x\)], tudo que você precisa fazer é:
+A curva de Koch é um fractal que parece com o da <<fig05-2>>. Para desenhar uma curva de Koch com comprimento latexmath:[\(x\)], tudo que você precisa fazer é:
 (((curva de Koch)))(((fractal)))
 
-. Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
+. Desenhar uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
-. Gire 60° para esquerda
+. Girar 60° para esquerda
 
-. Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
+. Desenhar uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
-. Gire 120° para direita.
+. Girar 120° para direita.
 
-. Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
+. Desenhar uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
-. Gire 60° para esquerda.
+. Girar 60° para esquerda.
 
-. Desenhe uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
+. Desenhar uma curva de Koch com comprimento latexmath:[\(\frac{x}{3}\)].
 
 A exceção é se latexmath:[\(x\)] for menor que 3: neste caso, você só desenha uma linha reta de comprimento latexmath:[\(x\)].
 
-. Escreva uma função chamada +koch+ que considere uma tartaruga e um comprimento como parâmetros e que use a tartaruga para desenhar uma curva de Koch com o comprimento especificado.
+. Escreva uma função chamada +koch+ que receba um turtle e um comprimento como parâmetros e que use o turtle para desenhar uma curva de Koch com o comprimento especificado.
 (((koch)))((("função", "definido pelo programador", "koch", see="koch")))
 
 . Escreva uma função chamada + floco_de_neve + que desenhe três curvas de Koch para fazer o contorno de um floco de neve.
