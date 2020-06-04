@@ -15,14 +15,14 @@ e = exp(1.0)
 altura = raio * sin(radianos)
 ----
 
-As funções escritas até o momento são nulas, que significa que elas não têm valor de retorno; mais precisamente, seu valor de retorno é +nothing+. Neste capítulo, (finalmente) vamos escrever funções produtivas. O primeiro exemplo é a função +área+, que retorna a área de um círculo dado um raio:
+As funções escritas até o momento são nulas, o que significa que elas não têm valor de retorno; mais precisamente, seu valor de retorno é +nothing+. Neste capítulo, (finalmente) vamos escrever funções produtivas. O primeiro exemplo é a função +área+, que retorna a área de um círculo dado um raio:
 (((nothing)))(((área)))((("função", "definido pelo programador", "área", see="área")))
 
 [source,@julia-setup]
 ----
 function área(raio)
-    var_área = π * raio^2
-    return var_área
+    a = π * raio^2
+    return a
 end
 ----
 
@@ -38,7 +38,7 @@ end
 
 O valor retornado por uma função é o valor do último comando executado, que, por padrão, é a última expressão no corpo da definição da função.
 
-Além disso, _variáveis temporárias_ como +var_área+ e as intruções explícitas +return+ podem contribuir para o debugging.
+Além disso, _variáveis temporárias_ como +a+ e as instruções explícitas +return+ podem contribuir para o debugging.
 (((variável temporária)))
 
 Às vezes, é prático ter diversos comandos +return+, uma em cada ramo de uma condicional:
@@ -75,7 +75,7 @@ function valorAbsoluto(x)
 end
 ----
 
-Essa função está incorreta porque se +x+ for 0, nenhuma das condições é verdadeira, e a função termina sem chegar a um comando de +retorno+. Quando o fluxo de execução chega ao final de uma função, o valor de retorno é +nothing+, que não é o valor absoluto de 0.
+Essa função está incorreta porque se +x+ for 0, nenhuma das condições é verdadeira, e a função termina sem chegar a um comando +return+. Quando o fluxo de execução chega ao final de uma função, o valor de retorno é +nothing+, que não é o valor absoluto de 0.
 
 [source,@julia-repl-test chap06]
 ----
@@ -100,7 +100,7 @@ Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1
 À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo debugando.
 (((debugging)))
 
-Ao lidar com programas cada vez mais complexos, tente um processo chamado _Desenvolvimento Incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
+Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
 (((desenvolvimento incremental)))
 
 Para exemplificar esse processo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
@@ -118,7 +118,7 @@ O primeiro passo é avaliar como deve ser uma função de distância em Julia. E
 Neste exemplo, as entradas são dois pontos, que pode ser representado por quatro números. Já o valor de retorno é a distância representada por um valor de ponto flutuante.
 
 Com isso, pode-se esboçar a função:
-(((distância))) (((("função", "definido pelo programador", "distância", see="distância"))))
+(((distância)))((("função", "definido pelo programador", "distância", see="distância")))
 
 [source,@julia-setup chap06]
 ----
@@ -128,7 +128,7 @@ end
 ----
 
 Obviamente que essa versão não determina as distâncias pois ela sempre retorna zero. Mas é sintaticamente correta, e roda, o que significa que você pode testá-la antes de complicá-la. Os números dos subscritos estão disponíveis na codificação de caracteres Unicode (*+\_1 TAB+*, *+\_2 TAB+*, etc.).
-(((caracter Unicode)))
+(((caractere Unicode)))
 
 Para testar a nova função, chame-a com argumentos exemplificados a seguir:
 
@@ -137,7 +137,7 @@ Para testar a nova função, chame-a com argumentos exemplificados a seguir:
 distância(1, 2, 4, 6)
 ----
 
-Escolhi estes valores para que a distância horizontal seja 3 e a vertical seja 4; logo, o resultado é 5 porque é a hipotenusa de um triângulo retângulo 3-4-5. Quando testar uma função, o aconselhável é já saber a resposta correta.
+Escolhemos estes valores para que a distância horizontal seja 3 e a vertical seja 4; logo, o resultado é 5 porque é a hipotenusa de um triângulo retângulo 3-4-5. Quando testar uma função, o aconselhável é já saber a resposta correta.
 
 Nesse ponto, como já confirmamos que a função está sintaticamente correta, então podemos começar a adicionar código ao corpo. Um passo subsequente razoável é encontrar as diferenças latexmath:[\(x_2 - x_1\)] e latexmath:[\(y_2 - y_1\)]. A próxima versão da função armazena esses valores em variáveis temporárias que são mostradas com a macro +@show+.
 ((("@show")))((("macro", "Base", "@show", see="@show")))
@@ -167,7 +167,7 @@ function distância(x₁, y₁, x₂, y₂)
 end
 ----
 
-Você executaria o programa mais uma vez nesse estágio e verificaria a saída (que deveria ser 25). Números sobrescritos também estão disponíveis (*+\^2 TAB+*). Por fim, usa-se +sqrt+ no calcular e retornar o resultado final:
+Você executaria o programa mais uma vez nesse estágio e verificaria a saída (que deveria ser 25). Números sobrescritos também estão disponíveis (*+\^2 TAB+*). Por fim, usa-se +sqrt+ para calcular e retornar o resultado final:
 (((sqrt)))
 
 [source,@julia-setup]
@@ -246,7 +246,7 @@ end
 === Funções Booleanas
 
 As funções podem retornar valores booleanos, o que muitas vezes é conveniente para ocultar testes complicados dentro de funções. Por exemplo:
-(((função booleana))) (((é_divisível))) ((("função", "definido pelo programador", "é_divisível", consulte = "é_divisível")))
+(((função booleana)))(((é_divisível)))((("função", "definido pelo programador", "é_divisível", see="é_divisível")))
 
 [source,@julia-setup chap06]
 ----
@@ -310,13 +310,13 @@ Escreva uma função +está_entre(x, y, z)+ que retorna +true+ se +x ≤ y ≤ z
 === Mais Recursividade
 
 Mostramos apenas uma pequena fração de Julia, mas você pode estar interessado em saber que essa fração é uma linguagem de programação _completa_, significando que qualquer coisa que possa ser calculada pode ser expressa nessa linguagem. Qualquer programa já escrito pode ser reescrito usando apenas os recursos da linguagem que você aprendeu até o momento (na verdade, você precisaria de alguns comandos para controlar dispositivos como mouse, discos, etc., mas isso é tudo).
-(((recursão))) (((linguagem de programação completa))) ((("linguagem de programação", "completa", veja = "linguagem de programação completa"))))
+(((recursão)))(((linguagem de programação completa)))((("linguagem de programação", "completa", see="linguagem de programação completa")))
 
 Essa afirmação é um exercício não trivial provado pela primeira vez por Alan Turing, um dos primeiros cientistas da computação (alguns argumentariam que ele era matemático, mas muitos dos primeiros cientistas da computação começaram como matemáticos). Por isso, esta prova é conhecida como a Tese de Turing. Para uma discussão mais completa (e precisa) da Tese de Turing, recomendo o livro _Introdução à teoria da computação_ de Michael Sipser.
-(((Turing, Alan))) (((tese de Turing))))
+(((Turing, Alan)))(((tese de Turing)))
 
 Para ter uma noção do que você pode fazer com as ferramentas que sabe até agora, avaliaremos algumas funções matemáticas definidas recursivamente. Uma definição recursiva é semelhante a uma definição circular, no sentido de que a definição contém uma chamada de si própria. Uma definição totalmente circular não é muito vantajosa:
-(((definição recursiva))) (((definição circular))))
+(((definição recursiva)))(((definição circular)))
 
 vorpal::
 Um adjetivo usado para descrever algo que é vorpal.
@@ -334,12 +334,12 @@ Ver essa definição no dicionário pode ser irritante. Por outro lado, se consu
 \end{cases}}
 \end{equation}
 ++++
-Essa definição diz que o fatorial de 0 é 1, e o fatorial de qualquer outro valor latexmath:[n] é latexmath:[n] multiplicado pelo fatorial de latexmath:[n-1]].
+Essa definição diz que o fatorial de 0 é 1, e o fatorial de qualquer outro valor latexmath:[\(n\)] é latexmath:[\(n\)] multiplicado pelo fatorial de latexmath:[\(n-1\)].
 
-Então latexmath:[\(3!\)] é 3 vezes latexmath:[\(2!\)], que é 2 vezes latexmath:[\(1!\)], que é 1 vezes latexmath:[\(0!\)]. Colocando tudo junto, látexmath:[\(3!\)] é igual a 3 vezes 2 vezes 1 vezes 1, que dá 6.
+Então latexmath:[\(3!\)] é 3 vezes latexmath:[\(2!\)], que é 2 vezes latexmath:[\(1!\)], que é 1 vezes latexmath:[\(0!\)]. Colocando tudo junto, latexmath:[\(3!\)] é igual a 3 vezes 2 vezes 1 vezes 1, que dá 6.
 
-Se puder escrever uma definição recursiva de algo, pode-se escrever um programa em Julia para testá-la. A primeiro etapa é decidir quais devem ser os parâmetros. E nesse caso, é evidente que o fatorial recebe um número inteiro:
-(((fatorial))) (((("função", "definido pelo programador", "fatorial", see="fatorial"))))
+Se puder escrever uma definição recursiva de algo, pode-se escrever um programa em Julia para testá-la. A primeira etapa é decidir quais devem ser os parâmetros. E nesse caso, é evidente que o fatorial recebe um número inteiro:
+(((fatorial)))((("função", "definido pelo programador", "fatorial", see="fatorial")))
 
 [source,@julia-setup]
 ----
@@ -372,7 +372,7 @@ function fatorial(n)
 end
 ----
 
-O fluxo de execução deste programa é similar ao fluxo de +contagem regressiva+ em <<recursão>>. Chamando +fatorial+ do valor +3+:
+O fluxo de execução deste programa é similar ao fluxo de +contagem regressiva+ em <<recursion>>. Chamando +fatorial+ do valor +3+:
 (((fluxo de execução)))
 
 [small]
@@ -427,8 +427,8 @@ O mesmo se aplica aos programas recursivos. Ao chegar na chamada recursiva, em v
 [[one_more_example]]
 === Mais Um Exemplo
 
-Após fatorial, o exemplo mais familiar de uma função matemática definida recursivamente é a sequência de fibonacci, cuja definição é (consulte https://pt.wikipedia.org/wiki/Sequência_de_Fibonacci):
-(((função de fibonacci)))
+Após fatorial, o exemplo mais familiar de uma função matemática definida recursivamente é a sequência de Fibonacci, cuja definição é (consulte https://pt.wikipedia.org/wiki/Sequência_de_Fibonacci):
+(((função de Fibonacci)))
 
 [latexmath]
 ++++
@@ -443,7 +443,7 @@ Após fatorial, o exemplo mais familiar de uma função matemática definida rec
 ++++
 
 Traduzindo para Julia, tem-se:
-(((fib))) (((("função", "definido pelo programador", "fib", see="fib"))))
+(((fib)))((("função", "definido pelo programador", "fib", see="fib")))
 
 [source,@julia-setup chap06]
 ----
@@ -458,12 +458,12 @@ function fib(n)
 end
 ----
 
-Se tentar acompanhar o fluxo de execução aqui, mesmo para valores razoavelmente pequenos de +n+, sua cabeça vai enlouquecer. No entanto, de acordo com o salto de fé, se presumir que as duas chamadas recursivas funcionam sem erros, fica nítido que o resultado certo é obtido a partir da soma delas.
+Se você tentar acompanhar o fluxo de execução aqui, mesmo para valores razoavelmente pequenos de +n+, sua cabeça vai enlouquecer. No entanto, de acordo com o salto de fé, se presumir que as duas chamadas recursivas funcionam sem erros, fica nítido que o resultado certo é obtido a partir da soma delas.
 
 
 === Verificação de Tipos
 
-O que ocorre se chamarmos +fatorial+ e atribuirmos +1,5+ como argumento?
+O que ocorre se chamarmos +fatorial+ e atribuirmos +1.5+ como argumento?
 (((StackOverflowError)))
 
 [source,jlcon]
@@ -477,7 +477,7 @@ Stacktrace:
 Parece uma recursão infinita. Como pode ser? A função tem um caso base—quando +n == 0+. Mas se +n+ não for um número inteiro, podemos _perder_ o caso base e ficar recursivo para sempre.
 (((recursão infinita)))
 
-Na primeira chamada recursiva, o valor de +n+ é +0,5+. No próximo, é +-0,5+. A partir daí, vai diminuindo e ficando cada vez mais negativo, mas nunca será +0+.
+Na primeira chamada recursiva, o valor de +n+ é +0.5+. No próximo, é +-0.5+. A partir daí, vai diminuindo e ficando cada vez mais negativo, mas nunca será +0+.
 
 Temos duas escolhas. Podemos tentar generalizar a função fatorial para trabalhar com números de ponto flutuante, ou podemos fazer +fatorial+ verificar o tipo de argumento. Na primeira opção, tem-se a função gama que está um pouco além do escopo deste livro. Logo, vamos adotar a segunda opção.
 (((função gama)))
@@ -583,7 +583,7 @@ Um plano de desenvolvimento de programa que tem o objetivo de evitar o debugging
 
 andaime::
 O código usado no decorrer do desenvolvimento do programa, porém não faz parte da versão final.
-((((andaime)))
+(((andaime)))
 
 guardião::
 Um padrão de programação que usa a estrutura condicional para conferir e tratar de circunstâncias que possam levar a erros.
@@ -639,7 +639,7 @@ A(m-1, A(m, n-1))& \textrm{se}\ m > 0\ \textrm{e}\ n > 0.
 \end{equation}
 ++++
 Consulte https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_de_Ackermann. Escreva uma função chamada +ack+ que calcula a função de Ackermann. Use sua função para avaliar +ack(3, 4)+, que é 125. O que ocorre quando aumentam os valores de +m+ e +n+?
-((((ack)))((("função", "definido pelo programador", "ack", see="ack")))
+(((ack)))((("função", "definido pelo programador", "ack", see="ack")))
 
 [[ex06-3]]
 ===== Exercício 6-6
@@ -679,8 +679,8 @@ Veremos como eles funcionam no <<chap08>>.
 [[ex06-4]]
 ===== Exercício 6-7
 
-Um número, latexmath:[\(a\)], é dita uma potência do latexmath:[\(b\)] se for divisível por latexmath:[\(b\)] e latexmath:[\(\frac{a}{b}\)] é uma potência do latexmath:[\(b\)]. Escreva uma função chamada +é_potência+ que dados os parâmetros +a+ e +b+ devolve +true+ se +a+ for uma potência de +b+.
-(((é_potência))) ((((função "," definido pelo programador ","é_potência", see="é_potência"))))
+Um número, latexmath:[\(a\)], é dito uma potência de latexmath:[\(b\)] se for divisível por latexmath:[\(b\)] e latexmath:[\(\frac{a}{b}\)] for potência de latexmath:[\(b\)]. Escreva uma função chamada +é_potência+ que dados os parâmetros +a+ e +b+ devolve +true+ se +a+ for uma potência de +b+.
+(((é_potência)))((("função", "definido pelo programador","é_potência", see="é_potência")))
 
 [TIP]
 ====
@@ -695,6 +695,6 @@ O máximo divisor comum (MDC) de latexmath:[\(a\)] e latexmath:[\(b\)] é o maio
 Uma maneira de encontrar o MDC de dois números é baseada na observação de que se latexmath:[\(r\)] é o resto da divisão de latexmath:[\(a\)] por latexmath:[\(b\)], então +mcd(a, b) = mcd(b, r)+. Para o caso base, considere que +mdc(a, 0) = a+.
 
 Escreva a função +mdc+ que recebe os parâmetros +a+ e +b+ e retorna o máximo divisor comum.
-(((mdc))) ((("função", "definido pelo programador", "mdc", consulte = "mdc"))))
+(((mdc)))((("função", "definido pelo programador", "mdc", see="mdc")))
 
 Crédito: Este exercício é baseado em um exemplo do livro _Structure and Interpretation of Computer Programs_ de Abelson e Sussman.
