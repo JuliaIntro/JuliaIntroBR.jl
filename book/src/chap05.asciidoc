@@ -628,7 +628,7 @@ end
 ===== Exercício 5-7
 
 [[fig05-2]]
-.A curva de Koch
+.Curva de Koch
 image::images/fig52.svg[]
 
 
