@@ -405,7 +405,7 @@ To test it, write a function named +testsquareroot+ that prints a table like thi
 
 [source,@julia-eval]
 ----
-using ThinkJulia
+using JuliaIntroBR
 io = IOBuffer()
 testsquareroot(io)
 out = String(take!(io))

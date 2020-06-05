@@ -1,5 +1,6 @@
-name = "ThinkJulia"
-uuid = "a7f2b756-c18b-4c7f-87da-faca9ac81b29"
+name = "JuliaIntroBR"
+uuid = "b51cafcc-e450-41f6-af11-4ef6aad3b1a0"
+version = "0.1.0"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"

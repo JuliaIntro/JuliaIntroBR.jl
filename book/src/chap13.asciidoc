@@ -94,7 +94,7 @@ your function should return +pass:['a']+ with probability latexmath:[\(\frac{2}{
 
 === Word Histogram
 
-You should attempt the previous exercises before you go on. You will also need https://github.com/BenLauwens/ThinkJulia.jl/blob/master/data/emma.txt.
+You should attempt the previous exercises before you go on. You will also need https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/emma.txt.
 
 Here is a program that reads a file and builds a histogram of the words in the file:
 (((processfile)))((("function", "programmer-defined", "processfile", see="processfile")))(((processline)))((("function", "programmer-defined", "processline", see="processline")))

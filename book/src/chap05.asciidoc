@@ -600,7 +600,7 @@ recursão(3, 0)
 
 . Escreva uma docstring que explique tudo o que alguém precisaria saber para usar esta função (e nada mais).
 
-Os exercícios a seguir usam o módulo +ThinkJulia+, descrito no <<chap04>>:
+Os exercícios a seguir usam o módulo +JuliaIntroBR+, descrito no <<chap04>>:
 
 [[ex05-5]]
 ===== Exercício 5-6

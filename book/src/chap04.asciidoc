@@ -1,45 +1,45 @@
 [[chap04]]
-== Case Study: Interface Design
+== Estudo de Caso: Design de Interface
 
-This chapter presents a case study that demonstrates a process for designing functions that work together.
+Este capítulo apresenta um estudo de caso que demonstra o processo de design de funções que trabalham juntas.
 
-It introduces turtle graphics, a way to create programmatic drawings. Turtle graphics are not included in the Standard Library, so the ThinkJulia module has to be added to your Julia setup.
+Ele introduz o turtle graphics, um jeito de criar desenhos por meio de um programa. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo JuliaIntroBR tem que ser adicionado na sua configuração do Julia.
 
-The examples in this chapter can be executed in a graphical notebook on JuliaBox, which combines code, formatted text, math, and multimedia in a single document (see <<juliabox>>).
-(((JuliaBox, graphical notebook)))
+Os exemplos neste capítulo podem ser executados em um notebook gráfico no JuliaBox, que combina código, texto formatado, matemática e multimídia em um único documento (ver <<juliabox>>).
+(((JuliaBox, notebook gráfico)))
 
 
 === Turtles
 
-A _module_ is a file that contains a collection of related functions. Julia provides some modules in its Standard Library. Additional functionality can be added from a growing collection of _packages_ (https://juliaobserver.com).
-(((module)))(((package)))
+Um _módulo_ é um arquivo que contém uma coleção de funções relacionadas. O Julia fornece alguns módulos na sua biblioteca padrão. Mais funcionalidades podem ser adicionadas a partir de uma crescente coleção de _pacotes_ (https://juliaobserver.com).
+(((módulo)))(((pacote)))
 
-Packages can be installed in the REPL by entering the Pkg REPL-mode using the key +]+.
-(((pass:[&#93;])))(((ThinkJulia)))((("module", "ThinkJulia", see="ThinkJulia")))
+Pacotes podem ser instalados no REPL através do modo Pkg usando a tecla +]+.
+(((pass:[&#93;])))(((JuliaIntroBR)))((("módulo", "JuliaIntroBR", see="JuliaIntroBR")))
 
 [source,jlcon]
 ----
-(v1.0) pkg> add https://github.com/BenLauwens/ThinkJulia.jl
+(v1.0) pkg> add https://github.com/JuliaIntro/JuliaIntroBR.jl
 ----
 
-This can take some time.
+Isso pode demorar um pouco.
 
-Before we can use the functions in a module, we have to import it with an +using+ statement:
-(((using)))((("keyword", "using", see="using")))(((using statement)))((("statement", "using", see="using statement")))
+Antes de podermos usar as funções de um módulo, temos que importá-lo usando a declaração +using+:
+(((using)))((("palavra-chave", "using", see="using")))(((declaração using)))((("declaração", "using", see="declaração qusing")))
 
 [source,@julia-repl-test]
 ----
-julia> using ThinkJulia
+julia> using JuliaIntroBR
 
 julia> 🐢 = Turtle()
 Luxor.Turtle(0.0, 0.0, true, 0.0, (0.0, 0.0, 0.0))
 ----
 
-The +ThinkJulia+ module provides a function called +Turtle+ that creates a +Luxor.Turtle+ object, which we assign to a variable named +🐢+ (*+\:turtle: TAB+*).
-(((Turtle)))((("type", "Luxor", "Turtle", see="Turtle")))
+O módulo +JuliaIntroBR+ possui uma função chamada +Turtle+ que cria um objeto +Luxor.Turtle+, que atribuímos a uma variável chamada +🐢+ (*+\:turtle: TAB+*).
+(((Turtle)))((("tipo", "Luxor", "Turtle", see="Turtle")))
 
-Once you create a turtle, you can call a function to move it around a drawing. For example, to move the turtle forward:
-(((forward)))((("function", "ThinkJulia", "forward", see="forward")))
+Logo após criarmos a tartaruga, podemos chamar uma função que a move ao redor de um desenho. Por exemplo, para mover a tartaruga para a frente:
+(((para a frente)))((("função", "JuliaIntroBR", "para a frente", see="para a frente")))
 
 [source,julia]
 ----
@@ -49,22 +49,22 @@ end
 ----
 
 [[fig04-1]]
-.Moving the turtle forward
+.Movendo a tartaruga para a frente
 image::images/fig41.svg[]
 
 
-The +@svg+ keyword runs a macro that draws a SVG picture. Macros are an important but advanced feature of Julia.
-(((@svg)))((("macro", "Luxor", "@svg", see="@svg")))(((macro)))(((SVG picture)))
+A palavra-chave +@svg+ executa uma macro que desenha uma imagem SVG. Macros são uma parte importante, mas avançada, do Julia.
+(((@svg)))((("macro", "Luxor", "@svg", see="@svg")))(((macro)))(((imagem SVG)))
 
-The arguments of +forward+ are the turtle and a distance in pixels, so the actual size depends on your display.
+Os argumentos de +forward+ são a tartaruga e a distância em pixels, portanto o tamanho real do movimento depende do seu monitor.
 
-Another function you can call with a turtle as argument is +turn+ for turning. The second argument for +turn+ is an angle in degrees.
-(((turn)))((("function", "ThinkJulia", "turn", see="turn")))
+Outra função que nós podemos chamar com tartaruga como argumento é +turn+, para virar. O segundo argumento para +turn+ é o ângulo em graus.
+(((turn)))((("função", "JuliaIntroBR", "turn", see="turn")))
 
-Also, each turtle is holding a pen, which is either down or up; if the pen is down, the turtle leaves a trail when it moves. <<fig04-1>> shows the trail left behind by the turtle. The functions +penup+ and +pendown+ stand for “pen up” and “pen down”.
-(((penup)))((("function", "ThinkJulia", "penup", see="penup")))(((pendown)))((("function", "ThinkJulia", "pendown", see="pendown")))
+Além disso, cada tartaruga está segurando uma caneta, que pode estar tanto para baixo ou para cima; se a caneta está para baixo, a tartaruga deixa uma trilha quando ela se move. <<fig04-1>> mostra a trilha deixada pela tartaruga. As funções +penup+ e +pendown+ significam respectivamente “caneta para cima” e “caneta para baixo”.
+(((penup)))((("função", "JuliaIntroBR", "penup", see="penup")))(((pendown)))((("função", "JuliaIntroBR", "pendown", see="pendown")))
 
-To draw a right angle, modify the macro call:
+Para desenhar um ângulo reto, modifique a chamada de macro:
 
 [source,julia]
 ----
@@ -76,16 +76,16 @@ To draw a right angle, modify the macro call:
 end
 ----
 
-===== Exercise 4-1
+===== Exercício 4-1
 
-Now modify the macro to draw a square. Don’t go on until you’ve got it working!
+Agora modifique a macro para desenhar um quadrado. Não avance até que você faça isso funcionar!
 
 
 [[simple_repetition]]
-=== Simple Repetition
+=== Repetição Simples
 
-Chances are you wrote something like this:
-(((repetition)))
+Existe uma chance de que você escreveu algo como:
+(((repetição)))
 
 [source,julia]
 ----
@@ -101,23 +101,23 @@ Chances are you wrote something like this:
 end
 ----
 
-We can do the same thing more concisely with a +for+ statement:
-(((for statement)))((("statement", "for", see="for statement)))(((for)))((("keyword", "for", see="for")))(((in)))((("keyword", "in", see="in")))
+Nós podemos fazer a mesma coisa de forma mais concisa com uma declaração +for+:
+(((declaração for)))((("declaração", "for", see="declaração for")))(((for)))((("palavra-chave", "for", see="for")))(((in)))((("palavra-chave", "in", see="in")))
 
 [source,@julia-repl-test]
 ----
 julia> for i in 1:4
-          println("Hello!")
+          println("Olá!")
        end
-Hello!
-Hello!
-Hello!
-Hello!
+Olá!
+Olá!
+Olá!
+Olá!
 ----
 
-This is the simplest use of the +for+ statement; we will see more later. But that should be enough to let you rewrite your square-drawing program. Don’t go on until you do.
+Esse é o uso mais simples da declaração +for+; nós veremos mais usos mais tarde. Mas isso deve ser o suficiente para que você possa reescrever o seu programa que desenha um quadrado. Não avançe até que você o faça.
 
-Here is a +for+ statement that draws a square:
+Aqui está uma declaração +for+ que desenha um quadrado:
 
 [source,julia]
 ----
@@ -130,73 +130,73 @@ Here is a +for+ statement that draws a square:
 end
 ----
 
-The syntax of a +for+ statement is similar to a function definition. It has a header and a body that ends with the keyword +end+. The body can contain any number of statements.
+A sintaxe de uma declaração +for+ é similar a uma definição de função. Ela possui um cabeçalho e um corpo que termina com a palavra-chave +end+. O corpo pode conter qualquer número de declarações.
 (((end)))
 
-A +for+ statement is also called a _loop_ because the flow of execution runs through the body and then loops back to the top. In this case, it runs the body four times.
-(((loop)))
+Uma declaração +for+ também é chamada de _laço_, pois o fluxo de execução percorre o corpo e em seguida retorna até o topo em um ciclo. Nesse caso, ela percorre o corpo quatro vezes.
+(((laço)))
 
-This version is actually a little different from the previous square-drawing code because it makes another turn after drawing the last side of the square. The extra turn takes more time, but it simplifies the code if we do the same thing every time through the loop. This version also has the effect of leaving the turtle back in the starting position, facing in the starting direction.
+Essa versão é na verdade um pouco diferente do código que desenha um quadrado visto anteriormente, pois faz mais uma curva depois de desenhar o último lado do quadrado. A curva adicional leva mais tempo, mas simplifica o código se fizermos a mesma coisa toda vez que percorre o laço. Essa versão também faz a tartaruga retornar para sua posição inicial, de frente à direção inicial.
 
 
-=== Exercises
+=== Exercícios
 
-The following is a series of exercises using turtles. They are meant to be fun, but they have a point, too. While you are working on them, think about what the point is.
+A seguir estão uma série de exercícios utilizando turtles. Elas tem o propósito de serem divertidas, mas tem um objetivo também. Enquanto você trabalha com elas, pense sobre qual é o objetivo.
 
 [TIP]
 ====
-The following sections have solutions to the exercises, so don’t look until you have finished (or at least tried).
+A seção seguinte contém soluções para os exercícios, então não olhe até você terminar (ou pelo menos tentar).
 ====
 
 [[ex04-1]]
-===== Exercise 4-2
+===== Exercício 4-2
 
-Write a function called +square+ that takes a parameter named +t+, which is a turtle. It should use the turtle to draw a square.
+Escreva uma função chamada +quadrado+ que recebe um parâmetro chamado +t+, que é uma tartaruga. Ela deve usar uma tartaruga para desenhar um quadrado.
 
 [[ex04-2]]
-===== Exercise 4-3
+===== Exercício 4-3
 
-Write a function call that passes +t+ as an argument to +square+, and then run the macro again.
+Escreva uma chamada de função que passa +t+ como um argumento para +quadrado+, e em seguida execute o macro novamente.
 
 [[ex04-3]]
-===== Exercise 4-4
+===== Exercício 4-4
 
-Add another parameter, named +len+, to square. Modify the body so length of the sides is +len+, and then modify the function call to provide a second argument. Run the macro again. Test with a range of values for +len+.
+Adicione outro parâmetro, chamado +com+, em +quadrado+. Modifique o corpo para que o comprimento dos lados seja +com+, e então modifique a chamada de função para receber um segundo argumento. Execute a macro novamente. Teste com uma série de valores para +com+.
 
 [[ex04-4]]
-===== Exercise 4-5
+===== Exercício 4-5
 
-Make a copy of +square+ and change the name to +polygon+. Add another parameter named +n+ and modify the body so it draws an latexmath:[\(n\)]-sided regular polygon. 
+Faça uma cópia de +quadrado+ e mude o nome para +polígono+. Adicione outro parâmetro chamado +n+ e modifique o corpo para que ele desenhe um polígono com latexmath:[\(n\)] lados.
 
 [TIP]
 ====
-The exterior angles of an latexmath:[\(n\)]-sided regular polygon are latexmath:[\(\frac{360}{n}\)] degrees.
+Os ângulos externos de um polígono regular de latexmath:[\(n\)] lados são iguais a latexmath:[\(\frac{360}{n}\)] graus.
 ====
 
 [[ex04-5]]
-===== Exercise 4-6
+===== Exercício 4-6
 
-Write a function called +circle+ that takes a turtle, +t+, and radius, +r+, as parameters and that draws an approximate circle by calling +polygon+ with an appropriate length and number of sides. Test your function with a range of values of +r+. 
+Escreva uma função chamada +círculo+ que recebe uma tartaruga +t+, e raio +r+ como parâmetros e que desenha uma figura próxima à um círculo através da chamada de +polígono+ com um comprimento e número de lados apropriados. Teste sua função com uma série de valores de +r+.
 
 [TIP]
 ====
-Figure out the circumference of the circle and make sure that +len * n == circumference+.
+Descubra a circunferência do círculo e garanta que +com * n == circunferência+.
 ====
 
 [[ex04-6]]
-===== Exercise 4-7
+===== Exercício 4-7
 
-Make a more general version of +circle+ called +arc+ that takes an additional parameter +angle+, which determines what fraction of a circle to draw. +angle+ is in units of degrees, so when +angle = 360+, +arc+ should draw a complete circle.
+Faça uma versão mais geral de +círculo+ chamada +arco+ que recebe um parâmetro adicional +ângulo+, que determina qual fração de círculo desenhar. +ângulo+ é uma medida em graus, então quando +ângulo = 360+, +arco+ deve desenhar um círculo completo.
 
 
-=== Encapsulation
+=== Encapsulamento
 
-The first exercise asks you to put your square-drawing code into a function definition and then call the function, passing the turtle as a parameter. Here is a solution:
-(((square)))((("function", "programmer-defined", "square", see="square")))
+O primeiro exercício pede para que você coloque o seu código de desenhar quadrado em uma definição de função, e que em seguida você chame essa função utilizando tartaruga como parâmetro. Aqui está a solução:
+(((quadrado)))((("função", "definido pelo programador", "quadrado", see="quadrado")))
 
 [source,julia]
 ----
-function square(t)
+function quadrado(t)
     for i in 1:4
         forward(t, 100)
         turn(t, -90)
@@ -208,10 +208,10 @@ end
 end
 ----
 
-The innermost statements, +forward+ and +turn+ are indented twice to show that they are inside the +for+ loop, which is inside the function definition.
-(((indentation)))
+As declarações +forward+ e +turn+ são indentadas duas vezes para mostrar que elas estão dentro do laço +for+, que está dentro da definição da função.
+(((indentação)))
 
-Inside the function, +t+ refers to the same turtle +🐢+, so +turn(t, -90)+ has the same effect as +turn(🐢, -90)+. In that case, why not call the parameter +🐢+? The idea is that +t+ can be any turtle, not just +🐢+, so you could create a second turtle and pass it as an argument to +square+:
+Dentro da função, +t+ refere-se à mesma tartaruga +🐢+, então +turn(t, -90)+ tem o mesmo efeito que +turn(🐢+, -90)+. Neste caso, por que não chamar o parâmetro +🐢+ ? A ideia é que +t+ pode ser qualquer tartaruga, não somente +🐢+, então você pode criar uma segunda tartaruga e passá-la como argumento para +quadrado+.
 
 [source,julia]
 ----
@@ -221,20 +221,20 @@ Inside the function, +t+ refers to the same turtle +🐢+, so +turn(t, -90)+ has
 end
 ----
 
-Wrapping a piece of code up in a function is called _encapsulation_. One of the benefits of encapsulation is that it attaches a name to the code, which serves as a kind of documentation. Another advantage is that if you re-use the code, it is more concise to call a function twice than to copy and paste the body!
-(((encapsulation)))
+Envolver um pedaço de código em uma função é chamado de _encapsulamento_. Um dos benefícios do encapsulamento é que ele anexa um nome ao código, que serve como uma forma de documentação. Outra vantagem é que se você está re-utilizando o código, é mais conciso chamar a função duas vezes do que copiar e colar o corpo!
+(((encapsulamento)))
 
 
-=== Generalization
+=== Generalização
 
-The next step is to add a +len+ parameter to +square+. Here is a solution:
-(((square)))
+O próximo passo é adicionar +com+ aos parâmetros de +quadrado+. Aqui está a solução:
+(((quadrado)))
 
 [source,julia]
 ----
-function square(t, len)
+function quadrado(t, com)
     for i in 1:4
-        forward(t, len)
+        forward(t, com)
         turn(t, -90)
     end
 end
@@ -244,335 +244,335 @@ end
 end
 ----
 
-Adding a parameter to a function is called _generalization_ because it makes the function more general: in the previous version, the square is always the same size; in this version it can be any size.
-(((generalization)))
+Adicionar um parâmetro a uma função é chamado de _generalização_ pois faz com que a função seja mais abrangente: na versão anterior, o quadrado sempre tem o mesmo tamanho; nesta versão ele pode ter qualquer tamanho.
+(((generalização)))
 
-The next step is also a generalization. Instead of drawing squares, +polygon+ draws regular polygons with any number of sides. Here is a solution:
-(((polygon)))((("function", "programmer-defined", "polygon", see="polygon")))
+O próximo passo também é uma generalização. Ao invés de desenhar quadrados, +polígono+ desenha polígonos regulares com qualquer número de lados. Aqui está a solução:
+(((polígono)))((("função", "definido pelo programador", "polígono", see="polígono")))
 
 [source,julia]
 ----
-function polygon(t, n, len)
-    angle = 360 / n
+function polígono(t, n, com)
+    ângulo = 360 / n
     for i in 1:n
-        forward(t, len)
-        turn(t, -angle)
+        forward(t, com)
+        turn(t, -ângulo)
     end
 end
 🐢 = Turtle()
 @svg begin
-    polygon(🐢, 7, 70)
+    polígono(🐢, 7, 70)
 end
 ----
 
-This example draws a 7-sided polygon with side length 70.
+Este exemplo desenha um heptágono de lado medindo 70.
 
 
-=== Interface Design
+=== Design de Interface
 
-The next step is to write +circle+, which takes a radius, +r+, as a parameter. Here is a simple solution that uses +polygon+ to draw a 50-sided polygon:
-(((circle)))((("function", "programmer-defined", "circle", see="circle")))
+O próximo passo é escrever +círculo+, que recebe um raio +r+ como parâmetro. Aqui está uma solução simples que usa +polígono+ para desenhar um polígono de 50 lados:
+(((círculo)))((("função", "definido pelo programador", "círculo", see="círculo")))
 
 [source,julia]
 ----
-function circle(t, r)
-    circumference = 2 * π * r
+function círculo(t, r)
+    circunferência = 2 * π * r
     n = 50
-    len = circumference / n
-    polygon(t, n, len)
+    com = circunferência / n
+    polígono(t, n, com)
 end
 ----
 
-The first line computes the circumference of a circle with radius latexmath:[\(r\)] using the formula latexmath:[\(2 \pi r\)]. +n+ is the number of line segments in our approximation of a circle, so +len+ is the length of each segment. Thus, +polygon+ draws a 50-sided polygon that approximates a circle with radius +r+.
+A primeira linha computa a circunferência de um círculo com raio latexmath:[\(r\)] usando a fórmula latexmath:[\(2 \pi r\)]. +n+ é o número de segmentos de linha usados na nossa aproximação de um círculo, e +com+ é o comprimento de cada segmento. Portanto, +polígono+ desenha um polígono de 50 lados que se aproxima um círculo de raio +r+.
 
-One limitation of this solution is that +n+ is a constant, which means that for very big circles, the line segments are too long, and for small circles, we waste time drawing very small segments. One solution would be to generalize the function by taking +n+ as a parameter. This would give the user (whoever calls circle) more control, but the interface would be less clean.
+Uma limitação dessa solução é que +n+ é uma constante, o que significa que para círculos bem grandes, os segmentos de linha são muito longos, e para círculos pequenos, nós gastamos tempo desenhando segmentos bem pequenos. Uma solução seria generalizar a função para que ela receba +n+ como parâmetro. Isso daria ao usuário (qualquer um que chame círculo) mais controle, mas a interface seria menos limpa.
 
-The _interface_ of a function is a summary of how it is used: what are the parameters? What does the function do? And what is the return value? An interface is “clean” if it allows the caller to do what they want without dealing with unnecessary details.
+A _interface_ de uma função é um resumo de como ela deve ser usada: quais são os parâmetros? O que a função faz? E qual o seu valor de retorno? Uma interface é “limpa” se permite àquele que chamou a função fazer tudo o que ele quer sem precisar lidar com detalhes desnecessários.
 (((interface)))
 
-In this example, +r+ belongs in the interface because it specifies the circle to be drawn. +n+ is less appropriate because it pertains to the details of how the circle should be rendered.
+Neste exemplo, +r+ pertence à interface pois especifica o círculo a ser desenhado. +n+ é menos apropriada pois diz respeito aos detalhes de como o círculo deve ser renderizado.
 
-Rather than clutter up the interface, it is better to choose an appropriate value of +n+ depending on +circumference+:
+Em vez de bagunçar a interface, é melhor escolher um valor apropriado de +n+ dependendo de +circunferência+:
 
 [source,julia]
 ----
-function circle(t, r)
-    circumference = 2 * π * r
-    n = trunc(circumference / 3) + 3
-    len = circumference / n
-    polygon(t, n, len)
+function círculo(t, r)
+    circunferência = 2 * π * r
+    n = trunc(circunferência / 3) + 3
+    com = circunferência / n
+    polígono(t, n, com)
 end
 ----
 
-Now the number of segments is an integer near +circumference/3+, so the length of each segment is approximately 3, which is small enough that the circles look good, but big enough to be efficient, and acceptable for any size circle.
+Agora o número de segmentos é um inteiro ao redor de +circunferência/3+, então o comprimento de cada segmento é aproximadamente 3, que é pequeno o suficiente para que os círculos fiquem bons, mas grande o suficiente para ser eficaz, e aceitável para qualquer tamanho de círculo.
 
-Adding 3 to +n+ guarantees that the polygon has at least 3 sides.
+Adicionar 3 a +n+ garante que o polígono tenha no mínimo 3 lados.
 
 
-[[refactoring]]
-=== Refactoring
+[[reestruturação]]
+=== Reestruturação
 
-When I wrote +circle+, I was able to re-use +polygon+ because a many-sided polygon is a good approximation of a circle. But +arc+ is not as cooperative; we can’t use +polygon+ or +circle+ to draw an arc.
+Quando escrevemos +círculo+, pudemos reutilizar +polígono+ pois um polígono com vários lados é uma boa aproximação de um círculo. Mas +arco+ não é igualmente cooperativo; não podemos usar +polígono+ ou +círculo+ para desenhar um arco.
 
-One alternative is to start with a copy of +polygon+ and transform it into +arc+. The result might look like this:
-(((arc)))((("function", "programmer-defined", "arc", see="arc")))
+Uma alternativa é começar com uma cópia de +polígono+ e transformá-la em +arco+. O resultado pode parecer algo como:
+(((arco)))((("função", "definido pelo programador", "arco", see="arco")))
 
 [source,julia]
 ----
-function arc(t, r, angle)
-    arc_len = 2 * π * r * angle / 360
-    n = trunc(arc_len / 3) + 1
-    step_len = arc_len / n
-    step_angle = angle / n
+function arco(t, r, ângulo)
+    com_arco = 2 * π * r * ângulo / 360
+    n = trunc(com_arco / 3) + 1
+    tam_passo = com_arco / n
+    ang_passo = ângulo / n
     for i in 1:n
-        forward(t, step_len)
-        turn(t, -step_angle)
+        forward(t, tam_passo)
+        turn(t, -ang_passo)
     end
 end
 ----
 
-The second half of this function looks like +polygon+, but we can’t re-use +polygon+ without changing the interface. We could generalize +polygon+ to take an +angle+ as a third argument, but then +polygon+ would no longer be an appropriate name! Instead, let’s call the more general function +polyline+:
-(((polyline)))((("function", "programmer-defined", "polyline", see="polyline")))
+A segunda metade dessa função parece-se com +polígono+, mas nós não podemos reusar +polígono+ sem mudar a interface. Nós poderíamos generalizar +polígono+ para receber +ângulo+ como terceiro argumento, mas então +polígono+ não seria mais um nome apropriado! Ao invés disso, chamaremos a função mais geral +polilinha+:
+(((polilinha)))((("função", "definido pelo programador", "polilinha", see="polilinha")))
 
 [source,julia]
 ----
-function polyline(t, n, len, angle)
+function polilinha(t, n, com, ângulo)
     for i in 1:n
-        forward(t, len)
-        turn(t, -angle)
+        forward(t, com)
+        turn(t, -ângulo)
     end
 end
 ----
 
-Now we can rewrite +polygon+ and +arc+ to use +polyline+:
-(((polygon)))(((arc)))
+Agora nós podemos reescrever +polígono+ e +arco+ para usar +polilinha+:
+(((polígono)))(((arco)))
 
 [source,julia]
 ----
-function polygon(t, n, len)
-    angle = 360 / n
-    polyline(t, n, len, angle)
+function polígono(t, n, com)
+    ângulo = 360 / n
+    polilinha(t, n, com, ângulo)
 end
 
-function arc(t, r, angle)
-    arc_len = 2 * π * r * angle / 360
-    n = trunc(arc_len / 3) + 1
-    step_len = arc_len / n
-    step_angle = angle / n
-    polyline(t, n, step_len, step_angle)
+function arco(t, r, ângulo)
+    com_arco = 2 * π * r * ângulo / 360
+    n = trunc(com_arco / 3) + 1
+    com_passo = com_arco / n
+    ang_passo = ângulo / n
+    polilinha(t, n, com_passo, ang_passo)
 end
 ----
 
-Finally, we can rewrite +circle+ to use +arc+:
-(((circle)))
+Finalmente, nós podemos reescrever +círculo+ para usar +arco+:
+(((círculo)))
 
 [source,julia]
 ----
-function circle(t, r)
-    arc(t, r, 360)
+function círculo(t, r)
+    arco(t, r, 360)
 end
 ----
 
-This process—rearranging a program to improve interfaces and facilitate code re-use—is called _refactoring_. In this case, we noticed that there was similar code in +arc+ and +polygon+, so we “factored it out” into +polyline+.
+Este processo de reorganização de um programa para melhorar interface e facilitar o reuso de código é chamado de _refatoração_. Neste caso, nós percebemos que havia código similar em +arco+ e +polígono+, então nós o “fatoramos” para dentro de +polilinha+.
 (((refactoring)))
 
-If we had planned ahead, we might have written +polyline+ first and avoided refactoring, but often you don’t know enough at the beginning of a project to design all the interfaces. Once you start coding, you understand the problem better. Sometimes refactoring is a sign that you have learned something.
+Se nós tivéssemos planejado com antecedência, nós poderíamos ter escrito +polilinha+ primeiro e evitado a refatoração, mas você frequentemente não sabe o suficiente no começo de um projeto para planejar todas as interfaces. A partir do momento em que você começa a programar, você passa a entender o problema melhor. Às vezes refatoração é um sinal de que você aprendeu alguma coisa.
 
 
-=== A Development Plan
+=== Um Plano de Desenvolvimento
 
-A _development plan_ is a process for writing programs. The process we used in this case study is “encapsulation and generalization”. The steps of this process are:
-(((program development plan)))
+Um _plano de desenvolvimento_ é um processo para escrever programas. O processo que usamos nesse estudo de caso é “encapsulamento e generalização”. Os passos desse processo são:
+(((plano de desenvolvimento para um programa)))
 
-. Start by writing a small program with no function definitions.
+. Comece escrevendo um pequeno programa sem definições de funções.
 
-. Once you get the program working, identify a coherent piece of it, encapsulate the piece in a function and give it a name.
+. Uma vez que você fez com que o seu programa funcione, identifique um pedaço coerente dele, encapsule-o em uma função e dê a ela um nome.
 
-. Generalize the function by adding appropriate parameters.
+. Generalize a função adicionando parâmetros apropriados.
 
-. Repeat steps 1–3 until you have a set of working functions. Copy and paste working code to avoid retyping (and re-debugging).
+. Repita os passos 1-3 até que você tenha um conjunto de programas funcionais. Copie e cole o código para evitar redigi-los (e re-debugá-los).
 
-. Look for opportunities to improve the program by refactoring. For example, if you have similar code in several places, consider factoring it into an appropriately general function.
+. Busque por oportunidades de melhora no programa através da refatoração. Por exemplo, se você tem um código similar em vários lugares, considere fatorá-lo em uma função geral apropriada.
 
-This process has some drawbacks—we will see alternatives later—but it can be useful if you don’t know ahead of time how to divide the program into functions. This approach lets you design as you go along.
+Esse processo tem algumas desvantagens-nós veremos as alternativas mais tarde-mas pode ser útil se você não sabe previamente como dividir o programa em funções. Essa abordagem permite que você planeje conforme você vai projetando.
 
 
 === Docstring
 
-A _docstring_ is a string before a function that explains the interface (“doc” is short for “documentation”). Here is an example:
-(((docstring)))(((triple quotes)))((("pass:[&quot;&quot;&quot;]", see="triple quotes")))
+Uma _docstring_ é uma string que vem antes de uma função e descreve sua interface (“doc” refere-se a “documentação”). Aqui está um exemplo:
+(((docstring)))(((aspas triplas)))((("pass:[&quot;&quot;&quot;]", see="aspas triplas")))
 
 [source,julia]
 ----
 """
-polyline(t, n, len, angle)
+polilinha(t, n, com, ângulo)
 
-Draws n line segments with the given length and
-angle (in degrees) between them.  t is a turtle.
+Desenha n segmentos de linha dado o comprimento
+e o ângulo (em graus) entre eles.  t é uma tartaruga.
 """
-function polyline(t, n, len, angle)
+function polilinha(t, n, com, ângulo)
     for i in 1:n
-        forward(t, len)
-        turn(t, -angle)
+        forward(t, com)
+        turn(t, -ângulo)
     end
 end
 ----
 
-Documentation can be accessed in the REPL or in a notebook by typing ? followed by the name of a function or macro, and pressing +ENTER+:
-(((help)))((("?", see="help")))
+A documentação pode ser acessada no REPL ou em um notebook digitando ? seguido pelo nome de uma função ou macro, e apertando +ENTER+;
+(((ajuda)))((("?", see="ajuda")))
 
 ----
-help?> polyline
+help?> polilinha
 search:
 
-  polyline(t, n, len, angle)
+  polilinha(t, n, com, ângulo)
 
-  Draws n line segments with the given length and angle (in degrees) between them. t is a turtle.
+  Desenha n segmentos de linha dado o comprimento e o ângulo (em graus) entre eles. t é uma tartaruga.
 ----
 
-Docstrings are often triple-quoted strings, also known as multiline strings because the triple quotes allow the string to span more than one line.
+Docstrings são comumente strings envolvidas por três aspas, também conhecidas por strings multi-linha, pois as três aspas permitem que a string abranja mais de uma linha.
 
-A docstring contains the essential information someone would need to use this function. It explains concisely what the function does (without getting into the details of how it does it). It explains what effect each parameter has on the behavior of the function and what type each parameter should be (if it is not obvious).
+Uma docstring contém a informação essencial que alguém precisaria para usar essa função. Ela explica concisamente o que a função faz (sem entrar em detalhes de como ela faz). Ela explica que efeito cada parâmetro tem na execução da função e qual tipo cada parâmetro deve ser (se não é óbvio).
 
 [TIP]
 ====
-Writing this kind of documentation is an important part of interface design. A well-designed interface should be simple to explain; if you have a hard time explaining one of your functions, maybe the interface could be improved.
+Escrever esse tipo de documentação é uma parte importante do design de interface. Uma interface bem projetada deve ser simples de explicar; se você encontra dificuldade em explicar uma de sua funções, talvez sua interface possa ser melhorada.
 ====
 
 
-=== Debugging
+=== Debugando
 
-An interface is like a contract between a function and a caller. The caller agrees to provide certain parameters and the function agrees to do certain work.
-(((debugging)))
+Uma interface é como um contrato entre a função e quem a chama. Quem chama concorda em fornecer certos parâmetros e a função concorda em fazer um certo trabalho.
+(((debugando)))
 
-For example, +polyline+ requires four arguments: +t+ has to be a turtle; +n+ has to be an integer; +len+ should be a positive number; and +angle+ has to be a number, which is understood to be in degrees.
+Por exemplo, +polilinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que assume-se ser uma medida em graus.
 
-These requirements are called _preconditions_ because they are supposed to be true before the function starts executing. Conversely, conditions at the end of the function are _postconditions_. Postconditions include the intended effect of the function (like drawing line segments) and any side effects (like moving the turtle or making other changes).
-(((precondition)))(((postcondition)))
+Esses requerimentos são chamados de _precondições_ pois eles deveriam ser verdadeiros antes que a função execute. Inversamente, condições no final da função são chamadas de _pós-condições_. Pós-condições incluem o efeito desejado da função (como desenhar segmentos de linha) e qualquer efeito colateral (como mover a tartaruga ou fazer outra mudança).
+(((precondição)))(((pós-condição)))
 
-Preconditions are the responsibility of the caller. If the caller violates a (properly documented!) precondition and the function doesn’t work correctly, the bug is in the caller, not the function.
+precondições são de responsabilidade de quem chama a função. Se quem chama viola uma precondição (propriamente documentada!) e a função não funciona adequadamente, o bug está em quem chamou, e não na função.
 
-If the preconditions are satisfied and the postconditions are not, the bug is in the function. If your pre- and postconditions are clear, they can help with debugging.
+Se as precondições são satisfeitas e as pós-condições não, então o bug está na função. Se as suas pré- e pós-condições forem claras, elas podem ajudar na hora de debugar.
 
 
-=== Glossary
+=== Glossário
 
-module::
-A file that contains a collection of related functions and other definitions.
-(((module)))
+módulo::
+Um arquivo que contém uma coleção de funções e outras definições relacionadas.
+(((módulo)))
 
-package::
-An external library with additional functionality.
-(((package)))
+pacote::
+Uma biblioteca externa com funcionalidade adicional.
+(((pacote)))
 
-using statement::
-A statement that reads a module file and creates a module object.
-(((using statement)))
+declaração using::
+Uma declaração que lê um arquivo módulo e cria um objeto módulo.
+(((declaração using)))
 
-loop::
-A part of a program that can run repeatedly.
-(((loop)))
+laço::
+Uma parte do programa que é executada repetidamente.
+(((laço)))
 
-encapsulation::
-The process of transforming a sequence of statements into a function definition.
-(((encapsulation)))
+encapsulamento::
+O processo de transformar uma sequência de comandos em uma definição de função.
+(((encapsulamento)))
 
-generalization::
-The process of replacing something unnecessarily specific (like a number) with something appropriately general (like a variable or parameter).
-(((generalization)))
+generalização::
+O processo de substituir algo desnecessariamente específico (como um número) por algo mais adequadamente irrestrito (como uma variável ou parâmetro).
+(((generalização)))
 
 interface::
-A description of how to use a function, including the name and descriptions of the arguments and return value.
+Uma descrição de como usar uma função, incluindo o nome, as descrições dos argumentos e o valor de retorno.
 (((interface)))
 
-refactoring::
-The process of modifying a working program to improve function interfaces and other qualities of the code.
-(((refactoring)))
+refatoração::
+O processo de modificar um programa funcional para melhorar a interface da função e outras qualidades do código.
+(((refatoração)))
 
-development plan::
-A process for writing programs.
-(((program development plan)))
+plano de desenvolvimento::
+Um processo para escrever programas.
+(((plano de desenvolvimento)))
 
 docstring::
-A string that appears at the top of a function definition to document the function’s interface.
+Uma string que aparece no topo de uma definição de função para documentar a interface da função.
 (((docstring)))
 
-precondition::
-A requirement that should be satisfied by the caller before a function starts.
-(((precondition)))
+precondição::
+Um requerimento que deve ser satisfeito por quem chama antes da função iniciar.
+(((precondição)))
 
-postcondition::
-A requirement that should be satisfied by the function before it ends.
-(((postcondition)))
+pós-condição::
+Um requerimento que deve ser satisfeito pela função antes de acabar.
+(((pós-condição)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex04-7]]
-===== Exercise 4-8
+===== Exercício 4-8
 
-Enter the code in this chapter in a notebook.
+Digite o código deste capítulo em um notebook.
 
-. Draw a stack diagram that shows the state of the program while executing +circle(🐢, radius)+. You can do the arithmetic by hand or add print statements to the code.
+. Desenhe um diagrama de pilha que mostra o fluxo de execuções de +círculo(🐢, raio)+. Você pode contar no dedo ou adicionar declarações de impressão no código.
 
-. The version of +arc+ in <<refactoring>> is not very accurate because the linear approximation of the circle is always outside the true circle. As a result, the turtle ends up a few pixels away from the correct destination. My solution shows a way to reduce the effect of this error. Read the code and see if it makes sense to you. If you draw a diagram, you might see how it works.
-(((arc)))
+. A versão de +arco+ em <<refatoração>> não é muito precisa dado que a aproximação linear do círculo está sempre fora do verdadeiro círculo. Como resultado, a tartaruga acaba alguns pixels depois do destino correto. Minha solução mostra uma maneira de reduzir o efeito desse erro. Leia o código e veja se faz sentido para você. Se você desenhar o diagrama, você poderá ver como ela funciona.
+(((arco)))
 
 [source,julia]
 ----
 """
-arc(t, r, angle)
+arco(t, r, ângulo)
 
-Draws an arc with the given radius and angle:
+Desenha um arco dado o raio e ângulo:
 
-    t: turtle
-    r: radius
-    angle: angle subtended by the arc, in degrees
+    t: tartaruga
+    r: raio
+    ângulo: ângulo feito pelo arco, em graus
 """
-function arc(t, r, angle)
-    arc_len = 2 * π * r * abs(angle) / 360
-    n = trunc(arc_len / 4) + 3
-    step_len = arc_len / n
-    step_angle = angle / n
+function arco(t, r, ângulo)
+    com_arco = 2 * π * r * abs(ângulo) / 360
+    n = trunc(com_arco / 4) + 3
+    com_passo = com_arco / n
+    ang_passo = ângulo / n
 
-    # making a slight left turn before starting reduces
-    # the error caused by the linear approximation of the arc
-    turn(t, -step_angle/2)
-    polyline(t, n, step_len, step_angle)
-    turn(t, step_angle/2)
+    # fazendo uma leve curva para a esquerda antes de iniciar
+    # reduz o erro causado pela aproximação linear do arco
+    turn(t, -ang_passo/2)
+    polilinha(t, n, com_passo, ang_passo)
+    turn(t, ang_passo/2)
 end
 ----
 
 [[ex04-8]]
-===== Exercise 4-9
+===== Exercício 4-9
 
-Write an appropriately general set of functions that can draw flowers as in <<fig04-2>>.
+Escreva um conjunto geral de funções apropriadas que podem desenhar flores como em <<fig04-2>>.
 
 [[fig04-2]]
-.Turtle flowers
+.Flores de Tartaruga
 image::images/fig42.svg[]
 
 [[ex04-9]]
-===== Exercise 4-10
+===== Exercício 4-10
 
-Write an appropriately general set of functions that can draw shapes as in <<fig04-3>>.
+Escreva um conjunto geral de funções apropriadas que podem desenhar formas como as de <<fig04-3>>.
 
 [[fig04-3]]
-.Turtle pies
+.Tortas de Tartaruga
 image::images/fig43.svg[]
 
 [[ex04-10]]
-===== Exercise 4-11
+===== Exercício 4-11
 
-The letters of the alphabet can be constructed from a moderate number of basic elements, like vertical and horizontal lines and a few curves. Design an alphabet that can be drawn with a minimal number of basic elements and then write functions that draw the letters.
+As letras do alfabeto podem ser construídas a partir de um número moderado de elementos básicos, como linhas verticais, horizontais e algumas curvas. Projete um alfabeto que pode ser desenhado com o menor número de elementos básicos e em seguida escreva funções que desenhem letras.
 
-You should write one function for each letter, with names +draw_a+, +draw_b+, etc., and put your functions in a file named _letters.jl_.
+Você deve escrever uma função para cada letra, com nomes +desenha_a+, +desenha_b+, etc., e coloque suas funções em um arquivo chamado _letras.jl_.
 
 [[ex04-11]]
-===== Exercise 4-12
+===== Exercício 4-12
 
-Read about spirals at https://en.wikipedia.org/wiki/Spiral; then write a program that draws an Archimedan spiral as in <<fig04-4>>.
+Leia sobre espirais em https://pt.wikipedia.org/wiki/Espiral; em seguida escreva um programa que desenha uma espiral de Arquimedes como em <<fig04-4>>.
 
 [[fig04-4]]
-.Archimedan spiral
+.Espiral de Arquimedes
 image::images/fig44.svg[]

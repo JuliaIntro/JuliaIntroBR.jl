@@ -1,4 +1,4 @@
-using ThinkJulia: makefigs, expandcodeblocks, deploybook
+using JuliaIntroBR: makefigs, expandcodeblocks, deploybook
 
 const root = dirname(@__FILE__)
 const src = joinpath(root, "src")
@@ -61,7 +61,7 @@ if "pdf" in ARGS
     title = "notes"
   end
   println("Run ASCIIDoctor")
-  run(`/Users/ben/Source/asciidoctor-htmlbook/exe/asciidoctor-htmlbook build/$(title).asciidoc`)
+  run(`asciidoctor-htmlbook build/$(title).asciidoc`)
   println("Cleanup equations")
   book = read("build/$(title).html", String)
   book = replace(book, "\\\\(\\("=> "\\(")
@@ -134,7 +134,7 @@ if "deploy" in ARGS
   end
   deploybook(
     root = root,
-    repo = "github.com/BenLauwens/ThinkJulia.jl",
+    repo = "github.com/JuliaIntro/JuliaIntroBR.jl",
     target = target,
     branch = "gh-pages",
     latest = "master",

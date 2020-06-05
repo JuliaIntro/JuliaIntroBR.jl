@@ -1,3 +1,27 @@
+//https://github.com/asciidoctor/asciidoctor/blob/master/data/locale/attributes-pt_BR.adoc
+:appendix-caption: Apêndice
+:appendix-refsig: {appendix-caption}
+:caution-caption: Cuidado
+//:chapter-label: ???
+//:chapter-refsig: {chapter-label}
+:example-caption: Exemplo
+:figure-caption: Figura
+:important-caption: Importante
+:last-update-label: Última atualização
+ifdef::listing-caption[:listing-caption: Listagem]
+ifdef::manname-title[:manname-title: Nome]
+:note-caption: Nota
+//:part-refsig: ???
+ifdef::preface-title[:preface-title: Prefácio]
+//:section-refsig: ???
+:table-caption: Tabela
+//:tip-caption: Sugerencia
+:tip-caption: Dica
+:toc-title: Índice
+:untitled-label: Sem título
+:version-label: Versão
+:warning-caption: Atenção
+
 = Think Julia: How to Think Like a Computer Scientist
 Ben Lauwens <ben.lauwens@gmail.com>; Allen Downey <allendowney@gmail.com>
 
