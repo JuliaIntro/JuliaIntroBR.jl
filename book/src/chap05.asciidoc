@@ -1,12 +1,12 @@
 [[chap05]]
 == Condicionais e Recursão
 
-O principal tópico deste capítulo é o comando +if+, que executa diferentes códigos dependendo do estado do programa. Mas antes gostaria de introduzir dois novos operadores: divisão inteira e módulo.
+O principal tópico deste capítulo é o comando +if+, que executa diferentes códigos dependendo do estado do programa. Mas antes gostaríamos de introduzir dois novos operadores: divisão inteira e módulo.
 
 
 === Divisão Inteira e Módulo
 
-O operador de _divisão inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Talvez voc"e queira saber o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
+O operador de _divisão inteira_, +÷+ (*+\div TAB+*), divide dois números e arredonda pra baixo para um inteiro. Por exemplo, suponha que o tempo de duração de um filme seja de 105 minutos. Talvez você queira saber o quanto isso equivale em horas. A divisão convencional retorna um número em ponto-flutuante:
 (((operador de divisão inteira)))((("operador", "Base", "÷", see="operador de divisão inteira")))((("÷", see="operador de divisão inteira")))
 
 [source,@julia-repl-test chap05]
@@ -110,7 +110,7 @@ Por fim, o operador +!+ nega uma expressão booleana, então +!(x > y)+ é verda
 
 === Execução Condicional
 
-Para escrever bons programas, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Comandos condicionais_ nos fornecem essa habilidade. A forma mais simples é o comando _if_ (da conjunção se em Inglês).
+Para escrever programas úteis, quase sempre precisamos verificar as condições e alterar o comportamento de acordo com o programa. _Comandos condicionais_ nos fornecem essa habilidade. A forma mais simples é o comando _if_ (da conjunção se em Inglês).
 (((comando condicional)))(((if)))((("palavra-chave", "if", see="if")))(((comando if)))((("comando", "if", see="comando if")))
 
 [source,julia]
@@ -242,7 +242,7 @@ end
 [[recursion]]
 === Recursão
 
-É possível fazer com que uma função chame outra; também é possível uma função chamar si mesma. Pode não parecer óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
+É possível fazer com que uma função chame outra; também é possível uma função chamar a si mesma. Pode não parecer óbvio por que isso é uma coisa boa, mas acaba sendo uma das coisas mais mágicas que um programa pode fazer. Por exemplo, observe a seguinte função:
 (((contagem regressiva)))((("função", "definido pelo programador", "contagem regressiva", see="contagem regressiva")))
 
 [source,@julia-setup chap05]
@@ -359,11 +359,11 @@ Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior.
 Se você encontrar uma recursão infinita por acidente, revise a sua função para confirmar se há um caso base que não faz uma chamada recursiva. E se houver, verifique que você está garantindo o alcance do caso base.
 
 
-=== Entradas de Teclado
+=== Entradas do Teclado
 
 Os programas que escrevemos até agora não aceitam nenhuma entrada do usuário. Eles apenas fazem a mesma coisa toda hora.
 
-O Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +return+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
+O Julia fornece uma função interna chamada +readline+ que interrompe o programa e aguarda o usuário digitar algo. Quando o usuário pressiona +RETURN+ ou +ENTER+, o programa é retomado e +readline+ retorna o que o usuário digitou como uma sequência de caracteres.
 (((readline)))((("função, "Base", "readline", see="readline")))
 
 [source,jlcon]
@@ -614,13 +614,13 @@ function desenhe(t, comprimento, n)
         return
     end
     ângulo = 50
-    avance(t, comprimento*n)
-    gire(t, -ângulo)
-    desenhe(t, comprimento, n-1)
-    gire(t, 2*angle)
-    desenhe(t, comprimento, n-1)
-    gire(t, -ângulo)
-    avance(t, -comprimento*n)
+    forward(t, comprimento*n)
+    turn(t, -ângulo)
+    draw(t, comprimento, n-1)
+    turn(t, 2*angle)
+    draw(t, comprimento, n-1)
+    turn(t, -ângulo)
+    forward(t, -comprimento*n)
 end
 ----
 
