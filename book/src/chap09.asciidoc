@@ -26,7 +26,7 @@ IOStream(<file palavras.txt>)
 
 +arquivo_entrada+ é um objeto de fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(arquivo_entrada)+.
 
-O Julia fornece várias funções para leitura, como a +readline+, que lê caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
+O Julia fornece várias funções para leitura, como a +readline+, que lê os caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
 (((objeto de fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((close)))
 
 [source,@julia-repl chap09]
@@ -251,9 +251,9 @@ function é_abecedário(palavra)
 end
 ----
 
-O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caractere (que pode ser apontado como o caractere atual) com o ++j++-ésimo caractere (que pode ser apontado como o próximo).
+O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caracter (que você pode pensar como sendo o caracter atual) com o ++j++-ésimo caracter (que você pode pensar como o próximo).
 
-Se a posição do próximo caractere é alfabeticamente antecedente à posição do caractere atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
+Se a posição do próximo caracter é alfabeticamente antecedente à posição do caracter atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
 
 Ao chegarmos ao final do laço sem uma falha, então a palavra passa no teste. Para se convencer de que o laço termina corretamente, considere a palavra +"acenos"+ como um exemplo.
 
