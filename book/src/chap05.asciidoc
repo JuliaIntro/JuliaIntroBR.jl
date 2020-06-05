@@ -296,7 +296,7 @@ function imprima_n(s, n)
         return
     end
     println(s)
-    printn(s, n-1)
+    imprima_n(s, n-1)
 end
 ----
 
