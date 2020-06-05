@@ -26,8 +26,8 @@ IOStream(<file palavras.txt>)
 
 +arquivo_entrada+ é um objeto de fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(arquivo_entrada)+.
 
-Julia fornece várias funções para leitura, como a +readline+, que lê caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
-(((objeto de fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((fechar)))
+O Julia fornece várias funções para leitura, como a +readline+, que lê caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
+(((objeto de fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((close)))
 
 [source,@julia-repl chap09]
 ----
@@ -36,16 +36,16 @@ readline(arquivo_entrada)
 
 A primeira palavra em inglês nesta lista especial é "aa", que é uma espécie de lava.
 
-O objeto de fluxo de arquivo monitora sua localização no arquivo; portanto, se chamar novamente o comando readline, recebe a próxima palavra:
+O objeto de fluxo de arquivo monitora sua localização no arquivo; portanto, se nós chamarmos novamente o comando readline, recebemos a próxima palavra:
 
 [source,@julia-repl chap09]
 ----
 readline(arquivo_entrada)
 ----
 
-O termo subsequente em inglês é "aah", que é perfeitamente legítima, então pare de me olhar desse jeito.
+O termo subsequente em inglês é "aah", que é uma palavra perfeitamente legítima, então pare de me olhar desse jeito.
 
-Você também pode usar um objeto de arquivo em um laço de repetição +for+. Este programa lê +palavras.txt+ e imprime cada palavra, uma por linha:
+Você também pode usar um objeto de arquivo em um laço +for+. Este programa lê +palavras.txt+ e imprime cada palavra, uma por linha:
 (((declaração for)))(((eachline)))((("função", "Base", "eachline", see="eachline")))
 
 [source,julia]
@@ -96,7 +96,7 @@ Escreva uma função denominada +usa_somente+ que recebe uma palavra e uma strin
 ===== Exercício 9-5
 
 Escreva uma função chamada +usa_todas+ que recebe uma palavra e uma string de letras obrigatórias, e devolve +true+ se a palavra usar todas as letras obrigatórias ao menos uma vez. Quantas palavras existem que usam todas as vogais +aeiou+? E que tal +aeiouy+?
-(((usa_todas)))((("função", "definido pelo programador", "usa_todas", veja="usa_todas")))
+(((usa_todas)))((("função", "definido pelo programador", "usa_todas", see="usa_todas")))
 
 [[ex09-6]]
 ===== Exercício 9-6
@@ -187,7 +187,7 @@ function usa_todas(palavra, obrigatórias)
 end
 ----
 
-Este é um exemplo de um plano de desenvolvimento para um programa chamado _redução para um problema previamente resolvido_, onde você reconhece o problema em que está trabalhando como uma instância de um problema resolvido e aplica uma solução existente.
+Este é um exemplo de um plano de desenvolvimento para um programa chamado _redução para um problema previamente resolvido_, no qual você reconhece o problema em que está trabalhando como uma instância de um problema resolvido e aplica uma solução existente.
 (((plano de desenvolvimento para um programa)))(((redução para um problema previamente resolvido)))
 
 
@@ -320,7 +320,7 @@ Uma maneira de resolver um problema, tratando-o como um caso de um problema reso
 (((redução a um problema previamente resolvido)))
 
 caso especial::
-Um caso de teste que é atípico ou que não é óbvio (e com menos probabilidade de ser abordado corretamente).
+Um caso de teste que é atípico ou que não é óbvio (e com menor chance de ser abordado corretamente).
 (((caso especial)))
 
 
