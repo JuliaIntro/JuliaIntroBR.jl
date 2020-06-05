@@ -3,10 +3,10 @@
 
 Este capítulo apresenta mais um tipo interno, a tupla, e mostra como os arrays, dicionários e as tuplas trabalham juntos. Também apresento um recurso útil para os arrays de argumentos de tamanho variável, operadores de agrupamento e de separação.
 
-//[NOTE]
-//====
-//Observação: Não há consenso sobre a pronúncia de "tupla" em inglês. Algumas pessoas dizem "tuh-ple", que rima com "supple". Mas no contexto da programação, a maioria das pessoas fala "too-ple", que rima com "quadruple".
-//====
+
+
+
+
 
 
 === Tuplas são Imutáveis
@@ -31,8 +31,8 @@ julia> t = ('a', 'b', 'c', 'd', 'e')
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-Para criar uma tupla com um único elemento, tem que inserir uma vírgula final:
-(((vírgula final)))(((typeof)))(((Tuple)))((("tipo", "Base", "Tuple", see="Tuple")))
+Para criar uma tupla com um único elemento, tem que inserir uma vírgula no final:
+(((vírgula no final)))(((typeof)))(((Tuple)))((("tipo", "Base", "Tuple", see="Tuple")))
 
 [source,@julia-repl-test]
 ----
