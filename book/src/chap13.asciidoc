@@ -1,9 +1,9 @@
 [[chap13]]
 == Estudo de Caso: Seleção de Estrutura de Dados
 
-A essa altura você deve ter aprendido sobre o núcleo de estrutura de dados do Julia, e também deve ter visto alguns dos algoritmos que usam eles.
+A essa altura você deve ter aprendido sobre o núcleo de estrutura de dados do Julia e também deve ter visto alguns dos algoritmos que usam eles.
 
-Neste capítulo apresentamos um estudo de caso com exercícios que permitem pensar na escolha de estruturas de dados e praticar o uso delas.
+Neste capítulo apresentaremos um estudo de caso com exercícios que permitirá pensar na escolha de estruturas de dados e praticar o uso delas.
 
 
 === Análise de Frequência de Palavras
@@ -17,8 +17,8 @@ Escreva um programa que leia um arquivo, divida cada linha em palavras, retire o
 
 [TIP]
 ====
-A função +eh_letra+ verifica se o caracter é alfabético.
-(((eh_letra)))((("função", "Base", "eh_letra", see="eh_letra")))
+A função +é_letra+ verifica se o caracter é alfabético.
+(((é_letra)))((("função", "Base", "é_letra", see="é_letra")))
 ====
 
 [[ex13-2]]
@@ -27,9 +27,9 @@ A função +eh_letra+ verifica se o caracter é alfabético.
 Va até o Projeto Gutenberg (https://guttenberg.org) e baixe seu livro favorito sem direitos autorais em formato de texto sem formatação.
 (((Projeto Gutenberg)))
 
-Modifique seu programa do exercício anterior para ler o livo que você baixou, pule a informação do cabeçalho no início do arquivo e processe o resto das palavras como antes.
+Modifique o seu programa do exercício anterior para ler o livro que você baixou, pule a informação do cabeçalho no início do arquivo e processe o resto das palavras como antes.
 
-E então, modifique o programa para contar o número total de palavras do livro e o número de vezes que cada palavra é usada.
+Depois, modifique o programa para contar o número total de palavras do livro e o número de vezes que cada palavra é usada.
 
 Imprima o número das diferentes palavras usadas no livro. Compare livros diferentes de diferentes autores, escritos em épocas diferentes. Qual autor usa um vocabulário mais prolixo?
 
@@ -41,7 +41,7 @@ Modifique o programa do exercício anterior para imprimir as 20 palavras mais fr
 [[ex13-4]]
 ===== Exercício 13-4
 
-Modifique o programa anterior para ler uma lista de palavras e depois imprima todas as palavras do livro que não estão nessa lista de palavras. Quantas delas são erros de digitação? Quantas delas são palavras comuns que deveriam estar na lista de palavras, e quantas delas são realmente obscuras?
+Modifique o programa anterior para ler uma lista de palavras e depois imprima todas as palavras do livro que não estão nessa lista de palavras. Quantas delas são erros de digitação? Quantas delas são palavras comuns que deveriam estar na lista de palavras e quantas delas são realmente obscuras?
 
 
 === Números Aleatórios
@@ -49,10 +49,10 @@ Modifique o programa anterior para ler uma lista de palavras e depois imprima to
 Dadas as mesmas entradas, a maioria dos programas de computadores geram a mesma entrada o tempo todo, eles são ditos _determinísticos_. O determinismo é geralmente uma coisa boa, pois esperamos que o mesmo cálculo produza o mesmo resultado. Para algumas aplicações, porém, queremos que o computador seja imprevisível. Os jogos são um exemplo óbvio, porém, há mais exemplos.
 (((determinístico)))
 
-Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele se pareça não determinístico. Uma destas maneiras é usar algoritmos que geram números _pseudo aleatórios_. Os números pseudo aleatórios não são puramente aleatórios porque eles são gerados por uma computação determinística, mas só de olhar para os números, é praticamente impossível distingui-los do acaso.
+Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele se pareça não determinístico. Uma destas maneiras é usar algoritmos que geram números _pseudo aleatórios_. Os números pseudo aleatórios só não são puramente aleatórios porque eles são gerados por uma computação determinística, mas só de olhar para os números, é praticamente impossível distingui-los do acaso.
 (((pseudo aleatórios)))
 
-A função +rand+ retorna um float aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que você usa o comando +rand+, você obtém o próximo número em uma longa série. Para ver uma amostra, execute este laço:
+A função +rand+ retorna um float aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que você usa o comando +rand+, você obtém o próximo número em uma longa série. Para ver uma amostra disso, execute este laço:
 (((rand)))
 
 [source,@julia-setup]
@@ -63,7 +63,7 @@ for i in 1:10
 end
 ----
 
-A função +rand+ pode pegar um interador ou uma lista como argumentos e retorna um elemento aleatório:
+A função +rand+ pode pegar um iterador ou uma lista como argumentos e retorna um elemento aleatório:
 
 [source,@julia-setup]
 ----
@@ -76,7 +76,7 @@ end
 [[ex13-5]]
 ===== Exercício 13-5
 
-Escreva uma função chamada +escolhido_do_histograma+ que pega um histograma definido em <<contadores de coleção de dicionário>> e retorna um valor aleatório do histograma, dada uma probabilidade em proporção à frequência. Por exemplo, para este histograma:
+Escreva uma função chamada +escolhido_do_histograma+ que pega um histograma definido em <<dictionary_collection_counters>> e retorna um valor aleatório do histograma, dada uma probabilidade em proporção à frequência. Por exemplo, para este histograma:
 (((escolhido_do_histograma)))((("função", "definida pelo programador", "escolhido_do_histograma", see="escolhido_do_histograma")))
 
 [source,@julia-repl-test chap11]
@@ -96,14 +96,14 @@ a sua função deve retornar +pass:['a']+ com a probabilidade latexmath:[\(\frac
 
 Você deve tentar os exercícios anteriores antes de continuar. Você também precisará de https://github.com/BenLauwens/ThinkJulia.jl/blob/master/data/emma.txt.
 
-Aqui está um programa que lê um arquivo e cria um histograma das palavras no arquivo:
+Logo abaixo, temos um programa que lê um arquivo e cria um histograma das palavras no arquivo:
 (((processa_arquivo)))((("função", "definido pelo programador", "processa_arquivo")))(((processa_linha)))((("função", "definido pelo programador", "processa_linha", see="processa_linha")))
 
 [source,@julia-setup chap13]
 ----
-function processa_arquivo(filename)
+function processa_arquivo(nomedoarquivo)
     hist = Dict()
-    for linha in eachlinha(filename)
+    for linha in eachlinha(nomedoarquivo)
         processa_linha(linha, hist)
     end
     hist
@@ -129,14 +129,14 @@ hist = processa_arquivo(joinpath("..", "data", "emma.txt"));
 hist = processa_arquivo("emma.txt");
 ----
 
-Esse programa l"e _emma.txt_, que contém o texto de _Emma_ por Jane Austen
+Esse programa lê _emma.txt_, que contém o texto de _Emma_ por Jane Austen.
 (((Austen, Jane)))
 
-+processa_arquivo+ percorre as linhas do arquivo, passando-as uma vez de cada para +processa_linha+. O +histograma+ é utilizado como um acumulador.
++processa_arquivo+ percorre as linhas do arquivo passando-as uma vez de cada para +processa_linha+. O histograma +hist+ é utilizado como um acumulador.
 (((acumulador)))
 
 +processa_linha+ usa a função +replace+ para substituir os hífens e espaços antes de usar +split+ para separar a linha em uma lista de strings. Ela atravesse a lista de palavras e usa +filter+, +é_letra+ e +minúscula+ para remover pontuações e converter em letras minúsculas. (É uma abreviação dizer que as strings são "convertidas"; lembre-se de que as strings são imutáveis; portanto, uma função como +minúscula+ retorna novas strings.)
-(((substituição)))(((separação)))(((é_letra)))(((minúscula)))(((get!)))(((filtro)))((("função")))((("função", "Base", "filtro", see="filtro")))
+(((replace)))(((separação)))(((é_letra)))(((minúscula)))(((get!)))(((filtro)))((("função")))((("função", "Base", "filtro", see="filtro")))
 
 Finalmente, +processa_linha+ atualiza o histograma criando um novo item ou incrementando um já existente.
 
@@ -145,8 +145,8 @@ Para contar o número total de palavras do arquivo, podemos adicionar as frequê
 
 [source,@julia-setup chap13]
 ----
-function total_de_palavras(histograma)
-    sum(values(histograma))
+function total_de_palavras(hist)
+    sum(values(hist))
 end
 ----
 
@@ -160,7 +160,7 @@ function palavras_diferentes(hist)
 end
 ----
 
-Aqui está um código que imprime os resultados:
+À seguir, um código que imprime os resultados:
 
 [source,@julia-repl-test chap13]
 ----
@@ -172,30 +172,30 @@ Número de palavras diferentes: 7380
 ----
 
 
-=== As Palavras Mais Comuns
+=== As Palavras Mais Frequentes
 
-Para encontrar as palavras mais comuns, podemos fazer uma tupla de listas, onde cada tupla contém uma palavra e sua frequência, e ordena. A seguinte função pega um histrograma e retorna uma lista de tuplas de frequência de palavras.
+Para encontrar as palavras mais frequentes, podemos fazer uma tupla de listas, onde cada tupla contém uma palavra e sua frequência e ordena. A seguinte função pega um histrograma e retorna uma lista de tuplas de frequência de palavras.
 (((mais_comum)))((("função", "definida pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((ordena)))
 
 [source,@julia-setup chap13]
 ----
 function mais_comum(hist)
     t = []
-    for (key, value) in hist
-        push!(t, (value, key))
+    for (chave, value) in hist
+        push!(t, (value, chave))
     end
     reverse(sort(t))
 end
 ----
 
-Em cada tupla, a frequência aparece primeiro, então o resultado da lista é ordenada por frequência. Abaixo, um laço que imprime as 10 palavras mais comuns:
+Em cada tupla, a frequência aparece primeiro, então o resultado da lista é ordenada por frequência. Aqui está um laço que imprime as 10 palavras mais frequentes:
 
 [source,julia]
 ----
 t = mostcommon(hist)
-println("As palavras mais comuns são: ")
-for (freq, word) in t[1:10]
-    println(word, "\t", freq)
+println("As palavras mais frequentes são: ")
+for (freq, palavra) in t[1:10]
+    println(palavra, "\t", freq)
 end
 ----
 
@@ -205,9 +205,9 @@ Usamos o caracter "tab" (+pass:['\t']+) como um "separador", ao invés de um esp
 [source,@julia-eval chap13]
 ----
 t = mais_comum(hist)
-println("As palavras mais comuns são: ")
-for (freq, word) in t[1:10]
-    println(word, "\t", freq)
+println("As palavras mais frequentes são: ")
+for (freq, palavra) in t[1:10]
+    println(palavra, "\t", freq)
 end
 ----
 
@@ -219,16 +219,16 @@ Esse código pode ser simplificado usando o comando +rev+ da função +sort+. Vo
 
 === Parâmetros Opcionais
 
-Temos visto funções embutidas que pegam argumentos opcionais. É possível escrever funções definidas pelo programados com argumentos opcionais também. Por exemplo, no exemplo a seguir, temos uma função que imprime as palavras mais comuns em um histograma:
-(((argumentos opcionais)))(((imprime_mais_comum)))((("função", "definido pelo programador", "imprime_mais_comum", see="imprime_mais_comum")))
+Temos visto funções embutidas que pegam argumentos opcionais. É possível escrever funções definidas pelo programados com argumentos opcionais também. Por exemplo, no exemplo a seguir, temos uma função que imprime as palavras mais frequentes em um histograma:
+(((argumentos opcionais)))(((imprime_mais_frequentes)))((("função", "definido pelo programador", "imprime_mais_frequentes", see="imprime_mais_frequentes")))
 
 [source,@julia-setup chap13]
 ----
-function imprime_mais_comum(hist, num=10)
+function imprime_mais_frequentes(hist, num=10)
     t = mais_comum(hist)
-    println("As palavras mais comuns são: ")
-    for (freq, word) in t[1:num]
-        println(word, "\t", freq)
+    println("As palavras mais frequentes são: ")
+    for (freq, palavra) in t[1:num]
+        println(palavra, "\t", freq)
     end
 end
 ----
@@ -240,14 +240,14 @@ Se você fornecer apenas um argumento:
 
 [source,@julia-setup chap13]
 ----
-imprime_mais_comum(hist)
+imprime_mais_frequentes(hist)
 ----
 
 +num+ obtém o valor padrão. Se você fornecer dois argumentos:
 
 [source,@julia-setup chap13]
 ----
-imprime_mais_comum(hist, 20)
+imprime_mais_frequentes(hist, 20)
 ----
 
 +num+ obtém o valor do argumento. Em outras palavras, o valor opcional _sobrepõe_ o valor padrão.
@@ -258,34 +258,34 @@ Se uma função possui argumentos obrigatórios e opcionais, todos os parâmetro
 [[dictionary_subtraction]]
 === Subtração de Dicionário
 
-Encontrar as palavras do livro que não estão na lista de palavras de +words.txt+ é um problema que você pode reconhecer como subtração definida, isto é, queremos encontrar todas as palavras de um conjunto (as palavras do livro) que não estão no outro (as palavras da lista).
+Encontrar as palavras do livro que não estão na lista de palavras de +palavras.txt+ é um problema que você pode reconhecer como subtração definida, isto é, queremos encontrar todas as palavras de um conjunto (as palavras do livro) que não estão no outro (as palavras da lista).
 
 +subtrair+ pega os dicionários +d1+ e +d2+ e retorna um novo dicionário que contém todas as entradas de +d1+ que não estão em +d2+. Como realmente não nos importamos com os valores, definios todos como +nothing+.
 (((subtrair)))((("função", "definido pelo programador", "subtrair", see="subtrair")))(((nothing)))(((n)))((("operador", "Base", "n", see="n")))
 
 [source,@julia-setup chap13]
 ----
-function subtrairr(d1, d2)
+function subtrair(d1, d2)
     res = Dict()
-    for key in keys(d1)
-        if key ∉ keys(d2)
-            res[key] = nothing
+    for chave in chaves(d1)
+        if chave ∉ chaves(d2)
+            res[chave] = nothing
         end
     end
     res
 end
 ----
 
-Para encontrar palavras do livro que não estão em +words.txt+, podemos usar +processa_arquivo+ para construir um histograma para +words.txt+, e então +subtrair+:
+Para encontrar palavras do livro que não estão em +palavras.txt+, podemos usar +processa_arquivo+ para construir um histograma para +palavras.txt+, e então +subtrair+:
 
 [source,julia]
 ----
-words = processa_arquivo("words.txt")
-diff = subtrair(hist, words)
+palavras = processa_arquivo("palavras.txt")
+diff = subtrair(hist, palavras)
 
 println("Palavras do livro que não estão na lista de palavras: ")
-for word in keys(diff)
-    print(word, " ")
+for palavra in chaves(diff)
+    print(palavra, " ")
 end
 ----
 
@@ -297,7 +297,7 @@ Palavras do livro que não estão na lista de palavras:
 outree visão rápida externamente adelaide rencontre jeffreys dixons sem reservas entre ...
 ----
 
-Algumas dessas palavras são nomes e possessivos. Outros, como "rencontre" não são mais de uso comum. Mas algumas são palavras comuns que realmente devem estar na lista!
+Algumas dessas palavras são nomes e possessivos. Outros, como "reencontre" não são mais de uso comum. Mas algumas são palavras comuns que realmente devem estar na lista!
 
 [[ex13-6]]
 ===== Exercício 13-6
@@ -309,27 +309,27 @@ Escreva um programa que usa o conjunto subtração para encontrar palavras do li
 
 === Palavras Aleatórias
 
-Para escolher uma palavra aleatória do histograma, o algoritmo mais simples é construir uma lista com múltiplas cópias de cada palavra, de acordo com a frequêcia observada, e depois escolher na lista:
+Para escolher uma palavra aleatória do histograma, o algoritmo mais simples é construir uma lista com múltiplas cópias de cada palavra, de acordo com a frequêcia observada e depois escolher na lista:
 (((palavra_aleatória)))((("função", "definido pelo programador", "palavra_aleatório", see="palavra_aleatória")))
 
 [source,@julia-setup chap13]
 ----
 function palavra_aleatória(h)
     t = []
-    for (word, freq) in h
+    for (palavra, freq) in h
         for i in 1:freq
-            push!(t, word)
+            push!(t, palavra)
         end
     end
     rand(t)
 end
 ----
 
-Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continuará grande.
+Esse algoritmo funciona, mas, não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continuará grande.
 
 Uma alternativa é:
 
-. Usar +keys+ para obter uma lista de palavras do livro.
+. Usar +chaves+ para obter uma lista de palavras do livro.
 
 . Construir uma lista que contenha uma soma acumulativa da frequência da palavra (veja <<ex10-2>>). O último item é uma lista e o número total de palavras do livro, latexmath:[\(n\)].
 
@@ -497,8 +497,8 @@ pseudoaleatório::
 É relativo à sequência de números que parecem ser aleatórios, mas é gerado por um programa determinista.
 (((pseudoaleatório)))
 
-valor padrão::
 Valor dado a um parâmetro opcional se não houver nenhum argumento.
+valor padrão::
 (((valor padrão)))
 
 ignorar(override)::
