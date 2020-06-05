@@ -450,157 +450,149 @@ julia> @which sort!(mão)
 sort!(mão::Mão) in Main at REPL[5]:1
 ----
 
-So the +sort!+ method for +hand+ is the one having as argument an object of type +Hand+.
+Portanto, o método +sort!+ para +mão+ recebe como argumento um objeto do tipo +Mão+.
 
-Portanto, o método + sort! + Para + hand + é aquele que tem como argumento um objeto do tipo + Hand +.
+Eis uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve receber os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas precondições e pós-condições. Se você seguir esta regra, verá que qualquer função elaborada para trabalhar com uma instância de um supertipo, como um +Conjunto_Carta+, também funcionará com instâncias de seus subtipos +Baralho+ e +Mão+.
 
-Então o método +sort!+ para +hand+ é aquele que tem como argumento um objeto do tipo +Hand+.
+Se você violar essa regra, chamada de "princípio de substituição de Liskov", seu código tombará como (me desculpe) um castelo de cartas.
+(((princípio de substituição de Liskov)))
 
-Here’s a design suggestion: when you override a method, the interface of the new method should be the same as the old. It should take the same parameters, return the same type, and obey the same preconditions and postconditions. If you follow this rule, you will find that any function designed to work with an instance of a supertype, like a +CardSet+, will also work with instances of its subtypes +Deck+ and +Hand+.
-
-Aqui está uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve tomar os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas condições prévias e pós-condições. Se você seguir esta regra, você verá que qualquer função projetada para trabalhar com uma instância de um supertipo, como um +CardSet+, também funcionará com instâncias de seus subtipos +Deck+ e +Hand+.
-
-Aqui está uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma do antigo. Ele deve usar os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas pré-condições e pós-condições. Se você seguir esta regra, descobrirá que qualquer função projetada para funcionar com uma instância de um supertipo, como um + CardSet +, também funcionará com instâncias de seus subtipos + Deck + e + Hand +.
-
-If you violate this rule, which is called the “Liskov substitution principle”, your code will collapse like (sorry) a house of cards.
-(((Liskov substitution principle)))
-
-The function +supertype+ can be used to find the direct supertype of a type.
+A função +supertype+ pode ser usada para encontrar o supertipo direto de um tipo.
 (((supertype)))((("função", "Base", "supertype", see="supertype")))
 
 [source,@julia-repl-test chap18a]
 ----
-julia> supertype(Deck)
-CardSet
+julia> supertype(Baralho)
+Conjunto_Carta
 ----
 
 
-=== Data Encapsulation
+=== Encapsulamento de Dados
 
-The previous chapters demonstrate a development plan we might call “type-oriented design”. We identified objects we needed—like +Point+, +Rectangle+ and +MyTime+—and defined structs to represent them. In each case there is an obvious correspondence between the object and some entity in the real world (or at least a mathematical world).
-(((type-oriented design)))
+Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MyTime+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
+(((design orientado a tipos)))
 
-But sometimes it is less obvious what objects you need and how they should interact. In that case you need a different development plan. In the same way that we discovered function interfaces by encapsulation and generalization, we can discover type interfaces by _data encapsulation_.
-(((data encapsulation)))
+Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, você precisa de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir tipos de interface por _encapsulamento de dados_.
+(((encapsulamento de dados)))
 
-Markov analysis, from <<markov_analysis>>, provides a good example. If you download my code from https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/src/solutions/chap13.jl, you’ll see that it uses two global variables—+suffixes+ and +prefix+—that are read and written from several functions.
+A análise de Markov, de <<markov_analysis>>, fornece um bom exemplo. Se você baixar meu código em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl, verá que ele usa duas variáveis globais—+suffixes+ and +prefix+—que são lidos e escritos a partir de várias funções.
 
 [source,@julia-setup]
 ----
-suffixes = Dict()
-prefix = []
+sufixos = Dict()
+prefixo = []
 ----
 
-Because these variables are global, we can only run one analysis at a time. If we read two texts, their prefixes and suffixes would be added to the same data structures (which makes for some interesting generated text).
+Como estas variáveis são globais, podemos fazer só uma análise por vez. Se lermos dois textos, os seus prefixos e sufixos seriam adicionados às mesmas estruturas de dados (o que faz com que algum texto gerado seja interessante).
 
-To run multiple analyses, and keep them separate, we can encapsulate the state of each analysis in an object. Here’s what that looks like:
+Para rodar várias análises e mantê-las separadas, podemos encapsular o estado de cada análise em um objeto. (Here’s what that looks like:) Aqui está o que parece:
 (((Markov)))((("tipo", "definido pelo programador", "Markov", see="Markov")))
 
 [source,@julia-setup chap18b]
 ----
 struct Markov
-    order :: Int64
-    suffixes :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
-    prefix :: Array{String, 1}
+    ordem :: Int64
+    suffixos :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
+    prefixos :: Array{String, 1}
 end
 
-function Markov(order::Int64=2)
-    new(order, Dict{Tuple{String,Vararg{String}}, Array{String, 1}}(), Array{String, 1}())
+function Markov(ordem::Int64=2)
+    new(ordem, Dict{Tuple{String,Vararg{String}}, Array{String, 1}}(), Array{String, 1}())
 end
 ----
 
-Next, we transform the functions into methods. For example, here’s +processword+:
-(((processword)))((("função", "definido pelo programador", "processword", see="processword")))
+Em seguida, transformamos as funções em métodos. Por exemplo, aqui está +processa_palavra+:
+(((processa_palavra)))((("função", "definido pelo programador", "processa_palavra", see="processa_palavra")))
 
 [source,@julia-setup chap18b]
 ----
-function processword(markov::Markov, word::String)
-    if length(markov.prefix) < markov.order
-        push!(markov.prefix, word)
+function processa_palavra(markov::Markov, palavra::String)
+    if length(markov.prefixo) < markov.ordem
+        push!(markov.prefixo, palavra)
         return
     end
-    get!(markov.suffixes, (markov.prefix...,), Array{String, 1}())
-    push!(markov.suffixes[(markov.prefix...,)], word)
-    popfirst!(markov.prefix)
-    push!(markov.prefix, word)
+    get!(markov.suffixos, (markov.prefixo...,), Array{String, 1}())
+    push!(markov.suffixos[(markov.prefixo...,)], palavra)
+    popfirst!(markov.prefixo)
+    push!(markov.prefixo, palavra)
 end
 ----
 
-Transforming a program like this—changing the design without changing the behavior—is another example of refactoring (see <<refactoring>>).
-(((refactoring)))(((program development plan)))
+Transformar um programa como esse—alterando o design sem alterar o comportamento—é outro exemplo de refatoração (veja <<refatoração>>).
+(((refatoração)))(((plano de desenvolvimento do programa)))
 
-This example suggests a development plan for designing types:
+Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:
 
-* Start by writing functions that read and write global variables (when necessary).
+* Comece por escrever funções que leem e escrevem variáveis globais (quando necessário).
 
-* Once you get the program working, look for associations between global variables and the functions that use them.
+* Uma vez que o programa esteja funcionando, procure por associações entre variáveis globais e as funções que as utilizam.
 
-* Encapsulate related variables as fields of a struct.
+* Encapsule as variáveis relacionadas como os campos de uma struct.
 
-* Transform the associated functions into methods with as argument objects of the new type.
+* Transforme as funções associadas em métodos que recebem objetos de do novo tipo como argumento.
 
 ===== Exercício 18-3
 
-Download my Markov code from https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/src/solutions/chap13.jl, and follow the steps described above to encapsulate the global variables as attributes of a new struct called +Markov+.
+Faça o download do meu código Markov em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl e siga os passos descritos acima para encapsular as variáveis globais como atributos de uma nova estrutura denominada +Markov+.
 
 
-=== Glossary
+=== Glossário
 
-encode::
-To represent one set of values using another set of values by constructing a mapping between them.
-(((encode)))
+codificação::
+Representação de um conjunto de valores usando outro conjunto de valores através da construção de um mapeamento entre eles.
+(((codificação)))
 
-unit testing::
-Standardized way to test the correctness of code.
-(((unit testing)))
+teste de unidade::
+Procedimento padronizado para testar a exatidão do código.
+(((teste de unidade)))
 
-veneer::
-A method or function that provides a different interface to another function without doing much computation.
-(((veneer)))
+folheado::
+Um método ou uma função que disponibiliza uma interface diferente para outra função sem fazer muito cálculo.
+(((folheado)))
 
-subtyping::
-The ability to define a hierarchy of related types.
-(((subtyping)))
+subtipagem::
+A capacidade de definir uma hierarquia de tipos relacionados.
+(((subtipagem)))
 
-abstract type::
-A type that can act as a parent for another type.
-(((abstract type)))
+tipo abstrato::
+Um tipo que pode atuar como progenitor de outro tipo.
+(((tipo abstrato)))
 
-concrete type::
-A type that can be constructed.
-(((concrete type)))
+tipo concreto::
+Um tipo que pode ser construído.
+(((tipo de concreto)))
 
-subtype::
-A type that has as parent an abstract type.
-(((subtype)))
+subtipo::
+Um tipo que tem como progenitor um tipo abstrato.
+(((subtipo)))
 
-supertype::
-An abstract type that is the parent of another type.
-(((supertype)))
+supertipo::
+Um tipo abstrato que é o progenitor de outro tipo.
+(((supertipo)))
 
-IS-A relationship::
-A relationship between a subtype and its supertype.
-(((IS-A relationship)))
+Relacionamento É-UM::
+Um relacionamento entre um subtipo e seu supertipo.
+(((relacionamento É-UM)))
 
-HAS-A relationship::
-A relationship between two types where instances of one type contain references to instances of the other.
-(((HAS-A relationship)))
+Relacionamento TEM-UM::
+Um relacionamento entre dois tipos em que as instâncias de um tipo contêm referências às instâncias do outro.
+(((relacionamento TEM-UM)))
 
-dependency::
-A relationship between two types where instances of one type use instances of the other type, but do not store them as fields.
-(((dependency)))
+dependência::
+Um relacionamento entre dois tipos em que instâncias de um tipo usam as instâncias do outro tipo, sem armazená-las como campos.
+(((dependência)))
 
-type diagram::
-A diagram that shows the types in a program and the relationships between them.
-(((type diagram)))
+diagrama de tipo::
+Um diagrama que mostra os tipos de um programa e as relações entre eles.
+(((diagrama de tipo)))
 
-multiplicity::
-A notation in a type diagram that shows, for a HAS-A relationship, how many references there are to instances of another class.
-(((multiplicity)))
+multiplicidade::
+Uma notação em um diagrama de tipos que mostra, em um relacionamento TEM-UM, a quantidade de referências existentes para instâncias de outra classe.
+(((multiplicidade)))
 
-data encapsulation::
-A program development plan that involves a prototype using global variables and a final version that makes the global variables into instance fields.
-(((data encapsulation)))
+encapsulamento de dados::
+A program development plan that involves a prototype using global variables and a final version that makes the global variables into instance fields. Um plano de desenvolvimento de programa que consiste em um protótipo que usa variáveis ​​globais e uma versão final que transforma as variáveis ​​globais em campos de uma instância.
+(((encapsulamento de dados)))
 
 
 === Exercícios
@@ -608,17 +600,17 @@ A program development plan that involves a prototype using global variables and 
 [[ex18-1]]
 ===== Exercício 18-4
 
-For the following program, draw a type diagram that shows these types and the relationships among them.
+Para o programa seguinte, desenhe um diagrama de tipos que mostre os seus tipos e as relações entre eles.
 
 [source,julia]
 ----
-abstract type PingPongParent end
+abstract type PingPongProgenitor end
 
-struct Ping <: PingPongParent
-    pong :: PingPongParent
+struct Ping <: PingPongProgenitor
+    pong :: PingPongProgenitor
 end
 
-struct Pong <: PingPongParent
+struct Pong <: PingPongProgenitor
     pings :: Array{Ping, 1}
     function Pong(pings=Array{Ping, 1}())
         new(pings)
@@ -638,46 +630,46 @@ addping(pong, ping)
 [[ex18-2]]
 ===== Exercício 18-5
 
-Write a method called +deal!+ that takes three parameters, a +Deck+, the number of hands and the number of cards per hand. It should create the appropriate number of +Hand+ objects, deal the appropriate number of cards per hand, and return an array of +Hand+s.
-(((deal!)))((("função", "definido pelo programador", "deal!", see="deal!")))
+Escreva um método chamado +dar_carta!+ que recebe três parâmetros, o +Baralho+, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos +Mão+, distribuir o número apropriado de cartas por mão e retornar um array de +Mão+ s.
+(((dar_carta!)))((("função", "definido pelo programador", "dar_carta!", see="dar_carta!")))
 
 [[ex18-3]]
 ===== Exercício 18-6
 
-The following are the possible hands in poker, in increasing order of value and decreasing order of probability:
+Seguem as jogadas possíveis no pôquer, em ordem crescente de valor e ordem decrescente de probabilidade:
 
-pair::
-two cards with the same rank
+par::
+duas cartas com o mesmo valor
 
-two pair::
-two pairs of cards with the same rank
+dois pares::
+dois pares de cartas com o mesmo valor
 
-three of a kind::
-three cards with the same rank
+trinca de um tipo::
+três cartas com o mesmo valor
 
-straight::
-five cards with ranks in sequence (aces can be high or low, so Ace-2-3-4-5 is a straight and so is 10-Jack-Queen-King-Ace, but Queen-King-Ace-2-3 is not.)
+sequência::
+cinco cartas com valores em sequência (os ases podem ser altos ou baixos, então Ás-2-3-4-5 é uma sequência bem como 10-Valete-Rainha-Rei-Ás, mas Rainha-Rei-Ás-2-3 não é.)
 
 flush::
-five cards with the same suit
+cinco cartas com o mesmo naipe
 
 full house::
-three cards with one rank, two cards with another
+três cartas com um valor, duas cartas com outro
 
-four of a kind::
-four cards with the same rank
+quatro de um tipo::
+quatro cartas com o mesmo valor
 
-straight flush::
-five cards in sequence (as defined above) and with the same suit
+sequência de mesmo naipe::
+cinco cartas em sequência (conforme definido acima) e com o mesmo naipe
 
-The goal of this exercise is to estimate the probability of drawing these various hands.
+O objetivo deste exercício é estimar as probabilidades de se tirar estas várias mãos.
 
-. Add methods named +haspair+, +hastwopair+, etc. that return +true+ or +false+ according to whether or not the hand meets the relevant criteria. Your code should work correctly for “hands” that contain any number of cards (although 5 and 7 are the most common sizes).
-(((haspair)))((("função", "definido pelo programador", "haspair", see="haspair")))(((hastwopair)))((("função", "definido pelo programador", "hastwopair", see="hastwopair")))
+. Adicione métodos chamados +tem_par+, +tem_2pares+, etc. que retornam +true+ ou +false+ se a mão cumpre ou não as regras relevantes. Seu código deve funcionar corretamente para as “mãos” que contém qualquer número de cartas (embora 5 e 7 sejam a quantidade mais comuns).
+(((tem_par)))((("função", "definido pelo programador", "tem_par", see="tem_par")))(((tem_2pares)))((("função", "definido pelo programador", "tem_2pares", see="tem_2pares")))
 
-. Write a method named +classify+ that figures out the highest-value classification for a hand and sets the +label+ field accordingly. For example, a 7-card hand might contain a flush and a pair; it should be labeled “flush”.
-(((classify)))((("função", "definido pelo programador", "classify", see="classify")))
+. Escreva um método chamado +classificar+ que calcula a classificação do valor mais alto para uma mão e identifica adequadamente o campo +jogada+. Por exemplo, um mão de 7 cartas pode conter um flush e um par e ele deve ser identificado como “flush”.
+(((classificar)))((("função", "definido pelo programador", "classificar", see="classificar")))
 
-. When you are convinced that your classification methods are working, the next step is to estimate the probabilities of the various hands. Write a function that shuffles a deck of cards, divides it into hands, classifies the hands, and counts the number of times various classifications appear.
+. Quando você estiver convencido de que seus métodos de classificação estão funcionando, o próximo passo é estimar as probabilidades das várias mãos. Escreva uma função que embaralha um baralho de cartas, divide-o em mãos, classifica as mãos e conta o número de vezes que as várias classificações aparecem.
 
-. Print a table of the classifications and their probabilities. Run your program with larger and larger numbers of hands until the output values converge to a reasonable degree of accuracy. Compare your results to the values at https://en.wikipedia.org/wiki/Hand_rankings.
+. Imprima uma tabela de classificações e suas probabilidades. Execute seu programa com uma quantidade de mãos cada vez maiores até que os valores de saída convirjam para um grau razoável de precisão. Compare os seus resultados com os valores em https://pt.wikipedia.org/wiki/Lista_de_jogadas_do_p%C3%B4quer.
