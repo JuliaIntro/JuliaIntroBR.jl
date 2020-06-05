@@ -36,7 +36,7 @@ readline(arquivo_entrada)
 
 A primeira palavra em inglês nesta lista especial é "aa", que é uma espécie de lava.
 
-O objeto de fluxo de arquivo monitora sua localização no arquivo; portanto, se nós chamarmos novamente o comando readline, recebemos a próxima palavra:
+O objeto de fluxo de arquivo monitora sua localização no arquivo; portanto, se chamarmos novamente o comando readline, recebemos a próxima palavra:
 
 [source,@julia-repl chap09]
 ----
