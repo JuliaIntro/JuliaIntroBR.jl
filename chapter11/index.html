@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591475525099324e9</code></pre>
+1.591476044435308e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8694,12 +8694,12 @@ julia&gt; get(h, 'b', 0)
 <div class="sect2">
 <h3 id="_laços_e_dicionários">Laços e Dicionários</h3>
 <div class="paragraph">
-<p>Você pode percorrer as chaves de um dicionário em uma declaração <code>for</code>. Por exemplo, <code>imprimehist</code> exibe cada chave e o seu valor correspondente:
+<p>Você pode percorrer as chaves de um dicionário em uma declaração <code>for</code>. Por exemplo, <code>imprime_hist</code> exibe cada chave e o seu valor correspondente:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function imprimehist(h)
+<pre class="pygments highlight"><code data-lang="julia">function imprime_hist(h)
     for c in keys(h)
         println(c, " ", h[c])
     end
@@ -8713,7 +8713,7 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; h = histograma("papagaio");
 
-julia&gt; imprimehist(h)
+julia&gt; imprime_hist(h)
 a 3
 g 1
 p 2
@@ -9276,7 +9276,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex11-5">Exercício 11-6</h5>
 <div class="paragraph">
-<p>Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver <code>rotacionapalavra</code> em <a href="#ex08-5">Exercise 8-11</a>).
+<p>Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver <code>rotaciona_palavra</code> em <a href="#ex08-5">Exercise 8-11</a>).
 </p>
 </div>
 <div class="paragraph">
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-K♥ A♠ 4♦ A♣ 3♦ 5♣ 10♣ 10♥ 3♥ 4♠ 8♠ J♦ 9♣ 5♠ Q♥ 7♥ 5♦ K♦ 6♣ K♣ 10♠ 8♥ 8♦ 2♣ 9♦ 7♠ Q♠ Q♦ 7♣ 3♠ A♥ 9♥ J♣ 2♥ J♥ 7♦ 6♥ 2♦ 4♣ K♠ 2♠ 6♠ 10♦ 8♣ 3♣ 5♥ Q♣ 6♦ 4♥ A♦ J♠ 9♠
+8♠ 5♠ 10♠ 9♦ J♥ K♠ K♦ Q♣ 3♠ K♥ 6♥ 7♠ 8♣ 2♠ 3♣ 3♦ 8♥ 10♦ Q♦ A♦ 6♦ 4♣ 6♣ 2♦ 4♥ 10♣ J♣ 2♣ A♥ A♣ 5♦ 7♣ K♣ 4♦ 2♥ J♠ 9♣ 8♦ 5♥ 9♥ 10♥ Q♥ 4♠ A♠ 7♦ 3♥ 9♠ 5♣ Q♠ 7♥ 6♠ J♦
 julia&gt; card = pop!(deck)
-9♠
+J♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20560(double, double) {
+define double @julia_squaresum_20569(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-06 20:32:01 UTC
+Last updated 2020-06-06 20:40:41 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
