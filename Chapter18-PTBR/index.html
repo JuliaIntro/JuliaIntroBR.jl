@@ -705,19 +705,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#chap18">21. Subtipagem</a>
 <ul class="sectlevel2">
-<li><a href="#_cards">Cards</a></li>
-<li><a href="#_global_variables">Global Variables</a></li>
-<li><a href="#_comparing_cards">Comparing Cards</a></li>
-<li><a href="#_unit_testing">Unit Testing</a></li>
-<li><a href="#_decks">Decks</a></li>
-<li><a href="#_add_remove_shuffle_and_sort">Add, Remove, Shuffle and Sort</a></li>
-<li><a href="#_abstract_types_and_subtyping">Abstract Types and Subtyping</a></li>
-<li><a href="#_abstract_types_and_functions">Abstract Types and Functions</a></li>
-<li><a href="#_type_diagrams">Type Diagrams</a></li>
-<li><a href="#interactive">Debugging</a></li>
-<li><a href="#_data_encapsulation">Data Encapsulation</a></li>
-<li><a href="#_glossary_15">Glossary</a></li>
-<li><a href="#_exercises_17">Exercises</a></li>
+<li><a href="#_cartas">Cartas</a></li>
+<li><a href="#_variáveis_globais">Variáveis Globais</a></li>
+<li><a href="#_comparando_cartas">Comparando Cartas</a></li>
+<li><a href="#_teste_de_unidade">Teste de Unidade</a></li>
+<li><a href="#_baralhos">Baralhos</a></li>
+<li><a href="#_adicionar_remover_baralhar_e_ordenar">Adicionar, Remover, Baralhar e Ordenar</a></li>
+<li><a href="#_tipos_abstratos_e_subtipagem">Tipos abstratos e Subtipagem</a></li>
+<li><a href="#_tipos_abstratos_e_funções">Tipos Abstratos e Funções</a></li>
+<li><a href="#_diagramas_de_tipos">Diagramas de Tipos</a></li>
+<li><a href="#interactive">Depuração</a></li>
+<li><a href="#_encapsulamento_de_dados">Encapsulamento de Dados</a></li>
+<li><a href="#_glossário_4">Glossário</a></li>
+<li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
 </li>
 <li><a href="#chap19">22. The Goodies: Syntax</a>
@@ -733,7 +733,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_metaprogramming">Metaprogramming</a></li>
 <li><a href="#_missing_values">Missing Values</a></li>
 <li><a href="#_calling_c_and_fortran_code">Calling C and Fortran Code</a></li>
-<li><a href="#_glossary_16">Glossary</a></li>
+<li><a href="#_glossary_15">Glossary</a></li>
 </ul>
 </li>
 <li><a href="#chap20">23. The Goodies: Base and Standard Library</a>
@@ -746,7 +746,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_interfaces">Interfaces</a></li>
 <li><a href="#_interactive_utilities">Interactive Utilities</a></li>
 <li><a href="#_debugging_13">Debugging</a></li>
-<li><a href="#_glossary_17">Glossary</a></li>
+<li><a href="#_glossary_16">Glossary</a></li>
 </ul>
 </li>
 <li><a href="#chap21">24. Debugging</a>
@@ -1074,7 +1074,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   (_)     | (_) (_)    |
    _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
   | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.4.1 (2020-04-14)
+  | | |_| | | | (_| |  |  Version 1.4.2 (2020-05-23)
  _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
 |__/                   |
 
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.589860932516623e9</code></pre>
+1.591415262764489e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13202,28 +13202,28 @@ julia&gt; sum((t1, t2, t3))
 <h2 id="chap18">21. Subtipagem</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A não especificação do tipo dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto de tipos permitidos na assinatura de um método é um passo lógico seguinte.</p>
+<p>No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação dos tipos dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.</p>
 </div>
 <div class="paragraph">
 <p>Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.</p>
 </div>
 <div class="paragraph">
-<p>Se você não joga pôquer, pode ler sobre isso em <a href="https://pt.wikipedia.org/wiki/P%C3%B4quer" class="bare">https://pt.wikipedia.org/wiki/P%C3%B4quer</a>, mas não precisa pois vou lhe dizer o que você tem que saber para os exercícios.</p>
+<p>Se você não joga pôquer, pode ler sobre isso em <a href="https://pt.wikipedia.org/wiki/P%C3%B4quer" class="bare">https://pt.wikipedia.org/wiki/P%C3%B4quer</a>, mas não precisa pois vou lhe dizer o que se tem que saber para os exercícios.</p>
 </div>
 <div class="sect2">
-<h3 id="_cards">Cards</h3>
+<h3 id="_cartas">Cartas</h3>
 <div class="paragraph">
-<p>Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (<code>♠</code>), Copas (<code>♥</code>), Ouro (<code>♦</code>) e Paus (<code>♣</code>). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um ás pode ser maior que rei ou menor que 2.</p>
+<p>Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (<code>♠</code>), Copas (<code>♥</code>), Ouro (<code>♦</code>) e Paus (<code>♣</code>). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um Ás pode ser maior que o rei ou menor que 2.</p>
 </div>
 <div class="paragraph">
-<p>Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como <code>"Estadas"</code> para os naipes e <code>"Rainha"</code> para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais possuíam maior valor ou naipe.</p>
+<p>Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como <code>"Espadas"</code> para os naipes e <code>"Rainha"</code> para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais teriam maior valor ou naipe.</p>
 </div>
 <div class="paragraph">
-<p>An alternative is to use integers to <em>encode</em> the ranks and suits. In this context, “encode” means that we are going to define a mapping between numbers and suits, or between numbers and ranks. This kind of encoding is not meant to be a secret (that would be “encryption”).
+<p>Uma alternativa é usar números inteiros para <em>codificar</em> os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
 </p>
 </div>
 <div class="paragraph">
-<p>For example, this table shows the suits and the corresponding integer codes:</p>
+<p>Por exemplo, esta tabela mostra os naipes e os números inteiros correspondentes:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -13242,412 +13242,413 @@ julia&gt; sum((t1, t2, t3))
 </ul>
 </div>
 <div class="paragraph">
-<p>This code makes it easy to compare cards; because higher suits map to higher numbers, we can compare suits by comparing their codes.</p>
+<p>Este código facilita a comparação das cartas, já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.</p>
 </div>
 <div class="paragraph">
-<p>I am using the \(\mapsto\) symbol to make it clear that these mappings are not part of the Julia program. They are part of the program design, but they don’t appear explicitly in the code.</p>
+<p>Estou usando o símbolo \(\mapsto\) para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.</p>
 </div>
 <div class="paragraph">
-<p>The struct definition for <code>Card</code> looks like this:
+<p>A definição para struct <code>Carta</code> é parecida com esta:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Card
-    suit :: Int64
-    rank :: Int64
-    function Card(suit::Int64, rank::Int64)
-        @assert(1 ≤ suit ≤ 4, "suit is not between 1 and 4")
-        @assert(1 ≤ rank ≤ 13, "rank is not between 1 and 13")
-        new(suit, rank)
+<pre class="pygments highlight"><code data-lang="julia">struct Carta
+    naipe :: Int64
+    valor :: Int64
+    function Carta(naipe::Int64, valor::Int64)
+        @assert(1 ≤ naipe ≤ 4, "naipe não está entre 1 e 4")
+        @assert(1 ≤ valor ≤ 13, "valor não está entre 1 e 13")
+        new(naipe, valor)
     end
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To create a <code>Card</code>, you call <code>Card</code> with the suit and rank of the card you want:</p>
+<p>Para criar uma <code>Carta</code>, você chama <code>Carta</code> com o naipe e o valor desejado:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; queen_of_diamonds = Card(2, 12)
-Card(2, 12)</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; rainha_de_ouro = Carta(2, 12)
+Carta(2, 12)</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_global_variables">Global Variables</h3>
+<h3 id="_variáveis_globais">Variáveis Globais</h3>
 <div class="paragraph">
-<p>In order to print <code>Card</code> objects in a way that people can easily read, we need a mapping from the integer codes to the corresponding ranks and suits. A natural way to do that is with arrays of strings:</p>
+<p>Para imprimir objetos <code>Carta</code> de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com arrays de strings:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">const suit_names = ["♣", "♦", "♥", "♠"]
-const rank_names = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">const nomes_naipes = ["♣", "♦", "♥", "♠"]
+const nomes_valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The variables <code>suit_names</code> and <code>rank_names</code> are global variables. The <code>const</code> declaration means that the variable can only be assigned once. This solves the performance problem of global variables.
+<p>As variáveis <code>nomes_naipes</code> e <code>nomes_valores</code> são variáveis globais. A declaração <code>const</code> significa que a variável só pode ser atribuída uma vez. Isso resolve o problema de desempenho das variáveis globais.
 </p>
 </div>
 <div class="paragraph">
-<p>Now we can implement an appropriate <code>show</code> method:
+<p>Agora podemos implementar um método <code>show</code> apropriado:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, card::Card)
-    print(io, rank_names[card.rank], suit_names[card.suit])
+<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, carta::Carta)
+    print(io, nomes_valores[carta.valor], nomes_naipes[carta.naipe])
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The expression <code>rank_names[card.rank]</code> means “use the field <code>rank</code> from the object <code>card</code> as an index into the array <code>rank_names</code>, and select the appropriate string.”</p>
+<p>A expressão <code>nomes_valores[carta.valor]</code> significa “use o campo <code>valor</code> do objeto <code>carta</code> como um índice na matriz <code>nomes_valores</code>, e selecione a string apropriada.”</p>
 </div>
 <div class="paragraph">
-<p>With the methods we have so far, we can create and print cards:</p>
+<p>Com os métodos que temos até agora, podemos criar e imprimir as cartas:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Card(3, 11)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Carta(3, 11)
 J♥</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_comparing_cards">Comparing Cards</h3>
+<h3 id="_comparando_cartas">Comparando Cartas</h3>
 <div class="paragraph">
-<p>For built-in types, there are relational operators (<code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.) that compare values and determine when one is greater than, less than, or equal to another. For programmer-defined types, we can override the behavior of the built-in operators by providing a method named: <code>&lt;</code>.</p>
+<p>Para os tipos embutidos, existem operadores relacionais (<code>&lt;</code>, <code>&gt;</code>, <code>==</code> etc.) que comparam os valores e determinam quando um é maior que, menor que ou igual ao outro. Para os tipos definidos pelo programador, podemos sobrepor o comportamento dos operadores embutidos ao estabelecer um método chamado <code>&lt;</code>.</p>
 </div>
 <div class="paragraph">
-<p>The correct ordering for cards is not obvious. For example, which is better, the 3 of Clubs or the 2 of Diamonds? One has a higher rank, but the other has a higher suit. In order to compare cards, you have to decide whether rank or suit is more important.</p>
+<p>A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.</p>
 </div>
 <div class="paragraph">
-<p>The answer might depend on what game you are playing, but to keep things simple, we’ll make the arbitrary choice that suit is more important, so all of the Spades outrank all of the Diamonds, and so on.</p>
+<p>A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante, significando que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.</p>
 </div>
 <div class="paragraph">
-<p>With that decided, we can write <code>&lt;</code></p>
+<p>Decidido isso, podemos escrever <code>&lt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">import Base.&lt;
 
-function &lt;(c1::Card, c2::Card)
-    (c1.suit, c1.rank) &lt; (c2.suit, c2.rank)
+function &lt;(c1::Carta, c2::Carta)
+    (c1.naipe, c1.valor) &lt; (c2.naipe, c2.valor)
 end</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_exercise_18_1">Exercise 18-1</h5>
+<h5 id="_exercício_18_1">Exercício 18-1</h5>
 <div class="paragraph">
-<p>Write a <code>&lt;</code> method for <code>MyTime</code> objects. You can use tuple comparison, but you also might consider comparing integers.</p>
+<p>Escreva um método <code>&lt;</code> para os objetos <code>MyTime</code>. Você pode usar a comparação de tupla, mas também pode considerar a comparação de inteiros.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_unit_testing">Unit Testing</h3>
+<h3 id="_teste_de_unidade">Teste de Unidade</h3>
 <div class="paragraph">
-<p><em>Unit testing</em> allows you to verify the correctness of your code by comparing the results of your code to what you expect. This can be useful to be sure that your code still is correct after modifications, and it is also a way to predefine the correct behaviour of your code during development.
+<p><em>Teste de unidade</em> permite verificar a correção do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
 </p>
 </div>
 <div class="paragraph">
-<p>Simple unit testing can be performed with the <code>@test</code> macros:
+<p>Os testes unitários simples podem ser realizados com as macros <code>@test</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; using Test
 
-julia&gt; @test Card(1, 4) &lt; Card(2, 4)
+julia&gt; @test Carta(1, 4) &lt; Carta(2, 4)
 Test Passed
-julia&gt; @test Card(1, 3) &lt; Card(1, 4)
+julia&gt; @test Carta(1, 3) &lt; Carta(1, 4)
 Test Passed</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>@test</code> returns a <code>"Test Passed"</code> if the expression following it is <code>true</code>, a <code>"Test Failed"</code> if it is <code>false</code>, and an <code>"Error Result"</code> if it could not be evaluated.</p>
+<p><code>@test</code> retorna <code>"Test Passed"</code> se a expressão seguinte for <code>true</code>, <code>"Test Failed"</code> se for <code>false</code>, e <code>"Error Result"</code> se não puder ser avaliado.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_decks">Decks</h3>
+<h3 id="_baralhos">Baralhos</h3>
 <div class="paragraph">
-<p>Now that we have Cards, the next step is to define Decks. Since a deck is made up of cards, it is natural for each Deck to contain an array of cards as an attribute.</p>
+<p>Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha um array de cartas como um atributo.</p>
 </div>
 <div class="paragraph">
-<p>The following is a struct definition for <code>Deck</code>. The constructor creates the fields cards and generates the standard set of fifty-two cards:
+<p>A seguir, define-se uma struct para <code>Baralho</code>. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Deck
-    cards :: Array{Card, 1}
+<pre class="pygments highlight"><code data-lang="julia">struct Baralho
+    cartas :: Array{Carta, 1}
 end
 
-function Deck()
-    deck = Deck(Card[])
-    for suit in 1:4
-        for rank in 1:13
-            push!(deck.cards, Card(suit, rank))
+function Baralho()
+    baralho = Baralho(Carta[])
+    for naipe in 1:4
+        for valor in 1:13
+            push!(baralho.cartas, Carta(naipe, valor))
         end
     end
-    deck
+    baralho
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The easiest way to populate the deck is with a nested loop. The outer loop enumerates the suits from 1 to 4. The inner loop enumerates the ranks from 1 to 13. Each iteration creates a new <code>Card</code> with the current suit and rank, and pushes it to <code>deck.cards</code>.</p>
+<p>A maneira mais fácil de preencher o baralho é com um laço aninhado. O laço externo enumera os naipes de 1 a 4. O laço interno enumera os valores de 1 a 13. Cada iteração cria uma nova <code>Carta</code> com o naipe e o valor correntes e envia-a para <code>baralho.cartas</code>.</p>
 </div>
 <div class="paragraph">
-<p>Here is a <code>show</code> method for <code>Deck</code>:</p>
+<p>Aqui está um método <code>show</code> para <code>Baralho</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, deck::Deck)
-    for card in deck.cards
-        print(io, card, " ")
+<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, baralho::Baralho)
+    for carta in baralho.cartas
+        print(io, carta, " ")
     end
     println()
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Here’s what the result looks like:</p>
+<p>Veja como ficou o resultado:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Deck()
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_remove_shuffle_and_sort">Add, Remove, Shuffle and Sort</h3>
+<h3 id="_adicionar_remover_baralhar_e_ordenar">Adicionar, Remover, Baralhar e Ordenar</h3>
 <div class="paragraph">
-<p>To deal cards, we would like a function that removes a card from the deck and returns it. The function <code>pop!</code> provides a convenient way to do that:
+<p>Para distribuir as cartas, gostaríamos de uma função que remove uma carta do baralho e devolve-a. A função <code>pop!</code> fornece uma maneira apropriada de fazer isso:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.pop!(deck::Deck)
-    pop!(deck.cards)
+<pre class="pygments highlight"><code data-lang="julia">function Base.pop!(baralho::Baralho)
+    pop!(baralho.cartas)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Since <code>pop!</code> removes the last card in the array, we are dealing from the bottom of the deck.</p>
+<p>Como <code>pop!</code> remove a última carta do baralho, estamos distribuindo a partir do fundo do baralho.</p>
 </div>
 <div class="paragraph">
-<p>To add a card, we can use the function <code>push!</code>:
+<p>Para adicionar uma carta, podemos usar a função <code>push!</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.push!(deck::Deck, card::Card)
-    push!(deck.cards, card)
-    deck
+<pre class="pygments highlight"><code data-lang="julia">function Base.push!(baralho::Baralho, carta::Carta)
+    push!(baralho.cartas, carta)
+    baralho
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A method like this that uses another method without doing much work is sometimes called a <em>veneer</em>. The metaphor comes from woodworking, where a veneer is a thin layer of good quality wood glued to the surface of a cheaper piece of wood to improve the appearance.
+<p>Um método como esse, que usa outro método sem fazer muito trabalho, às vezes é chamado de <em>folheado</em>. A metáfora vem do trabalho com madeira, onde um folheado de madeira é uma fina camada de madeira de boa qualidade colada à superfície de um pedaço de madeira mais barato para melhorar a aparência.
 </p>
 </div>
 <div class="paragraph">
-<p>In this case <code>push!</code> is a “thin” method that expresses an array operation in terms appropriate for decks. It improves the appearance, or interface, of the implementation.</p>
+<p>Neste caso, <code>push!</code> é um método "fino" que expressa uma operação de array relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.</p>
 </div>
 <div class="paragraph">
-<p>As another example, we can write a method named <code>shuffle!</code> using the function <code>Random.shuffle!</code>:
+<p>Como um outro exemplo, podemos escrever um método chamado <code>shuffle!</code> usando a função <code>Random.shuffle!</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">using Random
 
-function Random.shuffle!(deck::Deck)
-    shuffle!(deck.cards)
-    deck
+function Random.shuffle!(baralho::Baralho)
+    shuffle!(baralho.cartas)
+    baralho
 end</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_exercise_18_2">Exercise 18-2</h5>
+<h5 id="_exercício_18_2">Exercício 18-2</h5>
 <div class="paragraph">
-<p>Write a function named <code>sort!</code> that uses the function <code>sort!</code> to sort the cards in a Deck. <code>sort!</code> uses the <code>isless</code> method we defined to determine the order.
+<p>Escreva uma função chamada <code>sort!</code> que usa a função <code>sort!</code> para ordenar as cartas em um Baralho. A função <code>sort!</code> usa o método <code>isless</code> na nossa definição para a ordenação.
 </p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_abstract_types_and_subtyping">Abstract Types and Subtyping</h3>
+<h3 id="_tipos_abstratos_e_subtipagem">Tipos abstratos e Subtipagem</h3>
 <div class="paragraph">
-<p>We want a type to represent a “hand”, that is, the cards held by one player. A hand is similar to a deck: both are made up of a collection of cards, and both require operations like adding and removing cards.</p>
+<p>Queremos um tipo que represente uma “mão”, ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.</p>
 </div>
 <div class="paragraph">
-<p>A hand is also different from a deck; there are operations we want for hands that don’t make sense for a deck. For example, in poker we might compare two hands to see which one wins. In bridge, we might compute a score for a hand in order to make a bid.</p>
+<p>Uma mão também é diferente de um baralho; existem operações que queremos para as mãos de cartas que não faz sentido para um baralho. Por exemplo, no pôquer, podemos comparar duas mãos para ver qual delas vence. No bridge, podemos calcular uma pontuação para uma mão para fazer um lance.</p>
 </div>
 <div class="paragraph">
-<p>So we need a way to group related <em>concrete types</em>. In Julia this is done by defining an <em>abstract type</em> that serves as a parent for both <code>Deck</code> and <code>Hand</code>. This is called <em>subtyping</em>
+<p>Portanto, precisamos de uma maneira de agrupar os <em>tipos concretos</em> relacionados. No Julia, isso é feito ao definir um <em>tipo abstrato</em> que serve como o progenitor de <code>Baralho</code> e <code>Mão</code>. Isso é chamado <em>subtipagem</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s call this abstract type <code>CardSet</code>:
+<p>Vamos nomear esse tipo abstrato de <code>Conjunto_Carta</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">abstract type CardSet end</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">abstract type Conjunto_Carta end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A new abstract type is created with the <code>abstract type</code> keyword. An optional “parent” type can be specified by putting after the name <code>&lt;:</code> followed by the name of an already-existing abstract type.
+<p>Um novo tipo abstrato é criado com a palavra-chave <code>abstract type</code>. Um tipo "progenitor" opcional pode ser especificado colocando <code>&lt;:</code> após o nome seguido do nome de um tipo abstrato já existente.
 </p>
 </div>
 <div class="paragraph">
-<p>When no <em>supertype</em> is given, the default supertype is <code>Any</code> – a predefined abstract type that all objects are instances of and all types are <em>subtypes</em> of.
+<p>Quando nenhum <em>supertipo</em> é dado, o supertipo padrão é <code>Any</code> - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são <em>subtipos</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>We can now express that <code>Deck</code> is a descendant of <code>CardSet</code>:</p>
+<p>Agora podemos expressar que <code>Baralho</code> é um descendente de <code>Conjunto_Carta</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Deck &lt;: CardSet
-    cards :: Array{Card, 1}
+<pre class="pygments highlight"><code data-lang="julia">struct Baralho &lt;: Conjunto_Carta
+    cartas :: Array{Carta, 1}
 end
 
-function Deck()
-    deck = Deck(Card[])
-    for suit in 1:4
-        for rank in 1:13
-            push!(deck.cards, Card(suit, rank))
+function Baralho()
+    baralho = Baralho(Carta[])
+    for naipe in 1:4
+        for valor in 1:13
+            push!(baralho.cartas, Carta(naipe, valor))
         end
     end
-    deck
+    baralho
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The operator <code>isa</code> checks whether an object is of a given type:
+<p>O operador <code>isa</code> verifica se um objeto é de um determinado tipo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck();
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho();
 
-julia&gt; deck isa CardSet
+julia&gt; baralho isa Conjunto_Carta
 true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A hand is also a kind of <code>CardSet</code>:
+<p>Uma mão também é um tipo de <code>Conjunto_Carta</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Hand &lt;: CardSet
-    cards :: Array{Card, 1}
-    label :: String
+<pre class="pygments highlight"><code data-lang="julia">struct Mão &lt;: Conjunto_Carta
+    carta :: Array{Carta, 1}
+    identificação :: String
 end
 
-function Hand(label::String="")
-    Hand(Card[], label)
+function Mão(identificação::String="")
+    Mão(Carta[], identificação)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Instead of populating the hand with 52 new cards, the constructor for <code>Hand</code> initializes <code>cards</code> with an empty array. An optional argument can be passed to the constructor giving a label to the <code>Hand</code>.</p>
+<p>Em vez de encher a mão com 52 novas cartas, o construtor de <code>Mão</code> inicializa <code>cartas</code> com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a <code>Mão</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; hand = Hand("new hand")
-Hand(Card[], "new hand")</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; mão = Mão("nova mão")
+Mão(Carta[], "nova mão")</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_abstract_types_and_functions">Abstract Types and Functions</h3>
+<h3 id="_tipos_abstratos_e_funções">Tipos Abstratos e Funções</h3>
 <div class="paragraph">
-<p>We can now express the common operations between <code>Deck</code> and <code>Hand</code> as functions having as argument <code>CardSet</code>:
+<p>Agora podemos expressar as operações comuns entre <code>Baralho</code> e <code>Mão</code> como funções tendo como argumento <code>Conjunto_Carta</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, cs::CardSet)
-    for card in cs.cards
-        print(io, card, " ")
+<pre class="pygments highlight"><code data-lang="julia">function Base.show(io::IO, cc::Conjunto_Carta)
+    for carta in cc.cartas
+        print(io, carta, " ")
     end
 end
 
-function Base.pop!(cs::CardSet)
-    pop!(cs.cards)
+function Base.pop!(cc::Conjunto_Carta)
+    pop!(cc.cartas)
 end
 
-function Base.push!(cs::CardSet, card::Card)
-    push!(cs.cards, card)
+function Base.push!(cc::Conjunto_Carta, carta::Carta)
+    push!(cc.cartas, carta)
     nothing
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can use <code>pop!</code> and <code>push!</code> to deal a card:</p>
+<p>Podemos usar <code>pop!</code> e <code>push!</code> para dar uma carta:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
-julia&gt; shuffle!(deck)
-2♦ K♦ 6♦ 4♠ 9♦ 9♣ 2♣ J♥ 2♠ 9♠ Q♣ 8♣ 8♥ Q♦ 3♠ 9♥ 5♦ 10♥ J♣ 5♣ A♦ 7♠ 6♠ 10♦ 4♣ A♥ 7♥ J♠ 5♥ 4♦ J♦ 6♣ A♠ 4♥ Q♠ 2♥ K♥ 7♦ 6♥ Q♥ A♣ 7♣ 3♥ 10♣ K♣ 3♣ 3♦ 10♠ 8♠ K♠ 8♦ 5♠
-julia&gt; card = pop!(deck)
-5♠
-julia&gt; push!(hand, card)</code></pre>
+julia&gt; shuffle!(baralho)
+Q♣ 5♣ 4♣ 9♦ A♦ A♣ 3♦ K♦ K♠ 5♠ 10♣ J♥ 2♥ 5♥ 9♥ 7♣ 2♣ 6♠ K♣ 4♠ 4♦ 10♦ 2♠ 8♥ J♣ 7♥ 7♦ 6♣ K♥ 8♦ 2♦ 4♥ 8♣ 9♣ A♥ Q♦ 6♦ A♠ Q♠ J♦ 10♠ 7♠ 10♥ 6♥ 3♥ 8♠ Q♥ 3♣ 9♠ 5♦ J♠ 3♠
+julia&gt; carta = pop!(baralho)
+3♠
+julia&gt; push!(mão, carta)
+ERROR: type Mão has no field cartas</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A natural next step is to encapsulate this code in a function called <code>move!</code>:
+<p>Um próximo passo natural é encapsular esse código em uma função chamada <code>move!</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function move!(cs1::CardSet, cs2::CardSet, n::Int)
-    @assert 1 ≤ n ≤ length(cs1.cards)
+<pre class="pygments highlight"><code data-lang="julia">function move!(cc1::Conjunto_Carta, cc2::Conjunto_Carta, n::Int)
+    @assert 1 ≤ n ≤ length(cc1.cartas)
     for i in 1:n
-        card = pop!(cs1)
-        push!(cs2, card)
+        carta = pop!(cc1)
+        push!(cc2, carta)
     end
     nothing
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>move!</code> takes three arguments, two <code>Cardset</code> objects and the number of cards to deal. It modifies both <code>Cardset</code> objects, and returns <code>nothing</code>.</p>
+<p>A função <code>move!</code> recebe três argumentos, dois objetos <code>Conjunto_Carta</code> e o número de cartas a serem distribuídas. Ela modifica os objetos <code>Conjunto_Carta</code> e retorna <code>nothing</code>.</p>
 </div>
 <div class="paragraph">
-<p>In some games, cards are moved from one hand to another, or from a hand back to the deck. You can use <code>move!</code> for any of these operations: <code>cs1</code> and <code>cs2</code> can be either a <code>Deck</code> or a <code>Hand</code>.</p>
+<p>Em alguns jogos, as cartas são transferidas de uma mão para outra ou de uma mão para o baralho. Você pode usar <code>move!</code> para qualquer uma dessas operações já que <code>cc1</code> e <code>cc2</code> podem ser ou um <code>Baralho</code> ou uma <code>Mão</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_type_diagrams">Type Diagrams</h3>
+<h3 id="_diagramas_de_tipos">Diagramas de Tipos</h3>
 <div class="paragraph">
-<p>So far we have seen stack diagrams, which show the state of a program, and object diagrams, which show the attributes of an object and their values. These diagrams represent a snapshot in the execution of a program, so they change as the program runs.</p>
+<p>Até agora temos visto diagramas de pilha, que mostram o estado de um programa, e diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.</p>
 </div>
 <div class="paragraph">
-<p>They are also highly detailed; for some purposes, too detailed. A <em>type diagram</em> is a more abstract representation of the structure of a program. Instead of showing individual objects, it shows types and the relationships between them.
+<p>Eles também são muito detalhados e dependendo de alguns propósitos, demasiadamente detalhados. Um <em>diagrama de tipo</em> é uma representação mais abstrata da estrutura de um programa. Ao invés de mostrar objetos individuais, ele mostra os tipos e as relações entre eles.
 </p>
 </div>
 <div class="paragraph">
-<p>There are several kinds of relationship between types:</p>
+<p>Existem vários tipos de relacionamento entre os tipos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Objects of a concrete type might contain references to objects of another type. For example, each Rectangle contains a reference to a Point, and each Deck contains references to an array of Cards. This kind of relationship is called <em>HAS-A</em>, as in, “a Rectangle has a Point”.
+<p>Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um array de Cartas. Este tipo de relacionamento é chamado de <em>TEM-UM</em>, como em “um Retângulo tem um Ponto”.
 </p>
 </li>
 <li>
-<p>A concrete type can have an abstract type as a supertype. This relationship is called <em>IS-A</em>, as in, “a Hand is a kind of a CardSet.”
+<p>Um tipo concreto pode ter um tipo abstrato como um supertipo. Esse relacionamento é chamado de <em>É-UM</em>, como em “uma Mão é uma espécie de Conjunto_Carta”.
 </p>
 </li>
 <li>
-<p>One type might depend on another in the sense that objects of one type take objects of the second type as parameters, or use objects of the second type as part of a computation. This kind of relationship is called a <em>dependency</em>.
+<p>Um tipo pode depender do outro no sentido de que os objetos de um tipo recebem os objetos do segundo tipo como parâmetros ou usam os objetos do segundo tipo como parte de um cálculo. Esse tipo de relacionamento é denominado <em>dependência</em>.
 </p>
 </li>
 </ul>
@@ -13656,254 +13657,254 @@ end</code></pre>
 <div class="content">
 <img src="images/fig181.svg" alt="fig181">
 </div>
-<div class="title">Figure 23. Type diagram</div>
+<div class="title">Figure 23. Diagrama de Tipo</div>
 </div>
 <div class="paragraph">
-<p>The arrow with a hollow triangle head represents an IS-A relationship; in this case it indicates that Hand has as supertype CardSet.</p>
+<p>A flecha com uma ponta de triângulo oco representa um relacionamento É-UM; e neste caso, indica que a Mão tem como supertipo o Conjunto_Carta.</p>
 </div>
 <div class="paragraph">
-<p>The standard arrow head represents a HAS-A relationship; in this case a Deck has references to Card objects.</p>
+<p>A ponta da seta padrão representa um relacionamento TEM-UM e neste caso, um Baralho tem referências aos objetos de Carta.</p>
 </div>
 <div class="paragraph">
-<p>The star (<code>*</code>) near the arrow head is a <em>multiplicity</em>; it indicates how many Cards a Deck has. A multiplicity can be a simple number, like <code>52</code>, a range, <code>like 5:7</code> or a star, which indicates that a Deck can have any number of Cards.
+<p>A estrela (<code>*</code>) perto da ponta da seta é uma <em>multiplicidade</em> que indica a quantidade de Cartas que um Baralho tem. Uma multiplicidade pode ser um número simples, como <code>52</code>, um intervalo, <code>como 5:7</code> ou uma estrela, que indica que um Baralho pode ter qualquer número de Cartas.
 </p>
 </div>
 <div class="paragraph">
-<p>There are no dependencies in this diagram. They would normally be shown with a dashed arrow. Or if there are a lot of dependencies, they are sometimes omitted.</p>
+<p>Não há dependências neste diagrama. Elas usualmente seriam mostradas com uma seta tracejada. E caso haja muitas dependências, elas são às vezes omitidas.</p>
 </div>
 <div class="paragraph">
-<p>A more detailed diagram might show that a Deck actually contains an array of Cards, but built-in types like array and dictionnaries are usually not included in type diagrams.</p>
+<p>Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma array de Cartas, mas tipos internos como array e dicionários geralmente não são inclusos nos diagramas de tipo.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="interactive">Debugging</h3>
+<h3 id="interactive">Depuração</h3>
 <div class="paragraph">
-<p>Subtyping can make debugging difficult because when you call a function with an object as argument, it might be hard to figure out which method will be invoked.</p>
+<p>A subtipagem pode dificultar a depuração, porque quando você chama uma função com um objeto como argumento, pode ser difícil descobrir qual método será chamado.</p>
 </div>
 <div class="paragraph">
-<p>Suppose you are writing a function that works with <code>Hand</code> objects. You would like it to work with all kinds of <code>Hand+s, like +PokerHand+s, +BridgeHand+s, etc. If you invoke a method like +sort!</code>, you might get the one defined for an abstract type <code>Hand</code>, but if a method <code>sort!</code> with as argument any of the subtypes exists, you’ll get that version instead. This behavior is usually a good thing, but it can be confusing.</p>
+<p>Suponha que você está escrevendo uma função que funciona com os objetos <code>Mão</code>. Você gostaria que ela funcionasse com todos os tipos de <code>Mão+s, como +Mãos de Pôquer</code>, <code>Mãos de Bridge</code>, etc. Se você chamar um método como <code>sort!</code>, pode ter chamado o que foi definido para um tipo abstrato <code>Mão</code>, mas se um método <code>sort!</code> com qualquer um dos subtipos como argumento existir, você terá essa versão em seu lugar. Este comportamento é normalmente uma coisa boa, mas pode ser confuso.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function Base.sort!(hand::Hand)
-    sort!(hand.cards)
+<pre class="pygments highlight"><code data-lang="julia">function Base.sort!(mão::Mão)
+    sort!(mão.cartas)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Any time you are unsure about the flow of execution through your program, the simplest solution is to add print statements at the beginning of the relevant methods. If <code>shuffle!</code> prints a message that says something like <code>Running shuffle! Deck</code>, then as the program runs it traces the flow of execution.</p>
+<p>Sempre que você não tiver certeza sobre o fluxo de execução do seu programa, a solução mais simples é adicionar comandos de impressão no início dos métodos relevantes. Se <code>shuffle!</code> imprime uma mensagem que diz algo como <code>Executando shuffle! Baralho</code>, à medida que o programa é executado, rastreia-se o fluxo de execução.</p>
 </div>
 <div class="paragraph">
-<p>As better alternative, you can also use the <code>@which</code> macro:
+<p>Como uma alternativa melhor, você também pode usar a macro <code>@which</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @which sort!(hand)
-sort!(hand::Hand) in Main at REPL[5]:1</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @which sort!(mão)
+sort!(mão::Mão) in Main at REPL[5]:1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>So the <code>sort!</code> method for <code>hand</code> is the one having as argument an object of type <code>Hand</code>.</p>
+<p>Portanto, o método <code>sort!</code> para <code>mão</code> recebe como argumento um objeto do tipo <code>Mão</code>.</p>
 </div>
 <div class="paragraph">
-<p>Here’s a design suggestion: when you override a method, the interface of the new method should be the same as the old. It should take the same parameters, return the same type, and obey the same preconditions and postconditions. If you follow this rule, you will find that any function designed to work with an instance of a supertype, like a <code>CardSet</code>, will also work with instances of its subtypes <code>Deck</code> and <code>Hand</code>.</p>
+<p>Eis uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve receber os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas precondições e pós-condições. Se você seguir esta regra, verá que qualquer função elaborada para trabalhar com uma instância de um supertipo, como um <code>Conjunto_Carta</code>, também funcionará com instâncias de seus subtipos <code>Baralho</code> e <code>Mão</code>.</p>
 </div>
 <div class="paragraph">
-<p>If you violate this rule, which is called the “Liskov substitution principle”, your code will collapse like (sorry) a house of cards.
+<p>Se você violar essa regra, chamada de "princípio de substituição de Liskov", seu código tombará como (me desculpe) um castelo de cartas.
 </p>
 </div>
 <div class="paragraph">
-<p>The function <code>supertype</code> can be used to find the direct supertype of a type.
+<p>A função <code>supertype</code> pode ser usada para encontrar o supertipo direto de um tipo.
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; supertype(Deck)
-CardSet</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; supertype(Baralho)
+Conjunto_Carta</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_data_encapsulation">Data Encapsulation</h3>
+<h3 id="_encapsulamento_de_dados">Encapsulamento de Dados</h3>
 <div class="paragraph">
-<p>The previous chapters demonstrate a development plan we might call “type-oriented design”. We identified objects we needed—like <code>Point</code>, <code>Rectangle</code> and <code>MyTime</code>—and defined structs to represent them. In each case there is an obvious correspondence between the object and some entity in the real world (or at least a mathematical world).
+<p>Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como <code>Ponto</code>, <code>Retângulo</code> e <code>MyTime</code>— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
 </p>
 </div>
 <div class="paragraph">
-<p>But sometimes it is less obvious what objects you need and how they should interact. In that case you need a different development plan. In the same way that we discovered function interfaces by encapsulation and generalization, we can discover type interfaces by <em>data encapsulation</em>.
+<p>Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, precisa-se de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir os tipos de interface por <em>encapsulamento de dados</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Markov analysis, from <a href="#markov_analysis">Markov Analysis</a>, provides a good example. If you download my code from <a href="https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl" class="bare">https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl</a>, you’ll see that it uses two global variables—<code>suffixes</code> and <code>prefix</code>—that are read and written from several functions.</p>
+<p>A análise de Markov, de <a href="#markov_analysis">Markov Analysis</a>, fornece um bom exemplo. Se você baixar meu código em <a href="https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl" class="bare">https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl</a>, verá que ele usa duas variáveis globais—<code>suffixos</code> and <code>prefixo</code>—que são lidos e escritos a partir de várias funções.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">suffixes = Dict()
-prefix = []</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">sufixos = Dict()
+prefixo = []</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because these variables are global, we can only run one analysis at a time. If we read two texts, their prefixes and suffixes would be added to the same data structures (which makes for some interesting generated text).</p>
+<p>Como estas variáveis são globais, podemos fazer só uma análise por vez. Se lermos dois textos, os seus prefixos e sufixos seriam adicionados às mesmas estruturas de dados (o que faz com que algum texto gerado seja interessante).</p>
 </div>
 <div class="paragraph">
-<p>To run multiple analyses, and keep them separate, we can encapsulate the state of each analysis in an object. Here’s what that looks like:
+<p>Para rodar várias análises e mantê-las separadas, podemos encapsular o estado de cada análise em um objeto. Eis o que isso parece:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">struct Markov
-    order :: Int64
-    suffixes :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
-    prefix :: Array{String, 1}
+    ordem :: Int64
+    suffixos :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
+    prefixos :: Array{String, 1}
 end
 
-function Markov(order::Int64=2)
-    new(order, Dict{Tuple{String,Vararg{String}}, Array{String, 1}}(), Array{String, 1}())
+function Markov(ordem::Int64=2)
+    new(ordem, Dict{Tuple{String,Vararg{String}}, Array{String, 1}}(), Array{String, 1}())
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Next, we transform the functions into methods. For example, here’s <code>processword</code>:
+<p>Em seguida, transformamos as funções em métodos. Por exemplo, aqui está <code>processa_palavra</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function processword(markov::Markov, word::String)
-    if length(markov.prefix) &lt; markov.order
-        push!(markov.prefix, word)
+<pre class="pygments highlight"><code data-lang="julia">function processa_palavra(markov::Markov, palavra::String)
+    if length(markov.prefixo) &lt; markov.ordem
+        push!(markov.prefixo, palavra)
         return
     end
-    get!(markov.suffixes, (markov.prefix...,), Array{String, 1}())
-    push!(markov.suffixes[(markov.prefix...,)], word)
-    popfirst!(markov.prefix)
-    push!(markov.prefix, word)
+    get!(markov.suffixos, (markov.prefixo...,), Array{String, 1}())
+    push!(markov.suffixos[(markov.prefixo...,)], palavra)
+    popfirst!(markov.prefixo)
+    push!(markov.prefixo, palavra)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Transforming a program like this—changing the design without changing the behavior—is another example of refactoring (see <a href="#refactoring">Refactoring</a>).
+<p>Transformar um programa como esse—alterando o design sem alterar o comportamento—é outro exemplo de refatoração (veja <a href="#refactoring">Refactoring</a>).
 </p>
 </div>
 <div class="paragraph">
-<p>This example suggests a development plan for designing types:</p>
+<p>Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Start by writing functions that read and write global variables (when necessary).</p>
+<p>Comece por escrever funções que leem e escrevem variáveis globais (quando necessário).</p>
 </li>
 <li>
-<p>Once you get the program working, look for associations between global variables and the functions that use them.</p>
+<p>Uma vez que o programa esteja funcionando, procure por associações entre variáveis globais e as funções que as utilizam.</p>
 </li>
 <li>
-<p>Encapsulate related variables as fields of a struct.</p>
+<p>Encapsule as variáveis relacionadas como os campos de uma struct.</p>
 </li>
 <li>
-<p>Transform the associated functions into methods with as argument objects of the new type.</p>
+<p>Transforme as funções associadas em métodos que recebem objetos do novo tipo como argumento.</p>
 </li>
 </ul>
 </div>
 <div class="sect4">
-<h5 id="_exercise_18_3">Exercise 18-3</h5>
+<h5 id="_exercício_18_3">Exercício 18-3</h5>
 <div class="paragraph">
-<p>Download my Markov code from <a href="https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl" class="bare">https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl</a>, and follow the steps described above to encapsulate the global variables as attributes of a new struct called <code>Markov</code>.</p>
+<p>Faça o download do meu código Markov em <a href="https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl" class="bare">https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl</a> e siga os passos descritos acima para encapsular as variáveis globais como atributos de uma nova estrutura denominada <code>Markov</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_15">Glossary</h3>
+<h3 id="_glossário_4">Glossário</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">encode</dt>
+<dt class="hdlist1">codificação</dt>
 <dd>
-<p>To represent one set of values using another set of values by constructing a mapping between them.
+<p>Representação de um conjunto de valores usando outro conjunto de valores através da construção de um mapeamento entre eles.
 </p>
 </dd>
-<dt class="hdlist1">unit testing</dt>
+<dt class="hdlist1">teste de unidade</dt>
 <dd>
-<p>Standardized way to test the correctness of code.
+<p>Procedimento padronizado para testar o corretismo do código.
 </p>
 </dd>
-<dt class="hdlist1">veneer</dt>
+<dt class="hdlist1">folheado</dt>
 <dd>
-<p>A method or function that provides a different interface to another function without doing much computation.
+<p>Um método ou uma função que disponibiliza uma interface diferente para outra função sem fazer muito cálculo.
 </p>
 </dd>
-<dt class="hdlist1">subtyping</dt>
+<dt class="hdlist1">subtipagem</dt>
 <dd>
-<p>The ability to define a hierarchy of related types.
+<p>A capacidade de definir uma hierarquia de tipos relacionados.
 </p>
 </dd>
-<dt class="hdlist1">abstract type</dt>
+<dt class="hdlist1">tipo abstrato</dt>
 <dd>
-<p>A type that can act as a parent for another type.
+<p>Um tipo que pode atuar como progenitor de outro tipo.
 </p>
 </dd>
-<dt class="hdlist1">concrete type</dt>
+<dt class="hdlist1">tipo concreto</dt>
 <dd>
-<p>A type that can be constructed.
+<p>Um tipo que pode ser construído.
 </p>
 </dd>
-<dt class="hdlist1">subtype</dt>
+<dt class="hdlist1">subtipo</dt>
 <dd>
-<p>A type that has as parent an abstract type.
+<p>Um tipo que tem como progenitor um tipo abstrato.
 </p>
 </dd>
-<dt class="hdlist1">supertype</dt>
+<dt class="hdlist1">supertipo</dt>
 <dd>
-<p>An abstract type that is the parent of another type.
+<p>Um tipo abstrato que é o progenitor de outro tipo.
 </p>
 </dd>
-<dt class="hdlist1">IS-A relationship</dt>
+<dt class="hdlist1">Relacionamento É-UM</dt>
 <dd>
-<p>A relationship between a subtype and its supertype.
+<p>Um relacionamento entre um subtipo e seu supertipo.
 </p>
 </dd>
-<dt class="hdlist1">HAS-A relationship</dt>
+<dt class="hdlist1">Relacionamento TEM-UM</dt>
 <dd>
-<p>A relationship between two types where instances of one type contain references to instances of the other.
+<p>Um relacionamento entre dois tipos em que as instâncias de um tipo contêm referências às instâncias do outro.
 </p>
 </dd>
-<dt class="hdlist1">dependency</dt>
+<dt class="hdlist1">dependência</dt>
 <dd>
-<p>A relationship between two types where instances of one type use instances of the other type, but do not store them as fields.
+<p>Um relacionamento entre dois tipos em que instâncias de um tipo usam as instâncias do outro tipo, sem armazená-las como campos.
 </p>
 </dd>
-<dt class="hdlist1">type diagram</dt>
+<dt class="hdlist1">diagrama de tipo</dt>
 <dd>
-<p>A diagram that shows the types in a program and the relationships between them.
+<p>Um diagrama que mostra os tipos de um programa e as relações entre eles.
 </p>
 </dd>
-<dt class="hdlist1">multiplicity</dt>
+<dt class="hdlist1">multiplicidade</dt>
 <dd>
-<p>A notation in a type diagram that shows, for a HAS-A relationship, how many references there are to instances of another class.
+<p>Uma notação em um diagrama de tipos que mostra, em um relacionamento TEM-UM, a quantidade de referências para as instâncias de outra classe.
 </p>
 </dd>
-<dt class="hdlist1">data encapsulation</dt>
+<dt class="hdlist1">encapsulamento de dados</dt>
 <dd>
-<p>A program development plan that involves a prototype using global variables and a final version that makes the global variables into instance fields.
+<p>Um plano de desenvolvimento de programa, que consiste em um protótipo que usa variáveis ​​globais e uma versão final que transforma as variáveis ​​globais em campos de uma instância.
 </p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_17">Exercises</h3>
+<h3 id="_exercícios_4">Exercícios</h3>
 <div class="sect4">
-<h5 id="ex18-1">Exercise 18-4</h5>
+<h5 id="ex18-1">Exercício 18-4</h5>
 <div class="paragraph">
-<p>For the following program, draw a type diagram that shows these types and the relationships among them.</p>
+<p>Para o programa seguinte, desenhe um diagrama de tipos que mostre os seus tipos e as relações entre eles.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">abstract type PingPongParent end
+<pre class="pygments highlight"><code data-lang="julia">abstract type PingPongProgenitor end
 
-struct Ping &lt;: PingPongParent
-    pong :: PingPongParent
+struct Ping &lt;: PingPongProgenitor
+    pong :: PingPongProgenitor
 end
 
-struct Pong &lt;: PingPongParent
+struct Pong &lt;: PingPongProgenitor
     pings :: Array{Ping, 1}
     function Pong(pings=Array{Ping, 1}())
         new(pings)
@@ -13922,71 +13923,71 @@ addping(pong, ping)</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="ex18-2">Exercise 18-5</h5>
+<h5 id="ex18-2">Exercício 18-5</h5>
 <div class="paragraph">
-<p>Write a method called <code>deal!</code> that takes three parameters, a <code>Deck</code>, the number of hands and the number of cards per hand. It should create the appropriate number of <code>Hand</code> objects, deal the appropriate number of cards per hand, and return an array of +Hand+s.
+<p>Escreva um método chamado <code>dar_carta!</code> que recebe três parâmetros, o <code>Baralho</code>, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos <code>Mão</code>, distribuir o número compatível de cartas por mão e retornar um array de +Mão+s.
 </p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="ex18-3">Exercise 18-6</h5>
+<h5 id="ex18-3">Exercício 18-6</h5>
 <div class="paragraph">
-<p>The following are the possible hands in poker, in increasing order of value and decreasing order of probability:</p>
+<p>Seguem as jogadas possíveis no pôquer, em ordem crescente de valor e ordem decrescente de probabilidade:</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">pair</dt>
+<dt class="hdlist1">par</dt>
 <dd>
-<p>two cards with the same rank</p>
+<p>duas cartas com o mesmo valor</p>
 </dd>
-<dt class="hdlist1">two pair</dt>
+<dt class="hdlist1">dois pares</dt>
 <dd>
-<p>two pairs of cards with the same rank</p>
+<p>dois pares de cartas com o mesmo valor</p>
 </dd>
-<dt class="hdlist1">three of a kind</dt>
+<dt class="hdlist1">trinca de um tipo</dt>
 <dd>
-<p>three cards with the same rank</p>
+<p>três cartas com o mesmo valor</p>
 </dd>
-<dt class="hdlist1">straight</dt>
+<dt class="hdlist1">sequência</dt>
 <dd>
-<p>five cards with ranks in sequence (aces can be high or low, so Ace-2-3-4-5 is a straight and so is 10-Jack-Queen-King-Ace, but Queen-King-Ace-2-3 is not.)</p>
+<p>cinco cartas com valores em sequência (os Ases podem ser altos ou baixos, então Ás-2-3-4-5 é uma sequência bem como 10-Valete-Rainha-Rei-Ás, mas Rainha-Rei-Ás-2-3 não é.)</p>
 </dd>
 <dt class="hdlist1">flush</dt>
 <dd>
-<p>five cards with the same suit</p>
+<p>cinco cartas com o mesmo naipe</p>
 </dd>
 <dt class="hdlist1">full house</dt>
 <dd>
-<p>three cards with one rank, two cards with another</p>
+<p>três cartas com um valor, duas cartas com outro</p>
 </dd>
-<dt class="hdlist1">four of a kind</dt>
+<dt class="hdlist1">quadra de um tipo</dt>
 <dd>
-<p>four cards with the same rank</p>
+<p>quatro cartas com o mesmo valor</p>
 </dd>
-<dt class="hdlist1">straight flush</dt>
+<dt class="hdlist1">sequência de mesmo naipe</dt>
 <dd>
-<p>five cards in sequence (as defined above) and with the same suit</p>
+<p>cinco cartas em sequência (conforme definido acima) e com o mesmo naipe</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>The goal of this exercise is to estimate the probability of drawing these various hands.</p>
+<p>O objetivo deste exercício é estimar as probabilidades de se tirar estas várias jogadas.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add methods named <code>haspair</code>, <code>hastwopair</code>, etc. that return <code>true</code> or <code>false</code> according to whether or not the hand meets the relevant criteria. Your code should work correctly for “hands” that contain any number of cards (although 5 and 7 are the most common sizes).
+<p>Adicione métodos chamados <code>tem_par</code>, <code>tem_2pares</code>, etc. que retornam <code>true</code> ou <code>false</code> se a mão cumpre ou não as regras relevantes. Seu código deve funcionar corretamente para as “mãos” que contém qualquer número de cartas (embora 5 e 7 sejam a quantidade mais comuns).
 </p>
 </li>
 <li>
-<p>Write a method named <code>classify</code> that figures out the highest-value classification for a hand and sets the <code>label</code> field accordingly. For example, a 7-card hand might contain a flush and a pair; it should be labeled “flush”.
+<p>Escreva um método chamado <code>classificar</code> que calcula a classificação do valor mais alto para uma mão e identifica adequadamente o campo <code>jogada</code>. Por exemplo, um mão de 7 cartas pode conter um flush e um par e ele deve ser identificado como “flush”.
 </p>
 </li>
 <li>
-<p>When you are convinced that your classification methods are working, the next step is to estimate the probabilities of the various hands. Write a function that shuffles a deck of cards, divides it into hands, classifies the hands, and counts the number of times various classifications appear.</p>
+<p>Quando você estiver convencido de que seus métodos de classificação estão funcionando, o próximo passo é estimar as probabilidades das várias jogadas. Escreva uma função que embaralha um baralho de cartas, divide-o em mãos, classifica as mãos e conta o número de vezes que as várias classificações aparecem.</p>
 </li>
 <li>
-<p>Print a table of the classifications and their probabilities. Run your program with larger and larger numbers of hands until the output values converge to a reasonable degree of accuracy. Compare your results to the values at <a href="https://en.wikipedia.org/wiki/Hand_rankings" class="bare">https://en.wikipedia.org/wiki/Hand_rankings</a>.</p>
+<p>Imprima uma tabela de classificações e suas probabilidades. Execute seu programa com uma quantidade de mãos cada vez maiores até que os valores de saída convirjam para um grau razoável de precisão. Compare os seus resultados com os valores em <a href="https://pt.wikipedia.org/wiki/Lista_de_jogadas_do_p%C3%B4quer" class="bare">https://pt.wikipedia.org/wiki/Lista_de_jogadas_do_p%C3%B4quer</a>.</p>
 </li>
 </ol>
 </div>
@@ -14836,7 +14837,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_16">Glossary</h3>
+<h3 id="_glossary_15">Glossary</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">closure</dt>
@@ -15449,7 +15450,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_interactive_utilities">Interactive Utilities</h3>
 <div class="paragraph">
-<p>We have already met the <code>InteractiveUtils</code> module in <a href="#interactive">Debugging</a>. The <code>@which</code> macro is only the tip of the iceberg.
+<p>We have already met the <code>InteractiveUtils</code> module in <a href="#interactive">Depuração</a>. The <code>@which</code> macro is only the tip of the iceberg.
 </p>
 </div>
 <div class="paragraph">
@@ -15517,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20492(double, double) {
+define double @julia_squaresum_20566(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15596,7 +15597,7 @@ top:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_17">Glossary</h3>
+<h3 id="_glossary_16">Glossary</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">regex</dt>
@@ -16282,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-19 04:02:09 UTC
+Last updated 2020-06-06 03:47:39 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
