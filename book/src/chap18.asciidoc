@@ -475,7 +475,7 @@ Os capítulos anteriores apresentam um plano de desenvolvimento que podemos cham
 Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, precisa-se de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir os tipos de interface por _encapsulamento de dados_.
 (((encapsulamento de dados)))
 
-A análise de Markov, de <<markov_analysis>>, fornece um bom exemplo. Se você baixar meu código em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl, verá que ele usa duas variáveis globais—+suffixos+ and +prefixo+—que são lidos e escritos a partir de várias funções.
+A análise de Markov, de <<markov_analysis>>, fornece um bom exemplo. Se você baixar meu código em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/src/solutions/chap13.jl, verá que ele usa duas variáveis globais—+suffixos+ and +prefixo+—que são lidos e escritos a partir de várias funções.
 
 [source,@julia-setup]
 ----
@@ -533,7 +533,7 @@ Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:
 
 ===== Exercício 18-3
 
-Faça o download do meu código Markov em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl e siga os passos descritos acima para encapsular as variáveis globais como atributos de uma nova estrutura denominada +Markov+.
+Faça o download do meu código Markov em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/src/solutions/chap13.jl e siga os passos descritos acima para encapsular as variáveis globais como atributos de uma nova estrutura denominada +Markov+.
 
 
 === Glossário
