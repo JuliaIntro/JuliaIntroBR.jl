@@ -207,12 +207,12 @@ Use +get+ para escrever +histograma+ de uma maneira mais concisa. Você deve ser
 
 === Laços e Dicionários
 
-Você pode percorrer as chaves de um dicionário em uma declaração +for+. Por exemplo, +imprimehist+ exibe cada chave e o seu valor correspondente:
-(((imprimehist)))((("função", "definido pelo programador", "imprimehist", see="imprimehist")))
+Você pode percorrer as chaves de um dicionário em uma declaração +for+. Por exemplo, +imprime_hist+ exibe cada chave e o seu valor correspondente:
+(((imprime_hist)))((("função", "definido pelo programador", "imprime_hist", see="imprime_hist")))
 
 [source,@julia-setup chap11]
 ----
-function imprimehist(h)
+function imprime_hist(h)
     for c in keys(h)
         println(c, " ", h[c])
     end
@@ -225,7 +225,7 @@ Aqui está o resultado:
 ----
 julia> h = histograma("papagaio");
 
-julia> imprimehist(h)
+julia> imprime_hist(h)
 a 3
 g 1
 p 2
@@ -675,8 +675,8 @@ Use um dicionário para escrever uma versão mais rápida e simplificada de +tem
 [[ex11-5]]
 ===== Exercício 11-6
 
-Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver +rotacionapalavra+ em <<ex08-5>>).
-(((rotacionapalavra)))
+Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver +rotaciona_palavra+ em <<ex08-5>>).
+(((rotaciona_palavra)))
 
 Escreva um programa que lê um array e encontra todos os pares rotacionados.
 
