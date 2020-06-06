@@ -322,10 +322,10 @@ O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que i
 Crie uma instância +Ponto+, faça uma cópia dela e verifique a equivalência e a igualdade de ambas. O resultado pode surpreendê-lo, além de explicar porque o alias não é um problema para um objeto imutável.
 
 
-=== Debugging
+=== Depuração
 
 Quando você começa a trabalhar com os objetos, é provável que encontre algumas novas exceções. Se você tentar acessar um campo que não existe, tem-se:
-(((debugging)))
+(((depuração)))
 
 [source,@julia-repl-test chap15]
 ----
