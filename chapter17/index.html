@@ -687,7 +687,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exercises_12">Exercises</a></li>
 </ul>
 </li>
-<li><a href="#chap17">20. Multiple Dispatch</a>
+<li><a href="#chap17">20. Despacho Múltiplo</a>
 <ul class="sectlevel2">
 <li><a href="#_declarações_de_tipos">Declarações de Tipos</a></li>
 <li><a href="#_métodos">Métodos</a></li>
@@ -695,7 +695,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#construtor">Construtores</a></li>
 <li><a href="#__code_show_code"><code>show</code></a></li>
 <li><a href="#_operador_de_sobrecarga">Operador de Sobrecarga</a></li>
-<li><a href="#_multiple_dispatch">Multiple Dispatch</a></li>
+<li><a href="#_despacho_múltiplo">Despacho Múltiplo</a></li>
 <li><a href="#_programação_genérica">Programação Genérica</a></li>
 <li><a href="#_interface_e_implementação">Interface e Implementação</a></li>
 <li><a href="#_debugging_11">Debugging</a></li>
@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591298675877762e9</code></pre>
+1.591474354166323e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9903,7 +9903,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Julia allows to attach a type to elements of a sequence. How this is done is detailed in <a href="#chap17">Multiple Dispatch</a>. Specifying the type eliminates a lot of shape errors.</p>
+<p>Julia allows to attach a type to elements of a sequence. How this is done is detailed in <a href="#chap17">Despacho Múltiplo</a>. Specifying the type eliminates a lot of shape errors.</p>
 </div>
 </div>
 <div class="sect2">
@@ -12504,13 +12504,13 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap17">20. Multiple Dispatch</h2>
+<h2 id="chap17">20. Despacho Múltiplo</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Isto é chamado de programação genérica.</p>
 </div>
 <div class="paragraph">
-<p>Neste capítulo irei discutir o uso de declarações de tipos em Julia, e irei também introduzir métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
+<p>Neste capítulo irei discutir o uso de declarações de tipos em Julia, e também introduzirei métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
 </div>
 <div class="sect2">
 <h3 id="_declarações_de_tipos">Declarações de Tipos</h3>
@@ -12530,7 +12530,7 @@ julia&gt; (1 + 2) :: Int64
 <p>Isso ajuda a confirmar que o seu programa funciona do jeito esperado.</p>
 </div>
 <div class="paragraph">
-<p>O operador <code>::</code> também pode ser acrescentado para o lado esquerdo da atribuição, ou como uma parte de uma declaração.
+<p>O operador <code>::</code> também pode ser acrescentado ao lado esquerdo da atribuição, ou como uma parte de uma declaração.
 </p>
 </div>
 <div class="listingblock">
@@ -12686,7 +12686,7 @@ MeuTempo(10, 7, 17)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se você colocar os argumentos na ordme errada, você recebe um erro:
+<p>Se você colocar os argumentos na ordem errada, você recebe um erro:
 </p>
 </div>
 <div class="listingblock">
@@ -12710,7 +12710,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aliás, argumentos opcionais são implementados como sintaxe para definições múltiplas de métodos. Por exemplo, esta definição:</p>
+<p>Aliás, argumentos opcionais são implementados como sintaxe para definições múltiplas de métodos. Por exemplo, essa definição:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12807,7 +12807,7 @@ MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Um método segundo sem argumento da função local <code>new</code> existe:
+<p>Um segundo método sem argumento da função local <code>new</code> existe:
 </p>
 </div>
 <div class="listingblock">
@@ -12861,7 +12861,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Quando eu escreve um novo tipo composto, eu quase sempre começo escrevendo um construtor externo, que facilita a instanciação de objetos, e <code>show</code>, que é útil para debugging.</p>
+<p>Quando eu crio um novo tipo composto, eu quase sempre começo criando um construtor externo, que facilita a instanciação de objetos, e <code>show</code>, que é útil para debugging.</p>
 </div>
 <div class="sect4">
 <h5 id="_exercício_17_2">Exercício 17-2</h5>
@@ -12874,10 +12874,10 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_operador_de_sobrecarga">Operador de Sobrecarga</h3>
 <div class="paragraph">
-<p>Ao definir métodos operadores, você pode especificar o comportamento de operadores em tipos definidos pelo programador. Por exemplo, se você define um método chamado <code>+</code> com dois argumentos <code>MeuTempo</code>, você pdoe usar o operador <code>+</code> em objetos <code>MeuTempo</code>.</p>
+<p>Ao definir métodos operadores, você pode especificar o comportamento de operadores em tipos definidos pelo programador. Por exemplo, se você define um método chamado <code>+</code> com dois argumentos <code>MeuTempo</code>, você pode usar o operador <code>+</code> em objetos <code>MeuTempo</code>.</p>
 </div>
 <div class="paragraph">
-<p>A definição pode se parecer com algo como:</p>
+<p>A definição deve se parecer com algo como:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12906,7 +12906,7 @@ julia&gt; início + duração
 </div>
 </div>
 <div class="paragraph">
-<p>Quando você aplica o operador <code>+</code> a objetos <code>MeuTempo</code>, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca <code>show</code>. Então tem muito acontecendo por trás das cortinas!</p>
+<p>Quando você aplica o operador <code>+</code> a objetos <code>MeuTempo</code>, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca <code>show</code>. Então muita coisa acontece por trás das cortinas!</p>
 </div>
 <div class="paragraph">
 <p>Adicionar ao comportamento de um operador para que funcione com tipos definidos pelo programador é chamado de <em>sobrecarga de operador</em>.
@@ -12914,7 +12914,7 @@ julia&gt; início + duração
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_dispatch">Multiple Dispatch</h3>
+<h3 id="_despacho_múltiplo">Despacho Múltiplo</h3>
 <div class="paragraph">
 <p>Na secção anterior nós adicionamos dois objetos <code>MeuTempo</code>, mas você também pode adicionar um inteiro ao objeto <code>MeuTempo</code>:</p>
 </div>
@@ -12956,7 +12956,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A escolha de qual método executar quando a função é aplicada é chamado de <em>dispatch</em>. O Julia permite que o processo de dispatch escolha qual método de uma função chamar baseada no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como <em>multiple dispatch</em>.
+<p>A escolha de qual método executar quando a função é aplicada é chamado de <em>despacho</em>. O Julia permite que o processo de despacho escolha qual método de uma função chamar baseada no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como <em>despacho múltiplo</em>.
 </p>
 </div>
 <div class="sect4">
@@ -12979,7 +12979,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_programação_genérica">Programação Genérica</h3>
 <div class="paragraph">
-<p>Multiple dispatch é útil quando é necessária, mas (felizmente) ele não é sempre necesário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para argumentos com tipos diferentes.</p>
+<p>O despacho múltiplo é útil quando é necessáriO, mas (felizmente) ele não é sempre necesário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para argumentos com tipos diferentes.</p>
 </div>
 <div class="paragraph">
 <p>Muitas das funções que nós escrevemos para string também funcionam para outros tipos de sequência. Por exemplo, em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> nós usamos <code>histograma</code> para contar o número de vezes no qual cada letra aparece em uma palavra.
@@ -13023,7 +13023,7 @@ Dict{Any,Any} with 3 entries:
 </p>
 </div>
 <div class="paragraph">
-<p>Já que um método <code>+</code> é fonrecido para objetos <code>MeuTempo</code>, eles funcionam com <code>sum</code>:</p>
+<p>Já que um método <code>+</code> é fornecido para objetos <code>MeuTempo</code>, eles funcionam com <code>sum</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13048,14 +13048,14 @@ julia&gt; sum((t1, t2, t3))
 <div class="sect2">
 <h3 id="_interface_e_implementação">Interface e Implementação</h3>
 <div class="paragraph">
-<p>Um dos objetos de despacho múltiplo é facilitar a manutenção de software, o que significa que você pode manter o programa funcionando quando outras partes do sistema mudam, e modificam o programa para cumprir novos requisitos.</p>
+<p>Um dos objetivos do despacho múltiplo é facilitar a manutenção de software, o que significa que você pode manter o programa funcionando quando outras partes do sistema mudam, e modificam o programa para cumprir novos requisitos.</p>
 </div>
 <div class="paragraph">
 <p>Um princípio de design que ajuda a alcançar esse objetivo é manter as interfaces separadas da implementação. Isto significa que métodos que possuem argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
 </p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa o tempo do dai. Métodos que possuem argumentos denotados com este tipo incluem <code>tempo_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
+<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa o tempo do dia. Métodos que possuem argumentos denotados com este tipo incluem <code>tempo_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
 </div>
 <div class="paragraph">
 <p>Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos <code>MeuTempo</code>. Neste capítulo, os campos de um objeto <code>MeuTempo</code> são <code>hora</code>, <code>minuto</code> e <code>segundo</code>.</p>
@@ -13064,7 +13064,7 @@ julia&gt; sum((t1, t2, t3))
 <p>Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos desde a meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas faz com que outras funções sejam mais dificéis.</p>
 </div>
 <div class="paragraph">
-<p>Depois você configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando os eu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.</p>
+<p>Depois você configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando o seu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.</p>
 </div>
 <div class="paragraph">
 <p>Mas se você tivesse projetado a interface com cuidado, você pode mudar a implementação sem mudar a interface, o que significa que outras partes do programa não precisam mudar.</p>
@@ -13164,7 +13164,7 @@ julia&gt; sum((t1, t2, t3))
 <div class="sect4">
 <h5 id="ex17-2">Exercício 17-5</h5>
 <div class="paragraph">
-<p>Escreva uma definição par aum tipo chamado <code>Canguru</code> com um campo chamado <code>conteúdo_bolso</code> de tipo <code>Array</code> e os seguintes métodos:
+<p>Escreva uma definição para um tipo chamado <code>Canguru</code> com um campo chamado <code>conteúdo_bolso</code> de tipo <code>Array</code> e os seguintes métodos:
 </p>
 </div>
 <div class="ulist">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-Q♦ Q♠ 4♦ 5♣ 3♣ 8♥ 6♥ K♣ 7♠ 9♣ 8♣ 9♥ J♥ A♣ K♠ 3♥ K♦ 5♦ A♥ 4♣ 2♣ 5♥ 7♦ 10♣ 5♠ 9♦ J♣ 3♠ 6♣ 7♣ A♠ 8♦ Q♣ 4♥ 9♠ J♠ 2♠ 8♠ 3♦ 4♠ J♦ 10♠ 6♠ 2♦ 10♥ 6♦ A♦ K♥ 10♦ 7♥ 2♥ Q♥
+2♥ Q♣ 6♦ 4♥ 5♠ A♣ 10♠ 3♦ 7♥ K♥ 8♣ K♣ 9♦ 6♠ 10♥ K♠ A♠ 7♠ 2♦ 6♣ 5♥ 9♠ 2♣ 3♠ J♣ 9♥ 3♥ 3♣ 8♥ 8♠ A♥ 8♦ Q♥ 7♦ A♦ J♥ 6♥ K♦ 10♣ Q♦ 5♦ 4♦ 7♣ 10♦ 2♠ 5♣ J♦ Q♠ 4♣ 4♠ 9♣ J♠
 julia&gt; card = pop!(deck)
-Q♥
+J♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20568(double, double) {
+define double @julia_squaresum_20566(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-04 19:24:32 UTC
+Última atualização 2020-06-06 20:12:31 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
