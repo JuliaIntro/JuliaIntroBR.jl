@@ -490,10 +490,10 @@ Como as tuplas são imutáveis, elas não dispõem de funções como +sort!+ e +
 (((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("função", "Base", "reverse ", see="reverse")))(((zip)))((("função","Base","reverse!", see="reverse!")))
 
 
-=== Debugging
+=== Depuração
 
 Arrays, dicionários e tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
-(((debugging)))(((estruturas de dados)))(((erro de forma))))
+(((depuração)))(((estruturas de dados)))(((erro de forma))))
 
 Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está em <<chap17>>. A especificação do tipo elimina muitos erros de forma.
 
