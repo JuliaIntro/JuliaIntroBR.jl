@@ -611,7 +611,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_dicionários_e_arrays">Dicionários e Arrays</a></li>
 <li><a href="#memos">Memos</a></li>
 <li><a href="#global_variables">Variáveis Globais</a></li>
-<li><a href="#_debugando_2">Debugando</a></li>
+<li><a href="#_depuração">Depuração</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591125694485226e9</code></pre>
+1.591475525099324e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8457,7 +8457,7 @@ false</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Na linguagem matemática, um dicionário representa um <em>mapeamento</em> da chave para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
+<p>Na linguagem matemática, um dicionário representa um <em>mapeamento</em> das chaves para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
 </p>
 </div>
 <div class="paragraph">
@@ -8507,7 +8507,7 @@ Dict{String,String} with 3 entries:
 </div>
 </div>
 <div class="paragraph">
-<p>Todas as chaves e os valores iniciais são strings, então um <code>Dict{String, String}</code> é criado.</p>
+<p>Todas as chaves e os valores iniciais são strings, então um <code>Dict{String,String}</code> é criado.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -8888,7 +8888,7 @@ Dict{Any,Any} with 2 entries:
 <div class="sect2">
 <h3 id="memos">Memos</h3>
 <div class="paragraph">
-<p>Se você já brincou com a função <code>fibonacci</code> de <a href="#one_more_exemple">[one_more_exemple]</a>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
+<p>Se você já brincou com a função <code>fibonacci</code> de <a href="#one_more_exemple">[one_more_exemple]</a>, pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
 </p>
 </div>
 <div class="paragraph">
@@ -8957,7 +8957,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se tentar reatribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:</p>
+<p>Se você tentar reatribuir uma variável global, poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9050,7 +9050,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Por razões de performance, deve-se declarar uma variável global como constante. Não é mais possível reatribuir a variável mas caso ela faça referência a um valor mutável, você pode modificar o valor.
+<p>Por razões de performance, deve-se declarar uma variável global como constante. Você já não pode reatribuir a variável mas caso ela faça referência a um valor mutável, pode-se modificar o valor.
 </p>
 </div>
 <div class="listingblock">
@@ -9070,7 +9070,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-as frequentemente, elas podem ser a causa dos programas serem dificéis de debugar e terem mau desempenho.</p>
+<p>Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-as frequentemente, elas podem ser a causa dos programas serem dificéis de depurar e terem mau desempenho.</p>
 </div>
 </td>
 </tr>
@@ -9078,9 +9078,9 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugando_2">Debugando</h3>
+<h3 id="_depuração">Depuração</h3>
 <div class="paragraph">
-<p>Na medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
+<p>Na medida em que você trabalha com datasets maiores, pode ser que seja difícil depurar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para depurar datasets maiores:
 </p>
 </div>
 <div class="ulist">
@@ -9102,7 +9102,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.</p>
+<p>Uma causa comum de erros de execução é um valor que não é do tipo correto. Para a depuração desse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.</p>
 </div>
 </li>
 <li>
@@ -9119,11 +9119,11 @@ end</code></pre>
 <li>
 <p>Formate a saída:</p>
 <div class="paragraph">
-<p>Resultados de debugging formatados podem facilitar a detecção de erros, como visto em um exemplo em <a href="#deb06">Debugging</a>.
+<p>Resultados de depuração formatados podem facilitar a detecção de erros, como visto em um exemplo em <a href="#deb06">Debugging</a>.
 </p>
 </div>
 <div class="paragraph">
-<p>E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto no debugging.
+<p>E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto na depuração.
 </p>
 </div>
 </li>
@@ -9166,17 +9166,17 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">implementação</dt>
 <dd>
-<p>Uma maneira de efetuar cálculos.
+<p>Uma maneira de efetuar os cálculos.
 </p>
 </dd>
 <dt class="hdlist1">tabela hash</dt>
 <dd>
-<p>O algoritmo usado para implementar dicionários em Julia.
+<p>O algoritmo usado para implementar os dicionários em Julia.
 </p>
 </dd>
 <dt class="hdlist1">função hash</dt>
 <dd>
-<p>Uma função usado por uma tabela hash para calcular a localização de uma chave.
+<p>Uma função usado por uma tabela hash para computar a localização de uma chave.
 </p>
 </dd>
 <dt class="hdlist1">hashable</dt>
@@ -9242,7 +9242,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex11-1">Exercício 11-2</h5>
 <div class="paragraph">
-<p>Escreva uma função que leia palavras em <em>palavras.txt</em> e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador <code>∈</code> como uma maneira rápida de verificar se uma string está ou não no dicionário.
+<p>Escreva uma função que leia as palavras em <em>palavras.txt</em> e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador <code>∈</code> como uma maneira rápida de verificar se uma string está ou não no dicionário.
 </p>
 </div>
 <div class="paragraph">
@@ -9292,13 +9292,13 @@ end</code></pre>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Essa foi enviada por um sujeito chamado Dan O’Leary. ele encontrou uma palavra comum de uma sílaba e cinco letras recentemente que possui a seguinte propriedade. Quando você remove a primeira letra, as letras restantes formam um homófono da palavra original, isto é, uma palavra que soa exatamente igual. Substituia a primeira letra, isto é, coloque-a novamente e remova a segunda letra, e o resultado é outro homófono da palavra original. E a pergunta é, qual é a palavra?</p>
+<p>Essa foi enviada por um sujeito chamado Dan O’Leary. Ele encontrou recentemente uma palavra em inglês comum de uma sílaba e cinco letras, que possui a seguinte propriedade peculiar. Quando você remove a primeira letra, as letras restantes formam um homófono da palavra original, isto é, uma palavra que soa exatamente igual. Troque a primeira letra, isto é, coloque-a novamente e remova a segunda letra, e o resultado é outro homófono da palavra original. E a pergunta é, qual é a palavra?</p>
 </div>
 <div class="paragraph">
-<p>Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cinco letras, ‘wrack.’ W-R-A-C-K, sabe como ‘wrack with pain.’ Se você remover a primeira letra, tenho uma palavra de quatro letras, ’R-A-C-K.’ como em, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ é um homófono perfeito. Se você colocar o ‘w’ novamente, e remover o ‘r,’ ao invés disso, você tem uma palavra, ‘wack,’ que é uma palavra real, só não é um homófono das outras duas palavras.</p>
+<p>Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cinco letras, ‘wrack.’ W-R-A-C-K, como na expressão ‘wrack with pain.’ Se eu remover a primeira letra, tenho uma palavra de quatro letras, ’R-A-C-K.’ Como em, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ É um homófono perfeito. Se você colocar o ‘w’ novamente, e remover o ‘r’, você fica com a palavra ‘wack,’ que é uma palavra real, só não é um homófona das outras duas palavras.</p>
 </div>
 <div class="paragraph">
-<p>Mas há, no entanto, pelo menos uma palavra que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as primeiras duas letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?</p>
+<p>Mas há pelo menos uma palavra, que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as duas primeiras letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?</p>
 </div>
 </blockquote>
 </div>
@@ -9313,7 +9313,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
+<p>Para verificar se duas palavras em inglês são homófonas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict" class="bare">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a>.</p>
 </div>
 </td>
 </tr>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-K♣ 4♣ 2♥ 7♠ A♠ 8♠ A♥ 7♣ 3♣ J♠ 2♣ 9♥ 3♥ 10♠ 2♠ A♦ 10♥ 6♣ J♦ 8♦ 7♦ 5♥ J♥ 4♦ K♠ 5♠ J♣ 3♦ A♣ 6♥ 5♣ 6♠ K♥ 10♣ 10♦ 4♥ 8♥ 9♣ Q♣ 2♦ 6♦ 9♠ 9♦ Q♥ K♦ Q♠ 8♣ Q♦ 5♦ 7♥ 3♠ 4♠
+K♥ A♠ 4♦ A♣ 3♦ 5♣ 10♣ 10♥ 3♥ 4♠ 8♠ J♦ 9♣ 5♠ Q♥ 7♥ 5♦ K♦ 6♣ K♣ 10♠ 8♥ 8♦ 2♣ 9♦ 7♠ Q♠ Q♦ 7♣ 3♠ A♥ 9♥ J♣ 2♥ J♥ 7♦ 6♥ 2♦ 4♣ K♠ 2♠ 6♠ 10♦ 8♣ 3♣ 5♥ Q♣ 6♦ 4♥ A♦ J♠ 9♠
 julia&gt; card = pop!(deck)
-4♠
+9♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20468(double, double) {
+define double @julia_squaresum_20560(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-02 19:21:30 UTC
+Last updated 2020-06-06 20:32:01 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
