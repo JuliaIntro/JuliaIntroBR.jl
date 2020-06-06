@@ -12,7 +12,7 @@ Um _dicionário_ é como um array, mas mais geral. Em um array, os índices deve
 Um dicionário contém uma coleção de índices, que são chamados de _chaves_, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de _par chave-valor_ ou, às vezes, de item.
 (((chave)))(((valor)))(((par chave-valor)))(((item)))
 
-Na linguagem matemática, um dicionário representa um _mapeamento_ da chave para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
+Na linguagem matemática, um dicionário representa um _mapeamento_ das chaves para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
 (((mapeamento)))
 
 A função +Dict+ cria um novo dicionário sem items. Como +Dict+ é um nome de uma função embutida, devemos evitar usar ele como um nome de variável.
@@ -57,7 +57,7 @@ Dict{String,String} with 3 entries:
   "três" => "tres"
 ----
 
-Todas as chaves e os valores iniciais são strings, então um +Dict{String, String}+ é criado.
+Todas as chaves e os valores iniciais são strings, então um +Dict{String,String}+ é criado.
 
 [WARNING]
 ====
@@ -115,7 +115,7 @@ false
 ----
 
 Para verificar se algo aparece como um valor em um dicionário, você pode usar a função +values+ que retorna uma coleção de valores, e em seguida usar o operador +∈+:
-(((valores)))((("função", "Base", "valores", see="valores")))
+(((values)))((("função", "Base", "values", see="values")))
 
 [source,@julia-repl-test chap11]
 ----
@@ -364,7 +364,7 @@ Uma _hash_ é uma função que recebe um valor (de qualquer tipo) e retorna um i
 [[memos]]
 === Memos
 
-Se você já brincou com a função +fibonacci+ de <<one_more_exemple>>, você pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
+Se você já brincou com a função +fibonacci+ de <<one_more_exemple>>, pode ter percebido que quanto maior o argumento que você fornece, mais tempo a função leva para executar. Além disso, o tempo de execução cresce rapidamente.
 (((fibonacci)))
 
 Para entender o porquê, considere <<fig11-2>>, que mostra um _grafo de chamada_ para +fibonacci+ com +n = 4+:
@@ -422,7 +422,7 @@ function exemplo1()
 end
 ----
 
-Se tentar reatribuir uma variável global, você poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:
+Se você tentar reatribuir uma variável global, poderá se surpreender. O exemplo a seguir deve acompanhar se a função foi chamada:
 
 [source,@julia-setup]
 ----
@@ -506,7 +506,7 @@ function exemplo5()
 end
 ----
 
-Por razões de performance, deve-se declarar uma variável global como constante. Não é mais possível reatribuir a variável mas caso ela faça referência a um valor mutável, você pode modificar o valor.
+Por razões de performance, deve-se declarar uma variável global como constante. Você já não pode reatribuir a variável mas caso ela faça referência a um valor mutável, pode-se modificar o valor.
 (((const)))((("palavra-chave", "const", see="const")))(((variável global constante)))
 
 [source,@julia-setup]
@@ -520,13 +520,13 @@ end
 
 [WARNING]
 ====
-Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-as frequentemente, elas podem ser a causa dos programas serem dificéis de debugar e terem mau desempenho.
+Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-as frequentemente, elas podem ser a causa dos programas serem dificéis de depurar e terem mau desempenho.
 ====
 
-=== Debugando
+=== Depuração
 
-Na medida em que você trabalha com datasets maiores, pode ser que seja difícil debugar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para debugar datasets maiores:
-(((debugando)))
+Na medida em que você trabalha com datasets maiores, pode ser que seja difícil depurar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para depurar datasets maiores:
+(((depuração)))
 
 * Diminua a entrada:
 +
@@ -540,7 +540,7 @@ Se existe um erro, você pode reduzir de latexmath:[\(n\)] para o menor valor qu
 Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de um array de números.
 (((verificação)))
 +
-Uma causa comum de erros de execução é um valor que não é do tipo correto. Para debugar esse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.
+Uma causa comum de erros de execução é um valor que não é do tipo correto. Para a depuração desse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.
 
 * Escreva auto-verificações:
 +
@@ -552,11 +552,11 @@ Outro tipo de verificação compara o resultado de dois cálculos diferentes par
 
 * Formate a saída:
 +
-Resultados de debugging formatados podem facilitar a detecção de erros, como visto em um exemplo em <<deb06>>.
+Resultados de depuração formatados podem facilitar a detecção de erros, como visto em um exemplo em <<deb06>>.
 (((formatação)))
 +
-E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto no debugging.
-(((andaime)))(((debugging)))
+E mais uma vez, o tempo que você usa construindo andaimes pode reduzir o tempo gasto na depuração.
+(((andaime)))(((depuração)))
 
 
 === Glossário
@@ -586,15 +586,15 @@ Um objeto que aparece em um dicionário como a segunda parte de um par chave-val
 (((valor)))
 
 implementação::
-Uma maneira de efetuar cálculos.
+Uma maneira de efetuar os cálculos.
 (((implementação)))
 
 tabela hash::
-O algoritmo usado para implementar dicionários em Julia.
+O algoritmo usado para implementar os dicionários em Julia.
 (((tabela hash)))
 
 função hash::
-Uma função usado por uma tabela hash para calcular a localização de uma chave.
+Uma função usado por uma tabela hash para computar a localização de uma chave.
 (((função hash)))
 
 hashable::
@@ -647,7 +647,7 @@ Uma variável global que não pode ser reatribuída.
 [[ex11-1]]
 ===== Exercício 11-2
 
-Escreva uma função que leia palavras em _palavras.txt_ e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
+Escreva uma função que leia as palavras em _palavras.txt_ e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
 (((in)))
 
 Se o exercício <<ex10-10>> foi feito, você pode comparar a velocidade desta implementação com o operador +∈+ em arrays e na busca em bissecção.
@@ -688,18 +688,18 @@ Aqui está outro quebra cabeça de Car Talk (https://www.cartalk.com/puzzler/bro
 
 [quote]
 ____
-Essa foi enviada por um sujeito chamado Dan O’Leary. ele encontrou uma palavra comum de uma sílaba e cinco letras recentemente que possui a seguinte propriedade. Quando você remove a primeira letra, as letras restantes formam um homófono da palavra original, isto é, uma palavra que soa exatamente igual. Substituia a primeira letra, isto é, coloque-a novamente e remova a segunda letra, e o resultado é outro homófono da palavra original. E a pergunta é, qual é a palavra?
+Essa foi enviada por um sujeito chamado Dan O’Leary. Ele encontrou recentemente uma palavra em inglês comum de uma sílaba e cinco letras, que possui a seguinte propriedade peculiar. Quando você remove a primeira letra, as letras restantes formam um homófono da palavra original, isto é, uma palavra que soa exatamente igual. Troque a primeira letra, isto é, coloque-a novamente e remova a segunda letra, e o resultado é outro homófono da palavra original. E a pergunta é, qual é a palavra?
 
-Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cinco letras, ‘wrack.’ W-R-A-C-K, sabe como ‘wrack with pain.’ Se você remover a primeira letra, tenho uma palavra de quatro letras, ’R-A-C-K.’ como em, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ é um homófono perfeito. Se você colocar o ‘w’ novamente, e remover o ‘r,’ ao invés disso, você tem uma palavra, ‘wack,’ que é uma palavra real, só não é um homófono das outras duas palavras.
+Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cinco letras, ‘wrack.’ W-R-A-C-K, como na expressão ‘wrack with pain.’ Se eu remover a primeira letra, tenho uma palavra de quatro letras, ’R-A-C-K.’ Como em, ‘Holy cow, did you see the rack on that buck! It must have been a nine-pointer!’ É um homófono perfeito. Se você colocar o ‘w’ novamente, e remover o ‘r’, você fica com a palavra ‘wack,’ que é uma palavra real, só não é um homófona das outras duas palavras.
 
-Mas há, no entanto, pelo menos uma palavra que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as primeiras duas letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?
+Mas há pelo menos uma palavra, que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as duas primeiras letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?
 ____
 
 Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está no array de palavras.
 
 [TIP]
 ====
-Para verificar se duas palavras em inglês são homônimas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
+Para verificar se duas palavras em inglês são homófonas, você pode usar o Dicionário CMU de Pronunciação. E também pode baixá-lo em  http://www.speech.cs.cmu.edu/cgi-bin/cmudict.
 ====
 
 Escreva um programa que lista todas as palavras que resolvem o quebra cabeça.
