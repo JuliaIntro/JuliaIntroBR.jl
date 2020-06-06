@@ -251,9 +251,9 @@ function é_abecedário(palavra)
 end
 ----
 
-O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caracter (que você pode pensar como sendo o caracter atual) com o ++j++-ésimo caracter (que você pode pensar como o próximo).
+O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caractere (que você pode pensar como sendo o caractere atual) com o ++j++-ésimo caractere (que você pode pensar como o próximo).
 
-Se a posição do próximo caracter é alfabeticamente antecedente à posição do caracter atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
+Se a posição do próximo caractere é alfabeticamente antecedente à posição do caractere atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
 
 Ao chegarmos ao final do laço sem uma falha, então a palavra passa no teste. Para se convencer de que o laço termina corretamente, considere a palavra +"acenos"+ como um exemplo.
 
@@ -289,10 +289,10 @@ usando +é_inversa+ de <<deb08>>.
 (((é_inversa)))
 
 
-=== Debugging
+=== Depuração
 
 Testar programas é difícil. As funções neste capítulo são relativamente fáceis de testar já que você pode verificar os resultados manualmente. Mesmo assim, é difícil ou impossível escolher um conjunto de palavras para testar todos os erros possíveis.
-(((debugging)))
+(((depuração)))
 
 Selecionando +sem_e+ como exemplo, há dois casos óbvios a serem avaliados: palavras com +'e'+ devem retornar +false+ e palavras sem +'e'+ devem retornar +true+. Não vai ser difícil encontrar um exemplo de cada.
 
