@@ -1,7 +1,7 @@
 [[chap18]]
 == Subtipagem
 
-No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação do tipo dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.
+No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação dos tipos dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.
 
 Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.
 
@@ -10,14 +10,14 @@ Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki
 
 === Cartas
 
-Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (+♠+), Copas (+♥+), Ouro (+♦+) e Paus (+♣+). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um ás pode ser maior que o rei ou menor que 2.
+Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma das treze cartas de valores diferentes. Os naipes são Espadas (+♠+), Copas (+♥+), Ouro (+♦+) e Paus (+♣+). Os valores são Ás (A), 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete (J), Rainha (Q) e Rei (K). Dependendo do jogo que você está jogando, um Ás pode ser maior que o rei ou menor que 2.
 
-Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Espadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais possuíam maior valor ou naipe.
+Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Espadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais teriam maior valor ou naipe.
 
-Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria "criptografia").
+Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
 (((codificação)))
 
-Por exemplo, esta tabela mostra a correspondência dos naipes para os números inteiros:
+Por exemplo, esta tabela mostra os naipes e os números inteiros correspondentes:
 
 * +♠+  latexmath:[\(\mapsto\)]  4
 
@@ -27,7 +27,7 @@ Por exemplo, esta tabela mostra a correspondência dos naipes para os números i
 
 * +♣+  latexmath:[\(\mapsto\)]  1
 
-Este código facilita a comparação das cartas; já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.
+Este código facilita a comparação das cartas, já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.
 
 Estou usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.
 
@@ -94,9 +94,9 @@ J♥
 
 Para os tipos embutidos, existem operadores relacionais (+<+, +>+, +==+ etc.) que comparam os valores e determinam quando um é maior que, menor que ou igual ao outro. Para os tipos definidos pelo programador, podemos sobrepor o comportamento dos operadores embutidos ao estabelecer um método chamado +<+.
 
-A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou naipe é mais importante.
+A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.
 
-A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante  para que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.
+A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante, significando que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.
 
 Decidido isso, podemos escrever +<+
 
@@ -111,13 +111,13 @@ end
 
 ===== Exercício 18-1
 
-Escreva um método +<+ para os objetos +MeuTime+. Você pode usar a comparação de tupla, mas você também pode considerar a comparação de inteiros.
+Escreva um método +<+ para os objetos +MyTime+. Você pode usar a comparação de tupla, mas também pode considerar a comparação de inteiros.
 
 
-=== Teste da Unidade
+=== Teste de Unidade
 
 
-_Unit testing_ permite verificar a correção do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
+_Teste de unidade_ permite verificar a correção do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
 (((teste de unidade)))
 
 Os testes unitários simples podem ser realizados com as macros +@test+:
@@ -138,7 +138,7 @@ Test Passed
 
 === Baralhos
 
-Agora que temos Cartas, o próximo passo é a definição dos baralhos. Como um baralho é composto de cartas, é natural que cada baralho contenha um array de cartas como um atributo.
+Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha um array de cartas como um atributo.
 
 A seguir, define-se uma struct para +Baralho+. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
 (((Deck)))((("tipo", "definido pelo programador", "Deck", see="Deck")))
@@ -160,14 +160,14 @@ function Baralho()
 end
 ----
 
-A maneira mais fácil de preencher o barulho é com um laço aninhado. O laço externo enumera os naipes de 1 a 4. O laço interno enumera os valores de 1 a 13. Cada iteração cria uma nova +Carta+ com o naipe e o valor correntes e envia-na para +baralho.cartas+.
+A maneira mais fácil de preencher o baralho é com um laço aninhado. O laço externo enumera os naipes de 1 a 4. O laço interno enumera os valores de 1 a 13. Cada iteração cria uma nova +Carta+ com o naipe e o valor correntes e envia-a para +baralho.cartas+.
 
 Aqui está um método +show+ para +Baralho+:
 
 [source,@julia-setup chap18]
 ----
-function Base.show(io::IO, baralho::Barulho)
-    for carta in barulho.cartas
+function Base.show(io::IO, baralho::Baralho)
+    for carta in baralho.cartas
         print(io, carta, " ")
     end
     println()
@@ -234,14 +234,14 @@ Escreva uma função chamada +sort!+ que usa a função +sort!+ para ordenar as 
 
 === Tipos abstratos e Subtipagem
 
-Queremos um tipo que represente uma "mão", ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.
+Queremos um tipo que represente uma “mão”, ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.
 
 Uma mão também é diferente de um baralho; existem operações que queremos para as mãos de cartas que não faz sentido para um baralho. Por exemplo, no pôquer, podemos comparar duas mãos para ver qual delas vence. No bridge, podemos calcular uma pontuação para uma mão para fazer um lance.
 
 Portanto, precisamos de uma maneira de agrupar os _tipos concretos_ relacionados. No Julia, isso é feito ao definir um _tipo abstrato_ que serve como o progenitor de +Baralho+ e +Mão+. Isso é chamado _subtipagem_.
 (((tipo concreto)))(((tipo abstrato)))(((subtipagem))))
 
-Vamos chamar esse tipo abstrato de +Conjunto_Carta+:
+Vamos nomear esse tipo abstrato de +Conjunto_Carta+:
 (((Conjunto_Carta)))((("tipo", "definido pelo programador", "Conjunto_Carta", see="Conjunto_Carta")))
 
 [source,@julia-eval chap18a]
@@ -265,7 +265,7 @@ abstract type Conjunto_Carta end
 Um novo tipo abstrato é criado com a palavra-chave +abstract type+. Um tipo "progenitor" opcional pode ser especificado colocando +<:+ após o nome seguido do nome de um tipo abstrato já existente.
 (((tipo abstrato)))((("palavra-chave", "abstract type", see="abstract type")))(((tipo)))
 
-Quando nenhum _supertipo_ é dado, o supertipe padrão é +Any+ - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são _subtipos_.
+Quando nenhum _supertipo_ é dado, o supertipo padrão é +Any+ - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são _subtipos_.
 (((supertipo)))(((subtipo)))
 
 Agora podemos expressar que +Baralho+ é um descendente de +Conjunto_Carta+:
@@ -315,7 +315,7 @@ julia> baralho isa Conjunto_Carta
 true
 ----
 
-Uma mão também é um tipo de +CardSet+:
+Uma mão também é um tipo de +Conjunto_Carta+:
 (((Mão)))((("tipo", "definido pelo programador", "Mão", see="Mão")))
 
 [source,@julia-setup chap18a]
@@ -330,7 +330,7 @@ function Mão(identificação::String="")
 end
 ----
 
-Em vez de encher a mão com 52 novas cartas, o construtor de +Mão+ inicializa +cartas+ com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para +Mão+.
+Em vez de encher a mão com 52 novas cartas, o construtor de +Mão+ inicializa +cartas+ com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a +Mão+.
 
 [source,@julia-repl-test chap18a]
 ----
@@ -362,7 +362,7 @@ function Base.push!(cc::Conjunto_Carta, carta::Carta)
 end
 ----
 
-Podemos usar +pop!+ e +push!+ para dar um carta:
+Podemos usar +pop!+ e +push!+ para dar uma carta:
 
 [source,@julia-repl chap18a]
 ----
@@ -387,9 +387,9 @@ function move!(cc1::Conjunto_Carta, cc2::Conjunto_Carta, n::Int)
 end
 ----
 
-+move!+ recebe três argumentos, dois objetos +Conjunto_Carta+ e o número de cartas a serem distribuídas. Ele modifica os objetos +Conjunto_Carta+ e retorna +nothing+.
+A função +move!+ recebe três argumentos, dois objetos +Conjunto_Carta+ e o número de cartas a serem distribuídas. Ela modifica os objetos +Conjunto_Carta+ e retorna +nothing+.
 
-Em alguns jogos, as cartas são transferidas de uma mão para outra ou de uma mão para o baralho. Você pode usar +mover!+ para qualquer uma dessas operações, +cc1+ e +cc2+ podem ser ou um +Baralho+ ou uma +Mão+.
+Em alguns jogos, as cartas são transferidas de uma mão para outra ou de uma mão para o baralho. Você pode usar +move!+ para qualquer uma dessas operações já que +cc1+ e +cc2+ podem ser ou um +Baralho+ ou uma +Mão+.
 
 
 === Diagramas de Tipos
@@ -401,36 +401,36 @@ Eles também são muito detalhados e dependendo de alguns propósitos, demasiada
 
 Existem vários tipos de relacionamento entre os tipos:
 
-* Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um conjunto de Cartas. Este tipo de relacionamento é chamado de _TEM-UM_, como em “um Retângulo tem um Ponto”.
+* Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um array de Cartas. Este tipo de relacionamento é chamado de _TEM-UM_, como em “um Retângulo tem um Ponto”.
 (((TEM-UM)))
 
 * Um tipo concreto pode ter um tipo abstrato como um supertipo. Esse relacionamento é chamado de _É-UM_, como em “uma Mão é uma espécie de Conjunto_Carta”.
 (((É-UM)))
 
-* Um tipo pode depender de outro no sentido de que os objetos de um tipo recebem os objetos do segundo tipo como parâmetros ou usam os objetos do segundo tipo como parte de um cálculo. Esse tipo de relacionamento é denominado _dependência_.
+* Um tipo pode depender do outro no sentido de que os objetos de um tipo recebem os objetos do segundo tipo como parâmetros ou usam os objetos do segundo tipo como parte de um cálculo. Esse tipo de relacionamento é denominado _dependência_.
 (((dependência)))
 
 [[fig18-1]]
 .Diagrama de Tipo
 image::images/fig181.svg[]
 
-A flecha com uma ponta de triângulo oco representa um relacionamento É-UM; neste caso, indica que a Mão tem como supertipo o Conjunto_Carta.
+A flecha com uma ponta de triângulo oco representa um relacionamento É-UM; e neste caso, indica que a Mão tem como supertipo o Conjunto_Carta.
 
 A ponta da seta padrão representa um relacionamento TEM-UM e neste caso, um Baralho tem referências aos objetos de Carta.
 
-A estrela (+pass:[*]+) perto da ponta da seta é uma _multiplicidade_ que indica a quantidade de Cartas que um Baralho tem. Uma multiplicidade pode ser um número simples, como +52+, um intervalo, +como 5:7+ ou uma estrela, o que indica que um Baralho pode ter qualquer número de Cartas.
-((((multiplicidade)))
+A estrela (+pass:[*]+) perto da ponta da seta é uma _multiplicidade_ que indica a quantidade de Cartas que um Baralho tem. Uma multiplicidade pode ser um número simples, como +52+, um intervalo, +como 5:7+ ou uma estrela, que indica que um Baralho pode ter qualquer número de Cartas.
+(((multiplicidade)))
 
 Não há dependências neste diagrama. Elas usualmente seriam mostradas com uma seta tracejada. E caso haja muitas dependências, elas são às vezes omitidas.
 
 Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma array de Cartas, mas tipos internos como array e dicionários geralmente não são inclusos nos diagramas de tipo.
 
 [[interactive]]
-=== Debugging
+=== Depuração
 
-A subtipagem pode dificultar o debugging, porque quando você chama uma função com um objeto como argumento, pode ser difícil descobrir qual método será chamado.
+A subtipagem pode dificultar a depuração, porque quando você chama uma função com um objeto como argumento, pode ser difícil descobrir qual método será chamado.
 
-Suponha que você está escrevendo uma função que funciona com os objetos +Mão+. Você gostaria que ela funcionasse com todos os tipos de +Mão+s, como +Mãos de Pôquer+, +Mãos de Bridge+, etc. Se você chamar um método como +sort!+, você pode ter chamado o que definido para um tipo abstrato +Mão+, mas se um método +sort!+ com qualquer um dos subtipos existentes como argumento, você terá essa versão em seu lugar. Este comportamento é normalmente uma coisa boa, mas pode ser confuso.
+Suponha que você está escrevendo uma função que funciona com os objetos +Mão+. Você gostaria que ela funcionasse com todos os tipos de +Mão+s, como +Mãos de Pôquer+, +Mãos de Bridge+, etc. Se você chamar um método como +sort!+, pode ter chamado o que foi definido para um tipo abstrato +Mão+, mas se um método +sort!+ com qualquer um dos subtipos como argumento existir, você terá essa versão em seu lugar. Este comportamento é normalmente uma coisa boa, mas pode ser confuso.
 
 [source,@julia-setup chap18a]
 ----
@@ -439,7 +439,7 @@ function Base.sort!(mão::Mão)
 end
 ----
 
-Sempre que você não tiver certeza sobre o fluxo de execução do seu programa, a solução mais simples é adicionar comandos de impressão no início dos métodos relevantes. Se +shuffle!+ imprime uma mensagem que diz algo como +Executando Baralho shuffle!+, à medida que o programa é executado, rastreia-se o fluxo de execução.
+Sempre que você não tiver certeza sobre o fluxo de execução do seu programa, a solução mais simples é adicionar comandos de impressão no início dos métodos relevantes. Se +shuffle!+ imprime uma mensagem que diz algo como +Executando shuffle! Baralho+, à medida que o programa é executado, rastreia-se o fluxo de execução.
 
 Como uma alternativa melhor, você também pode usar a macro +@which+:
 (((InteractiveUtils)))((("módulo", "InteractiveUtils", see="InteractiveUtils")))(((@which)))((("macro", "InteractiveUtils", "@which", see="@which")))
@@ -472,10 +472,10 @@ Conjunto_Carta
 Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MyTime+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
 (((design orientado a tipos)))
 
-Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, você precisa de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir tipos de interface por _encapsulamento de dados_.
+Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, precisa-se de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir os tipos de interface por _encapsulamento de dados_.
 (((encapsulamento de dados)))
 
-A análise de Markov, de <<markov_analysis>>, fornece um bom exemplo. Se você baixar meu código em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl, verá que ele usa duas variáveis globais—+suffixes+ and +prefix+—que são lidos e escritos a partir de várias funções.
+A análise de Markov, de <<markov_analysis>>, fornece um bom exemplo. Se você baixar meu código em https://github.com/BenLauwens/ThinkJulia.jl/blob/master/src/solutions/chap13.jl, verá que ele usa duas variáveis globais—+suffixos+ and +prefixo+—que são lidos e escritos a partir de várias funções.
 
 [source,@julia-setup]
 ----
@@ -485,7 +485,7 @@ prefixo = []
 
 Como estas variáveis são globais, podemos fazer só uma análise por vez. Se lermos dois textos, os seus prefixos e sufixos seriam adicionados às mesmas estruturas de dados (o que faz com que algum texto gerado seja interessante).
 
-Para rodar várias análises e mantê-las separadas, podemos encapsular o estado de cada análise em um objeto. (Here’s what that looks like:) Aqui está o que parece:
+Para rodar várias análises e mantê-las separadas, podemos encapsular o estado de cada análise em um objeto. Eis o que isso parece:
 (((Markov)))((("tipo", "definido pelo programador", "Markov", see="Markov")))
 
 [source,@julia-setup chap18b]
@@ -518,7 +518,7 @@ function processa_palavra(markov::Markov, palavra::String)
 end
 ----
 
-Transformar um programa como esse—alterando o design sem alterar o comportamento—é outro exemplo de refatoração (veja <<refatoração>>).
+Transformar um programa como esse—alterando o design sem alterar o comportamento—é outro exemplo de refatoração (veja <<refactoring>>).
 (((refatoração)))(((plano de desenvolvimento do programa)))
 
 Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:
@@ -529,7 +529,7 @@ Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:
 
 * Encapsule as variáveis relacionadas como os campos de uma struct.
 
-* Transforme as funções associadas em métodos que recebem objetos de do novo tipo como argumento.
+* Transforme as funções associadas em métodos que recebem objetos do novo tipo como argumento.
 
 ===== Exercício 18-3
 
@@ -543,7 +543,7 @@ Representação de um conjunto de valores usando outro conjunto de valores atrav
 (((codificação)))
 
 teste de unidade::
-Procedimento padronizado para testar a exatidão do código.
+Procedimento padronizado para testar o corretismo do código.
 (((teste de unidade)))
 
 folheado::
@@ -560,7 +560,7 @@ Um tipo que pode atuar como progenitor de outro tipo.
 
 tipo concreto::
 Um tipo que pode ser construído.
-(((tipo de concreto)))
+(((tipo concreto)))
 
 subtipo::
 Um tipo que tem como progenitor um tipo abstrato.
@@ -587,11 +587,11 @@ Um diagrama que mostra os tipos de um programa e as relações entre eles.
 (((diagrama de tipo)))
 
 multiplicidade::
-Uma notação em um diagrama de tipos que mostra, em um relacionamento TEM-UM, a quantidade de referências existentes para instâncias de outra classe.
+Uma notação em um diagrama de tipos que mostra, em um relacionamento TEM-UM, a quantidade de referências para as instâncias de outra classe.
 (((multiplicidade)))
 
 encapsulamento de dados::
-A program development plan that involves a prototype using global variables and a final version that makes the global variables into instance fields. Um plano de desenvolvimento de programa que consiste em um protótipo que usa variáveis ​​globais e uma versão final que transforma as variáveis ​​globais em campos de uma instância.
+Um plano de desenvolvimento de programa, que consiste em um protótipo que usa variáveis ​​globais e uma versão final que transforma as variáveis ​​globais em campos de uma instância.
 (((encapsulamento de dados)))
 
 
@@ -630,7 +630,7 @@ addping(pong, ping)
 [[ex18-2]]
 ===== Exercício 18-5
 
-Escreva um método chamado +dar_carta!+ que recebe três parâmetros, o +Baralho+, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos +Mão+, distribuir o número apropriado de cartas por mão e retornar um array de +Mão+ s.
+Escreva um método chamado +dar_carta!+ que recebe três parâmetros, o +Baralho+, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos +Mão+, distribuir o número compatível de cartas por mão e retornar um array de +Mão+s.
 (((dar_carta!)))((("função", "definido pelo programador", "dar_carta!", see="dar_carta!")))
 
 [[ex18-3]]
@@ -648,7 +648,7 @@ trinca de um tipo::
 três cartas com o mesmo valor
 
 sequência::
-cinco cartas com valores em sequência (os ases podem ser altos ou baixos, então Ás-2-3-4-5 é uma sequência bem como 10-Valete-Rainha-Rei-Ás, mas Rainha-Rei-Ás-2-3 não é.)
+cinco cartas com valores em sequência (os Ases podem ser altos ou baixos, então Ás-2-3-4-5 é uma sequência bem como 10-Valete-Rainha-Rei-Ás, mas Rainha-Rei-Ás-2-3 não é.)
 
 flush::
 cinco cartas com o mesmo naipe
@@ -656,13 +656,13 @@ cinco cartas com o mesmo naipe
 full house::
 três cartas com um valor, duas cartas com outro
 
-quatro de um tipo::
+quadra de um tipo::
 quatro cartas com o mesmo valor
 
 sequência de mesmo naipe::
 cinco cartas em sequência (conforme definido acima) e com o mesmo naipe
 
-O objetivo deste exercício é estimar as probabilidades de se tirar estas várias mãos.
+O objetivo deste exercício é estimar as probabilidades de se tirar estas várias jogadas.
 
 . Adicione métodos chamados +tem_par+, +tem_2pares+, etc. que retornam +true+ ou +false+ se a mão cumpre ou não as regras relevantes. Seu código deve funcionar corretamente para as “mãos” que contém qualquer número de cartas (embora 5 e 7 sejam a quantidade mais comuns).
 (((tem_par)))((("função", "definido pelo programador", "tem_par", see="tem_par")))(((tem_2pares)))((("função", "definido pelo programador", "tem_2pares", see="tem_2pares")))
@@ -670,6 +670,6 @@ O objetivo deste exercício é estimar as probabilidades de se tirar estas vári
 . Escreva um método chamado +classificar+ que calcula a classificação do valor mais alto para uma mão e identifica adequadamente o campo +jogada+. Por exemplo, um mão de 7 cartas pode conter um flush e um par e ele deve ser identificado como “flush”.
 (((classificar)))((("função", "definido pelo programador", "classificar", see="classificar")))
 
-. Quando você estiver convencido de que seus métodos de classificação estão funcionando, o próximo passo é estimar as probabilidades das várias mãos. Escreva uma função que embaralha um baralho de cartas, divide-o em mãos, classifica as mãos e conta o número de vezes que as várias classificações aparecem.
+. Quando você estiver convencido de que seus métodos de classificação estão funcionando, o próximo passo é estimar as probabilidades das várias jogadas. Escreva uma função que embaralha um baralho de cartas, divide-o em mãos, classifica as mãos e conta o número de vezes que as várias classificações aparecem.
 
 . Imprima uma tabela de classificações e suas probabilidades. Execute seu programa com uma quantidade de mãos cada vez maiores até que os valores de saída convirjam para um grau razoável de precisão. Compare os seus resultados com os valores em https://pt.wikipedia.org/wiki/Lista_de_jogadas_do_p%C3%B4quer.
