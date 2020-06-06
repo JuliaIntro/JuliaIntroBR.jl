@@ -625,7 +625,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_arrays_e_tuplas">Arrays e Tuplas</a></li>
 <li><a href="#_dicionários_e_tuplas">Dicionários e Tuplas</a></li>
 <li><a href="#_sequências_de_sequências">Sequências de Sequências</a></li>
-<li><a href="#_debugging_9">Debugging</a></li>
+<li><a href="#_depuração">Depuração</a></li>
 <li><a href="#_glossário_3">Glossário</a></li>
 <li><a href="#_exercícios_3">Exercícios</a></li>
 </ul>
@@ -641,7 +641,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_random_words">Random Words</a></li>
 <li><a href="#markov_analysis">Markov Analysis</a></li>
 <li><a href="#_data_structures">Data Structures</a></li>
-<li><a href="#_debugging_10">Debugging</a></li>
+<li><a href="#_debugging_9">Debugging</a></li>
 <li><a href="#_glossary_10">Glossary</a></li>
 <li><a href="#_exercises_12">Exercises</a></li>
 </ul>
@@ -657,7 +657,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_serialization">Serialization</a></li>
 <li><a href="#_command_objects">Command Objects</a></li>
 <li><a href="#_modules">Modules</a></li>
-<li><a href="#_debugging_11">Debugging</a></li>
+<li><a href="#_debugging_10">Debugging</a></li>
 <li><a href="#_glossary_11">Glossary</a></li>
 <li><a href="#_exercises_13">Exercises</a></li>
 </ul>
@@ -671,7 +671,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_instances_as_arguments">Instances as Arguments</a></li>
 <li><a href="#_instances_as_return_values">Instances as Return Values</a></li>
 <li><a href="#_copying">Copying</a></li>
-<li><a href="#_debugging_12">Debugging</a></li>
+<li><a href="#_debugging_11">Debugging</a></li>
 <li><a href="#_glossary_12">Glossary</a></li>
 <li><a href="#_exercises_14">Exercises</a></li>
 </ul>
@@ -698,7 +698,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_multiple_dispatch">Multiple Dispatch</a></li>
 <li><a href="#_generic_programming">Generic Programming</a></li>
 <li><a href="#_interface_and_implementation">Interface and Implementation</a></li>
-<li><a href="#_debugging_13">Debugging</a></li>
+<li><a href="#_debugging_12">Debugging</a></li>
 <li><a href="#_glossary_14">Glossary</a></li>
 <li><a href="#_exercises_16">Exercises</a></li>
 </ul>
@@ -745,7 +745,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_arrays">Arrays</a></li>
 <li><a href="#_interfaces">Interfaces</a></li>
 <li><a href="#_interactive_utilities">Interactive Utilities</a></li>
-<li><a href="#_debugging_14">Debugging</a></li>
+<li><a href="#_debugging_13">Debugging</a></li>
 <li><a href="#_glossary_17">Glossary</a></li>
 </ul>
 </li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591335093625584e9</code></pre>
+1.591417238740767e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9889,7 +9889,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_9">Debugging</h3>
+<h3 id="_depuração">Depuração</h3>
 <div class="paragraph">
 <p>Arrays, dicionários e tuplas são exemplos de <em>estruturas de dados</em>; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de <em>erros de forma</em>; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
 </p>
@@ -10659,7 +10659,7 @@ Due to some ancient injury?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_10">Debugging</h3>
+<h3 id="_debugging_9">Debugging</h3>
 <div class="paragraph">
 <p>When you are debugging a program, and especially if you are working on a hard bug, there are five things to try:
 </p>
@@ -11409,7 +11409,7 @@ julia&gt; linecount("wc.jl")
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_11">Debugging</h3>
+<h3 id="_debugging_10">Debugging</h3>
 <div class="paragraph">
 <p>When you are reading and writing files, you might run into problems with whitespace. These errors can be hard to debug because spaces, tabs and newlines are normally invisible:
 </p>
@@ -11952,7 +11952,7 @@ false</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_12">Debugging</h3>
+<h3 id="_debugging_11">Debugging</h3>
 <div class="paragraph">
 <p>When you start working with objects, you are likely to encounter some new exceptions. If you try to access a field that doesn’t exist, you get:
 </p>
@@ -13066,7 +13066,7 @@ julia&gt; sum((t1, t2, t3))
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_13">Debugging</h3>
+<h3 id="_debugging_12">Debugging</h3>
 <div class="paragraph">
 <p>Calling a function with the correct arguments can be difficult when more than one method for the function is specified. Julia allows to introspect the signatures of the methods of a function.</p>
 </div>
@@ -13581,9 +13581,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♣ 7♠ Q♠ 5♠ 4♣ 7♦ 10♣ 9♥ A♣ 6♥ J♥ 9♠ 3♣ 4♠ A♠ 8♠ K♥ A♦ 2♦ 9♦ 5♥ 10♥ 6♣ 6♦ 3♦ 10♦ 6♠ 2♥ J♠ 8♦ J♦ 7♥ 2♠ 5♣ 9♣ Q♥ 8♥ K♣ 4♥ K♠ 10♠ 2♣ K♦ 5♦ 3♥ 4♦ A♥ Q♦ Q♣ 8♣ 7♣ 3♠
+5♣ 3♣ 3♠ J♣ 9♠ J♠ 6♥ 7♦ 9♦ Q♥ 5♠ 2♥ 8♥ 8♠ K♦ 10♥ 9♣ A♠ 7♥ 4♦ 5♥ 6♣ A♦ K♣ 8♦ 7♠ 10♦ 2♠ A♣ K♥ J♥ 7♣ Q♣ 4♥ 2♣ 3♦ 6♠ Q♦ A♥ 10♠ J♦ 2♦ 3♥ 4♠ Q♠ 9♥ 5♦ K♠ 6♦ 4♣ 10♣ 8♣
 julia&gt; card = pop!(deck)
-3♠
+8♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15503,7 +15503,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20561(double, double) {
+define double @julia_squaresum_20563(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15541,7 +15541,7 @@ top:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging_14">Debugging</h3>
+<h3 id="_debugging_13">Debugging</h3>
 <div class="paragraph">
 <p>The <code>Logging</code> macros provide an alternative to scaffolding with print statements:
 </p>
@@ -16268,7 +16268,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-05 05:31:30 UTC
+Last updated 2020-06-06 04:20:35 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
