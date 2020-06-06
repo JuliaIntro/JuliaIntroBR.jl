@@ -1,9 +1,9 @@
 [[chap17]]
-== Multiple Dispatch
+== Despacho Múltiplo
 
 No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Isto é chamado de programação genérica.
 
-Neste capítulo irei discutir o uso de declarações de tipos em Julia, e irei também introduzir métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
+Neste capítulo irei discutir o uso de declarações de tipos em Julia, e também introduzirei métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
 
 
 === Declarações de Tipos
@@ -21,7 +21,7 @@ julia> (1 + 2) :: Int64
 
 Isso ajuda a confirmar que o seu programa funciona do jeito esperado.
 
-O operador +::+ também pode ser acrescentado para o lado esquerdo da atribuição, ou como uma parte de uma declaração.
+O operador +::+ também pode ser acrescentado ao lado esquerdo da atribuição, ou como uma parte de uma declaração.
 (((returnfloat)))((("função", "definido pelo programador", "retorna_float", see="retorna_float")))
 
 [source,@julia-repl-test]
@@ -173,7 +173,7 @@ julia> incrementar(início, 1337)
 MeuTempo(10, 7, 17)
 ----
 
-Se você colocar os argumentos na ordme errada, você recebe um erro:
+Se você colocar os argumentos na ordem errada, você recebe um erro:
 (((MethodError)))
 
 [source,@julia-repl-test chap17a]
@@ -194,7 +194,7 @@ function é_depois(t1::MeuTempo, t2::MeuTempo)
 end
 ----
 
-Aliás, argumentos opcionais são implementados como sintaxe para definições múltiplas de métodos. Por exemplo, esta definição:
+Aliás, argumentos opcionais são implementados como sintaxe para definições múltiplas de métodos. Por exemplo, essa definição:
 
 [source,@julia-setup]
 ----
@@ -273,7 +273,7 @@ Um método construtor interno é sempre definido dentro do bloco de uma declara�
 O construtor padrão não está disponível se qualquer construtor interno estiver definido. Você deve escrever explicitamente todos os construtores internos que você precisa.
 ====
 
-Um método segundo sem argumento da função local +new+ existe:
+Um segundo método sem argumento da função local +new+ existe:
 (((new)))((("função", "Base", "new", see="new")))
 
 [source,@julia-setup chap17c]
@@ -322,7 +322,7 @@ julia> tempo = MeuTempo(9, 45)
 09:45:00
 ----
 
-Quando eu escreve um novo tipo composto, eu quase sempre começo escrevendo um construtor externo, que facilita a instanciação de objetos, e +show+, que é útil para debugging.
+Quando eu crio um novo tipo composto, eu quase sempre começo criando um construtor externo, que facilita a instanciação de objetos, e +show+, que é útil para debugging.
 
 ===== Exercício 17-2
 
@@ -351,9 +351,9 @@ end;
 
 === Operador de Sobrecarga
 
-Ao definir métodos operadores, você pode especificar o comportamento de operadores em tipos definidos pelo programador. Por exemplo, se você define um método chamado +pass:[+]+ com dois argumentos +MeuTempo+, você pdoe usar o operador +pass:[+]+ em objetos +MeuTempo+.
+Ao definir métodos operadores, você pode especificar o comportamento de operadores em tipos definidos pelo programador. Por exemplo, se você define um método chamado +pass:[+]+ com dois argumentos +MeuTempo+, você pode usar o operador +pass:[+]+ em objetos +MeuTempo+.
 
-A definição pode se parecer com algo como:
+A definição deve se parecer com algo como:
 
 [source,@julia-setup chap17b]
 ----
@@ -380,13 +380,13 @@ julia> início + duração
 11:20:00
 ----
 
-Quando você aplica o operador +pass:[+]+ a objetos +MeuTempo+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então tem muito acontecendo por trás das cortinas!
+Quando você aplica o operador +pass:[+]+ a objetos +MeuTempo+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então muita coisa acontece por trás das cortinas!
 
 Adicionar ao comportamento de um operador para que funcione com tipos definidos pelo programador é chamado de _sobrecarga de operador_.
 (((sobrecarga de operador)))
 
 
-=== Multiple Dispatch
+=== Despacho Múltiplo
 
 Na secção anterior nós adicionamos dois objetos +MeuTempo+, mas você também pode adicionar um inteiro ao objeto +MeuTempo+:
 
@@ -424,8 +424,8 @@ julia> 1337 + início
 10:07:17
 ----
 
-A escolha de qual método executar quando a função é aplicada é chamado de _dispatch_. O Julia permite que o processo de dispatch escolha qual método de uma função chamar baseada no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como _multiple dispatch_.
-(((dispatch)))(((multiple dispatch)))
+A escolha de qual método executar quando a função é aplicada é chamado de _despacho_. O Julia permite que o processo de despacho escolha qual método de uma função chamar baseada no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como _despacho múltiplo_.
+(((despacho)))(((despacho múltiplo)))
 
 ===== Exercício 17-3
 
@@ -438,7 +438,7 @@ Escreva métodos +pass:[+]+ para objetos ponto:
 
 === Programação Genérica
 
-Multiple dispatch é útil quando é necessária, mas (felizmente) ele não é sempre necesário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para argumentos com tipos diferentes.
+O despacho múltiplo é útil quando é necessáriO, mas (felizmente) ele não é sempre necesário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para argumentos com tipos diferentes.
 
 Muitas das funções que nós escrevemos para string também funcionam para outros tipos de sequência. Por exemplo, em <<dictionary_collection_counters>> nós usamos +histograma+ para contar o número de vezes no qual cada letra aparece em uma palavra.
 (((histograma)))
@@ -477,7 +477,7 @@ Funções que funcionam com vários tipos são chamadas de _polimórficas_. Poli
 Por exemplo, a função embutida +sum+, que soma elementos de uma sequência, funciona contanto que os elementos da sequência suportam adição.
 (((sum)))
 
-Já que um método +pass:[+]+ é fonrecido para objetos +MeuTempo+, eles funcionam com +sum+:
+Já que um método +pass:[+]+ é fornecido para objetos +MeuTempo+, eles funcionam com +sum+:
 
 [source,@julia-repl-test chap17b]
 ----
@@ -499,18 +499,18 @@ O melhor tipo de Polimorfismo é o tipo não intencional, no qual você descobre
 
 === Interface e Implementação
 
-Um dos objetos de despacho múltiplo é facilitar a manutenção de software, o que significa que você pode manter o programa funcionando quando outras partes do sistema mudam, e modificam o programa para cumprir novos requisitos.
+Um dos objetivos do despacho múltiplo é facilitar a manutenção de software, o que significa que você pode manter o programa funcionando quando outras partes do sistema mudam, e modificam o programa para cumprir novos requisitos.
 
 Um princípio de design que ajuda a alcançar esse objetivo é manter as interfaces separadas da implementação. Isto significa que métodos que possuem argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
 (((interface)))(((implementação)))
 
-Por exemplo, neste capítulo nós desenvolvemos uma struct que representa o tempo do dai. Métodos que possuem argumentos denotados com este tipo incluem +tempo_para_int+, +é_depois+ e +pass:[+]+.
+Por exemplo, neste capítulo nós desenvolvemos uma struct que representa o tempo do dia. Métodos que possuem argumentos denotados com este tipo incluem +tempo_para_int+, +é_depois+ e +pass:[+]+.
 
 Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos +MeuTempo+. Neste capítulo, os campos de um objeto +MeuTempo+ são +hora+, +minuto+ e +segundo+.
 
 Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos desde a meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas faz com que outras funções sejam mais dificéis.
 
-Depois você configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando os eu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.
+Depois você configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando o seu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.
 
 Mas se você tivesse projetado a interface com cuidado, você pode mudar a implementação sem mudar a interface, o que significa que outras partes do programa não precisam mudar.
 
@@ -590,7 +590,7 @@ Mude os campos de +MeuTempo+ para que exista apenas um único campo representand
 [[ex17-2]]
 ===== Exercício 17-5
 
-Escreva uma definição par aum tipo chamado +Canguru+ com um campo chamado +conteúdo_bolso+ de tipo +Array+ e os seguintes métodos:
+Escreva uma definição para um tipo chamado +Canguru+ com um campo chamado +conteúdo_bolso+ de tipo +Array+ e os seguintes métodos:
 (((Canguru)))((("tipo", "definido pelo programador", "Canguru", see="Canguru")))
 
 * Um construtor que inicializa +conteúdo_bolso+ para uma lista vazia.
