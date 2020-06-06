@@ -9,7 +9,7 @@ Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um que
 Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Existem muitas listas de palavras disponíveis na internet, e a mais adequada para o nosso propósito é uma das listas de palavras coletadas e disponibilizadas em domínio público por Grady Ward como parte do projeto léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos com palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/words.txt.
 (((Moby léxico)))
 
-Este arquivo está em texto não formatado e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _objeto de fluxo de arquivo_ usado para a leitura do arquivo.
+Este arquivo está em texto não formatado e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _fluxo (stream) de arquivo_ usado para a leitura do arquivo.
 (((open)))((("função", "Base", "open", see="open")))
 
 [source,@julia-eval chap09]
@@ -24,10 +24,10 @@ julia> arquivo_entrada = open("palavras.txt")
 IOStream(<file palavras.txt>)
 ----
 
-+arquivo_entrada+ é um objeto de fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(arquivo_entrada)+.
++arquivo_entrada+ é um fluxo de arquivo usado para a entrada de dados e quando não for mais necessário, deve ser fechado com +close(arquivo_entrada)+.
 
 O Julia fornece várias funções para leitura, como a +readline+, que lê os caracteres do arquivo até chegar a um comando de +nova linha+ e retorna o resultado como uma string:
-(((objeto de fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((close)))
+(((fluxo de arquivo)))(((entrada de dados)))(((readline)))((("função", "Base", "readline", see="readline")))(((close)))
 
 [source,@julia-repl chap09]
 ----
@@ -36,7 +36,7 @@ readline(arquivo_entrada)
 
 A primeira palavra em inglês nesta lista especial é "aa", que é uma espécie de lava.
 
-O objeto de fluxo de arquivo monitora sua localização no arquivo; portanto, se chamarmos novamente o comando readline, recebemos a próxima palavra:
+O fluxo de arquivo monitora sua localização no arquivo; portanto, se chamarmos novamente o comando readline, recebemos a próxima palavra:
 
 [source,@julia-repl chap09]
 ----
@@ -311,9 +311,9 @@ ____
 
 === Glossário
 
-objeto de fluxo de arquivo::
+fluxo de arquivo::
 Um valor que representa um arquivo aberto.
-(((objeto de fluxo de arquivo)))
+(((fluxo de arquivo)))
 
 redução a um problema previamente resolvido::
 Uma maneira de resolver um problema, tratando-o como um caso de um problema resolvido anteriormente.
