@@ -657,7 +657,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_serialização">Serialização</a></li>
 <li><a href="#_objetos_de_comando">Objetos de Comando</a></li>
 <li><a href="#_módulos">Módulos</a></li>
-<li><a href="#_debugando_2">Debugando</a></li>
+<li><a href="#_depurando">Depurando</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.590768172490554e9</code></pre>
+1.591550973642439e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10834,7 +10834,7 @@ plot(x, y)</code></pre>
 <div class="sect2">
 <h3 id="_persistência">Persistência</h3>
 <div class="paragraph">
-<p>A maioria dos programas que nós vimos até agora são transitórios no sentido de que eles executam por um período pequeno e produzem alguma saída, mas ao finalizarem, seus dados desaparecem. Se você executar o programa novamente, ele inicia com um estado limpo.
+<p>A maioria dos programas que nós vimos até agora são transitórios no sentido de que eles executam por um tempo e produzem alguma saída, mas ao finalizarem, seus dados desaparecem. Se você executar o programa novamente, ele inicia com um estado limpo.
 </p>
 </div>
 <div class="paragraph">
@@ -10857,7 +10857,7 @@ plot(x, y)</code></pre>
 <p>Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido, ou memória flash. Nós vimos como abrir e ler um arquivo em <a href="#reading_word_lists">Reading Word Lists</a>.</p>
 </div>
 <div class="paragraph">
-<p>Para escrever um arquivo, você tem que abri-lo com modo <code>"w"</code> como segundo parâmetro:
+<p>Para escrever em um arquivo, você tem que abri-lo com modo <code>"w"</code> como segundo parâmetro:
 </p>
 </div>
 <div class="listingblock">
@@ -10872,10 +10872,10 @@ IOStream(&lt;file saida.txt&gt;)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; linha1 = "No meio do caminho tinha uma pedra\n";
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; linha1 = "No meio do caminho tinha uma pedra,\n";
 
 julia&gt; write(fout, linha1)
-24</code></pre>
+36</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10886,11 +10886,11 @@ julia&gt; write(fout, linha1)
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; linha2 = "tinha uma pedra no meio do caminho.\n";
 
 julia&gt; write(fout, linha2)
-24</code></pre>
+36</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Após você terminar de escrever, você deve fechar o arquivo.
+<p>Quando você acabar de escrever no arquivo, ele deve ser fechado.
 </p>
 </div>
 <div class="listingblock">
@@ -10905,7 +10905,7 @@ julia&gt; write(fout, linha2)
 <div class="sect2">
 <h3 id="_formatação">Formatação</h3>
 <div class="paragraph">
-<p>O argumeto da função write precisa ser uma string, então se nós quissesemos colocar outros valores no arquivo, nós temos que convertê-los para string. A maneira mais fácil de fazer isso é com <code>string</code> ou interpolação de strings:
+<p>O argumeto da função write precisa ser uma string, então se nós quisermos colocar outros valores no arquivo, nós temos que convertê-los para string. A maneira mais fácil de fazer isso é com <code>string</code> ou interpolação de strings:
 </p>
 </div>
 <div class="listingblock">
@@ -10971,7 +10971,7 @@ julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Um path que começa com <code>/</code> não depende do diretóri atual; ele é chamado de <em>path absoluto</em>. Para achar um path absoluto para um arquivo, você pode usar <code>abspath</code>:
+<p>Um path que começa com <code>/</code> não depende do diretório atual; ele é chamado de <em>path absoluto</em>. Para achar um path absoluto para um arquivo, você pode usar <code>abspath</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -11079,7 +11079,7 @@ ERROR: SystemError: opening file "/etc/passwd": Permission denied</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para evitar estes erros, você pdoe usar funções como <code>ispath</code> e <code>isfile</code>, mas levaria muito tempo e código para verificar todas as possibilidades.</p>
+<p>Para evitar estes erros, você pode usar funções como <code>ispath</code> e <code>isfile</code>, mas levaria muito tempo e código para verificar todas as possibilidades.</p>
 </div>
 <div class="paragraph">
 <p>É mais fácil tentar de uma vez-e lidar com os problemas se eles ocorrerem-que é exatamente o que a declaração <code>try</code> faz. A sintaxe é similar a uma declaração <code>if</code>:
@@ -11095,14 +11095,14 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O Julia inicia executando a cláusula <code>try</code>. Se tudo vai bem, ele pula a cláusula <code>catch</code> e segue a diante. Se uma exceção ocorre, ele pula fora da cláusula <code>try</code> e executa a cláusula <code>catch</code>.</p>
+<p>O Julia inicia executando a cláusula <code>try</code>. Se tudo der certo, ele pula a cláusula <code>catch</code> e segue adiante. Se uma exceção ocorre, ele pula fora da cláusula <code>try</code> e executa a cláusula <code>catch</code>.</p>
 </div>
 <div class="paragraph">
 <p>Lidar com uma exceção com uma declaração <code>try</code> é chamado de <em>capturar</em> uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente, ou pelo menos encerrar o programa graciosamente.
 </p>
 </div>
 <div class="paragraph">
-<p>Em código que efetura mudanças de estado ou usa recursos como arquivos, há geralmente trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave <code>finally</code> fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
+<p>Em código que realiza mudanças de estado ou usa recursos como arquivos, há geralmente trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave <code>finally</code> fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
 </p>
 </div>
 <div class="listingblock">
@@ -11156,7 +11156,7 @@ DBM(&lt;legendas&gt;)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Quando você acessar um de seus itens, <code>GDBM</code> lê o arquivo:</p>
+<p>Quando você acessa um de seus itens, <code>GDBM</code> lê o arquivo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11200,7 +11200,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_serialização">Serialização</h3>
 <div class="paragraph">
-<p>A limitação do <code>GDBM</code> é de que as chaves e os valores tem que ser strings ou arrays de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.</p>
+<p>A limitação do <code>GDBM</code> é de que as chaves e valores precisam ser strings ou arrays de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.</p>
 </div>
 <div class="paragraph">
 <p>As funções <code>serialize</code> e <code>deserialize</code> podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um database, e em seguida traduz o array de bytes em objetos:
@@ -11283,7 +11283,7 @@ false</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Qualquer programa que você inicia do shell também pdoe ser iniciado do Julia usando um <em>objeto de comando</em>:
+<p>Qualquer programa que você inicia do shell também pode ser iniciado do Julia usando um <em>objeto de comando</em>:
 </p>
 </div>
 <div class="listingblock">
@@ -11423,9 +11423,9 @@ julia&gt; contalinha("wc.jl")
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugando_2">Debugando</h3>
+<h3 id="_depurando">Depurando</h3>
 <div class="paragraph">
-<p>Quando você está lendo ou escrevendo arquivos, você pode se deparar com problemas com o espaço em branco. Estes erros podem ser dificéis de debugar por causa de espaços, tabs e novas linhas que são normalmente invisivéis.
+<p>Quando você está lendo ou escrevendo arquivos, você pode encontrar problemas com o espaço em branco. Estes erros podem ser dificéis de depurar por causa de espaços, tabs e novas linhas que são normalmente invisivéis.
 </p>
 </div>
 <div class="listingblock">
@@ -11452,7 +11452,7 @@ String "1 2\t 3\n 4"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Isso pode ser útil para debugar.
+<p>Isso pode ser útil para depurar.
 </p>
 </div>
 <div class="paragraph">
@@ -11535,7 +11535,7 @@ String "1 2\t 3\n 4"</code></pre>
 <div class="sect4">
 <h5 id="ex14-2">Exercício 14-3</h5>
 <div class="paragraph">
-<p>Se você fez <a href="#ex12-2">Exercise 12-3</a>, você verá que um dicionário é criado que mapeia de uma string ordenada de letras para um lista de palavras que podem ser escritas com estas letras.Por exemplo, <code>"opst"</code> mapeia para a lista <code>["opts", "post", "pots", "spot", "stop", "tops"]</code>.</p>
+<p>Se você fez <a href="#ex12-2">Exercise 12-3</a>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras.Por exemplo, <code>"opst"</code> é mapeado para a lista <code>["opts", "post", "pots", "spot", "stop", "tops"]</code>.</p>
 </div>
 <div class="paragraph">
 <p>Escreva um módulo que importe <code>anagramsets</code> e forneça duas novas funções: <code>guardaanagramas</code> deve guardar o dicionário de anagramas usando <code>JLD2</code>; <code>leranagrams</code> deve buscar uma palavra e retornar uma lista de seus anagramas.
@@ -11545,7 +11545,7 @@ String "1 2\t 3\n 4"</code></pre>
 <div class="sect4">
 <h5 id="ex14-3">Exercício 14-4</h5>
 <div class="paragraph">
-<p>Em uma grande coleção de arquivos MP3, podem haver mais de uma cópia da mesma música, guardada em diretórios diferentes ou com nomes de arquivo diferentes. O objetivo deste exercicío é procurar por duplicatas.</p>
+<p>Em uma grande coleção de arquivos MP3, podem haver mais de uma cópia da mesma música, guardada em diretórios diferentes ou com nomes de arquivo diferentes. O objetivo deste exercício é procurar por duplicatas.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -11553,7 +11553,7 @@ String "1 2\t 3\n 4"</code></pre>
 <p>Escreva um programa que busca um diretório e todos seus subdiretórios, recursivamente, e retorna uma lista de paths completos para todos os arquivos com um dado sufixo (como <em>.mp3</em>).</p>
 </li>
 <li>
-<p>Para reconhecer duplicatas, você pode usar <code>md5sum</code> ou <code>md5</code> para computar a “checksum” para cada arquivo. Se dois arquivos tem a mesma checksum, eles provavelmente tem o mesmo conteúdo.</p>
+<p>Para reconhecer duplicatas, você pode usar <code>md5sum</code> ou <code>md5</code> para computar a “checksum” de cada arquivo. Se dois arquivos tem a mesma checksum, eles provavelmente tem o mesmo conteúdo.</p>
 </li>
 <li>
 <p>Para verificar novamente, você pode usar o comando Unix <code>diff</code>.</p>
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♦ A♥ K♥ 3♦ 3♥ 3♠ 4♣ 9♥ 2♥ 4♦ 8♣ 9♣ 7♥ 6♥ Q♠ 4♥ 3♣ 5♣ Q♣ 10♠ J♥ 5♠ 5♦ 7♠ J♣ 10♣ 2♠ J♦ 8♥ K♦ A♣ 7♦ 8♠ 9♠ K♠ A♦ 6♣ 8♦ 6♠ 5♥ 10♥ 7♣ K♣ A♠ 2♣ Q♥ 2♦ 10♦ 9♦ Q♦ 4♠ J♠
+7♠ 5♦ 2♠ 4♣ J♠ 3♣ 10♦ A♣ 8♣ 3♥ 2♣ 8♦ 7♦ Q♥ 5♣ 10♥ 10♣ K♥ 9♣ K♣ 5♠ K♦ J♣ 7♥ 7♣ 2♥ 6♦ J♥ 4♥ 9♦ 6♠ 3♦ J♦ 6♣ Q♠ Q♦ 5♥ 8♠ 8♥ A♠ 2♦ 10♠ 6♥ Q♣ 4♦ 3♠ A♥ K♠ 9♠ 9♥ A♦ 4♠
 julia&gt; card = pop!(deck)
-J♠
+4♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15517,7 +15517,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20469(double, double) {
+define double @julia_squaresum_20560(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-29 16:02:49 UTC
+Last updated 2020-06-07 17:29:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
