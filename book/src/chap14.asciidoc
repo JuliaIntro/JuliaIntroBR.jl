@@ -1,7 +1,7 @@
 [[chap14]]
 == Arquivos
 
-Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e databases.
+Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.
 
 === Persistência
 
@@ -15,7 +15,7 @@ Exemplos de programas persistentes são sistemas operacionais, que são executad
 
 Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo _arquivos de texto_. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.
 
-Uma alternativa é armazenar o estado do programa em uma database. Neste capítulo eu também irei apresentar como usar uma database simples.
+Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo eu também irei apresentar como usar um banco de dados simples.
 
 [[reading_and_writing]]
 === Lendo e Escrevendo
@@ -243,17 +243,17 @@ end
 
 A função +close+ sempre será executada.
 
-[[databases]]
-=== Databases
+[[banco de dados]]
+=== Banco de Dados
 
-Uma _database_ é um arquivo que é organizado para guardar dados. Muitas databases são organizadas como um dicionário no sentido de que elas mapeiam chave para valores. A maior diferença entre uma database e um dicionário é de que a database está em disco (ou em armazenamento permanente), então ela persiste após o programa encerrar.
-(((database)))
+Um _banco de dados_ é um arquivo que é organizado para guardar dados. Muitos bancos de dados são organizados como um dicionário no sentido de que eles mapeiam chave para valores. A maior diferença entre um banco de dados e um dicionário é de que o banco de dados está em disco (ou em armazenamento permanente), então ele persiste após o programa encerrar.
+(((banco de dados)))
 
-O JuliaIntroBR fornece uma interface para +GDBM+ (GNU dbm) para criar e atualizar arquivos de database. Como um exemplo, irei criar uma database que contém legendas para arquivos de imagens.
+O ThinkJulia fornece uma interface para +GDBM+ (GNU dbm) para criar e atualizar arquivos de bancos de dados. Como um exemplo, irei criar um banco de dados que contém legendas para arquivos de imagens.
 (((GDBM)))
 
-Abrir uma database é similar a abrir outros arquivos:
-(((DBM)))((("tipo", "JuliaIntroBR", "DBM", see="DBM")))
+Abrir um banco de dados é similar a abrir outros arquivos:
+(((DBM)))((("tipo", "ThinkJulia", "DBM", see="DBM")))
 
 [source,@julia-repl-test chap14]
 ----
@@ -263,9 +263,9 @@ julia> db = DBM("legendas", "c")
 DBM(<legendas>)
 ----
 
-O modo "c" significa que a database deve ser criada se ela ainda não existe. O resultado é um objeto database que pode ser usado (para a maioria das operações) como um dicionário.
+O modo "c" significa que o banco de dados deve ser criado se ele ainda não existe. O resultado é um objeto banco de dados que pode ser usado (para a maioria das operações) como um dicionário.
 
-Quando você cria um novo item, +GDBM+ atualiza o arquivo database:
+Quando você cria um novo item, +GDBM+ atualiza o arquivo banco de dados:
 (((operador colchetes)))
 
 [source,@julia-repl-test chap14]
@@ -293,7 +293,7 @@ julia> db["cleese.png"]
 "Foto de John Cleese fazendo uma andada engraçada."
 ----
 
-Algumas funções que tem um dicionário como argumento, como +keys+ e +values+, não funcionam com objetos database. Mas iteração com o laço +for+ funciona:
+Algumas funções que tem um dicionário como argumento, como +keys+ e +values+, não funcionam com objetos banco de dados. Mas iteração com o laço +for+ funciona:
 (((declaração for)))(((iteração)))
 
 [source,julia]
@@ -303,7 +303,7 @@ for (chave, valor) in db
 end
 ----
 
-Como outros arquivos, você deve fechar a database quando acabar:
+Como outros arquivos, você deve fechar o banco de dados quando acabar:
 (((close)))
 
 [source,@julia-repl-test chap14]
@@ -317,7 +317,7 @@ julia> close(db)
 
 A limitação do +GDBM+ é de que as chaves e valores precisam ser strings ou arrays de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.
 
-As funções +serialize+ e +deserialize+ podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um database, e em seguida traduz o array de bytes em objetos:
+As funções +serialize+ e +deserialize+ podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um banco de dados, e em seguida traduz o array de bytes em objetos:
 (((Serialização)))((("módulo", "Serialização", see="Serialization")))(((serialize)))((("função", "Serialização", "serialize", see="serialize)))(((IOBuffer)))((("tipo", "Base", "IOBuffer", see="IOBuffer")))(((take!)))((("função", "Base", "take!", see="take!")))
 
 [source,@julia-repl-test chap14]
@@ -368,11 +368,11 @@ false
 Em outras palavras, serialization e em seguida deserialization tem o mesmo efeito de copiar o objeto.
 (((copiar)))
 
-Você pode usar isso para guardar coisas diferentes de strings em um database.
+Você pode usar isso para guardar coisas diferentes de strings em um banco de dados.
 
 [TIP]
 ====
-Na verdade, o armazenamento de coisas diferentes de string em um database é tão comum que ele foi encapsulado em um pacote chamado +JLD2+ (ver https://github.com/JuliaIO/JLD2.jl).
+Na verdade, o armazenamento de coisas diferentes de string em um banco de dados é tão comum que ele foi encapsulado em um pacote chamado +JLD2+ (ver https://github.com/JuliaIO/JLD2.jl).
 ====
 
 
@@ -580,9 +580,9 @@ catch::
 Prevenir uma exceção de terminar um programa usando as declarações +try pass:[...] catch pass:[...] finally+.
 (((catching)))
 
-database::
+banco de dados::
 Um arquivo cujo conteúdo está organizado como um dicionário com chaves que correspondem a valores.
-(((database)))
+(((banco de dados)))
 
 shell::
 Um programa que permite usuários a digitar comandos e em seguida executá-los iniciando outros programas.
