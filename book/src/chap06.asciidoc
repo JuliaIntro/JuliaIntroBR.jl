@@ -38,7 +38,7 @@ end
 
 O valor retornado por uma função é o valor do último comando executado, que, por padrão, é a última expressão no corpo da definição da função.
 
-Além disso, _variáveis temporárias_ como +a+ e as instruções explícitas +return+ podem contribuir para o debugging.
+Além disso, _variáveis temporárias_ como +a+ e as instruções explícitas +return+ podem contribuir para a depuração.
 (((variável temporária)))
 
 Às vezes, é prático ter diversos comandos +return+, uma em cada ramo de uma condicional:
@@ -97,10 +97,10 @@ Escreva uma função +comparar+ que recebe dois valores, +x+ e +y+, e retorna +1
 [[incremental_development]]
 === Desenvolvimento Incremental
 
-À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo debugando.
-(((debugging)))
+À medida que se escreve funções maiores, talvez aconteça de você passar mais tempo depurando.
+(((depurando)))
 
-Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de debugging.
+Ao lidar com programas cada vez mais complexos, tente um processo chamado _desenvolvimento incremental_, que adiciona e testa apenas uma pequena quantidade de código por vez, evitando assim longas sessões de depuração.
 (((desenvolvimento incremental)))
 
 Para exemplificar esse processo, suponha que você queira determinar a distância entre dois pontos, dada pelas coordenadas latexmath:[\(\left(x_1, y_1\right)\)] e latexmath:[\(\left(x_2, y_2\right)\)]. Pelo teorema de Pitágoras, a distância é:
@@ -182,10 +182,10 @@ end
 
 Se a função rodar corretamente, pronto. Caso contrário, convém mostrar o valor de +sqrt(d²)+ antes do comando +return+.
 
-A versão final da função não exibe nada quando é executada, retornando apenas um valor. As instruções de impressão que escrevemos são úteis para o debugging, mas depois que a função estiver funcionando, devemos removê-las. Um código como esse é chamado _andaime_ porque é útil para criar o programa, embora não faça parte do produto final.
+A versão final da função não exibe nada quando é executada, retornando apenas um valor. As instruções de impressão que escrevemos são úteis para a depuração, mas depois que a função estiver funcionando, devemos removê-las. Um código como esse é chamado _andaime_ porque é útil para criar o programa, embora não faça parte do produto final.
 (((andaime)))
 
-Ao iniciar, você deve adicionar apenas uma ou duas linhas de código por vez. À medida que você adquire mais experiência, pode se escrever e debugar pedaços maiores. De qualquer forma, o desenvolvimento incremental pode economizar muito tempo de debugging.
+Ao iniciar, você deve adicionar apenas uma ou duas linhas de código por vez. À medida que você adquire mais experiência, pode se escrever e depurar pedaços maiores. De qualquer forma, o desenvolvimento incremental pode economizar muito tempo de depuração.
 
 Os principais aspectos do processo são:
 
@@ -231,7 +231,7 @@ function área_círculo(xc, yc, xp, yp)
 end
 ----
 
-As variáveis temporárias +raio+ e +resultado+ são úteis para o desenvolvimento e o debugging, mas depois que o programa estiver funcionando, podemos torná-lo mais conciso fazendo:
+As variáveis temporárias +raio+ e +resultado+ são úteis para o desenvolvimento e a depuração, mas depois que o programa estiver funcionando, podemos torná-lo mais conciso fazendo:
 (((variável temporária)))
 
 [source,@julia-setup]
@@ -518,10 +518,10 @@ Esse programa demonstra um padrão às vezes de _guardião_. Os dois primeiros c
 Em <<catching_exceptions>>, veremos uma alternativa mais flexível para mostrar uma mensagem de erro: levantando uma exceção.
 
 [[deb06]]
-=== Debugging
+=== Depurando
 
-Dividir um programa grande em funções menores cria pontos de verificação naturais para o debugging. Caso uma função não esteja funcionando, há três possibilidades para analisar:
-(((debugging)))
+Dividir um programa grande em funções menores cria pontos de verificação naturais para a depuração. Caso uma função não esteja funcionando, há três possibilidades para analisar:
+(((depurando)))
 
 * Há algo errado com os argumentos que a função está recebendo; ou seja, uma precondição não foi satisfeita.
 (((precondição)))
@@ -564,7 +564,7 @@ end
 fatorial(4)
 ----
 
-Caso o fluxo de execução não esteja claro, esse tipo de saída de impressões pode ser útil. Leva algum tempo para usar andaimes eficientemente, mas um pouco de andaime pode economizar muito debugging.
+Caso o fluxo de execução não esteja claro, esse tipo de saída de impressões pode ser útil. Leva algum tempo para usar andaimes eficientemente, mas um pouco de andaime pode economizar muita depuração.
 
 
 === Glossário
@@ -578,7 +578,7 @@ O pedaço de um programa que nunca será executado, geralmente porque aparece ap
 (((código morto)))
 
 desenvolvimento incremental::
-Um plano de desenvolvimento de programa que tem o objetivo de evitar o debugging, adicionando e testando apenas uma pequena quantidade de código de cada vez.
+Um plano de desenvolvimento de programa que tem o objetivo de evitar a depuração, adicionando e testando apenas uma pequena quantidade de código de cada vez.
 (((desenvolvimento incremental)))(((plano de desenvolvimento de programa)))
 
 andaime::

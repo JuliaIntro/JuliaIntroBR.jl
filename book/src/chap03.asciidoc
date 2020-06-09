@@ -468,35 +468,33 @@ As funções que temos escrito até o momento são todas nulas. Começaremos a e
 
 Pode não estar claro o motivo de fragmentar um programa em funções, mas existem várias razões:
 
-* Criar uma nova função dá a oportunidade de nomear uma série de comandos, o que facilita a leitura e o debugging do programa.
+* Criar uma nova função dá a oportunidade de nomear uma série de comandos, o que facilita a leitura e a depuração do programa.
 
 * As funções podem reduzir o tamanho de um programa, eliminando a repetição do código. Mais tarde, no caso de alguma mudança, é só modificá-lo em um único lugar.
 
-* Dividir um programa longo em funções permite o debugging das partes, uma de cada vez, e depois reuni-las em um programa mais funcional.
+* Dividir um programa longo em funções permite a depuração das partes, uma de cada vez, e depois reuni-las em um programa mais funcional.
 
-* Funções bem programadas são frequentemente úteis para muitos outros programas. Depois de escrever e debugar um, você pode reutilizá-la.
+* Funções bem programadas são frequentemente úteis para muitos outros programas. Depois de escrever e depurar um, você pode reutilizá-la.
 
 * Em Julia, as funções podem melhorar consideravelmente o desempenho.
 
 
-=== Debugging
+=== Depurando
 
-NTD: Debugging é oficialmente traduzido como "depuração". No entanto, o termo mais usado entre os programadores é a palavra em inglês.
+Uma das habilidades mais significativas que você vai adquirir é a depuração. Ainda que possa ser frustrante, a depuração é uma das partes da programação mais intelectualmente rica, desafiadora e interessante.
+(((depuração)))
 
-Uma das habilidades mais significativas que você vai adquirir é o debugging. Ainda que possa ser frustrante, o debugging é uma das partes da programação mais intelectualmente rica, desafiadora e interessante.
-(((debugging)))
+De certa forma, a depuração é como um trabalho de detetive. Você é confrontado com pistas e precisa inferir os processos e eventos que levaram aos resultados encontrados.
 
-De certa forma, o debugging é como um trabalho de detetive. Você é confrontado com pistas e precisa inferir os processos e eventos que levaram aos resultados encontrados.
-
-O debugging também é como uma ciência experimental. Uma vez que você tem uma ideia do que está dando errado, modifique seu programa e tente novamente. Se a sua hipótese estiver correta, pode-se prever o resultado da modificação e aproximar-se de um programa funcional. Se a sua hipótese estava errada, inventa-se uma nova. Como Sherlock Holmes apontou,
+A depuração também é como uma ciência experimental. Uma vez que você tem uma ideia do que está dando errado, modifique seu programa e tente novamente. Se a sua hipótese estiver correta, pode-se prever o resultado da modificação e aproximar-se de um programa funcional. Se a sua hipótese estava errada, inventa-se uma nova. Como Sherlock Holmes apontou,
 
 [quote, A. Conan Doyle, O Signo dos Quatro]
 ____
 Tendo eliminado o impossível, aquilo que resta, ainda que improvável, deve ser a verdade.
 ____
-(((debugging experimental)))(((Holmes, Sherlock)))(((Doyle, Arthur Conan)))
+(((depuração experimental)))(((Holmes, Sherlock)))(((Doyle, Arthur Conan)))
 
-Algumas pessoas consideram que a programação e o debugging são a mesma coisa, já que a programação é o processo de debugar gradualmente um programa até que ele faça o que o programador deseja. A ideia é começar com um programa funcional e fazer pequenas mudanças, debugando-as à medida que avança.
+Algumas pessoas consideram que a programação e a depuração são a mesma coisa, já que a programação é o processo de depurar gradualmente um programa até que ele faça o que o programador deseja. A ideia é começar com um programa funcional e fazer pequenas mudanças, depurando-as à medida que avança.
 
 Por exemplo, o Linux é um sistema operacional com milhões de linhas de código, mas começou como um programa simples que Linus Torvalds usava para examinar o chip Intel 80386. De acordo com Larry Greenfield, "um dos primeiros projetos de Linus era um programa que alternava entre imprimir "AAAA" e "BBBB". Este mais tarde evoluiu para Linux. ” (_The Linux Users' Guide_ Versão Beta 1).
 (((Linux))) (((Torvalds, Linus))))

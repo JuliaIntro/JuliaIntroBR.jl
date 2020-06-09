@@ -278,10 +278,10 @@ Bons nomes de variável podem reduzir a necessidade de comentários, mas nomes l
 ====
 
 
-=== Debugando
+=== Depurando
 
 Três tipos de erros podem ocorrer em um programa: erros de sintaxe, erros de execução e erros de semântica. É útil distinguir entre eles a fim de localizá-los mais rapidamente.
-(((debugando)))
+(((depurando)))
 
 Erro de sintaxe::
 “sintaxe” refere-se à estrutura de um programa e as regras sobre esta estrutura. Por exemplo, parênteses precisam vir em pares correspondentes, então +(1 + 2)+ é válido, mas +8)+ é um erro de sintaxe.

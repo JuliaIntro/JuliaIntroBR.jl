@@ -390,7 +390,7 @@ Um _plano de desenvolvimento_ é um processo para escrever programas. O processo
 
 . Generalize a função adicionando parâmetros apropriados.
 
-. Repita os passos 1-3 até que você tenha um conjunto de programas funcionais. Copie e cole o código para evitar redigi-los (e re-debugá-los).
+. Repita os passos 1-3 até que você tenha um conjunto de programas funcionais. Copie e cole o código para evitar redigi-los (e redepurá-los).
 
 . Busque por oportunidades de melhora no programa através da refatoração. Por exemplo, se você tem um código similar em vários lugares, considere fatorá-lo em uma função geral apropriada.
 
@@ -440,10 +440,10 @@ Escrever esse tipo de documentação é uma parte importante do design de interf
 ====
 
 
-=== Debugando
+=== Depurando
 
 Uma interface é como um contrato entre a função e quem a chama. Quem chama concorda em fornecer certos parâmetros e a função concorda em fazer um certo trabalho.
-(((debugando)))
+(((depurando)))
 
 Por exemplo, +polilinha+ requer quatro argumentos: +t+ tem que ser uma tartaruga; +n+ tem que ser um inteiro; +com+ deve ser um número positivo; e +ângulo+ tem que ser um número, que assume-se ser uma medida em graus.
 
@@ -452,7 +452,7 @@ Esses requerimentos são chamados de _precondições_ pois eles deveriam ser ver
 
 precondições são de responsabilidade de quem chama a função. Se quem chama viola uma precondição (propriamente documentada!) e a função não funciona adequadamente, o bug está em quem chamou, e não na função.
 
-Se as precondições são satisfeitas e as pós-condições não, então o bug está na função. Se as suas pré- e pós-condições forem claras, elas podem ajudar na hora de debugar.
+Se as precondições são satisfeitas e as pós-condições não, então o bug está na função. Se as suas pré- e pós-condições forem claras, elas podem ajudar na hora de depurar.
 
 
 === Glossário
