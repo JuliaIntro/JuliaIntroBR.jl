@@ -1,37 +1,37 @@
 [[chap13]]
 == Estudo de Caso: Seleção de Estrutura de Dados
 
-A essa altura você deve ter aprendido sobre o núcleo de estrutura de dados do Julia e também deve ter visto alguns dos algoritmos que usam eles.
+A essa altura você deve ter aprendido sobre as estruturas de dados essenciais do Julia e também deve ter visto alguns dos algoritmos que usam elas.
 
-Neste capítulo apresentaremos um estudo de caso com exercícios que permitirá pensar na escolha de estruturas de dados e praticar o uso delas.
+Neste capítulo apresentaremos um estudo de caso com os exercícios que permitirão pensar na escolha de estruturas de dados e praticar o uso delas.
 
 
 === Análise de Frequência de Palavras
 
-Como sempre, você deve pelo menos tentar os exercícios antes de ler as soluções.
+Como sempre, você deve pelo menos tentar fazer os exercícios antes de ver as soluções.
 
 [[ex13-1]]
 ===== Exercício 13-1
 
-Escreva um programa que leia um arquivo, divida cada linha em palavras, retire o espaço em branco e a pontuação das palavras e as converta em minúsculas.
+Escreva um programa que leia um arquivo, separe cada linha em palavras, retire o espaço em branco e a pontuação das palavras e coloque-as em letras minúsculas.
 
 [TIP]
 ====
-A função +é_letra+ verifica se o caracter é alfabético.
-(((é_letra)))((("função", "Base", "é_letra", see="é_letra")))
+A função +isletter+ verifica se o caractere é do alfabeto.
+(((isletter)))((("função", "Base", "isletter", see="isletter")))
 ====
 
 [[ex13-2]]
 ===== Exercício 13-2
 
-Va até o Projeto Gutenberg (https://guttenberg.org) e baixe seu livro favorito sem direitos autorais em formato de texto sem formatação.
+Va até o Projeto Gutenberg (https://guttenberg.org) e baixe seu livro favorito de domínio público em formato de texto sem formatação.
 (((Projeto Gutenberg)))
 
-Modifique o seu programa do exercício anterior para ler o livro que você baixou, pule a informação do cabeçalho no início do arquivo e processe o resto das palavras como antes.
+Modifique o seu programa do exercício anterior para ler o livro que você baixou, pule a informação do cabeçalho no início do arquivo e trabalhe com o resto das palavras como no exercício anterior.
 
 Depois, modifique o programa para contar o número total de palavras do livro e o número de vezes que cada palavra é usada.
 
-Imprima o número das diferentes palavras usadas no livro. Compare livros diferentes de diferentes autores, escritos em épocas diferentes. Qual autor usa um vocabulário mais prolixo?
+Imprima o número das palavras diferentes usadas no livro. Compare outros livros de autores diferentes, escritos em épocas diferentes. Qual autor usa um vocabulário mais extenso?
 
 [[ex13-3]]
 ===== Exercício 13-3
@@ -46,13 +46,13 @@ Modifique o programa anterior para ler uma lista de palavras e depois imprima to
 
 === Números Aleatórios
 
-Dadas as mesmas entradas, a maioria dos programas de computadores geram a mesma entrada o tempo todo, eles são ditos _determinísticos_. O determinismo é geralmente uma coisa boa, pois esperamos que o mesmo cálculo produza o mesmo resultado. Para algumas aplicações, porém, queremos que o computador seja imprevisível. Os jogos são um exemplo óbvio, porém, há mais exemplos.
+Dadas as mesmas entradas, a maioria dos programas de computadores geram a mesma entrada o tempo todo e por isso eles são ditos _determinísticos_. O determinismo é geralmente uma coisa boa pois esperamos que o mesmo cálculo produza o mesmo resultado. Mas para algumas aplicações, queremos que o computador seja imprevisível. Os jogos são um exemplo óbvio, porém há mais exemplos.
 (((determinístico)))
 
-Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele se pareça não determinístico. Uma destas maneiras é usar algoritmos que geram números _pseudo aleatórios_. Os números pseudo aleatórios só não são puramente aleatórios porque eles são gerados por uma computação determinística, mas só de olhar para os números, é praticamente impossível distingui-los do acaso.
-(((pseudo aleatórios)))
+Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele pareça não determinístico. Uma delas é usar algoritmos que geram números _pseudoaleatórios_. Os números pseudoaleatórios só não são exatamente aleatórios porque eles são gerados por um cálculo determinístico, mas só de olhá-los, é praticamente impossível distingui-los da aleatoriedade.
+(((pseudoaleatório)))
 
-A função +rand+ retorna um float aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que você usa o comando +rand+, você obtém o próximo número em uma longa série. Para ver uma amostra disso, execute este laço:
+A função +rand+ retorna um ponto flutuante aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que você usa o comando +rand+, você obtém o próximo número de uma longa série. Para ver uma amostra disso, execute este laço:
 (((rand)))
 
 [source,@julia-setup]
@@ -63,7 +63,7 @@ for i in 1:10
 end
 ----
 
-A função +rand+ pode pegar um iterador ou uma lista como argumentos e retorna um elemento aleatório:
+A função +rand+ pode receber um iterador ou uma lista como argumentos e retorna um elemento aleatório:
 
 [source,@julia-setup]
 ----
@@ -76,7 +76,7 @@ end
 [[ex13-5]]
 ===== Exercício 13-5
 
-Escreva uma função chamada +escolhido_do_histograma+ que pega um histograma definido em <<dictionary_collection_counters>> e retorna um valor aleatório do histograma, dada uma probabilidade em proporção à frequência. Por exemplo, para este histograma:
+Escreva uma função chamada +escolhido_do_histograma+ que recebe um histograma definido em <<dictionary_collection_counters>> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
 (((escolhido_do_histograma)))((("função", "definida pelo programador", "escolhido_do_histograma", see="escolhido_do_histograma")))
 
 [source,@julia-repl-test chap11]
@@ -94,10 +94,10 @@ a sua função deve retornar +pass:['a']+ com a probabilidade latexmath:[\(\frac
 
 === Histograma de Palavra
 
-Você deve tentar os exercícios anteriores antes de continuar. Você também precisará de https://github.com/BenLauwens/ThinkJulia.jl/blob/master/data/emma.txt.
+Você deve tentar fazer os exercícios anteriores antes de continuar. Você também precisará de https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/emma.txt.
 
 Logo abaixo, temos um programa que lê um arquivo e cria um histograma das palavras no arquivo:
-(((processa_arquivo)))((("função", "definido pelo programador", "processa_arquivo")))(((processa_linha)))((("função", "definido pelo programador", "processa_linha", see="processa_linha")))
+(((processa_arquivo)))((("função", "definido pelo programador", "processa_arquivo", see="processa_arquivo")))(((processa_linha)))((("função", "definido pelo programador", "processa_linha", see="processa_linha")))
 
 [source,@julia-setup chap13]
 ----
@@ -112,8 +112,8 @@ end;
 function processa_linha(linha, hist)
     linha = replace(linha, '-' => ' ')
     for palavra in split(linha)
-        palavra = string(filter(é_letra, [palavra...])...)
-        palavra = minúscula(palavra)
+        palavra = string(filter(isletter, [palavra...])...)
+        palavra = lowercase(palavra)
         hist[palavra] = get!(hist, palavra, 0) + 1
     end
 end;
@@ -129,18 +129,18 @@ hist = processa_arquivo(joinpath("..", "data", "emma.txt"));
 hist = processa_arquivo("emma.txt");
 ----
 
-Esse programa lê _emma.txt_, que contém o texto de _Emma_ por Jane Austen.
+Esse programa lê _emma.txt_, que contém o texto de _Emma_ escrito por Jane Austen.
 (((Austen, Jane)))
 
-+processa_arquivo+ percorre as linhas do arquivo passando-as uma vez de cada para +processa_linha+. O histograma +hist+ é utilizado como um acumulador.
+A função +processa_arquivo+ percorre as linhas do arquivo passando-as uma vez de cada para +processa_linha+. O histograma +hist+ é utilizado como um acumulador.
 (((acumulador)))
 
-+processa_linha+ usa a função +replace+ para substituir os hífens e espaços antes de usar +split+ para separar a linha em uma lista de strings. Ela atravesse a lista de palavras e usa +filter+, +é_letra+ e +minúscula+ para remover pontuações e converter em letras minúsculas. (É uma abreviação dizer que as strings são "convertidas"; lembre-se de que as strings são imutáveis; portanto, uma função como +minúscula+ retorna novas strings.)
-(((replace)))(((separação)))(((é_letra)))(((minúscula)))(((get!)))(((filtro)))((("função")))((("função", "Base", "filtro", see="filtro")))
+A função +processa_linha+ usa a função +replace+ para substituir os hífens e espaços antes de usar +split+ para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa +filter+, +isletter+ e +lowercase+ para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são "convertidas", lembre-se de que as strings são imutáveis e portanto, uma função como +lowercase+ retorna novas strings.)
+(((replace)))(((split)))(((isletter)))(((lowercase)))(((get!)))(((filter)))((("função", "Base", "filter", see="filter")))
 
 Finalmente, +processa_linha+ atualiza o histograma criando um novo item ou incrementando um já existente.
 
-Para contar o número total de palavras do arquivo, podemos adicionar as frequências do histograma:
+Para contar o número total de palavras no arquivo, podemos adicionar as frequências no histograma:
 (((total_de_palavras)))((("função", "definido pelo programador", "total_de_palavras", see="total_de_palavras")))
 
 [source,@julia-setup chap13]
@@ -160,7 +160,7 @@ function palavras_diferentes(hist)
 end
 ----
 
-À seguir, um código que imprime os resultados:
+A seguir, um código que imprime os resultados:
 
 [source,@julia-repl-test chap13]
 ----
@@ -172,17 +172,17 @@ Número de palavras diferentes: 7380
 ----
 
 
-=== As Palavras Mais Frequentes
+=== Palavras Mais Frequentes
 
-Para encontrar as palavras mais frequentes, podemos fazer uma tupla de listas, onde cada tupla contém uma palavra e sua frequência e ordena. A seguinte função pega um histrograma e retorna uma lista de tuplas de frequência de palavras.
-(((mais_comum)))((("função", "definida pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((ordena)))
+Para encontrar as palavras mais frequentes, podemos fazer uma lista de tuplas, onde cada tupla contém uma palavra e a sua frequência e fazemos a ordenação. A função seguinte recebe um histograma e retorna uma lista de tuplas que contém a frequência de palavras.
+(((mais_comum)))((("função", "definida pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((sort)))
 
 [source,@julia-setup chap13]
 ----
 function mais_comum(hist)
     t = []
-    for (chave, value) in hist
-        push!(t, (value, chave))
+    for (chave, valor) in hist
+        push!(t, (valor, chave))
     end
     reverse(sort(t))
 end
@@ -192,14 +192,14 @@ Em cada tupla, a frequência aparece primeiro, então o resultado da lista é or
 
 [source,julia]
 ----
-t = mostcommon(hist)
+t = mais_comum(hist)
 println("As palavras mais frequentes são: ")
 for (freq, palavra) in t[1:10]
     println(palavra, "\t", freq)
 end
 ----
 
-Usamos o caracter "tab" (+pass:['\t']+) como um "separador", ao invés de um espaço, então a segunda coluna está alinha. Abaixo, os resultados de _Emma_:
+Usamos o caractere tab (+pass:['\t']+) como um “separador”, ao invés de um espaço, fazendo com que a segunda coluna fique alinhada. Abaixo, os resultados de _Emma_:
 (((separador)))(((\t)))
 
 [source,@julia-eval chap13]
@@ -213,14 +213,14 @@ end
 
 [TIP]
 ====
-Esse código pode ser simplificado usando o comando +rev+ da função +sort+. Você pode ler mais sobre isto em https://docs.julialang.org/en/v1/base/sort/#Base.sort.
+Esse código pode ser simplificado usando a palavra-chave +rev+ como argumento da função +sort+. Você pode ler mais sobre isto em https://docs.julialang.org/en/v1/base/sort/#Base.sort.
 ====
 
 
 === Parâmetros Opcionais
 
-Temos visto funções embutidas que pegam argumentos opcionais. É possível escrever funções definidas pelo programados com argumentos opcionais também. Por exemplo, no exemplo a seguir, temos uma função que imprime as palavras mais frequentes em um histograma:
-(((argumentos opcionais)))(((imprime_mais_frequentes)))((("função", "definido pelo programador", "imprime_mais_frequentes", see="imprime_mais_frequentes")))
+Temos visto as funções embutidas que recebem argumentos opcionais. É possível definir as funções com argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
+(((argumento opcional)))(((imprime_mais_frequentes)))((("função", "definido pelo programador", "imprime_mais_frequentes", see="imprime_mais_frequentes")))
 
 [source,@julia-setup chap13]
 ----
@@ -243,32 +243,32 @@ Se você fornecer apenas um argumento:
 imprime_mais_frequentes(hist)
 ----
 
-+num+ obtém o valor padrão. Se você fornecer dois argumentos:
+o argumento +num+ recebe o valor padrão. Se você fornecer dois argumentos:
 
 [source,@julia-setup chap13]
 ----
 imprime_mais_frequentes(hist, 20)
 ----
 
-+num+ obtém o valor do argumento. Em outras palavras, o valor opcional _sobrepõe_ o valor padrão.
+o argumento +num+ fica com o valor do argumento. Em outras palavras, o valor opcional _sobrepõe_ o valor padrão.
 (((sobreposisão)))
 
-Se uma função possui argumentos obrigatórios e opcionais, todos os parâmetros obrigatórios deverão aparecer antes, seguido dos ocionais.
+Se uma função possui tanto os argumentos obrigatórios e os opcionais, todos os parâmetros obrigatórios deverão ficar entre os primeiros, seguido dos opcionais.
 
 [[dictionary_subtraction]]
 === Subtração de Dicionário
 
-Encontrar as palavras do livro que não estão na lista de palavras de +palavras.txt+ é um problema que você pode reconhecer como subtração definida, isto é, queremos encontrar todas as palavras de um conjunto (as palavras do livro) que não estão no outro (as palavras da lista).
+Encontrar as palavras do livro que não estão na lista de palavras em +palavras.txt+ é um problema que você pode reconhecer como subtração de conjuntos, isto é, queremos encontrar todas as palavras de um conjunto (as palavras do livro) que não estão no outro (as palavras da lista).
 
-+subtrair+ pega os dicionários +d1+ e +d2+ e retorna um novo dicionário que contém todas as entradas de +d1+ que não estão em +d2+. Como realmente não nos importamos com os valores, definios todos como +nothing+.
-(((subtrair)))((("função", "definido pelo programador", "subtrair", see="subtrair")))(((nothing)))(((n)))((("operador", "Base", "n", see="n")))
+A função +subtrair+ recebe os dicionários +d1+ e +d2+ e retorna um novo dicionário que contém todas as chaves de +d1+ que não estão em +d2+. Como realmente não nos importamos com os valores, definimos todos como +nothing+.
+(((subtrair)))((("função", "definido pelo programador", "subtrair", see="subtrair")))(((nothing)))(((∩)))((("operador", "Base", "∩", see="∩")))
 
 [source,@julia-setup chap13]
 ----
 function subtrair(d1, d2)
     res = Dict()
-    for chave in chaves(d1)
-        if chave ∉ chaves(d2)
+    for chave in keys(d1)
+        if chave ∉ keys(d2)
             res[chave] = nothing
         end
     end
@@ -276,7 +276,7 @@ function subtrair(d1, d2)
 end
 ----
 
-Para encontrar palavras do livro que não estão em +palavras.txt+, podemos usar +processa_arquivo+ para construir um histograma para +palavras.txt+, e então +subtrair+:
+Para encontrar as palavras do livro que não estão em +palavras.txt+, podemos usar +processa_arquivo+ para construir um histograma para +palavras.txt+, e depois +subtrair+:
 
 [source,julia]
 ----
@@ -284,33 +284,33 @@ palavras = processa_arquivo("palavras.txt")
 diff = subtrair(hist, palavras)
 
 println("Palavras do livro que não estão na lista de palavras: ")
-for palavra in chaves(diff)
+for palavra in keys(diff)
     print(palavra, " ")
 end
 ----
 
-Abaixo alguns resultados de _Emma_:
+Eis alguns resultados de _Emma_:
 
 [source]
 ----
 Palavras do livro que não estão na lista de palavras:
-outree visão rápida externamente adelaide rencontre jeffreys dixons sem reservas entre ...
+outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons betweens
 ----
 
-Algumas dessas palavras são nomes e possessivos. Outros, como "reencontre" não são mais de uso comum. Mas algumas são palavras comuns que realmente devem estar na lista!
+Algumas dessas palavras são nomes e preposições. Outros, como "rencontre" não são mais usados. Mas algumas são as palavras comuns que realmente devem estar na lista!
 
 [[ex13-6]]
 ===== Exercício 13-6
 
-O Julia fornece uma estrutuda de dados chamado +Set+ que fornece muitos conjuntos de operações comuns. Você pode ler mais sobre em <<collections_and_data_structures>>, ou ler a documentação em https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1.
+O Julia fornece uma estrutura de dados chamado +Set+ que fornece várias operações usuais de conjuntos. Você pode ler mais sobre elas em <<collections_and_data_structures>>, ou ler a documentação em https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1.
 
-Escreva um programa que usa o conjunto subtração para encontrar palavras do livro que não estão na lista de palavras.
+Escreva um programa que usa a subtração de conjuntos para encontrar as palavras do livro que não estão na lista de palavras.
 
 
 === Palavras Aleatórias
 
-Para escolher uma palavra aleatória do histograma, o algoritmo mais simples é construir uma lista com múltiplas cópias de cada palavra, de acordo com a frequêcia observada e depois escolher na lista:
-(((palavra_aleatória)))((("função", "definido pelo programador", "palavra_aleatório", see="palavra_aleatória")))
+Para escolher uma palavra aleatória do histograma, o algoritmo mais simples é construir uma lista com múltiplas cópias de cada palavra, de acordo com a frequêcia observada e depois escolher da lista:
+(((palavra_aleatória)))((("função", "definido pelo programador", "palavra_aleatória", see="palavra_aleatória")))
 
 [source,@julia-setup chap13]
 ----
@@ -325,18 +325,18 @@ function palavra_aleatória(h)
 end
 ----
 
-Esse algoritmo funciona, mas, não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continuará grande.
+Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continua grande.
 
 Uma alternativa é:
 
-. Usar +chaves+ para obter uma lista de palavras do livro.
+. Usar +keys+ para obter uma lista das palavras do livro.
 
-. Construir uma lista que contenha uma soma acumulativa da frequência da palavra (veja <<ex10-2>>). O último item é uma lista e o número total de palavras do livro, latexmath:[\(n\)].
+. Construir uma lista que contenha uma soma acumulativa da frequência da palavra (veja <<ex10-2>>). O último item nesta lista é o número total de palavras no livro, latexmath:[\(n\)].
 
-. Escolher um número aleatório de 1 até latexmath:[\(n\)]. Usar uma busca por bissecção (veja <<ex10-10>>) para encontrar o índice de onde o número aleatório deverá ser inserido na soma acumulativa.
+. Escolher um número aleatório de 1 até latexmath:[\(n\)]. Usar uma busca por bissecção (veja <<ex10-10>>) para encontrar o índice no qual o número aleatório deverá ser inserido na soma acumulativa.
 (((busca por bissecção)))
 
-. Usar o índice para encontrar a palavra correspondentes na lista de palavras.
+. Usar o índice para encontrar a palavra correspondente na lista de palavras.
 
 
 [[ex13-7]]
@@ -347,17 +347,17 @@ Escreva um programa que usa esse algoritmo para escolher uma palavra aleatória 
 [[markov-analysis]]
 === Análise de Markov
 
-Se você escolher palavras do livro aleatoriamente, vocÊ poderá obter um senso de vocabulário, mas você provavelmente não obterá a sentença:
+Se você escolher as palavras do livro aleatoriamente, pode-se obter um senso de vocabulário, mas você provavelmente não obterá uma sentença:
 
 [source]
 ----
-esta pequena consideração Harriet que Knightley é mais coisas
+this the small regard harriet which knightley's it most things
 ----
 
-Uma série de palavras aleatórias raramente faz sentido pois não há relação com as palavras sucessivas. Por exemplo, numa sentença real você experaria um artigo como "é" a ser seguido por um abjetivo ou um substantivo, e provávelmente não um verbo ou advérbio.
+Uma série de palavras aleatórias raramente faz sentido pois não há relação com as palavras sucessivas. Por exemplo, numa sentença real você esperaria um artigo como “the” ser seguido por um adjetivo ou um substantivo, e provávelmente não um verbo ou advérbio.
 
-Um jeito de medir essa relação é através da Análise de Markov, que caracteriza, para uma sequência de palavras dadas, a probabilidade das palavras que possam vir à seguir. Por exemplo, a música _Eric, metade Abelha_ (de Monthy Python) começa assim:
-(((Análise de Markov)))
+Um jeito de medir essa relação é através da análise de Markov, que caracteriza, para uma sequência de palavras dadas, a probabilidade das palavras que possam vir a seguir. Por exemplo, a música _Epitáfio_ (do Titãs) tem o seguinte trecho:
+(((análise de Markov)))
 
 [verse]
 ____
@@ -372,36 +372,36 @@ When half the bee is not a bee
 Due to some ancient injury?
 ____
 
-No texto, a frase "half the" é sempre seguida da palavra "bee", mas a frase "the bee" pode ser seguida ou de "has" ou de "is".
+No texto, o termo “devia” é sempre seguido da palavra “ter”, mas a palavra “ter” pode ser seguida de “amado” ou “arriscado”.
 
-O resultado da Análise de Markov é um mapeamento de cada prefixo (como "half the" e "the bee") a todos os possíveis sufixos (como "has" e "is").
+O resultado da análise de Markov é um mapeamento de cada prefixo (como “devia” e “ter”) a todos os possíveis sufixos (como “amado” ou “arriscado”).
 (((prefixo)))(((sufixo)))
 
-Dado esse mapeamento, você pode gerar um texto aleatório começando com qualquer prefixo e escolhendo aleatoriamente dentre os possíveis sufixos. Em seguida, você pode combinar o final do prefixo e o novo sufixo para formar o próximo prefixo e repetir.
+Dado esse mapeamento, você pode gerar um texto aleatório começando com qualquer prefixo e escolhendo aleatoriamente dentre os possíveis sufixos. Em seguida, você pode combinar o final do prefixo e o novo sufixo para formar o próximo prefixo, e repetir.
 
-Por exemplo, se você começar com o prefixo "Half a", então a póxima palavra deverá ser "bee", pois é o prefixo que aparece apenas uma vez no texto. O próximo prefiro é "a bee", então o próximo sufixo poderá ser "philosophically", "be" ou "due".
+Por exemplo, se você começar com o prefixo “devia“, então a póxima palavra deverá ser “ter”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “devia ter”, então o próximo sufixo poderá ser “amado” ou “arriscado”.
 
-Nesse exemplo o tamanho do prefixo é sempre dois, mas você pode fazer uma Análise de Markov com qualquer tamanho de prefixo.
+Nesse exemplo o tamanho do prefixo é sempre dois, mas você pode fazer uma análise de Markov com qualquer tamanho de prefixo.
 
 [[ex13-8]]
 ===== Exercício 13-8
 
-Análise de Markov
+Análise de Markov:
 
-. Escreva um programa que leia um texto de um arquivo e processe a Análise de Markov. O resultado deverá ser um dicionário que mapeia de prefixos a uma coleção de possíveis sufixos. A coleção poderá ser uma lista, tupla ou um dicionário; cabe a você fazer uma escolha apropriada. Você pode testar seu programa com o comprimento do prefixo dois, mas deve escrever o programa de uma maneira que facilite a tentativa de outros comprimentos.
+. Escreva um programa que leia um texto de um arquivo e realize a análise de Markov. O resultado deverá ser um dicionário que mapeia os prefixos a uma coleção dos possíveis sufixos. A coleção poderá ser uma lista, tupla ou um dicionário; cabe a você fazer uma escolha apropriada. Você pode testar seu programa com o comprimento do prefixo dois, mas deve escrever o programa de uma maneira que facilite a tentativa de outros comprimentos.
 
-. Adicione uma função ao programa anterior para gerar textos aleatórios baseados na Análise de Markov. Aqui vai um exemplo de Emma com prefixo de tamanho 2:
+. Adicione uma função ao programa anterior para gerar textos aleatórios baseados na análise de Markov. Aqui vai um exemplo de Emma com prefixo de tamanho 2:
 +
 [quote]
 ____
-“Ele era muito esperto, quer fosse doçura, quer se zangasse, envergonhasse ou apenas se divertisse com esse golpe. Ela nunca pensou em Hannah até que você nunca foi para mim? "" Eu não posso fazer discursos, Emma: "ele logo cortou tudo sozinho."
+“He was very clever, be it sweetness or be angry, ashamed or only amused, at such a stroke. She had never thought of Hannah till you were never meant for me?" "I cannot make speeches, Emma:" he soon cut it all himself.”
 ____
 +
 Nesse exemplo, eu deixei a pontuação anexada às palavras. O resultado é quase sintaticamente correto, mas não exatamente. Semanticamente, quase faz sentido, mas não completamente.
 +
 O que aconteceria se você aumentasse o tamanho dos prefixos? Será que o texto aleatório faria mais sentido?
 
-. Depois que o programa estiver funcionando, convém tentar um mash-up: se você combinar textos de dois ou mais livros, o texto aleatório que você gerar irá mesclar o vocabulário e as frases das fontes de maneiras interessantes.
+. Depois que o programa estiver funcionando, convém tentar uma combinação: se você combinar textos de dois ou mais livros, o texto aleatório gerado irá mesclar o vocabulário e as frases das fontes de maneiras interessantes.
 
 Crédito: Esse estudo de caso é baseado em um exemplo de Kernighan e Pike, The Practice of Programming, Addison-Wesley, 1999.
 
@@ -413,105 +413,105 @@ Você deve tentar esse execício antes de continuar.
 
 === Estruturas de Dados
 
-Usar a Análise de Markov para gerar textos aleatórios é divertido, mas há também um ponto para este exercício: seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:
+Usar a análise de Markov para gerar textos aleatórios é divertido, mas há também um propósito para este exercício: seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:
 
 * Como representar os prefixos.
 
-* Como representar a coleção de possíveis sufixos.
+* Como representar a coleção dos possíveis sufixos.
 
 * Como representar um mapeamento de cada prefixo à coleção dos possíveis sufixos.
 
-A última é fácil: Um dicionário é a escolha óbvia para um mapeamento de chaves a valores correspondentes.
+A última é fácil: Um dicionário é a escolha óbvia para um mapeamento de chaves aos valores correspondentes.
 
-Para os prefixos, as opções mais óbvias são strings, listas de strings ou truplas de strings.
+Para os prefixos, as opções mais óbvias são as strings, listas de strings ou tuplas de strings.
 
 Para os sufixos, uma opção é uma lista; outra é um histograma (dicionário).
 
-Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "Half a" e a próxima palavra é "bee", você precisa formar o próximo prefixo, "uma abelha".
+Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "devia" e a próxima palavra é "ter", você precisa formar o próximo prefixo, "devia ter".
 
 Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover elementos.
 
-Para a coleta de sufixos, as operações que precisamos executar incluem adicionar um novo sufixo (ou aumentar a frequência de um existente) e escolher um sufixo aleatório.
+Para a coleta dos sufixos, as operações que precisamos executar incluem a adição de um novo sufixo (ou aumento da frequência de um existente) e a seleção de um sufixo aleatório.
 
-Adicionar um novo sufixo é igualmente fácil para a implementação da lista ou do histograma. Escolher um elemento aleatório de uma lista é fácil; escolher um histograma é mais difícil de ser feito eficientemente (veja <<ex13-7>>).
+Adicionar um novo sufixo é igualmente fácil para a implementação da lista ou do histograma. Escolher um elemento aleatório de uma lista é fácil; escolher de um histograma é mais difícil de ser feito eficientemente (veja <<ex13-7>>).
 
-Até agora, conversamos principalmente sobre a facilidade de implementação, mas há outros fatores a serem considerados na escolha de estruturas de dados. Um deles é o tempo de execução. Às vezes, existe uma razão teórica para esperar que uma estrutura de dados seja mais rápida que outra; por exemplo, mencionamos que o operador +in+ é mais rápido para dicionários do que para listas, pelo menos quando o número de elementos é grande.
+Até agora, conversamos principalmente sobre a facilidade de implementação, mas há outros fatores a serem considerados na escolha das estruturas de dados. Um deles é o tempo de execução. Às vezes, existe uma razão teórica para esperar que uma estrutura de dados seja mais rápida que outra; por exemplo, mencionamos que o operador +in+ é mais rápido paraos dicionários do que para as listas, pelo menos quando o número de elementos é grande.
 
-Mas muitas vezes você não sabe antecipadamente qual implementação será mais rápida. Uma opção é implementar os dois e ver qual é o melhor. Essa abordagem é chamada _benchmarking_. Uma alternativa prática é escolher a estrutura de dados mais fácil de implementar e verificar se é rápida o suficiente para o aplicativo pretendido. Nesse caso, não há necessidade de continuar. Caso contrário, existem ferramentas, como o módulo +Profile+, que podem identificar os locais em um programa que levam mais tempo.
+Mas muitas vezes você não sabe antecipadamente qual implementação será mais rápida. Uma opção é implementar os dois e ver qual é o melhor. Essa abordagem é chamado de _benchmarking_. Uma alternativa prática é escolher a estrutura de dados mais fácil de implementar e verificar se é rápida o suficiente para a aplicação pretendida. Se sim, não há necessidade de continuar. Caso contrário, existem ferramentas, como o módulo +Profile+, que podem identificar os locais em um programa que mais demoram.
 (((benchmarking)))
 
-O outro fator a considerar é o espaço de armazenamento. Por exemplo, o uso de um histograma para a coleção de sufixos pode exigir menos espaço, pois você só precisa armazenar cada palavra uma vez, não importa quantas vezes apareça no texto. Em alguns casos, economizar espaço também pode fazer com que seu programa seja executado mais rapidamente e, no extremo, seu programa poderá não ser executado se você ficar sem memória. Porém, para muitos aplicativos, o espaço é uma consideração secundária após o tempo de execução.
+O outro fator a considerar é o espaço de armazenamento. Por exemplo, o uso de um histograma para a coleção de sufixos pode exigir menos espaço, pois você só precisa armazenar cada palavra uma vez, não importa quantas vezes apareça no texto. Em alguns casos, economizar espaço também pode fazer com que seu programa seja executado mais rapidamente e, em um caso extremo, seu programa poderá não executar se você ficar sem memória. Porém, para muitos aplicativos, o espaço é uma consideração secundária após o tempo de execução.
 
-Uma indagação final: Nesta discussão, sugerimos que devemos usar uma estrutura de dados para análise e geração. Mas como essas são fases separadas, também seria possível usar uma estrutura para análise e depois converter em outra estrutura para geração. Isso seria uma vitória líquida se o tempo economizado durante a geração exceder o tempo gasto na conversão.
+Uma indagação final: nesta discussão, sugerimos que devemos usar uma estrutura de dados para a análise e geração. Mas como essas fases são separadas, também seria possível usar uma estrutura para a análise e depois converter em outra estrutura para a geração. Isso seria uma vitória se o tempo economizado durante a geração excedesse o tempo gasto na conversão.
 
 [TIP]
 ====
-O pacote do Julia, +DataStructures+ (veja https://github.com/JuliaCollections/DataStructures.jl) implementa uma variedade de estruturas de dados.
+O pacote +DataStructures+ do Julia (consulte https://github.com/JuliaCollections/DataStructures.jl) implementa uma variedade de estruturas de dados.
 ====
 
 
-=== Debugando
+=== Depuração
 
-Quando você está debugando um programa, e especialmente se você está trabalhando em um bug difícil, existem cinco coisas a se tentar:
-(((debugando)))
+Quando você está depurando um programa, e especialmente se você está trabalhando em um erro difícil, existem cinco atividades para se tentar:
+(((depuração)))
 
 Leitura::
 Examine o seu código, leia para si mesmo e verifique se está condizendo com o que você quis dizer.
 
 Execução::
-Experimente fazer alterações e executas versões diferentes. Geralmente se você visualiza a coisa certa no lugar certo do programa, o problema se torna óbvio, mas às vezes você tem que construir andaimes.
+Experimente fazer alterações e executar versões diferentes. Geralmente se você exibe a coisa certa no lugar certo no programa, o problema se torna óbvio, apesar de às vezes você ter que construir andaimes.
 
 Ruminação::
-Tire algum tempo para pensar! Que tipo de erro é: sintaxe, tempo de execução ou semântica? Que informações você pode obter das mensagens de erro ou da saída do programa? Que tipo de erro pode causar o problema que você está vendo? O que você mudou por último, antes que o problema aparecesse?
+Tire algum tempo para pensar! Qual o tipo de erro é: sintaxe, tempo de execução ou semântica? Quais informações você pode obter das mensagens de erro ou da saída do programa? Que tipo de erro pode causar o problema que você está tendo? O que você mudou por último, antes que o problema aparecesse?
 
 Conversa com o Pato de Borracha (rubberducking)::
 Se você explicar o problema para outra pessoa, às vezes encontrará a resposta antes de terminar de fazer a pergunta. Muitas vezes você não precisa da outra pessoa; você poderia apenas conversar com um pato de borracha. E essa é a origem da estratégia conhecida chamada debugação de pato de borracha. Eu não estou inventando isso; veja https://en.wikipedia.org/wiki/Rubber_duck_debugging.
-(((debugação de pato de borracha)))
+(((depuração com pato de borracha)))
 
-Retirada::
-Em um determinado ponto, a melhor coisa a fazer é voltar atrás e desfazer as alterações recentes, até chegar de volta a um programa que funcione e que você entenda. Então você pode começar a reconstruir.
+Recuo::
+Em um determinado ponto, a melhor coisa a fazer é voltar atrás e desfazer as alterações recentes, até voltar a ter um programa que funcione e que você entenda. Então você pode começar a reconstruir.
 
-Programadores iniciantes às vezes ficam presos em uma dessas atividades e esquecem das outras. Cada atividade vem com o seu próprio erro.
+Programadores iniciantes às vezes ficam presos em uma dessas atividades e esquecem das outras. Cada atividade tem a sua própria maneira de falhar.
 
 Por exemplo, a leitura do seu código pode ajudar se o problema é um erro tipográfico, mas não se o problema for conceitual. Se você não entende o que o seu programa faz, pode lê-lo cem vezes e nunca verá o erro, porque o erro está na sua cabeça.
 
 Realizar experiências pode ajudar, especialmente se você executar testes pequenos e simples. No entanto, se executar experiências sem pensar ou ler seu código, pode cair em um padrão que eu chamo de “programação aleatória”, que é o processo de fazer alterações aleatórias até que o programa faça a coisa certa. Obviamente, a programação aleatória pode levar muito tempo.
 (((programação de passeio aleatório)))
 
-É preciso pensar um pouco. Debugar é como ciência experimental. Deve haver pelo menos uma hipótese sobre qual é o problema. Se houver duas ou mais possibilidades, tente pensar em um teste que eliminaria uma delas.
+Você precisa ter um tempo para pensar. Depuração é como um experimento científico. Deve haver pelo menos uma hipótese sobre qual é o problema. Se houver duas ou mais possibilidades, tente pensar em um teste que eliminaria uma delas.
 
-Mas até mesmo as melhores técnicas de debug falham se houver erros demais, ou se o código que está tentando corrigir for grande e complicado demais. Às vezes, a melhor opção é voltar atrás, simplificando o programa até chegar a algo que funcione e que você entenda.
+Mas até mesmo as melhores técnicas de depuração falham se houver erros demais, ou se o código que você está tentando corrigir for muito grande e complicado. Às vezes, a melhor opção é voltar atrás, simplificando o programa até chegar a algo que funcione e que você entenda.
 
-Programadores iniciantes muitas vezes relutam em voltar atrás porque não suportam a ideia de eliminar sequer uma linha de código (mesmo se estiver errada). Para você se sentir melhor, copie seu programa em outro arquivo antes de começar a desmontá-lo. Então você pode copiar as partes de volta, uma a uma.
+Programadores iniciantes muitas vezes relutam em voltar atrás porque não conseguem eliminar uma linha de código (mesmo se estiver errada). Se isso faz você se sentir melhor, copie seu programa para um outro arquivo antes de começar a desmontá-lo. Então você pode copiar as partes de volta, uma a uma.
 
-Encontrar um erro difícil exige leitura, execução, ruminação, e, às vezes, a retirada. Se você empacar em alguma dessas atividades, tente as outras.
+Encontrar um erro difícil exige a leitura, execução, ruminação, e, às vezes, o recuo. Se você empacar em alguma dessas atividades, tente as outras.
 
 
 === Glossário
 
-determinista::
-É relativo a um programa que faz a mesma coisa toda vez que é executado, dada uma mesma entrada.
-(((determinista)))
+determinístico::
+Referente a um programa que faz a mesma coisa toda vez que é executado, dada a mesma entrada.
+(((determinístico)))
 
 pseudoaleatório::
 É relativo à sequência de números que parecem ser aleatórios, mas é gerado por um programa determinista.
 (((pseudoaleatório)))
 
-Valor dado a um parâmetro opcional se não houver nenhum argumento.
 valor padrão::
+O valor dado a um parâmetro opcional se nenhum argumento é fornecido.
 (((valor padrão)))
 
-ignorar(override)::
-Substituir um valor padrão por um argumento.
-(((ignorar)))
+sobreposição::
+A sobreposição de um valor padrão por um argumento.
+(((sobreposição)))
 
 benchmarking::
-O processo de escolha entre estruturas de dados implementando alternativas e testando-as em uma amostra das entradas possíveis.
+O processo de seleção das estruturas de dados ao implementar as alternativas e testá-las em uma amostra com as entradas possíveis.
 (((benchmarking)))
 
-debugação de pato de borracha (Rubberducking)::
-Debugar explicando seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode ajudá-lo a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
-(((debugação de pato de borracha)))
+depuração com pato de borracha::
+Depuração ao explicar seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode ajudá-lo a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
+(((depuração com pato de borracha)))
 
 
 === Exercícios
@@ -519,9 +519,9 @@ Debugar explicando seu problema a um objeto inanimado como um pato de borracha. 
 [[ex13-9]]
 ===== Exercício 13-9
 
-A “classificação” de uma palavra é sua posição em uma lista de palavras classificadas por frequência: a palavra mais comum tem classificação 1, a segunda mais comum tem classificação 2, etc.
+A “classificação” de uma palavra é a sua posição em uma lista de palavras ordenada pela frequência: a palavra mais comum tem classificação 1, a segunda mais comum tem classificação 2, etc.
 
-A lei de Zipf descreve a relação entre posições e frequências de linguagens naturais (https://en.wikipedia.org/wiki/Zipfpass:[&apos;]s_law). Especificamente, ele prediz que a frequência, latexmath:[\(f\)], da palavra com ranquamento latexmath:[\(r\)] é:
+A lei de Zipf descreve a relação entre as posições e as frequências das palavras nas linguagens naturais (https://pt.wikipedia.org/wiki/Lei_de_Zipf). Especificamente, ela prediz que a frequência latexmath:[\(f\)] da palavra com o ranqueamento latexmath:[\(r\)] dada por:
 (((Lei de Zipf)))
 
 [latexmath]
@@ -530,7 +530,7 @@ A lei de Zipf descreve a relação entre posições e frequências de linguagens
 {f = c r^{-s}}
 \end{equation}
 ++++
-onde latexmath:[\(s\)] e latexmath:[\(c\)] são parâmetros que dependem da linguagem e do texto. Se você pegar o logaritmo em ambos os lados desta equação, você obtém:
+onde latexmath:[\(s\)] e latexmath:[\(c\)] são parâmetros que dependem da linguagem e do texto. Se você pegar o logaritmo em ambos os lados desta equação, obtém-se:
 
 [latexmath]
 ++++
@@ -538,12 +538,12 @@ onde latexmath:[\(s\)] e latexmath:[\(c\)] são parâmetros que dependem da ling
 {\log f = \log c - s \log r}
 \end{equation}
 ++++
-Se você plotar latexmath:[\(\log f\)] contra o latexmath:[\(\log r\)], você obterá uma linha reta com uma inclinação latexmath:[\(-s\)] e interceptar latexmath:[\(\log c\)].
+Se você plotar latexmath:[\(\log f\)] por latexmath:[\(\log r\)], obterá uma linha reta com a inclinação latexmath:[\(-s\)] e o intercepto latexmath:[\(\log c\)].
 
-Escreva um programa que leia um texto em um arquivo, conte as frequências das palavras e exiba uma linha para cada palavra, em ordem descendente da frequência, com latexmath:[\(\log f\)] e latexmath:[\(\log r\)].
+Escreva um programa que leia um texto em um arquivo, conta as frequências das palavras e exiba uma linha para cada palavra, em ordem decrescente da frequência, com latexmath:[\(\log f\)] e latexmath:[\(\log r\)].
 
-Instale uma biblioteca de Plot:
-(((Plots)))((("module", "Plots", see="Plots")))
+Instale uma biblioteca para plotar os gráficos:
+(((Plots)))((("módulo", "Plots", see="Plots")))
 
 [source,jlcon]
 ----
@@ -561,4 +561,4 @@ y = x.^2
 plot(x, y)
 ----
 
-Use a biblioteca do +Plots+ para plotar resultados e verificar se eles formam ou não uma linha reta.
+Use a biblioteca +Plots+ para plotar os resultados e verificar se eles formam ou não uma linha reta.
