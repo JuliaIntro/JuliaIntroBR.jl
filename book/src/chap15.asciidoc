@@ -1,7 +1,7 @@
 [[chap15]]
 == Estruturas e Objetos
 
-A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar os dados. O próximo passo é aprender a criar seus próprios tipos para organizar o código e os dados. Este é um tópico importante e serão necessários alguns capítulos para abordar o tema.
+A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar os dados. O próximo passo é aprender a criar seus próprios tipos para organizar tanto o código como os dados. Este é um tópico importante e serão necessários alguns capítulos para abordar o tema.
 
 
 === Tipos Compostos
@@ -9,7 +9,7 @@ A esta altura, você sabe como usar funções para organizar o código e os tipo
 Temos usado muitos tipos internos do Julia e agora definiremos um novo tipo. Como exemplo, vamos criar um tipo chamado +Ponto+ que representa um ponto no espaço bidimensional.
 (((tipo)))(((Ponto)))((("tipo", "definido pelo programador", "Ponto", see="Ponto")))
 
-Na notação matemática, os pontos geralmente são escritos entre parênteses com uma vírgula separando as coordenadas. Por exemplo, latexmath:[\(\left(0,0\right)\)] representa a origem e latexmath:[\(\left(x,y\right)\)] representa o ponto latexmath:[\(x\)] unidades à direita e latexmath:[\(y\)] unidades acima da origem, se estiver no 1o. quadrante.
+Na notação matemática, os pontos geralmente são escritos entre parênteses com uma vírgula separando as coordenadas. Por exemplo, latexmath:[\(\left(0,0\right)\)] representa a origem e latexmath:[\(\left(x,y\right)\)] representa o ponto latexmath:[\(x\)] unidades à direita e latexmath:[\(y\)] unidades acima da origem, se o ponto estiver no 1o. quadrante.
 
 Existem diversas maneiras de representar pontos no Julia:
 
@@ -19,7 +19,7 @@ Existem diversas maneiras de representar pontos no Julia:
 
 * Poderíamos criar um novo tipo para representar os pontos como objetos.
 
-A criação de um novo tipo é mais complicado que as outras opções, mas possui vantagens que serão mostradas em breve.
+Criar um novo tipo é mais complicado que as outras opções, mas possui vantagens que serão mostradas em breve.
 
 Um _tipo composto_ definido pelo programador também é denominado de _estrutura_. A definição +struct+ para um ponto é dada por:
 (((tipo composto)))(((struct)))((("palavra-chave", "struct", see="struct")))(((end)))
@@ -35,7 +35,7 @@ end
 O cabeçalho indica que a nova struct é chamada de +Ponto+ enquanto o corpo define os _atributos_ ou os _campos_ da struct. Nesse caso, a struct +Ponto+ possui dois campos: +x+ e +y+.
 (((atributo)))((("campo", see="atributo")))
 
-A struct é como se fosse uma fábrica para criar os objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
+A struct é como uma fábrica para criar os objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
 (((construtor)))
 
 [source,@julia-repl-test chap15]
@@ -50,7 +50,7 @@ O valor de retorno é uma referência a um objeto +Ponto+, que atribuímos a +p+
 A criação de um novo objeto é chamada _instanciação_, e o objeto é uma _instância_ do tipo.
 (((instanciação)))(((instância)))
 
-Quando você imprime uma instância, Julia informa a que tipo pertence e quais os valores dos atributos.
+Quando você imprime uma instância, o Julia informa a que tipo pertence e quais os valores dos atributos.
 
 Todo objeto é uma instância de algum tipo; portanto, "objeto" e "instância" são permutáveis. Mas neste capítulo, eu uso "instância" para indicar que estou falando de um tipo definido pelo programador.
 
@@ -180,7 +180,7 @@ image::images/fig152.svg[]
 
 === Instâncias como Argumentos
 
-Você pode passar uma instância como um argumento, da maneira tradicional. Por exemplo:
+Você pode passar uma instância como um argumento da maneira tradicional. Por exemplo:
 (((imprimir_ponto)))((("função", "definido pelo programador", "imprimir_ponto", see="imprimir_ponto")))
 
 [source,@julia-setup chap15]
@@ -296,10 +296,10 @@ Ponto(51.0, 102.0)
 
 === Cópia
 //coloquei a definição de aliasing antes de traduzir o parágrafo
-Alias ocorre quando um mesmo local da memória é acessado por diferentes variáveis. Além disso, alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um dado objeto.
+"Aliasing" é um termo que refere-se ao acesso de um mesmo local da memória por variáveis diferentes. Ele pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um dado objeto.
 (((alias)))
 
-A cópia de um objeto é muitas vezes uma alternativa ao alias. Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
+A cópia de um objeto é muitas vezes uma alternativa ao aliasing. O Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
 (((cópia)))(((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))(((cópia profunda)))
 
 [source,@julia-repl-test chap15]
@@ -314,7 +314,7 @@ julia> p1 == p2
 false
 ----
 
-O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que imaginávamos. Mas você pode ter esperado que +==+ devolvesse +true+ porque esses pontos contêm os mesmos dados. Nesse caso, você ficará desapontado ao saber que, para objetos mutáveis, o comportamento padrão do operador +==+ é o mesmo do operador +===+ pois verifica-se a identidade do objeto e não a equivalência do objeto. Isso ocorre porque, para tipos compostos mutáveis, Julia não sabe o que deve ser considerado equivalente. Pelo menos, ainda não.
+O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que imaginávamos. Mas você pode ter esperado que +==+ devolvesse +true+ porque esses pontos contêm os mesmos dados. Nesse caso, você ficará desapontado ao saber que, para objetos mutáveis, o comportamento padrão do operador +==+ é o mesmo do operador +===+ pois verifica-se a identidade do objeto e não a equivalência do objeto. Isso ocorre porque, para tipos compostos mutáveis, o Julia não sabe o que deve ser considerado equivalente. Pelo menos, ainda não.
 (((==)))(((≡)))
 
 ===== Exercício 15-2
