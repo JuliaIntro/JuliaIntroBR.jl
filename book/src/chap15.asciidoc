@@ -15,7 +15,7 @@ Existem diversas maneiras de representar pontos no Julia:
 
 * Podemos armazenar as coordenadas separadamente em duas variáveis, +x+ e +y+.
 
-* Poderíamos armazenar as coordenadas como elementos de um array ou de uma tupla.
+* Poderíamos armazenar as coordenadas como elementos de um vetor ou de uma tupla.
 
 * Poderíamos criar um novo tipo para representar os pontos como objetos.
 
@@ -52,7 +52,7 @@ A criação de um novo objeto é chamada _instanciação_, e o objeto é uma _in
 
 Quando você imprime uma instância, o Julia informa a que tipo pertence e quais os valores dos atributos.
 
-Todo objeto é uma instância de algum tipo; portanto, "objeto" e "instância" são permutáveis. Mas neste capítulo, eu uso "instância" para indicar que estou falando de um tipo definido pelo programador.
+Todo objeto é uma instância de algum tipo; portanto, “objeto” e “instância” são permutáveis. Mas neste capítulo, eu uso “instância” para indicar que estou falando de um tipo definido pelo programador.
 
 Um diagrama de estado que mostra um objeto e seus campos é denominado de _diagrama do objeto_, conforme <<fig15-1>>.
 (((diagrama do objeto)))((("diagrama", "objeto", see="diagrama do objeto")))
@@ -75,7 +75,7 @@ julia> p.y
 4.0
 ----
 
-A expressão +p.x+ significa: "Vá até a referência do objeto +p+ e obtenha o valor de +x+". No exemplo, atribuímos esse valor a uma variável +x+. Não há conflito entre a variável +x+ e o campo +x+.
+A expressão +p.x+ significa: “Vá até a referência do objeto +p+ e obtenha o valor de +x+.” No exemplo, atribuímos esse valor a uma variável +x+. Não há conflito entre a variável +x+ e o campo +x+.
 
 Você pode usar a notação do ponto como parte de qualquer expressão. Por exemplo:
 
@@ -85,7 +85,7 @@ julia> distância = sqrt(p.x^2 + p.y^2)
 5.0
 ----
 
-Por padrão, as structs são  imutáveis, isto é, após a construção, os campos não podem mudar de valor:
+Por padrão, as structs são imutáveis, isto é, após a construção, os campos não podem mudar de valor:
 (((imutável)))
 
 [source,@julia-repl-test chap15]
@@ -190,7 +190,7 @@ function imprimir_ponto(p)
 end
 ----
 
-+imprimir_ponto+ recebe como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
+A função +imprimir_ponto+ recebe como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
 
 [source,@julia-repl-test chap15]
 ----
@@ -283,7 +283,7 @@ function encontra_centro(ret)
 end
 ----
 
-A expressão +ret.vértice.x+ significa: "Vá ao objeto +ret+ e selecione o campo +vértice+; depois vá a esse objeto e selecione o campo +x+".
+A expressão +ret.vértice.x+ significa: “Vá ao objeto +ret+ e selecione o campo +vértice+; depois vá até esse objeto e selecione o campo +x+.”
 
 Aqui está um exemplo que passa +caixa+ como argumento e atribui o +Ponto+ recebido ao +centro+:
 
@@ -296,7 +296,7 @@ Ponto(51.0, 102.0)
 
 === Cópia
 //coloquei a definição de aliasing antes de traduzir o parágrafo
-"Aliasing" é um termo que refere-se ao acesso de um mesmo local da memória por variáveis diferentes. Ele pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um dado objeto.
+"Aliasing" é um termo que refere-se ao acesso de um mesmo local da memória por variáveis diferentes. Ele pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
 A cópia de um objeto é muitas vezes uma alternativa ao aliasing. O Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
@@ -314,7 +314,7 @@ julia> p1 == p2
 false
 ----
 
-O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que imaginávamos. Mas você pode ter esperado que +==+ devolvesse +true+ porque esses pontos contêm os mesmos dados. Nesse caso, você ficará desapontado ao saber que, para objetos mutáveis, o comportamento padrão do operador +==+ é o mesmo do operador +===+ pois verifica-se a identidade do objeto e não a equivalência do objeto. Isso ocorre porque, para tipos compostos mutáveis, o Julia não sabe o que deve ser considerado equivalente. Pelo menos, ainda não.
+O operador +≡+ indica que +p1+ e +p2+ não são o mesmo objeto, que é o que imaginávamos. Mas você pode ter pensado que +==+ devolvesse +true+ porque esses pontos contêm os mesmos dados. Nesse caso, você ficará desapontado ao saber que, para objetos mutáveis, o comportamento padrão do operador +==+ é o mesmo do operador +===+ pois verifica-se a identidade do objeto e não a equivalência do objeto. Isso ocorre porque, para tipos compostos mutáveis, o Julia não sabe o que deve ser considerado equivalente. Pelo menos, ainda não.
 (((==)))(((≡)))
 
 ===== Exercício 15-2
@@ -338,7 +338,7 @@ Stacktrace:
  [2] top-level scope at none:0
 ----
 
-Se não tem certeza de qual é o tipo de objeto, você pode perguntar:
+Se você não tem certeza de qual é o tipo de objeto, pode-se perguntar:
 (((typeof)))
 
 [source,@julia-repl-test chap15]
@@ -356,7 +356,7 @@ julia> p isa Ponto
 true
 ----
 
-Se você não tem certeza se um objeto tem um determinado atributo, pode-se usar a função interna +fieldnames+:
+Se você não tem certeza se um objeto possui um determinado atributo, pode-se usar a função interna +fieldnames+:
 (((deepcopy)))((("função", "Base", "deepcopy", see="deepcopy")))
 
 [source,@julia-repl-test chap15]
