@@ -77,7 +77,7 @@ end
 ===== Exercício 13-5
 
 Escreva uma função chamada +escolhido_do_histograma+ que recebe um histograma definido em <<dictionary_collection_counters>> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
-(((escolhido_do_histograma)))((("função", "definida pelo programador", "escolhido_do_histograma", see="escolhido_do_histograma")))
+(((escolhido_do_histograma)))((("função", "definido pelo programador", "escolhido_do_histograma", see="escolhido_do_histograma")))
 
 [source,@julia-repl-test chap11]
 ----
@@ -175,7 +175,7 @@ Número de palavras diferentes: 7380
 === Palavras Mais Frequentes
 
 Para encontrar as palavras mais frequentes, podemos fazer uma lista de tuplas, onde cada tupla contém uma palavra e a sua frequência e fazemos a ordenação. A função seguinte recebe um histograma e retorna uma lista de tuplas que contém a frequência de palavras.
-(((mais_comum)))((("função", "definida pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((sort)))
+(((mais_comum)))((("função", "definido pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((sort)))
 
 [source,@julia-setup chap13]
 ----
@@ -361,15 +361,12 @@ Um jeito de medir essa relação é através da análise de Markov, que caracter
 
 [verse]
 ____
-Half a bee, philosophically,
-Must, ipso facto, half not be.
-But half the bee has got to be
-Vis a vis, its entity. D’you see?
-
-But can a bee be said to be
-Or not to be an entire bee
-When half the bee is not a bee
-Due to some ancient injury?
+Devia ter amado mais
+Ter chorado mais
+Ter visto o Sol nascer
+Devia ter arriscado mais
+E até errado mais
+Ter feito o que eu queria fazer
 ____
 
 No texto, o termo “devia” é sempre seguido da palavra “ter”, mas a palavra “ter” pode ser seguida de “amado” ou “arriscado”.
@@ -476,7 +473,7 @@ Programadores iniciantes às vezes ficam presos em uma dessas atividades e esque
 Por exemplo, a leitura do seu código pode ajudar se o problema é um erro tipográfico, mas não se o problema for conceitual. Se você não entende o que o seu programa faz, pode lê-lo cem vezes e nunca verá o erro, porque o erro está na sua cabeça.
 
 Realizar experiências pode ajudar, especialmente se você executar testes pequenos e simples. No entanto, se executar experiências sem pensar ou ler seu código, pode cair em um padrão que eu chamo de “programação aleatória”, que é o processo de fazer alterações aleatórias até que o programa faça a coisa certa. Obviamente, a programação aleatória pode levar muito tempo.
-(((programação de passeio aleatório)))
+(((programação aleatória)))
 
 Você precisa ter um tempo para pensar. Depuração é como um experimento científico. Deve haver pelo menos uma hipótese sobre qual é o problema. Se houver duas ou mais possibilidades, tente pensar em um teste que eliminaria uma delas.
 
