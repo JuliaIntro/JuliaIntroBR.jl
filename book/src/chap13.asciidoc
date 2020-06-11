@@ -465,7 +465,7 @@ Ruminação::
 Tire algum tempo para pensar! Qual o tipo de erro é: sintaxe, tempo de execução ou semântica? Quais informações você pode obter das mensagens de erro ou da saída do programa? Que tipo de erro pode causar o problema que você está tendo? O que você mudou por último, antes que o problema aparecesse?
 
 Conversa com o Pato de Borracha (rubberducking)::
-Se você explicar o problema para outra pessoa, às vezes encontrará a resposta antes de terminar de fazer a pergunta. Muitas vezes você não precisa da outra pessoa; você poderia apenas conversar com um pato de borracha. E essa é a origem da estratégia conhecida chamada debugação de pato de borracha. Eu não estou inventando isso; veja https://en.wikipedia.org/wiki/Rubber_duck_debugging.
+Se você explicar o problema para outra pessoa, às vezes encontrará a resposta antes de terminar de fazer a pergunta. Muitas vezes você não precisa da outra pessoa, poderia apenas conversar com pato de borracha. E essa é a origem da estratégia conhecida chamada depuração com o pato de borracha. Não estamos inventando isso, veja https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha.
 (((depuração com pato de borracha)))
 
 Recuo::
@@ -494,7 +494,7 @@ Referente a um programa que faz a mesma coisa toda vez que é executado, dada a 
 (((determinístico)))
 
 pseudoaleatório::
-É relativo à sequência de números que parecem ser aleatórios, mas é gerado por um programa determinista.
+Referente a uma sequência de números que parecem ser aleatórios, mas é gerada por um programa determinístico.
 (((pseudoaleatório)))
 
 valor padrão::
