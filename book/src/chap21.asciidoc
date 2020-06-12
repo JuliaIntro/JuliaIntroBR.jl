@@ -1,27 +1,27 @@
 [[chap21]]
-== Debugging
+== Depurando
 
-When you are debugging, you should distinguish among different kinds of errors in order to track them down more quickly:
+Na depuração, você deve distinguir entre os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
 
-* Syntax errors are discovered by the interpreter when it is translating the source code into byte code. They indicate that there is something wrong with the structure of the program. Example: Omitting the +end+ keyword at the end of a function block generates the somewhat redundant message +ERROR: LoadError: syntax: incomplete: function requires end+.
-(((syntax error)))
+* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: Omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem +ERROR: LoadError: syntax: incomplete: function requires end+.
+(((erro de sintaxe)))
 
-* Runtime errors are produced by the interpreter if something goes wrong while the program is running. Most runtime error messages include information about where the error occurred and what functions were executing. Example: An infinite recursion eventually causes the runtime error +ERROR: StackOverflowError+.
-(((runtime error)))
+* Erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
+(((erro de tempo de execução)))
 
-* Semantic errors are problems with a program that runs without producing error messages but doesn’t do the right thing. Example: An expression may not be evaluated in the order you expect, yielding an incorrect result.
-(((semantic error)))
+* Erros semânticos são problemas com um programa que roda sem produzir mensagens de erro, mas não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, produzindo um resultado incorreto.
+((((erro semântico)))
 
-The first step in debugging is to figure out which kind of error you are dealing with. Although the following sections are organized by error type, some techniques are applicable in more than one situation.
+O primeiro passo na depuração é descobrir com qual o tipo de erro você está lidando. Embora as seguintes seções sejam organizadas pelo tipo de erro, algumas técnicas são aplicáveis em mais de uma situação.
 
 
-=== Syntax Errors
+=== Erros de sintaxe
 
-Syntax errors are usually easy to fix once you figure out what they are. Unfortunately, the error messages are often not helpful. The most common messages are +ERROR: LoadError: syntax: incomplete: premature end of input+ and +ERROR: LoadError: syntax: unexpected "="+, neither of which is very informative.
+Os erros de sintaxe são geralmente fáceis de corrigir uma vez que você descubra o que são. Infelizmente, as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são +ERROR: LoadError: syntax: incomplete: premature end of input+ e +ERROR: LoadError: syntax: unexpected "="+, que não são muito informativo.
 
-On the other hand, the message does tell you where in the program the problem occurred. Actually, it tells you where Julia noticed a problem, which is not necessarily where the error is. Sometimes the error is prior to the location of the error message, often on the preceding line.
+Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, geralmente na linha anterior.
 
-If you are building the program incrementally, you should have a good idea about where the error is. It will be in the last line you added.
+Se você está construindo o programa de forma incremental, você deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.
 
 If you are copying code from a book, start by comparing your code to the book’s code very carefully. Check every character. At the same time, remember that the book might be wrong, so if you see something that looks like a syntax error, it might be.
 
@@ -137,11 +137,11 @@ The stacktrace identifies the function that is currently running, and then the f
 
 The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:
 
-ArgumentError:: 
+ArgumentError::
 One of the arguments to a function call is not in the expected state.
 (((ArgumentError)))
 
-BoundsError:: 
+BoundsError::
 An indexing operation into an array tried to access an out-of-bounds element.
 (((BoundsError)))
 
@@ -149,11 +149,11 @@ DomainError::
 The argument to a function or constructor is outside the valid domain.
 (((DomainError)))((("error", "Core", "DomainError", see="DomainError")))
 
-DivideError:: 
+DivideError::
 Integer division was attempted with a denominator value of 0.
 (((DivideError)))((("error", "Core", "DivideError", see="DivideError")))
 
-EOFError:: 
+EOFError::
 No more data was available to read from a file or stream.
 (((EOFError)))((("error", "Base", "EOFError", see="EOFError")))
 
@@ -161,23 +161,23 @@ InexactError::
 Cannot exactly convert to a type.
 (((InexactError)))((("error", "Core", "InexactError", see="InexactError")))
 
-KeyError:: 
+KeyError::
 An indexing operation into an +AbstractDict+ (+Dict+) or +Set+ like object tried to access or delete a non-existent element.
 (((KeyError)))
 
-MethodError:: 
+MethodError::
 A method with the required type signature does not exist in the given generic function. Alternatively, there is no unique most-specific method.
 (((MethodError)))
 
-OutOfMemoryError:: 
+OutOfMemoryError::
 An operation allocated too much memory for either the system or the garbage collector to handle properly.
 (((OutOfMemoryError)))((("error", "Core", "OutOfMemoryError", see="OutOfMemoryError")))
 
-OverflowError:: 
+OverflowError::
 The result of an expression is too large for the specified type and will cause a wraparound.
 (((OverflowError)))((("error", "Core", "OverflowError", see="OverflowError")))
 
-StackOverflowError:: 
+StackOverflowError::
 The function call grew beyond the size of the call stack. This usually happens when a call recurses infinitely.
 (((StackOverflowError)))
 
@@ -193,7 +193,7 @@ TypeError::
 A type assertion failure, or calling an intrinsic function with an incorrect argument type.
 (((TypeError)))
 
-UndefVarError:: 
+UndefVarError::
 A symbol in the current scope is not defined.
 (((UndefVarError)))
 
@@ -329,4 +329,3 @@ When you bring someone in to help, be sure to give them the information they nee
 When you find the bug, take a second to think about what you could have done to find it faster. Next time you see something similar, you will be able to find the bug more quickly.
 
 Remember, the goal is not just to make the program work. The goal is to learn how to make the program work.
-
