@@ -1,327 +1,326 @@
 [[chap16]]
-== Structs and Functions
+== Estruturas e Funções
 
-Now that we know how to create new composite types, the next step is to write functions that take programmer-defined objects as parameters and return them as results. In this chapter I also present “functional programming style” and two new program development plans.
+Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retorna-los como resultados. Neste capítulo apresentaremos um “programa funcional” e dois novos planos de desenvolvimento de programas.
 
 [[time]]
-=== Time
+=== Hora
 
-As another example of a composite type, we’ll define a +struct+ called +MyTime+ that records the time of day. The struct definition looks like this:
-(((MyTime)))((("type", "programmer-defined", "MyTime", see="MyTime")))
+Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +minha_hora+ que grava a hora do dia. A definição de estrutura se parece como:
+(((minha_hora)))((("tipo", "definido pelo programador", "minha_hora", see="minha_hora")))
 
-[source,@julia-setup chap16]
+[source, @julia-setup chap16]
 ----
 """
-Represents the time of day.
+Representa a hora do dia.
 
-fields: hour, minute, second
+campos: hora, minuto, segundo
 """
-struct MyTime
-    hour
-    minute
-    second
+struct minha_hora
+    hora
+    minuto
+    segundo
 end
 ----
 
-The name +Time+ is already used in Julia and to avoid a name clash, I have chosen +MyTime+. We can create a new +MyTime+ object:
-(((Time)))((("type", "Dates", "Time", see="Time")))
+O nome +Time+ já é utilizado no Julia e para evitar um conflito de nomes, escolhemos +minha_hora+. Podemos criar um novo objeto +minha_hora_:
+(((Time)))((("tipo", "Datas", "Time", see="Time")))
 
 [source,@julia-repl-test chap16]
 ----
-julia> time = MyTime(11, 59, 30)
-MyTime(11, 59, 30)
+julia> time = minha_hora(11, 59, 30)
+minha_hora(11, 59, 30)
 ----
 
-The object diagram for the +MyTime+ object looks like <<fig16-1>>.
+O diagrama de objeto para +minha_hora+ se parece com a <<fig16-1>>.
 
 [[fig16-1]]
-.Object diagram
+.Diagrama de objeto
 image::images/fig161.svg[]
 
-===== Exercise 16-1
+===== Exercício 16-1
 
-Write a function called +printtime+ that takes a +MyTime+ object and prints it in the form +hour:minute:second+. The +@printf+ macro of the StdLib module +Printf+ prints an integer with the format sequence `"%02d"` using at least two digits, including a leading zero if necessary.
-(((printtime)))((("function", "programmer-defined", "printtime", see="printtime")))
+Escreva uma função chamada +imprima_hora+ que recebe um objeto +minha_hora+ e imprima-a em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
+(((imprima_hora)))((("função", "definido pelo programador", "imprima_hora", see="imprima_hora")))
 
-===== Exercise 16-2
+===== Exercício 16-2
 
-Write a boolean function called +isafter+ that takes two +MyTime+ objects, +t1+ and +t2+, and returns +true+ if +t1+ follows +t2+ chronologically and +false+ otherwise. Challenge: don’t use an +if+ statement.
-(((isafter)))((("function", "programmer-defined", "isafter", see="isafter")))
+Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha_hora+, +t1+ e +t2+, e retorna +true+ se +t1+ segue +t2+ cronologicamente e +false+ caso contrário. Desafio: não use um comando +if+.
+(((é_depois)))((("função", "definido pelo programador", "é_depois", see="é_depois")))
 
 
-=== Pure Functions
+=== Funções Puras
 
-In the next few sections, we’ll write two functions that add time values. They demonstrate two kinds of functions: pure functions and modifiers. They also demonstrate a development plan I’ll call _prototype and patch_, which is a way of tackling a complex problem by starting with a simple prototype and incrementally dealing with the complications.
-(((pure function)))(((prototype and patch)))
+Nas próximas seções, escreveremos duas funções que adicionam valores de tempo. Elas demonstrarão dois tipos de funções: funções puras e modificadas. Elas também demonstrarão um plano de desenvolvimento que chamaremos de _protótipo e correção_, que é uma forma de combater um problema complexo começando com um protótipo simples e aos poucos lidar com as complicações.
+(((função pura)))(((protótipo e correção)))
 
-Here is a simple prototype of +addtime+:
-(((addtime)))((("function", "programmer-defined", "addtime", see="addtime")))
+Aqui vai um simples protótipo de +add_tempo+:
+(((add_tempo)))((("função", "definido pelo programador", "add_tempo", see="add_tempo")))
 
 [source,@julia-setup chap16]
 ----
-function addtime(t1, t2)
-    MyTime(t1.hour + t2.hour, t1.minute + t2.minute, t1.second + t2.second)
+function add_tempo(t1, t2)
+    minha_hora(t1.hora + t2.hora, t1.minuto + t2.minuto, t1.segundo + t2.segundo)
 end
 ----
 
-The function creates a new +MyTime+ object, initializes its fields, and returns a reference to the new object. This is called a _pure function_ because it does not modify any of the objects passed to it as arguments and it has no effect, like displaying a value or getting user input, other than returning a value.
+A função cria um novo objeto +minha_hora+, inicializando os seus campos e retornando uma referência a um novo objeto. Isso é chamado de _função pura_ pois não modifica nenhum dos objetos que são passados como argumentos e não tem efeito, como exibir um valor ou obter entrada do usuário, além de retornar um valor.
 
-To test this function, I’ll create two +MyTime+ objects: +start+ contains the start time of a movie, like _Monty Python and the Holy Grail_, and +duration+ contains the run time of the movie, which is one hour 35 minutes.
+Para testar essa função, criaremos dois objetos +minha_hora+: +start+ que contém a hora de início de um filme, como _Monthy Python: Em Busca do Cálice Sagrado_, e +duração+ que contém o tempo de exibição do filme, que é de uma hora de 35 minutos.
 
-+addtime+ figures out when the movie will be done.
++add_tempo+ descobre quando que o filme irá terminar.
 
 [source,@julia-eval chap16]
 ----
 using Printf
-function printtime(time::MyTime)
-    @printf("%02d:%02d:%02d", time.hour, time.minute, time.second)
+function imprima_hora(tempo::minha_hora)
+    @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end;
 ----
 
 [source,@julia-repl-test chap16]
 ----
-julia> start = MyTime(9, 45, 0);
+julia> início = minha_hora(9, 45, 0);
 
-julia> duration = MyTime(1, 35, 0);
+julia> duração = minha_hora(1, 35, 0);
 
-julia> done = addtime(start, duration);
+julia> fim = add_tempo(início, duração);
 
-julia> printtime(done)
+julia> imprima_hora(fim)
 10:80:00
 ----
 
-The result, +10:80:00+ might not be what you were hoping for. The problem is that this function does not deal with cases where the number of seconds or minutes adds up to more than sixty. When that happens, we have to “carry” the extra seconds into the minute column or the extra minutes into the hour column. Here’s an improved version:
+O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que essa função não lida com casos onde o número de segundos ou minutos são adicionados a mais que sessenta. Quando isso ocorre, temos que "levar" os segundos extras para a coluna de minutos ou os minutos extras para a coluna de horas. Aqui vai uma versão aprimorada:
 
-[source,@julia-setup chap16]
+[source, @julia-setup chap16]
 ----
-function addtime(t1, t2)
-    second = t1.second + t2.second
-    minute = t1.minute + t2.minute
-    hour = t1.hour + t2.hour
-    if second >= 60
-        second -= 60
-        minute += 1
+function add_tempo(t1, t2)
+    segundo = t1.segundo + t2.segundo
+    minuto = t1.minuto + t2.minuto
+    hora = t1.hora + t2.hora
+    if segundo >= 60
+        segundo -= 60
+        minuto += 1
     end
-    if minute >= 60
-        minute -= 60
-        hour += 1
+    if minuto >= 60
+        minuto -= 60
+        hora += 1
     end
-    MyTime(hour, minute, second)
+    minha_hora(hora, minuto, segundo)
 end
 ----
 
-Although this function is correct, it is starting to get big. We will see a shorter alternative later.
+Apesar desta função estar correta, está começando a ficar grande. Iremos ver uma alternativa mais resumida brevemente.
 
 [[modifiers]]
-=== Modifiers
+=== Modificadores
 
-Sometimes it is useful for a function to modify the objects it gets as parameters. In that case, the changes are visible to the caller. Functions that work this way are called _modifiers_.
-(((modifier)))
+Em certos momentos, é últil para uma função modificar os objetos que recebe como parâmetros. Neste caso, as mudanção são visíveis a quem chama. Função que funcionam dessa maneiro são ditas _modificadoras_.
+(((modificador)))
 
-+increment!+, which adds a given number of seconds to a +MyTime+ object, can be written naturally as a modifier. Here is a rough draft:
-(((increment!)))((("function", "programmer-defined", "increment!", see="increment!")))
++incrementa!+, que adiciona um número de segundos dados para um objeto +minha_hora+, pode ser escrito naturalmente como um modificador. Segue abaixo um rascunho:
+(((incrementa)))((("função", "definido pelo programador", "incrementa!", see="incrementa!")))
 
 [source,@julia-setup chap16]
 ----
-function increment!(time, seconds)
-    time.second += seconds
-    if time.second >= 60
-        time.second -= 60
-        time.minute += 1
+function incrementa!(tempo, segundos)
+    tempo.segundo += segundos
+    if tempo.segundo >= 60
+        tempo.segundo -= 60
+        tempo.minuto += 1
     end
-    if time.minute >= 60
-        time.minute -= 60
-        time.hour += 1
+    if tempo.minuto >= 60
+        tempo.minuto -= 60
+        tempo.hora += 1
     end
 end
 ----
 
-The first line performs the basic operation; the remainder deals with the special cases we saw before.
+A primeira linha executa a operação básica, o resto lida com os casos especiais que vimos anteriormente.
 
-Is this function correct? What happens if +seconds+ is much greater than 60?
+Essa função está correta? O que acontece se +segundos+ for muito maior que 60?
 
-In that case, it is not enough to carry once; we have to keep doing it until +time.second+ is less than sixty. One solution is to replace the +if+ statements with +while+ statements. That would make the function correct, but not very efficient. 
+Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até que +tempo.segundo+ seja menor que 60. Uma solução é substituir os comandos +if+ com os comandos +while+. O que fará com que a função fique correta, porém, não muito eficiente.
 
-===== Exercise 16-3
+===== Exercício 16-3
 
-Write a correct version of +increment!+ that doesn’t contain any loops.
+Escreva uma versão correta de +incremento!+ que não conheça loop algum.
 
-Anything that can be done with modifiers can also be done with pure functions. In fact, some programming languages only allow pure functions. There is some evidence that programs that use pure functions are faster to develop and less error-prone than programs that use modifiers. But modifiers are convenient at times, and functional programs tend to be less efficient.
+Qualquer coisa que pode ser feita com modificadores podem ser feitas com funções puras. De fato, algumas linguagens de progração permite apenas funções puras. Há algumas evidências de que programas que usam funções puras são rápidas para serem desenvolvidas e menos propenso a erros do que programas que usam modificadores. Porém, às vezes modificadores são convenientes e programas funcionais tendem a serem menos eficientes.
 
-In general, I recommend that you write pure functions whenever it is reasonable and resort to modifiers only if there is a compelling advantage. This approach might be called a _functional programming style_.
-(((functional programming style)))
+Em geral, recomendamos que você escreva funções puras sempre que for razoável e reccorer a modificadores apenas se há uma vantagem atraente. Essa abordagem pode ser chamada de _programa funcional_.
+(((programa funcional)))
 
-===== Exercise 16-4
+===== Exercício 16-4
 
-Write a “pure” version of +increment+ that creates and returns a new +MyTime+ object rather than modifying the parameter.
+Escreva uma versão "pura" de +incremento+ que cria e retorna um novo objeto +minha_hora+ em vez de modificar o parâmetro.
 
 
 [[prototyping_versus_planning]]
-=== Prototyping Versus Planning
+=== Prototipagem Versus Planejamento
 
-The development plan I am demonstrating is called “prototype and patch”. For each function, I wrote a prototype that performed the basic calculation and then tested it, patching errors along the way.
-(((program development plan)))(((prototyping and patch)))
+O plano de desenvolvimento que estamos demonstrando é chamado de "protótipo e correção". Para cada função, escrevemos um protótipo que executa cálculos básicos e depois testamos, fragmentando erros no caminho.
+(((plano de desenvolvumento de programa)))(((protótipo e correção)))
 
-This approach can be effective, especially if you don’t yet have a deep understanding of the problem. But incremental corrections can generate code that is unnecessarily complicated—since it deals with many special cases—and unreliable—since it is hard to know if you have found all the errors.
+Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um entendimento profundo acerca do problema. Mas correções incrementais podem gerar códigos que por vezes são desnecessariamente complicados—deste que lide com muitos casos especiais—e ilegível—desde que seja muito difícil de saber se você encontrou todos os erros.
 
-An alternative is _designed development_, in which high-level insight into the problem can make the programming much easier. In this case, the insight is that a Time object is really a three-digit number in base 60 (see https://en.wikipedia.org/wiki/Sexagesimal)! The second attribute is the “ones column”, the minute attribute is the “sixties column”, and the hour attribute is the “thirty-six hundreds column”.
-(((designed development)))
+Uma alternativa é o _desenvolvimento projetado_, em que uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, o insight é que um objeto Time é realmente um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a "coluna de um", o atributo de munutos é a "coluna dos sessenta" e o atributo da hora é a "coluna dos tres mil e seiscentos".
+(((desenvolvimento projetado)))
 
-When we wrote +addtime+ and +increment!+, we were effectively doing addition in base 60, which is why we had to carry from one column to the next.
+Quando escrevemos +add_tempo+ e +incremento!+, efetivamente estamos realizando uma adição na base 60, que é justamente o porquê de termos que carregar de uma coluna para outra.
 
-This observation suggests another approach to the whole problem—we can convert +MyTime+ objects to integers and take advantage of the fact that the computer knows how to do integer arithmetic.
+Essa observação nos sugerem uma outra abordagem de todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
 
-Here is a function that converts mytimes to integers:
-(((timetoint)))((("function", "programmer-defined", "timetoint", see="timetoint")))
+Abaixo temos uma função que converte as horas em inteiros.
+(((conversão_inteiro)))((("função", "definido pelo programador", "conversão_inteiro", see="conversão_inteiro")))
 
-[source,@julia-setup chap16]
+[source, @julia-setup chap16]
 ----
-function timetoint(time)
-    minutes = time.hour * 60 + time.minute
-    seconds = minutes * 60 + time.second
+function conversão_inteiro(tempo)
+    minutos = tempo.hora * 60 + tempo.minuto
+    segundos = minutos * 60 + tempo.segundo
 end
 ----
 
-And here is a function that converts an integer to a +MyTime+ (recall that +divrem+ divides the first argument by the second and returns the quotient and remainder as a tuple):
-(((inttotime)))((("function", "programmer-defined", "inttotime", see="inttotime")))
+Logo baixo temos uma função que converte um inteiro a +minha_hora+ (lembre-se que +divrem+ divide o primeiro argumento pelo segundo e retorna o quociente e o resto como uma tupla):
+(((conversão_tempo)))((("função", "definido pelo programador", "conversão_tempo", see="conversão_tempo")))
 
 [source,@julia-setup chap16]
 ----
-function inttotime(seconds)
-    (minutes, second) = divrem(seconds, 60)
-    hour, minute = divrem(minutes, 60)
-    MyTime(hour, minute, second)
+function conversão_tempo()
+    (minutos, segundo) = divrem(segundos, 60)
+    hora, minuto = divrem(minutos, 60)
+    minha_hora(hora, minuto, segundo)
 end
 ----
 
 
-You might have to think a bit, and run some tests, to convince yourself that these functions are correct. One way to test them is to check that +timetoint(inttotime(x)) == x+ for many values of +x+. This is an example of a consistency check.
+Talvez você tenha que pensar um pouco e executar alguns testes para se convercer de que essas funções estão corretas. Uma forma de testar é verificar que +conversão_inteiro(conversão_inteiro(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de consistência na verificação.
 
-Once you are convinced they are correct, you can use them to rewrite +addtime+:
+Uma vez que você esteja convicto que está correto, você poderar usar-los para reescrever +add_tempo+
 
 [source,@julia-setup chap16]
 ----
-function addtime(t1, t2)
-    seconds = timetoint(t1) + timetoint(t2)
-    inttotime(seconds)
+function add_tempo(t1, t2)
+    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
+    conversão_inteiro(segundos)
 end
 ----
 
-This version is shorter than the original, and easier to verify. 
+Essa versão é mais curta que a original e mais fácil de verificar.
 
-===== Exercise 16-5
+===== Exercício 16-5
 
-Rewrite +increment!+ using +timetoint+ and +inttotime+.
+Reescreva +incremento!+ usando +conversão_inteiro+ e +conversão_tempo+.
 
-In some ways, converting from base 60 to base 10 and back is harder than just dealing with times. Base conversion is more abstract; our intuition for dealing with time values is better.
+Algumas vezes, converter da base 60 para a base 10 e vice-versa é mais difícil que lidar com tempo. A conversão de base é mais abstracta; nossa intuição por lidar com valores de tempo é melhor.
 
-But if we have the insight to treat times as base 60 numbers and make the investment of writing the conversion functions (+timetoint+ and +inttotime+), we get a program that is shorter, easier to read and debug, and more reliable.
+No entanto, se tivermos a visão de tratar horas como números de base 60 e investirmos esforço em escrever as funções de conversão (+conversão_inteiro+ e +conversão_tempo+), chegamos a um programa que é mais curto, mais fácil de ler e depurar, e mais confiável.
 
-It is also easier to add features later. For example, imagine subtracting two +MyTime+s to find the duration between them. The naive approach would be to implement subtraction with borrowing. Using the conversion functions would be easier and more likely to be correct.
+Também é mais fácil acrescentar recursos depois. Por exemplo, imagine subtrair dois objetos +minha_hora+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com transporte. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
 
-Ironically, sometimes making a problem harder (or more general) makes it easier (because there are fewer special cases and fewer opportunities for error).
+Ironicamente, tornar um problema mais difícil (ou mais geral) facilita (porque há menos casos especiais e menos oportunidades de erro).
 
 [[chap16_debugging]]
-=== Debugging
+=== Depurando
 
-A +MyTime+ object is well-formed if the values of +minute+ and +second+ are between 0 and 60 (including 0 but not 60) and if +hour+ is positive. +hour+ and +minute+ should be integral values, but we might allow +second+ to have a fraction part.
-(((debugging)))
+Um objeto +minha_hora+ é bem formado se os valores de +minuto+ e +segundo+ estão entre 0 e 60 (incluindo 0 mas não 60) e se +hora+ é positivo. +hora+ e +minuto+ devem ser valores integrais mas talvez devessemos permitir que +segundo+ tenha uma parte fracional.
+(((depurando)))
 
-Requirements like these are called _invariants_ because they should always be true. To put it a different way, if they are not true, something has gone wrong.
-(((invariant)))
+Requisitos como esses são ditos _invariantes_ porque sempre devem ser verdadeiros. Para dizer de outra forma, se não forem verdadeiros, algo deu errado.
+(((invariante)))
 
-Writing code to check invariants can help detect errors and find their causes. For example, you might have a function like +isvalidtime+ that takes a +MyTime+ object and returns +false+ if it violates an invariant:
-(((isvalidtime)))((("function", "programmer-defined", "isvalidtime", see="isvalidtime")))
+Escrever código para verificar requisitos invariantes pode ajudar a descobrir erros e encontrar suas causas. Por exemplo, você pode ter uma função como +hora_válida+, que receba um objeto +minha_hora+ e retorne +false+ se ele violar um requisito invariante:
+(((hora_válida)))((("função", "definido pelo programador", "hora_válida", see="hora_válida")))
 
 [source,@julia-setup chap16]
 ----
-function isvalidtime(time)
-    if time.hour < 0 || time.minute < 0 || time.second < 0
+function hora_válida(tempo)
+    if tempo.hora < 0 || tempo.minuto < 0 || tempo.segundo < 0
         return false
     end
-    if time.minute >= 60 || time.second >= 60
+    if tempo.minuto >= 60 || tempo.segundo >= 60
         return false
     end
     true
 end
 ----
 
-At the beginning of each function you could check the arguments to make sure they are valid:
-(((addtime)))(((error)))
+No início de cada função você deve checar os argumentos para ter certeza de que eles são válidos.
+(((add_tempo)))(((error)))
 
 [source,@julia-setup chap16]
 ----
-function addtime(t1, t2)
-    if !isvalidtime(t1) || !isvalidtime(t2)
-        error("invalid MyTime object in add_time")
+function add_tempo(t1,t2)
+    if !hora_válida(t1) || !hora_válida(t2)
+        error("objeto minha_hora inválido em add_tempo")
     end
-    seconds = timetoint(t1) + timetoint(t2)
-    inttotime(seconds)
+    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
+    conversão_tempo(segundos)
 end
 ----
 
-Or you could use an +@assert+ macro, which checks a given invariant and throws an exception if it fails:
-(((@assert)))((("macro", "Base", "@assert", see="@assert")))
+Ou você pode usar uma instrução +@asset+, que verifica determinado requisito invariável e cria uma exceção se ela falhar:
+(((@assert)))((("instrução", "Base", "@assert", see="@assert")))
 
 [source,@julia-setup chap16]
 ----
-function addtime(t1, t2)
-    @assert(isvalidtime(t1) && isvalidtime(t2), "invalid MyTime object in add_time")
-    seconds = timetoint(t1) + timetoint(t2)
-    inttotime(seconds)
+function add_tempo(t1, t2)
+    @assert(hora_válida(t1) && hora_válida(t2), "objeto minha_hora inválido em add_tempo")
+    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
+    conversão_tempo(segundos)
 end
 ----
 
-+@assert+ macros are useful because they distinguish code that deals with normal conditions from code that checks for errors.
+instruções +@assert+ são úteis porque distinguem o código que lida com condições normais do código que verifica erros.
 
 
-=== Glossary
+=== Glossário
 
-prototype and patch::
-A development plan that involves writing a rough draft of a program, testing, and correcting errors as they are found.
-(((prototype and patch)))
+protótipo e correção::
+Um plano de desenvolvimento que envolve escrever um rascunho de um programa, testar e corrigir erros que são encontrados.
+(((protótipo e correção)))
 
-designed development::
-A development plan that involves high-level insight into the problem and more planning than incremental development or prototype development.
-(((designed development)))
+desenvolvimento projetado::
+Plano de desenvolvimento que implica uma compreensão de alto nível do problema e mais planejamento que desenvolvimento incremental ou desenvolvimento prototipado.
+(((desenvolvimento projetado)))
 
-pure function::
-A function that does not modify any of the objects it receives as arguments. Most pure functions are fruitful.
-(((pure function)))
+funções puras::
+Função que não altera nenhum dos objetos que recebe como argumento. A maior parte das funções puras gera resultado.
+(((função pura)))
 
-modifier::
-A function that changes one or more of the objects it receives as arguments. Most modifiers are void; that is, they return +nothing+.
-(((modifier)))
+modificador::
+Função que modifica um ou vários dos objetos que recebe como argumento. A maior parte dos modificadores são nulos; isto é, retornam +nothing+.
+(((modificador)))
 
-functional programming style::
-A style of program design in which the majority of functions are pure.
-(((functional programming style)))
+programa funcional::
+Um estilo de projeto de programa no qual a maioria das funções são puras.
+(((programa funcional)))
 
-invariant::
-A condition that should never change during the execution of a program.
-(((invariant)))
+invariante::
+Uma condição que nunca deve mudar durante a execução de um programa.
+(((invariante)))
 
 
-=== Exercises
+=== Exercícios
 
 [[ex16-1]]
-===== Exercise 16-6
+===== Exercício 16-6
 
-Write a function called +multime+ that takes a +MyTime+ object and a number and returns a new +MyTime+ object that contains the product of the original +MyTime+ and the number.
-(((multime)))((("function", "programmer-defined", "multime", see="multime")))
+Escreva uma função chamada +multime+ que pega um objeto +minha_hora+ e um número, e retorna um novo objeto +minha_hora+ que contém o produto do +minha_hora+ original e do número.
+(((multime)))((("função", "definido pelo programador", "multime", see="multime")))
 
-Then use +multime+ to write a function that takes a +MyTime+ object that represents the finishing time in a race, and a number that represents the distance, and returns a +MyTime+ object that represents the average pace (time per mile).
+Então use +multime+ para escrever uma função que receba um objeto +minha_hora+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +minha_hora+ com o passo médio (tempo por quilômetros).
 
 [[ex16-2]]
-===== Exercise 16-7
+===== Exercício 16-7
 
-Julia provides time objects that are similar to the +MyTime+ objects in this chapter, but they provide a rich set of function and operators. Read the documentation at https://docs.julialang.org/en/v1/stdlib/Dates/.
+O Julia fornece objetos de tempo que são similares aos objetos +minha_hora+ desse capítulo, mas eles fornecem um conjunto rico de funções e operadores. Leia a documentação em https://docs.julialang.org/en/v1/stdlib/Dates/.
 
-. Write a program that gets the current date and prints the day of the week.
+. Escreva um programa que obtenha a data atual e imprima o dia da semana.
 
-. Write a program that takes a birthday as input and prints the user’s age and the number of days, hours, minutes and seconds until their next birthday.
+. Escreva um programa que aceite um aniversário como entrada e imprima a idade do usuário e o número de dias, horas, minutos e segundos até o próximo aniversário.
 
-. For two people born on different days, there is a day when one is twice as old as the other. That’s their Double Day. Write a program that takes two birthdays and computes their Double Day.
+. Para duas pessoas nascidas em dias diferentes, há um dia em que uma tem o dobro da idade da outra. Esse é o dia duplo deles. Escreva um programa que faça dois aniversários e calcule o dia duplo.
 
-. For a little more challenge, write the more general version that computes the day when one person is latexmath:[\(n\)] times older than the other.
-
+. Para lhe desafiar um pouco, escreva a versão mais geral que calcula o dia em que uma pessoa está com latexmath:[\(n\)] vezes mais antiga que a outra.
