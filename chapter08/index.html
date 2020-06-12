@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591944990757328e9</code></pre>
+1.591947520776954e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6632,7 +6632,7 @@ julia&gt; fruta[1:2:6]
 <p>Um tamanho de passo -1 percorre a palavra ao contrário, então a fatia <code>[end:-1:1]</code> gera uma string reversa.</p>
 </div>
 <div class="paragraph">
-<p>Use esse idioma para escrever uma versão de uma linha de <code>ispalindrome</code> do <a href="#ex06-3">Exercise 6-6</a>.
+<p>Use esse idioma para escrever uma versão de uma linha de <code>é_palíndromo</code> do <a href="#ex06-3">Exercise 6-6</a>.
 </p>
 </div>
 </div>
@@ -6696,7 +6696,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo <code>"cheer"</code> rotacionado por 7 é <code>"jolly"</code> e <code>"melon"</code> rotacionado por -10 é <code>"cubed"</code>. No filme <em>2001: Odisseia no espaço, o computador de bordo</em> é chamado de HAL, que é IBM rotacionado por -1.</p>
+<p>Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo <code>"ovo"</code> rotacionado por 16 é <code>"ele"</code> e <code>"melon"</code> rotacionado por -10 é <code>"cubed"</code>. No filme <em>2001: Odisseia no espaço, o computador de bordo</em> é chamado de HAL, que é IBM rotacionado por -1.</p>
 </div>
 <div class="paragraph">
 <p>Escreva uma função chamada <code>rotacionapalavra</code> que recebe uma string e um inteiro como parâmetros, e retorna uma nova string que contém as letras da string original rotacionada pela inteiro fornecido.
@@ -13593,9 +13593,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♥ 9♦ 7♣ 10♣ J♥ 6♠ 8♥ 4♣ Q♦ 2♣ 3♣ 9♠ K♦ 5♦ 4♠ 5♥ 2♥ 5♣ 7♠ K♠ 7♦ 8♦ 3♦ A♦ Q♠ 7♥ J♣ 4♦ 10♦ Q♥ 5♠ K♣ J♠ A♥ 6♣ K♥ 2♠ 10♠ 2♦ 9♣ 8♠ 10♥ 9♥ Q♣ A♣ 3♥ 3♠ J♦ 4♥ A♠ 8♣ 6♦
+2♦ 3♠ K♦ J♥ 2♠ Q♠ A♣ A♠ 10♠ 5♥ 6♥ 9♦ Q♥ Q♦ 2♣ 5♠ J♣ K♥ 10♥ 8♦ 10♣ K♣ 3♣ 7♠ 3♦ 8♣ 4♠ 6♦ 5♦ 7♣ 9♣ 6♣ 10♦ Q♣ A♦ 7♦ 9♥ 4♣ K♠ 6♠ 9♠ 8♠ 4♦ 8♥ 4♥ J♠ 2♥ 3♥ 7♥ J♦ A♥ 5♣
 julia&gt; card = pop!(deck)
-6♦
+5♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16280,7 +16280,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-12 06:56:27 UTC
+Last updated 2020-06-12 07:38:37 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
