@@ -563,8 +563,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_string_são_imutáveis">String são Imutáveis</a></li>
 <li><a href="#_interpolação_de_strings">Interpolação de Strings</a></li>
 <li><a href="#searching">Buscando</a></li>
-<li><a href="#looping_and_counting">Dando loop e contando</a></li>
-<li><a href="#_biblioteca_string">Biblioteca String</a></li>
+<li><a href="#looping_and_counting">Realizando laços e Contando</a></li>
+<li><a href="#_a_biblioteca_de_strings">A Biblioteca de Strings</a></li>
 <li><a href="#_o_operador_code_code">O Operador <code>∈</code></a></li>
 <li><a href="#_comparação_de_strings">Comparação de Strings</a></li>
 <li><a href="#deb08">Debugando</a></li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591943549715317e9</code></pre>
+1.591944990757328e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6034,14 +6034,14 @@ ERROR: StringIndexError("🍌 🍎 🍐", 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>No caso de <code>frutas</code>, o caractere <code>🍌</code> é um caractere de quatro bytes, então os índices 2,3 e 4 são inválido e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por <code>nextind(frutas, 1)</code>, e o índice depois dele por <code>nextind(frutas, 5)</code> e assim por diante.
+<p>No caso de <code>frutas</code>, o caractere <code>🍌</code> é um caractere de quatro bytes, então os índices 2,3 e 4 são inválidos e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por <code>nextind(frutas, 1)</code> e o índice depois dele por <code>nextind(frutas, 5)</code> e assim por diante.
 </p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_travessia">Travessia</h3>
 <div class="paragraph">
-<p>Muitos cálculos envolvem o processamento de uma string, um caractere de cada vez. Comumente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de <em>travessia</em>. Um jeito de escrever uma travessia é com um loop <code>while</code>:
+<p>Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Comumente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de <em>travessia</em>. Um jeito de escrever uma travessia é com um laço <code>while</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -6055,7 +6055,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse loop faz a travessia da string e exibe cada letra em uma linha por si só. A condição do loop é <code>index &lt;= sizeof(fruta)</code>, então quando o índice é maior que o número de bytes em uma string, a condição é <code>false</code>, e o corpo do loop não executa.</p>
+<p>Esse laço faz a travessia da string e exibe cada letra em uma linha por si só. A condição do laço é <code>index &lt;= sizeof(fruta)</code>, então quando o índice é maior que o número de bytes em uma string, a condição é <code>false</code>, e o corpo do laço não executa.</p>
 </div>
 <div class="paragraph">
 <p>A função <code>firstindex</code> retorna o primeiro índice de bytes válido. A palavra-chave <code>global</code> antes de <code>índice</code> indica que nós queremos re-atribuir a variável <code>índice</code> definida em <code>Main</code> (ver <a href="#global_variables">Global Variables</a>).
@@ -6148,7 +6148,7 @@ julia&gt; str[1:5]
 </div>
 </div>
 <div class="paragraph">
-<p>Se o primeiro índice é maior que o segundo, o resultado é uma <em>string vazia</em>, representada por duas aspas:
+<p>Se o primeiro índice é maior que o segundo, o resultado é uma <em>string vazia</em>, representada por aspas duplas:
 </p>
 </div>
 <div class="listingblock">
@@ -6245,10 +6245,10 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>De certo modo, buscar é o inverso do operador <code>[]</code>. Ao invés de pegar um índice e extrair o caractere correspondente, ela recebe o caractere e busca o índice aonde este caractere aparece. Se o caractere não é achado, a função retorna -1.</p>
+<p>De certo modo, buscar é o inverso do operador <code>[]</code>. Ao invés de pegar um índice e extrair o caractere correspondente, ela recebe o caractere e busca o índice aonde este caractere aparece. Se o caractere não é encontrado, a função retorna -1.</p>
 </div>
 <div class="paragraph">
-<p>Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um loop. Se <code>palavra[índice] == letra</code>, a função sai do loop e retorna imediatamente.</p>
+<p>Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um laço. Se <code>palavra[índice] == letra</code>, a função sai do laço e retorna imediatamente.</p>
 </div>
 <div class="paragraph">
 <p>Se o caractere não aparece na string, o programa sai do laço normalmente e retorna -1.</p>
@@ -6265,7 +6265,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="looping_and_counting">Dando loop e contando</h3>
+<h3 id="looping_and_counting">Realizando laços e Contando</h3>
 <div class="paragraph">
 <p>O seguinte programa conta o número de vezes que a letra <code>a</code> aparece em uma string:</p>
 </div>
@@ -6282,7 +6282,7 @@ println(contador)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse programa demonstra outro padrão de programação chamado <em>contador</em>. A variável <code>contador</code> é inicializada com 0 e incrementada toda vez que um <code>a</code> é encontrado. Quando a função sai do loop, <code>contador</code> contém o resultado-o número total de <code>a</code>’s.
+<p>Esse programa demonstra outro padrão de programação chamado <em>contador</em>. A variável <code>contador</code> é inicializada com 0 e incrementada toda vez que um <code>a</code> é encontrado. Quando a função sai do laço, <code>contador</code> contém o resultado-o número total de <code>a</code>’s.
 </p>
 </div>
 <div class="sect4">
@@ -6296,7 +6296,7 @@ println(contador)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_biblioteca_string">Biblioteca String</h3>
+<h3 id="_a_biblioteca_de_strings">A Biblioteca de Strings</h3>
 <div class="paragraph">
 <p>O Julia fornece funções que executam uma variedade de operações utéis com strings. Por exemplo, a função <code>uppercase</code> recebe uma string e retorna uma nova string com todas suas letras maiúsculas.
 </p>
@@ -6458,17 +6458,17 @@ end</code></pre>
 <p>A primeira declaração <code>if</code> verifica se as palavras são do mesmo tamanho. Se não, nós podemos retornar <code>false</code> imediatamente. Caso contrário, para o resto da função, nós podemos assumir que as palavras são do mesmo tamanho. Isso é um exemplo do padrão guardião.</p>
 </div>
 <div class="paragraph">
-<p><code>i</code> e <code>j</code> são índices: <code>i</code> percorre a <code>palavra1</code> de frente para trás, enquanto <code>j</code> percorre a <code>palavra2</code> de trás para frente. Se nós acharmos duas letras que não são iguais, nós podemos retornar <code>false</code> imediatamente. Se nós passarmos pelo loop inteiro e todas as letras forem iguais, nós retornamos <code>true</code>.</p>
+<p><code>i</code> e <code>j</code> são índices: <code>i</code> percorre a <code>palavra1</code> de frente para trás, enquanto <code>j</code> percorre a <code>palavra2</code> de trás para frente. Se nós acharmos duas letras que não são iguais, nós podemos retornar <code>false</code> imediatamente. Se nós passarmos pelo laço inteiro e todas as letras forem iguais, nós retornamos <code>true</code>.</p>
 </div>
 <div class="paragraph">
 <p>A função <code>lastindex</code> retorna o último índice de bytes válido de uma string e <code>prevind</code> o último índice válido de um caractere.</p>
 </div>
 <div class="paragraph">
-<p>Se nós testarmos essa função com as palavras "pots" e "stop", nós esperamos que o valor de retorno seja <code>true</code>, mas nós obtemos <code>false</code>:</p>
+<p>Se nós testarmos essa função com as palavras "pare" e "erap", nós esperamos que o valor de retorno seja <code>true</code>, mas nós obtemos <code>false</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pots", "stop")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pare", "erap")
 false</code></pre>
 </div>
 </div>
@@ -6488,14 +6488,14 @@ false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pots", "stop")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pare", "erap")
 i = 1
 j = 3
 false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Na primeira vez dentro do laço, o valor de <code>j</code> é 3, que tem que ser 4. Isso pode ser consertado movendo <code>j = prevind(palavra2, j)</code> para o final do laço <code>while</code>.</p>
+<p>Na primeira iteração do laço, o valor de <code>j</code> é 3, que tem que ser 4. Isso pode ser consertado movendo <code>j = prevind(palavra2, j)</code> para o final do laço <code>while</code>.</p>
 </div>
 <div class="paragraph">
 <p>Se consertamos este erro e executarmos novamente o programa, obtemos:</p>
@@ -6518,7 +6518,7 @@ ERROR: BoundsError: attempt to access String
 </div>
 </div>
 <div class="paragraph">
-<p>Desta vez um <code>BoundsError</code> foi gerado. O valor de <code>i</code> é 5, que está fora do alcance para a string <code>"pots"</code>.
+<p>Desta vez um <code>BoundsError</code> foi gerado. O valor de <code>i</code> é 5, que está fora do alcance para a string <code>"pare"</code>.
 </p>
 </div>
 <div class="sect4">
@@ -6600,7 +6600,7 @@ ERROR: BoundsError: attempt to access String
 <div class="sect4">
 <h5 id="ex08-1">Exercício 8-7</h5>
 <div class="paragraph">
-<p>Leia a documentação das funções string em <a href="https://docs.julialang.org/en/v1/manual/strings/" class="bare">https://docs.julialang.org/en/v1/manual/strings/</a>. Você pode querer experimentar com algumas delas para garantir que você entende como elas funcionam. <code>strip</code> e <code>replace</code> são particulamente utéis.</p>
+<p>Leia a documentação das funções string em <a href="https://docs.julialang.org/en/v1/manual/strings/" class="bare">https://docs.julialang.org/en/v1/manual/strings/</a>. Você talvez queira experimentar algumas delas para garantir que você entende como elas funcionam. <code>strip</code> e <code>replace</code> são particulamente utéis.</p>
 </div>
 <div class="paragraph">
 <p>A documentação usa uma sintaxe que pode ser confusa. Por exemplo, em <code>search(string::AbstractString, chars::Chars, [start::Integer])</code>, os colchetes indicam argumentos opcionais. Então <code>string</code> e <code>chars</code> são obrigatórios, mas <code>start</code> é opcional.
@@ -6610,14 +6610,14 @@ ERROR: BoundsError: attempt to access String
 <div class="sect4">
 <h5 id="ex08-2">Exercício 8-8</h5>
 <div class="paragraph">
-<p>Existe uma função embutida chamada <code>count</code> que é similar à função em <a href="#looping_and_counting">Dando loop e contando</a>. Leia a documentação desta função e a use para contar o número de <code>a</code>’s em "banana".
+<p>Existe uma função embutida chamada <code>count</code> que é similar à função em <a href="#looping_and_counting">Realizando laços e Contando</a>. Leia a documentação desta função e a use para contar o número de <code>a</code>’s em "banana".
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex08-3">Exercício 8-9</h5>
 <div class="paragraph">
-<p>Uma fatia de string pode receber um terceiro índice. O primeiro especifica o começo, o terceiro o fim e o segundo o “tamanho do passo”; isto é, o número de espaços entre caracteres sucessivos. Um tamanho de passo de 2 significa que andamos de dois em dois; 3 significa de três em três, etc.
+<p>Uma fatia de string pode receber um terceiro índice. O primeiro especifica o começo, o terceiro o fim e o segundo o “tamanho do passo”; isto é, o número de espaços entre caracteres sucessivos. Um tamanho de passo de 2 significa que andamos de dois em dois; 3 significa de três em três e etc.
 </p>
 </div>
 <div class="listingblock">
@@ -13593,9 +13593,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♠ 5♠ 6♦ 9♣ Q♠ 7♥ K♦ 4♠ 6♣ Q♥ K♥ 2♠ Q♣ 7♦ 8♣ 9♥ 3♠ Q♦ A♣ 9♠ 10♥ 5♥ J♣ 2♣ 5♣ 8♠ 3♦ 10♠ 2♥ 8♦ J♥ 10♣ 3♣ 4♣ 2♦ 7♣ K♣ K♠ A♠ 6♠ 9♦ A♦ A♥ 5♦ 3♥ 4♥ 10♦ 6♥ 7♠ 8♥ J♦ 4♦
+6♥ 9♦ 7♣ 10♣ J♥ 6♠ 8♥ 4♣ Q♦ 2♣ 3♣ 9♠ K♦ 5♦ 4♠ 5♥ 2♥ 5♣ 7♠ K♠ 7♦ 8♦ 3♦ A♦ Q♠ 7♥ J♣ 4♦ 10♦ Q♥ 5♠ K♣ J♠ A♥ 6♣ K♥ 2♠ 10♠ 2♦ 9♣ 8♠ 10♥ 9♥ Q♣ A♣ 3♥ 3♠ J♦ 4♥ A♠ 8♣ 6♦
 julia&gt; card = pop!(deck)
-4♦
+6♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15515,7 +15515,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20490(double, double) {
+define double @julia_squaresum_20494(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16280,7 +16280,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-12 06:32:26 UTC
+Last updated 2020-06-12 06:56:27 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
