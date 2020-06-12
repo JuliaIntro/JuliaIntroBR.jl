@@ -7,20 +7,20 @@ Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string 
 [[characters]]
 === Caracteres
 
-Falantes da língua portuguesa estão familiarizados com caracteres como as letras do alfabeto (A, B, C, ...), numerais, e a pontuação comum. Esses caracteres são padronizados e mapeados para valores inteiros entre 0 e 127 pelo _padrão ASCII_ (American Standard Code for Information ou "Código Padrão Americano de Intercâmbio de Informações")
+Falantes da língua portuguesa estão familiarizados com caracteres como as letras do alfabeto (A, B, C, ...), numerais e a pontuação comum. Esses caracteres são padronizados e mapeados para valores inteiros entre 0 e 127 pelo _padrão ASCII_ (American Standard Code for Information ou "Código Padrão Americano de Intercâmbio de Informações")
 (((padrão ASCII)))
 
-Existem, é claro, muitos outros caracteres usados em línguas diferentes do Português, incluindo variantes dos caracteres ASCII com acentos e outras modificações, scripts relacionados como o Cirílico e o Grego, e scripts completamente não relacionados ao ASCII e ao Português, incluindo Árabe, Chinês, Hebreu, Hindi, Japonês, e Koreano.
-O _padrão Unicode_ lida com as complexidades do que exatamente é um caractere, e é geralmente aceitado como o padrão definitivo que resolve esse problema. Ele fornece um número único para todo caractere em uma escala mundial.
+Existem, é claro, muitos outros caracteres usados em línguas diferentes do Português, incluindo variantes dos caracteres ASCII com acentos e outras modificações, scripts relacionados como o Cirílico e o Grego e scripts completamente não relacionados ao ASCII e ao Português, incluindo Árabe, Chinês, Hebreu, Hindi, Japonês e Koreano.
+O _padrão Unicode_ lida com as complexidades do que exatamente é um caractere e é geralmente aceitado como o padrão definitivo que resolve esse problema. Ele fornece um número único para todo caractere em uma escala mundial.
 (((padrão Unicode)))
 
-Um valor +Char+ representa um único caractere e está cercado por aspas únicas:
+Um valor +Char+ representa um único caractere e está cercado por aspas simples:
 (((Char)))((("tipo", "Base", "Char", see="Char")))
 
 [source,@julia-repl-test]
 ----
 julia> 'x'
-'x': ASCII/Unicode U+0078 (category Ll: letra, lowercase)
+'x': ASCII/Unicode U+0078 (category Ll: Letter, lowercase)
 julia> '🍌'
 '🍌': Unicode U+1F34C (category So: Symbol, other)
 julia> typeof('x')
@@ -31,7 +31,7 @@ Até mesmo emojis fazem parte do padrão Unicode. (*+\:banana: TAB+*)
 (((emoji)))
 
 
-=== Uma string é uma sequência
+=== Uma String é uma sequência
 
 Uma string é uma sequência de caracteres. Você pode acessar os caracteres um de cada vez com o operador colchetes:
 (((string)))(((String)))(((sequência)))(((operador colchetes)))((("[]", see="operador colchetes")))((("operador", "Base", "[]", see="operador colchetes")))
@@ -41,10 +41,10 @@ Uma string é uma sequência de caracteres. Você pode acessar os caracteres um 
 julia> fruta = "banana"
 "banana"
 julia> letra = fruta[1]
-'b': ASCII/Unicode U+0062 (category Ll: letter, lowercase)
+'b': ASCII/Unicode U+0062 (category Ll: Letter, lowercase)
 ----
 
-A segunda declaração seleciona o caractere número 1 de +fruta+ e o atribui para +letra+.
+O segundo comando seleciona o primeiro caractere de +fruta+ e o atribui para +letra+.
 
 A expressão em colchetes é chamada de _índice_. O índice indica qual caractere da sequência você deseja (por isso o nome).
 (((índice)))
@@ -55,7 +55,7 @@ Toda indexação no Julia começa em 1, o primeiro elemento de qualquer objeto i
 [source,@julia-repl-test chap08]
 ----
 julia> fruta[end]
-'a': ASCII/Unicode U+0061 (category Ll: letra, lowercase)
+'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 
 Você pode usar como índice uma expressão que contém variáveis e operadores:
@@ -65,9 +65,9 @@ Você pode usar como índice uma expressão que contém variáveis e operadores:
 julia> i = 1
 1
 julia> fruta[i+1]
-'a': ASCII/Unicode U+0061 (category Ll: letter, lowercase)
+'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 julia> fruta[end-1]
-'n': ASCII/Unicode U+006E (category Ll: letter, lowercase)
+'n': ASCII/Unicode U+006E (category Ll: Letter, lowercase)
 ----
 
 Mas o valor do índice precisa ser um inteiro. Caso contrário você recebe:
@@ -88,7 +88,7 @@ ERROR: MethodError: no method matching getindex(::String, ::Float64)
 ----
 julia> frutas = "🍌 🍎 🍐"
 "🍌 🍎 🍐"
-julia> len = length(frutas)
+julia> tamanho = length(frutas)
 5
 ----
 
@@ -154,7 +154,7 @@ A função +firstindex+ retorna o primeiro índice de bytes válido. A palavra-c
 
 Escreva uma função que recebe uma string como argumento e exibe as letras ao contrário, uma por linha.
 
-Outro jeito de escrever uma travessia é com o loop +for+:
+Outra maneira de escrever uma travessia é com o laço +for+:
 (((declaração for)))(((in)))
 
 [source,@julia-setup chap08]
@@ -164,9 +164,9 @@ for letra in frutas
 end
 ----
 
-Cada vez que o loop é percorrido, o próximo caractere na string é atribuido para a variável +letra+. O loop continua até que não hajam mais caracteres sobrando.
+Cada vez que o laço é percorrido, o próximo caractere na string é atribuido para a variável +letra+. O laço continua até que não haja mais caracteres sobrando.
 
-O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um loop +for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, _Make way for Ducklings_ (Abra caminho para os patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse loop gera os nomes em ordem:
+O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço+for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, _Make way for Ducklings_ (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:
 
 [source,@julia chap08-3]
 ----
@@ -178,11 +178,11 @@ for letra in prefixos
 end
 ----
 
-É claro, isto não está completamente correto pois, “Ouack” E “Quack” estão incorretos.
+É claro, isso não está completamente correto pois “Ouack” e “Quack” estão incorretos.
 
 ===== Exercício 8-2
 
-Modifique o programa para consertar esse erro.
+Modifique o programa para consertar este erro.
 
 
 === Fatias de Strings
@@ -207,7 +207,7 @@ A palavra-chave +end+ pode ser usada para indicar o último byte da string:
 [source,@julia-repl-test chap08]
 ----
 julia> str[8:end]
-"Caesar"
+"César"
 ----
 
 Se o primeiro índice é maior que o segundo, o resultado é uma _string vazia_, representada por duas aspas:
@@ -219,7 +219,7 @@ julia> str[8:7]
 ""
 ----
 
-Uma string vazia não contém nenhum caractere e possui tamanho 0, mas diferente disso, é igual a qualquer outra string.
+Uma string vazia não contém nenhum caractere e possui tamanho 0, mas fora isso, é igual a qualquer outra string.
 
 ===== Exercício 8-3
 
@@ -253,7 +253,7 @@ Esse exemplo concatena uma nova primeira letra em uma fatia de cumprimento. Ele 
 
 === Interpolação de Strings
 
-Construir strings usando concatenação pode vir a ser um incómodo. Para reduzir a necessidade dessas chamadas verbosas para +string+ ou multiplicações repetidas, O Julia permite _interpolação de strings_ usando +$+:
+Construir strings usando concatenação pode vir a ser um incômodo. Para reduzir a necessidade dessas chamadas verbosas para +string+ ou multiplicações repetidas, o Julia permite _interpolação de strings_ usando +$+:
 (((interpolação de strings)))((("$", see="interpolação de strings")))
 
 [source,@julia-repl-test]
@@ -300,7 +300,7 @@ De certo modo, buscar é o inverso do operador +[]+. Ao invés de pegar um índi
 
 Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um loop. Se +palavra[índice] == letra+, a função sai do loop e retorna imediatamente.
 
-Se o caractere não aparece na string, o programa sai do loop normalmente e retorna -1.
+Se o caractere não aparece na string, o programa sai do laço normalmente e retorna -1.
 
 Esse padrão de computação-percorrendo a sequência e retornando quando achamos o que estamos procurando-é chamado de _busca_.
 (((busca)))
@@ -318,7 +318,7 @@ O seguinte programa conta o número de vezes que a letra +a+ aparece em uma stri
 [source,@julia-setup]
 ----
 palavra = "banana"
-countador = 0
+contador = 0
 for letra in palavra
     if letra == 'a'
         global contador = contador + 1
@@ -327,7 +327,7 @@ end
 println(contador)
 ----
 
-Esse programa demonstra outro padrão de computação chamado _contador_. A variável +contador+ é inicializada com 0 e incrementada toda vez que um +a+ é achado. Quando a função sai do loop, +contador+ contém o resultado-o número total de +a+’s.
+Esse programa demonstra outro padrão de programação chamado _contador_. A variável +contador+ é inicializada com 0 e incrementada toda vez que um +a+ é encontrado. Quando a função sai do loop, +contador+ contém o resultado-o número total de +a+’s.
 (((contador)))
 
 ===== Exercício 8-5
@@ -375,7 +375,7 @@ julia> findnext("na", "banana", 4)
 ----
 
 
-=== O operador +∈+
+=== O Operador +∈+
 
 O operador +∈+ (*+\in TAB+*) é um operador booleano que recebe um caractere e uma string e retorna +true+ se o caractere aparece na string:
 ((("∈", see="in")))((("operador", "Base", "in", see="in")))((("operador", "Base", "∈", see="in")))
@@ -400,7 +400,7 @@ function em_ambos(palavra1, palavra2)
 end
 ----
 
-Com variáveis de nomes bem escolhidos, o Julia as vezes lê como Inglês. Você poderia ler este loop, “para (cada) letra na (primeira) palavra, se (a) letra é um elemento da (segunda) palavra, imprima (a) letra”
+Com variáveis de nomes bem escolhidos, o Julia às vezes lê como Inglês. Você poderia ler este laço da seguinte forma: “para (cada) letra na (primeira) palavra, se (a) letra é um elemento da (segunda) palavra, imprima (a) letra”
 
 Isso é o que você recebe se você compara +"maçãs"+ e +"laranjas"+:
 
@@ -438,7 +438,7 @@ else
 end
 ----
 
-Julia não lida letras maiúsculas e minúsculas do mesmo jeito que as pessoas lidam. Todas as letras maiúsculas vem antes de todas as letras minúsculas, então:
+O Julia não lida letras maiúsculas e minúsculas do mesmo jeito que as pessoas lidam. Todas as letras maiúsculas vem antes de todas as letras minúsculas, então:
 
 [source,@julia-eval chap08]
 ----
@@ -453,7 +453,7 @@ end
 
 [TIP]
 ====
-Um jeito comum de resolver este problema é convertendo strings para um formato padrão, como todas minúsculas, antes de efetuar a comparação.
+Uma maneira comum de resolver este problema é convertendo strings para um formato padrão, como todas minúsculas, antes de efetuar a comparação.
 ====
 
 
@@ -536,9 +536,9 @@ j = 3
 false
 ----
 
-A primeira vez dentro do loop, o valor de +j+ é 3, que tem que ser 4. Isso pode ser consertado movendo +j = prevind(palavra2, j)+ para o final do loop +while+.
+Na primeira vez dentro do laço, o valor de +j+ é 3, que tem que ser 4. Isso pode ser consertado movendo +j = prevind(palavra2, j)+ para o final do laço +while+.
 
-Se consertamos este erro e executamos novamente o programa, obtemos:
+Se consertamos este erro e executarmos novamente o programa, obtemos:
 
 [source,@julia-eval chap08]
 ----
@@ -616,7 +616,7 @@ Uma parte de uma string especificado por um alcance de índices.
 (((fatia)))
 
 string vazia::
-Uma string sem caracteres e comprimento 0, representada por duas aspas.
+Uma string sem caracteres e comprimento 0, representada por aspas duplas.
 (((string vazia)))
 
 imutável::
@@ -744,12 +744,12 @@ julia> Int('c') - Int('a')
 2
 ----
 
-Por quê +'c'+ é a terceira letra do alfabeto. Mas tome cuidado: os códigos numéricos para letras maiúsculas são diferentes.
+Por que +'c'+ é a terceira letra do alfabeto. Mas tome cuidado: os códigos numéricos para letras maiúsculas são diferentes.
 
 [source,@julia-repl-test]
 ----
 julia> Char(Int('A') + 32)
-'a': ASCII/Unicode U+0061 (category Ll: letra, lowercase)
+'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 ====
 
