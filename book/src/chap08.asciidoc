@@ -1,7 +1,7 @@
 [[chap08]]
 == Strings
 
-Strings não são como inteiros, pontos flutuante, e tipos booleanos. Uma string é uma _sequência_, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string, e você irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
+Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma _sequência_, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string, e você irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
 (((string)))(((sequência)))
 
 [[characters]]
@@ -46,10 +46,10 @@ julia> letra = fruta[1]
 
 A segunda declaração seleciona o caractere número 1 de +fruta+ e o atribui para +letra+.
 
-A expressão em colchetes é chamada de _indíce_. O indíce indica qual caractere da sequência você deseja (por isso o nome).
-(((indíce)))
+A expressão em colchetes é chamada de _índice_. O índice indica qual caractere da sequência você deseja (por isso o nome).
+(((índice)))
 
-Toda indexação no Julia começa em 1, o primeiro elemento de qualquer objeto inteiramente indexado é encontrado no indíce 1 e o último no indíce +end+:
+Toda indexação no Julia começa em 1, o primeiro elemento de qualquer objeto inteiramente indexado é encontrado no índice 1 e o último no índice +end+:
 (((end)))
 
 [source,@julia-repl-test chap08]
@@ -58,7 +58,7 @@ julia> fruta[end]
 'a': ASCII/Unicode U+0061 (category Ll: letra, lowercase)
 ----
 
-Você pode usar como indíce uma expressão que contém variáveis e operadores:
+Você pode usar como índice uma expressão que contém variáveis e operadores:
 
 [source,@julia-repl-test chap08]
 ----
@@ -70,7 +70,7 @@ julia> fruta[end-1]
 'n': ASCII/Unicode U+006E (category Ll: letter, lowercase)
 ----
 
-Mas o valor do indíce precisa ser um inteiro. Caso contrário você recebe:
+Mas o valor do índice precisa ser um inteiro. Caso contrário você recebe:
 (((MethodError)))((("erro", "Core", "MethodError", see="MethodError")))
 
 [source,@julia-repl-test chap08]
@@ -117,7 +117,7 @@ julia> sizeof("🍌")
 Como um emoji é codificado em 4 bytes e a indexação de strings é baseado em bytes, o quinto elemento de +frutas+ é um +ESPAÇO+.
 (((emoji)))
 
-Isso significa também que nem todo indíce de bytes em uma string UTF-8 é necessariamente um indíce válido para um caractere. Se você indexar em uma string com um indíce de bytes inválido, será gerado um erro:
+Isso significa também que nem todo índice de bytes em uma string UTF-8 é necessariamente um índice válido para um caractere. Se você indexar em uma string com um índice de bytes inválido, será gerado um erro:
 (((StringIndexError)))((("erro", "Base", "StringIndexError", see="StringIndexError")))
 
 [source,@julia-repl-test chap08]
@@ -126,7 +126,7 @@ julia> frutas[2]
 ERROR: StringIndexError("🍌 🍎 🍐", 2)
 ----
 
-No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então os indíces 2,3 e 4 são inválido e o indíce do próximo caractere é 5; esse próximo indíce válido pode ser calculado por +nextind(frutas, 1)+, e o indíce depois dele por +nextind(frutas, 5)+ e assim por diante.
+No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então os índices 2,3 e 4 são inválido e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por +nextind(frutas, 1)+, e o índice depois dele por +nextind(frutas, 5)+ e assim por diante.
 (((nextind)))((("função", "Base", "nextind", see="nextind")))
 
 
@@ -137,17 +137,17 @@ Muitos cálculos envolvem o processamento de uma string, um caractere de cada ve
 
 [source,@julia-setup chap08]
 ----
-indíce = firstindex(frutas)
-while indíce <= sizeof(frutas)
-    letra = frutas[indíce]
+índice = firstindex(frutas)
+while índice <= sizeof(frutas)
+    letra = frutas[índice]
     println(letra)
-    global indíce = nextind(frutas, indíce)
+    global índice = nextind(frutas, índice)
 end
 ----
 
-Esse loop faz a travessia da string e exibe cada letra em uma linha por si só. A condição do loop é +index pass:[&lt;=] sizeof(fruta)+, então quando o indíce é maior que o número de bytes em uma string, a condição é +false+, e o corpo do loop não executa.
+Esse loop faz a travessia da string e exibe cada letra em uma linha por si só. A condição do loop é +index pass:[&lt;=] sizeof(fruta)+, então quando o índice é maior que o número de bytes em uma string, a condição é +false+, e o corpo do loop não executa.
 
-A função +firstindex+ retorna o primeiro indíce de bytes válido. A palavra-chave +global+ antes de +indíce+ indica que nós queremos re-atribuir a variável +indíce+ definida em +Main+ (ver <<global_variables>>).
+A função +firstindex+ retorna o primeiro índice de bytes válido. A palavra-chave +global+ antes de +índice+ indica que nós queremos re-atribuir a variável +índice+ definida em +Main+ (ver <<global_variables>>).
 (((global)))(((firstindex)))((("função", "Base", "firstindex", see="firstindex")))
 
 ===== Exercício 8-1
@@ -210,7 +210,7 @@ julia> str[8:end]
 "Caesar"
 ----
 
-Se o primeiro indíce é maior que o segundo, o resultado é uma _string vazia_, representada por duas aspas:
+Se o primeiro índice é maior que o segundo, o resultado é uma _string vazia_, representada por duas aspas:
 (((string vazia)))((("&quot;&quot;", see="string vazia")))
 
 [source,@julia-repl-test chap08]
@@ -285,20 +285,20 @@ O que a função a seguir faz?
 [source,@julia-setup]
 ----
 function buscar(palavra, letra)
-    indíce = firstindex(palavra)
-    while indíce <= sizeof(palavra)
-        if palavra[indíce] == letra
-            return indíce
+    índice = firstindex(palavra)
+    while índice <= sizeof(palavra)
+        if palavra[índice] == letra
+            return índice
         end
-        indíce = nextind(palavra, indíce)
+        índice = nextind(palavra, índice)
     end
     -1
 end
 ----
 
-De certo modo, buscar é o inverso do operador +[]+. Ao invés de pegar um indíce e extrair o caractere correspondente, ela recebe o caractere e busca o indíce aonde este caractere aparece. Se o caractere não é achado, a função retorna -1.
+De certo modo, buscar é o inverso do operador +[]+. Ao invés de pegar um índice e extrair o caractere correspondente, ela recebe o caractere e busca o índice aonde este caractere aparece. Se o caractere não é achado, a função retorna -1.
 
-Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um loop. Se +palavra[indíce] == letra+, a função sai do loop e retorna imediatamente.
+Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um loop. Se +palavra[índice] == letra+, a função sai do loop e retorna imediatamente.
 
 Se o caractere não aparece na string, o programa sai do loop normalmente e retorna -1.
 
@@ -307,7 +307,7 @@ Esse padrão de computação-percorrendo a sequência e retornando quando achamo
 
 ===== Exercício 8-4
 
-Modifique +busca+ para que ela tenha um terceiro parâmetro, o indíce em +palavra+ aonde ela deve começar a procurar.
+Modifique +busca+ para que ela tenha um terceiro parâmetro, o índice em +palavra+ aonde ela deve começar a procurar.
 
 
 [[looping_and_counting]]
@@ -365,7 +365,7 @@ julia> findfirst("na", "banana")
 3:4
 ----
 
-Por padrão, +findfirst+ começa no início da string, mas a função +findnext+ recebe um terceiro argumento, o +indíce+ onde ela deve começar:
+Por padrão, +findfirst+ começa no início da string, mas a função +findnext+ recebe um terceiro argumento, o +índice+ onde ela deve começar:
 (((findnext)))((("função", "definido pelo programador", "findnext", see="findnext")))
 
 [source,@julia-repl-test]
@@ -387,11 +387,11 @@ true
 ----
 
 Por exemplo, a seguinte função imprime todas as letras da palavra1 que também aparecem na palavra2:
-(((emambos)))((("função", "definido pelo programador", "emambos", see="emambos")))
+(((em_ambos)))((("função", "definido pelo programador", "em_ambos", see="em_ambos")))
 
 [source,@julia-setup chap08-2]
 ----
-function emambos(palavra1, palavra2)
+function em_ambos(palavra1, palavra2)
     for letra in palavra1
         if letra ∈ palavra2
             print(letra, " ")
@@ -406,7 +406,7 @@ Isso é o que você recebe se você compara +"maçãs"+ e +"laranjas"+:
 
 [source,@julia-repl-test chap08-2]
 ----
-julia> emambos("maçãs", "laranjas")
+julia> em_ambos("maçãs", "laranjas")
 a s
 ----
 
@@ -460,12 +460,12 @@ Um jeito comum de resolver este problema é convertendo strings para um formato 
 [[deb08]]
 === Debugando
 
-Quando você usa indíces para percorrer os valores em uma sequência, é difícil de obter o começo e o fim da travessia direito. Aqui está uma função que deveria comparar duas palavras e retornar +true+ se uma das palavras é o inverso da outra, mas ela contém dois erros:
-(((debugando)))(((travessia)))(((éinversa)))((("função", "definido pelo programador", "éinversa", see="éinversa")))
+Quando você usa índices para percorrer os valores em uma sequência, é difícil de obter o começo e o fim da travessia direito. Aqui está uma função que deveria comparar duas palavras e retornar +true+ se uma das palavras é o inverso da outra, mas ela contém dois erros:
+(((debugando)))(((travessia)))(((é_inversa)))((("função", "definido pelo programador", "é_inversa", see="é_inversa")))
 
 [source,@julia-setup chap08]
 ----
-function éinversa(palavra1, palavra2)
+function é_inversa(palavra1, palavra2)
     if length(palavra1) != length(palavra2)
         return false
     end
@@ -484,19 +484,19 @@ end
 
 A primeira declaração +if+ verifica se as palavras são do mesmo tamanho. Se não, nós podemos retornar +false+ imediatamente. Caso contrário, para o resto da função, nós podemos assumir que as palavras são do mesmo tamanho. Isso é um exemplo do padrão guardião.
 
-+i+ e +j+ são indíces: +i+ percorre a +palavra1+ de frente para trás, enquanto +j+ percorre a +palavra2+ de trás para frente. Se nós acharmos duas letras que não são iguais, nós podemos retornar +false+ imediatamente. Se nós passarmos pelo loop inteiro e todas as letras forem iguais, nós retornamos +true+.
++i+ e +j+ são índices: +i+ percorre a +palavra1+ de frente para trás, enquanto +j+ percorre a +palavra2+ de trás para frente. Se nós acharmos duas letras que não são iguais, nós podemos retornar +false+ imediatamente. Se nós passarmos pelo loop inteiro e todas as letras forem iguais, nós retornamos +true+.
 
-A função +lastindex+ retorna o último indíce de bytes válido de uma string e +prevind+ o último indíce válido de um caractere.
+A função +lastindex+ retorna o último índice de bytes válido de uma string e +prevind+ o último índice válido de um caractere.
 
 Se nós testarmos essa função com as palavras "pots" e "stop", nós esperamos que o valor de retorno seja +true+, mas nós obtemos +false+:
 
 [source,@julia-repl-test chap08]
 ----
-julia> éinversa("pots", "stop")
+julia> é_inversa("pots", "stop")
 false
 ----
 
-Para debugar esse tipo de erro, o primeiro passo é imprimir os valores dos indíces:
+Para debugar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:
 
 [source,julia]
 ----
@@ -508,7 +508,7 @@ Para debugar esse tipo de erro, o primeiro passo é imprimir os valores dos ind�
 
 [source,@julia-eval chap08]
 ----
-function éinversa(palavra1, palavra2)
+function é_inversa(palavra1, palavra2)
     if length(palavra1) != length(palavra2)
         return false
     end
@@ -530,7 +530,7 @@ Agora quando executamos novamente o programa, obtemos mais informação:
 
 [source,@julia-repl-test chap08]
 ----
-julia> éinversa("pots", "stop")
+julia> é_inversa("pots", "stop")
 i = 1
 j = 3
 false
@@ -542,7 +542,7 @@ Se consertamos este erro e executamos novamente o programa, obtemos:
 
 [source,@julia-eval chap08]
 ----
-function éinversa(palavra1, palavra2)
+function é_inversa(palavra1, palavra2)
     if length(palavra1) != length(palavra2)
         return false
     end
@@ -562,7 +562,7 @@ end;
 
 [source,@julia-repl-test chap08]
 ----
-julia> éinversa("pots", "stop")
+julia> é_inversa("pots", "stop")
 i = 1
 j = 4
 i = 2
@@ -588,7 +588,7 @@ Execute o programa em papel, mudando os valores de +i+ e +j+ durante cada itera�
 === Glossário
 
 sequência::
-Uma coleção ordenada de valores no qual cada valor é identificado por um indíce inteiro.
+Uma coleção ordenada de valores no qual cada valor é identificado por um índice inteiro.
 (((sequência)))
 
 Padrão ASCII::
@@ -599,9 +599,9 @@ Padrão Unicode::
 Um padrão da indústria da computação para a codificação consistente, representação, e tratamento de texto expressado na maioria dos sistemas de escrita do mundo.
 (((Padrão Unicode)))
 
-indíce::
-Um valor inteiro usado para selecionar um item em uma sequência, como um caractere em uma string. Em Julia indíces começam em 1.
-(((indíce)))
+índice::
+Um valor inteiro usado para selecionar um item em uma sequência, como um caractere em uma string. Em Julia índices começam em 1.
+(((índice)))
 
 Codificação UTF-8::
 Uma codificação de comprimento variável de caractere capaz de codificar todas as 1112064 pontos de código usando um a quatro bytes de 8-bit.
@@ -612,7 +612,7 @@ Iterar sobre os items de uma sequência, realizando operações similares em cad
 (((travessia)))
 
 fatia::
-Uma parte de uma string especificado por um alcance de indíces.
+Uma parte de uma string especificado por um alcance de índices.
 (((fatia)))
 
 string vazia::
@@ -655,7 +655,7 @@ Existe uma função embutida chamada +count+ que é similar à função em <<loo
 [[ex08-3]]
 ===== Exercício 8-9
 
-Uma fatia de string pode receber um terceiro indíce. O primeiro especifica o começo, o terceiro o fim e o segundo o “tamanho do passo”; isto é, o número de espaços entre caracteres sucessivos. Um tamanho de passo de 2 significa que andamos de dois em dois; 3 significa de três em três, etc.
+Uma fatia de string pode receber um terceiro índice. O primeiro especifica o começo, o terceiro o fim e o segundo o “tamanho do passo”; isto é, o número de espaços entre caracteres sucessivos. Um tamanho de passo de 2 significa que andamos de dois em dois; 3 significa de três em três, etc.
 (((fatia)))
 
 [source,@julia-repl-test]
@@ -678,7 +678,7 @@ As seguintes função são todas _planejadas_ para checar se a string contém al
 
 [source,@julia-setup]
 ----
-function qualquerminúscula1(s)
+function qualquer_minúscula1(s)
     for c in s
         if islowercase(c)
             return true
@@ -688,7 +688,7 @@ function qualquerminúscula1(s)
     end
 end
 
-function qualquerminúscula2(s)
+function qualquer_minúscula2(s)
     for c in s
         if islowercase('c')
             return "true"
@@ -698,14 +698,14 @@ function qualquerminúscula2(s)
     end
 end
 
-function qualquerminúscula3(s)
+function qualquer_minúscula3(s)
     for c in s
         flag = islowercase(c)
     end
     flag
 end
 
-function qualquerminúscula4(s)
+function qualquer_minúscula4(s)
     flag = false
     for c in s
         flag = flag || islowercase(c)
@@ -713,7 +713,7 @@ function qualquerminúscula4(s)
     flag
 end
 
-function qualquerminúscula5(s)
+function qualquer_minúscula5(s)
     for c in s
         if !islowercase(c)
             return false
