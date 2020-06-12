@@ -340,7 +340,7 @@ Depois reescreva a função de modo que ao invés de percorrer a string, ela usa
 === A Biblioteca de Strings
 
 O Julia fornece funções que executam uma variedade de operações utéis com strings. Por exemplo, a função +uppercase+ recebe uma string e retorna uma nova string com todas suas letras maiúsculas.
-(((maiúscula)))((("função", "Base", "maiúscula", see="maiúscula")))
+(((uppercase)))((("função", "Base", "uppercase", see="uppercase")))
 
 [source,@julia-repl-test]
 ----
@@ -644,7 +644,7 @@ Uma variável usada para contar algo, geralmente inicializada para zero e em seg
 Leia a documentação das funções string em https://docs.julialang.org/en/v1/manual/strings/. Você talvez queira experimentar algumas delas para garantir que você entende como elas funcionam. +strip+ e +replace+ são particulamente utéis.
 
 A documentação usa uma sintaxe que pode ser confusa. Por exemplo, em +search(string::AbstractString, chars::Chars, [start::Integer])+, os colchetes indicam argumentos opcionais. Então +string+ e +chars+ são obrigatórios, mas +start+ é opcional.
-(((busca)))((("função", "Base", "busca", see="busca")))
+(((search)))((("função", "Base", "search", see="search")))
 
 [[ex08-2]]
 ===== Exercício 8-8
@@ -668,8 +668,8 @@ julia> fruta[1:2:6]
 
 Um tamanho de passo -1 percorre a palavra ao contrário, então a fatia +[end:-1:1]+ gera uma string reversa.
 
-Use esse idioma para escrever uma versão de uma linha de +ispalindrome+ do <<ex06-3>>.
-(((ispalindrome)))
+Use esse idioma para escrever uma versão de uma linha de +é_palíndromo+ do <<ex06-3>>.
+(((é_palíndromo)))
 
 [[ex08-4]]
 ===== Exercício 8-10
@@ -728,7 +728,7 @@ end
 Uma cifra de César é uma forma fraca de criptografia que envolve “rotacionar” cada letra por um número fixo de lugares. Rotacionar uma letra significa deslocar ela através do alfabeto, retornando ao começo se necessário, então +’A’+ rotacionada por 3 é +’D’+ e +’Z’+ rotacionada por 1 é +’A’+.
 (((cifra de César)))
 
-Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo +"cheer"+ rotacionado por 7 é +"jolly"+ e +"melon"+ rotacionado por -10 é +"cubed"+. No filme _2001: Odisseia no espaço, o computador de bordo_ é chamado de HAL, que é IBM rotacionado por -1.
+Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo +"ovo"+ rotacionado por 16 é +"ele"+ e +"melon"+ rotacionado por -10 é +"cubed"+. No filme _2001: Odisseia no espaço, o computador de bordo_ é chamado de HAL, que é IBM rotacionado por -1.
 
 Escreva uma função chamada +rotacionapalavra+ que recebe uma string e um inteiro como parâmetros, e retorna uma nova string que contém as letras da string original rotacionada pela inteiro fornecido.
 (((rotacionapalavra)))((("função","definido pelo programador", "rotacionapalavra", see="rotacionapalavra")))
