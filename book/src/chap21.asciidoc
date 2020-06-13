@@ -1,9 +1,9 @@
 [[chap21]]
-== Depurando
+== Depuração
 
 Na depuração, você deve distinguir entre os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
 
-* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: Omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem +ERROR: LoadError: syntax: incomplete: function requires end+.
+* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
 (((erro de sintaxe)))
 
 * Erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
@@ -23,29 +23,33 @@ Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na ve
 
 Se você está construindo o programa de forma incremental, você deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.
 
-If you are copying code from a book, start by comparing your code to the book’s code very carefully. Check every character. At the same time, remember that the book might be wrong, so if you see something that looks like a syntax error, it might be.
+Se você estiver copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você vir algo que parece um erro de sintaxe, talvez seja.
 
-Here are some ways to avoid the most common syntax errors:
+Aqui estão algumas maneiras de evitar os erros de sintaxe mais comuns:
 
-. Make sure you are not using a Julia keyword for a variable name.
+. Certifique-se que você não está usando uma palavra-chave do Julia para um nome de variável.
 
-. Check that you have the +end+ keyword at the end of every compound statement, including +for+, +while+, +if+, and +function+ blocks.
+. Certifique-se você tem a palavra-chave +end+ no final de cada comando composto, incluindo os blocos de +for+, +while+, +if+, e +function+.
 
-. Make sure that any strings in the code have matching quotation marks. Make sure that all quotation marks are “straight quotes”, not “curly quotes”.
+. Assegure-se de que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são “aspas retas”, e não as “aspas encaracoladas” (ou “aspas inglesas”).
 
-. If you have multiline strings with triple quotes , make sure you have terminated the string properly. An unterminated string may cause an invalid token error at the end of your program, or it may treat the following part of the program as a string until it comes to the next string. In the second case, it might not produce an error message at all!
+. Se você tiver sequências de múltiplas linhas com aspas triplas, confira se a sequência foi finalizada corretamente. Uma sequência não terminada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma sttring até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!
 
-. An unclosed opening operator—+(+, +{+, or +[+—makes Julia continue with the next line as part of the current statement. Generally, an error occurs almost immediately in the next line.
+. Quando não se fecha um operador aberto —+(+, +{+, or +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
 
-. Check for the classic +=+ instead of +==+ inside a conditional.
+. Confira o clássico +=+ em vez de +==+ dentro de um condicional.
 
-. If you have non-ASCII characters in the code (including strings and comments), that might cause a problem, although Julia usually handles non-ASCII characters. Be careful if you paste in text from a web page or other source.
+. Se você tem caracteres que não são ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não-ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.
 
-If nothing works, move on to the next section...
+Se nada funcionar, passe para a próxima seção...
 
-==== I keep making changes and it makes no difference
+==== Eu continuo fazendo mudanças e não há diferença
 
 If the REPL says there is an error and you don’t see it, that might be because you and the REPL are not looking at the same code. Check your programming environment to make sure that the program you are editing is the one Julia is trying to run.
+
+Se a REPL diz que há um erro e você não o vê, pode ser que você e a REPL não estão olhando para o mesmo código. Verifique seu ambiente de programação para ter certeza de que o programa que você está editando é o que Julia está tentando executar.
+
+Se o REPL diz que há um erro e você não o vê, talvez seja porque você e o REPL não estão visualizando o mesmo código. Verifique seu ambiente de programação para garantir que o programa que você está editando é o que Julia está tentando executar.
 
 If you are not sure, try putting an obvious and deliberate syntax error at the beginning of the program. Now run it again. If the REPL doesn’t find the new error, you are not running the new code.
 
