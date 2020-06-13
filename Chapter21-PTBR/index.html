@@ -749,7 +749,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_glossary_14">Glossary</a></li>
 </ul>
 </li>
-<li><a href="#chap21">24. Depurando</a>
+<li><a href="#chap21">24. Depuração</a>
 <ul class="sectlevel2">
 <li><a href="#_erros_de_sintaxe">Erros de sintaxe</a></li>
 <li><a href="#_runtime_errors">Runtime Errors</a></li>
@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591930180086813e9</code></pre>
+1.59202075344309e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-7♠ J♦ 3♦ K♣ 3♥ 6♦ 4♦ 9♣ 5♣ K♥ 8♠ 5♦ A♠ 8♦ 9♥ 6♣ 8♣ A♥ 7♥ Q♣ Q♦ 2♦ 2♣ 10♣ 3♠ 9♠ J♠ K♠ K♦ 10♦ 6♥ 4♥ 5♥ 10♥ 3♣ 5♠ Q♠ J♥ A♣ Q♥ 6♠ 9♦ A♦ 2♥ 7♦ 4♠ 8♥ 10♠ J♣ 2♠ 7♣ 4♣
+J♥ 8♣ 3♥ 2♥ 10♦ 10♥ 10♠ 6♣ Q♦ 10♣ 6♦ 2♦ K♦ Q♣ 8♦ J♣ 3♠ K♣ 9♣ 2♣ 5♠ K♠ 3♦ 4♠ 8♥ Q♥ Q♠ A♠ 2♠ 7♣ 9♠ 7♠ A♦ 3♣ 6♠ K♥ 9♥ 4♣ 4♥ 4♦ A♣ 7♦ A♥ 9♦ 7♥ 5♥ 6♥ 5♣ 5♦ 8♠ J♦ J♠
 julia&gt; card = pop!(deck)
-4♣
+J♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15621,7 +15621,7 @@ top:
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap21">24. Depurando</h2>
+<h2 id="chap21">24. Depuração</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Na depuração, você deve distinguir entre os diferentes tipos de erros a fim de rastreá-los mais rapidamente:</p>
@@ -15629,7 +15629,7 @@ top:
 <div class="ulist">
 <ul>
 <li>
-<p>Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: Omitir a palavra-chave <code>end</code> no final de um bloco de funções gera a mensagem <code>ERROR: LoadError: syntax: incomplete: function requires end</code>.
+<p>Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave <code>end</code> no final de um bloco de funções gera a mensagem um tanto redundante <code>ERROR: LoadError: syntax: incomplete: function requires end</code>.
 </p>
 </li>
 <li>
@@ -15657,43 +15657,49 @@ top:
 <p>Se você está construindo o programa de forma incremental, você deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.</p>
 </div>
 <div class="paragraph">
-<p>If you are copying code from a book, start by comparing your code to the book’s code very carefully. Check every character. At the same time, remember that the book might be wrong, so if you see something that looks like a syntax error, it might be.</p>
+<p>Se você estiver copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você vir algo que parece um erro de sintaxe, talvez seja.</p>
 </div>
 <div class="paragraph">
-<p>Here are some ways to avoid the most common syntax errors:</p>
+<p>Aqui estão algumas maneiras de evitar os erros de sintaxe mais comuns:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you are not using a Julia keyword for a variable name.</p>
+<p>Certifique-se que você não está usando uma palavra-chave do Julia para um nome de variável.</p>
 </li>
 <li>
-<p>Check that you have the <code>end</code> keyword at the end of every compound statement, including <code>for</code>, <code>while</code>, <code>if</code>, and <code>function</code> blocks.</p>
+<p>Certifique-se você tem a palavra-chave <code>end</code> no final de cada comando composto, incluindo os blocos de <code>for</code>, <code>while</code>, <code>if</code>, e <code>function</code>.</p>
 </li>
 <li>
-<p>Make sure that any strings in the code have matching quotation marks. Make sure that all quotation marks are “straight quotes”, not “curly quotes”.</p>
+<p>Assegure-se de que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são “aspas retas”, e não as “aspas encaracoladas” (ou “aspas inglesas”).</p>
 </li>
 <li>
-<p>If you have multiline strings with triple quotes , make sure you have terminated the string properly. An unterminated string may cause an invalid token error at the end of your program, or it may treat the following part of the program as a string until it comes to the next string. In the second case, it might not produce an error message at all!</p>
+<p>Se você tiver sequências de múltiplas linhas com aspas triplas, confira se a sequência foi finalizada corretamente. Uma sequência não terminada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma sttring até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!</p>
 </li>
 <li>
-<p>An unclosed opening operator—<code>(</code>, <code>{</code>, or <code>[</code>—makes Julia continue with the next line as part of the current statement. Generally, an error occurs almost immediately in the next line.</p>
+<p>Quando não se fecha um operador aberto —<code>(</code>, <code>{</code>, or <code>[</code>—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.</p>
 </li>
 <li>
-<p>Check for the classic <code>=</code> instead of <code>==</code> inside a conditional.</p>
+<p>Confira o clássico <code>=</code> em vez de <code>==</code> dentro de um condicional.</p>
 </li>
 <li>
-<p>If you have non-ASCII characters in the code (including strings and comments), that might cause a problem, although Julia usually handles non-ASCII characters. Be careful if you paste in text from a web page or other source.</p>
+<p>Se você tem caracteres que não são ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não-ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>If nothing works, move on to the next section&#8230;&#8203;</p>
+<p>Se nada funcionar, passe para a próxima seção&#8230;&#8203;</p>
 </div>
 <div class="sect3">
-<h4 id="_i_keep_making_changes_and_it_makes_no_difference">I keep making changes and it makes no difference</h4>
+<h4 id="_eu_continuo_fazendo_mudanças_e_não_há_diferença">Eu continuo fazendo mudanças e não há diferença</h4>
 <div class="paragraph">
 <p>If the REPL says there is an error and you don’t see it, that might be because you and the REPL are not looking at the same code. Check your programming environment to make sure that the program you are editing is the one Julia is trying to run.</p>
+</div>
+<div class="paragraph">
+<p>Se a REPL diz que há um erro e você não o vê, pode ser que você e a REPL não estão olhando para o mesmo código. Verifique seu ambiente de programação para ter certeza de que o programa que você está editando é o que Julia está tentando executar.</p>
+</div>
+<div class="paragraph">
+<p>Se o REPL diz que há um erro e você não o vê, talvez seja porque você e o REPL não estão visualizando o mesmo código. Verifique seu ambiente de programação para garantir que o programa que você está editando é o que Julia está tentando executar.</p>
 </div>
 <div class="paragraph">
 <p>If you are not sure, try putting an obvious and deliberate syntax error at the beginning of the program. Now run it again. If the REPL doesn’t find the new error, you are not running the new code.</p>
@@ -16273,7 +16279,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-12 02:49:37 UTC
+Última atualização 2020-06-13 03:59:10 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
