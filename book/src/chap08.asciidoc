@@ -728,7 +728,7 @@ end
 Uma cifra de César é uma forma fraca de criptografia que envolve “rotacionar” cada letra por um número fixo de lugares. Rotacionar uma letra significa deslocar ela através do alfabeto, retornando ao começo se necessário, então +’A’+ rotacionada por 3 é +’D’+ e +’Z’+ rotacionada por 1 é +’A’+.
 (((cifra de César)))
 
-Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo +"ovo"+ rotacionado por 16 é +"ele"+ e +"melon"+ rotacionado por -10 é +"cubed"+. No filme _2001: Odisseia no espaço, o computador de bordo_ é chamado de HAL, que é IBM rotacionado por -1.
+Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo +"ovo"+ rotacionado por 16 é +"ele"+ e +"teve"+ rotacionado por 22 é +"para"+. No filme _2001: Odisseia no espaço, o computador de bordo_ é chamado de HAL, que é IBM rotacionado por -1.
 
 Escreva uma função chamada +rotacionapalavra+ que recebe uma string e um inteiro como parâmetros, e retorna uma nova string que contém as letras da string original rotacionada pela inteiro fornecido.
 (((rotacionapalavra)))((("função","definido pelo programador", "rotacionapalavra", see="rotacionapalavra")))
@@ -753,4 +753,4 @@ julia> Char(Int('A') + 32)
 ----
 ====
 
-Piadas potencialmente ofensivas na internet são algumas vezes codificadas em ROT13, que é uma cifra de César com rotação 13. Se você não é facílmente ofendido, encontre e codifique algumas delas.
+Piadas potencialmente ofensivas na internet são algumas vezes codificadas em ROT13, que é uma cifra de César com rotação 13. Se você não é facilmente ofendido, encontre e codifique algumas delas.
