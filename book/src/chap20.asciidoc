@@ -1,23 +1,23 @@
 [[chap20]]
-== The Goodies: Base e a Biblioteca Padrão
+== Extra: Base e a Biblioteca Padrão
 
 O Julia vem com baterias inclusas. O módulo +Base+ contém as funções, tipos e macros mais utéis. Eles estão diretamente disponíveis no Julia.
 (((Base)))
 
-O Julia também forence um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Algebra Linear, Profiling, Números Aleatórios, ...). Funções, tipos e macros definidos na Biblioteca Padrão precisam ser importados antes de poderem ser usados:
+O Julia também fornece um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Algebra Linear, Profiling, Números Aleatórios, ...). Funções, tipos e macros definidos na Biblioteca Padrão precisam ser importados antes de poderem ser usados:
 
 * +import _Módulo_+ importa o módulo, e +_Módulo.fn(x)_+ chama a função +_fn_+
 (((import)))((("palavra-chave", "import", see="import")))
 * +using _Módulo_+ importa todas as funções, tipos e macros exportados de +_Módulo_+.
 (((using)))
 
-Funcionalidades extras podem ser adicionadas de uma crescente coleção de pacotes (https://juliaobserver.com).
+Funcionalidades extras podem ser adicionadas a partir de uma crescente coleção de pacotes (https://juliaobserver.com).
 
-Este capítulo não é uma substituição da documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em https://docs.julialang.org.
+Este capítulo não é uma substituição à documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em https://docs.julialang.org.
 
 === Medindo Performance
 
-Nós vimos que alguns algoritmos executam melhor que outros. +fibonnaci+ em <<memos>> é muito mais rápido que +fib+ em <<one_more_example>>. O macro +@time+ permite quantificar a diferença:
+Nós vimos que alguns algoritmos executam melhor que outros. +fibonnaci+ em <<memos>> é muito mais rápido que +fib+ em <<one_more_example>>. A macro +@time+ permite quantificar a diferença:
 (((@time)))((("macro", "Base", "@time", see="@time")))
 
 [source,jlcon]
@@ -43,9 +43,9 @@ ____
 
 [TIP]
 ====
-Uma função no Julia é compilada na primeira vez que é executada. Então para comparar dois algoritmos, eles devem ser implementados como funções para serem compilados e a primeira vez que são chamados precisa ser excluída da medida de performance, caso contrário o tempo de compilação também é medido.
+Uma função no Julia é compilada na primeira vez que é executada. Então para comparar dois algoritmos, eles devem ser implementados como funções para serem compilados e a primeira vez que são chamadas precisa ser excluída da medida de performance, caso contrário o tempo de compilação também é medido.
 
-O pacote +BenchmarkTools+ (https://github.com/JuliaCI/BenchmarkTools.jl) fornece o macro +@btime+ que faz benchmarking da maneira certa. Então use-o!
+O pacote +BenchmarkTools+ (https://github.com/JuliaCI/BenchmarkTools.jl) fornece a macro +@btime+ que faz benchmarking da maneira certa. Então use-a!
 ====
 
 
@@ -73,7 +73,7 @@ Em todos estes dicionários, os valores são +nothing+ porque nós nunca usamos 
 O Julia fornece outro tipo embutido, chamado de conjunto, que se comporta como uma coleção de chaves de dicionário mas sem valores. Adicionar elementos à um conjunto é rápido; assim como verificar que um elemento pertence à ele. Além disso, conjuntos fornecem funções e operadores para computar operações comuns de conjunto.
 (((Conjunto)))((("tipo", "Base", "Conjunto", see="Conjunto")))
 
-Por exemplo, a subtração de conjuntos está disponível em uma função chamada +setdiff+. Então para reescrever +subtrai+ assim:
+Por exemplo, a subtração de conjuntos está disponível em uma função chamada +setdiff+. Então podemos reescrever +subtrai+ assim:
 (((setdiff)))((("função", "Base", "setdiff", see="setdiff")))
 
 [source,@julia-setup]
@@ -120,31 +120,31 @@ Nós também podemos usar conjuntos para fazer alguns exercícios de <<chap09>>.
 
 [source,@julia-setup]
 ----
-function usa_somente(word, available)
+function usa_somente(word, disponível)
     for letter in word
-        if letter ∉ available
+        if letter ∉ disponível
             return false
         end
     end
     true
 end
 ----
-+usa_somente+ verifica se todas as letras em +palavra+ estão em +available+. Nós podemos reescreve-la da seguinte forma:
++usa_somente+ verifica se todas as letras em +palavra+ estão em +disponível+. Nós podemos reescreve-la da seguinte forma:
 
 [source,@julia-setup]
 ----
-function usa_somente(word, available)
-    Set(word) ⊆ Set(available)
+function usa_somente(word, disponível)
+    Set(word) ⊆ Set(disponível)
 end
 ----
 
-O operador +⊆+ (*+\subseteq TAB+*) verifica se um conjunto é um subconjunto ou outro, incluindo a possibilidade deles serem iguasi, que ocorre se todas as letras em +palavra+ aparecem em +available+.
+O operador +⊆+ (*+\subseteq TAB+*) verifica se um conjunto é um subconjunto ou algum outro conjunto, incluindo a possibilidade deles serem iguais, que ocorre se todas as letras em +palavra+ aparecem em +disponível+.
 (((⊆)))((("operador", "Base", "⊆", see="⊆")))
 
 ===== Exercício 20-1
 
-Reescreva +avoids+ utilizando conjuntos.
-(((avoids)))
+Reescreva +evita+ utilizando conjuntos.
+(((evita)))
 
 
 === Matemática
@@ -183,14 +183,14 @@ julia> cos.(x) == 0.5*(ℯ.^(im*x)+ℯ.^(-im*x))
 true
 ----
 
-Aqui, outro exemplo da utilização do operador ponto é mostrado. O Julia também permite que literais numéricos sejam justapostos com identificadores e coeficientes, como em +2π+.
+Aqui, outro exemplo do uso do operador ponto é mostrado. O Julia também permite que literais numéricos sejam justapostos com identificadores e coeficientes, como em +2π+.
 
 === Strings
 
 Em <<chap08>> e <<chap09>>, nós fizemos algumas buscas elementares com objetos string. O Julia pode no entanto, lidar com expressões regulares compatíveis com o Perl, que facilita a tarefa de achar padrões complexos em objetos string.
-(((regex)))
+(((expressão regular)))
 
-A função +usa_somente+ pode ser implementada como uma regex (expressão regular):
+A função +usa_somente+ pode ser implementada como uma regex(expressão regular):
 (((usa_somente)))(((Regex)))((("type", "Base", "Regex", see="Regex")))(((occursin)))((("função", "Base", "occursin", see="occursin")))
 
 [source,@julia-setup chap20]
@@ -201,7 +201,7 @@ function usa_somente(palavra, disponível)
 end
 ----
 
-A regex procura um caractere que não está na string +disponível+ e +occursin+ retorna +true+ se o padrão é achado em +word+.
+A expressão regular procura um caractere que não está na string +disponível+ e +occursin+ retorna +true+ se o padrão é achado em +word+.
 
 [source,@julia-repl-test chap20]
 ----
@@ -211,7 +211,7 @@ julia> usa_somente("bananas", "abn")
 false
 ----
 
-Expressões regulares também podem ser construidas como literais strings não padronizadas prefixadas com +r+:
+Expressões regulares também podem ser construídas como literais strings não padronizadas prefixadas com +r+:
 (((string)))(((match)))((("função", "Base", "match", see="match")))
 
 [source,@julia-repl-test chap20]
@@ -240,7 +240,7 @@ julia> m.offset
 7
 ----
 
-Expressões regulares são extremamente poderosas e o página do manual PERL http://perldoc.perl.org/perlre.html fornece todos os detalhes para construir as buscas mais exóticas.
+Expressões regulares são extremamente poderosas e o página do manual PERL http://perldoc.perl.org/perlre.html fornece todos os detalhes para construir buscas bastante exóticas.
 
 === Listas
 
@@ -333,7 +333,7 @@ julia> u = z[:,2:end]
  0.0  1.0
 ----
 
-O operador +.+ transmite para todas as dimensões:
+O operador +.+ transmite a operação para todas as dimensões:
 (((.)))
 
 [source,@julia-repl-test chap20]
@@ -410,7 +410,7 @@ Isto é um bom exemplo de como uma interface bem definida permite uma implementa
 
 === Utilidades Interativas
 
-Nós já conhecemos o módulo +InteractiveUtils+ em <<interactive>>. O macro +@which+ é somente a ponta do iceberg.
+Nós já conhecemos o módulo +InteractiveUtils+ em <<interactive>>. A macro +@which+ é somente a ponta do iceberg.
 (((InteractiveUtils)))(((@which)))
 
 O código Julia é transformada pela biblioteca LLVM para código de máquina em múltiplos passos. Nós podemos diretamente visualizar a saída de cada etapa.
@@ -445,7 +445,7 @@ CodeInfo(
 )
 ----
 
-O macro +@code_lowered+ retorna uma lista de _representações intermediárias_ do código que é usado pelo compilador para gerar código otimizado.
+A macro +@code_lowered+ retorna uma lista de _representações intermediárias_ do código que é usado pelo compilador para gerar código otimizado.
 (((representação intermediária)))
 
 O próximo passo é adicionar a informação de tipo:
