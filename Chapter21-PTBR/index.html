@@ -751,8 +751,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#chap21">24. Depuração</a>
 <ul class="sectlevel2">
-<li><a href="#_erros_de_sintaxe">Erros de sintaxe</a></li>
-<li><a href="#_runtime_errors">Runtime Errors</a></li>
+<li><a href="#_erros_de_sintaxe">Erros de Sintaxe</a></li>
+<li><a href="#_erros_de_tempo_de_execução">Erros de Tempo de Execução</a></li>
 <li><a href="#_semantic_errors">Semantic Errors</a></li>
 </ul>
 </li>
@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59202075344309e9</code></pre>
+1.59210543870613e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♥ 8♣ 3♥ 2♥ 10♦ 10♥ 10♠ 6♣ Q♦ 10♣ 6♦ 2♦ K♦ Q♣ 8♦ J♣ 3♠ K♣ 9♣ 2♣ 5♠ K♠ 3♦ 4♠ 8♥ Q♥ Q♠ A♠ 2♠ 7♣ 9♠ 7♠ A♦ 3♣ 6♠ K♥ 9♥ 4♣ 4♥ 4♦ A♣ 7♦ A♥ 9♦ 7♥ 5♥ 6♥ 5♣ 5♦ 8♠ J♦ J♠
+7♠ 8♣ 10♠ 9♣ 6♦ J♦ 4♠ K♣ K♦ J♣ 6♠ 3♦ A♥ 10♥ J♠ 3♥ K♠ K♥ 2♦ 10♣ 7♦ A♠ 8♦ Q♦ 4♦ 5♥ A♦ 3♣ 5♣ 6♣ 4♥ J♥ 9♠ 3♠ 8♠ 2♠ 10♦ 2♣ 2♥ 9♦ Q♥ 8♥ 5♦ 6♥ 7♥ A♣ 7♣ Q♣ Q♠ 5♠ 9♥ 4♣
 julia&gt; card = pop!(deck)
-J♠
+4♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15637,30 +15637,30 @@ top:
 </p>
 </li>
 <li>
-<p>Erros semânticos são problemas com um programa que roda sem produzir mensagens de erro, mas não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, produzindo um resultado incorreto.
+<p>Erros semânticos são problemas com um programa que embora rode sem produzir mensagens de erro, não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, produzindo um resultado incorreto.
 </p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>O primeiro passo na depuração é descobrir com qual o tipo de erro você está lidando. Embora as seguintes seções sejam organizadas pelo tipo de erro, algumas técnicas são aplicáveis em mais de uma situação.</p>
+<p>O primeiro passo na depuração é descobrir com qual o tipo de erro você está lidando. Apesar das seções seguintes sejam organizadas pelo tipo de erro, algumas técnicas são aplicáveis em mais de uma situação.</p>
 </div>
 <div class="sect2">
-<h3 id="_erros_de_sintaxe">Erros de sintaxe</h3>
+<h3 id="_erros_de_sintaxe">Erros de Sintaxe</h3>
 <div class="paragraph">
-<p>Os erros de sintaxe são geralmente fáceis de corrigir uma vez que você descubra o que são. Infelizmente, as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são <code>ERROR: LoadError: syntax: incomplete: premature end of input</code> e <code>ERROR: LoadError: syntax: unexpected "="</code>, que não são muito informativo.</p>
+<p>Geralmente, os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. Infelizmente, as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são <code>ERROR: LoadError: syntax: incomplete: premature end of input</code> e <code>ERROR: LoadError: syntax: unexpected "="</code>, que não são muito informativo.</p>
 </div>
 <div class="paragraph">
 <p>Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, geralmente na linha anterior.</p>
 </div>
 <div class="paragraph">
-<p>Se você está construindo o programa de forma incremental, você deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.</p>
+<p>Se você está construindo o programa de forma incremental, deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.</p>
 </div>
 <div class="paragraph">
-<p>Se você estiver copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você vir algo que parece um erro de sintaxe, talvez seja.</p>
+<p>Caso você esteja copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você vir algo que parece um erro de sintaxe, talvez seja.</p>
 </div>
 <div class="paragraph">
-<p>Aqui estão algumas maneiras de evitar os erros de sintaxe mais comuns:</p>
+<p>Eis algumas maneiras de evitar os erros de sintaxe mais comuns:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -15668,13 +15668,13 @@ top:
 <p>Certifique-se que você não está usando uma palavra-chave do Julia para um nome de variável.</p>
 </li>
 <li>
-<p>Certifique-se você tem a palavra-chave <code>end</code> no final de cada comando composto, incluindo os blocos de <code>for</code>, <code>while</code>, <code>if</code>, e <code>function</code>.</p>
+<p>Certifique-se que você tem a palavra-chave <code>end</code> no final de cada comando composto, incluindo os blocos de <code>for</code>, <code>while</code>, <code>if</code>, e <code>function</code>.</p>
 </li>
 <li>
 <p>Assegure-se de que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são “aspas retas”, e não as “aspas encaracoladas” (ou “aspas inglesas”).</p>
 </li>
 <li>
-<p>Se você tiver sequências de múltiplas linhas com aspas triplas, confira se a sequência foi finalizada corretamente. Uma sequência não terminada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma sttring até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!</p>
+<p>Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não terminada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!</p>
 </li>
 <li>
 <p>Quando não se fecha um operador aberto —<code>(</code>, <code>{</code>, or <code>[</code>—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.</p>
@@ -15683,7 +15683,7 @@ top:
 <p>Confira o clássico <code>=</code> em vez de <code>==</code> dentro de um condicional.</p>
 </li>
 <li>
-<p>Se você tem caracteres que não são ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não-ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.</p>
+<p>Se você tem caracteres que não ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.</p>
 </li>
 </ol>
 </div>
@@ -15691,50 +15691,44 @@ top:
 <p>Se nada funcionar, passe para a próxima seção&#8230;&#8203;</p>
 </div>
 <div class="sect3">
-<h4 id="_eu_continuo_fazendo_mudanças_e_não_há_diferença">Eu continuo fazendo mudanças e não há diferença</h4>
+<h4 id="_eu_continuo_fazendo_mudanças_e_não_há_diferença">Eu Continuo Fazendo Mudanças e Não Há Diferença</h4>
 <div class="paragraph">
-<p>If the REPL says there is an error and you don’t see it, that might be because you and the REPL are not looking at the same code. Check your programming environment to make sure that the program you are editing is the one Julia is trying to run.</p>
+<p>Se o REPL diz que há um erro e você não o vê, talvez seja porque você e o REPL não estão visualizando o mesmo código. Verifique o seu ambiente de programação para garantir que o programa que você está editando é o mesmo que o Julia está tentando executar.</p>
 </div>
 <div class="paragraph">
-<p>Se a REPL diz que há um erro e você não o vê, pode ser que você e a REPL não estão olhando para o mesmo código. Verifique seu ambiente de programação para ter certeza de que o programa que você está editando é o que Julia está tentando executar.</p>
+<p>Se você não tiver certeza, tente colocar um erro de sintaxe óbvio e intencional no início do programa. Agora execute-o novamente. Se o REPL não encontrar o novo erro, você não está executando o novo código.</p>
 </div>
 <div class="paragraph">
-<p>Se o REPL diz que há um erro e você não o vê, talvez seja porque você e o REPL não estão visualizando o mesmo código. Verifique seu ambiente de programação para garantir que o programa que você está editando é o que Julia está tentando executar.</p>
-</div>
-<div class="paragraph">
-<p>If you are not sure, try putting an obvious and deliberate syntax error at the beginning of the program. Now run it again. If the REPL doesn’t find the new error, you are not running the new code.</p>
-</div>
-<div class="paragraph">
-<p>There are a few likely culprits:</p>
+<p>Existem alguns prováveis culpados:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>You edited the file and forgot to save the changes before running it again. Some programming environments do this for you, but some don’t.</p>
+<p>Você editou o arquivo e esqueceu de salvar as alterações antes de executá-lo novamente. Alguns ambientes de programação fazem isso por você, mas outros não.</p>
 </li>
 <li>
-<p>You changed the name of the file, but you are still running the old name.</p>
+<p>Você alterou o nome do arquivo, mas ainda está executando o nome antigo.</p>
 </li>
 <li>
-<p>Something in your development environment is configured incorrectly.</p>
+<p>Algo em seu ambiente de desenvolvimento está configurado erroneamente.</p>
 </li>
 <li>
-<p>If you are writing a module and using <code>using</code>, make sure you don’t give your module the same name as one of the standard Julia modules.</p>
+<p>Se você estiver escrevendo um módulo e usando <code>using</code>, certifique-se de não nomear o seu módulo com o mesmo nome de um dos módulos padrões do Julia.</p>
 </li>
 <li>
-<p>If you are using <code>using</code> to import a module, remember that you have to restart the REPL when you modify the code in the module. If you import the module again, it doesn’t do anything.</p>
+<p>Caso você esteja utilizando <code>using</code> para importar um módulo, lembre-se de que é necessário reiniciar o REPL ao modificar o código no módulo. Se você importar o módulo novamente, ele não faz nada.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you get stuck and you can’t figure out what is going on, one approach is to start again with a new program like “Hello, World!”, and make sure you can get a known program to run. Then gradually add the pieces of the original program to the new one.</p>
+<p>Se você ficar preso e não conseguir descobrir o que está acontecendo, uma abordagem é começar novamente com um novo programa como “Olá, Mundo!”, e ter certeza de que você consegue executar um programa conhecido. Depois, acrescente gradualmente as peças do programa original ao novo programa.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_errors">Runtime Errors</h3>
+<h3 id="_erros_de_tempo_de_execução">Erros de Tempo de Execução</h3>
 <div class="paragraph">
-<p>Once your program is syntactically correct, Julia can read it and at least start running it. What could possibly go wrong?</p>
+<p>Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar errado?</p>
 </div>
 <div class="sect3">
 <h4 id="_my_program_does_absolutely_nothing">My program does absolutely nothing</h4>
@@ -16279,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-13 03:59:10 UTC
+Última atualização 2020-06-14 03:30:35 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
