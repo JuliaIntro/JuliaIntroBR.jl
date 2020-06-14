@@ -736,7 +736,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_glossary_13">Glossary</a></li>
 </ul>
 </li>
-<li><a href="#chap20">23. The Goodies: Base e a Biblioteca Padrão</a>
+<li><a href="#chap20">23. Extra: Base e a Biblioteca Padrão</a>
 <ul class="sectlevel2">
 <li><a href="#_medindo_performance">Medindo Performance</a></li>
 <li><a href="#collections_and_data_structures">Coleções e Estruturas de Dados</a></li>
@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591911580562247e9</code></pre>
+1.592168576890558e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♦ 10♣ 4♦ 10♥ A♦ 5♦ K♠ K♦ A♥ 8♥ A♠ 3♥ 9♦ 2♠ 3♣ K♥ 9♣ 5♣ 6♠ Q♦ 6♣ 3♦ 7♣ 9♥ 5♠ 10♦ 2♦ 9♠ 7♠ J♠ 4♠ 6♥ 7♥ 8♦ 8♠ 5♥ 2♣ Q♠ A♣ 8♣ 7♦ 4♣ 3♠ J♥ 6♦ K♣ J♣ Q♣ 2♥ 10♠ 4♥ Q♥
+2♦ A♦ K♠ 4♥ 3♥ Q♠ 2♥ 9♦ Q♥ K♥ 8♦ 7♠ J♦ 7♦ A♥ J♣ 5♣ J♥ 5♥ 7♣ 2♠ 8♠ 10♦ 6♣ A♠ 3♣ J♠ K♣ 6♥ 8♥ 3♠ 9♠ A♣ 8♣ 10♥ Q♦ 9♥ 9♣ 4♠ 5♠ 2♣ 6♦ 4♣ 7♥ Q♣ K♦ 3♦ 10♠ 10♣ 4♦ 5♦ 6♠
 julia&gt; card = pop!(deck)
-Q♥
+6♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -14931,14 +14931,14 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap20">23. The Goodies: Base e a Biblioteca Padrão</h2>
+<h2 id="chap20">23. Extra: Base e a Biblioteca Padrão</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O Julia vem com baterias inclusas. O módulo <code>Base</code> contém as funções, tipos e macros mais utéis. Eles estão diretamente disponíveis no Julia.
 </p>
 </div>
 <div class="paragraph">
-<p>O Julia também forence um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Algebra Linear, Profiling, Números Aleatórios, &#8230;&#8203;). Funções, tipos e macros definidos na Biblioteca Padrão precisam ser importados antes de poderem ser usados:</p>
+<p>O Julia também fornece um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Algebra Linear, Profiling, Números Aleatórios, &#8230;&#8203;). Funções, tipos e macros definidos na Biblioteca Padrão precisam ser importados antes de poderem ser usados:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -14953,15 +14953,15 @@ end</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Funcionalidades extras podem ser adicionadas de uma crescente coleção de pacotes (<a href="https://juliaobserver.com" class="bare">https://juliaobserver.com</a>).</p>
+<p>Funcionalidades extras podem ser adicionadas a partir de uma crescente coleção de pacotes (<a href="https://juliaobserver.com" class="bare">https://juliaobserver.com</a>).</p>
 </div>
 <div class="paragraph">
-<p>Este capítulo não é uma substituição da documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em <a href="https://docs.julialang.org" class="bare">https://docs.julialang.org</a>.</p>
+<p>Este capítulo não é uma substituição à documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em <a href="https://docs.julialang.org" class="bare">https://docs.julialang.org</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_medindo_performance">Medindo Performance</h3>
 <div class="paragraph">
-<p>Nós vimos que alguns algoritmos executam melhor que outros. <code>fibonnaci</code> em <a href="#memos">Memos</a> é muito mais rápido que <code>fib</code> em <a href="#one_more_example">Mais Um Exemplo</a>. O macro <code>@time</code> permite quantificar a diferença:
+<p>Nós vimos que alguns algoritmos executam melhor que outros. <code>fibonnaci</code> em <a href="#memos">Memos</a> é muito mais rápido que <code>fib</code> em <a href="#one_more_example">Mais Um Exemplo</a>. A macro <code>@time</code> permite quantificar a diferença:
 </p>
 </div>
 <div class="listingblock">
@@ -14996,10 +14996,10 @@ julia&gt; @time fibonacci(40)
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Uma função no Julia é compilada na primeira vez que é executada. Então para comparar dois algoritmos, eles devem ser implementados como funções para serem compilados e a primeira vez que são chamados precisa ser excluída da medida de performance, caso contrário o tempo de compilação também é medido.</p>
+<p>Uma função no Julia é compilada na primeira vez que é executada. Então para comparar dois algoritmos, eles devem ser implementados como funções para serem compilados e a primeira vez que são chamadas precisa ser excluída da medida de performance, caso contrário o tempo de compilação também é medido.</p>
 </div>
 <div class="paragraph">
-<p>O pacote <code>BenchmarkTools</code> (<a href="https://github.com/JuliaCI/BenchmarkTools.jl" class="bare">https://github.com/JuliaCI/BenchmarkTools.jl</a>) fornece o macro <code>@btime</code> que faz benchmarking da maneira certa. Então use-o!</p>
+<p>O pacote <code>BenchmarkTools</code> (<a href="https://github.com/JuliaCI/BenchmarkTools.jl" class="bare">https://github.com/JuliaCI/BenchmarkTools.jl</a>) fornece a macro <code>@btime</code> que faz benchmarking da maneira certa. Então use-a!</p>
 </div>
 </td>
 </tr>
@@ -15033,7 +15033,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, a subtração de conjuntos está disponível em uma função chamada <code>setdiff</code>. Então para reescrever <code>subtrai</code> assim:
+<p>Por exemplo, a subtração de conjuntos está disponível em uma função chamada <code>setdiff</code>. Então podemos reescrever <code>subtrai</code> assim:
 </p>
 </div>
 <div class="listingblock">
@@ -15086,9 +15086,9 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function usa_somente(word, available)
+<pre class="pygments highlight"><code data-lang="julia">function usa_somente(word, disponível)
     for letter in word
-        if letter ∉ available
+        if letter ∉ disponível
             return false
         end
     end
@@ -15097,23 +15097,23 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>usa_somente</code> verifica se todas as letras em <code>palavra</code> estão em <code>available</code>. Nós podemos reescreve-la da seguinte forma:</p>
+<p><code>usa_somente</code> verifica se todas as letras em <code>palavra</code> estão em <code>disponível</code>. Nós podemos reescreve-la da seguinte forma:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function usa_somente(word, available)
-    Set(word) ⊆ Set(available)
+<pre class="pygments highlight"><code data-lang="julia">function usa_somente(word, disponível)
+    Set(word) ⊆ Set(disponível)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O operador <code>⊆</code> (<strong><code>\subseteq TAB</code></strong>) verifica se um conjunto é um subconjunto ou outro, incluindo a possibilidade deles serem iguasi, que ocorre se todas as letras em <code>palavra</code> aparecem em <code>available</code>.
+<p>O operador <code>⊆</code> (<strong><code>\subseteq TAB</code></strong>) verifica se um conjunto é um subconjunto ou algum outro conjunto, incluindo a possibilidade deles serem iguais, que ocorre se todas as letras em <code>palavra</code> aparecem em <code>disponível</code>.
 </p>
 </div>
 <div class="sect4">
 <h5 id="_exercício_20_1">Exercício 20-1</h5>
 <div class="paragraph">
-<p>Reescreva <code>avoids</code> utilizando conjuntos.
+<p>Reescreva <code>evita</code> utilizando conjuntos.
 </p>
 </div>
 </div>
@@ -15160,7 +15160,7 @@ true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aqui, outro exemplo da utilização do operador ponto é mostrado. O Julia também permite que literais numéricos sejam justapostos com identificadores e coeficientes, como em <code>2π</code>.</p>
+<p>Aqui, outro exemplo do uso do operador ponto é mostrado. O Julia também permite que literais numéricos sejam justapostos com identificadores e coeficientes, como em <code>2π</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -15170,7 +15170,7 @@ true</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>A função <code>usa_somente</code> pode ser implementada como uma regex (expressão regular):
+<p>A função <code>usa_somente</code> pode ser implementada como uma regex(expressão regular):
 </p>
 </div>
 <div class="listingblock">
@@ -15182,7 +15182,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A regex procura um caractere que não está na string <code>disponível</code> e <code>occursin</code> retorna <code>true</code> se o padrão é achado em <code>word</code>.</p>
+<p>A expressão regular procura um caractere que não está na string <code>disponível</code> e <code>occursin</code> retorna <code>true</code> se o padrão é achado em <code>word</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -15193,7 +15193,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Expressões regulares também podem ser construidas como literais strings não padronizadas prefixadas com <code>r</code>:
+<p>Expressões regulares também podem ser construídas como literais strings não padronizadas prefixadas com <code>r</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -15236,7 +15236,7 @@ julia&gt; m.offset
 </div>
 </div>
 <div class="paragraph">
-<p>Expressões regulares são extremamente poderosas e o página do manual PERL <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> fornece todos os detalhes para construir as buscas mais exóticas.</p>
+<p>Expressões regulares são extremamente poderosas e o página do manual PERL <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> fornece todos os detalhes para construir buscas bastante exóticas.</p>
 </div>
 </div>
 <div class="sect2">
@@ -15350,7 +15350,7 @@ julia&gt; z
 </div>
 </div>
 <div class="paragraph">
-<p>O operador <code>.</code> transmite para todas as dimensões:
+<p>O operador <code>.</code> transmite a operação para todas as dimensões:
 </p>
 </div>
 <div class="listingblock">
@@ -15440,7 +15440,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_utilidades_interativas">Utilidades Interativas</h3>
 <div class="paragraph">
-<p>Nós já conhecemos o módulo <code>InteractiveUtils</code> em <a href="#interactive">Debugging</a>. O macro <code>@which</code> é somente a ponta do iceberg.
+<p>Nós já conhecemos o módulo <code>InteractiveUtils</code> em <a href="#interactive">Debugging</a>. A macro <code>@which</code> é somente a ponta do iceberg.
 </p>
 </div>
 <div class="paragraph">
@@ -15479,7 +15479,7 @@ CodeInfo(
 </div>
 </div>
 <div class="paragraph">
-<p>O macro <code>@code_lowered</code> retorna uma lista de <em>representações intermediárias</em> do código que é usado pelo compilador para gerar código otimizado.
+<p>A macro <code>@code_lowered</code> retorna uma lista de <em>representações intermediárias</em> do código que é usado pelo compilador para gerar código otimizado.
 </p>
 </div>
 <div class="paragraph">
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm soma_de_quadrados(3.0, 4.0)
 ;  @ none:2 within `soma_de_quadrados'
-define double @julia_soma_de_quadrados_20494(double, double) {
+define double @julia_soma_de_quadrados_20493(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-11 21:39:37 UTC
+Última atualização 2020-06-14 21:02:53 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
