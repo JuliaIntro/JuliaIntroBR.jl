@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591947520776954e9</code></pre>
+1.592169716220912e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6696,7 +6696,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo <code>"ovo"</code> rotacionado por 16 é <code>"ele"</code> e <code>"melon"</code> rotacionado por -10 é <code>"cubed"</code>. No filme <em>2001: Odisseia no espaço, o computador de bordo</em> é chamado de HAL, que é IBM rotacionado por -1.</p>
+<p>Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo <code>"ovo"</code> rotacionado por 16 é <code>"ele"</code> e <code>"teve"</code> rotacionado por 22 é <code>"para"</code>. No filme <em>2001: Odisseia no espaço, o computador de bordo</em> é chamado de HAL, que é IBM rotacionado por -1.</p>
 </div>
 <div class="paragraph">
 <p>Escreva uma função chamada <code>rotacionapalavra</code> que recebe uma string e um inteiro como parâmetros, e retorna uma nova string que contém as letras da string original rotacionada pela inteiro fornecido.
@@ -6733,7 +6733,7 @@ end</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Piadas potencialmente ofensivas na internet são algumas vezes codificadas em ROT13, que é uma cifra de César com rotação 13. Se você não é facílmente ofendido, encontre e codifique algumas delas.</p>
+<p>Piadas potencialmente ofensivas na internet são algumas vezes codificadas em ROT13, que é uma cifra de César com rotação 13. Se você não é facilmente ofendido, encontre e codifique algumas delas.</p>
 </div>
 </div>
 </div>
@@ -13593,9 +13593,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-2♦ 3♠ K♦ J♥ 2♠ Q♠ A♣ A♠ 10♠ 5♥ 6♥ 9♦ Q♥ Q♦ 2♣ 5♠ J♣ K♥ 10♥ 8♦ 10♣ K♣ 3♣ 7♠ 3♦ 8♣ 4♠ 6♦ 5♦ 7♣ 9♣ 6♣ 10♦ Q♣ A♦ 7♦ 9♥ 4♣ K♠ 6♠ 9♠ 8♠ 4♦ 8♥ 4♥ J♠ 2♥ 3♥ 7♥ J♦ A♥ 5♣
+J♠ A♦ K♠ 2♥ 5♣ 3♥ 9♣ 9♥ 8♦ A♣ 3♠ 6♦ 9♠ 5♦ 6♠ Q♦ 5♠ 2♠ 9♦ Q♥ 2♦ 7♥ J♦ 8♥ 10♠ 4♠ A♥ K♥ 5♥ Q♠ 4♦ Q♣ K♣ 10♣ J♣ 8♠ 6♥ K♦ A♠ 4♥ 7♦ 2♣ 7♣ 4♣ 6♣ 3♦ 10♦ J♥ 7♠ 8♣ 3♣ 10♥
 julia&gt; card = pop!(deck)
-5♣
+10♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15515,7 +15515,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20494(double, double) {
+define double @julia_squaresum_20490(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16280,7 +16280,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-12 07:38:37 UTC
+Last updated 2020-06-14 21:21:52 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
