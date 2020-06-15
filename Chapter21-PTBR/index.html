@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59210543870613e9</code></pre>
+1.592197451566764e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-7♠ 8♣ 10♠ 9♣ 6♦ J♦ 4♠ K♣ K♦ J♣ 6♠ 3♦ A♥ 10♥ J♠ 3♥ K♠ K♥ 2♦ 10♣ 7♦ A♠ 8♦ Q♦ 4♦ 5♥ A♦ 3♣ 5♣ 6♣ 4♥ J♥ 9♠ 3♠ 8♠ 2♠ 10♦ 2♣ 2♥ 9♦ Q♥ 8♥ 5♦ 6♥ 7♥ A♣ 7♣ Q♣ Q♠ 5♠ 9♥ 4♣
+6♠ 8♦ 10♦ K♦ 2♦ J♠ 3♣ 6♦ 5♥ A♥ 6♣ 7♦ Q♦ 4♦ J♦ 9♣ K♣ A♣ J♣ 2♠ 3♥ 10♣ 8♠ 5♦ 4♣ 7♠ K♥ 9♦ J♥ 10♠ 9♥ 8♣ 2♥ 3♦ 2♣ 7♣ 9♠ 6♥ 10♥ 7♥ Q♣ 3♠ A♦ Q♠ 5♣ 4♥ 4♠ 8♥ A♠ K♠ 5♠ Q♥
 julia&gt; card = pop!(deck)
-4♣
+Q♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15731,96 +15731,114 @@ top:
 <p>Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar errado?</p>
 </div>
 <div class="sect3">
-<h4 id="_my_program_does_absolutely_nothing">My program does absolutely nothing</h4>
+<h4 id="_meu_programa_não_faz_absolutamente_nada">Meu programa Não Faz Absolutamente Nada</h4>
 <div class="paragraph">
-<p>This problem is most common when your file consists of functions and classes but does not actually invoke a function to start execution. This may be intentional if you only plan to import this module to supply classes and functions.</p>
+<p>Esse problema é mais comum quando seu arquivo consiste em funções e classes, mas na verdade não invoca uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e funções.</p>
 </div>
 <div class="paragraph">
-<p>If it is not intentional, make sure there is a function call in the program, and make sure the flow of execution reaches it (see <a href="#flow_of_execution">Flow of Execution</a>).
+<p>Se não for intencional, certifique-se de que há uma chamada de função no programa, e certifique-se de que o fluxo de execução chega até ele (veja <a href="#flow_of_execution">Fluxo de Execução</a>).
 </p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_my_program_hangs">My program hangs</h4>
+<h4 id="_meu_programa_trava">Meu Programa Trava</h4>
 <div class="paragraph">
-<p>If a program stops and seems to be doing nothing, it is “hanging”. Often that means that it is caught in an infinite loop or infinite recursion.</p>
+<p>Se um programa para e parece não estar fazendo nada, ele está "travando". Frequentemente isso significa que ele está detido em um loop infinito ou em uma repetição infinita.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If there is a particular loop that you suspect is the problem, add a print statement immediately before the loop that says “entering the loop” and another immediately after that says “exiting the loop”.</p>
+<p>Se houver um laço em particular que você suspeita ser o problema, adicione uma declaração print logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.</p>
 <div class="paragraph">
-<p>Run the program. If you get the first message and not the second, you’ve got an infinite loop. Go to <a href="#infinite_loop">Infinite Loop</a> below.
+<p>Execute o programa. Caso receba a primeira mensagem e não a segunda, então você tem um laço infinito. Vá para a subseção <a href="#infinite_loop">Laço Infinito</a> mais adiante.
 </p>
 </div>
 </li>
 <li>
-<p>Most of the time, an infinite recursion will cause the program to run for a while and then produce a <code>ERROR: LoadError: StackOverflowError</code> error. If that happens, go to <a href="#infinite_recursion">Infinite Recursion</a> below.</p>
+<p>Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e depois aparecerá uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>. Se isso acontecer, vá para a subseção <a href="#infinite_recursion">Recursão Infinita</a> mais adiante.</p>
 <div class="paragraph">
-<p>If you are not getting this error but you suspect there is a problem with a recursive method or function, you can still use the techniques in <a href="#infinite_recursion">Infinite Recursion</a>.
+<p>Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, ainda assim poderá usar as técnicas de <a href="#infinite_recursion">Recursão Infinita</a>.
 </p>
 </div>
 </li>
 <li>
-<p>If neither of those steps works, start testing other loops and other recursive functions and methods.</p>
+<p>Caso nenhum desses passos dê certo, comece a testar outros laços e outras funções e métodos recursivos.</p>
 </li>
 <li>
-<p>If that doesn’t work, then it is possible that you don’t understand the flow of execution in your program. Go to <a href="#flow_of_execution">Flow of Execution</a> below.</p>
+<p>Caso isso não funcione, então é possível que você não esteja entendendo o fluxo de execução do seu programa. Vá para <a href="#flow_of_execution">Fluxo de Execução</a> mais adiante.</p>
 </li>
 </ul>
 </div>
 <div class="sect4">
-<h5 id="infinite_loop">Infinite Loop</h5>
+<h5 id="infinite_loop">Laço Infinito</h5>
 <div class="paragraph">
-<p>If you think you have an infinite loop and you think you know what loop is causing the problem, add a print statement at the end of the loop that prints the values of the variables in the condition and the value of the condition.</p>
+<p>Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione uma declaração de print no final do laço que imprime os valores das variáveis na condição e o valor da condição.</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>Por exemplo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">while x &gt; 0 &amp;&amp; y &lt; 0
-    # do something to x
-    # do something to y
-    @debug "variables" x y
-    @debug "condition" x &gt; 0 &amp;&amp; y &lt; 0
+    # faça algo para x
+    # faça algo para y
+    @debug "variáveis" x y
+    @debug "condições" x &gt; 0 &amp;&amp; y &lt; 0
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now when you run the program in debug mode, you will see the value of the variables and the condition for each time through the loop. The last time through the loop, the condition should be <code>false</code>. If the loop keeps going, you will be able to see the values of <code>x</code> and <code>y</code>, and you might figure out why they are not being updated correctly.</p>
+<p>Agora, quando você executar o programa no modo de depuração, verá o valor das variáveis e a condição em cada iteração do laço. A última vez que o laço for percorrido, a condição deve ser <code>false</code>. Se o laço continuar, você poderá ver os valores de <code>x</code> e <code>y</code> e poderá descobrir por que eles não estão sendo atualizados corretamente.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="infinite_recursion">Infinite Recursion</h5>
+<h5 id="infinite_recursion">Recursão Infinita</h5>
 <div class="paragraph">
-<p>Most of the time, infinite recursion causes the program to run for a while and then produce a <code>ERROR: LoadError: StackOverflowError</code> error.
+<p>Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e depois aparece uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>If you suspect that a function is causing an infinite recursion, make sure that there is a base case. There should be some condition that causes the function to return without making a recursive invocation. If not, you need to rethink the algorithm and identify a base case.</p>
+<p>Se você desconfia que uma função está causando uma recursão infinita, certifique-se de que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma invocação recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.</p>
 </div>
 <div class="paragraph">
-<p>If there is a base case but the program doesn’t seem to be reaching it, add a print statement at the beginning of the function that prints the parameters. Now when you run the program, you will see a few lines of output every time the function is invoked, and you will see the parameter values. If the parameters are not moving toward the base case, you will get some ideas about why not.</p>
+<p>Se existe um caso base mas o programa não parece alcançá-lo, adicione uma declaração print no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="flow_of_execution">Flow of Execution</h5>
+<h5 id="flow_of_execution">Fluxo de Execução</h5>
 <div class="paragraph">
-<p>If you are not sure how the flow of execution is moving through your program, add print statements to the beginning of each function with a message like “entering function foo”, where foo is the name of the function.</p>
+<p>Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione delcarações prints no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.</p>
 </div>
 <div class="paragraph">
-<p>Now when you run the program, it will print a trace of each function as it is invoked.</p>
+<p>E quando você executar o programa, ele imprimirá cada função que for chamada.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_when_i_run_the_program_i_get_an_exception">When I run the program I get an exception</h4>
+<h4 id="_quando_executo_o_programa_recebo_uma_exceção">Quando Executo o Programa, Recebo uma Exceção</h4>
 <div class="paragraph">
 <p>If something goes wrong during runtime, Julia prints a message that includes the name of the exception, the line of the program where the problem occurred, and a stacktrace.</p>
 </div>
 <div class="paragraph">
 <p>The stacktrace identifies the function that is currently running, and then the function that called it, and then the function that called that, and so on. In other words, it traces the sequence of function calls that got you to where you are, including the line number in your file where each call occurred.</p>
+</div>
+<div class="paragraph">
+<p>Se algo der errado durante o tempo de execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa em que o problema ocorreu e um rastreamento de pilha.</p>
+</div>
+<div class="paragraph">
+<p>Se algo correr mal durante a execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um stacktrace.</p>
+</div>
+<div class="paragraph">
+<p>**Se algo der errado durante o tempo de execução, o Python exibe uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu, e um traceback.</p>
+</div>
+<div class="paragraph">
+<p>**O traceback identifica a função que está rodando atualmente, e a função que a chamou, assim como a função que chamou esta, e assim por diante. Em outras palavras, ele traça a sequência de chamadas de função que fez com que você chegasse onde está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.</p>
+</div>
+<div class="paragraph">
+<p>O stacktrace identifica a função que está sendo executada atualmente, e depois a função que a chamou, e depois a função que a chamou, e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram até onde você está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.</p>
+</div>
+<div class="paragraph">
+<p>O rastreamento de pilha identifica a função que está em execução no momento e, em seguida, a função que a chamou e, em seguida, a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, incluindo o número da linha no seu arquivo em que cada chamada ocorreu.</p>
 </div>
 <div class="paragraph">
 <p>The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:</p>
@@ -16273,7 +16291,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-14 03:30:35 UTC
+Última atualização 2020-06-15 05:04:07 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
