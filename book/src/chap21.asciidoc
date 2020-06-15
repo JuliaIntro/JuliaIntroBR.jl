@@ -68,72 +68,84 @@ Se você ficar preso e não conseguir descobrir o que está acontecendo, uma abo
 
 Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar errado?
 
-==== My program does absolutely nothing
+==== Meu programa Não Faz Absolutamente Nada
 
-This problem is most common when your file consists of functions and classes but does not actually invoke a function to start execution. This may be intentional if you only plan to import this module to supply classes and functions.
+Esse problema é mais comum quando seu arquivo consiste em funções e classes, mas na verdade não invoca uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e funções.
 
-If it is not intentional, make sure there is a function call in the program, and make sure the flow of execution reaches it (see <<flow_of_execution>>).
-(((flow of execution)))
+Se não for intencional, certifique-se de que há uma chamada de função no programa, e certifique-se de que o fluxo de execução chega até ele (veja <<flow_of_execution>>).
+(((fluxo de execução)))
 
-==== My program hangs
+==== Meu Programa Trava
 
-If a program stops and seems to be doing nothing, it is “hanging”. Often that means that it is caught in an infinite loop or infinite recursion.
+Se um programa para e parece não estar fazendo nada, ele está "travando". Frequentemente isso significa que ele está detido em um loop infinito ou em uma repetição infinita.
 
-* If there is a particular loop that you suspect is the problem, add a print statement immediately before the loop that says “entering the loop” and another immediately after that says “exiting the loop”.
+* Se houver um laço em particular que você suspeita ser o problema, adicione uma declaração print logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.
 +
-Run the program. If you get the first message and not the second, you’ve got an infinite loop. Go to <<infinite_loop>> below.
-(((infinite loop)))
+Execute o programa. Caso receba a primeira mensagem e não a segunda, então você tem um laço infinito. Vá para a subseção <<infinite_loop>> mais adiante.
+(((laço infinito)))
 
-* Most of the time, an infinite recursion will cause the program to run for a while and then produce a +ERROR: LoadError: StackOverflowError+ error. If that happens, go to <<infinite_recursion>> below.
+* Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e depois aparecerá uma mensagem de erro +ERROR: LoadError: StackOverflowError+. Se isso acontecer, vá para a subseção <<infinite_recursion>> mais adiante.
 +
-If you are not getting this error but you suspect there is a problem with a recursive method or function, you can still use the techniques in <<infinite_recursion>>.
-(((infinite recursion)))
+Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, ainda assim poderá usar as técnicas de <<infinite_recursion>>.
+(((recursão infinita)))
 
-* If neither of those steps works, start testing other loops and other recursive functions and methods.
+* Caso nenhum desses passos dê certo, comece a testar outros laços e outras funções e métodos recursivos.
 
-* If that doesn’t work, then it is possible that you don’t understand the flow of execution in your program. Go to <<flow_of_execution>> below.
+* Caso isso não funcione, então é possível que você não esteja entendendo o fluxo de execução do seu programa. Vá para <<flow_of_execution>> mais adiante.
 
 [[infinite_loop]]
-===== Infinite Loop
+===== Laço Infinito
 
-If you think you have an infinite loop and you think you know what loop is causing the problem, add a print statement at the end of the loop that prints the values of the variables in the condition and the value of the condition.
+Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione uma declaração de print no final do laço que imprime os valores das variáveis na condição e o valor da condição.
 
-For example:
+Por exemplo:
 
 [source,julia]
 ----
 while x > 0 && y < 0
-    # do something to x
-    # do something to y
-    @debug "variables" x y
-    @debug "condition" x > 0 && y < 0
+    # faça algo para x
+    # faça algo para y
+    @debug "variáveis" x y
+    @debug "condições" x > 0 && y < 0
 end
 ----
 
-Now when you run the program in debug mode, you will see the value of the variables and the condition for each time through the loop. The last time through the loop, the condition should be +false+. If the loop keeps going, you will be able to see the values of +x+ and +y+, and you might figure out why they are not being updated correctly.
+Agora, quando você executar o programa no modo de depuração, verá o valor das variáveis e a condição em cada iteração do laço. A última vez que o laço for percorrido, a condição deve ser +false+. Se o laço continuar, você poderá ver os valores de +x+ e +y+ e poderá descobrir por que eles não estão sendo atualizados corretamente.
 
 [[infinite_recursion]]
-===== Infinite Recursion
+===== Recursão Infinita
 
-Most of the time, infinite recursion causes the program to run for a while and then produce a +ERROR: LoadError: StackOverflowError+ error.
+Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e depois aparece uma mensagem de erro +ERROR: LoadError: StackOverflowError+.
 (((StackOverflowError)))
 
-If you suspect that a function is causing an infinite recursion, make sure that there is a base case. There should be some condition that causes the function to return without making a recursive invocation. If not, you need to rethink the algorithm and identify a base case.
+Se você desconfia que uma função está causando uma recursão infinita, certifique-se de que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma invocação recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
 
-If there is a base case but the program doesn’t seem to be reaching it, add a print statement at the beginning of the function that prints the parameters. Now when you run the program, you will see a few lines of output every time the function is invoked, and you will see the parameter values. If the parameters are not moving toward the base case, you will get some ideas about why not.
+Se existe um caso base mas o programa não parece alcançá-lo, adicione uma declaração print no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.
 
 [[flow_of_execution]]
-===== Flow of Execution
+===== Fluxo de Execução
 
-If you are not sure how the flow of execution is moving through your program, add print statements to the beginning of each function with a message like “entering function foo”, where foo is the name of the function.
+Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione delcarações prints no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.
 
-Now when you run the program, it will print a trace of each function as it is invoked.
+E quando você executar o programa, ele imprimirá cada função que for chamada.
 
-==== When I run the program I get an exception
+==== Quando Executo o Programa, Recebo uma Exceção
 
 If something goes wrong during runtime, Julia prints a message that includes the name of the exception, the line of the program where the problem occurred, and a stacktrace.
 
 The stacktrace identifies the function that is currently running, and then the function that called it, and then the function that called that, and so on. In other words, it traces the sequence of function calls that got you to where you are, including the line number in your file where each call occurred.
+
+Se algo der errado durante o tempo de execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa em que o problema ocorreu e um rastreamento de pilha.
+
+Se algo correr mal durante a execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um stacktrace.
+
+**Se algo der errado durante o tempo de execução, o Python exibe uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu, e um traceback.
+
+**O traceback identifica a função que está rodando atualmente, e a função que a chamou, assim como a função que chamou esta, e assim por diante. Em outras palavras, ele traça a sequência de chamadas de função que fez com que você chegasse onde está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.
+
+O stacktrace identifica a função que está sendo executada atualmente, e depois a função que a chamou, e depois a função que a chamou, e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram até onde você está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.
+
+O rastreamento de pilha identifica a função que está em execução no momento e, em seguida, a função que a chamou e, em seguida, a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, incluindo o número da linha no seu arquivo em que cada chamada ocorreu.
 
 The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:
 
