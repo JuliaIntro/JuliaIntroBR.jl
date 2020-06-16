@@ -131,89 +131,89 @@ E quando você executar o programa, ele imprimirá cada função que for chamada
 
 ==== Quando Executo o Programa, Recebo uma Exceção
 
-If something goes wrong during runtime, Julia prints a message that includes the name of the exception, the line of the program where the problem occurred, and a stacktrace.
+Se algo der errado durante o tempo de execução, o Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um rastreamento de pilha.
 
-The stacktrace identifies the function that is currently running, and then the function that called it, and then the function that called that, and so on. In other words, it traces the sequence of function calls that got you to where you are, including the line number in your file where each call occurred.
+O rastreamento de pilha identifica a função que está em execução no momento, e depois a função que a chamou, e depois a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, juntamente com o número da linha no seu arquivo onde cada chamada ocorreu.
 
-Se algo der errado durante o tempo de execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa em que o problema ocorreu e um rastreamento de pilha.
-
-Se algo correr mal durante a execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um stacktrace.
-
-**Se algo der errado durante o tempo de execução, o Python exibe uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu, e um traceback.
-
-**O traceback identifica a função que está rodando atualmente, e a função que a chamou, assim como a função que chamou esta, e assim por diante. Em outras palavras, ele traça a sequência de chamadas de função que fez com que você chegasse onde está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.
-
-O stacktrace identifica a função que está sendo executada atualmente, e depois a função que a chamou, e depois a função que a chamou, e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram até onde você está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.
-
-O rastreamento de pilha identifica a função que está em execução no momento e, em seguida, a função que a chamou e, em seguida, a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, incluindo o número da linha no seu arquivo em que cada chamada ocorreu.
-
-The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:
+O primeiro passo é examinar o local no programa onde ocorreu o erro e verificar se você consegue descobrir o que aconteceu. Listamos alguns dos erros de tempo de execução mais comuns:
 
 ArgumentError::
-One of the arguments to a function call is not in the expected state.
+Um dos argumentos para uma chamada de função não está no estado esperado.
 (((ArgumentError)))
 
 BoundsError::
-An indexing operation into an array tried to access an out-of-bounds element.
+Uma operação de indexação em uma lista que tentou acessar um elemento fora dos limites.
 (((BoundsError)))
 
 DomainError::
-The argument to a function or constructor is outside the valid domain.
+O argumento para uma função ou construtor está fora do domínio válido.
 (((DomainError)))((("error", "Core", "DomainError", see="DomainError")))
 
 DivideError::
-Integer division was attempted with a denominator value of 0.
+Tentativa de divisão inteira por um denominador de valor 0.
 (((DivideError)))((("error", "Core", "DivideError", see="DivideError")))
 
 EOFError::
-No more data was available to read from a file or stream.
+Não havia mais dados disponíveis para a leitura de um arquivo ou fluxo.
 (((EOFError)))((("error", "Base", "EOFError", see="EOFError")))
 
 InexactError::
-Cannot exactly convert to a type.
+Não é possível converter exatamente para um tipo.
 (((InexactError)))((("error", "Core", "InexactError", see="InexactError")))
 
 KeyError::
-An indexing operation into an +AbstractDict+ (+Dict+) or +Set+ like object tried to access or delete a non-existent element.
+Uma operação de indexação em um +AbstractDict+ (+Dict+) ou +Set+ como se um objeto tentasse acessar ou apagar um elemento inexistente.
 (((KeyError)))
 
 MethodError::
-A method with the required type signature does not exist in the given generic function. Alternatively, there is no unique most-specific method.
+Um método com a assinatura de tipo requerida não existe na função genérica em questão. Como alternativa, não existe um método mais específico.
 (((MethodError)))
 
 OutOfMemoryError::
-An operation allocated too much memory for either the system or the garbage collector to handle properly.
+Uma operação com muita memória alocada tanto para o sistema quanto para o coletor de lixo para manusear corretamente.
 (((OutOfMemoryError)))((("error", "Core", "OutOfMemoryError", see="OutOfMemoryError")))
 
 OverflowError::
-The result of an expression is too large for the specified type and will cause a wraparound.
+O resultado de uma expressão é muito grande para o tipo especificado e causará uma explosão. The result of an expression is too large for the specified type and will cause a wraparound.
 (((OverflowError)))((("error", "Core", "OverflowError", see="OverflowError")))
 
 StackOverflowError::
-The function call grew beyond the size of the call stack. This usually happens when a call recurses infinitely.
+A chamada de função cresceu além do tamanho da pilha de chamadas. Isso geralmente acontece quando uma chamada cai em uma recursão infinita.
 (((StackOverflowError)))
 
 StringIndexError::
-An error occurred when trying to access a string at an index that is not valid.
+Ocorrência de um erro ao tentar acessar um índice inválido em uma string.
 (((StringIndexError)))
 
 SystemError::
-A system call failed with an error code.
+Uma chamada de sistema falhou devido a um código errado.
 (((SystemError)))
 
 TypeError::
-A type assertion failure, or calling an intrinsic function with an incorrect argument type.
+Uma falha de asserção de tipo ou chamada de uma função intrínseca com um tipo de argumento incorreto.
 (((TypeError)))
 
 UndefVarError::
-A symbol in the current scope is not defined.
+Um símbolo no escopo atual não está definido.
 (((UndefVarError)))
 
-==== I added so many print statements I get inundated with output
+==== Adicionei Tantas declarações print que Sou Inundado com a Saída
 
 One of the problems with using print statements for debugging is that you can end up buried in output. There are two ways to proceed: simplify the output or simplify the program.
 
 To simplify the output, you can remove or comment out print statements that aren’t helping, or combine them, or format the output so it is easier to understand.
+
+Um dos problemas com o uso de instruções de impressão para depuração é que você pode acabar enterrado na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+
+Um dos problemas com o uso de comandos de impressão para depuração é que você pode acabar enterrado na saída. Há duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+
+**Um dos problemas com a utilização de instruções print para a depuração é que você pode terminar enterrado pelos resultados. Há duas formas de prosseguir: simplifique a saída ou simplifique o programa.
+
+**Para simplificar a saída, você pode retirar ou transformar as instruções print que não estão ajudando em comentários, ou combiná-las, ou formatar a saída para que seja mais fácil de entender.
+
+Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-los, ou formatar a saída para que seja mais fácil de entender.
+
+Para simplificar a saída, você pode remover ou comentar as instruções de impressão que não estão ajudando, combiná-las ou formatar a saída para facilitar a compreensão.
 
 To simplify the program, there are several things you can do. First, scale down the problem the program is working on. For example, if you are searching a list, search a small list. If the program takes input from the user, give it the simplest input that causes the problem.
 
