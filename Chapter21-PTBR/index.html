@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592197451566764e9</code></pre>
+1.592284870667189e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♠ 8♦ 10♦ K♦ 2♦ J♠ 3♣ 6♦ 5♥ A♥ 6♣ 7♦ Q♦ 4♦ J♦ 9♣ K♣ A♣ J♣ 2♠ 3♥ 10♣ 8♠ 5♦ 4♣ 7♠ K♥ 9♦ J♥ 10♠ 9♥ 8♣ 2♥ 3♦ 2♣ 7♣ 9♠ 6♥ 10♥ 7♥ Q♣ 3♠ A♦ Q♠ 5♣ 4♥ 4♠ 8♥ A♠ K♠ 5♠ Q♥
+6♦ A♣ 7♣ 2♠ A♦ 3♦ J♥ 8♦ 2♦ 9♠ 3♥ 4♠ J♣ 5♦ A♠ 5♠ 5♣ 8♣ 5♥ 7♦ 3♣ 8♥ K♣ 9♦ 8♠ 4♦ 10♠ 6♠ Q♦ A♥ K♠ 6♣ 10♣ 9♣ 4♥ 2♥ J♠ K♥ 7♠ J♦ Q♥ 7♥ Q♠ 10♦ 6♥ 3♠ 4♣ 2♣ K♦ Q♣ 10♥ 9♥
 julia&gt; card = pop!(deck)
-Q♥
+9♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20494(double, double) {
+define double @julia_squaresum_20466(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15817,119 +15817,119 @@ end</code></pre>
 <div class="sect3">
 <h4 id="_quando_executo_o_programa_recebo_uma_exceção">Quando Executo o Programa, Recebo uma Exceção</h4>
 <div class="paragraph">
-<p>If something goes wrong during runtime, Julia prints a message that includes the name of the exception, the line of the program where the problem occurred, and a stacktrace.</p>
+<p>Se algo der errado durante o tempo de execução, o Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um rastreamento de pilha.</p>
 </div>
 <div class="paragraph">
-<p>The stacktrace identifies the function that is currently running, and then the function that called it, and then the function that called that, and so on. In other words, it traces the sequence of function calls that got you to where you are, including the line number in your file where each call occurred.</p>
+<p>O rastreamento de pilha identifica a função que está em execução no momento, e depois a função que a chamou, e depois a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, juntamente com o número da linha no seu arquivo onde cada chamada ocorreu.</p>
 </div>
 <div class="paragraph">
-<p>Se algo der errado durante o tempo de execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa em que o problema ocorreu e um rastreamento de pilha.</p>
-</div>
-<div class="paragraph">
-<p>Se algo correr mal durante a execução, Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um stacktrace.</p>
-</div>
-<div class="paragraph">
-<p>**Se algo der errado durante o tempo de execução, o Python exibe uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu, e um traceback.</p>
-</div>
-<div class="paragraph">
-<p>**O traceback identifica a função que está rodando atualmente, e a função que a chamou, assim como a função que chamou esta, e assim por diante. Em outras palavras, ele traça a sequência de chamadas de função que fez com que você chegasse onde está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.</p>
-</div>
-<div class="paragraph">
-<p>O stacktrace identifica a função que está sendo executada atualmente, e depois a função que a chamou, e depois a função que a chamou, e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram até onde você está, incluindo o número da linha no seu arquivo onde cada chamada ocorreu.</p>
-</div>
-<div class="paragraph">
-<p>O rastreamento de pilha identifica a função que está em execução no momento e, em seguida, a função que a chamou e, em seguida, a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, incluindo o número da linha no seu arquivo em que cada chamada ocorreu.</p>
-</div>
-<div class="paragraph">
-<p>The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:</p>
+<p>O primeiro passo é examinar o local no programa onde ocorreu o erro e verificar se você consegue descobrir o que aconteceu. Listamos alguns dos erros de tempo de execução mais comuns:</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">ArgumentError</dt>
 <dd>
-<p>One of the arguments to a function call is not in the expected state.
+<p>Um dos argumentos para uma chamada de função não está no estado esperado.
 </p>
 </dd>
 <dt class="hdlist1">BoundsError</dt>
 <dd>
-<p>An indexing operation into an array tried to access an out-of-bounds element.
+<p>Uma operação de indexação em uma lista que tentou acessar um elemento fora dos limites.
 </p>
 </dd>
 <dt class="hdlist1">DomainError</dt>
 <dd>
-<p>The argument to a function or constructor is outside the valid domain.
+<p>O argumento para uma função ou construtor está fora do domínio válido.
 </p>
 </dd>
 <dt class="hdlist1">DivideError</dt>
 <dd>
-<p>Integer division was attempted with a denominator value of 0.
+<p>Tentativa de divisão inteira por um denominador de valor 0.
 </p>
 </dd>
 <dt class="hdlist1">EOFError</dt>
 <dd>
-<p>No more data was available to read from a file or stream.
+<p>Não havia mais dados disponíveis para a leitura de um arquivo ou fluxo.
 </p>
 </dd>
 <dt class="hdlist1">InexactError</dt>
 <dd>
-<p>Cannot exactly convert to a type.
+<p>Não é possível converter exatamente para um tipo.
 </p>
 </dd>
 <dt class="hdlist1">KeyError</dt>
 <dd>
-<p>An indexing operation into an <code>AbstractDict</code> (<code>Dict</code>) or <code>Set</code> like object tried to access or delete a non-existent element.
+<p>Uma operação de indexação em um <code>AbstractDict</code> (<code>Dict</code>) ou <code>Set</code> como se um objeto tentasse acessar ou apagar um elemento inexistente.
 </p>
 </dd>
 <dt class="hdlist1">MethodError</dt>
 <dd>
-<p>A method with the required type signature does not exist in the given generic function. Alternatively, there is no unique most-specific method.
+<p>Um método com a assinatura de tipo requerida não existe na função genérica em questão. Como alternativa, não existe um método mais específico.
 </p>
 </dd>
 <dt class="hdlist1">OutOfMemoryError</dt>
 <dd>
-<p>An operation allocated too much memory for either the system or the garbage collector to handle properly.
+<p>Uma operação com muita memória alocada tanto para o sistema quanto para o coletor de lixo para manusear corretamente.
 </p>
 </dd>
 <dt class="hdlist1">OverflowError</dt>
 <dd>
-<p>The result of an expression is too large for the specified type and will cause a wraparound.
+<p>O resultado de uma expressão é muito grande para o tipo especificado e causará uma explosão. The result of an expression is too large for the specified type and will cause a wraparound.
 </p>
 </dd>
 <dt class="hdlist1">StackOverflowError</dt>
 <dd>
-<p>The function call grew beyond the size of the call stack. This usually happens when a call recurses infinitely.
+<p>A chamada de função cresceu além do tamanho da pilha de chamadas. Isso geralmente acontece quando uma chamada cai em uma recursão infinita.
 </p>
 </dd>
 <dt class="hdlist1">StringIndexError</dt>
 <dd>
-<p>An error occurred when trying to access a string at an index that is not valid.
+<p>Ocorrência de um erro ao tentar acessar um índice inválido em uma string.
 </p>
 </dd>
 <dt class="hdlist1">SystemError</dt>
 <dd>
-<p>A system call failed with an error code.
+<p>Uma chamada de sistema falhou devido a um código errado.
 </p>
 </dd>
 <dt class="hdlist1">TypeError</dt>
 <dd>
-<p>A type assertion failure, or calling an intrinsic function with an incorrect argument type.
+<p>Uma falha de asserção de tipo ou chamada de uma função intrínseca com um tipo de argumento incorreto.
 </p>
 </dd>
 <dt class="hdlist1">UndefVarError</dt>
 <dd>
-<p>A symbol in the current scope is not defined.
+<p>Um símbolo no escopo atual não está definido.
 </p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_i_added_so_many_print_statements_i_get_inundated_with_output">I added so many print statements I get inundated with output</h4>
+<h4 id="_adicionei_tantas_declarações_print_que_sou_inundado_com_a_saída">Adicionei Tantas declarações print que Sou Inundado com a Saída</h4>
 <div class="paragraph">
 <p>One of the problems with using print statements for debugging is that you can end up buried in output. There are two ways to proceed: simplify the output or simplify the program.</p>
 </div>
 <div class="paragraph">
 <p>To simplify the output, you can remove or comment out print statements that aren’t helping, or combine them, or format the output so it is easier to understand.</p>
+</div>
+<div class="paragraph">
+<p>Um dos problemas com o uso de instruções de impressão para depuração é que você pode acabar enterrado na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.</p>
+</div>
+<div class="paragraph">
+<p>Um dos problemas com o uso de comandos de impressão para depuração é que você pode acabar enterrado na saída. Há duas maneiras de proceder: simplificar a saída ou simplificar o programa.</p>
+</div>
+<div class="paragraph">
+<p>**Um dos problemas com a utilização de instruções print para a depuração é que você pode terminar enterrado pelos resultados. Há duas formas de prosseguir: simplifique a saída ou simplifique o programa.</p>
+</div>
+<div class="paragraph">
+<p>**Para simplificar a saída, você pode retirar ou transformar as instruções print que não estão ajudando em comentários, ou combiná-las, ou formatar a saída para que seja mais fácil de entender.</p>
+</div>
+<div class="paragraph">
+<p>Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-los, ou formatar a saída para que seja mais fácil de entender.</p>
+</div>
+<div class="paragraph">
+<p>Para simplificar a saída, você pode remover ou comentar as instruções de impressão que não estão ajudando, combiná-las ou formatar a saída para facilitar a compreensão.</p>
 </div>
 <div class="paragraph">
 <p>To simplify the program, there are several things you can do. First, scale down the problem the program is working on. For example, if you are searching a list, search a small list. If the program takes input from the user, give it the simplest input that causes the problem.</p>
@@ -16291,7 +16291,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-15 05:04:07 UTC
+Última atualização 2020-06-16 05:21:07 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
