@@ -543,12 +543,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_reatribuição">Reatribuição</a></li>
 <li><a href="#_atualizando_variáveis">Atualizando Variáveis</a></li>
-<li><a href="#_o_comando_code_while_code">O Comando <code>while</code></a></li>
+<li><a href="#_a_declaração_code_while_code">A Declaração <code>while</code></a></li>
 <li><a href="#__code_break_code"><code>break</code></a></li>
 <li><a href="#__code_continue_code"><code>continue</code></a></li>
 <li><a href="#square_roots">Raízes Quadradas</a></li>
 <li><a href="#_algoritmos">Algoritmos</a></li>
-<li><a href="#_depuração">Depuração</a></li>
+<li><a href="#_depurando">Depurando</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591728784312241e9</code></pre>
+1.592430284534095e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5322,13 +5322,13 @@ end</code></pre>
 <h2 id="chap07">10. Iteração</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Esse capítulo é sobre iteração, que é a habilidade de executar um bloco de argumentos repetidamente. Vimos um tipo de iteração usando recursão em <a href="#recursion">Recursion</a>. Vimos também outro tipo, usando um laço <code>for</code> em <a href="#simple_repetition">Simple Repetition</a>. Neste capítulo, veremos um outro tipo, que usa uma declração <code>while</code> (<em>enquanto</em> em Português). Mas antes temos que falar um pouco mais sobre atribuição de variável.
+<p>Esse capítulo é sobre iteração, que é a habilidade de executar um bloco de argumentos repetidamente. Vimos um tipo de iteração usando recursão em <a href="#recursion">Recursion</a>. Vimos também outro tipo, usando um laço <code>for</code> em <a href="#simple_repetition">Simple Repetition</a>. Neste capítulo, veremos um outro tipo, que usa uma declaração <code>while</code> (<em>enquanto</em> em Português). Mas antes temos que falar um pouco mais sobre atribuição de variável.
 </p>
 </div>
 <div class="sect2">
 <h3 id="_reatribuição">Reatribuição</h3>
 <div class="paragraph">
-<p>Você talvez tenha descoberto que é permitido fazer mais de uma atribuição para as mesmas variáveis. Uma nova atribuição faz com que uma variável existente se refira a um novo valor (e pare de se referir ao valor antigo).</p>
+<p>Como você deve ter descoberto, é permitido fazer mais de uma atribuição para as mesmas variáveis. Uma nova atribuição faz com que uma variável existente se refira a um novo valor (e pare de se referir ao valor antigo).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5356,7 +5356,7 @@ julia&gt; x = 7
 </p>
 </div>
 <div class="paragraph">
-<p>Primeiro que, a igualdade é uma relação simétrica e a atribuição não é. Por exemplo, em matemática, se \(a=7\) então \(7=a\). Mas em Julia, a atribuição <code>a=7</code> é permitida e <code>7=a</code> não.</p>
+<p>Primeiro que a igualdade é uma relação simétrica e a atribuição não é. Por exemplo, em matemática, se \(a=7\) então \(7=a\). Mas em Julia, a atribuição <code>a=7</code> é permitida e <code>7=a</code> não.</p>
 </div>
 <div class="paragraph">
 <p>Também na matemática, uma proposição de igualdade ou é verdadeira ou é falsa para sempre. Se \(a=b\) agora, então \(a\) será sempre igual a \(b\). Em Julia, uma atribuição pode fazer duas variáveis iguais, mas elas não precisam ficar assim:</p>
@@ -5384,7 +5384,7 @@ julia&gt; b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A reatribuição de variáveis geralmente é útil, mas, você deve usá-la com cuidado. Se os valores das variáveis mudarem com frequência, isso pode dificultar a leitura e a depuração do código.</p>
+<p>A reatribuição de variáveis geralmente é útil, mas você deve usá-la com cuidado. Se os valores das variáveis mudarem com frequência, isso pode dificultar a leitura e a depuração do código.</p>
 </div>
 <div class="paragraph">
 <p>Não é permitido definir uma função que tenha o mesmo nome de uma variável definida anteriormente.</p>
@@ -5397,7 +5397,7 @@ julia&gt; b
 <div class="sect2">
 <h3 id="_atualizando_variáveis">Atualizando Variáveis</h3>
 <div class="paragraph">
-<p>Um tipo comum de reatribuição é uma atualização, onde o novo valor da variável depende da antiga.
+<p>Um tipo comum de reatribuição é uma atualização, onde o novo valor da variável depende do antigo.
 </p>
 </div>
 <div class="listingblock">
@@ -5437,17 +5437,17 @@ julia&gt; y = y + 1
 </div>
 </div>
 <div class="sect2">
-<h3 id="_o_comando_code_while_code">O Comando <code>while</code></h3>
+<h3 id="_a_declaração_code_while_code">A Declaração <code>while</code></h3>
 <div class="paragraph">
 <p>Os computadores são frequentemente usados para automatizar tarefas repetitivas. Repetir tarefas idênticas ou semelhantes sem cometer erros é algo que os computadores fazem bem, ao contrário das pessoas. Em um programa de computador, a repetição também é chamada de <em>iteração</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Já vimos duas funções, <code>contador_regressivo</code> e <code>imprima_n</code>, que iteram usando recursão. Como a iteração é muito comum, Julia dispõe de recursos para simplificá-la. Um deles é o comando <code>for</code> que vimos em <a href="#simple_repetition">Simple Repetition</a>. Voltaremos a este assunto mais tarde.
+<p>Já vimos duas funções, <code>contador_regressivo</code> e <code>imprima_n</code>, que iteram usando recursão. Como a iteração é muito comum, Julia dispõe de recursos para simplificá-la. Um deles é a declaração <code>for</code> que vimos em <a href="#simple_repetition">Simple Repetition</a>. Voltaremos a este assunto mais tarde.
 </p>
 </div>
 <div class="paragraph">
-<p>O outro é a <em>comando</em> <code>while</code>. Aqui está a versão do <code>contagem_regressiva</code> que utiliza o comando <code>while</code>:
+<p>A outra é a <em>declaração</em> <code>while</code>. Aqui está a versão de <code>contagem_regressiva</code> que utiliza a declaração <code>while</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -5457,16 +5457,16 @@ julia&gt; y = y + 1
         print(n, " ")
         n = n - 1
     end
-    println("Feliz Ano Novo!")
+    println("Decolar!")
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Você pode ler quase toda o comando <code>while</code> como se estivesse em inglês. Isso significa que "Enquanto <code>n</code> for maior que 0, exiba o valor de <code>n</code> e depois diminua <code>n</code>. Quando chegar a 0, imprima a a frase Feliz Ano Novo!"
+<p>Você pode ler quase toda a declaração <code>while</code> como se estivesse em inglês. Isso significa que “Enquanto <code>n</code> for maior que 0, exiba o valor de <code>n</code> e depois diminua <code>n</code>. Quando chegar a 0, imprima a palavra Decolar!”
 </p>
 </div>
 <div class="paragraph">
-<p>Formalmente, segue abaixo o fluxo de execução de um comando <code>while</code>:
+<p>Formalmente, segue abaixo o fluxo de execução de uma declaração <code>while</code>:
 </p>
 </div>
 <div class="olist arabic">
@@ -5475,10 +5475,10 @@ end</code></pre>
 <p>Determinar se a condição é verdadeira ou falsa.</p>
 </li>
 <li>
-<p>Se for falsa, saia do comando <em>while</em> e continue a execução para a próxima instrução.</p>
+<p>Se for falsa, saia do comando <em>while</em> e continue a execução para o próximo comando.</p>
 </li>
 <li>
-<p>Se a condição for verdadeira, execute os comandos e então volte para o passo 1.</p>
+<p>Se a condição for verdadeira, execute os comandos do corpo e então volte para o passo 1.</p>
 </li>
 </ol>
 </div>
@@ -5512,16 +5512,16 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A condição para esse laço é <code>n != 1</code>, então esse laço irá continuar até que <code>n</code> atinja 1, o que faz a condição ser falsa.</p>
+<p>A condição para esse laço é <code>n != 1</code>, então esse laço irá continuar até que <code>n</code> seja 1, o que faz a condição ser falsa.</p>
 </div>
 <div class="paragraph">
-<p>A cada turno do laço, o programa tem como saída o valor <code>n</code> que é verificado se é par ou ímpar. Se for par, <code>n</code> é dividido por 2. Se é ímpar, o valor de <code>n</code> é substituído por <code>n*3 + 1</code>. Por exemplo, se o argumento da sequência é 3, os valores de <code>n</code> recebidos são 3, 10, 5, 16, 8, 4, 2, 1.</p>
+<p>A cada turno do laço, o programa tem como saída o valor <code>n</code> que é verificado se é par ou ímpar. Se é par, <code>n</code> é dividido por 2. Se é ímpar, o valor de <code>n</code> é substituído por <code>n*3 + 1</code>. Por exemplo, se o argumento da sequência é 3, os valores de <code>n</code> recebidos são 3, 10, 5, 16, 8, 4, 2, 1.</p>
 </div>
 <div class="paragraph">
-<p>Já que <code>n</code> às vezes cresce e às vezes decresce, não existe uma demonstração óbvia de que <code>n</code> resultará em 1 ou que o programa termine. Para alguns valores particulares de <code>n</code>, podemos demonstrar que termina. Por exemplo, se o valor inicial é uma potência de dois, <code>n</code> será sempre par durante o laço até que resulta em 1. O exemplo anterior finaliza essa sequência, a partir de 16.</p>
+<p>Já que <code>n</code> às vezes cresce e às vezes decresce, não existe uma demonstração óbvia de que <code>n</code> resultará em 1 ou que o programa termine. Para alguns valores particulares de <code>n</code>, podemos demonstrar que termina. Por exemplo, se o valor inicial é uma potência de dois, <code>n</code> será sempre par durante o laço até que chega em 1. O exemplo anterior finaliza essa sequência, a partir de 16.</p>
 </div>
 <div class="paragraph">
-<p>A parte difícil é provar que esse programa finaliza para todos os valores positivos de <code>n</code>. Até agora ninguém foi capaz de provar ou desprovar isso! (consulte <a href="https://pt.wikipedia.org/wiki/Conjectura_de_Collatz." class="bare">https://pt.wikipedia.org/wiki/Conjectura_de_Collatz.</a>)
+<p>A parte difícil é provar que esse programa finaliza para todos os valores positivos de <code>n</code>. Até agora ninguém foi capaz de provar ou desprovar isso! (Consulte <a href="https://pt.wikipedia.org/wiki/Conjectura_de_Collatz." class="bare">https://pt.wikipedia.org/wiki/Conjectura_de_Collatz.</a>)
 </p>
 </div>
 <div class="sect4">
@@ -5534,11 +5534,11 @@ end</code></pre>
 <div class="sect2">
 <h3 id="__code_break_code"><code>break</code></h3>
 <div class="paragraph">
-<p>Às vezes, você não sabe que é hora de terminar um laço até chegar na metade do corpo. Neste caso você pode utilizar o <em>comando break</em> para sair do laço.
+<p>Às vezes, você não sabe que é hora de terminar um laço até chegar na metade do corpo. Neste caso você pode utilizar a <em>declaração break</em> para sair do laço.
 </p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, suponha que você quer receber entradas do usuário até que ele digite concluído. Poderia-se escrever:
+<p>Por exemplo, suponha que você queira receber entradas do usuário até que ele digite concluído. Poderia-se escrever:
 </p>
 </div>
 <div class="listingblock">
@@ -5555,10 +5555,10 @@ println("Concluído!")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A condição deste laço é <code>true</code>, que é sempre verdade, então o laço será executado até chegar no comando break.</p>
+<p>A condição deste laço é <code>true</code>, que é sempre verdade, então o laço será executado até chegar na declaração break.</p>
 </div>
 <div class="paragraph">
-<p>A cada iteração, a solicitação ao usuário ocorre por meio de um sinal de maior ("&gt;"). Se o usuário digitar <code>concluído</code>, então o comando break finaliza o laço. Caso contrário, o programa mostrará o que o usuário digitar e voltará ao topo do laço. Aqui está um exemplo de execução:</p>
+<p>A cada iteração, a solicitação ao usuário ocorre por meio de um sinal de maior ("&gt;"). Se o usuário digitar <code>concluído</code>, então a declaração break finaliza o laço. Caso contrário, o programa mostrará o que o usuário digitar e voltará ao topo do laço. Aqui está um exemplo de execução:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5569,13 +5569,13 @@ Concluído!</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Essa maneira de escrever laços é comum porque você pode verificar a condição em qualquer lugar do laço (não apenas no topo) e você pode expressar a condição de parada afirmativamente ("pare quando isso acontecer") tanto quanto negativamente ("continue enquanto isso acontece").</p>
+<p>Essa maneira de escrever laços é comum porque você pode verificar a condição em qualquer lugar do laço (não apenas no topo) e você pode expressar a condição de parada afirmativamente ("pare quando isso acontecer") ao invés de negativamente ("continue enquanto isso acontece").</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="__code_continue_code"><code>continue</code></h3>
 <div class="paragraph">
-<p>O comando break sai do laço. Quando um <em>comando continue</em> é encontrado dentro de um laço, salta-se para o início do laço da próxima iteração, pulando a execução de comandos dentro do corpo do laço da iteração atual. Por exemplo:
+<p>A declaração break sai do laço. Quando uma <em>declaração continue</em> é encontrado dentro de um laço, salta-se para o início do laço da próxima iteração, pulando a execução de comandos dentro do corpo do laço da iteração atual. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -5597,7 +5597,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se <code>i</code> é divisível por 3, o comando continue para na iteração atual e a próxima iteração é iniciada. Apenas os números no intervalo entre 1 a 10 não divisíveis por 3 são exibidos.</p>
+<p>Se <code>i</code> é divisível por 3, a declaração continue para na iteração atual e a próxima iteração é iniciada. Apenas os números no intervalo entre 1 a 10 não divisíveis por 3 são exibidos.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5606,7 +5606,7 @@ end</code></pre>
 <p>Laços são frequentemente usados em programas que calculam resultados numéricos começando com um valor aproximado e aprimorando-o iterativamente.</p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, uma maneira de computar raízes quadradas é através do Método de Newton. Suponha que você queira saber a raíz quadrada de \(a\). Se você começar com uma estimativa qualquer, \(x\), pode-se calcular uma estimativa melhor com a seguinte fórmula:
+<p>Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raíz quadrada de \(a\). Se você começar com uma estimativa qualquer, \(x\), pode-se calcular uma estimativa melhor com a seguinte fórmula:
 </p>
 </div>
 <div class="stemblock">
@@ -5641,7 +5641,7 @@ julia&gt; y = (x + a/x) / 2
 </div>
 </div>
 <div class="paragraph">
-<p>Depois de mais algumas atualizações a estimativa é quase exata:</p>
+<p>Depois de mais algumas atualizações, a estimativa é quase exata:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5706,11 +5706,11 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_algoritmos">Algoritmos</h3>
 <div class="paragraph">
-<p>O Método de Newton é um exemplo de um <em>algoritmo</em>: Um processo mecânico para resolver uma categoria de problemas (nesse caso, o cálculo de raízes quadradas).
+<p>O método de Newton é um exemplo de um <em>algoritmo</em>: um processo mecânico para resolver uma categoria de problemas (nesse caso, o cálculo de raízes quadradas).
 </p>
 </div>
 <div class="paragraph">
-<p>Para entender o que é um algoritmo, talvez seja interessante mostrar algo que não é um algoritmo. Quando você aprendeu a multiplicar unidades, você provavelmente memorizou a tabuada. De fato, você memorizou 100 soluções específicas. Esse tipo de conhecimento não é um algoritmo.</p>
+<p>Para entender o que é um algoritmo, talvez seja interessante começar com algo que não é um algoritmo. Quando você aprendeu a multiplicar unidades, você provavelmente memorizou a tabuada. De fato, você memorizou 100 soluções específicas. Esse tipo de conhecimento não é um algoritmo.</p>
 </div>
 <div class="paragraph">
 <p>Mas se você fosse "preguiçoso", talvez tivesse aprendido alguns truques. Por exemplo, para encontrar o produto de \(n\) e 9, você pode escrever \(n-1\) no primeiro dígito e \(10-n\) no segundo dígito. Esse truque é uma solução geral para multiplicar qualquer unidade por 9. Isso é um algoritmo!</p>
@@ -5722,17 +5722,17 @@ end</code></pre>
 <p>Apesar da execução de algoritmos ser chata, a construção é interessante, intelectualmente desafiadora e uma parte central da ciência da computação.</p>
 </div>
 <div class="paragraph">
-<p>Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou conscientemente pensado, são as mais difíceis de expressar por algoritmos. Compreender a linguagem nativa é um bom exemplo. Todos fazemos isso, mas até agora ninguém foi capaz de explicar como fazemos, pelo menos não na forma de um algoritmo.</p>
+<p>Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou conscientemente pensado, são as mais difíceis de expressar por algoritmos. Compreender a linguagem natural é um bom exemplo. Todos nós fazemos isso, mas até agora ninguém foi capaz de explicar <em>como</em> fazemos, pelo menos não na forma de um algoritmo.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_depuração">Depuração</h3>
+<h3 id="_depurando">Depurando</h3>
 <div class="paragraph">
-<p>Ao começar a escrever programas maiores, você pode passar mais tempo depurando. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
+<p>Ao começar a escrever programas maiores, você pode passar mais tempo com a depuração. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
 </p>
 </div>
 <div class="paragraph">
-<p>Uma maneira de reduzir o tempo da depuração é “depurar por bissecção”. Por exemplo, se houver 100 linhas no seu programa e você verificá-las uma de cada vez, serão necessárias 100 etapas.
+<p>Uma maneira de reduzir o tempo da depuração é a “depuração por bissecção”. Por exemplo, se houver 100 linhas no seu programa e você verificá-las uma de cada vez, serão necessárias 100 etapas.
 </p>
 </div>
 <div class="paragraph">
@@ -5743,10 +5743,10 @@ end</code></pre>
 <p>Se a verificação da região do meio estiver incorreta, deve haver um problema na primeira metade do programa. Se estiver correta, o problema está na segunda metade.</p>
 </div>
 <div class="paragraph">
-<p>Toda vez que você executa uma verificação como essa, reduz-se pela metade o número de linhas que precisa averiguar. Após seis etapas (que é menor que 100), você reduziria para uma ou duas linhas de código, pelo menos em teoria.</p>
+<p>Toda vez que você executa uma verificação como essa, reduz-se pela metade o número de linhas que se precisa averiguar. Após seis etapas (que é menor que 100), você reduziria para uma ou duas linhas de código, pelo menos em teoria.</p>
 </div>
 <div class="paragraph">
-<p>Na prática, nem sempre é claro onde é o "meio do programa" e nem sempre é possível verificá-lo. Não faz sentido contar linhas e encontrar o ponto médio exato. Em vez disso, pense nos locais do programa em que pode haver erros e nos locais onde é fácil fazer uma verificação. Em seguida, escolha um local onde você acha que as chances são as mesmas de que o bug seja antes ou depois da verificação.</p>
+<p>Na prática, nem sempre é claro onde é o "meio do programa" e nem sempre é possível verificá-lo. Não faz sentido contar linhas e encontrar o ponto médio exato. Em vez disso, pense nos locais do programa em que pode haver erros e nos locais onde é fácil fazer uma verificação. Em seguida, escolha um local onde você acha que as chances são as mesmas de que o erro seja antes ou depois da verificação.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5770,7 +5770,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">incremento</dt>
 <dd>
-<p>Uma atualização que aumenta o valor de uma variável (geralmente em um).
+<p>Uma atualização que aumenta o valor de uma variável (frequentemente em um).
 </p>
 </dd>
 <dt class="hdlist1">decremento</dt>
@@ -5783,17 +5783,17 @@ end</code></pre>
 <p>Execução repetida de um conjunto de comandos usando uma chamada de função recursiva ou um laço.
 </p>
 </dd>
-<dt class="hdlist1">comando while</dt>
+<dt class="hdlist1">declaração while</dt>
 <dd>
 <p>Comando que permite iterações controladas por uma condição.
 </p>
 </dd>
-<dt class="hdlist1">comando break</dt>
+<dt class="hdlist1">declaração break</dt>
 <dd>
 <p>Comando que permite saltar fora de um laço.
 </p>
 </dd>
-<dt class="hdlist1">comando continue</dt>
+<dt class="hdlist1">declaração continue</dt>
 <dd>
 <p>Comando dentro de um laço que salta para o início do laço da próxima iteração.
 </p>
@@ -5816,30 +5816,30 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex07-1">Exercício 7-2</h5>
 <div class="paragraph">
-<p>Copie o laço de <a href="#square_roots">Raízes Quadradas</a> e encapsule-o em uma função chamada <code>minha_raíz</code> que usa a variável <code>a</code> como um parâmetro e escolha um valor razoável de <code>x</code> que retorne uma estimativa da raíz quadrada de <code>a</code>.
+<p>Copie o laço de <a href="#square_roots">Raízes Quadradas</a> e encapsule-o em uma função chamada <code>minha_raiz</code> que usa a variável <code>a</code> como um parâmetro e escolha um valor razoável de <code>x</code> que retorne uma estimativa da raíz quadrada de <code>a</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>Para testá-la, escreva uma função chamada <code>testa_raíz</code> que imprime uma tabela como esta:
+<p>Para testá-la, escreva uma função chamada <code>avalia_raiz_quadrada</code> que imprime uma tabela como esta:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="@ julia-eval">using ThinkJulia
 io = IOBuffer()
-testa_raíz(io)
+avalia_raiz_quadrada(io)
 res = String(take!(io))
 println(res)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A primeira coluna é um número, <code>a</code>; a segunda coluna é a raíz quadrada de <code>a</code> calculado com <code>minha_raíz</code>; a terceira coluna é a raíz quadrada calculada por <code>sqrt</code>; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.</p>
+<p>A primeira coluna é um número, <code>a</code>; a segunda coluna é a raíz quadrada de <code>a</code> calculado com <code>minha_raiz</code>; a terceira coluna é a raiz quadrada calculada por <code>sqrt</code>; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex07-2">Exercício 7-3</h5>
 <div class="paragraph">
-<p>A função interna <code>Meta.parse</code> pega uma string e transforma-a em uma expressão. Essa expressão pode ser avaliada em Julia com a função <code>Core.eval</code>. Por exemplo:
+<p>A função interna <code>Meta.parse</code> recebe uma string e transforma-a em uma expressão. Essa expressão pode ser avaliada em Julia com a função <code>Core.eval</code>. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -5855,7 +5855,7 @@ julia&gt; eval(expr)
 </div>
 </div>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>avalie_laço</code> que solicite iterativamente ao usuário e então pegue a entrada recebida, avalie-na usando <code>eval</code> e depois imprima o resultado. A função deve continuar até o usuário digitar <code>concluído</code> e depois retornar o valor da última expressão avaliada.</p>
+<p>Escreva uma função chamada <code>avalie_laço</code> que solicite iterativamente ao usuário, pegue a entrada recebida e avalie-a usando <code>eval</code> e depois imprime o resultado. A função deve continuar até o usuário digitar <code>concluído</code> e depois retornar o valor da última expressão avaliada.</p>
 </div>
 <div class="paragraph">
 <p></p>
@@ -5874,7 +5874,7 @@ julia&gt; eval(expr)
 </div>
 </div>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>estimativa_pi</code> que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que <code>1e-15</code> (que é a notação Julia para \(10^{-15}\)). Você pode verificar o resultado comparando-o com <code>π</code>.
+<p>Escreva uma função chamada <code>estimativa_pi</code> que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que <code>1e-15</code> (que é a notação do Julia para \(10^{-15}\)). Você pode verificar o resultado comparando-o com <code>π</code>.
 </p>
 </div>
 </div>
@@ -13589,9 +13589,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♠ K♦ K♥ 5♦ 8♣ K♣ 9♥ A♦ 8♥ J♦ 7♠ 7♣ 2♦ 9♦ J♣ 6♦ 6♣ 4♣ 10♠ Q♠ 9♠ 8♦ 4♠ 7♦ 10♥ A♣ 3♦ 5♠ J♥ J♠ 2♠ 3♥ Q♣ 9♣ 5♣ 8♠ 2♣ 3♠ 3♣ 4♦ 7♥ Q♥ K♠ A♠ Q♦ 5♥ 2♥ 10♦ 6♥ 10♣ 4♥ A♥
+Q♦ 10♦ 9♥ 6♣ 3♣ 3♠ 8♠ 6♦ 8♦ 6♥ 4♦ 2♣ 9♣ 10♥ 7♠ Q♥ 9♦ Q♠ 10♣ 8♣ 3♦ J♥ J♠ A♥ K♥ 5♥ 4♣ 4♥ 2♥ 6♠ A♣ 3♥ 7♣ 8♥ A♠ 5♦ J♦ A♦ K♦ 5♠ Q♣ J♣ 5♣ 7♦ 2♦ 2♠ 4♠ K♣ 9♠ 10♠ 7♥ K♠
 julia&gt; card = pop!(deck)
-A♥
+K♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15511,7 +15511,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20561(double, double) {
+define double @julia_squaresum_20460(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16276,7 +16276,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-09 18:53:00 UTC
+Last updated 2020-06-17 21:44:41 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
