@@ -199,45 +199,46 @@ Um símbolo no escopo atual não está definido.
 
 ==== Adicionei Tantas declarações print que Sou Inundado com a Saída
 
-One of the problems with using print statements for debugging is that you can end up buried in output. There are two ways to proceed: simplify the output or simplify the program.
+Um dos problemas com o uso de declarações print para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
 
-To simplify the output, you can remove or comment out print statements that aren’t helping, or combine them, or format the output so it is easier to understand.
+Para simplificar a saída, você pode remover ou comentar as declarações print que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.
 
-Um dos problemas com o uso de instruções de impressão para depuração é que você pode acabar enterrado na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. Caso o programa receba a entrada do usuário, passe a entrada mais simples que causa o problema.
 
-Um dos problemas com o uso de comandos de impressão para depuração é que você pode acabar enterrado na saída. Há duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+Segundo, limpe o programa. Remova o código morto e reorganize o programa para torná-lo o mais fácil possível de ler. Por exemplo, se você suspeita que o problema está em uma parte profundamente aninhada do programa, tente reescrever essa parte com uma estrutura mais simples. Mas se você suspeitar de uma função grande, tente dividi-la em funções menores e testá-las separadamente.
+(((código morto)))
 
-**Um dos problemas com a utilização de instruções print para a depuração é que você pode terminar enterrado pelos resultados. Há duas formas de prosseguir: simplifique a saída ou simplifique o programa.
+Freqüentemente, o processo de encontrar o menor caso de teste leva você ao erro. Se você achar que um programa funciona em uma situação, mas não em outra, isso lhe dará uma pista sobre o que está acontecendo.
 
-**Para simplificar a saída, você pode retirar ou transformar as instruções print que não estão ajudando em comentários, ou combiná-las, ou formatar a saída para que seja mais fácil de entender.
-
-Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-los, ou formatar a saída para que seja mais fácil de entender.
-
-Para simplificar a saída, você pode remover ou comentar as instruções de impressão que não estão ajudando, combiná-las ou formatar a saída para facilitar a compreensão.
-
-To simplify the program, there are several things you can do. First, scale down the problem the program is working on. For example, if you are searching a list, search a small list. If the program takes input from the user, give it the simplest input that causes the problem.
-
-Second, clean up the program. Remove dead code and reorganize the program to make it as easy to read as possible. For example, if you suspect that the problem is in a deeply nested part of the program, try rewriting that part with simpler structure. If you suspect a large function, try splitting it into smaller functions and testing them separately.
-(((dead code)))
-
-Often the process of finding the minimal test case leads you to the bug. If you find that a program works in one situation but not in another, that gives you a clue about what is going on.
-
-Similarly, rewriting a piece of code can help you find subtle bugs. If you make a change that you think shouldn’t affect the program, and it does, that can tip you off.
+Da mesma forma, reescrever uma parte do código pode te ajudar a encontrar erros sutis. Se fizer uma mudança que você acha que não deve afetar o programa, e ela afeta, isso pode te dar uma dica.
 
 
-=== Semantic Errors
+=== Erros Semânticos
 
-In some ways, semantic errors are the hardest to debug, because the interpreter provides no information about what is wrong. Only you know what the program is supposed to do.
+De certa forma, os erros semânticos são os mais difíceis de depurar, porque o interpretador não fornece informações sobre o que está errado. Só você sabe o que o programa deve fazer.
 
-The first step is to make a connection between the program text and the behavior you are seeing. You need a hypothesis about what the program is actually doing. One of the things that makes that hard is that computers run so fast.
+O primeiro passo é conectar o texto do programa ao comportamento que você está vendo. Você precisa de uma hipótese sobre o que o programa está realmente fazendo. Um dos fatores que dificulta isso é que os computadores executam muito rápido.
 
-You will often wish that you could slow the program down to human speed. Inserting a few well-placed print statements is often quicker than setting up a debugger, inserting and removing breakpoints, and “stepping” the program to where the error is occurring.
+Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocadas declarações print é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.
 
-==== My program doesn’t work
+==== Meu Programa Não Funciona
 
 You should ask yourself these questions:
 
 * Is there something the program was supposed to do but which doesn’t seem to be happening? Find the section of the code that performs that function and make sure it is executing when you think it should.
+
+Você deve se perguntar:
+
+Você deve fazer a si mesmo estas perguntas:
+
+**Você deve se perguntar o seguinte:
+
+    **Há algo que o programa deveria fazer, mas que não parece acontecer? Encontre a seção do código que executa a função em questão e confira se está sendo executada quando você acha que deveria.
+
+
+* Existe algo que o programa deveria ter feito, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e certifique-se de que ele está executando quando você acha que deve.
+
+* Existe algo que o programa deveria fazer, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e verifique se ela está sendo executada quando você acha que deveria.
 
 * Is something happening that shouldn’t? Find code in your program that performs that function and see if it is executing when it shouldn’t.
 
