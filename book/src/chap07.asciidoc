@@ -1,13 +1,13 @@
 [[chap07]]
 == Iteração
 
-Esse capítulo é sobre iteração, que é a habilidade de executar um bloco de argumentos repetidamente. Vimos um tipo de iteração usando recursão em <<recursion>>. Vimos também outro tipo, usando um laço +for+ em <<simple_repetition>>. Neste capítulo, veremos um outro tipo, que usa uma declração +while+ (_enquanto_ em Português). Mas antes temos que falar um pouco mais sobre atribuição de variável.
-(((iteração)))(((recursão)))(((comando for)))
+Esse capítulo é sobre iteração, que é a habilidade de executar um bloco de argumentos repetidamente. Vimos um tipo de iteração usando recursão em <<recursion>>. Vimos também outro tipo, usando um laço +for+ em <<simple_repetition>>. Neste capítulo, veremos um outro tipo, que usa uma declaração +while+ (_enquanto_ em Português). Mas antes temos que falar um pouco mais sobre atribuição de variável.
+(((iteração)))(((recursão)))(((declaração for)))
 
 
 === Reatribuição
 
-Você talvez tenha descoberto que é permitido fazer mais de uma atribuição para as mesmas variáveis. Uma nova atribuição faz com que uma variável existente se refira a um novo valor (e pare de se referir ao valor antigo).
+Como você deve ter descoberto, é permitido fazer mais de uma atribuição para as mesmas variáveis. Uma nova atribuição faz com que uma variável existente se refira a um novo valor (e pare de se referir ao valor antigo).
 
 [source,@julia-repl-test chap07]
 ----
@@ -29,7 +29,7 @@ image::images/fig71.svg[]
 Neste ponto, quero abordar um assunto comum de confusão. Como o Julia usa o sinal de igual (+=+) para a atribuição, é tentador interpretar uma afirmação como +a = b+ como uma proposição matemática de igualdade; isto é, a afirmação de que +a+ e +b+ são iguais. Mas essa interpretação está errada.
 (((atribuição)))
 
-Primeiro que, a igualdade é uma relação simétrica e a atribuição não é. Por exemplo, em matemática, se latexmath:[\(a=7\)] então latexmath:[\(7=a\)]. Mas em Julia, a atribuição +a=7+ é permitida e +7=a+ não.
+Primeiro que a igualdade é uma relação simétrica e a atribuição não é. Por exemplo, em matemática, se latexmath:[\(a=7\)] então latexmath:[\(7=a\)]. Mas em Julia, a atribuição +a=7+ é permitida e +7=a+ não.
 
 Também na matemática, uma proposição de igualdade ou é verdadeira ou é falsa para sempre. Se latexmath:[\(a=b\)] agora, então latexmath:[\(a\)] será sempre igual a latexmath:[\(b\)]. Em Julia, uma atribuição pode fazer duas variáveis iguais, mas elas não precisam ficar assim:
 
@@ -49,7 +49,7 @@ A terceira linha altera o valor de +a+ mas não altera o valor de +b+, portanto 
 
 [WARNING]
 ====
-A reatribuição de variáveis geralmente é útil, mas, você deve usá-la com cuidado. Se os valores das variáveis mudarem com frequência, isso pode dificultar a leitura e a depuração do código.
+A reatribuição de variáveis geralmente é útil, mas você deve usá-la com cuidado. Se os valores das variáveis mudarem com frequência, isso pode dificultar a leitura e a depuração do código.
 
 Não é permitido definir uma função que tenha o mesmo nome de uma variável definida anteriormente.
 ====
@@ -57,7 +57,7 @@ Não é permitido definir uma função que tenha o mesmo nome de uma variável d
 
 === Atualizando Variáveis
 
-Um tipo comum de reatribuição é uma atualização, onde o novo valor da variável depende da antiga.
+Um tipo comum de reatribuição é uma atualização, onde o novo valor da variável depende do antigo.
 (((atualização)))
 
 [source,@julia-repl-test chap07]
@@ -92,16 +92,16 @@ Atualizar uma variável adicionando 1 é chamado de _incremento_; e subtraindo 1
 (((incremento)))(((decremento)))
 
 
-=== O Comando +while+
+=== A Declaração +while+
 
 Os computadores são frequentemente usados para automatizar tarefas repetitivas. Repetir tarefas idênticas ou semelhantes sem cometer erros é algo que os computadores fazem bem, ao contrário das pessoas. Em um programa de computador, a repetição também é chamada de _iteração_.
 (((iteração)))
 
-Já vimos duas funções, +contador_regressivo+ e +imprima_n+, que iteram usando recursão. Como a iteração é muito comum, Julia dispõe de recursos para simplificá-la. Um deles é o comando +for+ que vimos em <<simple_repetition>>. Voltaremos a este assunto mais tarde.
-(((recursão)))(((comando for)))
+Já vimos duas funções, +contador_regressivo+ e +imprima_n+, que iteram usando recursão. Como a iteração é muito comum, Julia dispõe de recursos para simplificá-la. Um deles é a declaração +for+ que vimos em <<simple_repetition>>. Voltaremos a este assunto mais tarde.
+(((recursão)))(((declaração for)))
 
-O outro é a _comando_ +while+. Aqui está a versão do +contagem_regressiva+ que utiliza o comando +while+:
-(((while)))((("palavra-chave", "while", see="while")))(((comando while)))((("comando", "while", see="comando while")))
+A outra é a _declaração_ +while+. Aqui está a versão de +contagem_regressiva+ que utiliza a declaração +while+:
+(((while)))((("palavra-chave", "while", see="while")))(((declaração while)))((("declaração", "while", see="declaraçao while")))
 
 [source,@julia-setup]
 ----
@@ -110,21 +110,21 @@ function contagem_regressiva(n)
         print(n, " ")
         n = n - 1
     end
-    println("Feliz Ano Novo!")
+    println("Decolar!")
 end
 ----
 
-Você pode ler quase toda o comando +while+ como se estivesse em inglês. Isso significa que "Enquanto +n+ for maior que 0, exiba o valor de +n+ e depois diminua +n+. Quando chegar a 0, imprima a a frase Feliz Ano Novo!"
+Você pode ler quase toda a declaração +while+ como se estivesse em inglês. Isso significa que “Enquanto +n+ for maior que 0, exiba o valor de +n+ e depois diminua +n+. Quando chegar a 0, imprima a palavra Decolar!”
 (((contagem_regressiva)))
 
-Formalmente, segue abaixo o fluxo de execução de um comando +while+:
+Formalmente, segue abaixo o fluxo de execução de uma declaração +while+:
 (((fluxo de execução)))
 
 . Determinar se a condição é verdadeira ou falsa.
 
-. Se for falsa, saia do comando _while_ e continue a execução para a próxima instrução.
+. Se for falsa, saia do comando _while_ e continue a execução para o próximo comando.
 
-. Se a condição for verdadeira, execute os comandos e então volte para o passo 1.
+. Se a condição for verdadeira, execute os comandos do corpo e então volte para o passo 1.
 
 Esse tipo de fluxo é chamado de laço porque o terceiro passo retorna ao topo.
 (((laço)))
@@ -151,13 +151,13 @@ function seq(n)
 end
 ----
 
-A condição para esse laço é +n != 1+, então esse laço irá continuar até que +n+ atinja 1, o que faz a condição ser falsa.
+A condição para esse laço é +n != 1+, então esse laço irá continuar até que +n+ seja 1, o que faz a condição ser falsa.
 
-A cada turno do laço, o programa tem como saída o valor +n+ que é verificado se é par ou ímpar. Se for par, +n+ é dividido por 2. Se é ímpar, o valor de +n+ é substituído por +pass:[n*3 + 1]+. Por exemplo, se o argumento da sequência é 3, os valores de +n+ recebidos são 3, 10, 5, 16, 8, 4, 2, 1.
+A cada turno do laço, o programa tem como saída o valor +n+ que é verificado se é par ou ímpar. Se é par, +n+ é dividido por 2. Se é ímpar, o valor de +n+ é substituído por +pass:[n*3 + 1]+. Por exemplo, se o argumento da sequência é 3, os valores de +n+ recebidos são 3, 10, 5, 16, 8, 4, 2, 1.
 
-Já que +n+ às vezes cresce e às vezes decresce, não existe uma demonstração óbvia de que +n+ resultará em 1 ou que o programa termine. Para alguns valores particulares de +n+, podemos demonstrar que termina. Por exemplo, se o valor inicial é uma potência de dois, +n+ será sempre par durante o laço até que resulta em 1. O exemplo anterior finaliza essa sequência, a partir de 16.
+Já que +n+ às vezes cresce e às vezes decresce, não existe uma demonstração óbvia de que +n+ resultará em 1 ou que o programa termine. Para alguns valores particulares de +n+, podemos demonstrar que termina. Por exemplo, se o valor inicial é uma potência de dois, +n+ será sempre par durante o laço até que chega em 1. O exemplo anterior finaliza essa sequência, a partir de 16.
 
-A parte difícil é provar que esse programa finaliza para todos os valores positivos de +n+. Até agora ninguém foi capaz de provar ou desprovar isso! (consulte https://pt.wikipedia.org/wiki/Conjectura_de_Collatz.)
+A parte difícil é provar que esse programa finaliza para todos os valores positivos de +n+. Até agora ninguém foi capaz de provar ou desprovar isso! (Consulte https://pt.wikipedia.org/wiki/Conjectura_de_Collatz.)
 (((Conjectura de Collatz)))
 
 ===== Exercício 7-1
@@ -167,10 +167,10 @@ Reescreva a função +imprima_n+ de <<recursion>> usando iteração ao invés de
 
 === +break+
 
-Às vezes, você não sabe que é hora de terminar um laço até chegar na metade do corpo. Neste caso você pode utilizar o _comando break_ para sair do laço.
-(((break)))((("palavra-chave", "break", see="break")))(((comando break)))((("comando", "break", see="comando break")))
+Às vezes, você não sabe que é hora de terminar um laço até chegar na metade do corpo. Neste caso você pode utilizar a _declaração break_ para sair do laço.
+(((break)))((("palavra-chave", "break", see="break")))(((declaração break)))((("declaração", "break", see="declaração break")))
 
-Por exemplo, suponha que você quer receber entradas do usuário até que ele digite concluído. Poderia-se escrever:
+Por exemplo, suponha que você queira receber entradas do usuário até que ele digite concluído. Poderia-se escrever:
 (((readline)))
 
 [source,julia]
@@ -186,9 +186,9 @@ end
 println("Concluído!")
 ----
 
-A condição deste laço é +true+, que é sempre verdade, então o laço será executado até chegar no comando break.
+A condição deste laço é +true+, que é sempre verdade, então o laço será executado até chegar na declaração break.
 
-A cada iteração, a solicitação ao usuário ocorre por meio de um sinal de maior (">"). Se o usuário digitar +concluído+, então o comando break finaliza o laço. Caso contrário, o programa mostrará o que o usuário digitar e voltará ao topo do laço. Aqui está um exemplo de execução:
+A cada iteração, a solicitação ao usuário ocorre por meio de um sinal de maior (">"). Se o usuário digitar +concluído+, então a declaração break finaliza o laço. Caso contrário, o programa mostrará o que o usuário digitar e voltará ao topo do laço. Aqui está um exemplo de execução:
 
 [source]
 ----
@@ -198,13 +198,13 @@ não está concluído
 Concluído!
 ----
 
-Essa maneira de escrever laços é comum porque você pode verificar a condição em qualquer lugar do laço (não apenas no topo) e você pode expressar a condição de parada afirmativamente ("pare quando isso acontecer") tanto quanto negativamente ("continue enquanto isso acontece").
+Essa maneira de escrever laços é comum porque você pode verificar a condição em qualquer lugar do laço (não apenas no topo) e você pode expressar a condição de parada afirmativamente ("pare quando isso acontecer") ao invés de negativamente ("continue enquanto isso acontece").
 
 
 === +continue+
 
-O comando break sai do laço. Quando um _comando continue_ é encontrado dentro de um laço, salta-se para o início do laço da próxima iteração, pulando a execução de comandos dentro do corpo do laço da iteração atual. Por exemplo:
-(((continue)))((("palavra-chave", "continue", see="continue")))(((comando continue)))((("comando", "continue", see="continue", see="comando continue")))
+A declaração break sai do laço. Quando uma _declaração continue_ é encontrado dentro de um laço, salta-se para o início do laço da próxima iteração, pulando a execução de comandos dentro do corpo do laço da iteração atual. Por exemplo:
+(((continue)))((("palavra-chave", "continue", see="continue")))(((declaração continue)))((("declaração", "continue", see="continue", see="declaração continue")))
 
 [source,@julia]
 ----
@@ -216,15 +216,15 @@ for i in 1:10
 end
 ----
 
-Se +i+ é divisível por 3, o comando continue para na iteração atual e a próxima iteração é iniciada. Apenas os números no intervalo entre 1 a 10 não divisíveis por 3 são exibidos.
+Se +i+ é divisível por 3, a declaração continue para na iteração atual e a próxima iteração é iniciada. Apenas os números no intervalo entre 1 a 10 não divisíveis por 3 são exibidos.
 
 [[square_roots]]
 === Raízes Quadradas
 
 Laços são frequentemente usados em programas que calculam resultados numéricos começando com um valor aproximado e aprimorando-o iterativamente.
 
-Por exemplo, uma maneira de computar raízes quadradas é através do Método de Newton. Suponha que você queira saber a raíz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
-(((Método de Newton)))
+Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raíz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
+(((método de Newton)))
 
 [latexmath]
 ++++
@@ -254,7 +254,7 @@ julia> y = (x + a/x) / 2
 2.0064102564102564
 ----
 
-Depois de mais algumas atualizações a estimativa é quase exata:
+Depois de mais algumas atualizações, a estimativa é quase exata:
 
 [source,@julia-repl-test chap07]
 ----
@@ -313,10 +313,10 @@ Onde +ε+ (*+\varepsilon TAB+*) possui um valor como +0.0000001+ que determina o
 
 === Algoritmos
 
-O Método de Newton é um exemplo de um _algoritmo_: Um processo mecânico para resolver uma categoria de problemas (nesse caso, o cálculo de raízes quadradas).
+O método de Newton é um exemplo de um _algoritmo_: um processo mecânico para resolver uma categoria de problemas (nesse caso, o cálculo de raízes quadradas).
 (((algoritmo)))
 
-Para entender o que é um algoritmo, talvez seja interessante mostrar algo que não é um algoritmo. Quando você aprendeu a multiplicar unidades, você provavelmente memorizou a tabuada. De fato, você memorizou 100 soluções específicas. Esse tipo de conhecimento não é um algoritmo.
+Para entender o que é um algoritmo, talvez seja interessante começar com algo que não é um algoritmo. Quando você aprendeu a multiplicar unidades, você provavelmente memorizou a tabuada. De fato, você memorizou 100 soluções específicas. Esse tipo de conhecimento não é um algoritmo.
 
 Mas se você fosse "preguiçoso", talvez tivesse aprendido alguns truques. Por exemplo, para encontrar o produto de latexmath:[\(n\)] e 9, você pode escrever latexmath:[\(n-1\)] no primeiro dígito e latexmath:[\(10-n\)] no segundo dígito. Esse truque é uma solução geral para multiplicar qualquer unidade por 9. Isso é um algoritmo!
 
@@ -324,25 +324,25 @@ Similarmente, as técnicas que você aprendeu para a adição com transporte de 
 
 Apesar da execução de algoritmos ser chata, a construção é interessante, intelectualmente desafiadora e uma parte central da ciência da computação.
 
-Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou conscientemente pensado, são as mais difíceis de expressar por algoritmos. Compreender a linguagem nativa é um bom exemplo. Todos fazemos isso, mas até agora ninguém foi capaz de explicar como fazemos, pelo menos não na forma de um algoritmo.
+Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou conscientemente pensado, são as mais difíceis de expressar por algoritmos. Compreender a linguagem natural é um bom exemplo. Todos nós fazemos isso, mas até agora ninguém foi capaz de explicar _como_ fazemos, pelo menos não na forma de um algoritmo.
 
 
-=== Depuração
+=== Depurando
 
-Ao começar a escrever programas maiores, você pode passar mais tempo depurando. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
+Ao começar a escrever programas maiores, você pode passar mais tempo com a depuração. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
 (((depuração)))
 
-Uma maneira de reduzir o tempo da depuração é “depurar por bissecção”. Por exemplo, se houver 100 linhas no seu programa e você verificá-las uma de cada vez, serão necessárias 100 etapas.
-(((depurar por bissecção)))
+Uma maneira de reduzir o tempo da depuração é a “depuração por bissecção”. Por exemplo, se houver 100 linhas no seu programa e você verificá-las uma de cada vez, serão necessárias 100 etapas.
+(((depuração por bissecção)))
 
 Em vez disso, tente quebrar o problema ao meio. Olhe no meio do programa, ou por perto, para um valor intermediário que você pode verificar. Adicione um comando print (ou qualquer outra coisa que tenha um propósito de verificação) e execute o programa.
 (((comando print)))
 
 Se a verificação da região do meio estiver incorreta, deve haver um problema na primeira metade do programa. Se estiver correta, o problema está na segunda metade.
 
-Toda vez que você executa uma verificação como essa, reduz-se pela metade o número de linhas que precisa averiguar. Após seis etapas (que é menor que 100), você reduziria para uma ou duas linhas de código, pelo menos em teoria.
+Toda vez que você executa uma verificação como essa, reduz-se pela metade o número de linhas que se precisa averiguar. Após seis etapas (que é menor que 100), você reduziria para uma ou duas linhas de código, pelo menos em teoria.
 
-Na prática, nem sempre é claro onde é o "meio do programa" e nem sempre é possível verificá-lo. Não faz sentido contar linhas e encontrar o ponto médio exato. Em vez disso, pense nos locais do programa em que pode haver erros e nos locais onde é fácil fazer uma verificação. Em seguida, escolha um local onde você acha que as chances são as mesmas de que o bug seja antes ou depois da verificação.
+Na prática, nem sempre é claro onde é o "meio do programa" e nem sempre é possível verificá-lo. Não faz sentido contar linhas e encontrar o ponto médio exato. Em vez disso, pense nos locais do programa em que pode haver erros e nos locais onde é fácil fazer uma verificação. Em seguida, escolha um local onde você acha que as chances são as mesmas de que o erro seja antes ou depois da verificação.
 
 
 === Glossário
@@ -360,7 +360,7 @@ Uma atribuição que fornece um valor inicial a uma variável que será atualiza
 (((inicialização)))
 
 incremento::
-Uma atualização que aumenta o valor de uma variável (geralmente em um).
+Uma atualização que aumenta o valor de uma variável (frequentemente em um).
 (((incremento)))
 
 decremento::
@@ -371,17 +371,17 @@ iteração::
 Execução repetida de um conjunto de comandos usando uma chamada de função recursiva ou um laço.
 (((iteração)))
 
-comando while::
+declaração while::
 Comando que permite iterações controladas por uma condição.
-(((comando while)))
+(((declaração while)))
 
-comando break::
+declaração break::
 Comando que permite saltar fora de um laço.
-(((comando break)))
+(((declaração break)))
 
-comando continue::
+declaração continue::
 Comando dentro de um laço que salta para o início do laço da próxima iteração.
-(((comando continue)))
+(((declaração continue)))
 
 laço infinito::
 Um laço no qual a sua condição de parada nunca é satisfeita.
@@ -397,28 +397,28 @@ Um processo geral para resolver uma categoria de problemas.
 [[ex07-1]]
 ===== Exercício 7-2
 
-Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raíz+ que usa a variável +a+ como um parâmetro e escolha um valor razoável de +x+ que retorne uma estimativa da raíz quadrada de +a+.
-(((minha_raíz)))((("função", "definido pelo programador", "minha_raíz", see="minha_raíz")))
+Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raiz+ que usa a variável +a+ como um parâmetro e escolha um valor razoável de +x+ que retorne uma estimativa da raíz quadrada de +a+.
+(((minha_raiz)))((("função", "definido pelo programador", "minha_raiz", see="minha_raiz")))
 
-Para testá-la, escreva uma função chamada +testa_raíz+ que imprime uma tabela como esta:
-(((testa_raíz)))((("função", "definido pelo programador", "testa_raíz", see="testa_raíz")))
+Para testá-la, escreva uma função chamada +avalia_raiz_quadrada+ que imprime uma tabela como esta:
+(((avalia_raiz_quadrada)))((("função", "definido pelo programador", "avalia_raiz_quadrada", see="avalia_raiz_quadrada")))
 
 [source, @ julia-eval]
 ----
 using ThinkJulia
 io = IOBuffer()
-testa_raíz(io)
+avalia_raiz_quadrada(io)
 res = String(take!(io))
 println(res)
 ----
 
-A primeira coluna é um número, +a+; a segunda coluna é a raíz quadrada de +a+ calculado com +minha_raíz+; a terceira coluna é a raíz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
+A primeira coluna é um número, +a+; a segunda coluna é a raíz quadrada de +a+ calculado com +minha_raiz+; a terceira coluna é a raiz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
 
 [[ex07-2]]
 ===== Exercício 7-3
 
-A função interna +Meta.parse+ pega uma string e transforma-a em uma expressão. Essa expressão pode ser avaliada em Julia com a função +Core.eval+. Por exemplo:
-(((parse)))((("função","Meta","parse", see="parse")))(((eval)))((("função", "Core", "eval", see="eval")))
+A função interna +Meta.parse+ recebe uma string e transforma-a em uma expressão. Essa expressão pode ser avaliada em Julia com a função +Core.eval+. Por exemplo:
+(((parse)))((("função", "Meta", "parse", see="parse")))(((eval)))((("função", "Core", "eval", see="eval")))
 
 [source,@julia-eval chap07]
 ----
@@ -437,7 +437,7 @@ julia> eval(expr)
 1.7724538509055159
 ----
 
-Escreva uma função chamada +avalie_laço+ que solicite iterativamente ao usuário e então pegue a entrada recebida, avalie-na usando +eval+ e depois imprima o resultado. A função deve continuar até o usuário digitar +concluído+ e depois retornar o valor da última expressão avaliada.
+Escreva uma função chamada +avalie_laço+ que solicite iterativamente ao usuário, pegue a entrada recebida e avalie-a usando +eval+ e depois imprime o resultado. A função deve continuar até o usuário digitar +concluído+ e depois retornar o valor da última expressão avaliada.
 
 (((avalie_laço)))((("função", "definido pelo programador", "avalie_laço", see= "avalie_laço")))
 
@@ -453,5 +453,5 @@ O matemático Srinivasa Ramanujan encontrou uma série infinita que pode ser usa
 \end{equation}
 ++++
 
-Escreva uma função chamada +estimativa_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação Julia para latexmath:[\(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
+Escreva uma função chamada +estimativa_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação do Julia para latexmath:[\(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
 (((estimativa_pi)))((("função", "definido pelo programador", "estimativa_pi", see="estimativa_pi"))))
