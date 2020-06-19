@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592430284534095e9</code></pre>
+1.592581339684747e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5475,7 +5475,7 @@ end</code></pre>
 <p>Determinar se a condição é verdadeira ou falsa.</p>
 </li>
 <li>
-<p>Se for falsa, saia do comando <em>while</em> e continue a execução para o próximo comando.</p>
+<p>Se for falsa, saia da declaração <em>while</em> e continue a execução para o próximo comando.</p>
 </li>
 <li>
 <p>Se a condição for verdadeira, execute os comandos do corpo e então volte para o passo 1.</p>
@@ -5736,7 +5736,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Em vez disso, tente quebrar o problema ao meio. Olhe no meio do programa, ou por perto, para um valor intermediário que você pode verificar. Adicione um comando print (ou qualquer outra coisa que tenha um propósito de verificação) e execute o programa.
+<p>Em vez disso, tente quebrar o problema ao meio. Olhe no meio do programa, ou por perto, para um valor intermediário que você pode verificar. Adicione uma declaração print (ou qualquer outra coisa que tenha um propósito de verificação) e execute o programa.
 </p>
 </div>
 <div class="paragraph">
@@ -13589,9 +13589,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-Q♦ 10♦ 9♥ 6♣ 3♣ 3♠ 8♠ 6♦ 8♦ 6♥ 4♦ 2♣ 9♣ 10♥ 7♠ Q♥ 9♦ Q♠ 10♣ 8♣ 3♦ J♥ J♠ A♥ K♥ 5♥ 4♣ 4♥ 2♥ 6♠ A♣ 3♥ 7♣ 8♥ A♠ 5♦ J♦ A♦ K♦ 5♠ Q♣ J♣ 5♣ 7♦ 2♦ 2♠ 4♠ K♣ 9♠ 10♠ 7♥ K♠
+6♦ 8♠ A♠ K♠ 7♥ 10♥ 3♥ Q♠ 5♣ 9♣ 3♣ 8♣ 7♣ 4♣ 2♣ Q♦ 2♥ 6♣ 9♦ 9♥ 5♠ J♣ 10♦ Q♣ 2♠ 2♦ A♥ 7♠ 4♦ 4♥ 7♦ 10♠ A♣ Q♥ 6♥ J♦ 8♦ K♥ 3♦ 9♠ 4♠ A♦ J♥ 5♦ 8♥ 6♠ K♦ 3♠ K♣ 10♣ 5♥ J♠
 julia&gt; card = pop!(deck)
-K♠
+J♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16276,7 +16276,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-17 21:44:41 UTC
+Last updated 2020-06-19 15:42:16 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
