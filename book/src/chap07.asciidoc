@@ -122,7 +122,7 @@ Formalmente, segue abaixo o fluxo de execução de uma declaração +while+:
 
 . Determinar se a condição é verdadeira ou falsa.
 
-. Se for falsa, saia do comando _while_ e continue a execução para o próximo comando.
+. Se for falsa, saia da declaração _while_ e continue a execução para o próximo comando.
 
 . Se a condição for verdadeira, execute os comandos do corpo e então volte para o passo 1.
 
@@ -335,8 +335,8 @@ Ao começar a escrever programas maiores, você pode passar mais tempo com a dep
 Uma maneira de reduzir o tempo da depuração é a “depuração por bissecção”. Por exemplo, se houver 100 linhas no seu programa e você verificá-las uma de cada vez, serão necessárias 100 etapas.
 (((depuração por bissecção)))
 
-Em vez disso, tente quebrar o problema ao meio. Olhe no meio do programa, ou por perto, para um valor intermediário que você pode verificar. Adicione um comando print (ou qualquer outra coisa que tenha um propósito de verificação) e execute o programa.
-(((comando print)))
+Em vez disso, tente quebrar o problema ao meio. Olhe no meio do programa, ou por perto, para um valor intermediário que você pode verificar. Adicione uma declaração print (ou qualquer outra coisa que tenha um propósito de verificação) e execute o programa.
+(((declaração print)))
 
 Se a verificação da região do meio estiver incorreta, deve haver um problema na primeira metade do programa. Se estiver correta, o problema está na segunda metade.
 
