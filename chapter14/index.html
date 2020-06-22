@@ -651,7 +651,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_persistência">Persistência</a></li>
 <li><a href="#reading_and_writing">Lendo e Escrevendo</a></li>
 <li><a href="#_formatação">Formatação</a></li>
-<li><a href="#_filenames_e_paths">Filenames e Paths</a></li>
+<li><a href="#_nomes_de_arquivos_e_caminhos">Nomes de Arquivos e Caminhos</a></li>
 <li><a href="#catching_exceptions">Capturando Exceções</a></li>
 <li><a href="#_serialização">Serialização</a></li>
 <li><a href="#_objetos_de_comando">Objetos de Comando</a></li>
@@ -4258,7 +4258,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591554144512746e9</code></pre>
+1.592861947097854e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10828,7 +10828,7 @@ plot(x, y)</code></pre>
 <h2 id="chap14">17. Arquivos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.</p>
+<p>Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.</p>
 </div>
 <div class="sect2">
 <h3 id="_persistência">Persistência</h3>
@@ -10847,13 +10847,13 @@ plot(x, y)</code></pre>
 <p>Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo <em>arquivos de texto</em>. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.</p>
 </div>
 <div class="paragraph">
-<p>Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo eu também irei apresentar como usar um banco de dados simples.</p>
+<p>Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo, iremos apresentar como usar um banco de dados simples.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="reading_and_writing">Lendo e Escrevendo</h3>
 <div class="paragraph">
-<p>Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido, ou memória flash. Nós vimos como abrir e ler um arquivo em <a href="#reading_word_lists">Reading Word Lists</a>.</p>
+<p>Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido ou memória flash. Nós vimos como abrir e ler um arquivo em <a href="#reading_word_lists">Reading Word Lists</a>.</p>
 </div>
 <div class="paragraph">
 <p>Para escrever em um arquivo, você tem que abri-lo com modo <code>"w"</code> como segundo parâmetro:
@@ -10889,7 +10889,7 @@ julia&gt; write(fout, linha2)
 </div>
 </div>
 <div class="paragraph">
-<p>Quando você acabar de escrever no arquivo, ele deve ser fechado.
+<p>Quando você terminar de escrever no arquivo, ele deve ser fechado.
 </p>
 </div>
 <div class="listingblock">
@@ -10904,7 +10904,7 @@ julia&gt; write(fout, linha2)
 <div class="sect2">
 <h3 id="_formatação">Formatação</h3>
 <div class="paragraph">
-<p>O argumeto da função write precisa ser uma string, então se nós quisermos colocar outros valores no arquivo, nós temos que convertê-los para string. A maneira mais fácil de fazer isso é com <code>string</code> ou interpolação de strings:
+<p>O argumeto da função write precisa ser uma string, então se quisermos colocar outros valores no arquivo, temos que convertê-los para string. A maneira mais fácil de fazer isso é usando <code>string</code> ou interpolação de strings:
 </p>
 </div>
 <div class="listingblock">
@@ -10923,7 +10923,7 @@ julia&gt; write(fout, string(150))
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; camelos = 42
 42
-julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
+julia&gt; println(fout, "Eu vi $camelos camelos.")</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -10934,7 +10934,7 @@ julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Uma alternativa mais poderosa é o macro <code>@printf@</code> que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em <a href="https://docs.julialang.org/en/v1/stdlib/Printf/" class="bare">https://docs.julialang.org/en/v1/stdlib/Printf/</a>
+<p>Uma alternativa mais poderosa é a macro <code>@printf@</code> que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em <a href="https://docs.julialang.org/en/v1/stdlib/Printf/" class="bare">https://docs.julialang.org/en/v1/stdlib/Printf/</a>
 </p>
 </div>
 </td>
@@ -10943,7 +10943,7 @@ julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_filenames_e_paths">Filenames e Paths</h3>
+<h3 id="_nomes_de_arquivos_e_caminhos">Nomes de Arquivos e Caminhos</h3>
 <div class="paragraph">
 <p>Arquivos são organizados em <em>diretórios</em> (também chamados de “pastas”). Todo programa em execução possui um “diretório atual”, que é o diretório padrão para a maioria das operações. Por exemplo, quando você abre um arquivo para leitura, o Julia a procura no diretório atual.
 </p>
@@ -10959,18 +10959,18 @@ julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>cwd</code> significa “current working directory” (diretório atual funcional). O resultado neste exemplo é <code>home/ben</code>, que é o diretório home do usuário chamado <code>ben</code>.</p>
+<p><code>cwd</code> significa “current working directory” (diretório atual funcional). O resultado nesse exemplo é <code>home/ben</code>, que é o diretório home do usuário chamado <code>ben</code>.</p>
 </div>
 <div class="paragraph">
-<p>Uma string como <code>"/home/ben"</code> que identifica um arquivo ou diretório é chamado de <em>path</em> (caminho).
+<p>Uma string como <code>"/home/ben"</code> que identifica um arquivo ou diretório é chamado de <em>caminho</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Um nome de arquivo simples, como <code>memo.txt</code> também é considerado um path, mas é um <em>path relativo</em> porque se refere ao diretório atual. Se o diretório atual é <code>/home/ben</code>, o nome do arquivo <code>memo.txt</code> se referiria à <code>/home/ben/memo.txt</code>.
+<p>Um nome de arquivo simples, como <code>memo.txt</code> também é considerado um caminho, mas é um <em>caminho relativo</em> porque se refere ao diretório atual. Se o diretório atual é <code>/home/ben</code>, o nome do arquivo <code>memo.txt</code> se referiria à <code>/home/ben/memo.txt</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>Um path que começa com <code>/</code> não depende do diretório atual; ele é chamado de <em>path absoluto</em>. Para achar um path absoluto para um arquivo, você pode usar <code>abspath</code>:
+<p>Um caminho que começa com <code>/</code> não depende do diretório atual; ele é chamado de <em>caminho absoluto</em>. Para achar um caminho absoluto para um arquivo, você pode usar <code>abspath</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -10980,7 +10980,7 @@ julia&gt; println(fout, "Eu vi $camels camelos.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O Julia fornece outras funções para trabalhar com nomes de arquivos e paths. Por exemplo, <code>ispath</code> verifica se um arquivo ou diretório existe:
+<p>O Julia fornece outras funções para trabalhar com nomes de arquivos e caminhos. Por exemplo, <code>ispath</code> verifica se um arquivo ou diretório existe:
 </p>
 </div>
 <div class="listingblock">
@@ -11006,7 +11006,7 @@ true</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p><code>readdir</code> retorna um array de arquivos (e outros diretórios) no diretório dado:
+<p><code>readdir</code> retorna uma lista de arquivos (e outros diretórios) no diretório dado:
 </p>
 </div>
 <div class="listingblock">
@@ -11014,17 +11014,17 @@ true</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; readdir(cwd)
 3-element Array{String,1}:
  "memo.txt"
- "musica"
+ "música"
  "fotos"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para demonstrar estas funções, o exemplo a seguir “anda” por um diretório, exibe os nomes de todos os arquivos, e chama a si mesmo recursivamente em todos os diretórios.
+<p>Para demonstrar estas funções, o exemplo a seguir “caminha” por um diretório, exibe os nomes de todos os arquivos e chama a si mesmo recursivamente em todos os diretórios.
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function anda(nomedir)
+<pre class="pygments highlight"><code data-lang="julia">function caminha(nomedir)
     for nome in readdir(nomedir)
         path = joinpath(nomedir, nome)
         if isfile(path)
@@ -11037,7 +11037,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>joinpath</code> recebe um diretório e um nome de arquivo e junta-os em um path completo.
+<p><code>joinpath</code> recebe um diretório e um nome de arquivo e junta-os em um caminho completo.
 </p>
 </div>
 <div class="admonitionblock tip">
@@ -11048,7 +11048,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>O Julia fornece uma função chamada <code>walkdir</code> (veja <a href="https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir" class="bare">https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir</a>) que é similar a esta mas é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
+<p>O Julia fornece uma função chamada <code>walkdir</code> (consulte <a href="https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir" class="bare">https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir</a>) que é similar a esta mas é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
 </p>
 </div>
 </td>
@@ -11078,7 +11078,7 @@ ERROR: SystemError: opening file "/etc/passwd": Permission denied</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para evitar estes erros, você pode usar funções como <code>ispath</code> e <code>isfile</code>, mas levaria muito tempo e código para verificar todas as possibilidades.</p>
+<p>Para evitar estes erros, você pode usar funções como <code>ispath</code> e <code>isfile</code>, porém, tomaria muito tempo e código para verificar todas as possibilidades.</p>
 </div>
 <div class="paragraph">
 <p>É mais fácil tentar de uma vez-e lidar com os problemas se eles ocorrerem-que é exatamente o que a declaração <code>try</code> faz. A sintaxe é similar a uma declaração <code>if</code>:
@@ -11094,14 +11094,14 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O Julia inicia executando a cláusula <code>try</code>. Se tudo der certo, ele pula a cláusula <code>catch</code> e segue adiante. Se uma exceção ocorre, ele pula fora da cláusula <code>try</code> e executa a cláusula <code>catch</code>.</p>
+<p>O Julia inicia executando a cláusula <code>try</code>. Se tudo der certo, ele pula a cláusula <code>catch</code> e segue adiante. Se ocorrer alguma exceção, ele pula fora da cláusula <code>try</code> e executa a cláusula <code>catch</code>.</p>
 </div>
 <div class="paragraph">
-<p>Lidar com uma exceção com uma declaração <code>try</code> é chamado de <em>capturar</em> uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente, ou pelo menos encerrar o programa graciosamente.
+<p>Lidar com uma exceção com uma declaração <code>try</code> é chamado de <em>capturar</em> uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente ou pelo menos encerrar o programa graciosamente.
 </p>
 </div>
 <div class="paragraph">
-<p>Em código que realiza mudanças de estado ou usa recursos como arquivos, há geralmente trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave <code>finally</code> fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
+<p>Em código que realiza mudanças de estado ou usa recursos como arquivos, geralmente há um trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave <code>finally</code> fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
 </p>
 </div>
 <div class="listingblock">
@@ -11241,10 +11241,10 @@ julia&gt; print(t2)
 </div>
 </div>
 <div class="paragraph">
-<p><code>serialize</code> e <code>deserialize</code> escrevem para e lêm de um objeto iobuffer que representa um fluxo I/O em memória. A função <code>take!</code> busca os conteúdos do iobuffer como um array de bytes e reinicia o iobuffer para seu estado inicial.</p>
+<p><code>serialize</code> e <code>deserialize</code> escrevem para e leem de um objeto iobuffer que representa um fluxo I/O em memória. A função <code>take!</code> busca os conteúdos do iobuffer como uma lista de bytes e reinicia o iobuffer para seu estado inicial.</p>
 </div>
 <div class="paragraph">
-<p>Apesar do objeto novo ter o mesmo valor do antigo, ele não é (em geral) o mesmo objeto:</p>
+<p>Apesar do novo objeto ter o mesmo valor do antigo, ele não é (em geral) o mesmo objeto:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11279,7 +11279,7 @@ false</code></pre>
 <div class="sect2">
 <h3 id="_objetos_de_comando">Objetos de Comando</h3>
 <div class="paragraph">
-<p>A maioria dos sistemas operacionais fornecem uma interface de linha de comando, também conhecida como uma <em>shell</em>. Shells geralmente fornecem comandos para navegar o sistema de arquivos e iniciar aplicações. Por exemplo, no Unix você pode mudar de diretório com o comando <code>cd</code>, exibir o conteúdo do diretório com <code>ls</code>, e iniciar o web browser digitando (por exemplo) <code>firefox</code>.
+<p>A maioria dos sistemas operacionais fornecem uma interface de linha de comando, também conhecida como uma <em>shell</em>. Shells geralmente fornecem comandos para navegar o sistema de arquivos e iniciar aplicações. Por exemplo, no Unix você pode mudar de diretório com o comando <code>cd</code>, exibir o conteúdo do diretório com <code>ls</code> e iniciar o web browser digitando (por exemplo) <code>firefox</code>.
 </p>
 </div>
 <div class="paragraph">
@@ -11319,7 +11319,7 @@ olá</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Por exemplo, a maioria dos sistemas Unix fornecem um comando chamado <code>md5sum</code> ou <code>md5</code> que lê o conteúdo de um arquivo e calcula a “checksum”. Você pode ler mais sobre MD5 em <a href="https://en.wikipedia.org/wiki/Md5" class="bare">https://en.wikipedia.org/wiki/Md5</a>. Este comando fornece uma maneira eficiente de verificar se dois arquivos possuem o mesmo conteúdo. A probabilidade de que conteúdos diferentes produzem a mesma checksum é muito pequena (isto é, improvável de acontecer antes que o universo entre em colapso).
+<p>Por exemplo, a maioria dos sistemas Unix fornecem um comando chamado <code>md5sum</code> ou <code>md5</code> que lê o conteúdo de um arquivo e calcula uma “soma de verificação” para checar a integridade dos dados. Você pode ler mais sobre MD5 em <a href="https://pt.wikipedia.org/wiki/MD5" class="bare">https://pt.wikipedia.org/wiki/MD5</a>. Este comando fornece uma maneira eficiente de verificar se dois arquivos possuem o mesmo conteúdo. A probabilidade de que conteúdos diferentes produzem a mesma soma de verificação é muito pequena (isto é, improvável de acontecer antes que o universo entre em colapso).
 </p>
 </div>
 <div class="paragraph">
@@ -11438,7 +11438,7 @@ julia&gt; println(s)
 </div>
 </div>
 <div class="paragraph">
-<p>A função embutida <code>repr</code> ou <code>dump</code> podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.</p>
+<p>As funções embutidas <code>repr</code> ou <code>dump</code> podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.</p>
 </div>
 <div class="paragraph">
 <p></p>
@@ -11460,7 +11460,7 @@ String "1 2\t 3\n 4"</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Para a maioria dos sistemas, existem aplicações que convertem de um formato para o outro. Você pode achá-los (e ler mais a respeito deste problema) em <a href="https://en.wikipedia.org/wiki/Newline" class="bare">https://en.wikipedia.org/wiki/Newline</a>. Ou, é claro, você pode escrever um por conta própria.</p>
+<p>Para a maioria dos sistemas, existem aplicações que convertem de um formato para o outro. Você pode achá-los (e ler mais a respeito deste problema) em <a href="https://pt.wikipedia.org/wiki/Nova_linha" class="bare">https://pt.wikipedia.org/wiki/Nova_linha</a>. Ou, é claro, você pode escrever um por conta própria.</p>
 </div>
 </div>
 <div class="sect2">
@@ -11482,19 +11482,19 @@ String "1 2\t 3\n 4"</code></pre>
 <p>Uma coleção de arquivos com nome, também chamada de pasta.
 </p>
 </dd>
-<dt class="hdlist1">path</dt>
+<dt class="hdlist1">caminho</dt>
 <dd>
 <p>Uma string que identifica um arquivo.
 </p>
 </dd>
-<dt class="hdlist1">path relativo</dt>
+<dt class="hdlist1">caminho relativo</dt>
 <dd>
-<p>Um path que inicia no diretório atual.
+<p>Um caminho que inicia no diretório atual.
 </p>
 </dd>
-<dt class="hdlist1">path absoluto</dt>
+<dt class="hdlist1">caminho absoluto</dt>
 <dd>
-<p>Um path que inicia do diretório mais a cima no sistema de arquivos.
+<p>Um caminho que inicia do diretório mais a cima no sistema de arquivos.
 </p>
 </dd>
 <dt class="hdlist1">catch</dt>
@@ -11525,17 +11525,17 @@ String "1 2\t 3\n 4"</code></pre>
 <div class="sect4">
 <h5 id="ex14-1">Exercício 14-2</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>sed</code> que recebe como argumento uma string de padrão, uma string de substituição, e dois nomes de arquivos; ela deva ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (criando ele ser for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
+<p>Escreva uma função chamada <code>sed</code> que recebe como argumento uma string padrão, uma string de substituição e dois nomes de arquivos; ela deva ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (criando ele ser for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
 </p>
 </div>
 <div class="paragraph">
-<p>Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivos, seu programa deve capturar a exceção, exibir a mensagem de erro, e sair.</p>
+<p>Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivos, seu programa deve capturar a exceção, exibir a mensagem de erro e sair.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex14-2">Exercício 14-3</h5>
 <div class="paragraph">
-<p>Se você fez <a href="#ex12-2">Exercise 12-3</a>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras.Por exemplo, <code>"opst"</code> é mapeado para a lista <code>["opts", "post", "pots", "spot", "stop", "tops"]</code>.</p>
+<p>Se você fez <a href="#ex12-2">Exercise 12-3</a>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras. Por exemplo, <code>"opst"</code> é mapeado para a lista <code>["opts", "post", "pots", "spot", "stop", "tops"]</code>.</p>
 </div>
 <div class="paragraph">
 <p>Escreva um módulo que importe <code>anagramsets</code> e forneça duas novas funções: <code>guardaanagramas</code> deve guardar o dicionário de anagramas usando <code>JLD2</code>; <code>leranagrams</code> deve buscar uma palavra e retornar uma lista de seus anagramas.
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-2♦ 4♦ 6♠ Q♦ A♣ 6♦ 9♥ 10♦ 3♠ 5♦ 4♠ 10♥ 6♣ 8♥ 10♠ 7♦ A♥ 9♠ 5♠ K♣ 7♣ 4♥ 8♦ 7♠ 3♥ J♣ 2♠ 2♣ J♦ Q♣ 10♣ 8♠ A♦ J♠ 3♣ 9♦ K♠ 2♥ 9♣ A♠ 5♣ 4♣ 7♥ J♥ 8♣ K♦ 5♥ 6♥ K♥ Q♠ Q♥ 3♦
+4♠ 10♣ 6♦ 4♦ J♠ 10♥ 5♠ 3♠ 6♥ 6♠ 10♠ K♣ 7♥ 9♠ 3♦ 8♥ Q♦ K♠ Q♠ J♥ A♦ 8♦ A♥ 2♣ Q♣ 8♠ 6♣ 2♥ 2♠ 2♦ 9♦ 4♣ K♥ 7♣ 7♠ 8♣ Q♥ 5♦ J♦ 10♦ 7♦ 3♥ 4♥ J♣ 5♣ A♠ 9♣ K♦ A♣ 9♥ 5♥ 3♣
 julia&gt; card = pop!(deck)
-3♦
+3♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15517,7 +15517,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20560(double, double) {
+define double @julia_squaresum_20464(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-07 18:22:21 UTC
+Last updated 2020-06-22 21:39:03 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
