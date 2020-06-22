@@ -4258,7 +4258,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592861947097854e9</code></pre>
+1.592862572116523e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10841,10 +10841,10 @@ plot(x, y)</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Exemplos de programas persistentes são sistemas operacionais, que são executados toda vez que um computador é ligado, e servidores web, que são executados toda hora, aguardando solicitações vindos da rede.</p>
+<p>Exemplos de programas persistentes são sistemas operacionais, que são executados toda vez que um computador é ligado e servidores web, que são executados toda hora, aguardando solicitações vindas da rede.</p>
 </div>
 <div class="paragraph">
-<p>Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo <em>arquivos de texto</em>. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.</p>
+<p>Uma das maneiras mais simples que os programas usam para manter seus dados é lendo e escrevendo <em>arquivos de texto</em>. Nós já vimos programas que leem arquivos de texto; neste capítulo nós veremos programas que os escrevem.</p>
 </div>
 <div class="paragraph">
 <p>Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo, iremos apresentar como usar um banco de dados simples.</p>
@@ -11200,7 +11200,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_serialização">Serialização</h3>
 <div class="paragraph">
-<p>A limitação do <code>GDBM</code> é de que as chaves e valores precisam ser strings ou arrays de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.</p>
+<p>A limitação do <code>GDBM</code> é de que as chaves e valores precisam ser strings ou listas de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.</p>
 </div>
 <div class="paragraph">
 <p>As funções <code>serialize</code> e <code>deserialize</code> podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um banco de dados, e em seguida traduz o array de bytes em objetos:
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-4♠ 10♣ 6♦ 4♦ J♠ 10♥ 5♠ 3♠ 6♥ 6♠ 10♠ K♣ 7♥ 9♠ 3♦ 8♥ Q♦ K♠ Q♠ J♥ A♦ 8♦ A♥ 2♣ Q♣ 8♠ 6♣ 2♥ 2♠ 2♦ 9♦ 4♣ K♥ 7♣ 7♠ 8♣ Q♥ 5♦ J♦ 10♦ 7♦ 3♥ 4♥ J♣ 5♣ A♠ 9♣ K♦ A♣ 9♥ 5♥ 3♣
+4♦ 7♦ 5♥ K♠ 9♠ 2♥ 7♥ 4♣ 5♠ K♥ 8♥ 2♣ J♥ 10♣ 5♦ 5♣ 3♠ J♦ J♠ 10♦ 7♣ Q♠ K♦ A♦ 7♠ 6♣ 10♥ Q♦ K♣ A♠ 4♥ Q♣ 8♣ 6♠ 8♠ A♥ A♣ 10♠ 2♠ 3♦ 3♣ J♣ 8♦ Q♥ 2♦ 9♥ 3♥ 6♥ 9♦ 6♦ 4♠ 9♣
 julia&gt; card = pop!(deck)
-3♣
+9♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15517,7 +15517,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20464(double, double) {
+define double @julia_squaresum_20462(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-22 21:39:03 UTC
+Last updated 2020-06-22 21:49:28 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
