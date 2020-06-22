@@ -1,7 +1,7 @@
 [[chap14]]
 == Arquivos
 
-Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados, e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.
+Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.
 
 === Persistência
 
@@ -15,12 +15,12 @@ Exemplos de programas persistentes são sistemas operacionais, que são executad
 
 Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo _arquivos de texto_. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.
 
-Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo eu também irei apresentar como usar um banco de dados simples.
+Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo, iremos apresentar como usar um banco de dados simples.
 
 [[reading_and_writing]]
 === Lendo e Escrevendo
 
-Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido, ou memória flash. Nós vimos como abrir e ler um arquivo em <<reading_word_lists>>.
+Um arquivo de texto é uma sequência de caracteres armazenado em um meio permanente como um disco rígido ou memória flash. Nós vimos como abrir e ler um arquivo em <<reading_word_lists>>.
 
 Para escrever em um arquivo, você tem que abri-lo com modo +"w"+ como segundo parâmetro:
 (((open)))
@@ -52,7 +52,7 @@ julia> write(fout, linha2)
 36
 ----
 
-Quando você acabar de escrever no arquivo, ele deve ser fechado.
+Quando você terminar de escrever no arquivo, ele deve ser fechado.
 (((close)))
 
 [source,@julia-repl-test chap14]
@@ -66,7 +66,7 @@ Se você não fechar o arquivo, ele é fechado quando o programa encerra.
 
 === Formatação
 
-O argumeto da função write precisa ser uma string, então se nós quisermos colocar outros valores no arquivo, nós temos que convertê-los para string. A maneira mais fácil de fazer isso é com +string+ ou interpolação de strings:
+O argumeto da função write precisa ser uma string, então se quisermos colocar outros valores no arquivo, temos que convertê-los para string. A maneira mais fácil de fazer isso é usando +string+ ou interpolação de strings:
 (((string)))(((interpolação de strings)))
 
 [source,@julia-repl-test chap14]
@@ -84,18 +84,18 @@ Uma alternativa é usar a familia de funções +print(ln)+.
 ----
 julia> camelos = 42
 42
-julia> println(fout, "Eu vi $camels camelos.")
+julia> println(fout, "Eu vi $camelos camelos.")
 
 ----
 
 [TIP]
 ====
-Uma alternativa mais poderosa é o macro +@printf@+ que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em https://docs.julialang.org/en/v1/stdlib/Printf/
+Uma alternativa mais poderosa é a macro +@printf@+ que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em https://docs.julialang.org/en/v1/stdlib/Printf/
 (((@printf)))((("macro", "Printf", "@printf", see="@printf")))(((formatação)))
 ====
 
 
-=== Filenames e Paths
+=== Nomes de Arquivos e Caminhos
 
 Arquivos são organizados em _diretórios_ (também chamados de “pastas”). Todo programa em execução possui um “diretório atual”, que é o diretório padrão para a maioria das operações. Por exemplo, quando você abre um arquivo para leitura, o Julia a procura no diretório atual.
 (((diretório)))((("pasta", see="diretório")))
@@ -109,16 +109,16 @@ julia> cwd = pwd()
 "/home/ben"
 ----
 
-+cwd+ significa “current working directory” (diretório atual funcional). O resultado neste exemplo é +home/ben+, que é o diretório home do usuário chamado +ben+.
++cwd+ significa “current working directory” (diretório atual funcional). O resultado nesse exemplo é +home/ben+, que é o diretório home do usuário chamado +ben+.
 
-Uma string como +"/home/ben"+ que identifica um arquivo ou diretório é chamado de _path_ (caminho).
-(((path)))
+Uma string como +"/home/ben"+ que identifica um arquivo ou diretório é chamado de _caminho_.
+(((caminho)))
 
-Um nome de arquivo simples, como +memo.txt+ também é considerado um path, mas é um _path relativo_ porque se refere ao diretório atual. Se o diretório atual é +/home/ben+, o nome do arquivo +memo.txt+ se referiria à +/home/ben/memo.txt+.
-(((path relativo)))((("path", "relativo", see="path relativo")))
+Um nome de arquivo simples, como +memo.txt+ também é considerado um caminho, mas é um _caminho relativo_ porque se refere ao diretório atual. Se o diretório atual é +/home/ben+, o nome do arquivo +memo.txt+ se referiria à +/home/ben/memo.txt+.
+(((caminho relativo)))((("caminho", "relativo", see="caminho relativo")))
 
-Um path que começa com +/+ não depende do diretório atual; ele é chamado de _path absoluto_. Para achar um path absoluto para um arquivo, você pode usar +abspath+:
-(((path absoluto)))((("path", "absoluto", see="path absoluto")))(((abspath)))((("função", "Base", "abspath", see="abspath")))
+Um caminho que começa com +/+ não depende do diretório atual; ele é chamado de _caminho absoluto_. Para achar um caminho absoluto para um arquivo, você pode usar +abspath+:
+(((caminho absoluto)))((("caminho", "absoluto", see="caminho absoluto")))(((abspath)))((("função", "Base", "abspath", see="abspath")))
 
 [source,jlcon]
 ----
@@ -126,7 +126,7 @@ julia> abspath("memo.txt")
 "/home/ben/memo.txt"
 ----
 
-O Julia fornece outras funções para trabalhar com nomes de arquivos e paths. Por exemplo, +ispath+ verifica se um arquivo ou diretório existe:
+O Julia fornece outras funções para trabalhar com nomes de arquivos e caminhos. Por exemplo, +ispath+ verifica se um arquivo ou diretório existe:
 (((ispath)))((("função", "Base", "ispath", see="ispath")))
 
 [source,jlcon]
@@ -149,7 +149,7 @@ true
 De forma similar, +isfile+ verifica se é um arquivo.
 (((isfile)))((("função", "Base", "isfile", see="isfile")))
 
-+readdir+ retorna um array de arquivos (e outros diretórios) no diretório dado:
++readdir+ retorna uma lista de arquivos (e outros diretórios) no diretório dado:
 (((readdir)))((("função, "Base", "readdir", see="readdir")))
 
 [source,jlcon]
@@ -157,16 +157,16 @@ De forma similar, +isfile+ verifica se é um arquivo.
 julia> readdir(cwd)
 3-element Array{String,1}:
  "memo.txt"
- "musica"
+ "música"
  "fotos"
 ----
 
-Para demonstrar estas funções, o exemplo a seguir “anda” por um diretório, exibe os nomes de todos os arquivos, e chama a si mesmo recursivamente em todos os diretórios.
-(((anda)))((("função", "definido pelo programador", "anda", see="anda")))
+Para demonstrar estas funções, o exemplo a seguir “caminha” por um diretório, exibe os nomes de todos os arquivos e chama a si mesmo recursivamente em todos os diretórios.
+(((caminha)))((("função", "definido pelo programador", "caminha", see="caminha")))
 
 [source,@julia-setup chap14]
 ----
-function anda(nomedir)
+function caminha(nomedir)
     for nome in readdir(nomedir)
         path = joinpath(nomedir, nome)
         if isfile(path)
@@ -178,12 +178,12 @@ function anda(nomedir)
 end
 ----
 
-+joinpath+ recebe um diretório e um nome de arquivo e junta-os em um path completo.
++joinpath+ recebe um diretório e um nome de arquivo e junta-os em um caminho completo.
 (((joinpath)))((("função", "Base", "joinpath", see="joinpath")))
 
 [TIP]
 ====
-O Julia fornece uma função chamada +walkdir+ (veja https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir) que é similar a esta mas é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
+O Julia fornece uma função chamada +walkdir+ (consulte https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir) que é similar a esta mas é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
 (((walkdir)))((("função", "Base", "walkdir", see="walkdir")))
 ====
 
@@ -208,7 +208,7 @@ julia> fout = open("/etc/passwd", "w")
 ERROR: SystemError: opening file "/etc/passwd": Operation not permitted
 ----
 
-Para evitar estes erros, você pode usar funções como +ispath+ e +isfile+, mas levaria muito tempo e código para verificar todas as possibilidades.
+Para evitar estes erros, você pode usar funções como +ispath+ e +isfile+, porém, tomaria muito tempo e código para verificar todas as possibilidades.
 
 É mais fácil tentar de uma vez-e lidar com os problemas se eles ocorrerem-que é exatamente o que a declaração +try+ faz. A sintaxe é similar a uma declaração +if+:
 (((declaração try)))((("declaração", "try", see="declaração try")))(((try)))((("palavra-chave", "try", see="try")))(((catch)))((("palavra-chave", "catch", see="catch")))(((end)))
@@ -222,12 +222,12 @@ catch exc
 end
 ----
 
-O Julia inicia executando a cláusula +try+. Se tudo der certo, ele pula a cláusula +catch+ e segue adiante. Se uma exceção ocorre, ele pula fora da cláusula +try+ e executa a cláusula +catch+.
+O Julia inicia executando a cláusula +try+. Se tudo der certo, ele pula a cláusula +catch+ e segue adiante. Se ocorrer alguma exceção, ele pula fora da cláusula +try+ e executa a cláusula +catch+.
 
-Lidar com uma exceção com uma declaração +try+ é chamado de _capturar_ uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente, ou pelo menos encerrar o programa graciosamente.
+Lidar com uma exceção com uma declaração +try+ é chamado de _capturar_ uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente ou pelo menos encerrar o programa graciosamente.
 (((capturar uma exceção)))
 
-Em código que realiza mudanças de estado ou usa recursos como arquivos, há geralmente trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave +finally+ fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
+Em código que realiza mudanças de estado ou usa recursos como arquivos, geralmente há um trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave +finally+ fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
 (((finally)))((("palavra-chave", "finally", see="finally")))
 
 [source,julia]
@@ -353,9 +353,9 @@ julia> print(t2)
 [1, 2, 3]
 ----
 
-+serialize+ e +deserialize+ escrevem para e lêm de um objeto iobuffer que representa um fluxo I/O em memória. A função +take!+ busca os conteúdos do iobuffer como um array de bytes e reinicia o iobuffer para seu estado inicial.
++serialize+ e +deserialize+ escrevem para e leem de um objeto iobuffer que representa um fluxo I/O em memória. A função +take!+ busca os conteúdos do iobuffer como uma lista de bytes e reinicia o iobuffer para seu estado inicial.
 
-Apesar do objeto novo ter o mesmo valor do antigo, ele não é (em geral) o mesmo objeto:
+Apesar do novo objeto ter o mesmo valor do antigo, ele não é (em geral) o mesmo objeto:
 
 [source,@julia-repl-test chap14]
 ----
@@ -378,7 +378,7 @@ Na verdade, o armazenamento de coisas diferentes de string em um banco de dados 
 
 === Objetos de Comando
 
-A maioria dos sistemas operacionais fornecem uma interface de linha de comando, também conhecida como uma _shell_. Shells geralmente fornecem comandos para navegar o sistema de arquivos e iniciar aplicações. Por exemplo, no Unix você pode mudar de diretório com o comando +cd+, exibir o conteúdo do diretório com +ls+, e iniciar o web browser digitando (por exemplo) +firefox+.
+A maioria dos sistemas operacionais fornecem uma interface de linha de comando, também conhecida como uma _shell_. Shells geralmente fornecem comandos para navegar o sistema de arquivos e iniciar aplicações. Por exemplo, no Unix você pode mudar de diretório com o comando +cd+, exibir o conteúdo do diretório com +ls+ e iniciar o web browser digitando (por exemplo) +firefox+.
 (((shell)))(((cd)))
 
 Qualquer programa que você inicia do shell também pode ser iniciado do Julia usando um _objeto de comando_:
@@ -412,7 +412,7 @@ julia> a = read(cmd, String)
 "olá\n"
 ----
 
-Por exemplo, a maioria dos sistemas Unix fornecem um comando chamado +md5sum+ ou +md5+ que lê o conteúdo de um arquivo e calcula a “checksum”. Você pode ler mais sobre MD5 em https://en.wikipedia.org/wiki/Md5. Este comando fornece uma maneira eficiente de verificar se dois arquivos possuem o mesmo conteúdo. A probabilidade de que conteúdos diferentes produzem a mesma checksum é muito pequena (isto é, improvável de acontecer antes que o universo entre em colapso).
+Por exemplo, a maioria dos sistemas Unix fornecem um comando chamado +md5sum+ ou +md5+ que lê o conteúdo de um arquivo e calcula uma “soma de verificação” para checar a integridade dos dados. Você pode ler mais sobre MD5 em https://pt.wikipedia.org/wiki/MD5. Este comando fornece uma maneira eficiente de verificar se dois arquivos possuem o mesmo conteúdo. A probabilidade de que conteúdos diferentes produzem a mesma soma de verificação é muito pequena (isto é, improvável de acontecer antes que o universo entre em colapso).
 (((checksum)))(((md5)))(((md5sum)))
 
 Você pode usar um objeto comando para executar +md5+ do Julia e gerar o resultado:
@@ -524,7 +524,7 @@ julia> println(s)
  4
 ----
 
-A função embutida +repr+ ou +dump+ podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.
+As funções embutidas +repr+ ou +dump+ podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.
 
 (((repr)))((("função", "Base", "repr", see="repr")))(((dump)))((("função", "Base", "dump", see="dump")))
 
@@ -547,14 +547,14 @@ Isso pode ser útil para depurar.
 Um outro problema que você pode encontrar é que sistemas diferentes usam caracteres diferentes para indicar o final da linha. Alguns sistemas usam uma nova linha, representada por +\n+. Outros usam um caractere de retorno, representado por +\r. Alguns usam ambos. Se você move arquivos entre sistemas diferentes, essas inconsistências podem causar problemas.
 (((\r)))
 
-Para a maioria dos sistemas, existem aplicações que convertem de um formato para o outro. Você pode achá-los (e ler mais a respeito deste problema) em https://en.wikipedia.org/wiki/Newline. Ou, é claro, você pode escrever um por conta própria.
+Para a maioria dos sistemas, existem aplicações que convertem de um formato para o outro. Você pode achá-los (e ler mais a respeito deste problema) em https://pt.wikipedia.org/wiki/Nova_linha. Ou, é claro, você pode escrever um por conta própria.
 
 
 === Glossário
 
 persistente::
 Pertencente a um programa que é executado indefinidamente e mantém pelo menos alguns de seus dados em armazenamento permanente.
-(((persistent)))
+(((persistente)))
 
 arquivo de texto::
 Uma sequência de caracteres guardados em armazenamento permanente como um disco rígido.
@@ -564,17 +564,17 @@ diretório::
 Uma coleção de arquivos com nome, também chamada de pasta.
 (((diretório)))
 
-path::
+caminho::
 Uma string que identifica um arquivo.
-(((path)))
+(((caminho)))
 
-path relativo::
-Um path que inicia no diretório atual.
-(((path relativo)))
+caminho relativo::
+Um caminho que inicia no diretório atual.
+(((caminho relativo)))
 
-path absoluto::
-Um path que inicia do diretório mais a cima no sistema de arquivos.
-(((path absoluto)))
+caminho absoluto::
+Um caminho que inicia do diretório mais a cima no sistema de arquivos.
+(((caminho absoluto)))
 
 catch::
 Prevenir uma exceção de terminar um programa usando as declarações +try pass:[...] catch pass:[...] finally+.
@@ -598,15 +598,15 @@ Um objeto que representa um comando shell, permitindo um programa em Julia a exe
 [[ex14-1]]
 ===== Exercício 14-2
 
-Escreva uma função chamada +sed+ que recebe como argumento uma string de padrão, uma string de substituição, e dois nomes de arquivos; ela deva ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (criando ele ser for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
+Escreva uma função chamada +sed+ que recebe como argumento uma string padrão, uma string de substituição e dois nomes de arquivos; ela deva ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (criando ele ser for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
 (((sed)))((("função", "definido pelo programador", "sed", see="sed")))
 
-Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivos, seu programa deve capturar a exceção, exibir a mensagem de erro, e sair.
+Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivos, seu programa deve capturar a exceção, exibir a mensagem de erro e sair.
 
 [[ex14-2]]
 ===== Exercício 14-3
 
-Se você fez <<ex12-2>>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras.Por exemplo, +"opst"+ é mapeado para a lista +["opts", "post", "pots", "spot", "stop", "tops"]+.
+Se você fez <<ex12-2>>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras. Por exemplo, +"opst"+ é mapeado para a lista +["opts", "post", "pots", "spot", "stop", "tops"]+.
 
 Escreva um módulo que importe +anagramsets+ e forneça duas novas funções: +guardaanagramas+ deve guardar o dicionário de anagramas usando +JLD2+; +leranagrams+ deve buscar uma palavra e retornar uma lista de seus anagramas.
 (((guardaanagramas)))((("função", "programmer-defined", "guardaanagramas", see="guardaanagramas")))(((leranagramas)))((("função", "definido pelo programador", "leranagramas", see="leranagramas")))
