@@ -3,6 +3,7 @@
 
 Este capítulo introduz a ideia de programas “persistentes” que mantêm dados permanentemente armazenados e mostra como usar tipos diferentes de armazenamentos permanentes, como arquivos e banco de dados.
 
+
 === Persistência
 
 A maioria dos programas que nós vimos até agora são transitórios no sentido de que eles executam por um tempo e produzem alguma saída, mas ao finalizarem, seus dados desaparecem. Se você executar o programa novamente, ele inicia com um estado limpo.
@@ -11,9 +12,9 @@ A maioria dos programas que nós vimos até agora são transitórios no sentido 
 Outros programas são _persistentes_: eles executam por um longo tempo (ou toda hora); eles mantém pelo menos um pouco dos dados em um armazenamento permanente (um disco rígido, por exemplo); e se eles forem encerrados e reiniciados, eles retornam aonde pararam.
 (((persistente)))
 
-Exemplos de programas persistentes são sistemas operacionais, que são executados toda vez que um computador é ligado, e servidores web, que são executados toda hora, aguardando solicitações vindos da rede.
+Exemplos de programas persistentes são sistemas operacionais, que são executados toda vez que um computador é ligado e servidores web, que são executados toda hora, aguardando solicitações vindas da rede.
 
-Uma das maneiras mais simples que programas usam para manter seus dados é lendo e escrevendo _arquivos de texto_. Nós já vimos programas que lêm arquivos de texto; neste capítulo nós veremos programas que as escrevem.
+Uma das maneiras mais simples que os programas usam para manter seus dados é lendo e escrevendo _arquivos de texto_. Nós já vimos programas que leem arquivos de texto; neste capítulo nós veremos programas que os escrevem.
 
 Uma alternativa é armazenar o estado do programa em um banco de dados. Neste capítulo, iremos apresentar como usar um banco de dados simples.
 
@@ -315,7 +316,7 @@ julia> close(db)
 
 === Serialização
 
-A limitação do +GDBM+ é de que as chaves e valores precisam ser strings ou arrays de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.
+A limitação do +GDBM+ é de que as chaves e valores precisam ser strings ou listas de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.
 
 As funções +serialize+ e +deserialize+ podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um banco de dados, e em seguida traduz o array de bytes em objetos:
 (((Serialização)))((("módulo", "Serialização", see="Serialization")))(((serialize)))((("função", "Serialização", "serialize", see="serialize)))(((IOBuffer)))((("tipo", "Base", "IOBuffer", see="IOBuffer")))(((take!)))((("função", "Base", "take!", see="take!")))
