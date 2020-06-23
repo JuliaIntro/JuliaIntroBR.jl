@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592363682424595e9</code></pre>
+1.592885268400054e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♠ 4♥ 2♠ Q♣ 5♣ 7♠ A♥ 8♦ J♠ 5♥ 4♦ J♥ 6♣ 5♠ 2♣ 9♥ 9♣ 3♣ 10♣ 6♦ 3♦ 10♦ 10♥ A♠ Q♠ 7♥ 4♣ 2♥ K♣ 9♠ 7♣ K♠ 5♦ 8♥ 3♥ J♦ Q♥ A♦ J♣ 7♦ 2♦ 3♠ K♦ 9♦ 6♠ 6♥ A♣ 4♠ Q♦ 10♠ 8♣ K♥
+8♥ 5♦ 4♥ Q♠ 3♠ 10♣ 4♣ 2♠ 2♣ 8♣ 6♦ Q♣ 10♦ K♦ 9♣ K♣ A♠ A♥ 4♦ 7♠ 5♣ 7♦ 10♠ K♠ 4♠ 9♠ 7♣ 2♥ 2♦ K♥ 9♥ J♦ 6♣ 5♠ A♣ 9♦ J♥ 3♦ Q♥ 8♠ 8♦ 6♥ J♠ 7♥ Q♦ 5♥ J♣ 3♥ 3♣ 10♥ 6♠ A♦
 julia&gt; card = pop!(deck)
-K♥
+A♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20466(double, double) {
+define double @julia_squaresum_20496(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15748,7 +15748,7 @@ top:
 <div class="ulist">
 <ul>
 <li>
-<p>Se houver um laço em particular que você suspeita ser o problema, adicione uma declaração print logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.</p>
+<p>Se houver um laço em particular que você suspeita ser o problema, adicione um comando de impressão logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.</p>
 <div class="paragraph">
 <p>Execute o programa. Caso receba a primeira mensagem e não a segunda, então você tem um laço infinito. Vá para a subseção <a href="#infinite_loop">Laço Infinito</a> mais adiante.
 </p>
@@ -15772,7 +15772,7 @@ top:
 <div class="sect4">
 <h5 id="infinite_loop">Laço Infinito</h5>
 <div class="paragraph">
-<p>Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione uma declaração de print no final do laço que imprime os valores das variáveis na condição e o valor da condição.</p>
+<p>Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione um comando de impressão no final do laço que imprime os valores das variáveis na condição e o valor da condição.</p>
 </div>
 <div class="paragraph">
 <p>Por exemplo:</p>
@@ -15801,13 +15801,13 @@ end</code></pre>
 <p>Se você desconfia que uma função está causando uma recursão infinita, certifique-se de que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma invocação recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.</p>
 </div>
 <div class="paragraph">
-<p>Se existe um caso base mas o programa não parece alcançá-lo, adicione uma declaração print no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.</p>
+<p>Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="flow_of_execution">Fluxo de Execução</h5>
 <div class="paragraph">
-<p>Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione delcarações prints no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.</p>
+<p>Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione comandos de impressão no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.</p>
 </div>
 <div class="paragraph">
 <p>E quando você executar o programa, ele imprimirá cada função que for chamada.</p>
@@ -15906,12 +15906,12 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_adicionei_tantas_declarações_print_que_sou_inundado_com_a_saída">Adicionei Tantas declarações print que Sou Inundado com a Saída</h4>
+<h4 id="_adicionei_tantos_comandos_de_impressão_que_sou_inundado_com_a_saída">Adicionei Tantos Comandos de Impressão que Sou Inundado com a Saída</h4>
 <div class="paragraph">
-<p>Um dos problemas com o uso de declarações print para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.</p>
+<p>Um dos problemas com o uso de comandos de impressão para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.</p>
 </div>
 <div class="paragraph">
-<p>Para simplificar a saída, você pode remover ou comentar as declarações print que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.</p>
+<p>Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.</p>
 </div>
 <div class="paragraph">
 <p>Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. Caso o programa receba a entrada do usuário, passe a entrada mais simples que causa o problema.</p>
@@ -15937,89 +15937,65 @@ end</code></pre>
 <p>O primeiro passo é conectar o texto do programa ao comportamento que você está vendo. Você precisa de uma hipótese sobre o que o programa está realmente fazendo. Um dos fatores que dificulta isso é que os computadores executam muito rápido.</p>
 </div>
 <div class="paragraph">
-<p>Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocadas declarações print é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.</p>
+<p>Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocados comandos de impressão é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.</p>
 </div>
 <div class="sect3">
 <h4 id="_meu_programa_não_funciona">Meu Programa Não Funciona</h4>
 <div class="paragraph">
-<p>You should ask yourself these questions:</p>
+<p>Você deve se perguntar estas perguntas:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Is there something the program was supposed to do but which doesn’t seem to be happening? Find the section of the code that performs that function and make sure it is executing when you think it should.</p>
+<p>Existe algo que o programa deveria fazer, mas parece que não está fazendo? Encontre a seção do código que executa essa função e verifique se ela está executando quando você acha que deve.</p>
+</li>
+<li>
+<p>Está acontecendo algo que não deveria? Encontre o código no seu programa que executa essa função e veja se ela está sendo executada quando não deveria.</p>
+</li>
+<li>
+<p>Uma seção do código resulta em algo que não é o que você esperava? Certifique-se de que você entende o código em questão, especialmente se ele envolve as funções ou os métodos em outros módulos do Julia. Leia a documentação para as funções que você chama. Experimente-as escrevendo casos de teste simples e verificando os resultados.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Você deve se perguntar:</p>
-</div>
-<div class="paragraph">
-<p>Você deve fazer a si mesmo estas perguntas:</p>
-</div>
-<div class="paragraph">
-<p>**Você deve se perguntar o seguinte:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>**Há algo que o programa deveria fazer, mas que não parece acontecer? Encontre a seção do código que executa a função em questão e confira se está sendo executada quando você acha que deveria.</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Existe algo que o programa deveria ter feito, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e certifique-se de que ele está executando quando você acha que deve.</p>
-</li>
-<li>
-<p>Existe algo que o programa deveria fazer, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e verifique se ela está sendo executada quando você acha que deveria.</p>
-</li>
-<li>
-<p>Is something happening that shouldn’t? Find code in your program that performs that function and see if it is executing when it shouldn’t.</p>
-</li>
-<li>
-<p>Is a section of code producing an effect that is not what you expected? Make sure that you understand the code in question, especially if it involves functions or methods in other Julia modules. Read the documentation for the functions you call. Try them out by writing simple test cases and checking the results.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In order to program, you need a mental model of how programs work. If you write a program that doesn’t do what you expect, often the problem is not in the program; it’s in your mental model.
+<p>Para programar, você precisa de um modelo mental de como os programas funcionam. Se você escreve um programa que não faz o que você deseja, com frequência o problema não está no programa e sim, no seu modelo mental.
 </p>
 </div>
 <div class="paragraph">
-<p>The best way to correct your mental model is to break the program into its components (usually the functions and methods) and test each component independently. Once you find the discrepancy between your model and reality, you can solve the problem.</p>
+<p>A melhor maneira de reparar o seu modelo mental é particionar o programa em seus componentes (geralmente as funções e os métodos) e testar cada componente isoladamente. Uma vez encontrada a discrepância entre o seu modelo e a realidade, você pode resolver o problema.</p>
 </div>
 <div class="paragraph">
-<p>Of course, you should be building and testing components as you develop the program. If you encounter a problem, there should be only a small amount of new code that is not known to be correct.</p>
+<p>Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então se você encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_i_ve_got_a_big_hairy_expression_and_it_doesn_t_do_what_i_expect">I’ve got a big hairy expression and it doesn’t do what I expect</h4>
+<h4 id="_tenho_uma_grande_expressão_bizarra_e_não_faz_o_que_eu_espero">Tenho Uma Grande Expressão Bizarra e Não Faz O Que Eu Espero</h4>
 <div class="paragraph">
-<p>Writing complex expressions is fine as long as they are readable, but they can be hard to debug. It is often a good idea to break a complex expression into a series of assignments to temporary variables.</p>
+<p>Escrever expressões complexas é bom desde que sejam legíveis, mas podem ser difíceis de depurar. Muitas vezes é uma boa ideia dividir uma expressão complexa em uma série de atribuições a variáveis temporárias.</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>Por exemplo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">addcard(game.hands[i], popcard(game.hands[findneighbor(game, i)]))</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">adicionar_carta(jogo.mãos[i], remover_carta(jogo.mãos[achar_vizinho(jogo, i)]))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This can be rewritten as:</p>
+<p>Este comando pode ser rescrito como:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">neighbor = findneighbor(game, i)
-pickedcard = popcard(game.hands[neighbor])
-addcard(game.hands[i], pickedcard)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">vizinho = achar_vizinho(jogo, i)
+carta_escolhida = remover_carta(jogo.mãos[vizinho])
+adicionar_carta(jogo.maõs[i], carta_escolhida)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The explicit version is easier to read because the variable names provide additional documentation, and it is easier to debug because you can check the types of the intermediate variables and display their values.</p>
+<p>A versão explícita é mais fácil de ler já que os nomes das variáveis fornecem documentação adicional além de ser mais fácil de depurar, porque você pode verificar os tipos das variáveis intermediárias e exibir os seus valores.</p>
 </div>
 <div class="paragraph">
-<p>Another problem that can occur with big expressions is that the order of evaluation may not be what you expect. For example, if you are translating the expression \(\frac{x}{2\pi}\) into Julia, you might write:</p>
+<p>Outro problema que pode ocorrer com as grandes expressões é que a ordem da avaliação pode não ser a que se espera. Por exemplo, se você estiver traduzindo a expressão \(\frac{x}{2\pi}\) para o Julia, pode-se escrever:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -16027,10 +16003,10 @@ addcard(game.hands[i], pickedcard)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>That is not correct because multiplication and division have the same precedence and are evaluated from left to right. So this expression computes \(\frac{x\pi}{2}\).</p>
+<p>Isto não está correto porque a multiplicação e a divisão têm a mesma precedência e são avaliadas da esquerda para a direita. Portanto, essa expressão calcula \(\frac{x\pi}{2}\).</p>
 </div>
 <div class="paragraph">
-<p>A good way to debug expressions is to add parentheses to make the order of evaluation explicit:</p>
+<p>Uma boa maneira de depurar expressões é adicionando parênteses para tornar explícita a ordem da avaliação:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -16038,87 +16014,87 @@ addcard(game.hands[i], pickedcard)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Whenever you are not sure of the order of evaluation, use parentheses. Not only will the program be correct (in the sense of doing what you intended), it will also be more readable for other people who haven’t memorized the order of operations.</p>
+<p>Sempre que você não tiver certeza da ordem da avaliação, use parênteses. O programa não apenas estará correto (no sentido de fazer o que você deseja), como também será mais legível para outras pessoas que não memorizaram a ordem das operações.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_i_ve_got_a_function_that_doesn_t_return_what_i_expect">I’ve got a function that doesn’t return what I expect</h4>
+<h4 id="_tenho_uma_função_que_não_retorna_o_que_eu_espero">Tenho uma Função Que Não Retorna o Que Eu Espero</h4>
 <div class="paragraph">
-<p>If you have a return statement with a complex expression, you don’t have a chance to print the result before returning. Again, you can use a temporary variable. For example, instead of:
+<p>Se você tiver uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, você pode usar uma variável temporária. Por exemplo, em vez de:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">return removematches(game.hands[i])</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">return remove_combinações(jogo.mãos[i])</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>you could write:</p>
+<p>você poderia escrever:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">count = removematches(game.hands[i])
-return count</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">contagem = remove_combinações(jogo.mãos[i])
+return contagem</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you have the opportunity to display the value of <code>count</code> before returning.</p>
+<p>Agora você tem a oportunidade de mostrar o valor de <code>contagem</code> antes de retornar.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_i_m_really_really_stuck_and_i_need_help">I’m really, really stuck and I need help</h4>
+<h4 id="_estou_muito_muito_empacado_e_preciso_de_ajuda">Estou Muito, Muito Empacado e Preciso de Ajuda</h4>
 <div class="paragraph">
-<p>First, try getting away from the computer for a few minutes. Working with a computer can cause these symptoms:</p>
+<p>Primeiro, tente ficar longe do computador por alguns minutos. Trabalhar com um computador pode causar estes sintomas:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Frustration and rage.</p>
+<p>Frustração e raiva.</p>
 </li>
 <li>
-<p>Superstitious beliefs (“the computer hates me”) and magical thinking (“the program only works when I wear my hat backward”).</p>
+<p>Crenças supersticiosas (“o computador me odeia”) e o pensamento mágico ("o programa só funciona quando eu uso meu chapéu para trás”).</p>
 </li>
 <li>
-<p>Random walk programming (the attempt to program by writing every possible program and choosing the one that does the right thing).</p>
+<p>Programação aleatória (a tentativa de programar escrevendo todos os programas possíveis e escolhendo o que faz a coisa certa).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you find yourself suffering from any of these symptoms, get up and go for a walk. When you are calm, think about the program. What is it doing? What are some possible causes of that behavior? When was the last time you had a working program, and what did you do next?</p>
+<p>Caso você esteja sofrendo algum desses sintomas, levante-se e dê um passeio. No momento que se acalmar, pense no programa. O que isso está fazendo? Quais são algumas das causas possíveis desse comportamento? Quando foi a última vez que você teve um programa funcional e o que você fez a seguir?</p>
 </div>
 <div class="paragraph">
-<p>Sometimes it just takes time to find a bug. I often find bugs when I am away from the computer and let my mind wander. Some of the best places to find bugs are trains, showers, and in bed, just before you fall asleep.</p>
+<p>Às vezes leva tempo para encontrar um erro. Muitas vezes encontro erros quando estou longe do computador e deixo a minha mente vaguear. Alguns dos melhores lugares para encontrar erros são os trens, os chuveiros, e na cama, pouco antes de você dormir.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_no_i_really_need_help">No, I really need help</h4>
+<h4 id="_não_eu_realmente_preciso_de_ajuda">Não, Eu Realmente Preciso de Ajuda</h4>
 <div class="paragraph">
-<p>It happens. Even the best programmers occasionally get stuck. Sometimes you work on a program so long that you can’t see the error. You need a fresh pair of eyes.</p>
+<p>Acontece. Mesmo os melhores programadores ocasionalmente ficam empacados. Às vezes você trabalha em um programa por tanto tempo que não consegue ver o erro. E precisa de um novo par de olhos.</p>
 </div>
 <div class="paragraph">
-<p>Before you bring someone else in, make sure you are prepared. Your program should be as simple as possible, and you should be working on the smallest input that causes the error. You should have print statements in the appropriate places (and the output they produce should be comprehensible). You should understand the problem well enough to describe it concisely.</p>
+<p>Antes de trazer alguém, esteja preparado. Seu programa deve ser o mais simples possível e você deve trabalhar na menor entrada que causa o erro. Você também deve ter comandos de impressão nos locais apropriados (e as saídas geradas devem ser compreensíveis). Além disso, você deve entender bem o problema para descrevê-lo de forma concisa.</p>
 </div>
 <div class="paragraph">
-<p>When you bring someone in to help, be sure to give them the information they need:</p>
+<p>Ao trazer alguém para te ajudar, não deixe de fornecer as informações de que eles precisam:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If there is an error message, what is it and what part of the program does it indicate?</p>
+<p>Se houver uma mensagem de erro, qual é e para qual parte do programa indica?</p>
 </li>
 <li>
-<p>What was the last thing you did before this error occurred? What were the last lines of code that you wrote, or what is the new test case that fails?</p>
+<p>Qual foi a última coisa que foi feita antes deste erro aparecer? Quais foram as últimas linhas de código escritas, ou qual é o novo caso de teste que falha?</p>
 </li>
 <li>
-<p>What have you tried so far, and what have you learned?</p>
+<p>O que você tentou até agora, e o que você aprendeu?</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>When you find the bug, take a second to think about what you could have done to find it faster. Next time you see something similar, you will be able to find the bug more quickly.</p>
+<p>Ao encontrar o erro, pense um pouco no que você poderia ter feito para encontrá-lo mais rapidamente. Da próxima vez que vir algo semelhante, poderá encontrar o erro com mais agilidade.</p>
 </div>
 <div class="paragraph">
-<p>Remember, the goal is not just to make the program work. The goal is to learn how to make the program work.</p>
+<p>Lembre-se, o objetivo não é apenas fazer o programa funcionar. O objetivo é aprender como fazer o programa funcionar.</p>
 </div>
 </div>
 </div>
@@ -16297,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-17 03:14:39 UTC
+Última atualização 2020-06-23 04:07:45 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
