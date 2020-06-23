@@ -79,7 +79,7 @@ Se não for intencional, certifique-se de que há uma chamada de função no pro
 
 Se um programa para e parece não estar fazendo nada, ele está "travando". Frequentemente isso significa que ele está detido em um loop infinito ou em uma repetição infinita.
 
-* Se houver um laço em particular que você suspeita ser o problema, adicione uma declaração print logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.
+* Se houver um laço em particular que você suspeita ser o problema, adicione um comando de impressão logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.
 +
 Execute o programa. Caso receba a primeira mensagem e não a segunda, então você tem um laço infinito. Vá para a subseção <<infinite_loop>> mais adiante.
 (((laço infinito)))
@@ -96,7 +96,7 @@ Se você não estiver recebendo esse erro, mas desconfia que há um problema com
 [[infinite_loop]]
 ===== Laço Infinito
 
-Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione uma declaração de print no final do laço que imprime os valores das variáveis na condição e o valor da condição.
+Se você acha que tem um laço infinito e acha que sabe qual laço está causando o problema, adicione um comando de impressão no final do laço que imprime os valores das variáveis na condição e o valor da condição.
 
 Por exemplo:
 
@@ -120,12 +120,12 @@ Na maioria das vezes, a recursão infinita faz com que o programa funcione por u
 
 Se você desconfia que uma função está causando uma recursão infinita, certifique-se de que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma invocação recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
 
-Se existe um caso base mas o programa não parece alcançá-lo, adicione uma declaração print no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.
+Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.
 
 [[flow_of_execution]]
 ===== Fluxo de Execução
 
-Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione delcarações prints no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.
+Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione comandos de impressão no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.
 
 E quando você executar o programa, ele imprimirá cada função que for chamada.
 
@@ -197,11 +197,11 @@ UndefVarError::
 Um símbolo no escopo atual não está definido.
 (((UndefVarError)))
 
-==== Adicionei Tantas declarações print que Sou Inundado com a Saída
+==== Adicionei Tantos Comandos de Impressão que Sou Inundado com a Saída
 
-Um dos problemas com o uso de declarações print para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+Um dos problemas com o uso de comandos de impressão para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
 
-Para simplificar a saída, você pode remover ou comentar as declarações print que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.
+Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.
 
 Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. Caso o programa receba a entrada do usuário, passe a entrada mais simples que causa o problema.
 
@@ -219,126 +219,113 @@ De certa forma, os erros semânticos são os mais difíceis de depurar, porque o
 
 O primeiro passo é conectar o texto do programa ao comportamento que você está vendo. Você precisa de uma hipótese sobre o que o programa está realmente fazendo. Um dos fatores que dificulta isso é que os computadores executam muito rápido.
 
-Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocadas declarações print é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.
+Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocados comandos de impressão é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.
 
 ==== Meu Programa Não Funciona
 
-You should ask yourself these questions:
+Você deve se perguntar estas perguntas:
 
-* Is there something the program was supposed to do but which doesn’t seem to be happening? Find the section of the code that performs that function and make sure it is executing when you think it should.
+* Existe algo que o programa deveria fazer, mas parece que não está fazendo? Encontre a seção do código que executa essa função e verifique se ela está executando quando você acha que deve.
 
-Você deve se perguntar:
+* Está acontecendo algo que não deveria? Encontre o código no seu programa que executa essa função e veja se ela está sendo executada quando não deveria.
 
-Você deve fazer a si mesmo estas perguntas:
+* Uma seção do código resulta em algo que não é o que você esperava? Certifique-se de que você entende o código em questão, especialmente se ele envolve as funções ou os métodos em outros módulos do Julia. Leia a documentação para as funções que você chama. Experimente-as escrevendo casos de teste simples e verificando os resultados.
 
-**Você deve se perguntar o seguinte:
+Para programar, você precisa de um modelo mental de como os programas funcionam. Se você escreve um programa que não faz o que você deseja, com frequência o problema não está no programa e sim, no seu modelo mental.
+(((modelo mental)))
 
-    **Há algo que o programa deveria fazer, mas que não parece acontecer? Encontre a seção do código que executa a função em questão e confira se está sendo executada quando você acha que deveria.
+A melhor maneira de reparar o seu modelo mental é particionar o programa em seus componentes (geralmente as funções e os métodos) e testar cada componente isoladamente. Uma vez encontrada a discrepância entre o seu modelo e a realidade, você pode resolver o problema.
 
+Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então se você encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.
 
-* Existe algo que o programa deveria ter feito, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e certifique-se de que ele está executando quando você acha que deve.
+==== Tenho Uma Grande Expressão Bizarra e Não Faz O Que Eu Espero
 
-* Existe algo que o programa deveria fazer, mas que não parece estar acontecendo? Encontre a seção do código que executa essa função e verifique se ela está sendo executada quando você acha que deveria.
+Escrever expressões complexas é bom desde que sejam legíveis, mas podem ser difíceis de depurar. Muitas vezes é uma boa ideia dividir uma expressão complexa em uma série de atribuições a variáveis temporárias.
 
-* Is something happening that shouldn’t? Find code in your program that performs that function and see if it is executing when it shouldn’t.
-
-* Is a section of code producing an effect that is not what you expected? Make sure that you understand the code in question, especially if it involves functions or methods in other Julia modules. Read the documentation for the functions you call. Try them out by writing simple test cases and checking the results.
-
-In order to program, you need a mental model of how programs work. If you write a program that doesn’t do what you expect, often the problem is not in the program; it’s in your mental model.
-(((mental model)))
-
-The best way to correct your mental model is to break the program into its components (usually the functions and methods) and test each component independently. Once you find the discrepancy between your model and reality, you can solve the problem.
-
-Of course, you should be building and testing components as you develop the program. If you encounter a problem, there should be only a small amount of new code that is not known to be correct.
-
-==== I’ve got a big hairy expression and it doesn’t do what I expect
-
-Writing complex expressions is fine as long as they are readable, but they can be hard to debug. It is often a good idea to break a complex expression into a series of assignments to temporary variables.
-
-For example:
+Por exemplo:
 
 [source,julia]
 ----
-addcard(game.hands[i], popcard(game.hands[findneighbor(game, i)]))
+adicionar_carta(jogo.mãos[i], remover_carta(jogo.mãos[achar_vizinho(jogo, i)]))
 ----
 
-This can be rewritten as:
+Este comando pode ser rescrito como:
 
 [source,julia]
 ----
-neighbor = findneighbor(game, i)
-pickedcard = popcard(game.hands[neighbor])
-addcard(game.hands[i], pickedcard)
+vizinho = achar_vizinho(jogo, i)
+carta_escolhida = remover_carta(jogo.mãos[vizinho])
+adicionar_carta(jogo.maõs[i], carta_escolhida)
 ----
 
-The explicit version is easier to read because the variable names provide additional documentation, and it is easier to debug because you can check the types of the intermediate variables and display their values.
+A versão explícita é mais fácil de ler já que os nomes das variáveis fornecem documentação adicional além de ser mais fácil de depurar, porque você pode verificar os tipos das variáveis intermediárias e exibir os seus valores.
 
-Another problem that can occur with big expressions is that the order of evaluation may not be what you expect. For example, if you are translating the expression latexmath:[\(\frac{x}{2\pi}\)] into Julia, you might write:
+Outro problema que pode ocorrer com as grandes expressões é que a ordem da avaliação pode não ser a que se espera. Por exemplo, se você estiver traduzindo a expressão latexmath:[\(\frac{x}{2\pi}\)] para o Julia, pode-se escrever:
 
 [source,julia]
 ----
 y = x / 2 * π
 ----
 
-That is not correct because multiplication and division have the same precedence and are evaluated from left to right. So this expression computes latexmath:[\(\frac{x\pi}{2}\)].
+Isto não está correto porque a multiplicação e a divisão têm a mesma precedência e são avaliadas da esquerda para a direita. Portanto, essa expressão calcula latexmath:[\(\frac{x\pi}{2}\)].
 
-A good way to debug expressions is to add parentheses to make the order of evaluation explicit:
+Uma boa maneira de depurar expressões é adicionando parênteses para tornar explícita a ordem da avaliação:
 
 [source,julia]
 ----
 y = x / (2 * π)
 ----
 
-Whenever you are not sure of the order of evaluation, use parentheses. Not only will the program be correct (in the sense of doing what you intended), it will also be more readable for other people who haven’t memorized the order of operations.
+Sempre que você não tiver certeza da ordem da avaliação, use parênteses. O programa não apenas estará correto (no sentido de fazer o que você deseja), como também será mais legível para outras pessoas que não memorizaram a ordem das operações.
 
-==== I’ve got a function that doesn’t return what I expect
+==== Tenho uma Função Que Não Retorna o Que Eu Espero
 
-If you have a return statement with a complex expression, you don’t have a chance to print the result before returning. Again, you can use a temporary variable. For example, instead of:
-(((temporary variable)))
-
-[source,julia]
-----
-return removematches(game.hands[i])
-----
-
-you could write:
+Se você tiver uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, você pode usar uma variável temporária. Por exemplo, em vez de:
+(((variável temporária)))
 
 [source,julia]
 ----
-count = removematches(game.hands[i])
-return count
+return remove_combinações(jogo.mãos[i])
 ----
 
-Now you have the opportunity to display the value of +count+ before returning.
+você poderia escrever:
 
-==== I’m really, really stuck and I need help
+[source,julia]
+----
+contagem = remove_combinações(jogo.mãos[i])
+return contagem
+----
 
-First, try getting away from the computer for a few minutes. Working with a computer can cause these symptoms:
+Agora você tem a oportunidade de mostrar o valor de +contagem+ antes de retornar.
 
-* Frustration and rage.
+==== Estou Muito, Muito Empacado e Preciso de Ajuda
 
-* Superstitious beliefs (“the computer hates me”) and magical thinking (“the program only works when I wear my hat backward”).
+Primeiro, tente ficar longe do computador por alguns minutos. Trabalhar com um computador pode causar estes sintomas:
 
-* Random walk programming (the attempt to program by writing every possible program and choosing the one that does the right thing).
+* Frustração e raiva.
 
-If you find yourself suffering from any of these symptoms, get up and go for a walk. When you are calm, think about the program. What is it doing? What are some possible causes of that behavior? When was the last time you had a working program, and what did you do next?
+* Crenças supersticiosas (“o computador me odeia”) e o pensamento mágico ("o programa só funciona quando eu uso meu chapéu para trás”).
 
-Sometimes it just takes time to find a bug. I often find bugs when I am away from the computer and let my mind wander. Some of the best places to find bugs are trains, showers, and in bed, just before you fall asleep.
+* Programação aleatória (a tentativa de programar escrevendo todos os programas possíveis e escolhendo o que faz a coisa certa).
 
-==== No, I really need help
+Caso você esteja sofrendo algum desses sintomas, levante-se e dê um passeio. No momento que se acalmar, pense no programa. O que isso está fazendo? Quais são algumas das causas possíveis desse comportamento? Quando foi a última vez que você teve um programa funcional e o que você fez a seguir?
 
-It happens. Even the best programmers occasionally get stuck. Sometimes you work on a program so long that you can’t see the error. You need a fresh pair of eyes.
+Às vezes leva tempo para encontrar um erro. Muitas vezes encontro erros quando estou longe do computador e deixo a minha mente vaguear. Alguns dos melhores lugares para encontrar erros são os trens, os chuveiros, e na cama, pouco antes de você dormir.
 
-Before you bring someone else in, make sure you are prepared. Your program should be as simple as possible, and you should be working on the smallest input that causes the error. You should have print statements in the appropriate places (and the output they produce should be comprehensible). You should understand the problem well enough to describe it concisely.
+==== Não, Eu Realmente Preciso de Ajuda
 
-When you bring someone in to help, be sure to give them the information they need:
+Acontece. Mesmo os melhores programadores ocasionalmente ficam empacados. Às vezes você trabalha em um programa por tanto tempo que não consegue ver o erro. E precisa de um novo par de olhos.
 
-* If there is an error message, what is it and what part of the program does it indicate?
+Antes de trazer alguém, esteja preparado. Seu programa deve ser o mais simples possível e você deve trabalhar na menor entrada que causa o erro. Você também deve ter comandos de impressão nos locais apropriados (e as saídas geradas devem ser compreensíveis). Além disso, você deve entender bem o problema para descrevê-lo de forma concisa.
 
-* What was the last thing you did before this error occurred? What were the last lines of code that you wrote, or what is the new test case that fails?
+Ao trazer alguém para te ajudar, não deixe de fornecer as informações de que eles precisam:
 
-* What have you tried so far, and what have you learned?
+* Se houver uma mensagem de erro, qual é e para qual parte do programa indica?
 
-When you find the bug, take a second to think about what you could have done to find it faster. Next time you see something similar, you will be able to find the bug more quickly.
+* Qual foi a última coisa que foi feita antes deste erro aparecer? Quais foram as últimas linhas de código escritas, ou qual é o novo caso de teste que falha?
 
-Remember, the goal is not just to make the program work. The goal is to learn how to make the program work.
+* O que você tentou até agora, e o que você aprendeu?
+
+Ao encontrar o erro, pense um pouco no que você poderia ter feito para encontrá-lo mais rapidamente. Da próxima vez que vir algo semelhante, poderá encontrar o erro com mais agilidade.
+
+Lembre-se, o objetivo não é apenas fazer o programa funcionar. O objetivo é aprender como fazer o programa funcionar.
