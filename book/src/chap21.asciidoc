@@ -1,29 +1,29 @@
 [[chap21]]
 == Depuração
 
-Na depuração, você deve distinguir entre os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
+Na depuração, você deve distinguir os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
 
 * Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
 (((erro de sintaxe)))
 
-* Erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
+* Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
 (((erro de tempo de execução)))
 
-* Erros semânticos são problemas com um programa que embora rode sem produzir mensagens de erro, não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, produzindo um resultado incorreto.
+* Os erros semânticos são problemas com um programa que embora rode sem produzir mensagens de erro, não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, levando a um resultado incorreto.
 (((erro semântico)))
 
-O primeiro passo na depuração é descobrir com qual o tipo de erro você está lidando. Apesar das seções seguintes sejam organizadas pelo tipo de erro, algumas técnicas são aplicáveis em mais de uma situação.
+O primeiro passo na depuração é descobrir com qual o tipo de erro você está lidando. Apesar das seções seguintes serem organizadas pelo tipo de erro, algumas técnicas são aplicáveis em mais de uma situação.
 
 
 === Erros de Sintaxe
 
-Geralmente, os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. Infelizmente, as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são +ERROR: LoadError: syntax: incomplete: premature end of input+ e +ERROR: LoadError: syntax: unexpected "="+, que não são muito informativo.
+Geralmente os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. E infelizmente as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são +ERROR: LoadError: syntax: incomplete: premature end of input+ e +ERROR: LoadError: syntax: unexpected "="+, que não são muito informativo.
 
-Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, geralmente na linha anterior.
+Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, em geral na linha anterior.
 
-Se você está construindo o programa de forma incremental, deve ter uma boa idéia de onde o erro está. Ele estará na última linha que você adicionou.
+Se você está construindo o programa de forma incremental, deve ter uma boa ideia de onde o erro está. Ele estará na última linha que você adicionou.
 
-Caso você esteja copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você vir algo que parece um erro de sintaxe, talvez seja.
+Caso você esteja copiando o código de um livro, comece comparando seu código com o código do livro com muito cuidado. Verifique todos os caracteres. Ao mesmo tempo, lembre-se de que o livro pode estar errado, portanto, se você perceber algo que parece um erro de sintaxe, talvez seja.
 
 Eis algumas maneiras de evitar os erros de sintaxe mais comuns:
 
@@ -31,15 +31,15 @@ Eis algumas maneiras de evitar os erros de sintaxe mais comuns:
 
 . Certifique-se que você tem a palavra-chave +end+ no final de cada comando composto, incluindo os blocos de +for+, +while+, +if+, e +function+.
 
-. Assegure-se de que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são “aspas retas”, e não as “aspas encaracoladas” (ou “aspas inglesas”).
+. Assegure-se que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são "aspas retas", e não as “aspas encaracoladas” (ou “aspas inglesas”).
 
-. Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não terminada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!
+. Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!
 
-. Quando não se fecha um operador aberto —+(+, +{+, or +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
+. Quando não se fecha um operador aberto —+(+, +{+, ou +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
 
 . Confira o clássico +=+ em vez de +==+ dentro de um condicional.
 
-. Se você tem caracteres que não ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.
+. Se você tem caracteres não ASCII no código (incluindo as strings e os comentários), isso pode causar um problema, embora o Julia geralmente lide com caracteres não ASCII. Tenha cuidado quando você colar texto de uma página da web ou de outra fonte.
 
 Se nada funcionar, passe para a próxima seção...
 
@@ -47,7 +47,7 @@ Se nada funcionar, passe para a próxima seção...
 
 Se o REPL diz que há um erro e você não o vê, talvez seja porque você e o REPL não estão visualizando o mesmo código. Verifique o seu ambiente de programação para garantir que o programa que você está editando é o mesmo que o Julia está tentando executar.
 
-Se você não tiver certeza, tente colocar um erro de sintaxe óbvio e intencional no início do programa. Agora execute-o novamente. Se o REPL não encontrar o novo erro, você não está executando o novo código.
+Se você não tiver certeza, tente colocar um erro de sintaxe óbvio e intencional no início do programa. Agora execute-o novamente. No caso do REPL não encontrar o novo erro, então você não está executando o novo código.
 
 Existem alguns prováveis culpados:
 
@@ -70,14 +70,14 @@ Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pe
 
 ==== Meu programa Não Faz Absolutamente Nada
 
-Esse problema é mais comum quando seu arquivo consiste em funções e classes, mas na verdade não invoca uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e funções.
+Esse problema é mais comum quando seu arquivo consiste em funções e classes, mas na verdade não chama uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e as funções.
 
-Se não for intencional, certifique-se de que há uma chamada de função no programa, e certifique-se de que o fluxo de execução chega até ele (veja <<flow_of_execution>>).
+Se não for intencional, certifique-se que há uma chamada de função no programa, e que o fluxo de execução chega até ele (veja <<flow_of_execution>>).
 (((fluxo de execução)))
 
 ==== Meu Programa Trava
 
-Se um programa para e parece não estar fazendo nada, ele está "travando". Frequentemente isso significa que ele está detido em um loop infinito ou em uma repetição infinita.
+Se um programa para e parece não estar fazendo nada, ele está “travando”. Frequentemente isso significa que ele está detido em um laço infinito ou em uma repetição infinita.
 
 * Se houver um laço em particular que você suspeita ser o problema, adicione um comando de impressão logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.
 +
@@ -89,7 +89,7 @@ Execute o programa. Caso receba a primeira mensagem e não a segunda, então voc
 Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, ainda assim poderá usar as técnicas de <<infinite_recursion>>.
 (((recursão infinita)))
 
-* Caso nenhum desses passos dê certo, comece a testar outros laços e outras funções e métodos recursivos.
+* No caso de nenhum desses passos dar certo, comece a testar outros laços e outras funções e métodos recursivos.
 
 * Caso isso não funcione, então é possível que você não esteja entendendo o fluxo de execução do seu programa. Vá para <<flow_of_execution>> mais adiante.
 
@@ -118,22 +118,22 @@ Agora, quando você executar o programa no modo de depuração, verá o valor da
 Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e depois aparece uma mensagem de erro +ERROR: LoadError: StackOverflowError+.
 (((StackOverflowError)))
 
-Se você desconfia que uma função está causando uma recursão infinita, certifique-se de que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma invocação recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
+Se você desconfia que uma função está causando uma recursão infinita, certifique-se que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma chamada recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
 
-Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Caso  os parâmetros não estiverem se movendo em direção ao caso base, você terá algumas idéias sobre por que isso ocorre.
+Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. No caso dos parâmetros não se moverem em direção ao caso base, você terá algumas idéias sobre o porquê disso ocorrer.
 
 [[flow_of_execution]]
 ===== Fluxo de Execução
 
 Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione comandos de impressão no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.
 
-E quando você executar o programa, ele imprimirá cada função que for chamada.
+E quando você executar o programa, eles imprimirão cada função que for chamada.
 
 ==== Quando Executo o Programa, Recebo uma Exceção
 
 Se algo der errado durante o tempo de execução, o Julia imprime uma mensagem que inclui o nome da exceção, a linha do programa onde o problema ocorreu e um rastreamento de pilha.
 
-O rastreamento de pilha identifica a função que está em execução no momento, e depois a função que a chamou, e depois a função que chamou isso e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, juntamente com o número da linha no seu arquivo onde cada chamada ocorreu.
+O rastreamento de pilha identifica a função que está em execução no momento, e depois a função que a chamou, e depois a função que chamou essa e assim por diante. Em outras palavras, ele rastreia a sequência de chamadas de função que o levaram aonde você está, juntamente com o número da linha no seu arquivo onde cada chamada ocorreu.
 
 O primeiro passo é examinar o local no programa onde ocorreu o erro e verificar se você consegue descobrir o que aconteceu. Listamos alguns dos erros de tempo de execução mais comuns:
 
@@ -174,7 +174,7 @@ Uma operação com muita memória alocada tanto para o sistema quanto para o col
 (((OutOfMemoryError)))((("error", "Core", "OutOfMemoryError", see="OutOfMemoryError")))
 
 OverflowError::
-O resultado de uma expressão é muito grande para o tipo especificado e causará uma explosão. The result of an expression is too large for the specified type and will cause a wraparound.
+O resultado de uma expressão é muito grande para o tipo especificado e causará uma explosão.
 (((OverflowError)))((("error", "Core", "OverflowError", see="OverflowError")))
 
 StackOverflowError::
@@ -194,23 +194,23 @@ Uma falha de asserção de tipo ou chamada de uma função intrínseca com um ti
 (((TypeError)))
 
 UndefVarError::
-Um símbolo no escopo atual não está definido.
+Um símbolo no escopo atual que não está definido.
 (((UndefVarError)))
 
 ==== Adicionei Tantos Comandos de Impressão que Sou Inundado com a Saída
 
-Um dos problemas com o uso de comandos de impressão para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou simplificar o programa.
+Um dos problemas com o uso dos comandos de impressão para a depuração é que você pode acabar soterrado pelas mensagens na saída. Existem duas maneiras de proceder: simplificar a saída ou o programa.
 
 Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.
 
-Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. Caso o programa receba a entrada do usuário, passe a entrada mais simples que causa o problema.
+Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. No caso do programa receber a entrada do usuário, passe a entrada mais simples que cause o problema.
 
 Segundo, limpe o programa. Remova o código morto e reorganize o programa para torná-lo o mais fácil possível de ler. Por exemplo, se você suspeita que o problema está em uma parte profundamente aninhada do programa, tente reescrever essa parte com uma estrutura mais simples. Mas se você suspeitar de uma função grande, tente dividi-la em funções menores e testá-las separadamente.
 (((código morto)))
 
 Freqüentemente, o processo de encontrar o menor caso de teste leva você ao erro. Se você achar que um programa funciona em uma situação, mas não em outra, isso lhe dará uma pista sobre o que está acontecendo.
 
-Da mesma forma, reescrever uma parte do código pode te ajudar a encontrar erros sutis. Se fizer uma mudança que você acha que não deve afetar o programa, e ela afeta, isso pode te dar uma dica.
+Da mesma forma, reescrever uma parte do código pode te ajudar a encontrar os erros sutis. Se fizer uma mudança que você acha que não deve afetar o programa, e ela afeta, isso pode te dar uma dica.
 
 
 === Erros Semânticos
@@ -219,26 +219,26 @@ De certa forma, os erros semânticos são os mais difíceis de depurar, porque o
 
 O primeiro passo é conectar o texto do programa ao comportamento que você está vendo. Você precisa de uma hipótese sobre o que o programa está realmente fazendo. Um dos fatores que dificulta isso é que os computadores executam muito rápido.
 
-Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir algumas bem colocados comandos de impressão é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.
+Muitas vezes você vai desejar diminuir a velocidade do programa para a velocidade humana. Inserir alguns bem colocados comandos de impressão é muitas vezes mais rápido do que configurar um depurador, inserir e remover pontos de interrupção e “andar” pelo programa até onde o erro está ocorrendo.
 
 ==== Meu Programa Não Funciona
 
-Você deve se perguntar estas perguntas:
+Você deve fazer estas perguntas:
 
 * Existe algo que o programa deveria fazer, mas parece que não está fazendo? Encontre a seção do código que executa essa função e verifique se ela está executando quando você acha que deve.
 
 * Está acontecendo algo que não deveria? Encontre o código no seu programa que executa essa função e veja se ela está sendo executada quando não deveria.
 
-* Uma seção do código resulta em algo que não é o que você esperava? Certifique-se de que você entende o código em questão, especialmente se ele envolve as funções ou os métodos em outros módulos do Julia. Leia a documentação para as funções que você chama. Experimente-as escrevendo casos de teste simples e verificando os resultados.
+* Uma seção do código resulta em algo que não é o que você esperava? Certifique-se que você entende o código em questão, especialmente se ele envolve as funções ou os métodos em outros módulos do Julia. Leia a documentação para as funções que você chama. Experimente-as escrevendo casos de teste simples e verificando os resultados.
 
-Para programar, você precisa de um modelo mental de como os programas funcionam. Se você escreve um programa que não faz o que você deseja, com frequência o problema não está no programa e sim, no seu modelo mental.
+Para programar, é preciso um modelo mental de como os programas funcionam. Se você escreve um programa que não faz o que você deseja, com frequência o problema não está no programa e sim, no seu modelo mental.
 (((modelo mental)))
 
 A melhor maneira de reparar o seu modelo mental é particionar o programa em seus componentes (geralmente as funções e os métodos) e testar cada componente isoladamente. Uma vez encontrada a discrepância entre o seu modelo e a realidade, você pode resolver o problema.
 
-Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então se você encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.
+Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então ao encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.
 
-==== Tenho Uma Grande Expressão Bizarra e Não Faz O Que Eu Espero
+==== Tenho uma Grande Expressão Bizarra e Não Faz o Que Eu Presumo
 
 Escrever expressões complexas é bom desde que sejam legíveis, mas podem ser difíceis de depurar. Muitas vezes é uma boa ideia dividir uma expressão complexa em uma série de atribuições a variáveis temporárias.
 
@@ -249,16 +249,16 @@ Por exemplo:
 adicionar_carta(jogo.mãos[i], remover_carta(jogo.mãos[achar_vizinho(jogo, i)]))
 ----
 
-Este comando pode ser rescrito como:
+pode ser rescrito como:
 
 [source,julia]
 ----
 vizinho = achar_vizinho(jogo, i)
 carta_escolhida = remover_carta(jogo.mãos[vizinho])
-adicionar_carta(jogo.maõs[i], carta_escolhida)
+adicionar_carta(jogo.mãos[i], carta_escolhida)
 ----
 
-A versão explícita é mais fácil de ler já que os nomes das variáveis fornecem documentação adicional além de ser mais fácil de depurar, porque você pode verificar os tipos das variáveis intermediárias e exibir os seus valores.
+A versão explícita é mais fácil de ler, já que os nomes das variáveis fornecem documentação adicional, e mais fácil de depurar, porque você pode verificar os tipos das variáveis intermediárias e exibir os seus valores.
 
 Outro problema que pode ocorrer com as grandes expressões é que a ordem da avaliação pode não ser a que se espera. Por exemplo, se você estiver traduzindo a expressão latexmath:[\(\frac{x}{2\pi}\)] para o Julia, pode-se escrever:
 
@@ -278,9 +278,9 @@ y = x / (2 * π)
 
 Sempre que você não tiver certeza da ordem da avaliação, use parênteses. O programa não apenas estará correto (no sentido de fazer o que você deseja), como também será mais legível para outras pessoas que não memorizaram a ordem das operações.
 
-==== Tenho uma Função Que Não Retorna o Que Eu Espero
+==== Tenho uma Função Que Não Retorna o Que Eu Presumo
 
-Se você tiver uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, você pode usar uma variável temporária. Por exemplo, em vez de:
+No caso de uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, pode-se usar uma variável temporária. Por exemplo, em vez de:
 (((variável temporária)))
 
 [source,julia]
@@ -304,19 +304,19 @@ Primeiro, tente ficar longe do computador por alguns minutos. Trabalhar com um c
 
 * Frustração e raiva.
 
-* Crenças supersticiosas (“o computador me odeia”) e o pensamento mágico ("o programa só funciona quando eu uso meu chapéu para trás”).
+* Crenças supersticiosas (“o computador me odeia”) e o pensamento mágico (“o programa só funciona quando eu uso meu chapéu para trás”).
 
 * Programação aleatória (a tentativa de programar escrevendo todos os programas possíveis e escolhendo o que faz a coisa certa).
 
-Caso você esteja sofrendo algum desses sintomas, levante-se e dê um passeio. No momento que se acalmar, pense no programa. O que isso está fazendo? Quais são algumas das causas possíveis desse comportamento? Quando foi a última vez que você teve um programa funcional e o que você fez a seguir?
+Caso você esteja sofrendo algum desses sintomas, levante-se e dê um passeio. No momento que se acalmar, pense no programa. O que isso está fazendo? Quais são algumas das causas possíveis desse comportamento? Quando foi a última vez que você teve um programa funcional e o que fez a seguir?
 
-Às vezes leva tempo para encontrar um erro. Muitas vezes encontro erros quando estou longe do computador e deixo a minha mente vaguear. Alguns dos melhores lugares para encontrar erros são os trens, os chuveiros, e na cama, pouco antes de você dormir.
+Às vezes leva tempo para encontrar um erro. Muitas vezes encontro os erros quando estou longe do computador e deixo a minha mente vaguear. Alguns dos melhores lugares para encontrar os erros são os trens, os chuveiros, e na cama, pouco antes de dormir.
 
 ==== Não, Eu Realmente Preciso de Ajuda
 
 Acontece. Mesmo os melhores programadores ocasionalmente ficam empacados. Às vezes você trabalha em um programa por tanto tempo que não consegue ver o erro. E precisa de um novo par de olhos.
 
-Antes de trazer alguém, esteja preparado. Seu programa deve ser o mais simples possível e você deve trabalhar na menor entrada que causa o erro. Você também deve ter comandos de impressão nos locais apropriados (e as saídas geradas devem ser compreensíveis). Além disso, você deve entender bem o problema para descrevê-lo de forma concisa.
+Antes de trazer alguém, esteja preparado. Seu programa deve ser o mais simples possível e você deve trabalhar na menor entrada que causa o erro. Você também deve ter comandos de impressão nos locais apropriados (e as saídas geradas devem ser compreensíveis). Além disso, deve-se entender bem o problema para descrevê-lo de forma concisa.
 
 Ao trazer alguém para te ajudar, não deixe de fornecer as informações de que eles precisam:
 
