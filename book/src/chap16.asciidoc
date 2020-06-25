@@ -1,7 +1,7 @@
 [[chap16]]
 == Estruturas e Funções
 
-Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retorna-los como resultados. Neste capítulo apresentaremos um “programa funcional” e dois novos planos de desenvolvimento de programas.
+Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retornam estes objetos como resultado. Neste capítulo apresentaremos um “programa funcional” e dois novos planos de desenvolvimento de programa.
 
 [[time]]
 === Hora
@@ -24,7 +24,7 @@ end
 ----
 
 O nome +Time+ já é utilizado no Julia e para evitar um conflito de nomes, escolhemos +minha_hora+. Podemos criar um novo objeto +minha_hora_:
-(((Time)))((("tipo", "Datas", "Time", see="Time")))
+(((Time)))((("tipo", "Dates", "Time", see="Time")))
 
 [source,@julia-repl-test chap16]
 ----
@@ -40,12 +40,12 @@ image::images/fig161.svg[]
 
 ===== Exercício 16-1
 
-Escreva uma função chamada +imprima_hora+ que recebe um objeto +minha_hora+ e imprima-a em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
-(((imprima_hora)))((("função", "definido pelo programador", "imprima_hora", see="imprima_hora")))
+Escreva uma função chamada +imprime_hora+ que recebe um objeto +minha_hora+ e imprima-o em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
+(((imprime_hora)))((("função", "definido pelo programador", "imprime_hora", see="imprime_hora")))
 
 ===== Exercício 16-2
 
-Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha_hora+, +t1+ e +t2+, e retorna +true+ se +t1+ segue +t2+ cronologicamente e +false+ caso contrário. Desafio: não use um comando +if+.
+Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha_hora+, +t1+ e +t2+, e retorna +true+ se +t1+ segue +t2+ cronologicamente e +false+ caso contrário. Desafio: não use uma declaração +if+.
 (((é_depois)))((("função", "definido pelo programador", "é_depois", see="é_depois")))
 
 
@@ -54,21 +54,21 @@ Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha
 Nas próximas seções, escreveremos duas funções que adicionam valores de tempo. Elas demonstrarão dois tipos de funções: funções puras e modificadas. Elas também demonstrarão um plano de desenvolvimento que chamaremos de _protótipo e correção_, que é uma forma de combater um problema complexo começando com um protótipo simples e aos poucos lidar com as complicações.
 (((função pura)))(((protótipo e correção)))
 
-Aqui vai um simples protótipo de +add_tempo+:
-(((add_tempo)))((("função", "definido pelo programador", "add_tempo", see="add_tempo")))
+Aqui vai um simples protótipo de +soma_tempo+:
+(((soma_tempo)))((("função", "definido pelo programador", "soma_tempo", see="soma_tempo")))
 
 [source,@julia-setup chap16]
 ----
-function add_tempo(t1, t2)
+function soma_tempo(t1, t2)
     minha_hora(t1.hora + t2.hora, t1.minuto + t2.minuto, t1.segundo + t2.segundo)
 end
 ----
 
-A função cria um novo objeto +minha_hora+, inicializando os seus campos e retornando uma referência a um novo objeto. Isso é chamado de _função pura_ pois não modifica nenhum dos objetos que são passados como argumentos e não tem efeito, como exibir um valor ou obter entrada do usuário, além de retornar um valor.
+A função cria um novo objeto +minha_hora+, inicializando os seus campos e retornando uma referência ao novo objeto. Isso é chamado de _função pura_ pois não modifica nenhum dos objetos que são passados como argumentos e não tem efeito, como exibir um valor ou obter entrada do usuário, além de retornar um valor.
 
-Para testar essa função, criaremos dois objetos +minha_hora+: +start+ que contém a hora de início de um filme, como _Monthy Python: Em Busca do Cálice Sagrado_, e +duração+ que contém o tempo de exibição do filme, que é de uma hora de 35 minutos.
+Para testar essa função, criaremos dois objetos +minha_hora+: +start+ que contém a hora de início de um filme, como _Monthy Python: Em Busca do Cálice Sagrado_, e +duração+ que contém o tempo de duração do filme, que é de uma hora e 35 minutos.
 
-+add_tempo+ descobre quando que o filme irá terminar.
++soma_tempo+ descobre quando o filme irá terminar.
 
 [source,@julia-eval chap16]
 ----
@@ -90,11 +90,11 @@ julia> imprima_hora(fim)
 10:80:00
 ----
 
-O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que essa função não lida com casos onde o número de segundos ou minutos são adicionados a mais que sessenta. Quando isso ocorre, temos que "levar" os segundos extras para a coluna de minutos ou os minutos extras para a coluna de horas. Aqui vai uma versão aprimorada:
+O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que essa função não lida com casos no qual o número de segundos ou minutos ultrapassam sessenta. Quando isso ocorre, temos que "carregar" os segundos extras para a coluna de minutos ou os minutos extras para a coluna de horas. Aqui vai uma versão aprimorada:
 
 [source, @julia-setup chap16]
 ----
-function add_tempo(t1, t2)
+function soma_tempo(t1, t2)
     segundo = t1.segundo + t2.segundo
     minuto = t1.minuto + t2.minuto
     hora = t1.hora + t2.hora
@@ -110,16 +110,16 @@ function add_tempo(t1, t2)
 end
 ----
 
-Apesar desta função estar correta, está começando a ficar grande. Iremos ver uma alternativa mais resumida brevemente.
+Apesar desta função estar correta, ela está começando a ficar grande. Iremos ver uma alternativa mais resumida em breve.
 
 [[modifiers]]
 === Modificadores
 
-Em certos momentos, é últil para uma função modificar os objetos que recebe como parâmetros. Neste caso, as mudanção são visíveis a quem chama. Função que funcionam dessa maneiro são ditas _modificadoras_.
+Em certos momentos, é útil para uma função modificar os objetos que recebe como parâmetros. Neste caso, as mudanção são visíveis para quem a chama. Funções que funcionam dessa maneira são chamadas de _modificadoras_.
 (((modificador)))
 
-+incrementa!+, que adiciona um número de segundos dados para um objeto +minha_hora+, pode ser escrito naturalmente como um modificador. Segue abaixo um rascunho:
-(((incrementa)))((("função", "definido pelo programador", "incrementa!", see="incrementa!")))
++incrementa!+, que adiciona um dado número de segundos à um objeto +minha_hora+, pode ser escrito naturalmente como um modificador. Aqui está um rascunho:
+(((incrementa!)))((("função", "definido pelo programador", "incrementa!", see="incrementa!")))
 
 [source,@julia-setup chap16]
 ----
@@ -144,50 +144,50 @@ Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até q
 
 ===== Exercício 16-3
 
-Escreva uma versão correta de +incremento!+ que não conheça loop algum.
+Escreva uma versão correta de +incrementa!+ que não contenha nenhum laço.
 
-Qualquer coisa que pode ser feita com modificadores podem ser feitas com funções puras. De fato, algumas linguagens de progração permite apenas funções puras. Há algumas evidências de que programas que usam funções puras são rápidas para serem desenvolvidas e menos propenso a erros do que programas que usam modificadores. Porém, às vezes modificadores são convenientes e programas funcionais tendem a serem menos eficientes.
+Qualquer coisa que pode ser feita com modificadores também pode ser feita com funções puras. De fato, algumas linguagens de progração permitem apenas funções puras. Há algumas evidências de que programas que usam funções puras são rápidos para serem desenvolvidas e menos propensos a erros do que programas que usam modificadores. Porém, às vezes modificadores são convenientes e programas funcionais tendem a ser menos eficientes.
 
-Em geral, recomendamos que você escreva funções puras sempre que for razoável e reccorer a modificadores apenas se há uma vantagem atraente. Essa abordagem pode ser chamada de _programa funcional_.
-(((programa funcional)))
+Em geral, recomendamos que você escreva funções puras sempre que for razoável e recorrer a modificadores apenas se há uma vantagem atraente. Essa abordagem pode ser chamada de _estilo de programação funcional_.
+(((estilo de programação funcional)))
 
 ===== Exercício 16-4
 
-Escreva uma versão "pura" de +incremento+ que cria e retorna um novo objeto +minha_hora+ em vez de modificar o parâmetro.
+Escreva uma versão "pura" de +incrementa+ que cria e retorna um novo objeto +minha_hora+ ao invéz de modificar o parâmetro.
 
 
 [[prototyping_versus_planning]]
 === Prototipagem Versus Planejamento
 
-O plano de desenvolvimento que estamos demonstrando é chamado de "protótipo e correção". Para cada função, escrevemos um protótipo que executa cálculos básicos e depois testamos, fragmentando erros no caminho.
-(((plano de desenvolvumento de programa)))(((protótipo e correção)))
+O plano de desenvolvimento que estamos demonstrando é chamado de “protótipo e correção”. Para cada função, escrevemos um protótipo que executava os cálculos básicos e depois testavamos-o, corrigindo os erros ao longo do caminho.
+(((plano de desenvolvimento de programa)))(((protótipo e correção)))
 
-Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um entendimento profundo acerca do problema. Mas correções incrementais podem gerar códigos que por vezes são desnecessariamente complicados—deste que lide com muitos casos especiais—e ilegível—desde que seja muito difícil de saber se você encontrou todos os erros.
+Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um entendimento profundo acerca do problema. Mas correções incrementais podem gerar código que é desnecessariamente complicado, já que ele lida com muitos casos especiais, e também que não é confiável, já que é difícil saber se você encontrou todos os erros.
 
-Uma alternativa é o _desenvolvimento projetado_, em que uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, o insight é que um objeto Time é realmente um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a "coluna de um", o atributo de munutos é a "coluna dos sessenta" e o atributo da hora é a "coluna dos tres mil e seiscentos".
+Uma alternativa é o _desenvolvimento projetado_, em que uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, o insight é que um objeto Time é realmente um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de ums”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
 (((desenvolvimento projetado)))
 
-Quando escrevemos +add_tempo+ e +incremento!+, efetivamente estamos realizando uma adição na base 60, que é justamente o porquê de termos que carregar de uma coluna para outra.
+Quando escrevemos +soma_tempo+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
 
 Essa observação nos sugerem uma outra abordagem de todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
 
-Abaixo temos uma função que converte as horas em inteiros.
-(((conversão_inteiro)))((("função", "definido pelo programador", "conversão_inteiro", see="conversão_inteiro")))
+Abaixo temos uma função que converte um objeto minha_hora para inteiros.
+(((hora_para_int)))((("função", "definido pelo programador", "hora_para_int", see="hora_para_int")))
 
 [source, @julia-setup chap16]
 ----
-function conversão_inteiro(tempo)
+function hora_para_int(tempo)
     minutos = tempo.hora * 60 + tempo.minuto
     segundos = minutos * 60 + tempo.segundo
 end
 ----
 
-Logo baixo temos uma função que converte um inteiro a +minha_hora+ (lembre-se que +divrem+ divide o primeiro argumento pelo segundo e retorna o quociente e o resto como uma tupla):
-(((conversão_tempo)))((("função", "definido pelo programador", "conversão_tempo", see="conversão_tempo")))
+Aqui temos uma função que converte um inteiro para +minha_hora+ (lembre-se que +divrem+ divide o primeiro argumento pelo segundo e retorna o quociente e o resto como uma tupla):
+(((int_para_hora)))((("função", "definido pelo programador", "int_para_hora", see="int_para_hora")))
 
 [source,@julia-setup chap16]
 ----
-function conversão_tempo()
+function int_para_hora()
     (minutos, segundo) = divrem(segundos, 60)
     hora, minuto = divrem(minutos, 60)
     minha_hora(hora, minuto, segundo)
@@ -195,15 +195,15 @@ end
 ----
 
 
-Talvez você tenha que pensar um pouco e executar alguns testes para se convercer de que essas funções estão corretas. Uma forma de testar é verificar que +conversão_inteiro(conversão_inteiro(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de consistência na verificação.
+Talvez você tenha que pensar um pouco e executar alguns testes para se convencer de que essas funções estão corretas. Uma forma de testar é verificar que +int_para_hora(hora_para_int(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de verificação de consistência.
 
-Uma vez que você esteja convicto que está correto, você poderar usar-los para reescrever +add_tempo+
+Uma vez que você esteja convencido de que elas estão corretas, você poderá usá-las para reescrever +soma_tempo+
 
 [source,@julia-setup chap16]
 ----
-function add_tempo(t1, t2)
-    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
-    conversão_inteiro(segundos)
+function soma_tempo(t1, t2)
+    segundos = tempo_para_int(t1) + tempo_para_int(t2)
+    tempo_para_int(segundos)
 end
 ----
 
@@ -211,15 +211,15 @@ Essa versão é mais curta que a original e mais fácil de verificar.
 
 ===== Exercício 16-5
 
-Reescreva +incremento!+ usando +conversão_inteiro+ e +conversão_tempo+.
+Reescreva +incrementa!+ usando +tempo_para_int+ e +int_para_tempo+.
 
-Algumas vezes, converter da base 60 para a base 10 e vice-versa é mais difícil que lidar com tempo. A conversão de base é mais abstracta; nossa intuição por lidar com valores de tempo é melhor.
+Algumas vezes, converter da base 60 para a base 10 e vice-versa é mais difícil do que lidar com tempo. A conversão de base é mais abstrata; a nossa intuição para lidar com valores de tempo é melhor.
 
-No entanto, se tivermos a visão de tratar horas como números de base 60 e investirmos esforço em escrever as funções de conversão (+conversão_inteiro+ e +conversão_tempo+), chegamos a um programa que é mais curto, mais fácil de ler e depurar, e mais confiável.
+Mas se nós tivermos a ideia de tratar horas como número de base 60 e investir na escrita de funções de conversão (+tempo_para_int+ e +int_para_tempo+), nós temos um programa que é menor, mais fácil de ler e depurar, e mais confiável.
 
-Também é mais fácil acrescentar recursos depois. Por exemplo, imagine subtrair dois objetos +minha_hora+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com transporte. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
+Também é mais fácil acrescentar característica depois. Por exemplo, imagine subtrair dois objetos +minha_hora+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com empréstimo. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
 
-Ironicamente, tornar um problema mais difícil (ou mais geral) facilita (porque há menos casos especiais e menos oportunidades de erro).
+Ironicamente, as vezes tornar um problema mais difícil (ou mais geral) facilita (porque há menos casos especiais e menos oportunidades de erro).
 
 [[chap16_debugging]]
 === Depurando
@@ -227,10 +227,10 @@ Ironicamente, tornar um problema mais difícil (ou mais geral) facilita (porque 
 Um objeto +minha_hora+ é bem formado se os valores de +minuto+ e +segundo+ estão entre 0 e 60 (incluindo 0 mas não 60) e se +hora+ é positivo. +hora+ e +minuto+ devem ser valores integrais mas talvez devessemos permitir que +segundo+ tenha uma parte fracional.
 (((depurando)))
 
-Requisitos como esses são ditos _invariantes_ porque sempre devem ser verdadeiros. Para dizer de outra forma, se não forem verdadeiros, algo deu errado.
+Requisitos como esses são ditos _invariantes_ porque eles sempre devem ser verdadeiros. Para dizer de outra forma, se eles não forem verdadeiros, algo deu errado.
 (((invariante)))
 
-Escrever código para verificar requisitos invariantes pode ajudar a descobrir erros e encontrar suas causas. Por exemplo, você pode ter uma função como +hora_válida+, que receba um objeto +minha_hora+ e retorne +false+ se ele violar um requisito invariante:
+Escrever código para verificar requisitos invariantes pode ajudar a descobrir erros e encontrar suas causas. Por exemplo, você pode ter uma função como +hora_válida+, que receba um objeto +minha_hora+ e retorna +false+ se ela violar um requisito invariante:
 (((hora_válida)))((("função", "definido pelo programador", "hora_válida", see="hora_válida")))
 
 [source,@julia-setup chap16]
@@ -251,28 +251,28 @@ No início de cada função você deve checar os argumentos para ter certeza de 
 
 [source,@julia-setup chap16]
 ----
-function add_tempo(t1,t2)
+function soma_tempo(t1,t2)
     if !hora_válida(t1) || !hora_válida(t2)
-        error("objeto minha_hora inválido em add_tempo")
+        error("objeto minha_hora inválido em soma_tempo")
     end
     segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
     conversão_tempo(segundos)
 end
 ----
 
-Ou você pode usar uma instrução +@asset+, que verifica determinado requisito invariável e cria uma exceção se ela falhar:
-(((@assert)))((("instrução", "Base", "@assert", see="@assert")))
+Ou você pode usar uma instrução +@asset+, que verifica determinado requisito invariável e gera uma exceção se ele falhar:
+(((@assert)))((("macro", "Base", "@assert", see="@assert")))
 
 [source,@julia-setup chap16]
 ----
-function add_tempo(t1, t2)
+function soma_tempo(t1, t2)
     @assert(hora_válida(t1) && hora_válida(t2), "objeto minha_hora inválido em add_tempo")
     segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
     conversão_tempo(segundos)
 end
 ----
 
-instruções +@assert+ são úteis porque distinguem o código que lida com condições normais do código que verifica erros.
+Macros +@assert+ são úteis porque distinguem o código que lida com condições normais do código que verifica erros.
 
 
 === Glossário
@@ -282,7 +282,7 @@ Um plano de desenvolvimento que envolve escrever um rascunho de um programa, tes
 (((protótipo e correção)))
 
 desenvolvimento projetado::
-Plano de desenvolvimento que implica uma compreensão de alto nível do problema e mais planejamento que desenvolvimento incremental ou desenvolvimento prototipado.
+Plano de desenvolvimento que implica uma compreensão de alto nível do problema e mais planejamento do que desenvolvimento incremental ou desenvolvimento prototipado.
 (((desenvolvimento projetado)))
 
 funções puras::
