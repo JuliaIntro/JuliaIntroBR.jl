@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591750023234056e9</code></pre>
+1.593091866766551e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7206,16 +7206,16 @@ end</code></pre>
 <h2 id="chap10">13. Listas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo apresenta um dos tipos internos mais úteis do Julia, as listas. Você também aprenderá sobre objetos e o que pode acontecer quando você tiver mais de um nome para o mesmo objeto.</p>
+<p>Este capítulo apresenta um dos tipos internos mais úteis do Julia, as listas. Você também aprenderá sobre objetos e o que pode acontecer quando se tem mais de um nome para o mesmo objeto.</p>
 </div>
 <div class="sect2">
 <h3 id="_uma_lista_é_uma_sequência">Uma Lista é uma Sequência</h3>
 <div class="paragraph">
-<p>Como uma string, uma <em>lista</em> é uma sequência de valores. Em uma string, os valores são caracteres; em um lista, pode ser de qualquer tipo. Os valores de um lista são chamados de <em>elementos</em> ou por vezes <em>itens</em>.
+<p>Assim como uma string, uma <em>lista</em> é uma sequência de valores. Em uma string, os valores são caracteres; em uma lista, eles podem ser de qualquer tipo. Os valores de uma lista são chamados de <em>elementos</em> ou por vezes <em>itens</em>.
 </p>
 </div>
 <div class="paragraph">
-<p>Existem diversas maneiras de criar uma nova lista; a mais simples é inserir os elementos entre colchetes (<code>[ ]</code>), exemplo:
+<p>Existem diversas maneiras de criar uma nova lista; a mais simples é inserir os elementos entre colchetes (<code>[ ]</code>), da seguinte forma:
 </p>
 </div>
 <div class="listingblock">
@@ -7233,7 +7233,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Uma lista com outra lista é dita <em>aninhada</em>.
+<p>Uma lista dentro de outra lista é dita <em>aninhada</em>.
 </p>
 </div>
 <div class="paragraph">
@@ -7247,7 +7247,7 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; vegetais = ["Cenoura", "Brócolis", "Alface"];
 
-julia&gt; números = [42, 1997];
+julia&gt; números = [42, 123];
 
 julia&gt; vazia = [];
 
@@ -7270,14 +7270,14 @@ Array{Any,1}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O tipo de lista é especificado entre as chaves e é composto pelo tipo e um número. O número indica as dimensões. A lista <code>vazia</code> contém valores do tipo <code>Any</code>., isto é, pode ser designado a valores de todos os tipos.
+<p>O tipo de lista é especificado entre as chaves e é composto por um tipo e um número. O número indica as dimensões. A lista <code>vazia</code> contém valores do tipo <code>Any</code>., isto é, ela pode conter valores de todos os tipos.
 </p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_listas_são_mutáveis">Listas são Mutáveis</h3>
 <div class="paragraph">
-<p>A sintaxe para acessar elementos de uma lista é a mesma para acessar caracteres de uma string - colchetes. A expressão dentro dos colchetes especifica o índice. Lembre-se que o índice começa em 1:
+<p>A sintaxe para acessar elementos de uma lista é a mesma para acessar caracteres de uma string com o operador colchetes. A expressão dentro dos colchetes especifica o índice. Lembre-se que o índice começa em 1:
 </p>
 </div>
 <div class="listingblock">
@@ -7299,23 +7299,24 @@ julia&gt; print(números)
 </div>
 </div>
 <div class="paragraph">
-<p>O segundo elemento de <code>números</code>, que costumava ser 1997, agora é 7.</p>
+<p>O segundo elemento de <code>números</code>, que costumava ser 123, agora é 7.
+``</p>
 </div>
 <div class="paragraph">
-<p><a href="#fig10-1">Diagrama de pilha</a> mostra o diagrama de pilha para "vegetais", "números" e "vazia".
+<p><a href="#fig10-1">Diagrama de estado</a> mostra o diagrama de pilha para "vegetais", "números" e "vazia".
 </p>
 </div>
 <div id="fig10-1" class="imageblock">
 <div class="content">
 <img src="images/fig101.svg" alt="fig101">
 </div>
-<div class="title">Figure 11. Diagrama de pilha</div>
+<div class="title">Figure 11. Diagrama de estado</div>
 </div>
 <div class="paragraph">
-<p>Listas são representadas por caixas e pelos elementos das listas dentro. <code>vegetais</code> refere-se a uma lista com três elementos indexados <code>1</code>, <code>2</code> e <code>3</code>. <code>números</code> contém dois elementos; o diagrama mostra que a lista do segundo elemento foi reatribuída de <code>1997</code> para <code>7</code>. <code>vazia</code> refere-se a uma lista sem elementos.</p>
+<p>Listas são representadas por caixas e pelos elementos das listas dentro. <code>vegetais</code> refere-se a uma lista com três elementos indexados <code>1</code>, <code>2</code> e <code>3</code>. <code>números</code> contém dois elementos; o diagrama mostra que o valor do segundo elemento foi reatribuído de <code>123</code> para <code>7</code>. <code>vazia</code> refere-se a uma lista sem elementos.</p>
 </div>
 <div class="paragraph">
-<p>Os índices das listas funcionam do mesmo jeito que os índices de string (mas sem as ressalvas do UTF-8):</p>
+<p>Os índices das listas funcionam do mesmo jeito que os índices de strings (mas sem as ressalvas do UTF-8):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7323,7 +7324,7 @@ julia&gt; print(números)
 <p>Qualquer expressão inteira pode ser utilizada como um índice.</p>
 </li>
 <li>
-<p>Se você tentar ler ou escrever um elemento que não existe, você obterá um <code>BoundsError</code>.</p>
+<p>Se você tentar ler ou escrever um elemento que não existe, um <code>BoundsError</code> (erro de limite) será gerado.</p>
 </li>
 <li>
 <p>A palavra-chave <code>end</code> aponta para o último índice da lista.
@@ -7369,7 +7370,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse laço percorre a lista e atualiza cada elemento. <code>length</code> retorna o número de elementos de uma lista. Toda vez que o laço é percorrido, <code>i</code> obtém o índice do próximo elemento. O comando de atribuição no corpo usa <code>i</code> para ler os valores antigos do elemento e designa ao novo valor:</p>
+<p>Esse laço percorre a lista e atualiza cada elemento. <code>length</code> retorna o número de elementos de uma lista. Toda vez que o laço é percorrido, <code>i</code> obtém o índice do próximo elemento. O comando de atribuição no corpo usa <code>i</code> para ler o valor antigo do elemento e atribuir ao novo valor:</p>
 </div>
 <div class="paragraph">
 <p>Utilizar o laço <code>for</code> sobre uma lista vazia nunca executa o corpo:
@@ -7449,7 +7450,7 @@ julia&gt; print(t)
 </div>
 </div>
 <div class="paragraph">
-<p><code>append!</code> adiciona elementos da segunda lista ao final da primeira:
+<p><code>append!</code> adiciona os elementos da segunda lista ao final da primeira:
 </p>
 </div>
 <div class="listingblock">
@@ -7482,7 +7483,7 @@ julia&gt; print(t)
 </div>
 </div>
 <div class="paragraph">
-<p><code>sort!</code> retorna uma cópia dos elementos da lista em ordem:
+<p><code>sort</code> retorna uma cópia dos elementos da lista em ordem:
 </p>
 </div>
 <div class="listingblock">
@@ -7516,11 +7517,11 @@ julia&gt; print(t2)
 <div class="sect2">
 <h3 id="_mapeamento_filtro_e_redução">Mapeamento, Filtro e Redução</h3>
 <div class="paragraph">
-<p>Para somar todos os números de uma lista, podemos utilizar um laço como o seguinte:</p>
+<p>Para somar todos os números de uma lista, podemos utilizar um laço da seguinte forma:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function somar_todos(t)
+<pre class="pygments highlight"><code data-lang="julia">function soma_todos(t)
     total = 0
     for x in t
         total += x
@@ -7530,7 +7531,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>total</code> é iniciado em 0. Toda vez que o laço é percorrido, <code>+=</code> captura um elemento da lista. O operador <code>+=</code> fornece um jeito fácil de atuaizar uma variável. Esse <em>comando de atribuição aumentada</em>,
+<p><code>total</code> é iniciado em 0. Toda vez que o laço é percorrido, <code>+=</code> captura um elemento da lista. O operador <code>+=</code> fornece um jeito fácil de atualizar uma variável. Esse <em>comando de atribuição aumentada</em>,
 </p>
 </div>
 <div class="listingblock">
@@ -7563,7 +7564,7 @@ julia&gt; sum(t)
 </div>
 </div>
 <div class="paragraph">
-<p>Uma operação como essa que combina uma sequência de elementos a um único valor por vezes é chamado de <em>operação de redução</em>.
+<p>Uma operação como essa que combina uma sequência de elementos a um único valor por vezes é chamada de <em>operação de redução</em>.
 </p>
 </div>
 <div class="paragraph">
@@ -7585,11 +7586,11 @@ end</code></pre>
 <p><code>res</code> é inicializada com uma lista vazia; toda vez que laço é percorrido, anexamos o próximo elemento. Então, <code>res</code> é outro tipo de acumulador.</p>
 </div>
 <div class="paragraph">
-<p>Um operador como <code>todas_maiúsculas</code> é por vezes chamado de <em>mapa</em> pois "mapeia" a função (neste caso <code>uppercase</code>) em cada um dos elementos em uma sequência.
+<p>Uma operação como <code>todas_maiúsculas</code> é por vezes chamado de <em>mapa</em> pois "mapeia" uma função (neste caso <code>uppercase</code>) a cada um dos elementos em uma sequência.
 </p>
 </div>
 <div class="paragraph">
-<p>Outro tipo comum de operação é selecionar alguns dos elementos de uma lista e retornar uma sublista. Por exemplo, a seguinte função pega uma lista de strings e retorna uma lista que contém apenas strings maiúsculas:
+<p>Outro tipo comum de operação é selecionar alguns dos elementos de uma lista e retornar uma sublista. Por exemplo, a seguinte função recebe uma lista de strings e retorna uma lista que contém apenas as strings com letras maiúsculas:
 </p>
 </div>
 <div class="listingblock">
@@ -7606,17 +7607,17 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um operador como <code>apenas_maiusculas</code> é chamado de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
+<p>Uma operação como <code>apenas_maiusculas</code> é chamada de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
 </p>
 </div>
 <div class="paragraph">
-<p>Operações mais comuns de listas podem ser exprressas como uma combinação de mapeamento, filtro e redução.</p>
+<p>Operações mais comuns de listas podem ser expressas como uma combinação de mapeamento, filtro e redução.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_sintaxe_do_ponto">Sintaxe do Ponto</h3>
 <div class="paragraph">
-<p>Para cada operador binário como <code>^</code>, existe um <em>operador ponto</em> <code>.^</code> correspondente que é automaticamente definido para atuar <code>^</code> elemento-a-elemento nas listas. Por exemplo, <code>&#91;1, 2, 3&#93; ^ 3</code> não é definido, mas <code>&#91;1, 2, 3&#93; .^ 3</code> é definido como calcular elemento a elemento o resultado <code>&#91;1^3, 2^3, 3^3&#93;</code>:
+<p>Para cada operador binário como <code>^</code>, existe um <em>operador ponto</em> <code>.^</code> correspondente que é automaticamente definido para efetuar <code>^</code> elemento-a-elemento nas listas. Por exemplo, <code>&#91;1, 2, 3&#93; ^ 3</code> não é definido, mas <code>&#91;1, 2, 3&#93; .^ 3</code> é definido como calcular elemento a elemento o resultado <code>&#91;1^3, 2^3, 3^3&#93;</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -7666,7 +7667,7 @@ julia&gt; print(t)
 </div>
 </div>
 <div class="paragraph">
-<p><code>splice!</code> modifica a lista e retorna um elemento que foi removido.</p>
+<p><code>splice!</code> modifica a lista e retorna o elemento que foi removido.</p>
 </div>
 <div class="paragraph">
 <p><code>pop!</code> deleta e retorna o último elemento:
@@ -7767,7 +7768,7 @@ SubString{String}["mayday", "mayday", "mayday"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>join</code> é o inverso de <code>split</code>. Ela pega uma lista de strings e concatena os elementos:
+<p><code>join</code> é o inverso de <code>split</code>. Ela recebe uma lista de strings e concatena os elementos:
 </p>
 </div>
 <div class="listingblock">
@@ -7779,13 +7780,13 @@ julia&gt; s = join(t, ' ')
 </div>
 </div>
 <div class="paragraph">
-<p>No caso o delimitador é um caractere de espaço. Para concatenar strings sem espaços, você não precisa especificar um delimitador.</p>
+<p>Neste caso o delimitador é um caractere de espaço. Para concatenar strings sem espaços, você não precisa especificar um delimitador.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_objetos_e_valores">Objetos e Valores</h3>
 <div class="paragraph">
-<p>Um <em>objeto</em> é algo que uma variável pode se referir. Desde então, você poderia usar "objeto" e "valor" sem distinção.
+<p>Um <em>objeto</em> é algo que uma variável pode se referir a. Até agora, você poderia usar "objeto" e "valor" sem distinção.
 </p>
 </div>
 <div class="paragraph">
@@ -7808,7 +7809,7 @@ b = "banana"</code></pre>
 <div class="title">Figure 12. Diagrama de estado</div>
 </div>
 <div class="paragraph">
-<p>Em um caso, <code>a</code> e <code>b</code> referem-se a dois objetos diferentes que possuem o mesmo valor. No segundo caso, referem-se ao mesmo objeto.</p>
+<p>Em um caso, <code>a</code> e <code>b</code> referem-se a dois objetos diferentes que possuem o mesmo valor. No segundo caso, elas referem-se ao mesmo objeto.</p>
 </div>
 <div class="paragraph">
 <p>Para verificar se duas variáveis referem-se ao mesmo objeto, você pode usar o operador <code>=</code> (<strong><code>\equiv TAB</code></strong>) ou <code>===</code>.
@@ -7838,7 +7839,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Portanto, o diagrama de estado se parece com &lt;<a href="#fig10-3">Diagrama de estado</a>.
+<p>Portanto, o diagrama de estado se parece com <a href="#fig10-3">Diagrama de estado</a>.
 </p>
 </div>
 <div id="fig10-3" class="imageblock">
@@ -7848,7 +7849,7 @@ false</code></pre>
 <div class="title">Figure 13. Diagrama de estado</div>
 </div>
 <div class="paragraph">
-<p>Nesse caso poderíamos dizer que as duas listas são <em>equivalentes</em>, porque possuem os mesmos elementos, mas não <em>indênticos</em>, porque elas não são o mesmo objeto. Se dois objetos são idênticos, eles também são equivalentes, mas se eles são equivalentes, eles não necessariamente são idênticos.
+<p>Nesse caso poderíamos dizer que as duas listas são <em>equivalentes</em>, porque possuem os mesmos elementos, mas não <em>idênticos</em>, porque elas não são o mesmo objeto. Se dois objetos são idênticos, eles também são equivalentes, mas se eles são equivalentes, eles não necessariamente são idênticos.
 </p>
 </div>
 <div class="paragraph">
@@ -7871,7 +7872,7 @@ true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O diagrama de estado se parece com &lt;<a href="#fig10-4">Diagrama de estado</a>.</p>
+<p>O diagrama de estado se parece com <a href="#fig10-4">Diagrama de estado</a>.</p>
 </div>
 <div id="fig10-4" class="imageblock">
 <div class="content">
@@ -7929,7 +7930,7 @@ b = "banana"</code></pre>
 <div class="sect2">
 <h3 id="_argumentos_de_listas">Argumentos de Listas</h3>
 <div class="paragraph">
-<p>Quando você passa uma lista para uma função, a função obtém uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, <code>deleta_cabeça!</code> remove o primeiro elemento de uma lista:
+<p>Quando você passa uma lista para uma função, a função recebe uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, <code>deleta_cabeça!</code> remove o primeiro elemento de uma lista:
 </p>
 </div>
 <div class="listingblock">
@@ -8030,7 +8031,7 @@ julia&gt; print(t4)
 </div>
 </div>
 <div class="paragraph">
-<p>No início de <code>não_deleta_cabeça</code>, <code>t</code> e <code>t3</code> se referem à mesma lista. No final, <code>t</code> se refere a uma nova lista, mas <code>t3</code> continua a se referir à original, uma lista não modificada.</p>
+<p>No início de <code>não_deleta_cabeça</code>, <code>t</code> e <code>t3</code> referem-se à mesma lista. No final, <code>t</code> refere-se a uma nova lista, mas <code>t3</code> continua a referir-se à lista original, que não foi modificada.</p>
 </div>
 <div class="paragraph">
 <p>Uma alternativa é escrever uma função que cria e retorna uma nova lista. Por exemplo, <code>calda</code> retorna todos, exceto o primeiro elemento de uma lista:
@@ -8066,7 +8067,7 @@ julia&gt; print(rest)
 <div class="ulist">
 <ul>
 <li>
-<p>A maioria das funções de lista modifica o argumento. É o oposto das funções de sequência, que retornam uma nova sequência e deixam o original em paz.</p>
+<p>A maioria das funções de lista modifica o argumento. É o oposto das funções de strings, que retornam uma nova string e deixam a original em paz.</p>
 <div class="paragraph">
 <p>Se você está acostumado a escrever código de string como:
 </p>
@@ -8105,7 +8106,7 @@ julia&gt; print(rest)
 <li>
 <p>Escolha um idioma e fique com ele.</p>
 <div class="paragraph">
-<p>Parte do problema com listas é que existem muitas maneiras de fazer as coisas. Por exemplo, para remover um elemento de uma lista, você pode usar <code>pop!</code>, <code>popfirst!</code>, <code>Delete_at</code> ou mesmo uma atribuição de fatia. Para adicionar um elemento, você pode usar <code>push!</code>, <code>pushfirst!</code>, <code>insert!</code> Ou <code>vcat</code>. Supondo que <code>t</code> é uma lista e <code>x</code> é um elemento da lista, eles estão corretos:
+<p>Parte do problema com listas é que existem muitas maneiras de fazer as coisas. Por exemplo, para remover um elemento de uma lista, você pode usar <code>pop!</code>, <code>popfirst!</code>, <code>delete_at</code> ou até mesmo uma atribuição de fatia. Para adicionar um elemento, você pode usar <code>push!</code>, <code>pushfirst!</code>, <code>insert!</code> Ou <code>vcat</code>. Supondo que <code>t</code> é uma lista e <code>x</code> é um elemento da lista, os seguintes estão corretos:
 </p>
 </div>
 <div class="listingblock">
@@ -8128,14 +8129,14 @@ push!(t, [x])              # ERRADO!</code></pre>
 <li>
 <p>Faça cópias para evitar alias.</p>
 <div class="paragraph">
-<p>Se você precisa usar uma função como <code>sort!</code>, que modifica o argumento, você precisa manter a lista original, você pode fazer uma cópia:
+<p>Se você quer usar uma função como <code>sort!</code> que modifica o argumento, mas você precisa manter a lista original, você pode fazer uma cópia:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t = [3, 1, 2];
 
-julia&gt; t2 = t[:]; # t2 = cópia(t)
+julia&gt; t2 = t[:]; # t2 = copy(t)
 
 julia&gt; sort!(t2);
 
@@ -8179,7 +8180,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">lista aninhada</dt>
 <dd>
-<p>Uma lista é um elemento de outra lista.
+<p>Uma lista que é um elemento de uma outra lista.
 </p>
 </dd>
 <dt class="hdlist1">acumulador</dt>
@@ -8189,7 +8190,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">atribuição aumentada</dt>
 <dd>
-<p>Uma atribuição que atualiza o valor de uma variável utilizando um operador <code>=</code>.
+<p>Uma atribuição que atualiza o valor de uma variável utilizando um operador como <code>=</code>.
 </p>
 </dd>
 <dt class="hdlist1">operador ponto</dt>
@@ -8199,7 +8200,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">sintaxe do ponto</dt>
 <dd>
-<p>Sintaxe utilizada para aplicar uma função resultado elementar a qualquer lista.
+<p>Sintaxe utilizada para aplicar uma função elemento a elemento a qualquer lista.
 </p>
 </dd>
 <dt class="hdlist1">operador de redução</dt>
@@ -8229,7 +8230,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">idêntico</dt>
 <dd>
-<p>Sendo o mesmo objeto (o que implica equivalencia).
+<p>Ser o mesmo objeto (o que implica equivalência).
 </p>
 </dd>
 <dt class="hdlist1">referência</dt>
@@ -8239,7 +8240,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">alias</dt>
 <dd>
-<p>Uma circunstância onde duas ou mais variáveis referem-se ao mesmo objeto.
+<p>Uma circunstância no qual duas ou mais variáveis referem-se ao mesmo objeto.
 </p>
 </dd>
 <dt class="hdlist1">argumentos opcionais</dt>
@@ -8249,7 +8250,7 @@ julia&gt; println(t2)
 </dd>
 <dt class="hdlist1">delimitador</dt>
 <dd>
-<p>Um caracter ou string utilizada para indicar onde uma string deve ser cortada.
+<p>Um caractere ou string utilizada para indicar onde uma string deve ser cortada.
 </p>
 </dd>
 </dl>
@@ -8260,7 +8261,7 @@ julia&gt; println(t2)
 <div class="sect4">
 <h5 id="ex10-1">Exercício 10-1</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>soma_aninhada</code> que pega uma lista de listas com números inteiros e adicione os elementos de todas as listas aninhadas. Por exemplo:
+<p>Escreva uma função chamada <code>soma_aninhada</code> que recebe uma lista de listas de números inteiros e some os elementos de todas as listas aninhadas. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8275,7 +8276,7 @@ julia&gt; soma_aninhada(t)
 <div class="sect4">
 <h5 id="ex10-2">Exercício 10-2</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>soma_cumulativa</code> que pega uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o \(i\)-ésimo elemento é a soma do primeiro elemento \(i\) da lista original. Por exemplo:
+<p>Escreva uma função chamada <code>soma_cumulativa</code> que recebe uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o \(i\)-ésimo elemento é a soma do primeiro elemento \(i\) da lista original. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8290,7 +8291,7 @@ Any[1, 3, 6]</code></pre>
 <div class="sect4">
 <h5 id="ex10-3">Exercício 10-3</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>interior</code> que pega uma lista e retorna uma nova lista que contém tudo exceto o primeiro e o último elemento. Por exemplo:
+<p>Escreva uma função chamada <code>interior</code> que recebe uma lista e retorna uma nova lista que não contém o primeiro e o último elemento. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8305,7 +8306,7 @@ julia&gt; print(interior(t))
 <div class="sect4">
 <h5 id="ex10-4">Exercício 10-4</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>interior!</code> que pega uma lista, modifique-a removendo o primeiro e o último elementos e retorne <code>nothing</code>. Por exemplo:
+<p>Escreva uma função chamada <code>interior!</code> que recebe uma lista, modifique-a removendo o primeiro e o último elemento e retorne <code>nothing</code>. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8322,7 +8323,7 @@ julia&gt; print(t)
 <div class="sect4">
 <h5 id="ex10-5">Exercício 10-5</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>é_ordenada</code> que use uma lista como parâmetro e retorne <code>true</code> se a lista for classificada em ordem crescente e <code>false</code> caso contrário. Por exemplo:
+<p>Escreva uma função chamada <code>é_ordenada</code> que use uma lista como parâmetro e retorne <code>true</code> se a lista estiver ordenada em ordem crescente e <code>false</code> caso contrário. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
@@ -8337,14 +8338,14 @@ false</code></pre>
 <div class="sect4">
 <h5 id="ex10-6">Exercício 10-6</h5>
 <div class="paragraph">
-<p>Duas palavras são anagramas se você puder reorganizar as letras de uma para soletrar a outra. Escreva uma função chamada <code>é_anagrama</code> que use duas strings e retorne + true + se forem anagramas.
+<p>Duas palavras são anagramas se você puder reorganizar as letras de uma para formar a outra. Escreva uma função chamada <code>é_anagrama</code> que recebe duas strings e retorne <code>true</code> se elas forem anagramas.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex10-7">Exercise 10-7</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>tem_repetidas</code> que pegue uma lista e retorne <code>true</code> se houver algum elemento que apareça mais de uma vez. Não deve modificar a lista original.
+<p>Escreva uma função chamada <code>tem_duplicatas</code> que recebe uma lista e retorne <code>true</code> se houver algum elemento que apareça mais de uma vez. Ela não deve modificar a lista original.
 </p>
 </div>
 </div>
@@ -8376,30 +8377,30 @@ false</code></pre>
 <div class="sect4">
 <h5 id="ex10-9">Exercício 10-9</h5>
 <div class="paragraph">
-<p>Escreva uma função que leia o arquivo <code>words.txt</code> e crie uma lista com um elemento por palavra. Escreva duas versões dessa função, uma usando <code>push!</code> e a outra usando o idioma <code>t=[t ..., x]</code>. Qual deles demora mais para ser executado? Por quê?
+<p>Escreva uma função que leia o arquivo <code>words.txt</code> e crie uma lista com um elemento por palavra. Escreva duas versões dessa função, uma usando <code>push!</code> e a outra usando o idioma <code>t=[t ..., x]</code>. Qual delas demora mais para ser executada? Por quê?
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex10-10">Exercício 10-10</h5>
 <div class="paragraph">
-<p>Para verificar se uma palavra está na lista de palavras, você pode usar o operador <code>∈</code>, mas seria lento porque pesquisará as palavras em ordem.</p>
+<p>Para verificar se uma palavra está na lista de palavras, você poderia usar o operador <code>∈</code>, mas isto seria lento porque  as palavras seriam pesquisadas em ordem.</p>
 </div>
 <div class="paragraph">
-<p>Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma pesquisa por bissecção (também conhecida como pesquisa binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.</p>
+<p>Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma busca bissecção (também conhecida como busca binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.</p>
 </div>
 <div class="paragraph">
-<p>De qualquer forma, você reduz pela metade o espaço restante da pesquisa. Se a lista de palavras tiver 113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não existe.</p>
+<p>De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.</p>
 </div>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>é_bisseção</code> que usa uma lista classificada e um valor-alvo e retorna <code>true</code> se a palavra estiver na lista e <code>false</code> se não estiver.
+<p>Escreva uma função chamada <code>em_bisseção</code> que usa uma lista ordenada e um valor-alvo e retorna <code>true</code> se a palavra estiver na lista e <code>false</code> se não estiver.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex10-11">Exercício 10-11</h5>
 <div class="paragraph">
-<p>Duas palavras são um "par reverso" se cada uma for o inverso da outra. Escreva um programa <code>par_reverso</code> que encontre todos os pares reversos na lista de palavras.
+<p>Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa <code>par_reverso</code> que encontre todos os pares reversos na lista de palavras.
 </p>
 </div>
 <div class="paragraph">
@@ -8429,7 +8430,7 @@ false</code></pre>
 </div>
 </li>
 <li>
-<p>Você consegue encontrar alguma palavra intertravada de três vias; isto é, toda terceira letra forma uma palavra, começando na primeira, segunda ou terceira?</p>
+<p>Você consegue encontrar alguma palavra interligada/entrelaçada de três vias; isto é, toda terceira letra forma uma palavra, começando na primeira, segunda ou terceira?</p>
 </li>
 </ol>
 </div>
@@ -13592,9 +13593,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-Q♥ 6♠ 9♦ K♠ 4♣ K♣ 5♠ 3♥ 3♦ K♦ 9♥ 4♠ 5♥ 8♣ 4♦ A♣ K♥ 10♣ J♥ 8♥ 5♦ 7♠ J♠ J♦ 8♦ 6♦ 6♣ 6♥ Q♣ 10♥ 5♣ 7♣ A♠ A♥ 2♦ J♣ 9♣ 3♠ 10♦ 4♥ 7♥ A♦ 9♠ 2♠ 2♥ 10♠ 8♠ 7♦ 2♣ 3♣ Q♦ Q♠
+K♦ 4♦ 8♥ K♥ 8♣ 2♣ Q♠ 6♥ 3♣ 8♠ 5♣ A♠ Q♦ J♦ 4♣ 7♥ Q♣ 3♠ 3♥ K♠ 10♣ 7♠ 10♠ 4♠ 5♥ A♦ Q♥ A♣ 10♦ 6♠ 10♥ K♣ J♥ 9♠ 4♥ 2♦ 6♣ J♠ 6♦ 8♦ 9♥ J♣ 7♦ 9♦ 2♥ 7♣ 2♠ 9♣ 5♠ 5♦ 3♦ A♥
 julia&gt; card = pop!(deck)
-Q♠
+A♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15514,7 +15515,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20559(double, double) {
+define double @julia_squaresum_20461(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16279,7 +16280,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-10 00:46:59 UTC
+Last updated 2020-06-25 13:31:03 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
