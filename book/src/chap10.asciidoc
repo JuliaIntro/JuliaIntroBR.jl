@@ -1,16 +1,16 @@
 [[chap10]]
 == Listas
 
-Este capítulo apresenta um dos tipos internos mais úteis do Julia, as listas. Você também aprenderá sobre objetos e o que pode acontecer quando você tiver mais de um nome para o mesmo objeto.
+Este capítulo apresenta um dos tipos internos mais úteis do Julia, as listas. Você também aprenderá sobre objetos e o que pode acontecer quando se tem mais de um nome para o mesmo objeto.
 
 
 === Uma Lista é uma Sequência
 
-Como uma string, uma _lista_ é uma sequência de valores. Em uma string, os valores são caracteres; em um lista, pode ser de qualquer tipo. Os valores de um lista são chamados de _elementos_ ou por vezes _itens_.
+Assim como uma string, uma _lista_ é uma sequência de valores. Em uma string, os valores são caracteres; em uma lista, eles podem ser de qualquer tipo. Os valores de uma lista são chamados de _elementos_ ou por vezes _itens_.
 (((lista)))(((elemento)))(((item)))
 
-Existem diversas maneiras de criar uma nova lista; a mais simples é inserir os elementos entre colchetes (+[ ]+), exemplo:
-(((colchetes)))
+Existem diversas maneiras de criar uma nova lista; a mais simples é inserir os elementos entre colchetes (+[ ]+), da seguinte forma:
+(((operador colchetes)))
 
 [source,julia]
 ----
@@ -25,7 +25,7 @@ O primeiro exemplo é uma lista de quatro inteiros. O segundo é uma lista de tr
 ["bruxa", 2.0, 5, [10, 20]]
 ----
 
-Uma lista com outra lista é dita _aninhada_.
+Uma lista dentro de outra lista é dita _aninhada_.
 (((aninhada)))
 
 Uma lista que não contém elementos é chamada de lista vazia; você pode criar uma lista vazia com colchetes vazios, +[]+.
@@ -37,7 +37,7 @@ Como esperado, podemos atribuir valores de listas a variáveis:
 ----
 julia> vegetais = ["Cenoura", "Brócolis", "Alface"];
 
-julia> números = [42, 1997];
+julia> números = [42, 123];
 
 julia> vazia = [];
 
@@ -58,14 +58,14 @@ julia> typeof(vazia)
 Array{Any,1}
 ----
 
-O tipo de lista é especificado entre as chaves e é composto pelo tipo e um número. O número indica as dimensões. A lista +vazia+ contém valores do tipo +Any+., isto é, pode ser designado a valores de todos os tipos.
+O tipo de lista é especificado entre as chaves e é composto por um tipo e um número. O número indica as dimensões. A lista +vazia+ contém valores do tipo +Any+., isto é, ela pode conter valores de todos os tipos.
 (((Lista)))((("tipo", "Base", "Lista", see="Lista")))(((Any)))((("tipo", "Base", "Any", see="Any")))
 
 
 === Listas são Mutáveis
 
-A sintaxe para acessar elementos de uma lista é a mesma para acessar caracteres de uma string - colchetes. A expressão dentro dos colchetes especifica o índice. Lembre-se que o índice começa em 1:
-(((colchetes)))(((índice)))
+A sintaxe para acessar elementos de uma lista é a mesma para acessar caracteres de uma string com o operador colchetes. A expressão dentro dos colchetes especifica o índice. Lembre-se que o índice começa em 1:
+(((operador colchetes)))(((índice)))
 
 [source,@julia-repl-test chap10]
 ----
@@ -84,23 +84,24 @@ julia> print(números)
 [42, 7]
 ----
 
-O segundo elemento de +números+, que costumava ser 1997, agora é 7.
+O segundo elemento de +números+, que costumava ser 123, agora é 7.
+``
 
 <<fig10-1>> mostra o diagrama de pilha para "vegetais", "números" e "vazia".
-(((diagrama de pilha)))
+(((diagrama de estado)))
 
 [[fig10-1]]
-.Diagrama de pilha
+.Diagrama de estado
 image::images/fig101.svg[]
 
 
-Listas são representadas por caixas e pelos elementos das listas dentro. +vegetais+ refere-se a uma lista com três elementos indexados +1+, +2+ e +3+. +números+ contém dois elementos; o diagrama mostra que a lista do segundo elemento foi reatribuída de +1997+ para +7+. +vazia+ refere-se a uma lista sem elementos.
+Listas são representadas por caixas e pelos elementos das listas dentro. +vegetais+ refere-se a uma lista com três elementos indexados +1+, +2+ e +3+. +números+ contém dois elementos; o diagrama mostra que o valor do segundo elemento foi reatribuído de +123+ para +7+. +vazia+ refere-se a uma lista sem elementos.
 
-Os índices das listas funcionam do mesmo jeito que os índices de string (mas sem as ressalvas do UTF-8):
+Os índices das listas funcionam do mesmo jeito que os índices de strings (mas sem as ressalvas do UTF-8):
 
 * Qualquer expressão inteira pode ser utilizada como um índice.
 
-* Se você tentar ler ou escrever um elemento que não existe, você obterá um +BoundsError+.
+* Se você tentar ler ou escrever um elemento que não existe, um +BoundsError+ (erro de limite) será gerado.
 
 * A palavra-chave +end+ aponta para o último índice da lista.
 (((end)))
@@ -120,7 +121,7 @@ false
 === Percorrendo uma Lista
 
 A maneira mais comum de percorrer os elementos de uma lista é através do laço +for+. A sintaxe é a mesma para strings:
-(((percorrer)))(((comando for)))
+(((percorrer)))(((declaração for)))
 
 [source,@julia-setup chap10]
 ----
@@ -139,7 +140,7 @@ for i in eachindex(números)
 end
 ----
 
-Esse laço percorre a lista e atualiza cada elemento. +length+ retorna o número de elementos de uma lista. Toda vez que o laço é percorrido, +i+ obtém o índice do próximo elemento. O comando de atribuição no corpo usa +i+ para ler os valores antigos do elemento e designa ao novo valor:
+Esse laço percorre a lista e atualiza cada elemento. +length+ retorna o número de elementos de uma lista. Toda vez que o laço é percorrido, +i+ obtém o índice do próximo elemento. O comando de atribuição no corpo usa +i+ para ler o valor antigo do elemento e atribuir ao novo valor:
 
 Utilizar o laço +for+ sobre uma lista vazia nunca executa o corpo:
 (((lista vazia)))
@@ -211,7 +212,7 @@ julia> print(t)
 ['a', 'b', 'c', 'd']
 ----
 
-+append!+ adiciona elementos da segunda lista ao final da primeira:
++append!+ adiciona os elementos da segunda lista ao final da primeira:
 (((append!)))((("função", "Base", "append!", see="append!")))
 
 [source,@julia-repl-test chap10]
@@ -241,8 +242,8 @@ julia> print(t)
 ['a', 'b', 'c', 'd', 'e']
 ----
 
-+sort!+ retorna uma cópia dos elementos da lista em ordem:
-(((sort)))((("função", "Base", "sort"m, see="sort")))
++sort+ retorna uma cópia dos elementos da lista em ordem:
+(((sort)))((("função", "Base", "sort", see="sort")))
 
 [source,@julia-repl-test chap10]
 ----
@@ -265,11 +266,11 @@ Como uma convenção de estilo, no Julia +!+ é anexado a nomes de funções que
 
 === Mapeamento, Filtro e Redução
 
-Para somar todos os números de uma lista, podemos utilizar um laço como o seguinte:
+Para somar todos os números de uma lista, podemos utilizar um laço da seguinte forma:
 
 [source,@julia-setup]
 ----
-function somar_todos(t)
+function soma_todos(t)
     total = 0
     for x in t
         total += x
@@ -278,7 +279,7 @@ function somar_todos(t)
 end
 ----
 
-+total+ é iniciado em 0. Toda vez que o laço é percorrido, +pass:[+=]+ captura um elemento da lista. O operador +pass:[+=]+ fornece um jeito fácil de atuaizar uma variável. Esse _comando de atribuição aumentada_,
++total+ é iniciado em 0. Toda vez que o laço é percorrido, +pass:[+=]+ captura um elemento da lista. O operador +pass:[+=]+ fornece um jeito fácil de atualizar uma variável. Esse _comando de atribuição aumentada_,
 (((comando de atribuição aumentada)))(((pass:[+=])))((("operador", "Base", "pass:[+=]", see="pass:[+=]")))
 
 [source,julia]
@@ -297,7 +298,7 @@ Quando o laço é iniciado, +total+ acumula a soma dos elementos; uma variável 
 (((acumulador)))
 
 Adicionar elementos de uma lista é uma operação tão comum que o Julia fornece uma função interna, +sum+:
-(((soma)))((("função", "Base", "soma", see="soma")))
+(((sum)))((("função", "Base", "sum", see="sum")))
 
 [source,@julia-repl-test]
 ----
@@ -307,7 +308,7 @@ julia> sum(t)
 10
 ----
 
-Uma operação como essa que combina uma sequência de elementos a um único valor por vezes é chamado de _operação de redução_.
+Uma operação como essa que combina uma sequência de elementos a um único valor por vezes é chamada de _operação de redução_.
 (((operação de redução)))
 
 Muitas vezes, você deseja percorrer uma lista enquanto cria outra. Por exemplo, a função à seguir pega uma lista de strings e retorna uma nova lista que contém strings de caracteres maiúsculas:
@@ -326,10 +327,10 @@ end
 
 +res+ é inicializada com uma lista vazia; toda vez que laço é percorrido, anexamos o próximo elemento. Então, +res+ é outro tipo de acumulador.
 
-Um operador como +todas_maiúsculas+ é por vezes chamado de _mapa_ pois "mapeia" a função (neste caso +uppercase+) em cada um dos elementos em uma sequência.
+Uma operação como +todas_maiúsculas+ é por vezes chamado de _mapa_ pois "mapeia" uma função (neste caso +uppercase+) a cada um dos elementos em uma sequência.
 (((mapa)))
 
-Outro tipo comum de operação é selecionar alguns dos elementos de uma lista e retornar uma sublista. Por exemplo, a seguinte função pega uma lista de strings e retorna uma lista que contém apenas strings maiúsculas:
+Outro tipo comum de operação é selecionar alguns dos elementos de uma lista e retornar uma sublista. Por exemplo, a seguinte função recebe uma lista de strings e retorna uma lista que contém apenas as strings com letras maiúsculas:
 (((apenas_maiusculas)))((("função", "definido pelo programador", "apenas maiusculas", see="apenas_maiusculas")))
 
 [source,@julia-setup]
@@ -345,16 +346,16 @@ function apenas_maiusculas(t)
 end
 ----
 
-Um operador como +apenas_maiusculas+ é chamado de _filtro_ pois seleciona alguns dos elementos e filtra outros.
+Uma operação como +apenas_maiusculas+ é chamada de _filtro_ pois seleciona alguns dos elementos e filtra outros.
 (((filtro)))
 
-Operações mais comuns de listas podem ser exprressas como uma combinação de mapeamento, filtro e redução.
+Operações mais comuns de listas podem ser expressas como uma combinação de mapeamento, filtro e redução.
 
 
 === Sintaxe do Ponto
 
-Para cada operador binário como +pass:[^]+, existe um _operador ponto_ pass:[<code>.^</code>] correspondente que é automaticamente definido para atuar +pass:[^]+ elemento-a-elemento nas listas. Por exemplo, pass:[<code>&#91;1, 2, 3&#93; ^ 3</code>] não é definido, mas pass:[<code>&#91;1, 2, 3&#93; .^ 3</code>] é definido como calcular elemento a elemento o resultado pass:[<code>&#91;1^3, 2^3, 3^3&#93;</code>]:
-(((operador ponto)))((("operador", "base", ".", see="operador ponto")))(((".", see="operador ponto")))
+Para cada operador binário como +pass:[^]+, existe um _operador ponto_ pass:[<code>.^</code>] correspondente que é automaticamente definido para efetuar +pass:[^]+ elemento-a-elemento nas listas. Por exemplo, pass:[<code>&#91;1, 2, 3&#93; ^ 3</code>] não é definido, mas pass:[<code>&#91;1, 2, 3&#93; .^ 3</code>] é definido como calcular elemento a elemento o resultado pass:[<code>&#91;1^3, 2^3, 3^3&#93;</code>]:
+(((operador ponto)))((("operador", "Base", ".", see="operador ponto")))(((".", see="operador ponto")))
 
 [source,@julia-repl-test]
 ----
@@ -399,7 +400,7 @@ julia> print(t)
 ['a', 'c']
 ----
 
-+splice!+ modifica a lista e retorna um elemento que foi removido.
++splice!+ modifica a lista e retorna o elemento que foi removido.
 
 +pop!+ deleta e retorna o último elemento:
 (((pop!)))((("função", "Base", "pop!", veja="pop!")))
@@ -428,7 +429,7 @@ julia> print(t)
 ----
 
 As funções +pushfirst!+ e +push!+ inserem, respectivamente, um elemento no início e no fim de uma lista.
-(((pushfirst!)))((("função", "Base", "pushfirst", see="pushfirst!")))(((push!)))
+(((pushfirst!)))((("função", "Base", "pushfirst!", see="pushfirst!")))(((push!)))
 
 Se você não precisa do valor removido, você pode usar a função +deleteat!+:
 (((deleteat!)))((("função", "Base", "deleteat!", see="deleteat!")))
@@ -490,8 +491,8 @@ julia> print(t)
 SubString{String}["mayday", "mayday", "mayday"]
 ----
 
-+join+ é o inverso de +split+. Ela pega uma lista de strings e concatena os elementos:
-(((joing)))((("função", "Base", "join", see="join")))
++join+ é o inverso de +split+. Ela recebe uma lista de strings e concatena os elementos:
+(((join)))((("função", "Base", "join", see="join")))
 
 [source,@julia-repl-test]
 ----
@@ -501,12 +502,12 @@ julia> s = join(t, ' ')
 "vim lhe trazer este humilde presente"
 ----
 
-No caso o delimitador é um caractere de espaço. Para concatenar strings sem espaços, você não precisa especificar um delimitador.
+Neste caso o delimitador é um caractere de espaço. Para concatenar strings sem espaços, você não precisa especificar um delimitador.
 
 
 === Objetos e Valores
 
-Um _objeto_ é algo que uma variável pode se referir. Desde então, você poderia usar "objeto" e "valor" sem distinção.
+Um _objeto_ é algo que uma variável pode se referir a. Até agora, você poderia usar "objeto" e "valor" sem distinção.
 (((objeto)))(((variável)))(((valor)))
 
 Se você executar estes comandos de atribuições:
@@ -524,7 +525,7 @@ Sabemos que ambas +a+ e +b+ referem-se a uma string, mas não sabemos se eles re
 image::images/fig102.svg[]
 
 
-Em um caso, +a+ e +b+ referem-se a dois objetos diferentes que possuem o mesmo valor. No segundo caso, referem-se ao mesmo objeto.
+Em um caso, +a+ e +b+ referem-se a dois objetos diferentes que possuem o mesmo valor. No segundo caso, elas referem-se ao mesmo objeto.
 
 Para verificar se duas variáveis referem-se ao mesmo objeto, você pode usar o operador +=+ (*+\equiv TAB+*) ou +===+.
 (((≡)))((("operador", "Base", "≡", see="≡")))((("===", see="≡")))
@@ -551,7 +552,7 @@ julia> a ≡ b
 false
 ----
 
-Portanto, o diagrama de estado se parece com <<<fig10-3>>.
+Portanto, o diagrama de estado se parece com <<fig10-3>>.
 (((diagrama de estado)))
 
 [[fig10-3]]
@@ -559,7 +560,7 @@ Portanto, o diagrama de estado se parece com <<<fig10-3>>.
 image::images/fig103.svg[]
 
 
-Nesse caso poderíamos dizer que as duas listas são _equivalentes_, porque possuem os mesmos elementos, mas não _indênticos_, porque elas não são o mesmo objeto. Se dois objetos são idênticos, eles também são equivalentes, mas se eles são equivalentes, eles não necessariamente são idênticos.
+Nesse caso poderíamos dizer que as duas listas são _equivalentes_, porque possuem os mesmos elementos, mas não _idênticos_, porque elas não são o mesmo objeto. Se dois objetos são idênticos, eles também são equivalentes, mas se eles são equivalentes, eles não necessariamente são idênticos.
 (((equivalentes)))(((idênticos)))
 
 Para sermos mais precisos, um objeto possui um valor. Se você avaliar +[1, 2, 3]+, você obterá um objeto lista cujo o valor é uma sequência de inteiros. Se uma outra lista possuir os mesmos elementos, dizemos que eles tem os mesmos valores, mas que não são o mesmo objeto.
@@ -579,7 +580,7 @@ julia> b ≡ a
 true
 ----
 
-O diagrama de estado se parece com <<<fig10-4>>.
+O diagrama de estado se parece com <<fig10-4>>.
 
 [[fig10-4]]
 .Diagrama de estado
@@ -621,7 +622,7 @@ Quase nunca faz diferença se +a+ e +b+ referem-se a mesma string ou não.
 
 === Argumentos de Listas
 
-Quando você passa uma lista para uma função, a função obtém uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, +deleta_cabeça!+ remove o primeiro elemento de uma lista:
+Quando você passa uma lista para uma função, a função recebe uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, +deleta_cabeça!+ remove o primeiro elemento de uma lista:
 (((deleta_cabeça!)))((("função", "definido pelo programador", "deleta_cabeça!", see="deleta_cabeça!")))(((popfirst!)))
 
 [source,@julia-setup chap10]
@@ -708,10 +709,10 @@ julia> print(t4)
 [2, 3, 4]
 ----
 
-No início de +não_deleta_cabeça+, +t+ e +t3+ se referem à mesma lista. No final, +t+ se refere a uma nova lista, mas +t3+ continua a se referir à original, uma lista não modificada.
+No início de +não_deleta_cabeça+, +t+ e +t3+ referem-se à mesma lista. No final, +t+ refere-se a uma nova lista, mas +t3+ continua a referir-se à lista original, que não foi modificada.
 
 Uma alternativa é escrever uma função que cria e retorna uma nova lista. Por exemplo, +calda+ retorna todos, exceto o primeiro elemento de uma lista:
-(((tail)))((("função", "definido pelo programador", "calda", see="calda")))
+(((calda)))((("função", "definido pelo programador", "calda", see="calda")))
 
 [source,@julia-setup chap10]
 ----
@@ -738,7 +739,7 @@ julia> print(rest)
 O uso descuidado de listas (e outros objetos mutáveis) pode levar longas horas para depurar. Veja algumas armadilhas comuns e maneiras de como evitá-las:
 (((depurando)))
 
-* A maioria das funções de lista modifica o argumento. É o oposto das funções de sequência, que retornam uma nova sequência e deixam o original em paz.
+* A maioria das funções de lista modifica o argumento. É o oposto das funções de strings, que retornam uma nova string e deixam a original em paz.
 +
 Se você está acostumado a escrever código de string como:
 (((faixa)))(((sort!)))
@@ -764,7 +765,7 @@ Antes de usar funções e operadores de lista, você deve ler a documentação c
 
 * Escolha um idioma e fique com ele.
 +
-Parte do problema com listas é que existem muitas maneiras de fazer as coisas. Por exemplo, para remover um elemento de uma lista, você pode usar +pop!+, +popfirst!+, +Delete_at+ ou mesmo uma atribuição de fatia. Para adicionar um elemento, você pode usar +push!+, +pushfirst!+, +insert!+ Ou +vcat+. Supondo que +t+ é uma lista e +x+ é um elemento da lista, eles estão corretos:
+Parte do problema com listas é que existem muitas maneiras de fazer as coisas. Por exemplo, para remover um elemento de uma lista, você pode usar +pop!+, +popfirst!+, +delete_at+ ou até mesmo uma atribuição de fatia. Para adicionar um elemento, você pode usar +push!+, +pushfirst!+, +insert!+ Ou +vcat+. Supondo que +t+ é uma lista e +x+ é um elemento da lista, os seguintes estão corretos:
 (((push!)))(((pushfirst!)))(((insert!)))(((vcat)))
 +
 [source,julia]
@@ -784,14 +785,14 @@ push!(t, [x])              # ERRADO!
 
 * Faça cópias para evitar alias.
 +
-Se você precisa usar uma função como +sort!+, que modifica o argumento, você precisa manter a lista original, você pode fazer uma cópia:
+Se você quer usar uma função como +sort!+ que modifica o argumento, mas você precisa manter a lista original, você pode fazer uma cópia:
 (((sort!)))
 +
 [source,@julia-repl-test chap10]
 ----
 julia> t = [3, 1, 2];
 
-julia> t2 = t[:]; # t2 = cópia(t)
+julia> t2 = t[:]; # t2 = copy(t)
 
 julia> sort!(t2);
 
@@ -826,7 +827,7 @@ Um dos valores de uma lista (ou outra sequência), também chamado de itens.
 (((elemento)))
 
 lista aninhada::
-Uma lista é um elemento de outra lista.
+Uma lista que é um elemento de uma outra lista.
 (((lista aninhada)))
 
 acumulador::
@@ -834,7 +835,7 @@ Uma variável que é utilizada em um laço para adicionar ou acumular resultados
 (((acumulador)))
 
 atribuição aumentada::
-Uma atribuição que atualiza o valor de uma variável utilizando um operador +=+.
+Uma atribuição que atualiza o valor de uma variável utilizando um operador como +=+.
 (((atribuição aumentada)))
 
 operador ponto::
@@ -842,7 +843,7 @@ Um operador binário que é aplicado elemento a elemento de uma lista
 (((operador ponto)))
 
 sintaxe do ponto::
-Sintaxe utilizada para aplicar uma função resultado elementar a qualquer lista.
+Sintaxe utilizada para aplicar uma função elemento a elemento a qualquer lista.
 (((sintaxe do ponto)))
 
 operador de redução::
@@ -866,7 +867,7 @@ Contém o mesmo valor.
 (((equivalente)))
 
 idêntico::
-Sendo o mesmo objeto (o que implica equivalencia).
+Ser o mesmo objeto (o que implica equivalência).
 (((idêntico)))
 
 referência::
@@ -874,7 +875,7 @@ Associação entre uma variável e seu valor.
 (((referência)))
 
 alias::
-Uma circunstância onde duas ou mais variáveis referem-se ao mesmo objeto.
+Uma circunstância no qual duas ou mais variáveis referem-se ao mesmo objeto.
 (((alias)))
 
 argumentos opcionais::
@@ -882,7 +883,7 @@ Argumentos que não são obrigatórios.
 (((argumentos opcionais)))
 
 delimitador::
-Um caracter ou string utilizada para indicar onde uma string deve ser cortada.
+Um caractere ou string utilizada para indicar onde uma string deve ser cortada.
 (((delimitador)))
 
 
@@ -892,8 +893,8 @@ Um caracter ou string utilizada para indicar onde uma string deve ser cortada.
 ----
 function soma_aninhada(t)
   total = 0
-  for nested in t
-    total += sum(nested)
+  for aninhado in t
+    total += sum(aninhado)
   end
   total
 end;
@@ -926,7 +927,7 @@ end;
 [[ex10-1]]
 ===== Exercício 10-1
 
-Escreva uma função chamada +soma_aninhada+ que pega uma lista de listas com números inteiros e adicione os elementos de todas as listas aninhadas. Por exemplo:
+Escreva uma função chamada +soma_aninhada+ que recebe uma lista de listas de números inteiros e some os elementos de todas as listas aninhadas. Por exemplo:
 (((soma_aninhada)))((("função", "definida pelo programador", "soma_aninhada", see="soma_aninhada")))
 
 [source,@julia-repl-test chap10]
@@ -940,7 +941,7 @@ julia> soma_aninhada(t)
 [[ex10-2]]
 ===== Exercício 10-2
 
-Escreva uma função chamada +soma_cumulativa+ que pega uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o latexmath:[\(i\)]-ésimo elemento é a soma do primeiro elemento latexmath:[\(i\)] da lista original. Por exemplo:
+Escreva uma função chamada +soma_cumulativa+ que recebe uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o latexmath:[\(i\)]-ésimo elemento é a soma do primeiro elemento latexmath:[\(i\)] da lista original. Por exemplo:
 (((soma_cumulativa)))((("função", "definido pelo programador", "soma_cumulativa", see="soma_cumulativa")))
 
 [source,@julia-repl-test chap10]
@@ -954,7 +955,7 @@ Any[1, 3, 6]
 [[ex10-3]]
 ===== Exercício 10-3
 
-Escreva uma função chamada +interior+ que pega uma lista e retorna uma nova lista que contém tudo exceto o primeiro e o último elemento. Por exemplo:
+Escreva uma função chamada +interior+ que recebe uma lista e retorna uma nova lista que não contém o primeiro e o último elemento. Por exemplo:
 (((interior)))((("função", "definido pelo programador", "interior", see="interior")))
 
 [source,@julia-repl-test chap10]
@@ -968,7 +969,7 @@ julia> print(interior(t))
 [[ex10-4]]
 ===== Exercício 10-4
 
-Escreva uma função chamada +interior!+ que pega uma lista, modifique-a removendo o primeiro e o último elementos e retorne +nothing+. Por exemplo:
+Escreva uma função chamada +interior!+ que recebe uma lista, modifique-a removendo o primeiro e o último elemento e retorne +nothing+. Por exemplo:
 (((interior!)))((("função", "definido pelo programador", "interior!", see="interior!")))
 
 [source,@julia-repl-test chap10]
@@ -984,7 +985,7 @@ julia> print(t)
 [[ex10-5]]
 ===== Exercício 10-5
 
-Escreva uma função chamada +é_ordenada+ que use uma lista como parâmetro e retorne +true+ se a lista for classificada em ordem crescente e +false+ caso contrário. Por exemplo:
+Escreva uma função chamada +é_ordenada+ que use uma lista como parâmetro e retorne +true+ se a lista estiver ordenada em ordem crescente e +false+ caso contrário. Por exemplo:
 (((é_ordenada)))((("função", "definido pelo programador", "é_ordenada", see="é_ordenada")))
 
 [source,@julia-repl-test chap10]
@@ -998,14 +999,14 @@ false
 [[ex10-6]]
 ===== Exercício 10-6
 
-Duas palavras são anagramas se você puder reorganizar as letras de uma para soletrar a outra. Escreva uma função chamada +é_anagrama+ que use duas strings e retorne + true + se forem anagramas.
+Duas palavras são anagramas se você puder reorganizar as letras de uma para formar a outra. Escreva uma função chamada +é_anagrama+ que recebe duas strings e retorne +true+ se elas forem anagramas.
 (((é_anagrama)))((("função", "definida pelo programador", "é_anagrama", see="é_anagrama")))
 
 [[ex10-7]]
 ===== Exercise 10-7
 
-Escreva uma função chamada +tem_repetidas+ que pegue uma lista e retorne +true+ se houver algum elemento que apareça mais de uma vez. Não deve modificar a lista original.
-(((tem_repetidas)))((("função", "definida pelo programador", "tem_repetidas", see="tem_repetidas")))
+Escreva uma função chamada +tem_duplicatas+ que recebe uma lista e retorne +true+ se houver algum elemento que apareça mais de uma vez. Ela não deve modificar a lista original.
+(((tem_duplicatas)))((("função", "definida pelo programador", "tem_duplicatas", see="tem_duplicatas")))
 
 [[ex10-8]]
 ===== Exercício 10-8
@@ -1014,7 +1015,7 @@ Este exercício refere-se ao chamado Paradoxo de Aniversário, sobre o qual voc�
 (((Paradoxo de Aniversário)))
 
 Se houver 23 alunos em sua turma, quais são as chances de vocês dois terem o mesmo aniversário? Você pode estimar essa probabilidade gerando amostras aleatórias de 23 aniversários e verificando correspondências.
-(((aleatório)))((("função", "Base", "aleatório", see="aleatório")))
+(((rand)))((("função", "Base", "rand", see="rand")))
 
 [TIP]
 ====
@@ -1024,25 +1025,25 @@ Você pode gerar aniversários aleatórios com +rand(1:365)+.
 [[ex10-9]]
 ===== Exercício 10-9
 
-Escreva uma função que leia o arquivo +words.txt+ e crie uma lista com um elemento por palavra. Escreva duas versões dessa função, uma usando +push!+ e a outra usando o idioma +t=[pass:[t ...], x]+. Qual deles demora mais para ser executado? Por quê?
+Escreva uma função que leia o arquivo +words.txt+ e crie uma lista com um elemento por palavra. Escreva duas versões dessa função, uma usando +push!+ e a outra usando o idioma +t=[pass:[t ...], x]+. Qual delas demora mais para ser executada? Por quê?
 (((push!)))
 
 [[ex10-10]]
 ===== Exercício 10-10
 
-Para verificar se uma palavra está na lista de palavras, você pode usar o operador +∈+, mas seria lento porque pesquisará as palavras em ordem.
+Para verificar se uma palavra está na lista de palavras, você poderia usar o operador +∈+, mas isto seria lento porque  as palavras seriam pesquisadas em ordem.
 
-Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma pesquisa por bissecção (também conhecida como pesquisa binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.
+Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma busca bissecção (também conhecida como busca binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.
 
-De qualquer forma, você reduz pela metade o espaço restante da pesquisa. Se a lista de palavras tiver 113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não existe.
+De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.
 
-Escreva uma função chamada +é_bisseção+ que usa uma lista classificada e um valor-alvo e retorna +true+ se a palavra estiver na lista e +false+ se não estiver.
+Escreva uma função chamada +em_bisseção+ que usa uma lista ordenada e um valor-alvo e retorna +true+ se a palavra estiver na lista e +false+ se não estiver.
 (((é_bisseção)))((("função", "definido pelo programador", "é_bisseção", see="é_bisseção")))
 
 [[ex10-11]]
 ===== Exercício 10-11
 
-Duas palavras são um "par reverso" se cada uma for o inverso da outra. Escreva um programa +par_reverso+ que encontre todos os pares reversos na lista de palavras.
+Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa +par_reverso+ que encontre todos os pares reversos na lista de palavras.
 (((par_reverso)))((("função", "definida pelo programador", "par_reverso", see="par_reverso")))
 
 Duas palavras "interligam" se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, "micro" e "ondas" se interligam para formar "microondas".
@@ -1057,4 +1058,4 @@ Crédito: Este exercício é inspirado em um exemplo em http://puzzlers.org.
 Não enumere todos os pares!
 ====
 
-. Você consegue encontrar alguma palavra intertravada de três vias; isto é, toda terceira letra forma uma palavra, começando na primeira, segunda ou terceira?
+. Você consegue encontrar alguma palavra interligada/entrelaçada de três vias; isto é, toda terceira letra forma uma palavra, começando na primeira, segunda ou terceira?
