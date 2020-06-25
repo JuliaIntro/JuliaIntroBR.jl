@@ -223,7 +223,7 @@ Se +i+ é divisível por 3, a declaração continue para na iteração atual e a
 
 Laços são frequentemente usados em programas que calculam resultados numéricos começando com um valor aproximado e aprimorando-o iterativamente.
 
-Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raíz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
+Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raiz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
 (((método de Newton)))
 
 [latexmath]
@@ -327,7 +327,7 @@ Apesar da execução de algoritmos ser chata, a construção é interessante, in
 Algumas das coisas que as pessoas fazem naturalmente, sem dificuldade ou conscientemente pensado, são as mais difíceis de expressar por algoritmos. Compreender a linguagem natural é um bom exemplo. Todos nós fazemos isso, mas até agora ninguém foi capaz de explicar _como_ fazemos, pelo menos não na forma de um algoritmo.
 
 
-=== Depurando
+=== Depuração
 
 Ao começar a escrever programas maiores, você pode passar mais tempo com a depuração. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
 (((depuração)))
@@ -397,7 +397,7 @@ Um processo geral para resolver uma categoria de problemas.
 [[ex07-1]]
 ===== Exercício 7-2
 
-Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raiz+ que usa a variável +a+ como um parâmetro e escolha um valor razoável de +x+ que retorne uma estimativa da raíz quadrada de +a+.
+Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_raiz+ que usa a variável +a+ como um parâmetro e escolha um valor razoável de +x+ que retorne uma estimativa da raiz quadrada de +a+.
 (((minha_raiz)))((("função", "definido pelo programador", "minha_raiz", see="minha_raiz")))
 
 Para testá-la, escreva uma função chamada +avalia_raiz_quadrada+ que imprime uma tabela como esta:
@@ -412,7 +412,7 @@ res = String(take!(io))
 println(res)
 ----
 
-A primeira coluna é um número, +a+; a segunda coluna é a raíz quadrada de +a+ calculado com +minha_raiz+; a terceira coluna é a raiz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
+A primeira coluna é um número, +a+; a segunda coluna é a raiz quadrada de +a+ calculado com +minha_raiz+; a terceira coluna é a raiz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
 
 [[ex07-2]]
 ===== Exercício 7-3
