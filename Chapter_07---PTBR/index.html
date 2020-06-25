@@ -548,7 +548,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#__code_continue_code"><code>continue</code></a></li>
 <li><a href="#square_roots">Raízes Quadradas</a></li>
 <li><a href="#_algoritmos">Algoritmos</a></li>
-<li><a href="#_depurando">Depurando</a></li>
+<li><a href="#_depuração">Depuração</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592581339684747e9</code></pre>
+1.59309073332919e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5606,7 +5606,7 @@ end</code></pre>
 <p>Laços são frequentemente usados em programas que calculam resultados numéricos começando com um valor aproximado e aprimorando-o iterativamente.</p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raíz quadrada de \(a\). Se você começar com uma estimativa qualquer, \(x\), pode-se calcular uma estimativa melhor com a seguinte fórmula:
+<p>Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raiz quadrada de \(a\). Se você começar com uma estimativa qualquer, \(x\), pode-se calcular uma estimativa melhor com a seguinte fórmula:
 </p>
 </div>
 <div class="stemblock">
@@ -5726,7 +5726,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_depurando">Depurando</h3>
+<h3 id="_depuração">Depuração</h3>
 <div class="paragraph">
 <p>Ao começar a escrever programas maiores, você pode passar mais tempo com a depuração. Mais código significa mais chances de cometer um erro e mais lugares para os erros se esconderem.
 </p>
@@ -5816,7 +5816,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex07-1">Exercício 7-2</h5>
 <div class="paragraph">
-<p>Copie o laço de <a href="#square_roots">Raízes Quadradas</a> e encapsule-o em uma função chamada <code>minha_raiz</code> que usa a variável <code>a</code> como um parâmetro e escolha um valor razoável de <code>x</code> que retorne uma estimativa da raíz quadrada de <code>a</code>.
+<p>Copie o laço de <a href="#square_roots">Raízes Quadradas</a> e encapsule-o em uma função chamada <code>minha_raiz</code> que usa a variável <code>a</code> como um parâmetro e escolha um valor razoável de <code>x</code> que retorne uma estimativa da raiz quadrada de <code>a</code>.
 </p>
 </div>
 <div class="paragraph">
@@ -5833,7 +5833,7 @@ println(res)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A primeira coluna é um número, <code>a</code>; a segunda coluna é a raíz quadrada de <code>a</code> calculado com <code>minha_raiz</code>; a terceira coluna é a raiz quadrada calculada por <code>sqrt</code>; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.</p>
+<p>A primeira coluna é um número, <code>a</code>; a segunda coluna é a raiz quadrada de <code>a</code> calculado com <code>minha_raiz</code>; a terceira coluna é a raiz quadrada calculada por <code>sqrt</code>; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.</p>
 </div>
 </div>
 <div class="sect4">
@@ -13589,9 +13589,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♦ 8♠ A♠ K♠ 7♥ 10♥ 3♥ Q♠ 5♣ 9♣ 3♣ 8♣ 7♣ 4♣ 2♣ Q♦ 2♥ 6♣ 9♦ 9♥ 5♠ J♣ 10♦ Q♣ 2♠ 2♦ A♥ 7♠ 4♦ 4♥ 7♦ 10♠ A♣ Q♥ 6♥ J♦ 8♦ K♥ 3♦ 9♠ 4♠ A♦ J♥ 5♦ 8♥ 6♠ K♦ 3♠ K♣ 10♣ 5♥ J♠
+K♥ K♦ 7♣ A♥ 3♦ 6♠ K♠ A♦ 9♠ 3♠ 8♦ A♣ 9♣ Q♣ 5♥ 10♠ Q♠ 5♠ J♦ 3♥ J♠ 2♠ 4♥ J♣ 4♠ 2♥ 9♥ Q♦ 2♦ 7♥ 4♦ Q♥ 3♣ 5♣ 7♦ J♥ K♣ 6♣ A♠ 10♥ 7♠ 8♣ 8♠ 6♦ 8♥ 5♦ 2♣ 6♥ 4♣ 10♣ 9♦ 10♦
 julia&gt; card = pop!(deck)
-J♠
+10♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15511,7 +15511,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20460(double, double) {
+define double @julia_squaresum_20461(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16276,7 +16276,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-19 15:42:16 UTC
+Last updated 2020-06-25 13:12:10 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
