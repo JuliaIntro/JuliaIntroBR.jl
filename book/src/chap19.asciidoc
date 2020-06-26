@@ -116,11 +116,11 @@ No <<chap04>> a macro +@svg+ foi introduzida:
 
 [source,julia]
 ----
-🐢 = Turtle()
+🐢 = Tartaruga()
 @svg begin
-    forward(🐢, 100)
-    turn(🐢, -90)
-    forward(🐢, 100)
+    avance(🐢, 100)
+    gire(🐢, -90)
+    avance(🐢, 100)
 end
 ----
 
