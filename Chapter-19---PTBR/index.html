@@ -720,20 +720,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exercises_13">Exercises</a></li>
 </ul>
 </li>
-<li><a href="#chap19">22. The Goodies: Syntax</a>
+<li><a href="#chap19">22. Extras: Sintaxe</a>
 <ul class="sectlevel2">
-<li><a href="#_named_tuples">Named Tuples</a></li>
-<li><a href="#_functions">Functions</a></li>
-<li><a href="#_blocks">Blocks</a></li>
-<li><a href="#_control_flow">Control Flow</a></li>
-<li><a href="#_types">Types</a></li>
-<li><a href="#_methods_2">Methods</a></li>
-<li><a href="#_constructors">Constructors</a></li>
-<li><a href="#_conversion_and_promotion">Conversion and Promotion</a></li>
-<li><a href="#_metaprogramming">Metaprogramming</a></li>
-<li><a href="#_missing_values">Missing Values</a></li>
-<li><a href="#_calling_c_and_fortran_code">Calling C and Fortran Code</a></li>
-<li><a href="#_glossary_13">Glossary</a></li>
+<li><a href="#_tuplas_nomeadas">Tuplas Nomeadas</a></li>
+<li><a href="#_funções">Funções</a></li>
+<li><a href="#_fechamentos">Fechamentos</a></li>
+<li><a href="#_blocos">Blocos</a></li>
+<li><a href="#_controle_de_fluxo">Controle de Fluxo</a></li>
+<li><a href="#_tipos">Tipos</a></li>
+<li><a href="#_métodos">Métodos</a></li>
+<li><a href="#_construtores">Construtores</a></li>
+<li><a href="#_conversão_e_promoção">Conversão e Promoção</a></li>
+<li><a href="#_meta_programação">Meta-programação</a></li>
+<li><a href="#_valores_ausentes">Valores Ausentes</a></li>
+<li><a href="#_chamando_códigos_em_c_e_fortran">Chamando Códigos em C e Fortran</a></li>
+<li><a href="#_glossário_7">Glossário</a></li>
 </ul>
 </li>
 <li><a href="#chap20">23. The Goodies: Base and Standard Library</a>
@@ -746,7 +747,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_interfaces">Interfaces</a></li>
 <li><a href="#_interactive_utilities">Interactive Utilities</a></li>
 <li><a href="#_debugging_11">Debugging</a></li>
-<li><a href="#_glossary_14">Glossary</a></li>
+<li><a href="#_glossary_13">Glossary</a></li>
 </ul>
 </li>
 <li><a href="#chap21">24. Debugging</a>
@@ -4253,7 +4254,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593188660077005e9</code></pre>
+1.593189310950156e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13587,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-3♠ 10♠ A♣ 2♣ K♣ 4♠ J♦ J♥ 8♦ 8♥ 10♣ 5♦ 7♥ A♠ 4♣ K♦ 5♥ A♥ Q♥ Q♠ 3♥ K♠ 9♥ 6♣ 7♦ 8♣ 6♦ 2♦ Q♣ 8♠ 10♦ J♣ 6♠ 9♠ 10♥ 7♣ 9♦ A♦ K♥ J♠ 9♣ 3♣ Q♦ 5♣ 4♦ 3♦ 7♠ 6♥ 4♥ 2♥ 5♠ 2♠
+J♠ A♠ A♦ K♠ 6♠ K♥ 7♥ Q♣ 3♦ 2♥ 3♠ 2♠ 10♥ 9♣ 10♠ 10♦ K♦ 3♥ 4♠ 5♦ 7♣ 9♥ 10♣ 8♠ 7♦ K♣ J♦ Q♠ 6♦ J♥ 4♣ 5♠ 2♣ Q♦ 6♥ 2♦ 8♦ 5♣ 4♦ 8♥ A♣ 6♣ 7♠ 3♣ 9♠ A♥ J♣ 9♦ Q♥ 5♥ 4♥ 8♣
 julia&gt; card = pop!(deck)
-2♠
+8♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -13986,36 +13987,36 @@ addping(pong, ping)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap19">22. The Goodies: Syntax</h2>
+<h2 id="chap19">22. Extras: Sintaxe</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>One of my goals for this book has been to teach you as little Julia as possible. When there were two ways to do something, I picked one and avoided mentioning the other. Or sometimes I put the second one into an exercise.</p>
+<p>Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.</p>
 </div>
 <div class="paragraph">
-<p>Now I want to go back for some of the good bits that got left behind. Julia provides a number of features that are not really necessary—you can write good code without them—but with them you can sometimes write code that’s more concise, readable or efficient, and sometimes all three.</p>
+<p>Agora queremos retornar a algumas coisas boas que ficaram para traz. O Julia oferece uma variadade de recursos que não são realmente necessários – você pode escrever um bom código sem eles – mas com eles é possível escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.</p>
 </div>
 <div class="paragraph">
-<p>This chapter and the next discuss the things I have left out in the previous chapters:</p>
+<p>Neste capítulo e no próximo, iremos discutir coisas que deixamos para trás nos capótulos anteriores:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>syntax supplements</p>
+<p>suplementos de sintaxe</p>
 </li>
 <li>
-<p>functions, types and macros directly available in <code>Base</code>
+<p>funções, tipos e macros diretamente disponíveis em <code>Base</code>
 </p>
 </li>
 <li>
-<p>functions, types and macros in the Standard Library
+<p>funções, tipos e macros da Biblioteca Padrão
 </p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_named_tuples">Named Tuples</h3>
+<h3 id="_tuplas_nomeadas">Tuplas Nomeadas</h3>
 <div class="paragraph">
-<p>You can name the components of a tuple, creating a named tuple:</p>
+<p>Podemos nomear os componentes de uma tupla, criando uma tupla nomeada.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14026,14 +14027,14 @@ julia&gt; x.a
 </div>
 </div>
 <div class="paragraph">
-<p>With named tuples, fields can be accessed by name using dot syntax <code>(x.a)</code>.
+<p>Com tuplas nomeadas, os campos podem ser acessados por nome usando a sintaxe do ponto <code>(x.a)</code>.
 </p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_functions">Functions</h3>
+<h3 id="_funções">Funções</h3>
 <div class="paragraph">
-<p>Function in Julia can be defined by a compact syntax.</p>
+<p>Uma função no Julia pode ser definida através de uma sintaxe compacta:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14042,9 +14043,9 @@ f (generic function with 1 method)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="anonymous_functions">Anonymous Functions</h4>
+<h4 id="anonymous_functions">Funções Anônimas</h4>
 <div class="paragraph">
-<p>We can define a function without specifying a name:</p>
+<p>Podemos definir uma função sem especificar um nome:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14057,7 +14058,7 @@ julia&gt; function (x)
 </div>
 </div>
 <div class="paragraph">
-<p>These are example of <em>anonymous functions</em>. Anonymous functions are often used as an argument to another function:
+<p>Esses são exemplos de <em>funções anônimas</em>. Funções anonimas geralmente são usadas como argumentos para outras funções:
 </p>
 </div>
 <div class="listingblock">
@@ -14068,7 +14069,7 @@ julia&gt; plot(x -&gt; x^2 + 2x - 1, 0, 10, xlabel="x", ylabel="y")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><a href="#fig19-1">Plot</a> shows the output of the plotting command.</p>
+<p><a href="#fig19-1">Plot</a> mostra a saída do comando plot.</p>
 </div>
 <div id="fig19-1" class="imageblock">
 <div class="content">
@@ -14078,9 +14079,9 @@ julia&gt; plot(x -&gt; x^2 + 2x - 1, 0, 10, xlabel="x", ylabel="y")</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_keyword_arguments">Keyword Arguments</h4>
+<h4 id="_argumentos_de_palavras_chave">Argumentos de Palavras-Chave</h4>
 <div class="paragraph">
-<p>Function arguments can also be named:</p>
+<p>Argumentos de funções também podem ser nomeadas:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14092,14 +14093,15 @@ julia&gt; myplot(0:10, 0:10, style="dotted", color="blue")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Keyword arguments</em> in a function are specified after a semicolon in the signature but can be called with a comma.
+<p><em>Argumentos de palavras-chave</em> em uma função são especificadas depois de um ponto e vírgula na assinatura, mas pode ser chamado com uma vírgula.
 </p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_closures">Closures</h4>
+</div>
+<div class="sect2">
+<h3 id="_fechamentos">Fechamentos</h3>
 <div class="paragraph">
-<p>A <em>closure</em> is a technique allowing a function to capture a variable defined outside the calling scope of the function.</p>
+<p>Um <em>fechamento</em> é a técnica que permite uma função capturar uma variável definida fora do escopo de chamada de função.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14114,18 +14116,17 @@ julia&gt; bar()
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the function <code>foo</code> returns an anonymous function that has access to the <code>x</code> argument of the function <code>foo</code>. <code>bar</code> points to the anonymous function and returns the value of the argument of <code>foo</code>.</p>
-</div>
+<p>Nesse exemplo, a função <code>foo</code> retorna uma função anônima que possui acesso ao argumento <code>x</code> da função <code>foo</code>. <code>bar</code> aponta para a função anônima e retorna o valor do argumento de <code>foo</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_blocks">Blocks</h3>
+<h3 id="_blocos">Blocos</h3>
 <div class="paragraph">
-<p>A <em>block</em> is a way to group a number of statements. A block starts with the keyword <code>begin</code> and ends with <code>end</code>.
+<p>Um <em>bloco</em> é uma forma de agrupar diversos comandos. Um bloco começa com a palavra chave <code>begin</code> e finaliza com <code>end</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>In <a href="#chap04">Estudo de Caso: Design de Interface</a> the <code>@svg</code> macro was introduced:</p>
+<p>No <a href="#chap04">Estudo de Caso: Design de Interface</a> a macro <code>@svg</code> foi introduzida:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14138,12 +14139,12 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, the macro <code>@svg</code> has a single argument, i.e. a block grouping 3 function calls.</p>
+<p>Neste exemplo, a macro <code>@svg</code> possui um argumento único, i.e. um bloco agrupando 3 chamadas de funções.</p>
 </div>
 <div class="sect3">
-<h4 id="__code_let_code_blocks"><code>let</code> Blocks</h4>
+<h4 id="_blocos_code_let_code">Blocos <code>let</code></h4>
 <div class="paragraph">
-<p>A <code>let</code> block is useful to create new bindings, i.e. locations that can refer to values.</p>
+<p>Um bloco <code>let</code> é últil para criar novas ligações, i.e. locais que podem se referir a valores.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14162,35 +14163,35 @@ z = -1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the example, the first <code>@show</code> macro, shows the local <code>x</code>, the global <code>y</code> and the undefined local <code>z</code>. The global variables are untouched.</p>
+<p>No exemplo, a primeira macro <code>@show</code>, mostra o <code>x</code> local, a global <code>y</code> e a local indefinida <code>z</code>. As variáveis globais são intocáveis.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_do_code_blocks"><code>do</code> Blocks</h4>
+<h4 id="_blocos_code_do_code">Blocos <code>do</code></h4>
 <div class="paragraph">
-<p>In <a href="#reading_and_writing">Reading and Writing</a> we had to close the file after when where done writing. This can be done automatically using a <em>do block</em>:
+<p>Em <a href="#reading_and_writing">Reading and Writing</a> tivemos que fechar o arquivo após o término da gravação. Isso pode ser feito automaticamente usando um <em>bloco do</em>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; data = "This here's the wattle,\nthe emblem of our land.\n"
-"This here's the wattle,\nthe emblem of our land.\n"
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; dado = "Aqui está a acácia,\no emblema de nossa terra.\n"
+"Aqui está a acácia,\no emblema de nossa terra.\n"
 julia&gt; open("output.txt", "w") do fout
-           write(fout, data)
+           write(fout, dado)
        end
 48</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this example <code>fout</code> is the file stream used for output.</p>
+<p>Nesse exemplo, <code>fout</code> é um fluxo de arquivo usado para saída.</p>
 </div>
 <div class="paragraph">
-<p>This is functionally equivalent to</p>
+<p>Essa funcionalidade é equivalente a</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; f = fout -&gt; begin
-           write(fout, data)
+           write(fout, dado)
        end
 #3 (generic function with 1 method)
 julia&gt; open(f, "output.txt", "w")
@@ -14198,7 +14199,7 @@ julia&gt; open(f, "output.txt", "w")
 </div>
 </div>
 <div class="paragraph">
-<p>The anonymous function is used as the first argument of the function <code>open</code>:
+<p>A função anônima é usada como o primeiro argumento da função <code>open</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -14214,16 +14215,16 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A <code>do</code> block can “capture” variables from its enclosing scope. For example, the variable <code>data</code> in the above example of <code>open ... do</code> is captured from the outer scope.</p>
+<p>Um bloco <code>do</code> pode "caputar" variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é caputado de outro escopo.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_control_flow">Control Flow</h3>
+<h3 id="_controle_de_fluxo">Controle de Fluxo</h3>
 <div class="sect3">
-<h4 id="_ternary_operator">Ternary Operator</h4>
+<h4 id="_operador_ternário">Operador Ternário</h4>
 <div class="paragraph">
-<p>The <em>ternary operator</em>, <code>?:</code>, is an alternative to an <code>if-elseif</code> statement used when you need to make a choice between single expression values.
+<p>O <em>operador ternário</em>, <code>?:</code>, é uma alternativa para uma declaração <code>if-else</code> usada quando você precisa fazer uma escolha entre valores de expressão única.
 </p>
 </div>
 <div class="listingblock">
@@ -14235,36 +14236,36 @@ even</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The expression before the <code>?</code> is a condition expression. If the condition is <code>true</code>, the expression before the <code>:</code> is evaluated, otherwise, the expression after the <code>:</code> is evaluated.</p>
+<p>A expressão antes de <code>?</code> é uma expressão de condição. Se a condição for <code>true</code>, a expressão antes de <code>:</code> é avaliada, caso contrário, a expressão depois de <code>:</code> é avaliada.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_short_circuit_evaluation">Short-Circuit Evaluation</h4>
+<h4 id="_avaliação_de_curto_circuíto">Avaliação de Curto-Circuíto</h4>
 <div class="paragraph">
-<p>The operators <code>&amp;&amp;</code> and <code>||</code> do a <em>short-circuit evaluation</em>: a next argument is only evaluated when it is needed to determine the final value.
+<p>Os operadores <code>&amp;&amp;</code> e <code>||</code> fazem uma <em>avaliação de curto-circuito</em>: O próximo argumento só é avaliado quando é necessário para determinar o valor final.
 </p>
 </div>
 <div class="paragraph">
-<p>For example, a recursive factorial routine could be defined like this:
+<p>Por exemplo, uma rotira de fatorial por recursão pode ser definida da seguinte maneira:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function fact(n::Integer)
-    n &gt;= 0 || error("n must be non-negative")
+<pre class="pygments highlight"><code data-lang="julia">function fat(n::Integer)
+    n &gt;= 0 || error("n deve ser inteiro positivo")
     n == 0 &amp;&amp; return 1
-    n * fact(n-1)
+    n * fat(n-1)
 end</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tasks_aka_coroutines">Tasks (aka Coroutines)</h4>
+<h4 id="_tarefas_também_conhecido_corrotina">Tarefas (também conhecido Corrotina)</h4>
 <div class="paragraph">
-<p>A <em>task</em> is a control structure that can pass cooperatively control without returning. In Julia, a task can be implemented as a function having as first argument a <code>Channel</code> object. A channel is used to pass values from the function to the callee.</p>
+<p>Uma <em>tarefa</em> é uma estrutura de controle que pode passar pelo controle cooperativo sem retornar. Em Julia, uma tarefa pode ser implementada como uma função tendo como primeiro argumento um objeto de canal (<code>Channel</code>). Um canal é usado para passar valores de uma função ao chamador.</p>
 </div>
 <div class="paragraph">
-<p>The Fibonnaci sequence can be generated using a task.
+<p>A sequência de Fibonnaci pode ser gerada usando uma tarefa.
 </p>
 </div>
 <div class="listingblock">
@@ -14281,7 +14282,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>put!</code> stores values in a channel object and <code>take!</code> reads values from it:
+<p><code>put</code> armazena valores em um objeto de canal e <code>take!</code> lê valores de:
 </p>
 </div>
 <div class="listingblock">
@@ -14301,10 +14302,10 @@ julia&gt; take!(fib_gen)
 </div>
 </div>
 <div class="paragraph">
-<p>The constructor <code>Channel</code> creates the task. The function <code>fib</code> is suspended after each call to <code>put!</code> and resumed after <code>take!</code>. For performance reasons, several values of the sequence are buffered in the channel object during a resume/suspend cycle.</p>
+<p>O construtor <code>Channel</code> cria uma tarefa. A função <code>fib</code> é suspendida depois de cada chamada para <code>put!</code> e retorna depois de <code>take!</code>. Por questões de performance, muitos valores das sequências são armazenadas em buffer no objeto de canal durante um ciclo de retomada/suspensão.</p>
 </div>
 <div class="paragraph">
-<p>A channel object can also be used as an iterator:</p>
+<p>Um objeto de canal também pode ser usado como um iterador:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14318,11 +14319,11 @@ julia&gt; take!(fib_gen)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_types">Types</h3>
+<h3 id="_tipos">Tipos</h3>
 <div class="sect3">
-<h4 id="_primitive_types">Primitive Types</h4>
+<h4 id="_tipos_primitivos">Tipos Primitivos</h4>
 <div class="paragraph">
-<p>A concrete type consisting of plain old bits is called a <em>primitive type</em>. Unlike most languages, with Julia you can declare your own primitive types. The standard primitive types are defined in the same way:
+<p>Um tipo concreto que consiste em bits antigos simples é chamado de <em>tipo primitivo</em>. Ao contrário da maioria das linguagens, com Julia, você pode declarar seus próprios tipos primitivos. Os tipos primitivos padrão são definidos da mesma maneira:
 </p>
 </div>
 <div class="listingblock">
@@ -14334,10 +14335,10 @@ primitive type Int64 &lt;: Signed 64 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The number in the statements specifies how many bits are required.</p>
+<p>O número nos comandos especificam quantos bits são necessários.</p>
 </div>
 <div class="paragraph">
-<p>The following example creates a primitive type <code>Byte</code> and a constructor:
+<p>O exemplo à seguir cria um tipo primitivo <code>Byte</code> e um construtor:
 </p>
 </div>
 <div class="listingblock">
@@ -14351,17 +14352,17 @@ Byte(0x01)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The function <code>reinterpret</code> is used to store the bits of an unsigned integer with 8 bits (<code>UInt8</code>) into the byte.
+<p>A função <code>reinterpret</code> é usada para armazenar os bits de um inteiro não assinado com 8 bits (<code>UInt8</code>) no bit.
 </p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parametric_types">Parametric Types</h4>
+<h4 id="_tipos_paramétricos">Tipos Paramétricos</h4>
 <div class="paragraph">
-<p>Julia&#8217;s type system is <em>parametric</em>, meaning that types can have parameters.</p>
+<p>O tipo de sistema do Julia é <em>paramétrico</em>, o que significa que os tipos podem possuir parâmetros.</p>
 </div>
 <div class="paragraph">
-<p>Type parameters are introduced after the name of the type, surrounded by curly braces:
+<p>Tipos de Parâmetros são introduzidos depois do nome do tipo, cercado por chaves:
 </p>
 </div>
 <div class="listingblock">
@@ -14373,7 +14374,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This defines a new parametric type, <code>Point{T&lt;:Real}</code>, holding two "coordinates" of type <code>T</code>, which can be any type having <code>Real</code> as supertype.</p>
+<p>Isso define um novo tipo paramétrico, <code>Point{T&lt;:Real}</code>, segurando duas "coordenadas" de tipo <code>T</code>, da qual pode ser qualquer tipo contendo <code>Real</code> como supertipo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14382,7 +14383,7 @@ Point{Float64}(0.0, 0.0)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In addition to composite types, abstract types and primitive types can also have a type parameter.</p>
+<p>Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro de tipo.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -14392,7 +14393,7 @@ Point{Float64}(0.0, 0.0)</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Having concrete types for struct fields is absolutely recommended for performance reasons, so this is a good way to make <code>Point</code> both fast and flexible.</p>
+<p>Ter tipos concretos para campos de estrutura é absolutamente recomendado por motivos de desempenho, portanto, é uma boa maneira de tornar o <code>Point</code> rápido e flexível.</p>
 </div>
 </td>
 </tr>
@@ -14400,9 +14401,9 @@ Point{Float64}(0.0, 0.0)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_type_unions">Type Unions</h4>
+<h4 id="_tipo_de_união">Tipo de União</h4>
 <div class="paragraph">
-<p>A <em>type union</em> is an abstract parametric type that can act as any of its argument types:
+<p>Um <em>tipo de união</em> é um tipo paramétrico abstrato que pode atuar como qualquer um dos seus tipos de argumento:
 </p>
 </div>
 <div class="listingblock">
@@ -14416,16 +14417,16 @@ julia&gt; "Julia" :: IntOrString
 </div>
 </div>
 <div class="paragraph">
-<p>A type union is in most computer language an internal construct for reasoning about types. Julia however exposes this feature to its users because efficient code can be generated when the type union has a small number of types. This feature gives the Julia programmer a tremendous flexibility for controlling dispatch.</p>
+<p>Uma união de tipos é na maioria das linguagens de computador uma construção interna para raciocinar sobre tipos. Julia, no entanto, expõe esse recurso a seus usuários porque um código eficiente pode ser gerado quando a união de tipos possui um pequeno número de tipos. Esse recurso oferece ao programador Julia uma tremenda flexibilidade para controlar o envio.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_methods_2">Methods</h3>
+<h3 id="_métodos">Métodos</h3>
 <div class="sect3">
-<h4 id="_parametric_methods">Parametric Methods</h4>
+<h4 id="_métodos_paramétricos">Métodos Paramétricos</h4>
 <div class="paragraph">
-<p>Method definitions can also have type parameters qualifying their signature:
+<p>As definições de método também podem ter parâmetros de tipo que qualificam sua assinatura:
 </p>
 </div>
 <div class="listingblock">
@@ -14440,9 +14441,9 @@ true</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_function_like_objects">Function-like Objects</h4>
+<h4 id="_objetos_semelhantes_a_funções">Objetos Semelhantes a Funções</h4>
 <div class="paragraph">
-<p>Any arbitrary Julia object can be made “callable”. Such “callable” objects are sometimes called <em>functors</em>.
+<p>Qualquer objeto arbitrário de Julia pode ser "chamado". Tais objetos "chamáveis" às vezes são chamados de "funtores".
 </p>
 </div>
 <div class="listingblock">
@@ -14461,7 +14462,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To evaluate the polynomial, we simply have to call it:</p>
+<p>Para calcular o polinômio, basta chamá-lo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14474,9 +14475,9 @@ julia&gt; p(3)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_constructors">Constructors</h3>
+<h3 id="_construtores">Construtores</h3>
 <div class="paragraph">
-<p>Parametric types can be explicitly or implicitly constructed:</p>
+<p>Tipos paramétricos podem ser explicitamente ou implicitamente construídos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14489,7 +14490,7 @@ ERROR: MethodError: no method matching Point(::Int64, ::Float64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Default inner and outer constructors are generated for each <code>T</code>:
+<p>Construtores internos e externos padrão são gerados para cada <code>T</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -14504,10 +14505,10 @@ Point(x::T, y::T) where {T&lt;:Real} = Point{T}(x,y);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>and both <code>x</code> and <code>y</code> have to be of the same type.</p>
+<p>e ambos <code>x</code> e <code>y</code> devem ser do mesmo tipo.</p>
 </div>
 <div class="paragraph">
-<p>When <code>x</code> and <code>y</code> have a different type, the following outer constructor can be defined:</p>
+<p>Quando <code>x</code> e <code>y</code> possuem tipos diferentes, o seguinte construtor externo pode ser definido:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14515,19 +14516,19 @@ Point(x::T, y::T) where {T&lt;:Real} = Point{T}(x,y);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>promote</code> function is detailed in <a href="#promotion">Promotion</a>.
+<p>A função <code>promote</code> é detalhada em <a href="#promotion">Promoção</a>.
 </p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conversion_and_promotion">Conversion and Promotion</h3>
+<h3 id="_conversão_e_promoção">Conversão e Promoção</h3>
 <div class="paragraph">
-<p>Julia has a system for promoting arguments to a common type. This is not done automatically but can be easily extended.</p>
+<p>O Julia tem um sistema para promover argumentos para um tipo comum. Isso não é feito automaticamente, mas pode ser facilmente estendido.</p>
 </div>
 <div class="sect3">
-<h4 id="_conversion">Conversion</h4>
+<h4 id="_conversão">Conversão</h4>
 <div class="paragraph">
-<p>A value can be converted from one type to another:
+<p>Um valor pode ser convertido de um tipo para outro:
 </p>
 </div>
 <div class="listingblock">
@@ -14543,7 +14544,7 @@ UInt8</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can add our own <code>convert</code> methods:</p>
+<p>Podemos adicionar nossos próprios métodos <code>convert</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14555,9 +14556,9 @@ Point{Int64}(1, 2)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="promotion">Promotion</h4>
+<h4 id="promotion">Promoção</h4>
 <div class="paragraph">
-<p><em>Promotion</em> is the conversion of values of mixed types to a single common type:
+<p><em>Promoção</em> é a conversão de valores de tipos mistos para um único tipo comum:
 </p>
 </div>
 <div class="listingblock">
@@ -14567,7 +14568,7 @@ Point{Int64}(1, 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Methods for the <code>promote</code> function are normally not directly defined, but the auxiliary function <code>promote_rule</code> is used to specify the rules for promotion:
+<p>Os métodos para a função <code>promote</code> normalmente não são definidos diretamente, mas a função auxiliar <code>promover_rule</code> é usada para especificar as regras da promoção:
 </p>
 </div>
 <div class="listingblock">
@@ -14578,14 +14579,14 @@ Point{Int64}(1, 2)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metaprogramming">Metaprogramming</h3>
+<h3 id="_meta_programação">Meta-programação</h3>
 <div class="paragraph">
-<p>Julia code can be represented as a data structure of the language itself. This allows a program to transform and generate its own code.</p>
+<p>O código Julia pode ser representado como uma estrutura de dados da própria linguagem. Isso permite que um programa transforme e gere seu próprio código.</p>
 </div>
 <div class="sect3">
-<h4 id="_expressions">Expressions</h4>
+<h4 id="_expressões">Expressões</h4>
 <div class="paragraph">
-<p>Every Julia program starts as a string:</p>
+<p>Todo programa do Julia começa como uma string:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14594,7 +14595,7 @@ Point{Int64}(1, 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The next step is to parse each string into an object called an <em>expression</em>, represented by the Julia type <code>Expr</code>:
+<p>A próxima etapa é analisar cada string em um objeto chamado <em>expression</em>, representado pelo tipo Julia <code>Expr</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -14613,11 +14614,11 @@ Expr
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>dump</code> function displays expr objects with annotations.
+<p>A função <code>dump</code> exibe objetos expr com anotações.
 </p>
 </div>
 <div class="paragraph">
-<p>Expressions can be constructed directly by prefixing with <code>:</code> inside parentheses or using a quote block
+<p>Expressões podem ser construídas diretamente prefixando <code>:</code> entre parênteses ou usando um bloco de aspas
 </p>
 </div>
 <div class="listingblock">
@@ -14631,7 +14632,7 @@ Expr
 <div class="sect3">
 <h4 id="__code_eval_code"><code>eval</code></h4>
 <div class="paragraph">
-<p>Julia can evaluate an expression object using <code>eval</code>:
+<p>O Julia pode avaliar um objeto de expressão usando <code>eval</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -14641,7 +14642,7 @@ Expr
 </div>
 </div>
 <div class="paragraph">
-<p>Every module has its own <code>eval</code> function that evaluates expressions in its scope.</p>
+<p>Cada módulo possui sua própria função <code>eval</code> que avalia expressões em seu escopo.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -14651,7 +14652,7 @@ Expr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When you are using a lot of calls to the function <code>eval</code>, often this means that something is wrong. <code>eval</code> is considered “evil”.</p>
+<p>Quando você está usando muitas chamadas para a função <code>eval</code>, geralmente isso significa que algo está errado. <code>eval</code> é considerado "mal".</p>
 </div>
 </td>
 </tr>
@@ -14661,22 +14662,22 @@ Expr
 <div class="sect3">
 <h4 id="_macros">Macros</h4>
 <div class="paragraph">
-<p>Macros can include generated code in a program. A <em>macro</em> maps a tuple of <code>Expr</code> objects directly to a compiled expression:
+<p>Macros podem incluir código gerado em um programa. Um <em>macro</em> mapeia uma tupla de objetos <code>Expr</code> diretamente para uma expressão compilada:
 </p>
 </div>
 <div class="paragraph">
-<p>Here is a simple macro:
+<p>Aqui está uma simples macro:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">macro containervariable(container, element)
-    return esc(:($(Symbol(container,element)) = $container[$element]))
+<pre class="pygments highlight"><code data-lang="julia">macro containervariavel(container, elemento)
+    return esc(:($(Symbol(container,elemento)) = $container[$elemento]))
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Macros are called by prefixing their name with the <code>@</code> (at-sign). The macro call <code>@containervariable letters 1</code> is replaced by:
+<p>As macros são chamadas com o prefixo <code>@</code> (sinal de arroba). A chamada de macro <code>@containervariavel letters 1</code> é substituída por:
 </p>
 </div>
 <div class="listingblock">
@@ -14685,11 +14686,11 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>@macroexpand @containervariable letters 1</code>  returns this expression which is extremely useful for debugging.
+<p><code>@macroexpand @containervariavel letters 1</code> retorna essa expressão que é extremamente útil para depuração.
 </p>
 </div>
 <div class="paragraph">
-<p>This example illustrates how a macro can access the name of its arguments, something a function can’t do. The return expression needs to be “escaped” with <code>esc</code> because it has to be resolved in the macro call environment.
+<p>Este exemplo ilustra como uma macro pode acessar o nome de seus argumentos, algo que uma função não pode fazer. A expressão de retorno precisa ser "escapada" com <code>esc</code>, pois precisa ser resolvida no ambiente de chamada de macro.
 </p>
 </div>
 <div class="admonitionblock note">
@@ -14700,10 +14701,10 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Why macros?</p>
+<p>Por que macros?</p>
 </div>
 <div class="paragraph">
-<p>Macros generate and include fragments of customized code during parse time, thus <em>before</em> the full program is run.</p>
+<p>As macros geram e incluem fragmentos de código personalizado durante o tempo de análise, portanto, <em>antes</em> que o programa completo seja executado.</p>
 </div>
 </td>
 </tr>
@@ -14711,9 +14712,9 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_generated_functions">Generated Functions</h4>
+<h4 id="_funções_geradas">Funções Geradas</h4>
 <div class="paragraph">
-<p>The macro <code>@generated</code> creates specialized code for methods depending on the types of the arguments:
+<p>A macro <code>@generated</code> cria código especializado para métodos, dependendo dos tipos de argumentos:
 </p>
 </div>
 <div class="listingblock">
@@ -14725,16 +14726,16 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The body returns a quoted expression like a macro.</p>
+<p>O corpo retorna uma expressão entre aspas como uma macro.</p>
 </div>
 <div class="paragraph">
-<p>For the caller, the <em>generated function</em> behaves as a regular function:</p>
+<p>Para o chamador, a função <em>generated</em> se comporta como uma função regular:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; x = square(2); # note: output is from println() statement in the body
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; x = square(2); # note: output é da declaração println() no corpo
 Int64
-julia&gt; x              # now we print x
+julia&gt; x              # agora imprimimos x
 4
 julia&gt; y = square("spam");
 String
@@ -14745,13 +14746,13 @@ julia&gt; y
 </div>
 </div>
 <div class="sect2">
-<h3 id="_missing_values">Missing Values</h3>
+<h3 id="_valores_ausentes">Valores Ausentes</h3>
 <div class="paragraph">
-<p><em>Missing values</em> can be represented via the <code>missing</code> object, which is the singleton instance of the type <code>Missing</code>.
+<p><em>Valores ausentes</em> podem ser representados através do objeto <code>missing</code>, que é a instância singleton do tipo <code>Missing</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>Arrays can contain missing values:</p>
+<p>As listas podem conter valores ausentes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14762,10 +14763,10 @@ julia&gt; y
 </div>
 </div>
 <div class="paragraph">
-<p>The element type of such an array is <code>Union{Missing, T}</code>, with <code>T</code> the type of the non-missing values.</p>
+<p>O tipo de elemento dessa lista é <code>Union{Missing, T}</code>, com <code>T</code> o tipo de valores não ausentes.</p>
 </div>
 <div class="paragraph">
-<p>Reduction functions return <code>missing</code> when called on arrays which contain missing values</p>
+<p>As funções de redução retornam <code>missing</code> quando chamadas em listas que contêm valores ausentes</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14774,7 +14775,7 @@ missing</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this situation, use the <code>skipmissing</code> function to skip missing values:
+<p>Nessa situação, use a função <code>skipmissing</code> para pular os valores ausentes:
 </p>
 </div>
 <div class="listingblock">
@@ -14785,13 +14786,13 @@ missing</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_calling_c_and_fortran_code">Calling C and Fortran Code</h3>
+<h3 id="_chamando_códigos_em_c_e_fortran">Chamando Códigos em C e Fortran</h3>
 <div class="paragraph">
-<p>A lot of code is written in C or Fortran. Reusing tested code is often better than writing your own version of an algorithm. Julia can call directly existing C or Fortran libraries using the <code>ccall</code> syntax.
+<p>Muitos códigos estão escritos em C ou Fortran. Reutilizar o código testado geralmente é melhor do que escrever sua própria versão de um algoritmo. Julia pode chamar diretamente as bibliotecas C ou Fortran existentes usando a sintaxe <code>ccall</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>In <a href="#databases">Databases</a> we introduced a Julia interface to the GDBM library of database functions. The library is written in C. To close the database a function call to <code>close(db)</code> has to be made:</p>
+<p>Em <a href="#databases">Databases</a>, introduzimos uma interface Julia na biblioteca GDBM de funções de banco de dados. A biblioteca está escrita em C. Para fechar o banco de dados, uma chamada de função para <code>close(db)</code> deve ser feita:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14803,126 +14804,126 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A dbm object has a field <code>handle</code> of <code>Ptr{Cvoid}</code> type. This field holds a C pointer that refers to the database. To close the database the C function <code>gdbm_close</code> has to be called having as only argument the C pointer pointing to the database and no return value. Julia does this directly with the <code>ccall</code> function having as arguments:
+<p>Um objeto dbm possui um campo <code>handle</code> do tipo <code>Ptr{Cvoid}</code>. Este campo contém um ponteiro C que se refere ao banco de dados. Para fechar o banco de dados, a função C <code>gdbm_close</code> deve ser chamada tendo como único argumento o ponteiro C apontando para o banco de dados e sem valor de retorno. O Julia faz isso diretamente com a função <code>ccall</code> tendo como argumentos:
 </p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>a tuple consisting of a symbol holding the name of the function we want to call: <code>:gdbm_close</code> and the shared library specified as a string: <code>"libgdm"</code>,</p>
+<p>uma trupla que consiste em um símbolo que contém o nome da função que queremos chamar: <code>:gdbm_close</code> e a biblioteca compartilhada especificada como uma sequência: <code>"libgdm"</code>,</p>
 </li>
 <li>
-<p>the return type: <code>Cvoid</code>,</p>
+<p>o tipo de retorno: <code>Cvoid</code>,</p>
 </li>
 <li>
-<p>a tuple of argument types: <code>(Ptr{Cvoid},)</code> and</p>
+<p>uma tupla de tipos de argumentos: <code>(Ptr{Cvoid},)</code> e</p>
 </li>
 <li>
-<p>the argument values: <code>handle</code>.</p>
+<p>os valores do argumento: <code>handle</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The complete mapping of the GDBM library can be found as an example in the JuliaIntroBR sources.</p>
+<p>O mapeamento completo da biblioteca GDBM pode ser encontrada como um exmplo nas fontes do JuliaIntroBR.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_13">Glossary</h3>
+<h3 id="_glossário_7">Glossário</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">closure</dt>
+<dt class="hdlist1">fechamentos</dt>
 <dd>
-<p>Function that captures variables from its defining scope.
+<p>Função que captura variáveis de seu escopo definido.
 </p>
 </dd>
-<dt class="hdlist1">let block</dt>
+<dt class="hdlist1">bloqueio let</dt>
 <dd>
-<p>Block allocating new variable bindings.
+<p>Bloqueia a alocação de novas ligações de variáveis.
 </p>
 </dd>
-<dt class="hdlist1">anonymous function</dt>
+<dt class="hdlist1">funções anônimas</dt>
 <dd>
-<p>Function defined without being given a name.
+<p>Função definida sem possuir nome.
 </p>
 </dd>
-<dt class="hdlist1">named tuple</dt>
+<dt class="hdlist1">tupla nomeada</dt>
 <dd>
-<p>Tuple with named components.
+<p>Tupla com componentes nomeados.
 </p>
 </dd>
-<dt class="hdlist1">keyword arguments</dt>
+<dt class="hdlist1">argumentos de palavra-chave</dt>
 <dd>
-<p>Arguments identified by name instead of only by position.
+<p>Argumentos identificados pelo nome em vez de apenas pela posição.
 </p>
 </dd>
-<dt class="hdlist1">do block</dt>
+<dt class="hdlist1">bloco do</dt>
 <dd>
-<p>Syntax construction used to define and call an anonymous function which looks like a normal code block.
+<p>Construção de sintaxe usada para definir e chamar uma função anônima que se parece com um bloco de código normal.
 </p>
 </dd>
-<dt class="hdlist1">ternary operator</dt>
+<dt class="hdlist1">operador ternário</dt>
 <dd>
-<p>Control flow operator taking three operands to specify a condition, an expression to be executed when the condition yields <code>true</code> and an expression to be executed when the condition yields <code>false</code>.
+<p>Operador de fluxo de controle usando três operandos para especificar uma condição, uma expressão a ser executada quando a condição render <code>true</code> e uma expressão a ser executada quando a condição render <code>false</code>.
 </p>
 </dd>
-<dt class="hdlist1">short-circuit evaluation</dt>
+<dt class="hdlist1">avaliação de curto-circuíto</dt>
 <dd>
-<p>Evaluation of a boolean operator for which the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression.
+<p>Avaliação de um operador booleano para o qual o segundo argumento é executado ou avaliado apenas se o primeiro argumento não for suficiente para determinar o valor da expressão.
 </p>
 </dd>
-<dt class="hdlist1">task (aka coroutine)</dt>
+<dt class="hdlist1">tarefa (também conhecida como Corrotina)</dt>
 <dd>
-<p>Control flow feature that allows computations to be suspended and resumed in a flexible manner.
+<p>Recurso de fluxo de controle que permite que os cálculos sejam suspensos e retomados de maneira flexível.
 </p>
 </dd>
-<dt class="hdlist1">primitive type</dt>
+<dt class="hdlist1">tipo primitivo</dt>
 <dd>
-<p>Concrete type whose data consists of plain old bits.
+<p>Tipo de concreto cujos dados consistem em bits antigos simples.
 </p>
 </dd>
-<dt class="hdlist1">type union</dt>
+<dt class="hdlist1">tipo de união</dt>
 <dd>
-<p>Type which includes as objects all instances of any of its type parameters.
+<p>Tipo que inclui como objetos todas as instâncias de qualquer um dos seus parâmetros de tipo.
 </p>
 </dd>
-<dt class="hdlist1">parametric type</dt>
+<dt class="hdlist1">tipo paramétrico</dt>
 <dd>
-<p>Type that is parameterized.
+<p>Tipo que está parametrizado.
 </p>
 </dd>
-<dt class="hdlist1">functor</dt>
+<dt class="hdlist1">funtor</dt>
 <dd>
-<p>Object with an associated method, so that it is callable.
+<p>Objeto com um método associado, para que ele possa ser chamado.
 </p>
 </dd>
-<dt class="hdlist1">conversion</dt>
+<dt class="hdlist1">conversão</dt>
 <dd>
-<p>Conversion allows to convert a value from one type to another.
+<p>A conversão permite converter um valor de um tipo para outro.
 </p>
 </dd>
-<dt class="hdlist1">promotion</dt>
+<dt class="hdlist1">promoção</dt>
 <dd>
-<p>Converting values of mixed types to a single common type.
+<p>Conversão valores de tipos mistos em um único tipo comum.
 </p>
 </dd>
-<dt class="hdlist1">expression</dt>
+<dt class="hdlist1">expressão</dt>
 <dd>
-<p>Julia type that holds a language construct.
+<p>Tipo de Julia que contém uma construção de linguagem.
 </p>
 </dd>
 <dt class="hdlist1">macro</dt>
 <dd>
-<p>Way to include generated code in the final body of a program.
+<p>Forma de incluir o código gerado no corpo final de um programa.
 </p>
 </dd>
-<dt class="hdlist1">generated functions</dt>
+<dt class="hdlist1">funções geradas</dt>
 <dd>
-<p>Functions capable of generating specialized code depending on the types of the arguments.
+<p>Funções capazes de gerar código especializado, dependendo dos tipos dos argumentos.
 </p>
 </dd>
-<dt class="hdlist1">missing values</dt>
+<dt class="hdlist1">valores ausentes</dt>
 <dd>
-<p>Instances that represent data points with no value.
+<p>Instâncias que representam pontos de dados sem valor.
 </p>
 </dd>
 </dl>
@@ -15587,7 +15588,7 @@ top:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_14">Glossary</h3>
+<h3 id="_glossary_13">Glossary</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">regex</dt>
@@ -16273,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-26 16:24:17 UTC
+Última atualização 2020-06-26 16:35:07 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
