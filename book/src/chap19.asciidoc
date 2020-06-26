@@ -1,5 +1,5 @@
 [[chap19]]
-== Extras: Sintaxe
+== Extra: Sintaxe
 
 Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.
 
@@ -116,11 +116,11 @@ No <<chap04>> a macro +@svg+ foi introduzida:
 
 [source,julia]
 ----
-🐢 = Tartaruga()
+🐢 = Turtle()
 @svg begin
-    avance(🐢, 100)
-    gire(🐢, -90)
-    avance(🐢, 100)
+    forward(🐢, 100)
+    turn(🐢, -90)
+    forward(🐢, 100)
 end
 ----
 
@@ -193,7 +193,7 @@ function open(f::Function, args...)
 end
 ----
 
-Um bloco +do+ pode "caputar" variáveis de seus escopos anexos. Por exemplo, a variável +dado+ no exemplo acima de +open pass:[...] do+ é caputado de outro escopo.
+Um bloco +do+ pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável +dado+ no exemplo acima de +open pass:[...] do+ é capturado de outro escopo.
 
 
 === Controle de Fluxo
