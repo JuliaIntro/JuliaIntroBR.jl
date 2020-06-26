@@ -1,5 +1,5 @@
 [[chap19]]
-== Extra: Sintaxe
+== Extras: Sintaxe
 
 Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.
 
