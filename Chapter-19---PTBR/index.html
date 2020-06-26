@@ -720,7 +720,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exercises_13">Exercises</a></li>
 </ul>
 </li>
-<li><a href="#chap19">22. Extras: Sintaxe</a>
+<li><a href="#chap19">22. Extra: Sintaxe</a>
 <ul class="sectlevel2">
 <li><a href="#_tuplas_nomeadas">Tuplas Nomeadas</a></li>
 <li><a href="#_funções">Funções</a></li>
@@ -4254,7 +4254,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593189897817944e9</code></pre>
+1.593192746274821e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13587,9 +13587,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-5♦ 6♥ 2♣ 5♥ 7♥ 10♥ K♦ 4♦ 10♣ 4♠ J♠ 6♠ K♠ 4♥ J♥ 6♦ 2♦ 6♣ A♠ 8♣ Q♣ 7♦ J♣ 7♣ 3♥ 7♠ 4♣ K♣ A♥ 2♥ 9♦ 9♥ Q♦ 3♣ 10♦ 9♠ 10♠ Q♠ J♦ A♣ 5♣ Q♥ 9♣ 3♠ 8♥ 8♦ 8♠ K♥ 3♦ 2♠ 5♠ A♦
+6♦ 5♥ J♣ 3♥ 8♥ 9♥ 5♦ Q♠ A♣ 10♣ 6♠ 9♣ 10♠ A♠ 8♠ 4♦ K♥ 8♣ J♠ 9♠ J♦ 8♦ 2♥ 3♣ 6♣ 2♦ 4♠ 2♣ Q♣ 3♦ 7♦ 7♣ Q♥ 5♣ J♥ 6♥ 10♦ K♠ K♦ A♥ 10♥ 7♥ 4♣ K♣ 5♠ 7♠ A♦ 2♠ 9♦ 4♥ 3♠ Q♦
 julia&gt; card = pop!(deck)
-A♦
+Q♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -13987,7 +13987,7 @@ addping(pong, ping)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap19">22. Extras: Sintaxe</h2>
+<h2 id="chap19">22. Extra: Sintaxe</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.</p>
@@ -14130,11 +14130,11 @@ julia&gt; bar()
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">🐢 = Tartaruga()
+<pre class="pygments highlight"><code data-lang="julia">🐢 = Turtle()
 @svg begin
-    avance(🐢, 100)
-    gire(🐢, -90)
-    avance(🐢, 100)
+    forward(🐢, 100)
+    turn(🐢, -90)
+    forward(🐢, 100)
 end</code></pre>
 </div>
 </div>
@@ -14215,7 +14215,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um bloco <code>do</code> pode "caputar" variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é caputado de outro escopo.</p>
+<p>Um bloco <code>do</code> pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é capturado de outro escopo.</p>
 </div>
 </div>
 </div>
@@ -15509,7 +15509,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20450(double, double) {
+define double @julia_squaresum_20448(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16274,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-26 16:44:54 UTC
+Última atualização 2020-06-26 17:32:22 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
