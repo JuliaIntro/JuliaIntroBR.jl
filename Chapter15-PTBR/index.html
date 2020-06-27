@@ -4171,7 +4171,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593282922343148e9</code></pre>
+1.593289153256876e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11480,7 +11480,7 @@ String "1 2\t 3\n 4"</code></pre>
 <h2 id="chap15">18. Estruturas e Objetos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar os dados. O próximo passo é aprender a criar seus próprios tipos para organizar tanto o código como os dados. Este é um tópico importante e serão necessários alguns capítulos para abordar o tema.</p>
+<p>A esta altura, você sabe como usar funções para organizar o código e os tipos internos para organizar os dados. O próximo passo é aprender a criar os seus próprios tipos para organizar tanto o código como os dados. Este é um tópico importante e serão necessários alguns capítulos para abordar o tema.</p>
 </div>
 <div class="sect2">
 <h3 id="_tipos_compostos">Tipos Compostos</h3>
@@ -11527,7 +11527,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Uma struct é como uma fábrica que cria objetos. Para criar um ponto, chama-se <code>Ponto</code> como se fosse uma função tendo como argumentos os valores dos campos. Quando <code>Ponto</code> é usado como uma função, ele é chamado de <em>construtor</em>.
+<p>Uma struct é como uma fábrica que cria objetos. Para criar um ponto, chama-se <code>Ponto</code> como se fosse uma função que tem os valores dos campos como argumentos. Quando <code>Ponto</code> é usado como uma função, ele é chamado de <em>construtor</em>.
 </p>
 </div>
 <div class="listingblock">
@@ -11724,7 +11724,7 @@ end</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>A função +imprimir_ponto+ recebe como argumento um +ponto+ e o apresenta em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
+<pre>A função +imprimir_ponto+ recebe como argumento um +ponto+ e apresenta-o em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
 
 [source,jlcon]</pre>
 </div>
@@ -11858,7 +11858,6 @@ Ponto(51.0, 102.0)</p>
 <div class="listingblock">
 <div class="content">
 <pre>=== Copiando Objetos
-//coloquei a definição de aliasing antes de traduzir o parágrafo
 Usar um alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
@@ -13472,7 +13471,7 @@ end</p>
 <p>julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-2♦ A♠ J♠ 4♣ 7♠ 8♥ J♦ Q♦ 10♣ Q♣ 9♦ 3♣ 7♥ 2♠ Q♠ J♥ 6♠ 5♦ 10♥ K♦ K♠ J♣ A♣ 6♥ 7♣ 5♠ 8♠ 3♦ 7♦ 5♣ 8♣ Q♥ 4♦ 2♥ 4♥ 2♣ 9♠ 10♦ A♥ K♣ K♥ 4♠ 8♦ A♦ 3♥ 9♣ 5♥ 10♠ 6♣ 6♦ 3♠ 9♥
+J♠ J♣ J♥ 6♣ 4♠ 2♣ K♠ Q♣ 7♠ 8♥ Q♦ Q♥ 5♥ 6♠ 8♣ K♦ 10♣ 7♥ 2♦ 10♥ J♦ 7♦ 3♥ K♣ Q♠ 2♥ 5♠ 2♠ A♠ 4♥ 10♠ A♣ 3♣ K♥ 5♦ 9♠ 3♦ A♦ 7♣ 6♥ 5♣ 4♦ 8♠ 4♣ 9♦ A♥ 3♠ 10♦ 8♦ 6♦ 9♣ 9♥
 julia&gt; card = pop!(deck)
 9♥
 julia&gt; push!(hand, card)</p>
@@ -15281,7 +15280,7 @@ This representation of the code is transformed into LLVM code:
 <div class="paragraph">
 <p>julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within &#8216;squaresum&#8217;
-define double @julia_squaresum_20456(double, double) {
+define double @julia_squaresum_20466(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within &#8216;literal_pow&#8217;
 ; │┌ @ float.jl:405 within &#8216;*&#8217;
@@ -15813,7 +15812,7 @@ image::images/screenshot2.png[]
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-27 18:35:19 UTC
+Last updated 2020-06-27 20:19:10 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
