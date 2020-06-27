@@ -4171,7 +4171,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591832181539909e9</code></pre>
+1.593282922343148e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11511,7 +11511,7 @@ String "1 2\t 3\n 4"</code></pre>
 <p>Criar um novo tipo é mais complicado que as outras opções, mas possui vantagens que serão mostradas em breve.</p>
 </div>
 <div class="paragraph">
-<p>Um <em>tipo composto</em> definido pelo programador também é denominado de <em>estrutura</em>. A definição <code>struct</code> para um ponto é dada por:
+<p>Um <em>tipo composto</em> definido pelo programador também é denominado de <em>estrutura</em> (struct). A definição <code>struct</code> pode ser representada da seguinte maneira:
 </p>
 </div>
 <div class="listingblock">
@@ -11527,7 +11527,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>A struct é como uma fábrica para criar os objetos. Para criar um ponto, chama-se <code>Ponto</code> como se fosse uma função tendo como argumentos os valores dos campos. Quando <code>Ponto</code> é usado como uma função, ele é chamado de <em>construtor</em>.
+<p>Uma struct é como uma fábrica que cria objetos. Para criar um ponto, chama-se <code>Ponto</code> como se fosse uma função tendo como argumentos os valores dos campos. Quando <code>Ponto</code> é usado como uma função, ele é chamado de <em>construtor</em>.
 </p>
 </div>
 <div class="listingblock">
@@ -11551,7 +11551,7 @@ Ponto(3.0, 4.0)</code></pre>
 <p>Todo objeto é uma instância de algum tipo; portanto, “objeto” e “instância” são permutáveis. Mas neste capítulo, eu uso “instância” para indicar que estou falando de um tipo definido pelo programador.</p>
 </div>
 <div class="paragraph">
-<p>Um diagrama de estado que mostra um objeto e seus campos é denominado de <em>diagrama do objeto</em>, conforme <a href="#fig15-1">Diagrama do objeto</a>.
+<p>Um diagrama de estado que mostra um objeto e os seus campos é denominado <em>diagrama do objeto</em>, conforme <a href="#fig15-1">Diagrama do objeto</a>.
 </p>
 </div>
 <div id="fig15-1" class="imageblock">
@@ -11576,7 +11576,7 @@ julia&gt; p.y
 </div>
 </div>
 <div class="paragraph">
-<p>A expressão <code>p.x</code> significa: “Vá até a referência do objeto <code>p</code> e obtenha o valor de <code>x</code>.” No exemplo, atribuímos esse valor a uma variável <code>x</code>. Não há conflito entre a variável <code>x</code> e o campo <code>x</code>.</p>
+<p>A expressão <code>p.x</code> significa: “Vá até a referência do objeto <code>p</code> e obtenha o valor de <code>x</code>.” No exemplo, atribuímos esse valor a uma variável denominada <code>x</code>. Não há conflito entre a variável <code>x</code> e o campo <code>x</code>.</p>
 </div>
 <div class="paragraph">
 <p>Você pode usar a notação do ponto como parte de qualquer expressão. Por exemplo:</p>
@@ -11771,10 +11771,10 @@ MPonto(1.0, 2.0)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Dentro da função, +p+ é um alias (ou apelido) para +origem+, então quando a função modifica +p+, +origem+ também muda.
+<pre>Dentro da função, +p+ é um alias (ou uma referência) para +origem+, então quando a função modifica +p+, +origem+ também muda.
 (((alias)))
 
-Passar um objeto +Ponto+ imutável para +move_ponto!+ faz uma mensagem de erro aparecer:
+Passar um objeto +Ponto+ imutável para +move_ponto!+ gera um erro:
 
 [source,jlcon]</pre>
 </div>
@@ -11797,7 +11797,7 @@ end</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Agora +p+ em +move_ponto!+ é um apelido para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
+<pre>Agora +p+ em +move_ponto!+ é uma referência para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
 
 [source,jlcon]</pre>
 </div>
@@ -11857,9 +11857,9 @@ Ponto(51.0, 102.0)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>=== Cópia
+<pre>=== Copiando Objetos
 //coloquei a definição de aliasing antes de traduzir o parágrafo
-"Aliasing" é um termo que refere-se ao acesso de um mesmo local da memória por variáveis diferentes. Ele pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
+Usar um alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
 A cópia de um objeto é muitas vezes uma alternativa ao aliasing. O Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
@@ -13472,9 +13472,9 @@ end</p>
 <p>julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♠ 7♥ K♥ 10♦ 10♥ 4♣ 9♣ 8♠ K♠ 6♣ K♦ J♣ 2♦ 3♥ 2♣ Q♣ 10♣ 2♥ 8♦ K♣ A♦ 4♠ 8♥ Q♦ 3♣ 6♥ A♥ 5♦ 5♣ J♠ 4♦ 9♥ 7♣ Q♥ 5♥ J♦ 9♠ 7♠ 8♣ 6♦ A♠ 9♦ J♥ 10♠ A♣ 5♠ Q♠ 2♠ 3♦ 3♠ 4♥ 7♦
+2♦ A♠ J♠ 4♣ 7♠ 8♥ J♦ Q♦ 10♣ Q♣ 9♦ 3♣ 7♥ 2♠ Q♠ J♥ 6♠ 5♦ 10♥ K♦ K♠ J♣ A♣ 6♥ 7♣ 5♠ 8♠ 3♦ 7♦ 5♣ 8♣ Q♥ 4♦ 2♥ 4♥ 2♣ 9♠ 10♦ A♥ K♣ K♥ 4♠ 8♦ A♦ 3♥ 9♣ 5♥ 10♠ 6♣ 6♦ 3♠ 9♥
 julia&gt; card = pop!(deck)
-7♦
+9♥
 julia&gt; push!(hand, card)</p>
 </div>
 <div class="listingblock">
@@ -15281,7 +15281,7 @@ This representation of the code is transformed into LLVM code:
 <div class="paragraph">
 <p>julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within &#8216;squaresum&#8217;
-define double @julia_squaresum_20490(double, double) {
+define double @julia_squaresum_20456(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within &#8216;literal_pow&#8217;
 ; │┌ @ float.jl:405 within &#8216;*&#8217;
@@ -15813,7 +15813,7 @@ image::images/screenshot2.png[]
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-10 23:36:18 UTC
+Last updated 2020-06-27 18:35:19 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
