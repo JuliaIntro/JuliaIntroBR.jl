@@ -21,7 +21,7 @@ Existem diversas maneiras de representar pontos no Julia:
 
 Criar um novo tipo é mais complicado que as outras opções, mas possui vantagens que serão mostradas em breve.
 
-Um _tipo composto_ definido pelo programador também é denominado de _estrutura_. A definição +struct+ para um ponto é dada por:
+Um _tipo composto_ definido pelo programador também é denominado de _estrutura_ (struct). A definição +struct+ pode ser representada da seguinte maneira:
 (((tipo composto)))(((struct)))((("palavra-chave", "struct", see="struct")))(((end)))
 
 [source,@julia-setup chap15]
@@ -35,7 +35,7 @@ end
 O cabeçalho indica que a nova struct é chamada de +Ponto+ enquanto o corpo define os _atributos_ ou os _campos_ da struct. Nesse caso, a struct +Ponto+ possui dois campos: +x+ e +y+.
 (((atributo)))((("campo", see="atributo")))
 
-A struct é como uma fábrica para criar os objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
+Uma struct é como uma fábrica que cria objetos. Para criar um ponto, chama-se +Ponto+ como se fosse uma função tendo como argumentos os valores dos campos. Quando +Ponto+ é usado como uma função, ele é chamado de _construtor_.
 (((construtor)))
 
 [source,@julia-repl-test chap15]
@@ -54,7 +54,7 @@ Quando você imprime uma instância, o Julia informa a que tipo pertence e quais
 
 Todo objeto é uma instância de algum tipo; portanto, “objeto” e “instância” são permutáveis. Mas neste capítulo, eu uso “instância” para indicar que estou falando de um tipo definido pelo programador.
 
-Um diagrama de estado que mostra um objeto e seus campos é denominado de _diagrama do objeto_, conforme <<fig15-1>>.
+Um diagrama de estado que mostra um objeto e os seus campos é denominado _diagrama do objeto_, conforme <<fig15-1>>.
 (((diagrama do objeto)))((("diagrama", "objeto", see="diagrama do objeto")))
 
 [[fig15-1]]
@@ -75,7 +75,7 @@ julia> p.y
 4.0
 ----
 
-A expressão +p.x+ significa: “Vá até a referência do objeto +p+ e obtenha o valor de +x+.” No exemplo, atribuímos esse valor a uma variável +x+. Não há conflito entre a variável +x+ e o campo +x+.
+A expressão +p.x+ significa: “Vá até a referência do objeto +p+ e obtenha o valor de +x+.” No exemplo, atribuímos esse valor a uma variável denominada +x+. Não há conflito entre a variável +x+ e o campo +x+.
 
 Você pode usar a notação do ponto como parte de qualquer expressão. Por exemplo:
 
@@ -227,10 +227,10 @@ julia> origem
 MPonto(1.0, 2.0)
 ----
 
-Dentro da função, +p+ é um alias (ou apelido) para +origem+, então quando a função modifica +p+, +origem+ também muda.
+Dentro da função, +p+ é um alias (ou uma referência) para +origem+, então quando a função modifica +p+, +origem+ também muda.
 (((alias)))
 
-Passar um objeto +Ponto+ imutável para +move_ponto!+ faz uma mensagem de erro aparecer:
+Passar um objeto +Ponto+ imutável para +move_ponto!+ gera um erro:
 
 [source,@julia-repl-test chap15]
 ----
@@ -247,7 +247,7 @@ function move_retângulo!(ret, dx, dy)
 end
 ----
 
-Agora +p+ em +move_ponto!+ é um apelido para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
+Agora +p+ em +move_ponto!+ é uma referência para +ret.vértice+, então quando +p+ é modificado, +ret.vértice+ também muda:
 
 [source,@julia-repl-test chap15]
 ----
@@ -294,9 +294,9 @@ Ponto(51.0, 102.0)
 ----
 
 
-=== Cópia
+=== Copiando Objetos
 //coloquei a definição de aliasing antes de traduzir o parágrafo
-"Aliasing" é um termo que refere-se ao acesso de um mesmo local da memória por variáveis diferentes. Ele pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
+Usar um alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
 A cópia de um objeto é muitas vezes uma alternativa ao aliasing. O Julia possui uma função chamada +deepcopy+ que pode duplicar qualquer objeto:
