@@ -1,7 +1,7 @@
 [[chap08]]
 == Strings
 
-Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma _sequência_, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string, e você irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
+Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma _sequência_, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string e irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
 (((string)))(((sequência)))
 
 [[characters]]
@@ -31,7 +31,7 @@ Até mesmo emojis fazem parte do padrão Unicode. (*+\:banana: TAB+*)
 (((emoji)))
 
 
-=== Uma String é uma sequência
+=== Uma String é uma Sequência
 
 Uma string é uma sequência de caracteres. Você pode acessar os caracteres um de cada vez com o operador colchetes:
 (((string)))(((String)))(((sequência)))(((operador colchetes)))((("[]", see="operador colchetes")))((("operador", "Base", "[]", see="operador colchetes")))
@@ -132,7 +132,7 @@ No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então 
 
 === Travessia
 
-Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Comumente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de _travessia_. Um jeito de escrever uma travessia é com um laço +while+:
+Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Geralmente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de _travessia_. Um jeito de escrever uma travessia é com um laço +while+:
 (((travessia)))(((declaração while)))
 
 [source,@julia-setup chap08]
@@ -166,7 +166,7 @@ end
 
 Cada vez que o laço é percorrido, o próximo caractere na string é atribuido para a variável +letra+. O laço continua até que não haja mais caracteres sobrando.
 
-O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço+for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, _Make way for Ducklings_ (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:
+O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço +for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, _Make way for Ducklings_ (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:
 
 [source,@julia chap08-3]
 ----
@@ -302,7 +302,7 @@ Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de u
 
 Se o caractere não aparece na string, o programa sai do laço normalmente e retorna -1.
 
-Esse padrão de computação-percorrendo a sequência e retornando quando achamos o que estamos procurando-é chamado de _busca_.
+Percorrer uma sequência e retornar o objeto que estamos procurando quando achamos-o é um padrão de computação chamado de _busca_.
 (((busca)))
 
 ===== Exercício 8-4
@@ -332,7 +332,7 @@ Esse programa demonstra outro padrão de programação chamado _contador_. A var
 
 ===== Exercício 8-5
 
-Encapsule esse código em uma função chamada +conte+, e a generealize para que ela aceite a string e a letra como argumentos.
+Encapsule esse código em uma função chamada +conte+ e a generealize para que ela aceite a string e a letra como argumentos.
 
 Depois reescreva a função de modo que ao invés de percorrer a string, ela usa a versão com três parâmetros de +busca+ da seção anterior.
 
@@ -458,10 +458,10 @@ Uma maneira comum de resolver este problema é convertendo strings para um forma
 
 
 [[deb08]]
-=== Debugando
+=== Depuração
 
 Quando você usa índices para percorrer os valores em uma sequência, é difícil de obter o começo e o fim da travessia direito. Aqui está uma função que deveria comparar duas palavras e retornar +true+ se uma das palavras é o inverso da outra, mas ela contém dois erros:
-(((debugando)))(((travessia)))(((é_inversa)))((("função", "definido pelo programador", "é_inversa", see="é_inversa")))
+(((depuração)))(((travessia)))(((é_inversa)))((("função", "definido pelo programador", "é_inversa", see="é_inversa")))
 
 [source,@julia-setup chap08]
 ----
@@ -496,7 +496,7 @@ julia> é_inversa("pare", "erap")
 false
 ----
 
-Para debugar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:
+Para depurar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:
 
 [source,julia]
 ----
@@ -526,7 +526,7 @@ function é_inversa(palavra1, palavra2)
 end;
 ----
 
-Agora quando executamos novamente o programa, obtemos mais informação:
+Agora quando executamos novamente o programa, obtemos mais informações:
 
 [source,@julia-repl-test chap08]
 ----
