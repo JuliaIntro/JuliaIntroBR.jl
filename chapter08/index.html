@@ -556,7 +556,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#chap08">11. Strings</a>
 <ul class="sectlevel2">
 <li><a href="#characters">Caracteres</a></li>
-<li><a href="#_uma_string_é_uma_sequência">Uma String é uma sequência</a></li>
+<li><a href="#_uma_string_é_uma_sequência">Uma String é uma Sequência</a></li>
 <li><a href="#__code_length_code"><code>length</code></a></li>
 <li><a href="#_travessia">Travessia</a></li>
 <li><a href="#_fatias_de_strings">Fatias de Strings</a></li>
@@ -567,7 +567,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_a_biblioteca_de_strings">A Biblioteca de Strings</a></li>
 <li><a href="#_o_operador_code_code">O Operador <code>∈</code></a></li>
 <li><a href="#_comparação_de_strings">Comparação de Strings</a></li>
-<li><a href="#deb08">Debugando</a></li>
+<li><a href="#deb08">Depuração</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592169716220912e9</code></pre>
+1.593371798339386e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5891,7 +5891,7 @@ julia&gt; eval(expr)
 <h2 id="chap08">11. Strings</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma <em>sequência</em>, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string, e você irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
+<p>Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma <em>sequência</em>, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string e irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
 </p>
 </div>
 <div class="sect2">
@@ -5925,7 +5925,7 @@ Char</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_uma_string_é_uma_sequência">Uma String é uma sequência</h3>
+<h3 id="_uma_string_é_uma_sequência">Uma String é uma Sequência</h3>
 <div class="paragraph">
 <p>Uma string é uma sequência de caracteres. Você pode acessar os caracteres um de cada vez com o operador colchetes:
 </p>
@@ -6041,7 +6041,7 @@ ERROR: StringIndexError("🍌 🍎 🍐", 2)</code></pre>
 <div class="sect2">
 <h3 id="_travessia">Travessia</h3>
 <div class="paragraph">
-<p>Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Comumente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de <em>travessia</em>. Um jeito de escrever uma travessia é com um laço <code>while</code>:
+<p>Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Geralmente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de <em>travessia</em>. Um jeito de escrever uma travessia é com um laço <code>while</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -6081,7 +6081,7 @@ end</code></pre>
 <p>Cada vez que o laço é percorrido, o próximo caractere na string é atribuido para a variável <code>letra</code>. O laço continua até que não haja mais caracteres sobrando.</p>
 </div>
 <div class="paragraph">
-<p>O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço+for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, <em>Make way for Ducklings</em> (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:</p>
+<p>O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço <code>for</code> para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, <em>Make way for Ducklings</em> (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6254,7 +6254,7 @@ end</code></pre>
 <p>Se o caractere não aparece na string, o programa sai do laço normalmente e retorna -1.</p>
 </div>
 <div class="paragraph">
-<p>Esse padrão de computação-percorrendo a sequência e retornando quando achamos o que estamos procurando-é chamado de <em>busca</em>.
+<p>Percorrer uma sequência e retornar o objeto que estamos procurando quando achamos-o é um padrão de computação chamado de <em>busca</em>.
 </p>
 </div>
 <div class="sect4">
@@ -6288,7 +6288,7 @@ println(contador)</code></pre>
 <div class="sect4">
 <h5 id="_exercício_8_5">Exercício 8-5</h5>
 <div class="paragraph">
-<p>Encapsule esse código em uma função chamada <code>conte</code>, e a generealize para que ela aceite a string e a letra como argumentos.</p>
+<p>Encapsule esse código em uma função chamada <code>conte</code> e a generealize para que ela aceite a string e a letra como argumentos.</p>
 </div>
 <div class="paragraph">
 <p>Depois reescreva a função de modo que ao invés de percorrer a string, ela usa a versão com três parâmetros de <code>busca</code> da seção anterior.</p>
@@ -6430,7 +6430,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deb08">Debugando</h3>
+<h3 id="deb08">Depuração</h3>
 <div class="paragraph">
 <p>Quando você usa índices para percorrer os valores em uma sequência, é difícil de obter o começo e o fim da travessia direito. Aqui está uma função que deveria comparar duas palavras e retornar <code>true</code> se uma das palavras é o inverso da outra, mas ela contém dois erros:
 </p>
@@ -6473,7 +6473,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para debugar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:</p>
+<p>Para depurar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6484,7 +6484,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Agora quando executamos novamente o programa, obtemos mais informação:</p>
+<p>Agora quando executamos novamente o programa, obtemos mais informações:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7062,7 +7062,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Using <code>isreverse</code> from <a href="#deb08">Debugando</a>.
+<p>Using <code>isreverse</code> from <a href="#deb08">Depuração</a>.
 </p>
 </div>
 </div>
@@ -13593,9 +13593,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♠ A♦ K♠ 2♥ 5♣ 3♥ 9♣ 9♥ 8♦ A♣ 3♠ 6♦ 9♠ 5♦ 6♠ Q♦ 5♠ 2♠ 9♦ Q♥ 2♦ 7♥ J♦ 8♥ 10♠ 4♠ A♥ K♥ 5♥ Q♠ 4♦ Q♣ K♣ 10♣ J♣ 8♠ 6♥ K♦ A♠ 4♥ 7♦ 2♣ 7♣ 4♣ 6♣ 3♦ 10♦ J♥ 7♠ 8♣ 3♣ 10♥
+2♠ A♣ 5♥ J♠ 4♦ 8♠ 8♦ J♣ 9♠ K♠ 6♦ 7♦ 2♥ 7♣ Q♥ 10♠ Q♠ 3♥ 7♥ 10♦ 3♣ K♥ 7♠ A♥ 10♣ 3♦ 10♥ 3♠ K♣ 9♥ Q♣ J♥ 8♣ Q♦ A♠ A♦ 2♣ 6♣ 8♥ 6♠ J♦ 9♦ 5♠ K♦ 6♥ 4♠ 4♣ 2♦ 9♣ 5♦ 4♥ 5♣
 julia&gt; card = pop!(deck)
-10♥
+5♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15515,7 +15515,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20490(double, double) {
+define double @julia_squaresum_20456(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16280,7 +16280,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-14 21:21:52 UTC
+Last updated 2020-06-28 19:16:35 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
