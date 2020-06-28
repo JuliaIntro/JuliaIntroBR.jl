@@ -11,6 +11,7 @@ Falantes da língua portuguesa estão familiarizados com caracteres como as letr
 (((padrão ASCII)))
 
 Existem, é claro, muitos outros caracteres usados em línguas diferentes do Português, incluindo variantes dos caracteres ASCII com acentos e outras modificações, scripts relacionados como o Cirílico e o Grego e scripts completamente não relacionados ao ASCII e ao Português, incluindo Árabe, Chinês, Hebreu, Hindi, Japonês e Koreano.
+
 O _padrão Unicode_ lida com as complexidades do que exatamente é um caractere e é geralmente aceitado como o padrão definitivo que resolve esse problema. Ele fornece um número único para todo caractere em uma escala mundial.
 (((padrão Unicode)))
 
