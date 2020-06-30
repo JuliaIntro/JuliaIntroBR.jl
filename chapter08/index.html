@@ -563,7 +563,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_string_são_imutáveis">String são Imutáveis</a></li>
 <li><a href="#_interpolação_de_strings">Interpolação de Strings</a></li>
 <li><a href="#searching">Buscando</a></li>
-<li><a href="#looping_and_counting">Realizando laços e Contando</a></li>
+<li><a href="#looping_and_counting">Realizando Laços e Contando</a></li>
 <li><a href="#_a_biblioteca_de_strings">A Biblioteca de Strings</a></li>
 <li><a href="#_o_operador_code_code">O Operador <code>∈</code></a></li>
 <li><a href="#_comparação_de_strings">Comparação de Strings</a></li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593381771596339e9</code></pre>
+1.593538481494336e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6267,7 +6267,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="looping_and_counting">Realizando laços e Contando</h3>
+<h3 id="looping_and_counting">Realizando Laços e Contando</h3>
 <div class="paragraph">
 <p>O seguinte programa conta o número de vezes que a letra <code>a</code> aparece em uma string:</p>
 </div>
@@ -6504,7 +6504,7 @@ false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pots", "stop")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_inversa("pare", "erap")
 i = 1
 j = 4
 i = 2
@@ -6612,7 +6612,7 @@ ERROR: BoundsError: attempt to access String
 <div class="sect4">
 <h5 id="ex08-2">Exercício 8-8</h5>
 <div class="paragraph">
-<p>Existe uma função embutida chamada <code>count</code> que é similar à função em <a href="#looping_and_counting">Realizando laços e Contando</a>. Leia a documentação desta função e a use para contar o número de <code>a</code>’s em "banana".
+<p>Existe uma função embutida chamada <code>count</code> que é similar à função em <a href="#looping_and_counting">Realizando Laços e Contando</a>. Leia a documentação desta função e a use para contar o número de <code>a</code>’s em "banana".
 </p>
 </div>
 </div>
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-3♦ A♥ 7♣ K♣ K♥ A♠ 6♠ 3♥ 10♣ 3♠ 8♦ 10♠ 7♠ 5♠ K♠ 2♦ 2♥ K♦ 9♠ 8♠ 7♦ 6♦ J♠ J♥ 4♦ A♣ 4♣ 4♥ Q♠ 3♣ 6♣ 9♥ Q♥ 7♥ A♦ 9♣ 6♥ 2♠ 5♦ J♣ J♦ 10♥ 9♦ 8♣ 10♦ 8♥ Q♣ 5♥ 2♣ Q♦ 4♠ 5♣
+J♥ 9♥ A♦ 6♠ 4♥ 2♥ 10♣ 9♠ 8♦ K♠ Q♥ 6♦ 5♣ A♣ A♠ 8♥ 7♥ 2♣ 7♠ 3♦ Q♠ J♣ J♦ 7♣ 10♠ 6♥ K♥ 8♣ 8♠ 4♦ 5♥ K♦ 5♦ 4♠ 4♣ 3♠ 7♦ 2♦ J♠ 9♦ 5♠ 9♣ 6♣ 3♣ 3♥ Q♣ 10♦ 2♠ Q♦ K♣ 10♥ A♥
 julia&gt; card = pop!(deck)
-5♣
+A♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15517,7 +15517,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20456(double, double) {
+define double @julia_squaresum_20455(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-28 22:02:48 UTC
+Last updated 2020-06-30 17:34:38 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
