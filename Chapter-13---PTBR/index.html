@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593482241029128e9</code></pre>
+1.59348282414673e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10217,9 +10217,9 @@ Dict{Any,Any} with 2 entries:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function processa_arquivo(nomedoarquivo)
+<pre class="pygments highlight"><code data-lang="julia">function processa_arquivo(nome_do_arquivo)
     hist = Dict()
-    for linha in eachline(nomedoarquivo)
+    for linha in eachline(nome_do_arquivo)
         processa_linha(linha, hist)
     end
     hist
@@ -10523,12 +10523,23 @@ end</code></pre>
 </p>
 </div>
 <div class="verseblock">
-<pre class="content">Devia ter amado mais
-Ter chorado mais
-Ter visto o Sol nascer
-Devia ter arriscado mais
-E até errado mais
-Ter feito o que eu queria fazer</pre>
+<pre class="content">Eu te desejo não parar tão cedo
+Pois toda idade tem prazer e medo
+E com os que erram feio e bastante
+Que você consiga ser tolerante
+Quando você ficar triste
+Que seja por um dia, e não o ano inteiro
+E que você descubra que rir é bom,
+mas que rir de tudo é desespero
+Desejo que você tenha a quem amar
+E quando estiver bem cansado
+Ainda, exista amor pra recomeçar
+Pra recomeçar
+Eu te desejo muitos amigos
+Mas que em um você possa confiar
+E que tenha até inimigos
+Pra você não deixar de duvidar
+Quando você ficar triste</pre>
 </div>
 <div class="paragraph">
 <p>No texto, o trecho “eu te” é sempre seguido da palavra “desejo”, mas o trecho “te desejo” pode ser seguido de “não” ou “muitos”.</p>
@@ -10541,7 +10552,7 @@ Ter feito o que eu queria fazer</pre>
 <p>Dado esse mapeamento, você pode gerar um texto aleatório começando com qualquer prefixo e escolhendo aleatoriamente dentre os possíveis sufixos. Em seguida, você pode combinar o final do prefixo e o novo sufixo para formar o próximo prefixo, e repetir.</p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, se você começar com o prefixo “eu te“, então a próxima palavra deverá ser “desejo”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “te desejo”, então o próximo sufixo poderá ser “não” ou “muitos”.</p>
+<p>Por exemplo, se você começar com o prefixo “eu te”, então a próxima palavra deverá ser “desejo”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “te desejo”, então o próximo sufixo poderá ser “não” ou “muitos”.</p>
 </div>
 <div class="paragraph">
 <p>Nesse exemplo o tamanho do prefixo é sempre dois, mas você pode fazer uma análise de Markov com qualquer tamanho de prefixo.</p>
@@ -13583,9 +13594,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♣ 7♠ Q♣ A♣ K♠ 2♠ 2♣ A♥ J♣ K♦ Q♦ 6♥ 10♥ 9♥ 7♦ 5♦ 10♣ 5♣ K♣ 3♠ 5♠ 9♦ 5♥ 7♥ 9♣ 6♠ Q♠ 3♥ 6♣ 2♦ 10♦ Q♥ 4♠ 3♣ 8♠ A♦ 10♠ K♥ 7♣ 8♦ 9♠ 4♣ 2♥ J♦ 6♦ J♥ 4♦ J♠ A♠ 3♦ 4♥ 8♥
+9♦ 9♥ 8♠ 5♥ 6♠ 9♣ Q♣ J♦ Q♠ 5♠ 7♦ 7♣ J♠ 7♠ 3♠ Q♦ J♥ 10♦ 3♦ 5♦ K♦ 9♠ 6♦ K♠ K♥ A♣ 8♥ 4♣ 6♥ J♣ 8♣ 4♠ 10♣ 4♥ 3♣ 2♥ 10♥ A♦ 7♥ 6♣ 4♦ Q♥ 5♣ 2♦ 10♠ A♥ A♠ 8♦ K♣ 3♥ 2♣ 2♠
 julia&gt; card = pop!(deck)
-8♥
+2♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15505,7 +15516,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20460(double, double) {
+define double @julia_squaresum_20458(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16270,7 +16281,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-30 01:57:17 UTC
+Última atualização 2020-06-30 02:07:01 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
