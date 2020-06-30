@@ -312,7 +312,7 @@ Modifique +busca+ para que ela tenha um terceiro parâmetro, o índice em +palav
 
 
 [[looping_and_counting]]
-=== Realizando laços e Contando
+=== Realizando Laços e Contando
 
 O seguinte programa conta o número de vezes que a letra +a+ aparece em uma string:
 
@@ -563,7 +563,7 @@ end;
 
 [source,@julia-repl-test chap08]
 ----
-julia> é_inversa("pots", "stop")
+julia> é_inversa("pare", "erap")
 i = 1
 j = 4
 i = 2
