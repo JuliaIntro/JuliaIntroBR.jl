@@ -101,9 +101,9 @@ Logo abaixo, temos um programa que lê um arquivo e cria um histograma das palav
 
 [source,@julia-setup chap13]
 ----
-function processa_arquivo(nomedoarquivo)
+function processa_arquivo(nome_do_arquivo)
     hist = Dict()
-    for linha in eachline(nomedoarquivo)
+    for linha in eachline(nome_do_arquivo)
         processa_linha(linha, hist)
     end
     hist
