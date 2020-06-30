@@ -361,12 +361,23 @@ Um jeito de medir essa relação é através da análise de Markov, que caracter
 
 [verse]
 ____
-Devia ter amado mais
-Ter chorado mais
-Ter visto o Sol nascer
-Devia ter arriscado mais
-E até errado mais
-Ter feito o que eu queria fazer
+Eu te desejo não parar tão cedo
+Pois toda idade tem prazer e medo
+E com os que erram feio e bastante
+Que você consiga ser tolerante
+Quando você ficar triste
+Que seja por um dia, e não o ano inteiro
+E que você descubra que rir é bom,
+mas que rir de tudo é desespero
+Desejo que você tenha a quem amar
+E quando estiver bem cansado
+Ainda, exista amor pra recomeçar
+Pra recomeçar
+Eu te desejo muitos amigos
+Mas que em um você possa confiar
+E que tenha até inimigos
+Pra você não deixar de duvidar
+Quando você ficar triste
 ____
 
 No texto, o trecho “eu te” é sempre seguido da palavra “desejo”, mas o trecho “te desejo” pode ser seguido de “não” ou “muitos”.
@@ -376,7 +387,7 @@ O resultado da análise de Markov é um mapeamento de cada prefixo (como “eu t
 
 Dado esse mapeamento, você pode gerar um texto aleatório começando com qualquer prefixo e escolhendo aleatoriamente dentre os possíveis sufixos. Em seguida, você pode combinar o final do prefixo e o novo sufixo para formar o próximo prefixo, e repetir.
 
-Por exemplo, se você começar com o prefixo “eu te“, então a próxima palavra deverá ser “desejo”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “te desejo”, então o próximo sufixo poderá ser “não” ou “muitos”.
+Por exemplo, se você começar com o prefixo “eu te”, então a próxima palavra deverá ser “desejo”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “te desejo”, então o próximo sufixo poderá ser “não” ou “muitos”.
 
 Nesse exemplo o tamanho do prefixo é sempre dois, mas você pode fazer uma análise de Markov com qualquer tamanho de prefixo.
 
