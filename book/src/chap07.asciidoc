@@ -318,7 +318,7 @@ O método de Newton é um exemplo de um _algoritmo_: um processo mecânico para 
 
 Para entender o que é um algoritmo, talvez seja interessante começar com algo que não é um algoritmo. Quando você aprendeu a multiplicar unidades, você provavelmente memorizou a tabuada. De fato, você memorizou 100 soluções específicas. Esse tipo de conhecimento não é um algoritmo.
 
-Mas se você fosse "preguiçoso", talvez tivesse aprendido alguns truques. Por exemplo, para encontrar o produto de latexmath:[\(n\)] e 9, você pode escrever latexmath:[\(n-1\)] no primeiro dígito e latexmath:[\(10-n\)] no segundo dígito. Esse truque é uma solução geral para multiplicar qualquer unidade por 9. Isso é um algoritmo!
+Mas se você fosse “preguiçoso”, talvez tivesse aprendido alguns truques. Por exemplo, para encontrar o produto de latexmath:[\(n\)] e 9, você pode escrever latexmath:[\(n-1\)] no primeiro dígito e latexmath:[\(10-n\)] no segundo dígito. Esse truque é uma solução geral para multiplicar qualquer unidade por 9. Isso é um algoritmo!
 
 Similarmente, as técnicas que você aprendeu para a adição com transporte de unidades, a subtração com empréstimos e a divisão longa são todos algoritmos. Uma das características dos algoritmos é que eles não exigem nenhuma inteligência para serem executados. São processos mecânicos em que cada passo segue a partir do último, de acordo com um conjunto simples de regras.
 
@@ -412,7 +412,7 @@ res = String(take!(io))
 println(res)
 ----
 
-A primeira coluna é um número, +a+; a segunda coluna é a raiz quadrada de +a+ calculado com +minha_raiz+; a terceira coluna é a raiz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
+A primeira coluna é um número, +a+; a segunda coluna é a raiz quadrada de +a+ calculada com +minha_raiz+; a terceira coluna é a raiz quadrada calculada por +sqrt+; a quarta coluna é o valor absoluto da diferença entre as duas estimativas.
 
 [[ex07-2]]
 ===== Exercício 7-3
