@@ -24,7 +24,7 @@ A função +isletter+ verifica se o caractere é do alfabeto.
 [[ex13-2]]
 ===== Exercício 13-2
 
-Va até o Projeto Gutenberg (https://guttenberg.org) e baixe seu livro favorito de domínio público em formato de texto sem formatação.
+Va até o Projeto Gutenberg (https://guttenberg.org) e baixe seu livro favorito de domínio público em texto simples, isto é, texto sem formatação.
 (((Projeto Gutenberg)))
 
 Modifique o seu programa do exercício anterior para ler o livro que você baixou, pule a informação do cabeçalho no início do arquivo e trabalhe com o resto das palavras como no exercício anterior.
@@ -41,7 +41,7 @@ Modifique o programa do exercício anterior para imprimir as 20 palavras mais fr
 [[ex13-4]]
 ===== Exercício 13-4
 
-Modifique o programa anterior para ler uma lista de palavras e depois imprima todas as palavras do livro que não estão nessa lista de palavras. Quantas delas são erros de digitação? Quantas delas são palavras comuns que deveriam estar na lista de palavras e quantas delas são realmente obscuras?
+Modifique o programa anterior para ler uma lista de palavras e depois imprima todas as palavras do livro que não estão nessa lista. Quantas delas são erros de digitação? Quantas delas são palavras comuns que deveriam estar na lista de palavras e quantas delas são realmente obscuras?
 
 
 === Números Aleatórios
@@ -52,7 +52,7 @@ Dadas as mesmas entradas, a maioria dos programas de computadores geram a mesma 
 Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele pareça não determinístico. Uma delas é usar algoritmos que geram números _pseudoaleatórios_. Os números pseudoaleatórios só não são exatamente aleatórios porque eles são gerados por um cálculo determinístico, mas só de olhá-los, é praticamente impossível distingui-los da aleatoriedade.
 (((pseudoaleatório)))
 
-A função +rand+ retorna um ponto flutuante aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que você usa o comando +rand+, você obtém o próximo número de uma longa série. Para ver uma amostra disso, execute este laço:
+A função +rand+ retorna um ponto flutuante aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que se usa o comando +rand+, você obtém o próximo número de uma longa série. Para ver uma amostra disso, execute este laço:
 (((rand)))
 
 [source,@julia-setup]
@@ -103,7 +103,7 @@ Logo abaixo, temos um programa que lê um arquivo e cria um histograma das palav
 ----
 function processa_arquivo(nomedoarquivo)
     hist = Dict()
-    for linha in eachlinha(nomedoarquivo)
+    for linha in eachline(nomedoarquivo)
         processa_linha(linha, hist)
     end
     hist
@@ -135,7 +135,7 @@ Esse programa lê _emma.txt_, que contém o texto de _Emma_ escrito por Jane Aus
 A função +processa_arquivo+ percorre as linhas do arquivo passando-as uma vez de cada para +processa_linha+. O histograma +hist+ é utilizado como um acumulador.
 (((acumulador)))
 
-A função +processa_linha+ usa a função +replace+ para substituir os hífens e espaços antes de usar +split+ para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa +filter+, +isletter+ e +lowercase+ para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são "convertidas", lembre-se de que as strings são imutáveis e portanto, uma função como +lowercase+ retorna novas strings.)
+A função +processa_linha+ usa a função +replace+ para substituir os hífens e espaços antes de usar +split+ para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa +filter+, +isletter+ e +lowercase+ para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são “convertidas”, lembre-se de que as strings são imutáveis e portanto, uma função como +lowercase+ retorna novas strings.)
 (((replace)))(((split)))(((isletter)))(((lowercase)))(((get!)))(((filter)))((("função", "Base", "filter", see="filter")))
 
 Finalmente, +processa_linha+ atualiza o histograma criando um novo item ou incrementando um já existente.
@@ -174,7 +174,7 @@ Número de palavras diferentes: 7380
 
 === Palavras Mais Frequentes
 
-Para encontrar as palavras mais frequentes, podemos fazer uma lista de tuplas, onde cada tupla contém uma palavra e a sua frequência e fazemos a ordenação. A função seguinte recebe um histograma e retorna uma lista de tuplas que contém a frequência de palavras.
+Para encontrar as palavras mais frequentes, podemos fazer uma lista de tuplas, onde cada tupla contém uma palavra e a sua respectiva frequência e fazemos a ordenação. A função seguinte recebe um histograma e retorna uma lista de tuplas que contém a frequência de palavras.
 (((mais_comum)))((("função", "definido pelo programador", "mais_comum", see="mais_comum")))(((reverse)))(((sort)))
 
 [source,@julia-setup chap13]
@@ -188,7 +188,7 @@ function mais_comum(hist)
 end
 ----
 
-Em cada tupla, a frequência aparece primeiro, então o resultado da lista é ordenada por frequência. Aqui está um laço que imprime as 10 palavras mais frequentes:
+Em cada tupla, a frequência aparece primeiro, então o resultado da lista é ordenada pela frequência. Aqui está um laço que imprime as 10 palavras mais frequentes:
 
 [source,julia]
 ----
@@ -250,8 +250,8 @@ o argumento +num+ recebe o valor padrão. Se você fornecer dois argumentos:
 imprime_mais_frequentes(hist, 20)
 ----
 
-o argumento +num+ fica com o valor do argumento. Em outras palavras, o valor opcional _sobrepõe_ o valor padrão.
-(((sobreposisão)))
+o argumento +num+ fica com o valor passado no argumento. Em outras palavras, o valor opcional _sobrepõe_ o valor padrão.
+(((sobreposição)))
 
 Se uma função possui tanto os argumentos obrigatórios e os opcionais, todos os parâmetros obrigatórios deverão ficar entre os primeiros, seguido dos opcionais.
 
@@ -294,10 +294,10 @@ Eis alguns resultados de _Emma_:
 [source]
 ----
 Palavras do livro que não estão na lista de palavras:
-outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons betweens
+outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons betweens ...
 ----
 
-Algumas dessas palavras são nomes e preposições. Outros, como "rencontre" não são mais usados. Mas algumas são as palavras comuns que realmente devem estar na lista!
+Algumas dessas palavras são nomes e preposições. Outros, como “rencontre” não são mais usados. Mas algumas são as palavras comuns que realmente devem estar na lista!
 
 [[ex13-6]]
 ===== Exercício 13-6
@@ -325,7 +325,7 @@ function palavra_aleatória(h)
 end
 ----
 
-Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continua grande.
+Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, apesar da lista continuar grande.
 
 Uma alternativa é:
 
@@ -356,7 +356,7 @@ this the small regard harriet which knightley's it most things
 
 Uma série de palavras aleatórias raramente faz sentido pois não há relação com as palavras sucessivas. Por exemplo, numa sentença real você esperaria um artigo como “the” ser seguido por um adjetivo ou um substantivo, e provávelmente não um verbo ou advérbio.
 
-Um jeito de medir essa relação é através da análise de Markov, que caracteriza, para uma sequência de palavras dadas, a probabilidade das palavras que possam vir a seguir. Por exemplo, a música _Epitáfio_ (do Titãs) tem o seguinte trecho:
+Um jeito de medir essa relação é através da análise de Markov, que caracteriza, para uma sequência de palavras dadas, a probabilidade das palavras que possam vir a seguir. Por exemplo, a música _Amor Pra Recomeçar_ (do Frejat) tem o seguinte trecho:
 (((análise de Markov)))
 
 [verse]
@@ -369,14 +369,14 @@ E até errado mais
 Ter feito o que eu queria fazer
 ____
 
-No texto, o termo “devia” é sempre seguido da palavra “ter”, mas a palavra “ter” pode ser seguida de “amado” ou “arriscado”.
+No texto, o trecho “eu te” é sempre seguido da palavra “desejo”, mas o trecho “te desejo” pode ser seguido de “não” ou “muitos”.
 
-O resultado da análise de Markov é um mapeamento de cada prefixo (como “devia” e “ter”) a todos os possíveis sufixos (como “amado” ou “arriscado”).
+O resultado da análise de Markov é um mapeamento de cada prefixo (como “eu te” e “te desejo”) a todos os possíveis sufixos (como “não” ou “muitos”).
 (((prefixo)))(((sufixo)))
 
 Dado esse mapeamento, você pode gerar um texto aleatório começando com qualquer prefixo e escolhendo aleatoriamente dentre os possíveis sufixos. Em seguida, você pode combinar o final do prefixo e o novo sufixo para formar o próximo prefixo, e repetir.
 
-Por exemplo, se você começar com o prefixo “devia“, então a póxima palavra deverá ser “ter”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “devia ter”, então o próximo sufixo poderá ser “amado” ou “arriscado”.
+Por exemplo, se você começar com o prefixo “eu te“, então a próxima palavra deverá ser “desejo”, pois é o prefixo que aparece apenas uma vez no texto. O próximo prefixo é “te desejo”, então o próximo sufixo poderá ser “não” ou “muitos”.
 
 Nesse exemplo o tamanho do prefixo é sempre dois, mas você pode fazer uma análise de Markov com qualquer tamanho de prefixo.
 
@@ -404,7 +404,7 @@ Crédito: Esse estudo de caso é baseado em um exemplo de Kernighan e Pike, The 
 
 [TIP]
 =====
-Você deve tentar esse execício antes de continuar.
+Você deveria tentar esse execício antes de continuar.
 =====
 
 
@@ -424,15 +424,15 @@ Para os prefixos, as opções mais óbvias são as strings, listas de strings ou
 
 Para os sufixos, uma opção é uma lista; outra é um histograma (dicionário).
 
-Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "devia" e a próxima palavra é "ter", você precisa formar o próximo prefixo, "devia ter".
+Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "eu te" e a próxima palavra é "desejo", você precisa formar o próximo prefixo, "te desejo".
 
 Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover elementos.
 
 Para a coleta dos sufixos, as operações que precisamos executar incluem a adição de um novo sufixo (ou aumento da frequência de um existente) e a seleção de um sufixo aleatório.
 
-Adicionar um novo sufixo é igualmente fácil para a implementação da lista ou do histograma. Escolher um elemento aleatório de uma lista é fácil; escolher de um histograma é mais difícil de ser feito eficientemente (veja <<ex13-7>>).
+Adicionar um novo sufixo é igualmente fácil para a implementação da lista ou do histograma. Escolher um elemento aleatório de uma lista é fácil enquanto que escolher de um histograma é mais difícil de ser feito eficientemente (veja <<ex13-7>>).
 
-Até agora, conversamos principalmente sobre a facilidade de implementação, mas há outros fatores a serem considerados na escolha das estruturas de dados. Um deles é o tempo de execução. Às vezes, existe uma razão teórica para esperar que uma estrutura de dados seja mais rápida que outra; por exemplo, mencionamos que o operador +in+ é mais rápido paraos dicionários do que para as listas, pelo menos quando o número de elementos é grande.
+Até agora, conversamos principalmente sobre a facilidade de implementação, mas há outros fatores a serem considerados na escolha das estruturas de dados. Um deles é o tempo de execução. Às vezes, existe uma razão teórica para esperar que uma estrutura de dados seja mais rápida que outra; por exemplo, mencionamos que o operador +in+ é mais rápido para os dicionários do que para as listas, pelo menos quando o número de elementos é grande.
 
 Mas muitas vezes você não sabe antecipadamente qual implementação será mais rápida. Uma opção é implementar os dois e ver qual é o melhor. Essa abordagem é chamado de _benchmarking_. Uma alternativa prática é escolher a estrutura de dados mais fácil de implementar e verificar se é rápida o suficiente para a aplicação pretendida. Se sim, não há necessidade de continuar. Caso contrário, existem ferramentas, como o módulo +Profile+, que podem identificar os locais em um programa que mais demoram.
 (((benchmarking)))
@@ -462,7 +462,7 @@ Ruminação::
 Tire algum tempo para pensar! Qual o tipo de erro é: sintaxe, tempo de execução ou semântica? Quais informações você pode obter das mensagens de erro ou da saída do programa? Que tipo de erro pode causar o problema que você está tendo? O que você mudou por último, antes que o problema aparecesse?
 
 Conversa com o Pato de Borracha (rubberducking)::
-Se você explicar o problema para outra pessoa, às vezes encontrará a resposta antes de terminar de fazer a pergunta. Muitas vezes você não precisa da outra pessoa, poderia apenas conversar com pato de borracha. E essa é a origem da estratégia conhecida chamada depuração com o pato de borracha. Não estamos inventando isso, veja https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha.
+Se você explicar o problema para outra pessoa, às vezes encontrará a resposta antes de terminar de fazer a pergunta. Muitas vezes você não precisa da outra pessoa, poderia apenas conversar com um pato de borracha. E essa é a origem da familiar estratégia chamada depuração com o pato de borracha. Não estamos inventando isso, veja https://pt.wikipedia.org/wiki/Debug_com_Pato_de_Borracha.
 (((depuração com pato de borracha)))
 
 Recuo::
@@ -487,7 +487,7 @@ Encontrar um erro difícil exige a leitura, execução, ruminação, e, às veze
 === Glossário
 
 determinístico::
-Referente a um programa que faz a mesma coisa toda vez que é executado, dada a mesma entrada.
+Referente a um programa que faz a mesma coisa toda vez que é executado quando se é fornecida a mesma entrada.
 (((determinístico)))
 
 pseudoaleatório::
@@ -503,7 +503,7 @@ A sobreposição de um valor padrão por um argumento.
 (((sobreposição)))
 
 benchmarking::
-O processo de seleção das estruturas de dados ao implementar as alternativas e testá-las em uma amostra com as entradas possíveis.
+O processo de seleção das estruturas de dados ao implementar as alternativas e testá-las em uma amostra com as possíveis entradas.
 (((benchmarking)))
 
 depuração com pato de borracha::
@@ -516,7 +516,7 @@ Depuração ao explicar seu problema a um objeto inanimado como um pato de borra
 [[ex13-9]]
 ===== Exercício 13-9
 
-A “classificação” de uma palavra é a sua posição em uma lista de palavras ordenada pela frequência: a palavra mais comum tem classificação 1, a segunda mais comum tem classificação 2, etc.
+A “classificação” de uma palavra é a sua posição em uma lista ordenada pela frequência: a palavra mais comum tem classificação 1, a segunda mais comum tem classificação 2, etc.
 
 A lei de Zipf descreve a relação entre as posições e as frequências das palavras nas linguagens naturais (https://pt.wikipedia.org/wiki/Lei_de_Zipf). Especificamente, ela prediz que a frequência latexmath:[\(f\)] da palavra com o ranqueamento latexmath:[\(r\)] dada por:
 (((Lei de Zipf)))
@@ -537,7 +537,7 @@ onde latexmath:[\(s\)] e latexmath:[\(c\)] são parâmetros que dependem da ling
 ++++
 Se você plotar latexmath:[\(\log f\)] por latexmath:[\(\log r\)], obterá uma linha reta com a inclinação latexmath:[\(-s\)] e o intercepto latexmath:[\(\log c\)].
 
-Escreva um programa que leia um texto em um arquivo, conta as frequências das palavras e exiba uma linha para cada palavra, em ordem decrescente da frequência, com latexmath:[\(\log f\)] e latexmath:[\(\log r\)].
+Escreva um programa que leia um texto em um arquivo, conta as frequências das palavras e exibe uma linha para cada palavra, em ordem decrescente da frequência, com latexmath:[\(\log f\)] e latexmath:[\(\log r\)].
 
 Instale uma biblioteca para plotar os gráficos:
 (((Plots)))((("módulo", "Plots", see="Plots")))
