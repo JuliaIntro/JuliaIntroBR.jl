@@ -1,12 +1,12 @@
 [[chap16]]
 == Estruturas e Funções
 
-Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retornam estes objetos como resultado. Neste capítulo apresentaremos um “programa funcional” e dois novos planos de desenvolvimento de programa.
+Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retornam estes objetos como resultado. Neste capítulo apresentaremos um “estilo de programação funcional” e dois novos planos de desenvolvimento de programa.
 
 [[time]]
 === Hora
 
-Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +minha_hora+ que grava a hora do dia. A definição de estrutura se parece como:
+Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +minha_hora+ que grava a hora do dia. A definição da estrutura se parece como:
 (((minha_hora)))((("tipo", "definido pelo programador", "minha_hora", see="minha_hora")))
 
 [source, @julia-setup chap16]
@@ -51,7 +51,7 @@ Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha
 
 === Funções Puras
 
-Nas próximas seções, escreveremos duas funções que adicionam valores de tempo. Elas demonstrarão dois tipos de funções: funções puras e modificadas. Elas também demonstrarão um plano de desenvolvimento que chamaremos de _protótipo e correção_, que é uma forma de combater um problema complexo começando com um protótipo simples e aos poucos lidar com as complicações.
+Nas próximas seções, escreveremos duas funções que adicionam valores de tempo. Elas demonstrarão dois tipos de funções: funções puras e modificadoras. Elas também demonstrarão um plano de desenvolvimento que chamaremos de _protótipo e correção_, que é uma forma de combater um problema complexo começando com um protótipo simples e aos poucos lidar com as complicações.
 (((função pura)))(((protótipo e correção)))
 
 Aqui vai um simples protótipo de +soma_tempo+:
@@ -110,7 +110,7 @@ function soma_tempo(t1, t2)
 end
 ----
 
-Apesar desta função estar correta, ela está começando a ficar grande. Iremos ver uma alternativa mais resumida em breve.
+Apesar desta função estar correta, ela está começando a ficar grande. Veremos uma alternativa mais concisa em breve.
 
 [[modifiers]]
 === Modificadores
@@ -140,20 +140,20 @@ A primeira linha executa a operação básica, o resto lida com os casos especia
 
 Essa função está correta? O que acontece se +segundos+ for muito maior que 60?
 
-Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até que +tempo.segundo+ seja menor que 60. Uma solução é substituir os comandos +if+ com os comandos +while+. O que fará com que a função fique correta, porém, não muito eficiente.
+Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até que +tempo.segundo+ seja menor que 60. Uma solução é substituir as declarações +if+ com as declarações +while+. O que fará com que a função fique correta, porém, não muito eficiente.
 
 ===== Exercício 16-3
 
 Escreva uma versão correta de +incrementa!+ que não contenha nenhum laço.
 
-Qualquer coisa que pode ser feita com modificadores também pode ser feita com funções puras. De fato, algumas linguagens de progração permitem apenas funções puras. Há algumas evidências de que programas que usam funções puras são rápidos para serem desenvolvidas e menos propensos a erros do que programas que usam modificadores. Porém, às vezes modificadores são convenientes e programas funcionais tendem a ser menos eficientes.
+Qualquer coisa que pode ser feita com modificadores também pode ser feita com funções puras. De fato, algumas linguagens de programação permitem apenas funções puras. Há algumas evidências de que programas que usam funções puras são mais rápidos para serem desenvolvidos e menos propensos a erros do que programas que usam modificadores. Porém, às vezes modificadores são convenientes e programas funcionais tendem a ser menos eficientes.
 
 Em geral, recomendamos que você escreva funções puras sempre que for razoável e recorrer a modificadores apenas se há uma vantagem atraente. Essa abordagem pode ser chamada de _estilo de programação funcional_.
 (((estilo de programação funcional)))
 
 ===== Exercício 16-4
 
-Escreva uma versão "pura" de +incrementa+ que cria e retorna um novo objeto +minha_hora+ ao invéz de modificar o parâmetro.
+Escreva uma versão “pura” de +incrementa+ que cria e retorna um novo objeto +minha_hora+ ao invéz de modificar o parâmetro.
 
 
 [[prototyping_versus_planning]]
@@ -164,12 +164,12 @@ O plano de desenvolvimento que estamos demonstrando é chamado de “protótipo 
 
 Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um entendimento profundo acerca do problema. Mas correções incrementais podem gerar código que é desnecessariamente complicado, já que ele lida com muitos casos especiais, e também que não é confiável, já que é difícil saber se você encontrou todos os erros.
 
-Uma alternativa é o _desenvolvimento projetado_, em que uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, o insight é que um objeto Time é realmente um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de ums”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
+Uma alternativa é o _desenvolvimento projetado_, no qual obter uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, podemos perceber que um objeto Time é na verdade um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de ums”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
 (((desenvolvimento projetado)))
 
 Quando escrevemos +soma_tempo+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
 
-Essa observação nos sugerem uma outra abordagem de todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
+Essa observação nos sugere uma outra abordagem para todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
 
 Abaixo temos uma função que converte um objeto minha_hora para inteiros.
 (((hora_para_int)))((("função", "definido pelo programador", "hora_para_int", see="hora_para_int")))
@@ -202,8 +202,8 @@ Uma vez que você esteja convencido de que elas estão corretas, você poderá u
 [source,@julia-setup chap16]
 ----
 function soma_tempo(t1, t2)
-    segundos = tempo_para_int(t1) + tempo_para_int(t2)
-    tempo_para_int(segundos)
+    segundos = hora_para_int(t1) + hora_para_int(t2)
+    int_para_hora(segundos)
 end
 ----
 
@@ -247,7 +247,7 @@ end
 ----
 
 No início de cada função você deve checar os argumentos para ter certeza de que eles são válidos.
-(((add_tempo)))(((error)))
+(((soma_tempo)))(((error)))
 
 [source,@julia-setup chap16]
 ----
@@ -255,8 +255,8 @@ function soma_tempo(t1,t2)
     if !hora_válida(t1) || !hora_válida(t2)
         error("objeto minha_hora inválido em soma_tempo")
     end
-    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
-    conversão_tempo(segundos)
+    segundos = hora_para_int(t1) + hora_para_int(t2)
+   int_para_hora(segundos)
 end
 ----
 
@@ -267,8 +267,8 @@ Ou você pode usar uma instrução +@asset+, que verifica determinado requisito 
 ----
 function soma_tempo(t1, t2)
     @assert(hora_válida(t1) && hora_válida(t2), "objeto minha_hora inválido em add_tempo")
-    segundos = conversão_inteiro(t1) + conversão_inteiro(t2)
-    conversão_tempo(segundos)
+    segundos =hora_para_int(t1) + hora_para_int(t2)
+    int_para_tempo(segundos)
 end
 ----
 
@@ -310,7 +310,7 @@ Uma condição que nunca deve mudar durante a execução de um programa.
 Escreva uma função chamada +multime+ que pega um objeto +minha_hora+ e um número, e retorna um novo objeto +minha_hora+ que contém o produto do +minha_hora+ original e do número.
 (((multime)))((("função", "definido pelo programador", "multime", see="multime")))
 
-Então use +multime+ para escrever uma função que receba um objeto +minha_hora+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +minha_hora+ com o passo médio (tempo por quilômetros).
+Em seguida use +mul_hora+ para escrever uma função que receba um objeto +minha_hora+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +minha_hora+ com o ritmo médio (tempo por quilômetro).
 
 [[ex16-2]]
 ===== Exercício 16-7
@@ -321,6 +321,6 @@ O Julia fornece objetos de tempo que são similares aos objetos +minha_hora+ des
 
 . Escreva um programa que aceite um aniversário como entrada e imprima a idade do usuário e o número de dias, horas, minutos e segundos até o próximo aniversário.
 
-. Para duas pessoas nascidas em dias diferentes, há um dia em que uma tem o dobro da idade da outra. Esse é o dia duplo deles. Escreva um programa que faça dois aniversários e calcule o dia duplo.
+. Para duas pessoas nascidas em dias diferentes, há um dia em que uma tem o dobro da idade da outra. Esse é o dia duplo deles. Escreva um programa que receba dois aniversários e calcule o dia duplo.
 
-. Para lhe desafiar um pouco, escreva a versão mais geral que calcula o dia em que uma pessoa está com latexmath:[\(n\)] vezes mais antiga que a outra.
+. Para lhe desafiar um pouco, escreva a versão mais geral que calcula o dia em que uma pessoa é latexmath:[\(n\)] vezes mais velha que a outra.
