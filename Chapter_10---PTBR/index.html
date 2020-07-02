@@ -597,7 +597,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_objetos_e_valores">Objetos e Valores</a></li>
 <li><a href="#_alias">Alias</a></li>
 <li><a href="#_argumentos_de_listas">Argumentos de Listas</a></li>
-<li><a href="#_depurando">Depurando</a></li>
+<li><a href="#_depuração">Depuração</a></li>
 <li><a href="#_glossário_4">Glossário</a></li>
 <li><a href="#_exercícios_4">Exercícios</a></li>
 </ul>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593091866766551e9</code></pre>
+1.593660964871081e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7299,11 +7299,10 @@ julia&gt; print(números)
 </div>
 </div>
 <div class="paragraph">
-<p>O segundo elemento de <code>números</code>, que costumava ser 123, agora é 7.
-``</p>
+<p>O segundo elemento de <code>números</code>, que costumava ser 123, agora é 7.</p>
 </div>
 <div class="paragraph">
-<p><a href="#fig10-1">Diagrama de estado</a> mostra o diagrama de pilha para "vegetais", "números" e "vazia".
+<p><a href="#fig10-1">Diagrama de estado</a> mostra o diagrama de estado para "vegetais", "números" e "vazia".
 </p>
 </div>
 <div id="fig10-1" class="imageblock">
@@ -7359,7 +7358,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Isso funciona bem se você precisa apenas ler os elementos de uma lista. Mas se você deseja escrever ou atualizar os elementos, você precisa dos índices. Um jeito comum de fazer isto é utilizando a função embutida <code>eachindex</code>:
+<p>Isso funciona bem se você precisa apenas ler os elementos de uma lista. Mas se você deseja escrever ou atualizar os elementos, você precisa dos índices. Um jeito comum de fazer isto é utilizando a função interna <code>eachindex</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -7395,7 +7394,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_operador_de_fatias">Operador de Fatias</h3>
 <div class="paragraph">
-<p>O Operador de Fatias também funciona para listas.
+<p>O operador de fatias também funciona para listas.
 </p>
 </div>
 <div class="listingblock">
@@ -7409,7 +7408,7 @@ julia&gt; print(t[3:end])
 </div>
 </div>
 <div class="paragraph">
-<p>O Operador de Fatia <code>[:]</code>, faz uma cópia em toda a lista:
+<p>O operador de fatia <code>[:]</code>, faz uma cópia em toda a lista:
 </p>
 </div>
 <div class="listingblock">
@@ -7506,7 +7505,7 @@ julia&gt; print(t2)
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Como uma convenção de estilo, no Julia <code>!</code> é anexado a nomes de funções que modificam seus argumentos.
+<p>Por convenção, no Julia <code>!</code> é anexado a nomes de funções que modificam seus argumentos.
 </p>
 </div>
 </td>
@@ -7954,7 +7953,7 @@ julia&gt; print(letters)
 </div>
 </div>
 <div class="paragraph">
-<p>O parâmetro <code>t</code> e a variável <code>letras</code> são alias para o mesmo objeto. O diagrama de estado se parece com <a href="#fig10-5">Diagrama de estado</a>.
+<p>O parâmetro <code>t</code> e a variável <code>letras</code> são alias para o mesmo objeto. O diagrama de estado se parece com a <a href="#fig10-5">Diagrama de estado</a>.
 </p>
 </div>
 <div id="fig10-5" class="imageblock">
@@ -8059,7 +8058,7 @@ julia&gt; print(rest)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_depurando">Depurando</h3>
+<h3 id="_depuração">Depuração</h3>
 <div class="paragraph">
 <p>O uso descuidado de listas (e outros objetos mutáveis) pode levar longas horas para depurar. Veja algumas armadilhas comuns e maneiras de como evitá-las:
 </p>
@@ -13593,9 +13592,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-K♦ 4♦ 8♥ K♥ 8♣ 2♣ Q♠ 6♥ 3♣ 8♠ 5♣ A♠ Q♦ J♦ 4♣ 7♥ Q♣ 3♠ 3♥ K♠ 10♣ 7♠ 10♠ 4♠ 5♥ A♦ Q♥ A♣ 10♦ 6♠ 10♥ K♣ J♥ 9♠ 4♥ 2♦ 6♣ J♠ 6♦ 8♦ 9♥ J♣ 7♦ 9♦ 2♥ 7♣ 2♠ 9♣ 5♠ 5♦ 3♦ A♥
+10♥ 3♠ 8♠ 6♦ 7♦ 2♣ J♠ A♠ 5♣ A♦ 8♦ J♣ A♣ K♥ 6♠ 6♣ K♦ Q♥ 9♦ 5♦ 8♥ 9♥ 3♣ K♠ 4♦ 8♣ K♣ A♥ 10♠ Q♦ J♦ 5♠ 5♥ 2♠ 7♥ 9♣ Q♠ 4♥ J♥ 2♥ 4♠ 7♣ 10♦ 2♦ 3♦ Q♣ 10♣ 3♥ 9♠ 7♠ 6♥ 4♣
 julia&gt; card = pop!(deck)
-A♥
+4♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15515,7 +15514,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20461(double, double) {
+define double @julia_squaresum_20508(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16280,7 +16279,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-25 13:31:03 UTC
+Last updated 2020-07-02 03:36:01 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
