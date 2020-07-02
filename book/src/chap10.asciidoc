@@ -85,9 +85,8 @@ julia> print(números)
 ----
 
 O segundo elemento de +números+, que costumava ser 123, agora é 7.
-``
 
-<<fig10-1>> mostra o diagrama de pilha para "vegetais", "números" e "vazia".
+<<fig10-1>> mostra o diagrama de estado para "vegetais", "números" e "vazia".
 (((diagrama de estado)))
 
 [[fig10-1]]
@@ -130,7 +129,7 @@ for vegetal in vegetais
 end
 ----
 
-Isso funciona bem se você precisa apenas ler os elementos de uma lista. Mas se você deseja escrever ou atualizar os elementos, você precisa dos índices. Um jeito comum de fazer isto é utilizando a função embutida +eachindex+:
+Isso funciona bem se você precisa apenas ler os elementos de uma lista. Mas se você deseja escrever ou atualizar os elementos, você precisa dos índices. Um jeito comum de fazer isto é utilizando a função interna +eachindex+:
 (((eachindex)))((("função", "Base", "eachindex", see="eachindex")))
 
 [source,@julia-setup chap10]
@@ -162,7 +161,7 @@ Embora uma lista possa conter outra lista, a lista aninhada ainda conta como um 
 
 === Operador de Fatias
 
-O Operador de Fatias também funciona para listas.
+O operador de fatias também funciona para listas.
 (((operador de fatias)))((("operador), "Base", "[:]", see="operador de fatias")))((("[:]", see="operador de fatias")))
 
 [source,@julia-repl-test chap10]
@@ -175,7 +174,7 @@ julia> print(t[3:end])
 ['c', 'd', 'e', 'f']
 ----
 
-O Operador de Fatia +[:]+, faz uma cópia em toda a lista:
+O operador de fatia +[:]+, faz uma cópia em toda a lista:
 (((cópia)))
 
 [source,@julia-repl-test chap10]
@@ -259,7 +258,7 @@ julia> print(t2)
 
 [NOTE]
 ====
-Como uma convenção de estilo, no Julia +!+ é anexado a nomes de funções que modificam seus argumentos.
+Por convenção, no Julia +!+ é anexado a nomes de funções que modificam seus argumentos.
 (((!)))
 ====
 
@@ -644,7 +643,7 @@ julia> print(letters)
 ['b', 'c']
 ----
 
-O parâmetro +t+ e a variável +letras+ são alias para o mesmo objeto. O diagrama de estado se parece com <<fig10-5>>.
+O parâmetro +t+ e a variável +letras+ são alias para o mesmo objeto. O diagrama de estado se parece com a <<fig10-5>>.
 (((diagrama de estado)))
 
 [[fig10-5]]
@@ -734,10 +733,10 @@ julia> print(rest)
 ----
 
 
-=== Depurando
+=== Depuração
 
 O uso descuidado de listas (e outros objetos mutáveis) pode levar longas horas para depurar. Veja algumas armadilhas comuns e maneiras de como evitá-las:
-(((depurando)))
+(((depuração)))
 
 * A maioria das funções de lista modifica o argumento. É o oposto das funções de strings, que retornam uma nova string e deixam a original em paz.
 +
@@ -928,7 +927,7 @@ end;
 ===== Exercício 10-1
 
 Escreva uma função chamada +soma_aninhada+ que recebe uma lista de listas de números inteiros e some os elementos de todas as listas aninhadas. Por exemplo:
-(((soma_aninhada)))((("função", "definida pelo programador", "soma_aninhada", see="soma_aninhada")))
+(((soma_aninhada)))((("função", "definido pelo programador", "soma_aninhada", see="soma_aninhada")))
 
 [source,@julia-repl-test chap10]
 ----
@@ -1000,13 +999,13 @@ false
 ===== Exercício 10-6
 
 Duas palavras são anagramas se você puder reorganizar as letras de uma para formar a outra. Escreva uma função chamada +é_anagrama+ que recebe duas strings e retorne +true+ se elas forem anagramas.
-(((é_anagrama)))((("função", "definida pelo programador", "é_anagrama", see="é_anagrama")))
+(((é_anagrama)))((("função", "definido pelo programador", "é_anagrama", see="é_anagrama")))
 
 [[ex10-7]]
 ===== Exercise 10-7
 
 Escreva uma função chamada +tem_duplicatas+ que recebe uma lista e retorne +true+ se houver algum elemento que apareça mais de uma vez. Ela não deve modificar a lista original.
-(((tem_duplicatas)))((("função", "definida pelo programador", "tem_duplicatas", see="tem_duplicatas")))
+(((tem_duplicatas)))((("função", "definido pelo programador", "tem_duplicatas", see="tem_duplicatas")))
 
 [[ex10-8]]
 ===== Exercício 10-8
@@ -1044,7 +1043,7 @@ Escreva uma função chamada +em_bisseção+ que usa uma lista ordenada e um val
 ===== Exercício 10-11
 
 Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa +par_reverso+ que encontre todos os pares reversos na lista de palavras.
-(((par_reverso)))((("função", "definida pelo programador", "par_reverso", see="par_reverso")))
+(((par_reverso)))((("função", "definido pelo programador", "par_reverso", see="par_reverso")))
 
 Duas palavras "interligam" se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, "micro" e "ondas" se interligam para formar "microondas".
 (((interligar)))
