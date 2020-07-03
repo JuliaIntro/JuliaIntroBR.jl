@@ -622,7 +622,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_atribuição_de_tuplas">Atribuição de Tuplas</a></li>
 <li><a href="#_tuplas_como_valores_de_retorno">Tuplas como Valores de Retorno</a></li>
 <li><a href="#_tuplas_com_argumentos_de_comprimento_variável">Tuplas com Argumentos de Comprimento Variável</a></li>
-<li><a href="#_arrays_e_tuplas">Arrays e Tuplas</a></li>
+<li><a href="#_listas_e_tuplas">Listas e Tuplas</a></li>
 <li><a href="#_dicionários_e_tuplas">Dicionários e Tuplas</a></li>
 <li><a href="#_sequências_de_sequências">Sequências de Sequências</a></li>
 <li><a href="#_depuração">Depuração</a></li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591417238740767e9</code></pre>
+1.593739734834225e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9329,12 +9329,12 @@ end</code></pre>
 <h2 id="chap12">15. Tuplas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo apresenta mais um tipo interno, a tupla, e mostra como os arrays, dicionários e as tuplas trabalham juntos. Também apresento um recurso útil para os arrays de argumentos de tamanho variável, operadores de agrupamento e de separação.</p>
+<p>Este capítulo apresenta mais um tipo interno, a tupla, e mostra como as listas, os dicionários e as tuplas trabalham juntos. Também apresento um recurso útil para as listas de argumentos de tamanho variável, operadores de agrupamento e de separação.</p>
 </div>
 <div class="sect2">
 <h3 id="_tuplas_são_imutáveis">Tuplas são Imutáveis</h3>
 <div class="paragraph">
-<p>Uma tupla é uma sequência de valores. Estes valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares a arrays. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
+<p>Uma tupla é uma sequência de valores. Estes valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares às listas. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
 </p>
 </div>
 <div class="paragraph">
@@ -9413,7 +9413,7 @@ Char</code></pre>
 <p>Já que <code>tuple</code> é o nome de uma função interna, deve-se evitar usá-lo como o nome de variável.</p>
 </div>
 <div class="paragraph">
-<p>A maioria dos operadores de array também funciona com as tuplas. O operador colchete indexa um elemento:
+<p>A maioria dos operadores da lista também funciona com as tuplas. O operador colchete indexa um elemento:
 </p>
 </div>
 <div class="listingblock">
@@ -9499,23 +9499,23 @@ ERROR: BoundsError: attempt to access (1, 2)
 </div>
 </div>
 <div class="paragraph">
-<p>Geralmente, o lado direito pode ser qualquer tipo de sequência (string, array ou tupla). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, poderia-se escrever:
+<p>Geralmente, o lado direito pode ser qualquer tipo de sequência (string, lista ou tupla). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, poderia-se escrever:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; email = "júlio.césar@roma"
-"júlio.césar@roma"
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; email = "julio.cesar@roma"
+"julio.cesar@roma"
 julia&gt; nome_usuário, domínio = split(email, '@');</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O valor de retorno de <code>split</code> é um array com dois elementos; o primeiro elemento é atribuído a <code>nome_usuário</code> e o segundo a <code>domínio</code>.</p>
+<p>O valor de retorno de <code>split</code> é uma lista com dois elementos; o primeiro elemento é atribuído a <code>nome_usuário</code> e o segundo a <code>domínio</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; nome_usuário
-"júlio.césar"
+"julio.cesar"
 julia&gt; domínio
 "roma"</code></pre>
 </div>
@@ -9561,7 +9561,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>maximum</code> e <code>minimum</code> são funções internas que encontram o maior e o menor elemento de uma sequência. <code>minmax</code> calcula os dois e retorna-os por meio de uma tupla. Já a função interna <code>extrema</code> é mais eficiente.
+<p>As funções internas <code>maximum</code> e <code>minimum</code> encontram o maior e o menor elemento de uma sequência. <code>minmax</code> calcula os dois e retorna-os por meio de uma tupla. Já a função interna <code>extrema</code> é mais eficiente.
 </p>
 </div>
 </div>
@@ -9640,13 +9640,13 @@ ERROR: MethodError: no method matching sum(::Int64, ::Int64, ::Int64)</code></pr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_arrays_e_tuplas">Arrays e Tuplas</h3>
+<h3 id="_listas_e_tuplas">Listas e Tuplas</h3>
 <div class="paragraph">
 <p><code>zip</code> é uma função interna que recebe duas ou mais sequências e retorna uma coleção de tuplas em que cada tupla contém um elemento de cada sequência. O nome da função refere-se a um zíper, que une e intercala duas faixas de dentes.
 </p>
 </div>
 <div class="paragraph">
-<p>Este exemplo intercala uma string com uma matriz:</p>
+<p>Este exemplo intercala uma string com uma lista:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9677,7 +9677,7 @@ Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))</code></pre
 </p>
 </div>
 <div class="paragraph">
-<p>Se você quiser usar operadores e funções de arrays, pode-se usar um objeto zip para gerar um array:
+<p>Se você quiser usar operadores e funções de listas, pode-se usar um objeto zip para gerar uma lista:
 </p>
 </div>
 <div class="listingblock">
@@ -9690,7 +9690,7 @@ Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))</code></pre
 </div>
 </div>
 <div class="paragraph">
-<p>O resultado é um array de tuplas; e neste exemplo, cada tupla contém um caractere da string e o elemento correspondente do array.</p>
+<p>O resultado é uma lista de tuplas; e neste exemplo, cada tupla contém um caractere da string e o elemento correspondente da lista.</p>
 </div>
 <div class="paragraph">
 <p>Se as sequências não tiverem o mesmo comprimento, o resultado terá o comprimento da menor sequência.</p>
@@ -9705,7 +9705,7 @@ Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))</code></pre
 </div>
 </div>
 <div class="paragraph">
-<p>Você pode usar a atribuição de tupla em um laço <code>for</code> para percorrer um array de tupla:
+<p>Você pode usar a atribuição de tupla em um laço <code>for</code> para percorrer uma lista de tupla:
 </p>
 </div>
 <div class="listingblock">
@@ -9721,7 +9721,7 @@ julia&gt; for (letra, número) in t
 </div>
 </div>
 <div class="paragraph">
-<p>A cada iteração do laço, Julia seleciona a próxima tupla no array e atribui os elementos à letra e ao número. Os parênteses em torno de <code>(letra, número)</code> são necessários.
+<p>A cada iteração do laço, o Julia seleciona a próxima tupla na lista e atribui os elementos à letra e ao número. Os parênteses em torno de <code>(letra, número)</code> são necessários.
 </p>
 </div>
 <div class="paragraph">
@@ -9780,7 +9780,7 @@ b 2</code></pre>
 <p>Como é de se esperar de um dicionário, os itens não estão em nenhuma específica ordem.</p>
 </div>
 <div class="paragraph">
-<p>Indo na outra direção, você pode usar um array de tuplas para inicializar um novo dicionário:</p>
+<p>Indo na outra direção, você pode usar uma lista de tuplas para inicializar um novo dicionário:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9828,7 +9828,7 @@ end</code></pre>
 <p>Este laço percorre os pares chave-valor em <code>diretório</code>, que são tuplas. Ele atribui os elementos da chave em cada tupla <code>sobrenome</code> e <code>nome</code> ao valor em <code>número</code>, e então imprime o nome completo e o número de telefone correspondente.</p>
 </div>
 <div class="paragraph">
-<p>Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em um array. Por exemplo, a tupla <code>("Carlos", "João")</code> apareceria como no <a href="#fig12-1">Diagrama de estado</a>.
+<p>Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em uma lista. Por exemplo, a tupla <code>("Carlos", "João")</code> apareceria como no <a href="#fig12-1">Diagrama de estado</a>.
 </p>
 </div>
 <div id="fig12-1" class="imageblock">
@@ -9854,25 +9854,25 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_sequências_de_sequências">Sequências de Sequências</h3>
 <div class="paragraph">
-<p>Tenho focado em arrays de tuplas, mas quase todos os exemplos neste capítulo também funcionam com arrays de arrays, tuplas de tuplas, e tuplas de arrays. Para evitar listar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
+<p>Tenho focado nas listas de tuplas, mas quase todos os exemplos neste capítulo também funcionam com as listas de listas, tuplas de tuplas, e tuplas de listas. Para evitar enumerar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
 </p>
 </div>
 <div class="paragraph">
-<p>Em muitos contextos, os diferentes tipos de seqüências (strings, arrays e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
+<p>Em muitos contextos, os diferentes tipos de sequências (strings, listas e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
 </p>
 </div>
 <div class="paragraph">
-<p>Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar um array de caracteres em seu lugar.
+<p>Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar uma lista de caracteres em seu lugar.
 </p>
 </div>
 <div class="paragraph">
-<p>Arrays são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
+<p>As listas são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
 </p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que um array.</p>
+<p>Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que uma lista.</p>
 </li>
 <li>
 <p>Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado causado por um alias.
@@ -9884,14 +9884,14 @@ end</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Como as tuplas são imutáveis, elas não dispõem de funções como <code>sort!</code> e <code>reverse!</code>, que modificam os arrays existentes. Mas Julia possui a função interna <code>sort</code>, que recebe um array e devolve um novo array com os mesmos elementos na ordem classificada, e <code>reverse</code>, que recebe qualquer sequência e devolve uma sequência do mesmo tipo na ordem contrária.
+<p>Como as tuplas são imutáveis, elas não dispõem de funções como <code>sort!</code> e <code>reverse!</code>, que modificam os arrays existentes. Mas o Julia possui a função interna <code>sort</code>, que recebe uma lista e devolve uma nova lista com os mesmos elementos na ordem classificada, e <code>reverse</code>, que recebe qualquer sequência e devolve uma sequência do mesmo tipo na ordem contrária.
 </p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_depuração">Depuração</h3>
 <div class="paragraph">
-<p>Arrays, dicionários e tuplas são exemplos de <em>estruturas de dados</em>; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de <em>erros de forma</em>; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
+<p>As listas, os dicionários e as tuplas são exemplos de <em>estruturas de dados</em>; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de <em>erros de forma</em>; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
 </p>
 </div>
 <div class="paragraph">
@@ -9929,12 +9929,12 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">iterador</dt>
 <dd>
-<p>Um objeto que pode iterar por uma sequência, mas que não dispõe de operadores e funções de array.
+<p>Um objeto que pode iterar por uma sequência, mas que não dispõe de operadores e funções de lista.
 </p>
 </dd>
 <dt class="hdlist1">estrutura de dados</dt>
 <dd>
-<p>Uma coleção de valores relacionados, frequentemente estruturados em array, dicionários, tuplas, etc.
+<p>Uma coleção de valores relacionados, frequentemente estruturados em lista, dicionários, tuplas, etc.
 </p>
 </dd>
 <dt class="hdlist1">erro de forma</dt>
@@ -9982,7 +9982,7 @@ end</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Você pode querer construir um dicionário que mapeia uma coleção de letras até um array de palavras que podem ser soletradas com essas letras. A questão é: como você pode representar a coleção de letras de uma forma que ela possa ser usada como chave?</p>
+<p>Você pode querer construir um dicionário que mapeia uma coleção de letras até uma lista de palavras que podem ser soletradas com essas letras. A questão é: como você pode representar a coleção de letras de uma forma que ela possa ser usada como chave?</p>
 </div>
 </td>
 </tr>
@@ -9990,10 +9990,10 @@ end</code></pre>
 </div>
 </li>
 <li>
-<p>Modifique o programa anterior para imprimir primeiro o maior array de anagramas, seguida pelo segundo mais longo e assim por diante.</p>
+<p>Modifique o programa anterior para imprimir primeiro a maior lista de anagramas, seguida pela segunda mais longa e assim por diante.</p>
 </li>
 <li>
-<p>No Scrabble, um "bingo" é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual é a coleção de oito letras que forma o maior número possível de bingos?</p>
+<p>No Scrabble, um “bingo” é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual é a coleção de oito letras que forma o maior número possível de bingos?</p>
 </li>
 </ol>
 </div>
@@ -10001,7 +10001,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex12-3">Exercício 12-4</h5>
 <div class="paragraph">
-<p>Duas palavras formam um “par de metátese“ se você puder transformar uma na outra trocando duas letras, como no caso de "converse" e "conserve". Escreva um programa que encontre todos os pares de metáteses no dicionário.
+<p>Duas palavras formam um “par de metátese” se você puder transformar uma na outra trocando duas letras, como no caso de “converse“ e “conserve”. Escreva um programa que encontre todos os pares de metáteses no dicionário.
 </p>
 </div>
 <div class="admonitionblock tip">
@@ -10057,7 +10057,7 @@ end</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Você pode escrever uma função que recebe uma palavra e obtenha um array de todas as palavras que podem ser formadas removendo uma letra. Este array contém os “filhos” da palavra.</p>
+<p>Você pode escrever uma função que recebe uma palavra e obtenha uma lista de todas as palavras que podem ser formadas removendo uma letra. Esta lista contém os “filhos” da palavra.</p>
 </li>
 <li>
 <p>Recursivamente, uma palavra é redutível se algum de seus filhos for redutível. Como caso base, pode-se considerar a string vazia redutível.
@@ -13581,9 +13581,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-5♣ 3♣ 3♠ J♣ 9♠ J♠ 6♥ 7♦ 9♦ Q♥ 5♠ 2♥ 8♥ 8♠ K♦ 10♥ 9♣ A♠ 7♥ 4♦ 5♥ 6♣ A♦ K♣ 8♦ 7♠ 10♦ 2♠ A♣ K♥ J♥ 7♣ Q♣ 4♥ 2♣ 3♦ 6♠ Q♦ A♥ 10♠ J♦ 2♦ 3♥ 4♠ Q♠ 9♥ 5♦ K♠ 6♦ 4♣ 10♣ 8♣
+3♥ Q♥ K♣ 8♦ 7♣ 6♠ 4♦ 10♠ A♣ 7♦ A♦ 2♣ 3♦ J♥ 4♣ 10♦ 6♣ J♠ 5♦ A♥ 2♠ 7♥ 10♥ K♦ 6♦ Q♠ 10♣ 5♣ J♦ 8♣ 5♠ J♣ 2♥ 4♥ Q♦ 2♦ Q♣ K♥ A♠ 8♥ 7♠ 9♥ 3♣ 9♠ 9♦ 5♥ 8♠ 9♣ K♠ 6♥ 3♠ 4♠
 julia&gt; card = pop!(deck)
-8♣
+4♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15503,7 +15503,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20563(double, double) {
+define double @julia_squaresum_20437(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16268,7 +16268,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-06 04:20:35 UTC
+Last updated 2020-07-03 01:28:51 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
