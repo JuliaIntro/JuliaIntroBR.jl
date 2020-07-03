@@ -479,7 +479,7 @@ Para começar com o óbvio, as strings são mais limitadas que as outras sequên
 As listas são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
 (((mutável)))
 
-* Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que um array.
+* Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que uma lista.
 
 * Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado causado por um alias.
 (((alias)))
