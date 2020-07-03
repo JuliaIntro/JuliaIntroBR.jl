@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593739734834225e9</code></pre>
+1.593740384658343e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -9673,7 +9673,7 @@ Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))</code></pre
 </div>
 </div>
 <div class="paragraph">
-<p>O objeto zip é um tipo de <em>iterador</em>, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares aos arrays, e o que difere dos arrays é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
+<p>O objeto zip é um tipo de <em>iterador</em>, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares às listas, e o que difere das listas é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
 </p>
 </div>
 <div class="paragraph">
@@ -13581,9 +13581,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-3♥ Q♥ K♣ 8♦ 7♣ 6♠ 4♦ 10♠ A♣ 7♦ A♦ 2♣ 3♦ J♥ 4♣ 10♦ 6♣ J♠ 5♦ A♥ 2♠ 7♥ 10♥ K♦ 6♦ Q♠ 10♣ 5♣ J♦ 8♣ 5♠ J♣ 2♥ 4♥ Q♦ 2♦ Q♣ K♥ A♠ 8♥ 7♠ 9♥ 3♣ 9♠ 9♦ 5♥ 8♠ 9♣ K♠ 6♥ 3♠ 4♠
+K♦ 8♦ 6♠ 6♦ 2♠ 3♣ 2♣ 5♥ 10♣ 3♥ J♠ 7♥ A♣ A♦ 7♦ 2♥ J♥ 7♣ 4♠ A♥ Q♠ 9♣ 4♥ 8♣ 6♣ 9♦ 4♦ 10♠ J♦ 5♠ K♠ A♠ K♥ 4♣ 9♠ 6♥ K♣ Q♥ 10♥ Q♦ 5♦ 8♠ 7♠ 8♥ Q♣ J♣ 3♠ 5♣ 3♦ 10♦ 2♦ 9♥
 julia&gt; card = pop!(deck)
-4♠
+9♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16268,7 +16268,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-03 01:28:51 UTC
+Last updated 2020-07-03 01:39:41 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
