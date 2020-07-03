@@ -307,7 +307,7 @@ julia> for par in zip(s, t)
 ('c', 3)
 ----
 
-O objeto zip é um tipo de _iterador_, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares aos arrays, e o que difere dos arrays é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
+O objeto zip é um tipo de _iterador_, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares às listas, e o que difere das listas é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
 (((iterador)))
 
 Se você quiser usar operadores e funções de listas, pode-se usar um objeto zip para gerar uma lista:
