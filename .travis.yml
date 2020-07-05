@@ -25,6 +25,7 @@ jobs:
       os: linux
       if: type != pull_request
       script:
+        - asciidoctor --version
         - julia --project -e 'using Pkg; pkg"build"'
         - mkdir -p book/build
         - julia --project=book -e 'using Pkg; pkg"dev ."; pkg"instantiate"'
