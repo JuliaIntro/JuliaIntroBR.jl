@@ -6,33 +6,33 @@ Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever
 [[time]]
 === Hora
 
-Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +minha_hora+ que grava a hora do dia. A definição da estrutura se parece como:
-(((minha_hora)))((("tipo", "definido pelo programador", "minha_hora", see="minha_hora")))
+Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +MeuHorário+ que guarda o horário do dia. A definição da estrutura se parece como:
+(((MeuHorário)))((("tipo", "definido pelo programador", "MeuHorário", see="MeuHorário")))
 
 [source, @julia-setup chap16]
 ----
 """
-Representa a hora do dia.
+Representa o horário do dia.
 
 campos: hora, minuto, segundo
 """
-struct minha_hora
+struct MeuHorário
     hora
     minuto
     segundo
 end
 ----
 
-O nome +Time+ já é utilizado no Julia e para evitar um conflito de nomes, escolhemos +minha_hora+. Podemos criar um novo objeto +minha_hora_:
+O nome +Time+ já é utilizado no Julia e para evitar um conflito de nomes, escolhemos +MeuHorário+. Podemos criar um novo objeto +MeuHorário+:
 (((Time)))((("tipo", "Dates", "Time", see="Time")))
 
 [source,@julia-repl-test chap16]
 ----
-julia> time = minha_hora(11, 59, 30)
-minha_hora(11, 59, 30)
+julia> time = MeuHorário(11, 59, 30)
+MeuHorário(11, 59, 30)
 ----
 
-O diagrama de objeto para +minha_hora+ se parece com a <<fig16-1>>.
+O diagrama de objeto para +MeuHorário+ se parece com a <<fig16-1>>.
 
 [[fig16-1]]
 .Diagrama de objeto
@@ -41,11 +41,11 @@ image::images/fig161.svg[]
 ===== Exercício 16-1
 
 Escreva uma função chamada +imprime_hora+ que recebe um objeto +minha_hora+ e imprima-o em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
-(((imprime_hora)))((("função", "definido pelo programador", "imprime_hora", see="imprime_hora")))
+(((imprime_horário)))((("função", "definido pelo programador", "imprime_horário", see="imprime_horário")))
 
 ===== Exercício 16-2
 
-Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha_hora+, +t1+ e +t2+, e retorna +true+ se +t1+ segue +t2+ cronologicamente e +false+ caso contrário. Desafio: não use uma declaração +if+.
+Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +MeuHorário+, +t1+ e +t2+, e retorna +true+ se +t1+ segue +t2+ cronologicamente e +false+ caso contrário. Desafio: não use uma declaração +if+.
 (((é_depois)))((("função", "definido pelo programador", "é_depois", see="é_depois")))
 
 
@@ -54,43 +54,43 @@ Escreva uma função booleana chamada +é_depois+ que recebe dois objetos +minha
 Nas próximas seções, escreveremos duas funções que adicionam valores de tempo. Elas demonstrarão dois tipos de funções: funções puras e modificadoras. Elas também demonstrarão um plano de desenvolvimento que chamaremos de _protótipo e correção_, que é uma forma de combater um problema complexo começando com um protótipo simples e aos poucos lidar com as complicações.
 (((função pura)))(((protótipo e correção)))
 
-Aqui vai um simples protótipo de +soma_tempo+:
-(((soma_tempo)))((("função", "definido pelo programador", "soma_tempo", see="soma_tempo")))
+Aqui vai um simples protótipo de +soma_horário+:
+(((soma_horário)))((("função", "definido pelo programador", "soma_horário", see="soma_horário")))
 
 [source,@julia-setup chap16]
 ----
-function soma_tempo(t1, t2)
-    minha_hora(t1.hora + t2.hora, t1.minuto + t2.minuto, t1.segundo + t2.segundo)
+function soma_horário(t1, t2)
+    MeuHorário(t1.hora + t2.hora, t1.minuto + t2.minuto, t1.segundo + t2.segundo)
 end
 ----
 
-A função cria um novo objeto +minha_hora+, inicializando os seus campos e retornando uma referência ao novo objeto. Isso é chamado de _função pura_ pois não modifica nenhum dos objetos que são passados como argumentos e não tem efeito, como exibir um valor ou obter entrada do usuário, além de retornar um valor.
+A função cria um novo objeto +MeuHorário+, inicializando os seus campos e retornando uma referência ao novo objeto. Isso é chamado de _função pura_ pois não modifica nenhum dos objetos que são passados como argumentos e não tem efeito, como exibir um valor ou obter entrada do usuário, além de retornar um valor.
 
-Para testar essa função, criaremos dois objetos +minha_hora+: +start+ que contém a hora de início de um filme, como _Monthy Python: Em Busca do Cálice Sagrado_, e +duração+ que contém o tempo de duração do filme, que é de uma hora e 35 minutos.
+Para testar essa função, criaremos dois objetos +MeuHorário+: +início+ que contém a hora de início de um filme, como _Monthy Python: Em Busca do Cálice Sagrado_, e +duração+ que contém o tempo de duração do filme, que é de uma hora e 35 minutos.
 
-+soma_tempo+ descobre quando o filme irá terminar.
++soma_horário+ descobre quando o filme irá terminar.
 
 [source,@julia-eval chap16]
 ----
 using Printf
-function imprima_hora(tempo::minha_hora)
+function imprima_horário(tempo::MeuHorário)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end;
 ----
 
 [source,@julia-repl-test chap16]
 ----
-julia> início = minha_hora(9, 45, 0);
+julia> início = MeuHorário(9, 45, 0);
 
-julia> duração = minha_hora(1, 35, 0);
+julia> duração = MeuHorário(1, 35, 0);
 
-julia> fim = add_tempo(início, duração);
+julia> fim = soma_horário(início, duração);
 
-julia> imprima_hora(fim)
+julia> imprima_horário(fim)
 10:80:00
 ----
 
-O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que essa função não lida com casos no qual o número de segundos ou minutos ultrapassam sessenta. Quando isso ocorre, temos que "carregar" os segundos extras para a coluna de minutos ou os minutos extras para a coluna de horas. Aqui vai uma versão aprimorada:
+O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que essa função não lida com casos no qual o número de segundos ou minutos ultrapassam sessenta. Quando isso ocorre, temos que “carregar” os segundos extras para a coluna de minutos ou os minutos extras para a coluna de horas. Aqui vai uma versão aprimorada:
 
 [source, @julia-setup chap16]
 ----
@@ -106,7 +106,7 @@ function soma_tempo(t1, t2)
         minuto -= 60
         hora += 1
     end
-    minha_hora(hora, minuto, segundo)
+    MeuHorário(hora, minuto, segundo)
 end
 ----
 
@@ -140,7 +140,7 @@ A primeira linha executa a operação básica, o resto lida com os casos especia
 
 Essa função está correta? O que acontece se +segundos+ for muito maior que 60?
 
-Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até que +tempo.segundo+ seja menor que 60. Uma solução é substituir as declarações +if+ com as declarações +while+. O que fará com que a função fique correta, porém, não muito eficiente.
+Neste caso, não basta carregar uma vez; temos que continuar a fazer isso até que +tempo.segundo+ seja menor que 60. Uma solução é substituir as declarações +if+ por declarações +while+. O que fará com que a função fique correta, porém, não muito eficiente.
 
 ===== Exercício 16-3
 
@@ -167,7 +167,7 @@ Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um en
 Uma alternativa é o _desenvolvimento projetado_, no qual obter uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, podemos perceber que um objeto Time é na verdade um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de ums”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
 (((desenvolvimento projetado)))
 
-Quando escrevemos +soma_tempo+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
+Quando escrevemos +soma_horário+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
 
 Essa observação nos sugere uma outra abordagem para todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
 
@@ -197,11 +197,11 @@ end
 
 Talvez você tenha que pensar um pouco e executar alguns testes para se convencer de que essas funções estão corretas. Uma forma de testar é verificar que +int_para_hora(hora_para_int(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de verificação de consistência.
 
-Uma vez que você esteja convencido de que elas estão corretas, você poderá usá-las para reescrever +soma_tempo+
+Uma vez que você esteja convencido de que elas estão corretas, você poderá usá-las para reescrever +soma_horário+
 
 [source,@julia-setup chap16]
 ----
-function soma_tempo(t1, t2)
+function soma_horário(t1, t2)
     segundos = hora_para_int(t1) + hora_para_int(t2)
     int_para_hora(segundos)
 end
@@ -217,20 +217,20 @@ Algumas vezes, converter da base 60 para a base 10 e vice-versa é mais difícil
 
 Mas se nós tivermos a ideia de tratar horas como número de base 60 e investir na escrita de funções de conversão (+tempo_para_int+ e +int_para_tempo+), nós temos um programa que é menor, mais fácil de ler e depurar, e mais confiável.
 
-Também é mais fácil acrescentar característica depois. Por exemplo, imagine subtrair dois objetos +minha_hora+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com empréstimo. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
+Também é mais fácil acrescentar característica depois. Por exemplo, imagine subtrair dois objetos +MeuHorário+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com empréstimo. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
 
 Ironicamente, as vezes tornar um problema mais difícil (ou mais geral) facilita (porque há menos casos especiais e menos oportunidades de erro).
 
 [[chap16_debugging]]
 === Depurando
 
-Um objeto +minha_hora+ é bem formado se os valores de +minuto+ e +segundo+ estão entre 0 e 60 (incluindo 0 mas não 60) e se +hora+ é positivo. +hora+ e +minuto+ devem ser valores integrais mas talvez devessemos permitir que +segundo+ tenha uma parte fracional.
+Um objeto +MeuHorário+ é bem formado se os valores de +minuto+ e +segundo+ estão entre 0 e 60 (incluindo 0 mas não 60) e se +hora+ é positivo. +hora+ e +minuto+ devem ser valores integrais mas talvez devessemos permitir que +segundo+ tenha uma parte fracional.
 (((depurando)))
 
 Requisitos como esses são ditos _invariantes_ porque eles sempre devem ser verdadeiros. Para dizer de outra forma, se eles não forem verdadeiros, algo deu errado.
 (((invariante)))
 
-Escrever código para verificar requisitos invariantes pode ajudar a descobrir erros e encontrar suas causas. Por exemplo, você pode ter uma função como +hora_válida+, que receba um objeto +minha_hora+ e retorna +false+ se ela violar um requisito invariante:
+Escrever código para verificar requisitos invariantes pode ajudar a descobrir erros e encontrar suas causas. Por exemplo, você pode ter uma função como +hora_válida+, que receba um objeto +MeuHorário+ e retorna +false+ se ela violar um requisito invariante:
 (((hora_válida)))((("função", "definido pelo programador", "hora_válida", see="hora_válida")))
 
 [source,@julia-setup chap16]
@@ -247,13 +247,13 @@ end
 ----
 
 No início de cada função você deve checar os argumentos para ter certeza de que eles são válidos.
-(((soma_tempo)))(((error)))
+(((soma_horário)))(((error)))
 
 [source,@julia-setup chap16]
 ----
-function soma_tempo(t1,t2)
+function soma_horário(t1,t2)
     if !hora_válida(t1) || !hora_válida(t2)
-        error("objeto minha_hora inválido em soma_tempo")
+        error("objeto MeuHorário inválido em soma_horário")
     end
     segundos = hora_para_int(t1) + hora_para_int(t2)
    int_para_hora(segundos)
@@ -265,9 +265,9 @@ Ou você pode usar uma instrução +@asset+, que verifica determinado requisito 
 
 [source,@julia-setup chap16]
 ----
-function soma_tempo(t1, t2)
-    @assert(hora_válida(t1) && hora_válida(t2), "objeto minha_hora inválido em add_tempo")
-    segundos =hora_para_int(t1) + hora_para_int(t2)
+function soma_horário(t1, t2)
+    @assert(hora_válida(t1) && hora_válida(t2), "objeto MeuHorário inválido em soma_horário")
+    segundos = hora_para_int(t1) + hora_para_int(t2)
     int_para_tempo(segundos)
 end
 ----
