@@ -4171,7 +4171,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593289153256876e9</code></pre>
+1.594011807137705e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11497,7 +11497,7 @@ String "1 2\t 3\n 4"</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Podemos armazenar as coordenadas separadamente em duas variáveis, <code>x</code> e <code>y</code>.</p>
+<p>Poderíamos armazenar as coordenadas separadamente em duas variáveis, <code>x</code> e <code>y</code>.</p>
 </li>
 <li>
 <p>Poderíamos armazenar as coordenadas como elementos de um vetor ou de uma tupla.</p>
@@ -11662,7 +11662,7 @@ julia&gt; lacuna.y = 4.0
 </ul>
 </div>
 <div class="paragraph">
-<p>Nesse momento, é difícil dizer se um é melhor que o outro e portanto, implementaremos o primeiro, apenas como exemplo.
+<p>Nesse momento, é difícil dizer se uma é melhor que a outra e portanto, implementaremos a primeira, apenas como exemplo.
 </p>
 </div>
 <div class="listingblock">
@@ -11684,7 +11684,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Para a representação de um retângulo, você tem que instanciar um objeto <code>Retângulo</code>:</p>
+<p>Para representar um retângulo, você precisa instanciar um objeto <code>Retângulo</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13471,9 +13471,9 @@ end</p>
 <p>julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♠ J♣ J♥ 6♣ 4♠ 2♣ K♠ Q♣ 7♠ 8♥ Q♦ Q♥ 5♥ 6♠ 8♣ K♦ 10♣ 7♥ 2♦ 10♥ J♦ 7♦ 3♥ K♣ Q♠ 2♥ 5♠ 2♠ A♠ 4♥ 10♠ A♣ 3♣ K♥ 5♦ 9♠ 3♦ A♦ 7♣ 6♥ 5♣ 4♦ 8♠ 4♣ 9♦ A♥ 3♠ 10♦ 8♦ 6♦ 9♣ 9♥
+6♣ 3♦ 4♣ K♠ 4♦ 3♠ 9♦ 7♠ 3♣ 3♥ A♥ J♣ K♣ 8♦ J♥ 2♣ Q♦ A♣ 5♠ 10♣ 6♠ Q♣ 10♠ 7♣ 10♥ K♦ A♠ J♠ 8♣ 4♥ 9♠ 8♥ K♥ 2♠ 5♣ 2♦ 9♥ 6♥ 7♦ Q♠ 8♠ 2♥ A♦ 4♠ 9♣ 10♦ 5♥ J♦ Q♥ 7♥ 6♦ 5♦
 julia&gt; card = pop!(deck)
-9♥
+5♦
 julia&gt; push!(hand, card)</p>
 </div>
 <div class="listingblock">
@@ -15280,7 +15280,7 @@ This representation of the code is transformed into LLVM code:
 <div class="paragraph">
 <p>julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within &#8216;squaresum&#8217;
-define double @julia_squaresum_20466(double, double) {
+define double @julia_squaresum_20435(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within &#8216;literal_pow&#8217;
 ; │┌ @ float.jl:405 within &#8216;*&#8217;
@@ -15812,7 +15812,7 @@ image::images/screenshot2.png[]
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-27 20:19:10 UTC
+Last updated 2020-07-06 05:03:24 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
