@@ -67,7 +67,7 @@ Se você não fechar o arquivo, ele é fechado quando o programa encerra.
 
 === Formatação
 
-O argumeto da função write precisa ser uma string, então se quisermos colocar outros valores no arquivo, temos que convertê-los para string. A maneira mais fácil de fazer isso é usando +string+ ou interpolação de strings:
+O argumento da função write precisa ser uma string, então se quisermos colocar outros valores no arquivo, temos que convertê-los para string. A maneira mais fácil de fazer isso é usando +string+ ou interpolação de strings:
 (((string)))(((interpolação de strings)))
 
 [source,@julia-repl-test chap14]
@@ -112,13 +112,13 @@ julia> cwd = pwd()
 
 +cwd+ significa “current working directory” (diretório atual funcional). O resultado nesse exemplo é +home/ben+, que é o diretório home do usuário chamado +ben+.
 
-Uma string como +"/home/ben"+ que identifica um arquivo ou diretório é chamado de _caminho_.
+Uma string como +"/home/ben"+ que identifica um arquivo ou diretório é chamada de _caminho_.
 (((caminho)))
 
 Um nome de arquivo simples, como +memo.txt+ também é considerado um caminho, mas é um _caminho relativo_ porque se refere ao diretório atual. Se o diretório atual é +/home/ben+, o nome do arquivo +memo.txt+ se referiria à +/home/ben/memo.txt+.
 (((caminho relativo)))((("caminho", "relativo", see="caminho relativo")))
 
-Um caminho que começa com +/+ não depende do diretório atual; ele é chamado de _caminho absoluto_. Para achar um caminho absoluto para um arquivo, você pode usar +abspath+:
+Um caminho que começa com +/+ não depende do diretório atual; ele é chamado de _caminho absoluto_. Para encontrar um caminho absoluto para um arquivo, você pode usar +abspath+:
 (((caminho absoluto)))((("caminho", "absoluto", see="caminho absoluto")))(((abspath)))((("função", "Base", "abspath", see="abspath")))
 
 [source,jlcon]
@@ -184,7 +184,7 @@ end
 
 [TIP]
 ====
-O Julia fornece uma função chamada +walkdir+ (consulte https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir) que é similar a esta mas é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
+O Julia fornece uma função chamada +walkdir+ (consulte https://docs.julialang.org/en/v1/base/file/#Base.Filesystem.walkdir) que é similar a esta, porém, é mais versátil. Como um exercício, leia a documentação e a use para imprimir os nomes dos arquivos em um dado diretório e seus subdiretórios.
 (((walkdir)))((("função", "Base", "walkdir", see="walkdir")))
 ====
 
@@ -211,7 +211,7 @@ ERROR: SystemError: opening file "/etc/passwd": Operation not permitted
 
 Para evitar estes erros, você pode usar funções como +ispath+ e +isfile+, porém, tomaria muito tempo e código para verificar todas as possibilidades.
 
-É mais fácil tentar de uma vez-e lidar com os problemas se eles ocorrerem-que é exatamente o que a declaração +try+ faz. A sintaxe é similar a uma declaração +if+:
+É mais fácil tentar de uma vez—e lidar com os problemas se eles ocorrerem—que é exatamente o que a declaração +try+ faz. A sintaxe é similar a uma declaração +if+:
 (((declaração try)))((("declaração", "try", see="declaração try")))(((try)))((("palavra-chave", "try", see="try")))(((catch)))((("palavra-chave", "catch", see="catch")))(((end)))
 
 [source,julia]
@@ -283,15 +283,15 @@ julia> db["cleese.png"]
 "Foto de John Cleese."
 ----
 
-Se você faz outra atribuição para uma chava já existe, +GDBM+ substitui o valor antigo:
+Se você faz outra atribuição para uma chave já existente, +GDBM+ substitui o valor antigo:
 (((atribuição)))
 
 [source,@julia-repl-test chap14]
 ----
-julia> db["cleese.png"] = "Foto de John Cleese fazendo uma andada engraçada."
-"Foto de John Cleese fazendo uma andada engraçada."
+julia> db["cleese.png"] = "Foto de John Cleese fazendo uma caminhada engraçada."
+"Foto de John Cleese fazendo uma caminhada engraçada."
 julia> db["cleese.png"]
-"Foto de John Cleese fazendo uma andada engraçada."
+"Foto de John Cleese fazendo uma caminhada engraçada."
 ----
 
 Algumas funções que tem um dicionário como argumento, como +keys+ e +values+, não funcionam com objetos banco de dados. Mas iteração com o laço +for+ funciona:
@@ -318,7 +318,7 @@ julia> close(db)
 
 A limitação do +GDBM+ é de que as chaves e valores precisam ser strings ou listas de bytes. Se você tentar usar qualquer outro tipo, você recebe um erro.
 
-As funções +serialize+ e +deserialize+ podem ajudar. Elas traduzem quase todo tipo de objeto em um array de bytes (um iobuffer) adequado para armazenamento em um banco de dados, e em seguida traduz o array de bytes em objetos:
+As funções +serialize+ e +deserialize+ podem ajudar. Elas traduzem quase todo tipo de objeto em uma lista de bytes (um iobuffer) adequado para armazenamento em um banco de dados e em seguida traduz a lista de bytes em objetos:
 (((Serialização)))((("módulo", "Serialização", see="Serialization")))(((serialize)))((("função", "Serialização", "serialize", see="serialize)))(((IOBuffer)))((("tipo", "Base", "IOBuffer", see="IOBuffer")))(((take!)))((("função", "Base", "take!", see="take!")))
 
 [source,@julia-repl-test chap14]
@@ -366,7 +366,7 @@ julia> t1 ≡ t2
 false
 ----
 
-Em outras palavras, serialization e em seguida deserialization tem o mesmo efeito de copiar o objeto.
+Em outras palavras, serialização e em seguida desserialização tem o mesmo efeito de copiar o objeto.
 (((copiar)))
 
 Você pode usar isso para guardar coisas diferentes de strings em um banco de dados.
@@ -511,7 +511,7 @@ Se você quer recarregar o módulo, você tem que reiniciar o REPL. O pacote +Re
 ====
 
 
-=== Depurando
+=== Depuração
 
 Quando você está lendo ou escrevendo arquivos, você pode encontrar problemas com o espaço em branco. Estes erros podem ser dificéis de depurar por causa de espaços, tabs e novas linhas que são normalmente invisivéis.
 (((\n)))(((\t)))
@@ -525,7 +525,7 @@ julia> println(s)
  4
 ----
 
-As funções embutidas +repr+ ou +dump+ podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.
+As funções internas +repr+ ou +dump+ podem ajudar. Elas recebem qualquer objeto como argumento e retornam uma string representando o objeto.
 
 (((repr)))((("função", "Base", "repr", see="repr")))(((dump)))((("função", "Base", "dump", see="dump")))
 
@@ -543,7 +543,7 @@ String "1 2\t 3\n 4"
 ----
 
 Isso pode ser útil para depurar.
-(((depurando)))
+(((depuração)))
 
 Um outro problema que você pode encontrar é que sistemas diferentes usam caracteres diferentes para indicar o final da linha. Alguns sistemas usam uma nova linha, representada por +\n+. Outros usam um caractere de retorno, representado por +\r. Alguns usam ambos. Se você move arquivos entre sistemas diferentes, essas inconsistências podem causar problemas.
 (((\r)))
