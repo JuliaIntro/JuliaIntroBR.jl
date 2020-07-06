@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594050772738153e9</code></pre>
+1.594052155577758e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12574,20 +12574,20 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_métodos">Métodos</h3>
 <div class="paragraph">
-<p>Em <a href="#chap16">Structs and Functions</a>, nós definimos uma struct chamada <code>MeuTempo</code> e em <a href="#time">Time</a>, você escreveu uma função chamada <code>imprime_tempo</code>:
+<p>Em <a href="#chap16">Structs and Functions</a>, nós definimos uma struct chamada <code>MeuHorário</code> e em <a href="#time">Time</a>, você escreveu uma função chamada <code>imprima_horário</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">using Printf
 
-struct MeuTempo
+struct MeuHorário
     hora :: Int64
     minuto :: Int64
     segundo :: Int64
 end
 
-function imprime_tempo(tempo)
+function imprima_horário(tempo)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end</code></pre>
 </div>
@@ -12596,37 +12596,37 @@ end</code></pre>
 <p>Como você pode ver, as declarações de tipo podem e devem ser adicionadas nos campos da definição da struct por questões de performance.</p>
 </div>
 <div class="paragraph">
-<p>Para chamar esta função, você deve passar um objeto <code>MeuTempo</code> como um argumento:</p>
+<p>Para chamar esta função, você deve passar um objeto <code>MeuHorário</code> como um argumento:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuTempo(9, 45, 0)
-MeuTempo(9, 45, 0)
-julia&gt; imprime_tempo(início)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuHorário(9, 45, 0)
+MeuHorário(9, 45, 0)
+julia&gt; imprima_horário(início)
 09:45:00</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para adicionar um <em>método</em> à função <code>imprime_tempo</code> que apenas aceita um objeto <code>MeuTempo</code> como argumento, tudo que precisamos fazer é acrescentar <code>::</code> seguido de <code>MeuTempo</code> no argumento <code>tempo</code> na definição de função:
+<p>Para adicionar um <em>método</em> à função <code>imprima_horário</code> que apenas aceita um objeto <code>MeuHorário</code> como argumento, tudo que precisamos fazer é acrescentar <code>::</code> seguido de <code>MeuHorário</code> no argumento <code>tempo</code> na definição de função:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function imprime_tempo(tempo::MeuTempo)
+<pre class="pygments highlight"><code data-lang="julia">function imprima_horário(tempo::MeuHorário)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um método é uma definição de função com uma <em>assinatura</em> específica: <code>imprime_tempo</code> possui um argumento do tipo <code>MeuTempo</code>.
+<p>Um método é uma definição de função com uma <em>assinatura</em> específica: <code>imprima_horário</code> possui um argumento do tipo <code>MeuHorário</code>.
 </p>
 </div>
 <div class="paragraph">
-<p>Chamar a função <code>imprime_tempo</code> com um objeto <code>MeuTempo</code> produz o mesmo resultado:</p>
+<p>Chamar a função <code>imprima_horário</code> com um objeto <code>MeuHorário</code> produz o mesmo resultado:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; imprime_tempo(início)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; imprima_horário(início)
 09:45:00</code></pre>
 </div>
 </div>
@@ -12635,24 +12635,24 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function imprime_tempo(tempo)
+<pre class="pygments highlight"><code data-lang="julia">function imprima_horário(tempo)
     println("Eu não sei como imprimir o argumento tempo.")
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se você chamar a função <code>imprime_tempo</code> com um objeto diferente de <code>MeuTempo</code>, agora recebe-se:</p>
+<p>Se você chamar a função <code>imprima_horário</code> com um objeto diferente de <code>MeuHorário</code>, agora recebe-se:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; imprime_tempo(150)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; imprima_horário(150)
 Eu não sei como imprimir o argumento tempo.</code></pre>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_exercício_17_1">Exercício 17-1</h5>
 <div class="paragraph">
-<p>Reescreva <code>tempo_para_int</code> e <code>int_para_tempo</code> (de <a href="#prototyping_versus_planning">Prototyping Versus Planning</a>) para especificar os seus argumentos.
+<p>Reescreva <code>horário_para_int</code> e <code>int_para_horário</code> (de <a href="#prototyping_versus_planning">Prototyping Versus Planning</a>) para especificar os seus argumentos.
 </p>
 </div>
 </div>
@@ -12665,9 +12665,9 @@ Eu não sei como imprimir o argumento tempo.</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function incrementar(tempo::MeuTempo, segundos::Int64)
-    segundos += tempo_para_int(tempo)
-    int_para_tempo(segundos)
+<pre class="pygments highlight"><code data-lang="julia">function incrementar(tempo::MeuHorário, segundos::Int64)
+    segundos += horário_para_int(tempo)
+    int_para_horário(segundos)
 end</code></pre>
 </div>
 </div>
@@ -12679,10 +12679,10 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuTempo(9, 45, 0)
-MeuTempo(9, 45, 0)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuHorário(9, 45, 0)
+MeuHorário(9, 45, 0)
 julia&gt; incrementar(início, 1337)
-MeuTempo(10, 7, 17)</code></pre>
+MeuHorário(10, 7, 17)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12692,19 +12692,19 @@ MeuTempo(10, 7, 17)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; incrementar(1337, início)
-ERROR: MethodError: no method matching incrementar(::Int64, ::MeuTempo)</code></pre>
+ERROR: MethodError: no method matching incrementar(::Int64, ::MeuHorário)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A assinatura do método é <code>incrementar(tempo::MeuTempo, segundos::Int64)</code> e não <code>incrementar(segundos::Int64, tempo::MeuTempo)</code>.</p>
+<p>A assinatura do método é <code>incrementar(tempo::MeuHorário, segundos::Int64)</code> e não <code>incrementar(segundos::Int64, tempo::MeuHorário)</code>.</p>
 </div>
 <div class="paragraph">
-<p>Reescrever <code>é_depois</code> para operar somente com objetos <code>MeuTempo</code> é fácil:
+<p>Reescrever <code>é_depois</code> para operar somente com objetos <code>MeuHorário</code> é fácil:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function é_depois(t1::MeuTempo, t2::MeuTempo)
+<pre class="pygments highlight"><code data-lang="julia">function é_depois(t1::MeuHorário, t2::MeuHorário)
     (t1.hora, t1.minuto, t1.segundo) &gt; (t2.hora, t2.minuto, t2.segundo)
 end</code></pre>
 </div>
@@ -12736,13 +12736,13 @@ f() = f(1, 2)</code></pre>
 <div class="sect2">
 <h3 id="construtor">Construtores</h3>
 <div class="paragraph">
-<p>Um <em>construtor</em> é uma função especial chamada para criar um objeto. Os métodos construtores padrões de <code>MeuTempo</code> tem a seguinte assinatura:
+<p>Um <em>construtor</em> é uma função especial chamada para criar um objeto. Os métodos construtores padrões de <code>MeuHorário</code> tem a seguinte assinatura:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">MeuTempo(hora, minuto, segundo)
-MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">MeuHorário(hora, minuto, segundo)
+MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12751,13 +12751,13 @@ MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function MeuTempo(tempo::MeuTempo)
-    MeuTempo(tempo.hora, tempo.minuto, tempo.segundo)
+<pre class="pygments highlight"><code data-lang="julia">function MeuHorário(tempo::MeuHorário)
+    MeuHorário(tempo.hora, tempo.minuto, tempo.segundo)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse método é chamado de <em>construtor cópia</em> pois o novo objeto <code>MeuTempo</code> é uma cópia do seu argumento.
+<p>Esse método é chamado de <em>construtor cópia</em> pois o novo objeto <code>MeuHorário</code> é uma cópia do seu argumento.
 </p>
 </div>
 <div class="paragraph">
@@ -12766,11 +12766,11 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct MeuTempo
+<pre class="pygments highlight"><code data-lang="julia">struct MeuHorário
     hora :: Int64
     minuto :: Int64
     segundo :: Int64
-    function MeuTempo(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
+    function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
         @assert(0 ≤ minuto &lt; 60, "minuto não está entre 0 e 60.")
         @assert(0 ≤ segundo &lt; 60, "segundo não está entre 0 e 60.")
         new(hora, minuto, segundo)
@@ -12779,14 +12779,14 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A struct <code>MeuTempo</code> agora tem 4 métodos construtores internos:</p>
+<p>A struct <code>MeuHorário</code> agora tem 4 métodos construtores internos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">MeuTempo()
-MeuTempo(hora::Int64)
-MeuTempo(hora::Int64, minuto::Int64)
-MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">MeuHorário()
+MeuHorário(hora::Int64)
+MeuHorário(hora::Int64, minuto::Int64)
+MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12812,11 +12812,11 @@ MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">mutable struct MeuTempo
+<pre class="pygments highlight"><code data-lang="julia">mutable struct MeuHorário
     hora :: Int
     minuto :: Int
     segundo :: Int
-    function MeuTempo(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
+    function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
         @assert(0 ≤ minuto &lt; 60, "minuto está entre 0 e 60.")
         @assert(0 ≤ segundo &lt; 60, "segundo está entre 0 e 60.")
         tempo = new()
@@ -12836,14 +12836,14 @@ end</code></pre>
 <div class="sect2">
 <h3 id="__code_show_code"><code>show</code></h3>
 <div class="paragraph">
-<p><code>show</code> é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método <code>show</code> para os objetos <code>MeuTempo</code>:
+<p><code>show</code> é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método <code>show</code> para os objetos <code>MeuHorário</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">using Printf
 
-function Base.show(io::IO, tempo::MeuTempo)
+function Base.show(io::IO, tempo::MeuHorário)
     @printf(io, "%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end</code></pre>
 </div>
@@ -12856,7 +12856,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; tempo = MeuTempo(9, 45)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; tempo = MeuHorário(9, 45)
 09:45:00</code></pre>
 </div>
 </div>
@@ -12874,7 +12874,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_operador_de_sobrecarga">Operador de Sobrecarga</h3>
 <div class="paragraph">
-<p>Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado <code>+</code> com dois argumentos <code>MeuTempo</code>, você pode usar o operador <code>+</code> em objetos <code>MeuTempo</code>.</p>
+<p>Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado <code>+</code> com dois argumentos <code>MeuHorário</code>, você pode usar o operador <code>+</code> em objetos <code>MeuHorário</code>.</p>
 </div>
 <div class="paragraph">
 <p>A definição deve se parecer com algo como:</p>
@@ -12883,9 +12883,9 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">import Base.+
 
-function +(t1::MeuTempo, t2::MeuTempo)
-    segundos = tempo_para_int(t1) + tempo_para_int(t2)
-    int_para_tempo(segundos)
+function +(t1::MeuHorário, t2::MeuHorário)
+    segundos = horário_para_int(t1) + horário_para_int(t2)
+    int_para_horário(segundos)
 end</code></pre>
 </div>
 </div>
@@ -12897,16 +12897,16 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuTempo(9, 45)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuHorário(9, 45)
 09:45:00
-julia&gt; duração = MeuTempo(1, 35, 0)
+julia&gt; duração = MeuHorário(1, 35, 0)
 01:35:00
 julia&gt; início + duração
 11:20:00</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Quando você aplica o operador <code>+</code> aos objetos <code>MeuTempo</code>, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca <code>show</code>. Então muita coisa acontece por trás das cortinas!</p>
+<p>Quando você aplica o operador <code>+</code> aos objetos <code>MeuHorário</code>, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca <code>show</code>. Então muita coisa acontece por trás das cortinas!</p>
 </div>
 <div class="paragraph">
 <p>Adicionar ao comportamento de um operador para que funcione com tipos definidos pelo programador é chamado de <em>sobrecarga de operador</em>.
@@ -12916,21 +12916,21 @@ julia&gt; início + duração
 <div class="sect2">
 <h3 id="_despacho_múltiplo">Despacho Múltiplo</h3>
 <div class="paragraph">
-<p>Na seção anterior, nós adicionamos dois objetos <code>MeuTempo</code>, mas você também pode adicionar um inteiro ao objeto <code>MeuTempo</code>:</p>
+<p>Na seção anterior, nós adicionamos dois objetos <code>MeuHorário</code>, mas você também pode adicionar um inteiro ao objeto <code>MeuHorário</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function +(tempo::MeuTempo, segundos::Int64)
+<pre class="pygments highlight"><code data-lang="julia">function +(tempo::MeuHorário, segundos::Int64)
     incrementa(tempo, segundos)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aqui está um exemplo que usa o operador <code>+</code> com um objeto <code>MeuTempo</code> e um inteiro:</p>
+<p>Aqui está um exemplo que usa o operador <code>+</code> com um objeto <code>MeuHorário</code> e um inteiro:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuTempo(9, 45)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuHorário(9, 45)
 09:45:00
 julia&gt; início + 1337
 10:07:17</code></pre>
@@ -12941,7 +12941,7 @@ julia&gt; início + 1337
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function +(segundos::Int64, tempo::MeuTempo)
+<pre class="pygments highlight"><code data-lang="julia">function +(segundos::Int64, tempo::MeuHorário)
   tempo + segundos
 end</code></pre>
 </div>
@@ -13023,15 +13023,15 @@ Dict{Any,Any} with 3 entries:
 </p>
 </div>
 <div class="paragraph">
-<p>Já que um método <code>+</code> é fornecido para os objetos <code>MeuTempo</code>, eles funcionam com <code>sum</code>:</p>
+<p>Já que um método <code>+</code> é fornecido para os objetos <code>MeuHorário</code>, eles funcionam com <code>sum</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t1 = MeuTempo(1, 7, 2)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t1 = MeuHorário(1, 7, 2)
 01:07:02
-julia&gt; t2 = MeuTempo(1, 5, 8)
+julia&gt; t2 = MeuHorário(1, 5, 8)
 01:05:08
-julia&gt; t3 = MeuTempo(1, 5, 0)
+julia&gt; t3 = MeuHorário(1, 5, 0)
 01:05:00
 julia&gt; sum((t1, t2, t3))
 03:17:10</code></pre>
@@ -13055,10 +13055,10 @@ julia&gt; sum((t1, t2, t3))
 </p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem <code>tempo_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
+<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem <code>horário_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
 </div>
 <div class="paragraph">
-<p>Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos <code>MeuTempo</code>. Neste capítulo, os campos de um objeto <code>MeuTempo</code> são <code>hora</code>, <code>minuto</code> e <code>segundo</code>.</p>
+<p>Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos <code>MeuHorário</code>. Neste capítulo, os campos de um objeto <code>MeuHorário</code> são <code>hora</code>, <code>minuto</code> e <code>segundo</code>.</p>
 </div>
 <div class="paragraph">
 <p>Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos a partir da meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas também faz com que outras funções sejam mais dificéis.</p>
@@ -13081,14 +13081,14 @@ julia&gt; sum((t1, t2, t3))
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; methods(imprime_tempo)
-# 2 methods for generic function "imprime_tempo":
-[1] imprime_tempo(tempo::MeuTempo) in Main at REPL[3]:2
-[2] imprime_tempo(tempo) in Main at REPL[4]:2</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; methods(imprima_horário)
+# 2 methods for generic function "imprima_horário":
+[1] imprima_horário(tempo::MeuHorário) in Main at REPL[3]:2
+[2] imprima_horário(tempo) in Main at REPL[4]:2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Neste exemplo, a função <code>imprime_tempo</code> tem 2 métodos: um com o argumento <code>MeuTempo</code> e um com o argumento <code>Any</code>.</p>
+<p>Neste exemplo, a função <code>imprima_horário</code> tem 2 métodos: um com o argumento <code>MeuHorário</code> e um com o argumento <code>Any</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -13158,7 +13158,7 @@ julia&gt; sum((t1, t2, t3))
 <div class="sect4">
 <h5 id="ex17-1">Exercício 17-4</h5>
 <div class="paragraph">
-<p>Mude os campos de <code>MeuTempo</code> para ter apenas um único campo representando os segundos passados após a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.</p>
+<p>Mude os campos de <code>MeuHorário</code> para ter apenas um único campo representando os segundos passados após a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.</p>
 </div>
 </div>
 <div class="sect4">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-9♦ Q♥ 4♠ 5♣ 10♥ K♥ 5♦ J♦ A♥ 2♦ J♥ A♦ 3♦ 10♦ 6♥ 6♣ A♠ A♣ 4♥ 3♣ 2♣ J♣ J♠ 7♥ 2♠ 5♠ 2♥ 4♦ 3♥ 10♣ 9♣ 5♥ Q♠ K♦ K♠ 10♠ 3♠ Q♣ 9♠ Q♦ 6♦ 8♠ 7♣ K♣ 8♣ 7♦ 8♥ 9♥ 4♣ 6♠ 7♠ 8♦
+5♥ 6♥ 5♦ K♦ 10♠ K♣ Q♦ 3♣ K♥ 4♥ 3♥ 10♣ K♠ 8♣ Q♣ 8♠ 10♦ 7♥ 3♠ 6♦ J♠ 10♥ A♦ Q♥ 8♦ 8♥ J♥ 4♦ 7♠ 5♣ 4♠ 4♣ 9♥ A♣ 7♦ 2♠ 2♦ A♠ 3♦ 6♣ 7♣ 2♣ Q♠ 9♠ 9♦ 9♣ 2♥ 5♠ J♣ J♦ 6♠ A♥
 julia&gt; card = pop!(deck)
-8♦
+A♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-06 15:52:49 UTC
+Última atualização 2020-07-06 16:15:52 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
