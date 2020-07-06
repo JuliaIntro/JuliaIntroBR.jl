@@ -295,6 +295,7 @@ Ponto(51.0, 102.0)
 
 
 === Copiando Objetos
+
 Usar um alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
