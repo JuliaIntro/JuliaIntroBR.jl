@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.592965520661083e9</code></pre>
+1.594014132971965e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-4♥ 9♦ 5♠ 10♠ 6♠ Q♥ 4♠ 5♦ K♣ 6♣ 7♣ 7♦ 2♣ J♠ 8♣ A♣ 8♦ Q♣ 2♦ Q♦ 6♥ 10♦ A♦ K♠ 5♥ 8♥ 10♥ A♠ 9♠ A♥ 3♠ 8♠ 6♦ J♥ Q♠ 10♣ K♦ J♣ 7♠ 2♠ K♥ 3♣ 3♥ 7♥ 3♦ J♦ 9♣ 5♣ 4♦ 2♥ 9♥ 4♣
+6♥ 9♥ Q♠ 3♦ A♠ 10♣ 2♣ 2♠ 6♣ A♥ 5♠ J♦ 10♥ 7♣ 4♣ 6♠ K♦ 3♠ K♣ 4♦ 5♥ K♠ J♠ 4♠ A♣ 4♥ A♦ 10♠ 5♦ 6♦ 9♦ J♥ Q♥ 3♥ 2♦ Q♦ 9♠ 10♦ 7♠ 3♣ 9♣ 8♦ 7♦ K♥ Q♣ 8♥ J♣ 8♠ 7♥ 8♣ 2♥ 5♣
 julia&gt; card = pop!(deck)
-4♣
+5♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20494(double, double) {
+define double @julia_squaresum_20441(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15629,11 +15629,11 @@ top:
 <div class="ulist">
 <ul>
 <li>
-<p>Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave <code>end</code> no final de um bloco de funções gera a mensagem um tanto redundante <code>ERROR: LoadError: syntax: incomplete: function requires end</code>.
+<p>Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte para código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave <code>end</code> no final de um bloco de funções gera a mensagem um tanto redundante <code>ERROR: LoadError: syntax: incomplete: function requires end</code>.
 </p>
 </li>
 <li>
-<p>Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução <code>ERROR: StackOverflowError</code>.
+<p>Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução <code>ERROR: StackOverflowError</code>.
 </p>
 </li>
 <li>
@@ -15648,7 +15648,7 @@ top:
 <div class="sect2">
 <h3 id="_erros_de_sintaxe">Erros de Sintaxe</h3>
 <div class="paragraph">
-<p>Geralmente os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. E infelizmente as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são <code>ERROR: LoadError: syntax: incomplete: premature end of input</code> e <code>ERROR: LoadError: syntax: unexpected "="</code>, que não são muito informativo.</p>
+<p>Geralmente os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. E infelizmente as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são <code>ERROR: LoadError: syntax: incomplete: premature end of input</code> e <code>ERROR: LoadError: syntax: unexpected "="</code>, que não são muito informativas.</p>
 </div>
 <div class="paragraph">
 <p>Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, em geral na linha anterior.</p>
@@ -15674,7 +15674,7 @@ top:
 <p>Assegure-se que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são "aspas retas", e não as “aspas encaracoladas” (ou “aspas inglesas”).</p>
 </li>
 <li>
-<p>Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!</p>
+<p>Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, ela pode não produzir uma mensagem de erro!</p>
 </li>
 <li>
 <p>Quando não se fecha um operador aberto —<code>(</code>, <code>{</code>, ou <code>[</code>—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.</p>
@@ -15755,9 +15755,9 @@ top:
 </div>
 </li>
 <li>
-<p>Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e depois aparecerá uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>. Se isso acontecer, vá para a subseção <a href="#infinite_recursion">Recursão Infinita</a> mais adiante.</p>
+<p>Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e em seguida gere uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>. Se isso acontecer, vá para a subseção <a href="#infinite_recursion">Recursão Infinita</a> mais adiante.</p>
 <div class="paragraph">
-<p>Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, ainda assim poderá usar as técnicas de <a href="#infinite_recursion">Recursão Infinita</a>.
+<p>Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, você ainda pode usar as técnicas descritas em <a href="#infinite_recursion">Recursão Infinita</a>.
 </p>
 </div>
 </li>
@@ -15794,7 +15794,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="infinite_recursion">Recursão Infinita</h5>
 <div class="paragraph">
-<p>Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e depois aparece uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>.
+<p>Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e em seguida gere uma mensagem de erro <code>ERROR: LoadError: StackOverflowError</code>.
 </p>
 </div>
 <div class="paragraph">
@@ -15965,11 +15965,11 @@ end</code></pre>
 <p>A melhor maneira de reparar o seu modelo mental é particionar o programa em seus componentes (geralmente as funções e os métodos) e testar cada componente isoladamente. Uma vez encontrada a discrepância entre o seu modelo e a realidade, você pode resolver o problema.</p>
 </div>
 <div class="paragraph">
-<p>Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então ao encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.</p>
+<p>É claro que você deve criar e testar componentes à medida que desenvolve o seu programa. Então ao encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tenho_uma_grande_expressão_bizarra_e_não_faz_o_que_eu_presumo">Tenho uma Grande Expressão Bizarra e Não Faz o Que Eu Presumo</h4>
+<h4 id="_tenho_uma_grande_expressão_bizarra_e_ela_não_faz_o_que_eu_espero">Tenho uma Grande Expressão Bizarra e Ela Não Faz o Que Eu Espero</h4>
 <div class="paragraph">
 <p>Escrever expressões complexas é bom desde que sejam legíveis, mas podem ser difíceis de depurar. Muitas vezes é uma boa ideia dividir uma expressão complexa em uma série de atribuições a variáveis temporárias.</p>
 </div>
@@ -16018,7 +16018,7 @@ adicionar_carta(jogo.mãos[i], carta_escolhida)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tenho_uma_função_que_não_retorna_o_que_eu_presumo">Tenho uma Função Que Não Retorna o Que Eu Presumo</h4>
+<h4 id="_tenho_uma_função_que_não_retorna_o_que_eu_espero">Tenho uma Função Que Não Retorna o Que Eu Espero</h4>
 <div class="paragraph">
 <p>No caso de uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, pode-se usar uma variável temporária. Por exemplo, em vez de:
 </p>
@@ -16273,7 +16273,7 @@ return contagem</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-24 02:25:17 UTC
+Última atualização 2020-07-06 05:42:09 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
