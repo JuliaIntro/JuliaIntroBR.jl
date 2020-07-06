@@ -710,8 +710,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_comparando_cartas">Comparando Cartas</a></li>
 <li><a href="#_teste_de_unidade">Teste de Unidade</a></li>
 <li><a href="#_baralhos">Baralhos</a></li>
-<li><a href="#_adicionar_remover_baralhar_e_ordenar">Adicionar, Remover, Baralhar e Ordenar</a></li>
-<li><a href="#_tipos_abstratos_e_subtipagem">Tipos abstratos e Subtipagem</a></li>
+<li><a href="#_adicionar_remover_embaralhar_e_ordenar">Adicionar, Remover, Embaralhar e Ordenar</a></li>
+<li><a href="#_tipos_abstratos_e_subtipagem">Tipos Abstratos e Subtipagem</a></li>
 <li><a href="#_tipos_abstratos_e_funções">Tipos Abstratos e Funções</a></li>
 <li><a href="#_diagramas_de_tipos">Diagramas de Tipos</a></li>
 <li><a href="#interactive">Depuração</a></li>
@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591416204423847e9</code></pre>
+1.594013007108484e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13268,7 +13268,7 @@ Carta(2, 12)</code></pre>
 <div class="sect2">
 <h3 id="_variáveis_globais">Variáveis Globais</h3>
 <div class="paragraph">
-<p>Para imprimir objetos <code>Carta</code> de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com arrays de strings:</p>
+<p>Para imprimir objetos <code>Carta</code> de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com as listas de strings:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13292,7 +13292,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A expressão <code>nomes_valores[carta.valor]</code> significa “use o campo <code>valor</code> do objeto <code>carta</code> como um índice na matriz <code>nomes_valores</code>, e selecione a string apropriada.”</p>
+<p>A expressão <code>nomes_valores[carta.valor]</code> significa “use o campo <code>valor</code> do objeto <code>carta</code> como um índice na matriz <code>nomes_valores</code> e selecione a string apropriada.”</p>
 </div>
 <div class="paragraph">
 <p>Com os métodos que temos até agora, podemos criar e imprimir as cartas:</p>
@@ -13361,7 +13361,7 @@ Test Passed</code></pre>
 <div class="sect2">
 <h3 id="_baralhos">Baralhos</h3>
 <div class="paragraph">
-<p>Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha um array de cartas como um atributo.</p>
+<p>Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha uma lista de cartas como um atributo.</p>
 </div>
 <div class="paragraph">
 <p>A seguir, define-se uma struct para <code>Baralho</code>. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
@@ -13411,7 +13411,7 @@ A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adicionar_remover_baralhar_e_ordenar">Adicionar, Remover, Baralhar e Ordenar</h3>
+<h3 id="_adicionar_remover_embaralhar_e_ordenar">Adicionar, Remover, Embaralhar e Ordenar</h3>
 <div class="paragraph">
 <p>Para distribuir as cartas, gostaríamos de uma função que remove uma carta do baralho e devolve-a. A função <code>pop!</code> fornece uma maneira apropriada de fazer isso:
 </p>
@@ -13443,7 +13443,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Neste caso, <code>push!</code> é um método "fino" que expressa uma operação de array relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.</p>
+<p>Neste caso, <code>push!</code> é um método "fino" que expressa uma operação de lista relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.</p>
 </div>
 <div class="paragraph">
 <p>Como um outro exemplo, podemos escrever um método chamado <code>shuffle!</code> usando a função <code>Random.shuffle!</code>:
@@ -13468,7 +13468,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tipos_abstratos_e_subtipagem">Tipos abstratos e Subtipagem</h3>
+<h3 id="_tipos_abstratos_e_subtipagem">Tipos Abstratos e Subtipagem</h3>
 <div class="paragraph">
 <p>Queremos um tipo que represente uma “mão”, ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.</p>
 </div>
@@ -13545,7 +13545,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Em vez de encher a mão com 52 novas cartas, o construtor de <code>Mão</code> inicializa <code>cartas</code> com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a <code>Mão</code>.</p>
+<p>Em vez de encher a mão com 52 novas cartas, o construtor de <code>Mão</code> inicializa <code>cartas</code> com uma lista vazia. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a <code>Mão</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(baralho)
-Q♥ J♦ 2♠ 3♠ J♥ 2♥ K♣ 3♣ 7♥ A♠ 5♠ A♣ 9♠ 10♣ A♦ A♥ 8♣ 7♠ 3♥ 10♦ K♦ 6♠ J♣ 6♥ 8♦ 9♣ 2♦ Q♣ 5♦ K♥ 10♥ 2♣ 4♠ 9♦ 8♥ 4♥ 8♠ 10♠ 3♦ 6♦ Q♦ 7♣ 5♣ Q♠ K♠ 6♣ 5♥ 9♥ 4♦ J♠ 7♦ 4♣
+K♦ 8♠ 2♣ 7♥ A♠ 4♦ 4♥ 3♥ 5♦ A♣ J♥ 7♠ J♠ 9♥ 7♦ 9♦ 7♣ 6♣ 5♣ 8♥ 3♠ Q♣ J♣ K♣ 6♠ 5♥ Q♦ 8♣ 2♥ 9♠ 6♦ K♠ J♦ 6♥ 3♣ 4♣ 3♦ A♦ 8♦ 5♠ K♥ A♥ 10♣ 2♠ 10♠ Q♠ 9♣ Q♥ 2♦ 4♠ 10♦ 10♥
 julia&gt; carta = pop!(baralho)
-4♣
+10♥
 julia&gt; push!(mão, carta)
 ERROR: type Mão has no field cartas</code></pre>
 </div>
@@ -13631,7 +13631,7 @@ end</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um array de Cartas. Este tipo de relacionamento é chamado de <em>TEM-UM</em>, como em “um Retângulo tem um Ponto”.
+<p>Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a uma lista de Cartas. Este tipo de relacionamento é chamado de <em>TEM-UM</em>, como em “um Retângulo tem um Ponto”.
 </p>
 </li>
 <li>
@@ -13664,7 +13664,7 @@ end</code></pre>
 <p>Não há dependências neste diagrama. Elas usualmente seriam mostradas com uma seta tracejada. E caso haja muitas dependências, elas são às vezes omitidas.</p>
 </div>
 <div class="paragraph">
-<p>Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma array de Cartas, mas tipos internos como array e dicionários geralmente não são inclusos nos diagramas de tipo.</p>
+<p>Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma lista de Cartas, mas tipos internos como uma lista e dicionários geralmente não são inclusos nos diagramas de tipo.</p>
 </div>
 </div>
 <div class="sect2">
@@ -13916,7 +13916,7 @@ addping(pong, ping)</code></pre>
 <div class="sect4">
 <h5 id="ex18-2">Exercício 18-5</h5>
 <div class="paragraph">
-<p>Escreva um método chamado <code>dar_carta!</code> que recebe três parâmetros, o <code>Baralho</code>, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos <code>Mão</code>, distribuir o número compatível de cartas por mão e retornar um array de +Mão+s.
+<p>Escreva um método chamado <code>dar_carta!</code> que recebe três parâmetros, o <code>Baralho</code>, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos <code>Mão</code>, distribuir o número compatível de cartas por mão e retornar uma lista de +Mão+s.
 </p>
 </div>
 </div>
@@ -15509,7 +15509,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20570(double, double) {
+define double @julia_squaresum_20448(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16274,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-06 04:03:21 UTC
+Última atualização 2020-07-06 05:23:24 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
