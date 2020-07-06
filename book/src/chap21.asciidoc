@@ -3,10 +3,10 @@
 
 Na depuração, você deve distinguir os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
 
-* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte em código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
+* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte para código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
 (((erro de sintaxe)))
 
-* Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e sobre quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
+* Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
 (((erro de tempo de execução)))
 
 * Os erros semânticos são problemas com um programa que embora rode sem produzir mensagens de erro, não faz a coisa certa. Exemplo: Uma expressão pode não ser avaliada na ordem que você espera, levando a um resultado incorreto.
@@ -17,7 +17,7 @@ O primeiro passo na depuração é descobrir com qual o tipo de erro você está
 
 === Erros de Sintaxe
 
-Geralmente os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. E infelizmente as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são +ERROR: LoadError: syntax: incomplete: premature end of input+ e +ERROR: LoadError: syntax: unexpected "="+, que não são muito informativo.
+Geralmente os erros de sintaxe são fáceis de corrigir depois de você descobrir quais são eles. E infelizmente as mensagens de erro muitas vezes não são úteis. As mensagens mais comuns são +ERROR: LoadError: syntax: incomplete: premature end of input+ e +ERROR: LoadError: syntax: unexpected "="+, que não são muito informativas.
 
 Por outro lado, a mensagem te informa onde o problema ocorreu no programa. Na verdade, ela informa onde o Julia notou um problema, que não é necessariamente onde está o erro. Às vezes, o erro é anterior ao local da mensagem de erro, em geral na linha anterior.
 
@@ -33,7 +33,7 @@ Eis algumas maneiras de evitar os erros de sintaxe mais comuns:
 
 . Assegure-se que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são "aspas retas", e não as “aspas encaracoladas” (ou “aspas inglesas”).
 
-. Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, pode não produzir uma mensagem de erro!
+. Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, ela pode não produzir uma mensagem de erro!
 
 . Quando não se fecha um operador aberto —+(+, +{+, ou +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
 
@@ -84,9 +84,9 @@ Se um programa para e parece não estar fazendo nada, ele está “travando”. 
 Execute o programa. Caso receba a primeira mensagem e não a segunda, então você tem um laço infinito. Vá para a subseção <<infinite_loop>> mais adiante.
 (((laço infinito)))
 
-* Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e depois aparecerá uma mensagem de erro +ERROR: LoadError: StackOverflowError+. Se isso acontecer, vá para a subseção <<infinite_recursion>> mais adiante.
+* Na maioria das vezes, uma recursão infinita fará com que o programa funcione por um tempo e em seguida gere uma mensagem de erro +ERROR: LoadError: StackOverflowError+. Se isso acontecer, vá para a subseção <<infinite_recursion>> mais adiante.
 +
-Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, ainda assim poderá usar as técnicas de <<infinite_recursion>>.
+Se você não estiver recebendo esse erro, mas desconfia que há um problema com um método ou uma função recursiva, você ainda pode usar as técnicas descritas em <<infinite_recursion>>.
 (((recursão infinita)))
 
 * No caso de nenhum desses passos dar certo, comece a testar outros laços e outras funções e métodos recursivos.
@@ -115,7 +115,7 @@ Agora, quando você executar o programa no modo de depuração, verá o valor da
 [[infinite_recursion]]
 ===== Recursão Infinita
 
-Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e depois aparece uma mensagem de erro +ERROR: LoadError: StackOverflowError+.
+Na maioria das vezes, a recursão infinita faz com que o programa funcione por um tempo e em seguida gere uma mensagem de erro +ERROR: LoadError: StackOverflowError+.
 (((StackOverflowError)))
 
 Se você desconfia que uma função está causando uma recursão infinita, certifique-se que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma chamada recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
@@ -236,9 +236,9 @@ Para programar, é preciso um modelo mental de como os programas funcionam. Se v
 
 A melhor maneira de reparar o seu modelo mental é particionar o programa em seus componentes (geralmente as funções e os métodos) e testar cada componente isoladamente. Uma vez encontrada a discrepância entre o seu modelo e a realidade, você pode resolver o problema.
 
-Certamente que você deve criar e testar componentes à medida que desenvolve o programa. Então ao encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.
+É claro que você deve criar e testar componentes à medida que desenvolve o seu programa. Então ao encontrar um problema, deve haver apenas uma pequena quantidade de código novo que não se sabe se está ou não correto.
 
-==== Tenho uma Grande Expressão Bizarra e Não Faz o Que Eu Presumo
+==== Tenho uma Grande Expressão Bizarra e Ela Não Faz o Que Eu Espero
 
 Escrever expressões complexas é bom desde que sejam legíveis, mas podem ser difíceis de depurar. Muitas vezes é uma boa ideia dividir uma expressão complexa em uma série de atribuições a variáveis temporárias.
 
@@ -278,7 +278,7 @@ y = x / (2 * π)
 
 Sempre que você não tiver certeza da ordem da avaliação, use parênteses. O programa não apenas estará correto (no sentido de fazer o que você deseja), como também será mais legível para outras pessoas que não memorizaram a ordem das operações.
 
-==== Tenho uma Função Que Não Retorna o Que Eu Presumo
+==== Tenho uma Função Que Não Retorna o Que Eu Espero
 
 No caso de uma declaração return com uma expressão complexa, você não poderá imprimir o resultado antes de retornar. Mais uma vez, pode-se usar uma variável temporária. Por exemplo, em vez de:
 (((variável temporária)))
