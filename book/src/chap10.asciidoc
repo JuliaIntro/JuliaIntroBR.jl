@@ -174,7 +174,7 @@ julia> print(t[3:end])
 ['c', 'd', 'e', 'f']
 ----
 
-O operador de fatia +[:]+, faz uma cópia em toda a lista:
+O operador de fatia +[:]+, faz uma cópia de toda a lista:
 (((cópia)))
 
 [source,@julia-repl-test chap10]
