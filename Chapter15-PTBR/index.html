@@ -4171,7 +4171,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594011807137705e9</code></pre>
+1.59401238212913e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11858,6 +11858,7 @@ Ponto(51.0, 102.0)</p>
 <div class="listingblock">
 <div class="content">
 <pre>=== Copiando Objetos
+
 Usar um alias pode dificultar a leitura de um programa, pois as alterações em um local podem ter efeitos inesperados em outro local. É difícil acompanhar todas as variáveis que podem se referir a um objeto dado.
 (((alias)))
 
@@ -13471,9 +13472,9 @@ end</p>
 <p>julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♣ 3♦ 4♣ K♠ 4♦ 3♠ 9♦ 7♠ 3♣ 3♥ A♥ J♣ K♣ 8♦ J♥ 2♣ Q♦ A♣ 5♠ 10♣ 6♠ Q♣ 10♠ 7♣ 10♥ K♦ A♠ J♠ 8♣ 4♥ 9♠ 8♥ K♥ 2♠ 5♣ 2♦ 9♥ 6♥ 7♦ Q♠ 8♠ 2♥ A♦ 4♠ 9♣ 10♦ 5♥ J♦ Q♥ 7♥ 6♦ 5♦
+9♥ A♠ J♥ A♥ K♦ J♠ A♦ 4♠ 2♣ 5♣ K♥ K♣ 4♦ 7♠ 9♦ 8♦ J♦ 5♦ 8♥ 5♥ K♠ 10♠ 6♠ 4♣ Q♣ Q♥ 9♠ 3♥ 8♣ 4♥ 7♥ 7♣ J♣ 10♥ 3♣ 3♦ 10♦ 7♦ 5♠ 9♣ 2♠ 8♠ 3♠ Q♠ 6♦ 2♦ Q♦ 2♥ A♣ 10♣ 6♣ 6♥
 julia&gt; card = pop!(deck)
-5♦
+6♥
 julia&gt; push!(hand, card)</p>
 </div>
 <div class="listingblock">
@@ -15280,7 +15281,7 @@ This representation of the code is transformed into LLVM code:
 <div class="paragraph">
 <p>julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within &#8216;squaresum&#8217;
-define double @julia_squaresum_20435(double, double) {
+define double @julia_squaresum_20433(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within &#8216;literal_pow&#8217;
 ; │┌ @ float.jl:405 within &#8216;*&#8217;
@@ -15812,7 +15813,7 @@ image::images/screenshot2.png[]
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-06 05:03:24 UTC
+Last updated 2020-07-06 05:12:59 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
