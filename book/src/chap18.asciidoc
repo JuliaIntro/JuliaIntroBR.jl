@@ -58,7 +58,7 @@ Carta(2, 12)
 
 === Variáveis Globais
 
-Para imprimir objetos +Carta+ de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com arrays de strings:
+Para imprimir objetos +Carta+ de uma forma que as pessoas possam ler facilmente, precisamos de um mapeamento dos códigos inteiros até os valores e naipes correspondentes. Uma maneira natural de fazer isso é com as listas de strings:
 
 [source,@julia-setup chap18]
 ----
@@ -79,7 +79,7 @@ function Base.show(io::IO, carta::Carta)
 end
 ----
 
-A expressão +nomes_valores[carta.valor]+ significa “use o campo +valor+ do objeto +carta+ como um índice na matriz +nomes_valores+, e selecione a string apropriada.”
+A expressão +nomes_valores[carta.valor]+ significa “use o campo +valor+ do objeto +carta+ como um índice na matriz +nomes_valores+ e selecione a string apropriada.”
 
 Com os métodos que temos até agora, podemos criar e imprimir as cartas:
 
@@ -138,7 +138,7 @@ Test Passed
 
 === Baralhos
 
-Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha um array de cartas como um atributo.
+Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha uma lista de cartas como um atributo.
 
 A seguir, define-se uma struct para +Baralho+. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
 (((Deck)))((("tipo", "definido pelo programador", "Deck", see="Deck")))
@@ -183,7 +183,7 @@ A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦
 ----
 
 
-=== Adicionar, Remover, Baralhar e Ordenar
+=== Adicionar, Remover, Embaralhar e Ordenar
 
 Para distribuir as cartas, gostaríamos de uma função que remove uma carta do baralho e devolve-a. A função +pop!+ fornece uma maneira apropriada de fazer isso:
 (((pop!)))
@@ -211,7 +211,7 @@ end
 Um método como esse, que usa outro método sem fazer muito trabalho, às vezes é chamado de _folheado_. A metáfora vem do trabalho com madeira, onde um folheado de madeira é uma fina camada de madeira de boa qualidade colada à superfície de um pedaço de madeira mais barato para melhorar a aparência.
 (((folheado)))
 
-Neste caso, +push!+ é um método "fino" que expressa uma operação de array relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.
+Neste caso, +push!+ é um método "fino" que expressa uma operação de lista relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.
 
 Como um outro exemplo, podemos escrever um método chamado +shuffle!+ usando a função +Random.shuffle!+:
 (((Random)))((("módulo", "Random", see="Random")))(((shuffle!)))((("função", "Random", "shuffle!", see="shuffle!")))
@@ -232,7 +232,7 @@ Escreva uma função chamada +sort!+ que usa a função +sort!+ para ordenar as 
 (((sort!)))
 
 
-=== Tipos abstratos e Subtipagem
+=== Tipos Abstratos e Subtipagem
 
 Queremos um tipo que represente uma “mão”, ou seja, as cartas que estão nas mãos de um jogador. Uma mão é semelhante a um baralho: ambas são compostas de uma coleção de cartas, e ambas precisam de operações como adicionar e remover cartas.
 
@@ -330,7 +330,7 @@ function Mão(identificação::String="")
 end
 ----
 
-Em vez de encher a mão com 52 novas cartas, o construtor de +Mão+ inicializa +cartas+ com um array vazio. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a +Mão+.
+Em vez de encher a mão com 52 novas cartas, o construtor de +Mão+ inicializa +cartas+ com uma lista vazia. Um argumento opcional pode ser passado para o construtor, atribuindo uma identificação para a +Mão+.
 
 [source,@julia-repl-test chap18a]
 ----
@@ -401,7 +401,7 @@ Eles também são muito detalhados e dependendo de alguns propósitos, demasiada
 
 Existem vários tipos de relacionamento entre os tipos:
 
-* Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a um array de Cartas. Este tipo de relacionamento é chamado de _TEM-UM_, como em “um Retângulo tem um Ponto”.
+* Objetos de um tipo concreto podem conter referências a objetos de outro tipo. Por exemplo, cada Retângulo contém uma referência a um Ponto, e cada Baralho contém referências a uma lista de Cartas. Este tipo de relacionamento é chamado de _TEM-UM_, como em “um Retângulo tem um Ponto”.
 (((TEM-UM)))
 
 * Um tipo concreto pode ter um tipo abstrato como um supertipo. Esse relacionamento é chamado de _É-UM_, como em “uma Mão é uma espécie de Conjunto_Carta”.
@@ -423,7 +423,7 @@ A estrela (+pass:[*]+) perto da ponta da seta é uma _multiplicidade_ que indica
 
 Não há dependências neste diagrama. Elas usualmente seriam mostradas com uma seta tracejada. E caso haja muitas dependências, elas são às vezes omitidas.
 
-Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma array de Cartas, mas tipos internos como array e dicionários geralmente não são inclusos nos diagramas de tipo.
+Um diagrama mais detalhado pode mostrar que um Baralho realmente contém uma lista de Cartas, mas tipos internos como uma lista e dicionários geralmente não são inclusos nos diagramas de tipo.
 
 [[interactive]]
 === Depuração
@@ -630,7 +630,7 @@ addping(pong, ping)
 [[ex18-2]]
 ===== Exercício 18-5
 
-Escreva um método chamado +dar_carta!+ que recebe três parâmetros, o +Baralho+, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos +Mão+, distribuir o número compatível de cartas por mão e retornar um array de +Mão+s.
+Escreva um método chamado +dar_carta!+ que recebe três parâmetros, o +Baralho+, o número de mãos e o número de cartas por mão. Ele deve criar o número apropriado de objetos +Mão+, distribuir o número compatível de cartas por mão e retornar uma lista de +Mão+s.
 (((dar_carta!)))((("função", "definido pelo programador", "dar_carta!", see="dar_carta!")))
 
 [[ex18-3]]
