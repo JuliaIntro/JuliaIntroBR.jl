@@ -219,7 +219,7 @@ Esse código pode ser simplificado usando a palavra-chave +rev+ como argumento d
 
 === Parâmetros Opcionais
 
-Temos visto as funções embutidas que recebem argumentos opcionais. É possível definir as funções com argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
+Temos visto as funções embutidas que recebem os argumentos opcionais. É possível definir as funções com os argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
 (((argumento opcional)))(((imprime_mais_frequentes)))((("função", "definido pelo programador", "imprime_mais_frequentes", see="imprime_mais_frequentes")))
 
 [source,@julia-setup chap13]
@@ -415,13 +415,13 @@ Crédito: Esse estudo de caso é baseado em um exemplo de Kernighan e Pike, The 
 
 [TIP]
 =====
-Você deveria tentar esse execício antes de continuar.
+Você deveria tentar fazer esse execício antes de continuar.
 =====
 
 
 === Estruturas de Dados
 
-Usar a análise de Markov para gerar textos aleatórios é divertido, mas há também um propósito para este exercício: seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:
+Usar a análise de Markov para gerar textos aleatórios é divertido, mas há também um propósito para este exercício: a seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:
 
 * Como representar os prefixos.
 
@@ -437,7 +437,7 @@ Para os sufixos, uma opção é uma lista; outra é um histograma (dicionário).
 
 Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "eu te" e a próxima palavra é "desejo", você precisa formar o próximo prefixo, "te desejo".
 
-Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover elementos.
+Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover os elementos.
 
 Para a coleta dos sufixos, as operações que precisamos executar incluem a adição de um novo sufixo (ou aumento da frequência de um existente) e a seleção de um sufixo aleatório.
 
@@ -467,7 +467,7 @@ Leitura::
 Examine o seu código, leia para si mesmo e verifique se está condizendo com o que você quis dizer.
 
 Execução::
-Experimente fazer alterações e executar versões diferentes. Geralmente se você exibe a coisa certa no lugar certo no programa, o problema se torna óbvio, apesar de às vezes você ter que construir andaimes.
+Experimente fazer as alterações e executar versões diferentes. Geralmente se você exibe a coisa certa no lugar certo no programa, o problema se torna óbvio, apesar de às vezes você ter que construir andaimes.
 
 Ruminação::
 Tire algum tempo para pensar! Qual o tipo de erro é: sintaxe, tempo de execução ou semântica? Quais informações você pode obter das mensagens de erro ou da saída do programa? Que tipo de erro pode causar o problema que você está tendo? O que você mudou por último, antes que o problema aparecesse?
@@ -518,7 +518,7 @@ O processo de seleção das estruturas de dados ao implementar as alternativas e
 (((benchmarking)))
 
 depuração com pato de borracha::
-Depuração ao explicar seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode ajudá-lo a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
+Depuração ao explicar seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode te ajudar a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
 (((depuração com pato de borracha)))
 
 
