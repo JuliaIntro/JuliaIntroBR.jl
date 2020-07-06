@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59348282414673e9</code></pre>
+1.594057401238974e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10188,7 +10188,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex13-5">Exercício 13-5</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>escolhido_do_histograma</code> que recebe um histograma definido em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
+<p>Escreva uma função chamada <code>escolhidodohistograma</code> que recebe um histograma definido em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
 </p>
 </div>
 <div class="listingblock">
@@ -10217,15 +10217,15 @@ Dict{Any,Any} with 2 entries:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function processa_arquivo(nome_do_arquivo)
+<pre class="pygments highlight"><code data-lang="julia">function processaarquivo(nomedoarquivo)
     hist = Dict()
-    for linha in eachline(nome_do_arquivo)
-        processa_linha(linha, hist)
+    for linha in eachline(nomedoarquivo)
+        processalinha(linha, hist)
     end
     hist
 end;
 
-function processa_linha(linha, hist)
+function processalinha(linha, hist)
     linha = replace(linha, '-' =&gt; ' ')
     for palavra in split(linha)
         palavra = string(filter(isletter, [palavra...])...)
@@ -10237,7 +10237,7 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">hist = processa_arquivo("emma.txt");</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">hist = processaarquivo("emma.txt");</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10245,15 +10245,15 @@ end;</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>A função <code>processa_arquivo</code> percorre as linhas do arquivo passando-as uma vez de cada para <code>processa_linha</code>. O histograma <code>hist</code> é utilizado como um acumulador.
+<p>A função <code>processaarquivo</code> percorre as linhas do arquivo passando-as uma vez de cada para <code>processalinha</code>. O histograma <code>hist</code> é utilizado como um acumulador.
 </p>
 </div>
 <div class="paragraph">
-<p>A função <code>processa_linha</code> usa a função <code>replace</code> para substituir os hífens e espaços antes de usar <code>split</code> para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa <code>filter</code>, <code>isletter</code> e <code>lowercase</code> para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são “convertidas”, lembre-se de que as strings são imutáveis e portanto, uma função como <code>lowercase</code> retorna novas strings.)
+<p>A função <code>processalinha</code> usa a função <code>replace</code> para substituir os hífens e espaços antes de usar <code>split</code> para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa <code>filter</code>, <code>isletter</code> e <code>lowercase</code> para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são “convertidas”, lembre-se de que as strings são imutáveis e portanto, uma função como <code>lowercase</code> retorna novas strings.)
 </p>
 </div>
 <div class="paragraph">
-<p>Finalmente, <code>processa_linha</code> atualiza o histograma criando um novo item ou incrementando um já existente.</p>
+<p>Finalmente, <code>processalinha</code> atualiza o histograma criando um novo item ou incrementando um já existente.</p>
 </div>
 <div class="paragraph">
 <p>Para contar o número total de palavras no arquivo, podemos adicionar as frequências no histograma:
@@ -10261,7 +10261,7 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function total_de_palavras(hist)
+<pre class="pygments highlight"><code data-lang="julia">function totaldepalavras(hist)
     sum(values(hist))
 end</code></pre>
 </div>
@@ -10272,7 +10272,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function palavras_diferentes(hist)
+<pre class="pygments highlight"><code data-lang="julia">function palavrasdiferentes(hist)
     length(hist)
 end</code></pre>
 </div>
@@ -10282,10 +10282,10 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; println("Número total de palavras: ", total_de_palavras(hist))
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; println("Número total de palavras: ", totaldepalavras(hist))
 Número total de palavras: 162742
 
-julia&gt; println("Número de palavras diferentes: ", palavras_diferentes(hist))
+julia&gt; println("Número de palavras diferentes: ", palavrasdiferentes(hist))
 Número de palavras diferentes: 7380</code></pre>
 </div>
 </div>
@@ -10298,7 +10298,7 @@ Número de palavras diferentes: 7380</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function mais_comum(hist)
+<pre class="pygments highlight"><code data-lang="julia">function maiscomum(hist)
     t = []
     for (chave, valor) in hist
         push!(t, (valor, chave))
@@ -10312,7 +10312,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">t = mais_comum(hist)
+<pre class="pygments highlight"><code data-lang="julia">t = maiscomum(hist)
 println("As palavras mais frequentes são: ")
 for (freq, palavra) in t[1:10]
     println(palavra, "\t", freq)
@@ -10356,13 +10356,13 @@ she	2364</pre>
 <div class="sect2">
 <h3 id="_parâmetros_opcionais">Parâmetros Opcionais</h3>
 <div class="paragraph">
-<p>Temos visto as funções embutidas que recebem argumentos opcionais. É possível definir as funções com argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
+<p>Temos visto as funções embutidas que recebem os argumentos opcionais. É possível definir as funções com os argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function imprime_mais_frequentes(hist, num=10)
-    t = mais_comum(hist)
+<pre class="pygments highlight"><code data-lang="julia">function imprimemaisfrequentes(hist, num=10)
+    t = maiscomum(hist)
     println("As palavras mais frequentes são: ")
     for (freq, palavra) in t[1:num]
         println(palavra, "\t", freq)
@@ -10379,7 +10379,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">imprime_mais_frequentes(hist)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">imprimemaisfrequentes(hist)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10387,7 +10387,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">imprime_mais_frequentes(hist, 20)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">imprimemaisfrequentes(hist, 20)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10421,11 +10421,11 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para encontrar as palavras do livro que não estão em <code>palavras.txt</code>, podemos usar <code>processa_arquivo</code> para construir um histograma para <code>palavras.txt</code>, e depois <code>subtrair</code>:</p>
+<p>Para encontrar as palavras do livro que não estão em <code>palavras.txt</code>, podemos usar <code>processaarquivo</code> para construir um histograma para <code>palavras.txt</code>, e depois <code>subtrair</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">palavras = processa_arquivo("palavras.txt")
+<pre class="pygments highlight"><code data-lang="julia">palavras = processaarquivo("palavras.txt")
 diff = subtrair(hist, palavras)
 
 println("Palavras do livro que não estão na lista de palavras: ")
@@ -10464,7 +10464,7 @@ outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons bet
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function palavra_aleatória(h)
+<pre class="pygments highlight"><code data-lang="julia">function palavraaleatória(h)
     t = []
     for (palavra, freq) in h
         for i in 1:freq
@@ -10527,14 +10527,17 @@ end</code></pre>
 Pois toda idade tem prazer e medo
 E com os que erram feio e bastante
 Que você consiga ser tolerante
+
 Quando você ficar triste
 Que seja por um dia, e não o ano inteiro
 E que você descubra que rir é bom,
 mas que rir de tudo é desespero
+
 Desejo que você tenha a quem amar
 E quando estiver bem cansado
 Ainda, exista amor pra recomeçar
 Pra recomeçar
+
 Eu te desejo muitos amigos
 Mas que em um você possa confiar
 E que tenha até inimigos
@@ -10599,7 +10602,7 @@ Quando você ficar triste</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Você deveria tentar esse execício antes de continuar.</p>
+<p>Você deveria tentar fazer esse execício antes de continuar.</p>
 </div>
 </td>
 </tr>
@@ -10610,7 +10613,7 @@ Quando você ficar triste</pre>
 <div class="sect2">
 <h3 id="_estruturas_de_dados">Estruturas de Dados</h3>
 <div class="paragraph">
-<p>Usar a análise de Markov para gerar textos aleatórios é divertido, mas há também um propósito para este exercício: seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:</p>
+<p>Usar a análise de Markov para gerar textos aleatórios é divertido, mas há também um propósito para este exercício: a seleção da estrutura de dados. Na sua solução para os exercícios anteriores, você teve que escolher:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -10638,7 +10641,7 @@ Quando você ficar triste</pre>
 <p>Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "eu te" e a próxima palavra é "desejo", você precisa formar o próximo prefixo, "te desejo".</p>
 </div>
 <div class="paragraph">
-<p>Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover elementos.</p>
+<p>Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover os elementos.</p>
 </div>
 <div class="paragraph">
 <p>Para a coleta dos sufixos, as operações que precisamos executar incluem a adição de um novo sufixo (ou aumento da frequência de um existente) e a seleção de um sufixo aleatório.</p>
@@ -10688,7 +10691,7 @@ Quando você ficar triste</pre>
 </dd>
 <dt class="hdlist1">Execução</dt>
 <dd>
-<p>Experimente fazer alterações e executar versões diferentes. Geralmente se você exibe a coisa certa no lugar certo no programa, o problema se torna óbvio, apesar de às vezes você ter que construir andaimes.</p>
+<p>Experimente fazer as alterações e executar versões diferentes. Geralmente se você exibe a coisa certa no lugar certo no programa, o problema se torna óbvio, apesar de às vezes você ter que construir andaimes.</p>
 </dd>
 <dt class="hdlist1">Ruminação</dt>
 <dd>
@@ -10759,7 +10762,7 @@ Quando você ficar triste</pre>
 </dd>
 <dt class="hdlist1">depuração com pato de borracha</dt>
 <dd>
-<p>Depuração ao explicar seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode ajudá-lo a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
+<p>Depuração ao explicar seu problema a um objeto inanimado como um pato de borracha. Articular o problema pode te ajudar a resolvê-lo, mesmo que o pato de borracha não conheça o Julia.
 </p>
 </dd>
 </dl>
@@ -13594,9 +13597,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-9♦ 9♥ 8♠ 5♥ 6♠ 9♣ Q♣ J♦ Q♠ 5♠ 7♦ 7♣ J♠ 7♠ 3♠ Q♦ J♥ 10♦ 3♦ 5♦ K♦ 9♠ 6♦ K♠ K♥ A♣ 8♥ 4♣ 6♥ J♣ 8♣ 4♠ 10♣ 4♥ 3♣ 2♥ 10♥ A♦ 7♥ 6♣ 4♦ Q♥ 5♣ 2♦ 10♠ A♥ A♠ 8♦ K♣ 3♥ 2♣ 2♠
+J♣ 9♥ 6♣ 10♠ Q♠ K♥ A♠ K♦ 3♦ 8♣ Q♦ 4♣ 3♥ J♦ 5♥ J♥ 3♠ A♦ 8♠ 9♣ 5♣ 10♣ 2♥ 4♠ 6♦ 6♥ 3♣ 6♠ A♥ 5♠ 7♦ 4♥ K♣ 9♠ K♠ 2♦ 10♥ Q♣ 8♦ 4♦ J♠ 9♦ 5♦ 7♣ 2♠ 2♣ 7♠ 8♥ A♣ 7♥ Q♥ 10♦
 julia&gt; card = pop!(deck)
-2♠
+10♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15516,7 +15519,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20458(double, double) {
+define double @julia_squaresum_20440(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16281,7 +16284,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-30 02:07:01 UTC
+Última atualização 2020-07-06 17:43:18 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
