@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593660964871081e9</code></pre>
+1.594054912314466e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7293,7 +7293,7 @@ Array{Any,1}</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; números[2] = 7
-7
+5
 julia&gt; print(números)
 [42, 7]</code></pre>
 </div>
@@ -7312,7 +7312,7 @@ julia&gt; print(números)
 <div class="title">Figure 11. Diagrama de estado</div>
 </div>
 <div class="paragraph">
-<p>Listas são representadas por caixas e pelos elementos das listas dentro. <code>vegetais</code> refere-se a uma lista com três elementos indexados <code>1</code>, <code>2</code> e <code>3</code>. <code>números</code> contém dois elementos; o diagrama mostra que o valor do segundo elemento foi reatribuído de <code>123</code> para <code>7</code>. <code>vazia</code> refere-se a uma lista sem elementos.</p>
+<p>Uma lista é representada por uma caixa e pelos elementos da lista dentro dela. <code>vegetais</code> refere-se a uma lista com três elementos indexados <code>1</code>, <code>2</code> e <code>3</code>. <code>números</code> contém dois elementos; o diagrama mostra que o valor do segundo elemento foi reatribuído de <code>123</code> para <code>7</code>. <code>vazia</code> refere-se a uma lista sem elementos.</p>
 </div>
 <div class="paragraph">
 <p>Os índices das listas funcionam do mesmo jeito que os índices de strings (mas sem as ressalvas do UTF-8):</p>
@@ -7347,7 +7347,7 @@ false</code></pre>
 <div class="sect2">
 <h3 id="_percorrendo_uma_lista">Percorrendo uma Lista</h3>
 <div class="paragraph">
-<p>A maneira mais comum de percorrer os elementos de uma lista é através do laço <code>for</code>. A sintaxe é a mesma para strings:
+<p>A maneira mais comum de percorrer os elementos de uma lista é através de um laço <code>for</code>. A sintaxe é a mesma para strings:
 </p>
 </div>
 <div class="listingblock">
@@ -7567,7 +7567,7 @@ julia&gt; sum(t)
 </p>
 </div>
 <div class="paragraph">
-<p>Muitas vezes, você deseja percorrer uma lista enquanto cria outra. Por exemplo, a função à seguir pega uma lista de strings e retorna uma nova lista que contém strings de caracteres maiúsculas:
+<p>Muitas vezes, você deseja percorrer uma lista enquanto cria outra. Por exemplo, a função à seguir recebe uma lista de strings e retorna uma nova lista que contém as strings com todos os seus caracteres maiúsculos:
 </p>
 </div>
 <div class="listingblock">
@@ -7585,7 +7585,7 @@ end</code></pre>
 <p><code>res</code> é inicializada com uma lista vazia; toda vez que laço é percorrido, anexamos o próximo elemento. Então, <code>res</code> é outro tipo de acumulador.</p>
 </div>
 <div class="paragraph">
-<p>Uma operação como <code>todas_maiúsculas</code> é por vezes chamado de <em>mapa</em> pois "mapeia" uma função (neste caso <code>uppercase</code>) a cada um dos elementos em uma sequência.
+<p>Uma operação como <code>todas_maiúsculas</code> é por vezes chamado de <em>mapa</em> pois “mapeia” uma função (neste caso <code>uppercase</code>) a cada um dos elementos em uma sequência.
 </p>
 </div>
 <div class="paragraph">
@@ -7594,7 +7594,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function apenas_maiusculas(t)
+<pre class="pygments highlight"><code data-lang="julia">function apenas_maiúsculas(t)
     res = []
     for s in t
         if s == uppercase(s)
@@ -7606,7 +7606,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Uma operação como <code>apenas_maiusculas</code> é chamada de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
+<p>Uma operação como <code>apenas_maiúsculas</code> é chamada de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
 </p>
 </div>
 <div class="paragraph">
@@ -7616,7 +7616,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_sintaxe_do_ponto">Sintaxe do Ponto</h3>
 <div class="paragraph">
-<p>Para cada operador binário como <code>^</code>, existe um <em>operador ponto</em> <code>.^</code> correspondente que é automaticamente definido para efetuar <code>^</code> elemento-a-elemento nas listas. Por exemplo, <code>&#91;1, 2, 3&#93; ^ 3</code> não é definido, mas <code>&#91;1, 2, 3&#93; .^ 3</code> é definido como calcular elemento a elemento o resultado <code>&#91;1^3, 2^3, 3^3&#93;</code>:
+<p>Para cada operador binário como <code>^</code>, existe um <em>operador ponto</em> <code>.^</code> correspondente que é automaticamente definido para efetuar <code>^</code> elemento-a-elemento em listas. Por exemplo, <code>&#91;1, 2, 3&#93; ^ 3</code> não é definido, mas <code>&#91;1, 2, 3&#93; .^ 3</code> é definido como calcular elemento a elemento o resultado <code>&#91;1^3, 2^3, 3^3&#93;</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -7785,7 +7785,7 @@ julia&gt; s = join(t, ' ')
 <div class="sect2">
 <h3 id="_objetos_e_valores">Objetos e Valores</h3>
 <div class="paragraph">
-<p>Um <em>objeto</em> é algo que uma variável pode se referir a. Até agora, você poderia usar "objeto" e "valor" sem distinção.
+<p>Um <em>objeto</em> é algo que uma variável pode se referir a. Até agora, você poderia usar “objeto” e “valor” sem distinção.
 </p>
 </div>
 <div class="paragraph">
@@ -8383,13 +8383,13 @@ false</code></pre>
 <div class="sect4">
 <h5 id="ex10-10">Exercício 10-10</h5>
 <div class="paragraph">
-<p>Para verificar se uma palavra está na lista de palavras, você poderia usar o operador <code>∈</code>, mas isto seria lento porque  as palavras seriam pesquisadas em ordem.</p>
+<p>Para verificar se uma palavra está na lista de palavras, você poderia usar o operador <code>∈</code>, mas isto seria lento porque as palavras seriam pesquisadas em ordem.</p>
 </div>
 <div class="paragraph">
 <p>Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma busca bissecção (também conhecida como busca binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.</p>
 </div>
 <div class="paragraph">
-<p>De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.</p>
+<p>De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir 113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.</p>
 </div>
 <div class="paragraph">
 <p>Escreva uma função chamada <code>em_bisseção</code> que usa uma lista ordenada e um valor-alvo e retorna <code>true</code> se a palavra estiver na lista e <code>false</code> se não estiver.
@@ -8412,7 +8412,7 @@ false</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Escreva um programa que encontre todos os pares de palavras que se entrelaçam.</p>
+<p>Escreva um programa que encontre todos os pares de palavras que se interligam.</p>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -13592,9 +13592,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-10♥ 3♠ 8♠ 6♦ 7♦ 2♣ J♠ A♠ 5♣ A♦ 8♦ J♣ A♣ K♥ 6♠ 6♣ K♦ Q♥ 9♦ 5♦ 8♥ 9♥ 3♣ K♠ 4♦ 8♣ K♣ A♥ 10♠ Q♦ J♦ 5♠ 5♥ 2♠ 7♥ 9♣ Q♠ 4♥ J♥ 2♥ 4♠ 7♣ 10♦ 2♦ 3♦ Q♣ 10♣ 3♥ 9♠ 7♠ 6♥ 4♣
+8♠ 6♦ 3♦ 6♥ 9♠ 4♣ 5♦ 6♣ 8♥ K♦ 2♣ 7♦ K♣ A♠ 10♠ 2♦ J♦ 2♥ 7♣ Q♠ 4♥ 9♣ 3♥ 2♠ 10♣ 9♥ K♥ 10♥ A♦ 4♠ 5♠ 5♣ 7♠ 6♠ J♥ J♠ 7♥ A♣ Q♣ 5♥ 9♦ J♣ 8♦ 8♣ A♥ 4♦ 10♦ 3♠ K♠ 3♣ Q♦ Q♥
 julia&gt; card = pop!(deck)
-4♣
+Q♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15514,7 +15514,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20508(double, double) {
+define double @julia_squaresum_20435(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16279,7 +16279,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-02 03:36:01 UTC
+Last updated 2020-07-06 17:01:48 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
