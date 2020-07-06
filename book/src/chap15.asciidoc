@@ -13,7 +13,7 @@ Na notação matemática, os pontos geralmente são escritos entre parênteses c
 
 Existem diversas maneiras de representar pontos no Julia:
 
-* Podemos armazenar as coordenadas separadamente em duas variáveis, +x+ e +y+.
+* Poderíamos armazenar as coordenadas separadamente em duas variáveis, +x+ e +y+.
 
 * Poderíamos armazenar as coordenadas como elementos de um vetor ou de uma tupla.
 
@@ -140,7 +140,7 @@ Existem pelo menos duas possibilidades:
 
 * Você poderia especificar dois vértices opostos.
 
-Nesse momento, é difícil dizer se um é melhor que o outro e portanto, implementaremos o primeiro, apenas como exemplo.
+Nesse momento, é difícil dizer se uma é melhor que a outra e portanto, implementaremos a primeira, apenas como exemplo.
 (((Retângulo)))((("tipo", "definido pelo programador", "Retângulo", see="Retângulo")))
 
 [source,@julia-setup chap15]
@@ -160,7 +160,7 @@ end
 O docstring lista os campos: a largura e a altura, que são números, e o vértice, que é um objeto +Ponto+ que indica o vértice inferior esquerdo.
 (((docstring)))
 
-Para a representação de um retângulo, você tem que instanciar um objeto +Retângulo+:
+Para representar um retângulo, você precisa instanciar um objeto +Retângulo+:
 
 [source,@julia-repl-test chap15]
 ----
