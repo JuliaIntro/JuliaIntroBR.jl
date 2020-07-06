@@ -6,9 +6,9 @@ No Julia você tem a habilidade de escrever código que opera em tipos diferente
 Neste capítulo irei discutir o uso de declarações de tipos em Julia, e também introduzirei métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
 
 
-=== Declarações de Tipos
+=== Declarações de Tipo
 
-O operador +::+ anexa _anotações de tipo_ à expressões e variáveis:
+O operador +::+ anexa _anotações de tipo_ às expressões e variáveis:
 (((TypeError)))((("error", "Core", "TypeError", see="TypeError")))
 
 [source,@julia-repl-test]
@@ -21,8 +21,8 @@ julia> (1 + 2) :: Int64
 
 Isso ajuda a confirmar que o seu programa funciona do jeito esperado.
 
-O operador +::+ também pode ser acrescentado ao lado esquerdo da atribuição, ou como uma parte de uma declaração.
-(((returnfloat)))((("função", "definido pelo programador", "retorna_float", see="retorna_float")))
+O operador +::+ também pode ser acrescentado ao lado esquerdo de uma atribuição, ou como uma parte de uma declaração.
+(((retorna_float)))((("função", "definido pelo programador", "retorna_float", see="retorna_float")))
 
 [source,@julia-repl-test]
 ----
@@ -37,9 +37,9 @@ julia> typeof(x)
 Float64
 ----
 
-A variável +x+ é sempre do tipo +Float64+ e o valor é sempre convertido para um ponto flutuante se necessário.
+A variável +x+ é sempre do tipo +Float64+ e o valor é convertido para um ponto flutuante, quando necessário.
 
-Uma anotação de tipo também pode ser anexada ao cabeçario de uma definição de função:
+Uma anotação de tipo também pode ser anexada ao cabeçalho de uma definição de função:
 (((sinc)))((("função", "definido pelo programador", "sinc", see="sinc")))
 
 [source,@julia-setup]
@@ -54,13 +54,13 @@ end
 
 O valor de retorno de +sinc+ é sempre convertido para o tipo +Float64+.
 
-O comportamento padrão em Julia quando tipos são omitidos, é permitir que valores sejam de qualquer tipo (+Any+).
+Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que valores sejam de qualquer tipo (+Any+).
 (((Any)))
 
 
 === Métodos
 
-Em <<chap16>>, nós definimos uma struct chamada +MeuTempo+ e em <<tempo>>, você escreveu uma função chamada +imprime_tempo+:
+Em <<chap16>>, nós definimos uma struct chamada +MeuTempo+ e em <<time>>, você escreveu uma função chamada +imprime_tempo+:
 (((MeuTempo)))(((imprime_tempo)))
 
 [source,@julia-setup chap17a]
@@ -78,9 +78,9 @@ function imprime_tempo(tempo)
 end
 ----
 
-Como você pode ver, declarações de tipos podem e devem ser adicionadas por razões de performance aos campos na definição da struct.
+Como você pode ver, as declarações de tipo podem e devem ser adicionadas nos campos da definição da struct por questões de performance.
 
-Para chamar esta função, você deve passar um objeto +MeuTempo+ como argumento:
+Para chamar esta função, você deve passar um objeto +MeuTempo+ como um argumento:
 
 [source,@julia-repl-test chap17a]
 ----
@@ -90,7 +90,7 @@ julia> imprime_tempo(início)
 09:45:00
 ----
 
-Para adicionar um _método_ à função +imprime_tempo+ que apenas aceita como argumento um objeto +MeuTempo+, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuTempo+ ao argumento +tempo+ na definição de função:
+Para adicionar um _método_ à função +imprime_tempo+ que apenas aceita um objeto +MeuTempo+ como argumento, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuTempo+ no argumento +tempo+ na definição de função:
 (((método)))
 
 [source,@julia-setup chap17a]
@@ -120,7 +120,7 @@ function imprime_tempo(tempo)
 end
 ----
 
-Se você chamar a função +imprime_tempo+ com um objeto diferente de +MeuTempo+, agora você recebe:
+Se você chamar a função +imprime_tempo+ com um objeto diferente de +MeuTempo+, agora recebe-se:
 
 [source,@julia-repl-test chap17a]
 ----
@@ -130,7 +130,7 @@ Eu não sei como imprimir o argumento tempo.
 
 ===== Exercício 17-1
 
-Reescreva +tempo_para_int+ e +int_para_tempo+ (de <<prototyping_versus_planning>>) para especificar seus argumentos.
+Reescreva +tempo_para_int+ e +int_para_tempo+ (de <<prototyping_versus_planning>>) para especificar os seus argumentos.
 (((tempo_para_int)))(((int_para_tempo)))
 
 
@@ -161,7 +161,7 @@ function incrementar(tempo::MeuTempo, segundos::Int64)
 end
 ----
 
-Note que agora, ela é uma função pura, não um modificador.
+Note que agora ela é uma função pura, e não um modificador.
 
 Você pode invocar incrementar da seguinte maneira:
 
@@ -179,12 +179,12 @@ Se você colocar os argumentos na ordem errada, você recebe um erro:
 [source,@julia-repl-test chap17a]
 ----
 julia> incrementar(1337, início)
-ERROR: MethodError: no method matching increment(::Int64, ::MeuTempo)
+ERROR: MethodError: no method matching incrementar(::Int64, ::MeuTempo)
 ----
 
-A assinatura do método é +incrementar(tempo ::MeuTempo, segundos::Int64)+ e não +incrementar(segundos::Int64, tempo::MeuTempo)+.
+A assinatura do método é +incrementar(tempo::MeuTempo, segundos::Int64)+ e não +incrementar(segundos::Int64, tempo::MeuTempo)+.
 
-Reescrevendo +é_depois+ para agir somente em +MeuTempo+ é fácil:
+Reescrever +é_depois+ para operar somente com objetos +MeuTempo+ é fácil:
 (((é_depois)))
 
 [source,@julia-setup chap17a]
@@ -194,7 +194,7 @@ function é_depois(t1::MeuTempo, t2::MeuTempo)
 end
 ----
 
-Aliás, argumentos opcionais são implementados como sintaxe para definições múltiplas de métodos. Por exemplo, essa definição:
+Aliás, os argumentos opcionais são implementados como sintaxe para as múltiplas definições do método. Por exemplo, essa definição:
 
 [source,@julia-setup]
 ----
@@ -212,12 +212,12 @@ f(a) = f(a, 2)
 f() = f(1, 2)
 ----
 
-Estas expressões são definições de método válidas em Julia. Esta é uma notação mais enxuta para definir funções/métodos.
+Estas expressões são definições de método válidas em Julia. E é uma notação mais enxuta para definir funções/métodos.
 
 [[construtor]]
 === Construtores
 
-Um _construtor_ é uma função especial que é chamada para criar um objeto. Os métodos padrões construtores de +MeuTempo+ tem a seguinte assinatura:
+Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuTempo+ tem a seguinte assinatura:
 (((construtor)))
 
 [source,julia]
@@ -226,7 +226,7 @@ MeuTempo(hora, minuto, segundo)
 MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
-Nós podemos também adicionar nossos próprios métodos _construtores externos_
+Nós podemos também adicionar nossos próprios métodos _construtores externos_:
 (((construtor externo)))((("construtor", "externo", see="construtor externo")))
 
 [source,@julia-setup chap17a]
@@ -239,7 +239,7 @@ end
 Esse método é chamado de _construtor cópia_ pois o novo objeto +MeuTempo+ é uma cópia do seu argumento.
 (((construtor cópia)))((("construtor", "cópia", see="construtor cópia")))
 
-Para impor invariantes, nós precisamos de métodos _construtores internos_:
+Para impor as invariantes, nós precisamos de métodos _construtores internos_:
 (((construtor interno)))((("construtor", "interno", see="construtor interno")))
 
 [source,@julia-setup chap17b]
@@ -266,14 +266,14 @@ MeuTempo(hora::Int64, minuto::Int64)
 MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
-Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso à função especial chamada +new+ que cria objetos de um novo tipo declarado.
+Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada +new+ que cria objetos de um novo tipo declarado.
 
 [WARNING]
 ====
-O construtor padrão não está disponível se qualquer construtor interno estiver definido. Você deve escrever explicitamente todos os construtores internos que você precisa.
+O construtor padrão não é disponibilizado se qualquer construtor interno for definido. Você deve escrever explicitamente todos os construtores internos de que você precisa.
 ====
 
-Um segundo método sem argumento da função local +new+ existe:
+Um segundo método sem argumentos da função local +new+ existe:
 (((new)))((("função", "Base", "new", see="new")))
 
 [source,@julia-setup chap17c]
@@ -294,13 +294,13 @@ mutable struct MeuTempo
 end
 ----
 
-Isso permite a criação de estruturas de dados recorrentes, isto é, uma struct no qual um dos campos também é uma struct. Neste caso a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
+Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos também é uma struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
 (((estruturas de dados recorrentes)))
 
 
 === +show+
 
-+show+ é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método +show+ para objetos +MeuTempo+:
++show+ é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método +show+ para os objetos +MeuTempo+:
 (((show)))
 
 [source,@julia-setup chap17b]
@@ -322,11 +322,11 @@ julia> tempo = MeuTempo(9, 45)
 09:45:00
 ----
 
-Quando eu crio um novo tipo composto, eu quase sempre começo criando um construtor externo, que facilita a instanciação de objetos, e +show+, que é útil para debugging.
+Quando eu crio um novo tipo composto, eu quase sempre começo criando um construtor externo, que facilita a instanciação dos objetos, e +show+, que é útil para a depuração.
 
 ===== Exercício 17-2
 
-Escreva um método construtor externo para a classe +Ponto+ que recebe +x+ e +y+ como parâmetros adicionais e que atribuam a eles seus campos correspondentes.
+Escreva um método construtor externo para a classe +Ponto+ que recebe +x+ e +y+ como parâmetros adicionais e que são atribuídos aos campos correspondentes.
 (((Ponto)))
 
 
@@ -351,7 +351,7 @@ end;
 
 === Operador de Sobrecarga
 
-Ao definir métodos operadores, você pode especificar o comportamento de operadores em tipos definidos pelo programador. Por exemplo, se você define um método chamado +pass:[+]+ com dois argumentos +MeuTempo+, você pode usar o operador +pass:[+]+ em objetos +MeuTempo+.
+Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuTempo+, você pode usar o operador +pass:[+]+ em objetos +MeuTempo+.
 
 A definição deve se parecer com algo como:
 
@@ -380,7 +380,7 @@ julia> início + duração
 11:20:00
 ----
 
-Quando você aplica o operador +pass:[+]+ a objetos +MeuTempo+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então muita coisa acontece por trás das cortinas!
+Quando você aplica o operador +pass:[+]+ aos objetos +MeuTempo+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então muita coisa acontece por trás das cortinas!
 
 Adicionar ao comportamento de um operador para que funcione com tipos definidos pelo programador é chamado de _sobrecarga de operador_.
 (((sobrecarga de operador)))
@@ -388,7 +388,7 @@ Adicionar ao comportamento de um operador para que funcione com tipos definidos 
 
 === Despacho Múltiplo
 
-Na secção anterior nós adicionamos dois objetos +MeuTempo+, mas você também pode adicionar um inteiro ao objeto +MeuTempo+:
+Na seção anterior, nós adicionamos dois objetos +MeuTempo+, mas você também pode adicionar um inteiro ao objeto +MeuTempo+:
 
 [source,@julia-setup chap17b]
 ----
@@ -407,7 +407,7 @@ julia> início + 1337
 10:07:17
 ----
 
-Adição é um operador comutativo, então temos que adicionar outro método.
+Adição é um operador comutativo, por isso temos que adicionar outro método.
 
 [source,@julia-setup chap17b]
 ----
@@ -424,23 +424,23 @@ julia> 1337 + início
 10:07:17
 ----
 
-A escolha de qual método executar quando a função é aplicada é chamado de _despacho_. O Julia permite que o processo de despacho escolha qual método de uma função chamar baseada no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como _despacho múltiplo_.
+A escolha de qual método executar quando a função é aplicada é chamada de _despacho_. O Julia permite que o processo de despacho escolha qual método de uma função chamar baseado no número de argumentos dados, e nos tipos de todos os argumentos da função. Usar todos os argumentos de uma função para escolher qual método deve ser invocado é conhecido como _despacho múltiplo_.
 (((despacho)))(((despacho múltiplo)))
 
 ===== Exercício 17-3
 
-Escreva métodos +pass:[+]+ para objetos ponto:
+Escreva métodos +pass:[+]+ para os objetos ponto:
 
-* Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada +x+ é a soma das coordenadas +x+ dos operandos, e da mesma forma para as coordenadas +y+.
+* Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada +x+ é a soma das coordenadas +x+ dos operandos, e proceder da mesma forma para as coordenadas +y+.
 
 * Se o primeiro ou o segundo operando é uma tupla, o método deve somar o primeiro elemento da tupla à coordenada +x+ e o segundo elemento à coordenada +y+, e retornar um novo objeto ponto com o resultado.
 
 
 === Programação Genérica
 
-O despacho múltiplo é útil quando é necessáriO, mas (felizmente) ele não é sempre necesário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para argumentos com tipos diferentes.
+O despacho múltiplo é útil quando é necessário, apesar de (felizmente) ele não ser sempre necessário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para os argumentos com tipos diferentes.
 
-Muitas das funções que nós escrevemos para string também funcionam para outros tipos de sequência. Por exemplo, em <<dictionary_collection_counters>> nós usamos +histograma+ para contar o número de vezes no qual cada letra aparece em uma palavra.
+Muitas das funções que nós escrevemos para as strings também funcionam para os outros tipos de sequência. Por exemplo, em <<dictionary_collection_counters>> nós usamos +histograma+ para contar o número de vezes de cada letra que aparece em uma palavra.
 (((histograma)))
 
 [source,@julia-setup chap17]
@@ -458,7 +458,7 @@ function histograma(s)
 end
 ----
 
-Esta função também funciona para listas, tuplas, e até mesmo dicionários, contanto que para os elementos de +s+ exista uma função hash, então eles podem ser usados como chaves em +d+.
+Esta função também funciona para as listas, as tuplas, e até mesmo os dicionários, contanto que para os elementos de +s+ exista uma função hash, para que eles possam ser usados como chaves em +d+.
 
 [source,@julia-repl-test chap17]
 ----
@@ -474,10 +474,10 @@ Dict{Any,Any} with 3 entries:
 Funções que funcionam com vários tipos são chamadas de _polimórficas_. Polimorfismo pode facilitar o reuso de código.
 (((polymórfica)))
 
-Por exemplo, a função embutida +sum+, que soma elementos de uma sequência, funciona contanto que os elementos da sequência suportam adição.
+Por exemplo, a função embutida +sum+, que soma os elementos de uma sequência, funciona contanto que os elementos da sequência possam realizar a adição.
 (((sum)))
 
-Já que um método +pass:[+]+ é fornecido para objetos +MeuTempo+, eles funcionam com +sum+:
+Já que um método +pass:[+]+ é fornecido para os objetos +MeuTempo+, eles funcionam com +sum+:
 
 [source,@julia-repl-test chap17b]
 ----
@@ -493,34 +493,34 @@ julia> sum((t1, t2, t3))
 
 Em geral, se todos as operações dentro da função funcionam com um dado tipo, a função funciona com qualquer tipo.
 
-O melhor tipo de Polimorfismo é o tipo não intencional, no qual você descobre que uma função já escrita por você pode ser aplicada a um tipo que você nunca planejou.
+O melhor tipo de polimorfismo é o tipo não intencional, no qual se descobre que uma função que você escreveu pode ser aplicada a um tipo que você nunca planejou.
 (((polimorfismo)))
 
 
 === Interface e Implementação
 
-Um dos objetivos do despacho múltiplo é facilitar a manutenção de software, o que significa que você pode manter o programa funcionando quando outras partes do sistema mudam, e modificam o programa para cumprir novos requisitos.
+Um dos objetivos do despacho múltiplo é facilitar a manutenção do software, o que significa que você pode manter o programa funcionando quando as outras partes do sistema mudam, e modificar o programa para cumprir novos requisitos.
 
-Um princípio de design que ajuda a alcançar esse objetivo é manter as interfaces separadas da implementação. Isto significa que métodos que possuem argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
+Um princípio de design que ajuda alcançar esse objetivo é manter as interfaces separadas das implementações. Isto significa que os métodos que possuem os argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
 (((interface)))(((implementação)))
 
-Por exemplo, neste capítulo nós desenvolvemos uma struct que representa o tempo do dia. Métodos que possuem argumentos denotados com este tipo incluem +tempo_para_int+, +é_depois+ e +pass:[+]+.
+Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem +tempo_para_int+, +é_depois+ e +pass:[+]+.
 
 Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos +MeuTempo+. Neste capítulo, os campos de um objeto +MeuTempo+ são +hora+, +minuto+ e +segundo+.
 
-Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos desde a meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas faz com que outras funções sejam mais dificéis.
+Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos a partir da meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas também faz com que outras funções sejam mais dificéis.
 
-Depois você configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando o seu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.
+Depois de configurar um novo tipo, você pode descobrir uma implementação melhor. Se outras partes do programas estão usando o seu tipo, pode ser que mudar a interface consuma muito tempo e esteja sujeita a erros.
 
-Mas se você tivesse projetado a interface com cuidado, você pode mudar a implementação sem mudar a interface, o que significa que outras partes do programa não precisam mudar.
+Mas se você tivesse projetado a interface com cuidado, pode-se mudar a implementação sem mudar a interface, o que significa que outras partes do programa não precisam ser alteradas.
 
 
-=== Debugging
+=== Depuração
 
-Chamar uma função com os argumentos corretos pode ser difícil quando mais de um método para um função é específicada. O Julia permite examinar as assinaturas dos métodos de uma função.
+Chamar uma função com os argumentos corretos pode ser difícil quando mais de um método para a função é específicada. O Julia permite examinar as assinaturas dos métodos de uma função.
 
-Para saber quais métodos estão disponíveis para uma dada função, você pode usar a função +methods+:
-(((metódos)))(((debugging)))
+Para saber quais os métodos disponíveis para uma dada função, você pode usar a função +methods+:
+(((methods)))(((depuração)))
 
 [source,jlcon]
 ----
@@ -530,7 +530,7 @@ julia> methods(imprime_tempo)
 [2] imprime_tempo(tempo) in Main at REPL[4]:2
 ----
 
-Neste exemplo, a função +imprime_tempo+ tem 2 métodos: um com argumento +MeuTempo+ e um com argumento +Any+.
+Neste exemplo, a função +imprime_tempo+ tem 2 métodos: um com o argumento +MeuTempo+ e um com o argumento +Any+.
 
 
 === Glossário
@@ -548,15 +548,15 @@ A escolha de qual método executar quando uma função é executada.
 (((despacho)))
 
 assinatura::
-O número e tipo de argumentos de um método permitindo o despacho à escolher o método mais específico de uma função durante uma chamada de função.
+O número e tipo dos argumentos de um método permitindo o despacho escolher o método mais específico de uma função durante uma chamada da função.
 (((assinatura)))
 
 construtor externo::
-Um construtor definido fora da definição de tipo para definir métodos de conveniência para criar um objeto.
+Um construtor definido fora da definição de tipo para indicar os métodos convenientes para a criação de um objeto.
 (((construtor externo)))
 
 construtor interno::
-Um construtor definido dentro da definição de tipo para impor invariantes ou para construir objetos que referem-se a si mesmos.
+Um construtor definido dentro da definição de tipo para impor as invariantes ou para construir os objetos que referem a si mesmos.
 (((construtor interno)))
 
 construtor padrão::
@@ -585,15 +585,15 @@ Escrever código que pode funcionar com mais de um tipo.
 [[ex17-1]]
 ===== Exercício 17-4
 
-Mude os campos de +MeuTempo+ para que exista apenas um único campo representando os segundos passados desde a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.
+Mude os campos de +MeuTempo+ para ter apenas um único campo representando os segundos passados após a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.
 
 [[ex17-2]]
 ===== Exercício 17-5
 
-Escreva uma definição para um tipo chamado +Canguru+ com um campo chamado +conteúdo_bolso+ de tipo +Array+ e os seguintes métodos:
+Escreva uma definição para um tipo chamado +Canguru+ com um campo chamado +conteúdo_bolso+ do tipo +Array+ e os seguintes métodos:
 (((Canguru)))((("tipo", "definido pelo programador", "Canguru", see="Canguru")))
 
-* Um construtor que inicializa +conteúdo_bolso+ para uma lista vazia.
+* Um construtor que inicializa +conteúdo_bolso+ com uma lista vazia.
 
 * Um método chamado +coloca_no_bolso+ que recebe um objeto +Canguru+ e um objeto de qualquer tipo e adiciona-o a +conteúdo_bolso+.
 (((coloca_no_bolso)))((("função", "definido pelo programador", "coloca_no_bolso", see="coloca_no_bolso")))
