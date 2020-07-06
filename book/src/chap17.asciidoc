@@ -60,54 +60,54 @@ Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que 
 
 === Métodos
 
-Em <<chap16>>, nós definimos uma struct chamada +MeuTempo+ e em <<time>>, você escreveu uma função chamada +imprime_tempo+:
-(((MeuTempo)))(((imprime_tempo)))
+Em <<chap16>>, nós definimos uma struct chamada +MeuHorário+ e em <<time>>, você escreveu uma função chamada +imprima_horário+:
+(((MeuHorário)))(((imprima_horário)))
 
 [source,@julia-setup chap17a]
 ----
 using Printf
 
-struct MeuTempo
+struct MeuHorário
     hora :: Int64
     minuto :: Int64
     segundo :: Int64
 end
 
-function imprime_tempo(tempo)
+function imprima_horário(tempo)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end
 ----
 
 Como você pode ver, as declarações de tipo podem e devem ser adicionadas nos campos da definição da struct por questões de performance.
 
-Para chamar esta função, você deve passar um objeto +MeuTempo+ como um argumento:
+Para chamar esta função, você deve passar um objeto +MeuHorário+ como um argumento:
 
 [source,@julia-repl-test chap17a]
 ----
-julia> início = MeuTempo(9, 45, 0)
-MeuTempo(9, 45, 0)
-julia> imprime_tempo(início)
+julia> início = MeuHorário(9, 45, 0)
+MeuHorário(9, 45, 0)
+julia> imprima_horário(início)
 09:45:00
 ----
 
-Para adicionar um _método_ à função +imprime_tempo+ que apenas aceita um objeto +MeuTempo+ como argumento, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuTempo+ no argumento +tempo+ na definição de função:
+Para adicionar um _método_ à função +imprima_horário+ que apenas aceita um objeto +MeuHorário+ como argumento, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuHorário+ no argumento +tempo+ na definição de função:
 (((método)))
 
 [source,@julia-setup chap17a]
 ----
-function imprime_tempo(tempo::MeuTempo)
+function imprima_horário(tempo::MeuHorário)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end
 ----
 
-Um método é uma definição de função com uma _assinatura_ específica: +imprime_tempo+ possui um argumento do tipo +MeuTempo+.
+Um método é uma definição de função com uma _assinatura_ específica: +imprima_horário+ possui um argumento do tipo +MeuHorário+.
 (((assinatura)))
 
-Chamar a função +imprime_tempo+ com um objeto +MeuTempo+ produz o mesmo resultado:
+Chamar a função +imprima_horário+ com um objeto +MeuHorário+ produz o mesmo resultado:
 
 [source,@julia-repl-test chap17a]
 ----
-julia> imprime_tempo(início)
+julia> imprima_horário(início)
 09:45:00
 ----
 
@@ -115,36 +115,36 @@ Nós podemos agora redefinir o primeiro método sem a anotação de tipo +::+, p
 
 [source,@julia-setup chap17a]
 ----
-function imprime_tempo(tempo)
+function imprima_horário(tempo)
     println("Eu não sei como imprimir o argumento tempo.")
 end
 ----
 
-Se você chamar a função +imprime_tempo+ com um objeto diferente de +MeuTempo+, agora recebe-se:
+Se você chamar a função +imprima_horário+ com um objeto diferente de +MeuHorário+, agora recebe-se:
 
 [source,@julia-repl-test chap17a]
 ----
-julia> imprime_tempo(150)
+julia> imprima_horário(150)
 Eu não sei como imprimir o argumento tempo.
 ----
 
 ===== Exercício 17-1
 
-Reescreva +tempo_para_int+ e +int_para_tempo+ (de <<prototyping_versus_planning>>) para especificar os seus argumentos.
-(((tempo_para_int)))(((int_para_tempo)))
+Reescreva +horário_para_int+ e +int_para_horário+ (de <<prototyping_versus_planning>>) para especificar os seus argumentos.
+(((horário_para_int)))(((int_para_horário)))
 
 
 [source,@julia-eval chap17a]
 ----
-function tempo_para_int(tempo)
+function horário_para_int(tempo)
     minutos = tempo.hora * 60 + tempo.minuto
     segundos = minutos * 60 + tempo.segundo
 end;
 
-function int_para_tempo(segundos)
+function int_para_horário(segundos)
     (minutos, segundo) = divrem(segundos, 60)
     hora, minuto = divrem(minutos, 60)
-    MeuTempo(hora, minuto, segundo)
+    MeuHorário(hora, minuto, segundo)
 end;
 ----
 
@@ -155,9 +155,9 @@ Aqui está uma versão de +incrementa+ (de <<modifiers>>) reescrita para especif
 
 [source,@julia-setup chap17a]
 ----
-function incrementar(tempo::MeuTempo, segundos::Int64)
-    segundos += tempo_para_int(tempo)
-    int_para_tempo(segundos)
+function incrementar(tempo::MeuHorário, segundos::Int64)
+    segundos += horário_para_int(tempo)
+    int_para_horário(segundos)
 end
 ----
 
@@ -167,10 +167,10 @@ Você pode invocar incrementar da seguinte maneira:
 
 [source,@julia-repl-test chap17a]
 ----
-julia> início = MeuTempo(9, 45, 0)
-MeuTempo(9, 45, 0)
+julia> início = MeuHorário(9, 45, 0)
+MeuHorário(9, 45, 0)
 julia> incrementar(início, 1337)
-MeuTempo(10, 7, 17)
+MeuHorário(10, 7, 17)
 ----
 
 Se você colocar os argumentos na ordem errada, você recebe um erro:
@@ -179,17 +179,17 @@ Se você colocar os argumentos na ordem errada, você recebe um erro:
 [source,@julia-repl-test chap17a]
 ----
 julia> incrementar(1337, início)
-ERROR: MethodError: no method matching incrementar(::Int64, ::MeuTempo)
+ERROR: MethodError: no method matching incrementar(::Int64, ::MeuHorário)
 ----
 
-A assinatura do método é +incrementar(tempo::MeuTempo, segundos::Int64)+ e não +incrementar(segundos::Int64, tempo::MeuTempo)+.
+A assinatura do método é +incrementar(tempo::MeuHorário, segundos::Int64)+ e não +incrementar(segundos::Int64, tempo::MeuHorário)+.
 
-Reescrever +é_depois+ para operar somente com objetos +MeuTempo+ é fácil:
+Reescrever +é_depois+ para operar somente com objetos +MeuHorário+ é fácil:
 (((é_depois)))
 
 [source,@julia-setup chap17a]
 ----
-function é_depois(t1::MeuTempo, t2::MeuTempo)
+function é_depois(t1::MeuHorário, t2::MeuHorário)
     (t1.hora, t1.minuto, t1.segundo) > (t2.hora, t2.minuto, t2.segundo)
 end
 ----
@@ -217,13 +217,13 @@ Estas expressões são definições de método válidas em Julia. E é uma nota�
 [[construtor]]
 === Construtores
 
-Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuTempo+ tem a seguinte assinatura:
+Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuHorário+ tem a seguinte assinatura:
 (((construtor)))
 
 [source,julia]
 ----
-MeuTempo(hora, minuto, segundo)
-MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)
+MeuHorário(hora, minuto, segundo)
+MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
 Nós podemos também adicionar nossos próprios métodos _construtores externos_:
@@ -231,12 +231,12 @@ Nós podemos também adicionar nossos próprios métodos _construtores externos_
 
 [source,@julia-setup chap17a]
 ----
-function MeuTempo(tempo::MeuTempo)
-    MeuTempo(tempo.hora, tempo.minuto, tempo.segundo)
+function MeuHorário(tempo::MeuHorário)
+    MeuHorário(tempo.hora, tempo.minuto, tempo.segundo)
 end
 ----
 
-Esse método é chamado de _construtor cópia_ pois o novo objeto +MeuTempo+ é uma cópia do seu argumento.
+Esse método é chamado de _construtor cópia_ pois o novo objeto +MeuHorário+ é uma cópia do seu argumento.
 (((construtor cópia)))((("construtor", "cópia", see="construtor cópia")))
 
 Para impor as invariantes, nós precisamos de métodos _construtores internos_:
@@ -244,11 +244,11 @@ Para impor as invariantes, nós precisamos de métodos _construtores internos_:
 
 [source,@julia-setup chap17b]
 ----
-struct MeuTempo
+struct MeuHorário
     hora :: Int64
     minuto :: Int64
     segundo :: Int64
-    function MeuTempo(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
+    function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
         @assert(0 ≤ minuto < 60, "minuto não está entre 0 e 60.")
         @assert(0 ≤ segundo < 60, "segundo não está entre 0 e 60.")
         new(hora, minuto, segundo)
@@ -256,14 +256,14 @@ struct MeuTempo
 end
 ----
 
-A struct +MeuTempo+ agora tem 4 métodos construtores internos:
+A struct +MeuHorário+ agora tem 4 métodos construtores internos:
 
 [source,julia]
 ----
-MeuTempo()
-MeuTempo(hora::Int64)
-MeuTempo(hora::Int64, minuto::Int64)
-MeuTempo(hora::Int64, minuto::Int64, segundo::Int64)
+MeuHorário()
+MeuHorário(hora::Int64)
+MeuHorário(hora::Int64, minuto::Int64)
+MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
 Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada +new+ que cria objetos de um novo tipo declarado.
@@ -278,11 +278,11 @@ Um segundo método sem argumentos da função local +new+ existe:
 
 [source,@julia-setup chap17c]
 ----
-mutable struct MeuTempo
+mutable struct MeuHorário
     hora :: Int
     minuto :: Int
     segundo :: Int
-    function MeuTempo(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
+    function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
         @assert(0 ≤ minuto < 60, "minuto está entre 0 e 60.")
         @assert(0 ≤ segundo < 60, "segundo está entre 0 e 60.")
         tempo = new()
@@ -300,14 +300,14 @@ Isso permite a criação das estruturas de dados recorrentes, isto é, uma struc
 
 === +show+
 
-+show+ é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método +show+ para os objetos +MeuTempo+:
++show+ é uma função especial que retorna uma representação de string de um objeto. Por exemplo, aqui está um método +show+ para os objetos +MeuHorário+:
 (((show)))
 
 [source,@julia-setup chap17b]
 ----
 using Printf
 
-function Base.show(io::IO, tempo::MeuTempo)
+function Base.show(io::IO, tempo::MeuHorário)
     @printf(io, "%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end
 ----
@@ -318,7 +318,7 @@ Quando você imprime um objeto, o Julia invoca a função +show+:
 
 [source,@julia-repl-test chap17b]
 ----
-julia> tempo = MeuTempo(9, 45)
+julia> tempo = MeuHorário(9, 45)
 09:45:00
 ----
 
@@ -332,18 +332,18 @@ Escreva um método construtor externo para a classe +Ponto+ que recebe +x+ e +y+
 
 [source,@julia-eval chap17b]
 ----
-function tempo_para_int(tempo::MeuTempo)
+function horário_para_int(tempo::MeuHorário)
     minutos = tempo.hora * 60 + tempo.minuto
     segundos = minutos * 60 + tempo.segundo
 end;
 
-function int_para_tempo(segundos::Int64)
+function int_para_horário(segundos::Int64)
     (minutos, segundo) = divrem(segundos, 60)
     hora, minuto = divrem(minutos, 60)
-    MeuTempo(hora, minuto, segundo)
+    MeuHorário(hora, minuto, segundo)
 end;
 
-function incrementa(tempo::MeuTempo, segundos::Int64)
+function incrementa(tempo::MeuHorário, segundos::Int64)
     segundos += tempotoint(tempo)
     inttotempo(segundos)
 end;
@@ -351,7 +351,7 @@ end;
 
 === Operador de Sobrecarga
 
-Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuTempo+, você pode usar o operador +pass:[+]+ em objetos +MeuTempo+.
+Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuHorário+, você pode usar o operador +pass:[+]+ em objetos +MeuHorário+.
 
 A definição deve se parecer com algo como:
 
@@ -359,9 +359,9 @@ A definição deve se parecer com algo como:
 ----
 import Base.+
 
-function +(t1::MeuTempo, t2::MeuTempo)
-    segundos = tempo_para_int(t1) + tempo_para_int(t2)
-    int_para_tempo(segundos)
+function +(t1::MeuHorário, t2::MeuHorário)
+    segundos = horário_para_int(t1) + horário_para_int(t2)
+    int_para_horário(segundos)
 end
 ----
 
@@ -372,15 +372,15 @@ E você poderia usá-lo como:
 
 [source,@julia-repl-test chap17b]
 ----
-julia> início = MeuTempo(9, 45)
+julia> início = MeuHorário(9, 45)
 09:45:00
-julia> duração = MeuTempo(1, 35, 0)
+julia> duração = MeuHorário(1, 35, 0)
 01:35:00
 julia> início + duração
 11:20:00
 ----
 
-Quando você aplica o operador +pass:[+]+ aos objetos +MeuTempo+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então muita coisa acontece por trás das cortinas!
+Quando você aplica o operador +pass:[+]+ aos objetos +MeuHorário+, o Julia invoca o novo método adicionado. Quando o REPL mostra o resultado, o Julia invoca +show+. Então muita coisa acontece por trás das cortinas!
 
 Adicionar ao comportamento de um operador para que funcione com tipos definidos pelo programador é chamado de _sobrecarga de operador_.
 (((sobrecarga de operador)))
@@ -388,20 +388,20 @@ Adicionar ao comportamento de um operador para que funcione com tipos definidos 
 
 === Despacho Múltiplo
 
-Na seção anterior, nós adicionamos dois objetos +MeuTempo+, mas você também pode adicionar um inteiro ao objeto +MeuTempo+:
+Na seção anterior, nós adicionamos dois objetos +MeuHorário+, mas você também pode adicionar um inteiro ao objeto +MeuHorário+:
 
 [source,@julia-setup chap17b]
 ----
-function +(tempo::MeuTempo, segundos::Int64)
+function +(tempo::MeuHorário, segundos::Int64)
     incrementa(tempo, segundos)
 end
 ----
 
-Aqui está um exemplo que usa o operador +pass:[+]+ com um objeto +MeuTempo+ e um inteiro:
+Aqui está um exemplo que usa o operador +pass:[+]+ com um objeto +MeuHorário+ e um inteiro:
 
 [source,@julia-repl-test chap17b]
 ----
-julia> início = MeuTempo(9, 45)
+julia> início = MeuHorário(9, 45)
 09:45:00
 julia> início + 1337
 10:07:17
@@ -411,7 +411,7 @@ Adição é um operador comutativo, por isso temos que adicionar outro método.
 
 [source,@julia-setup chap17b]
 ----
-function +(segundos::Int64, tempo::MeuTempo)
+function +(segundos::Int64, tempo::MeuHorário)
   tempo + segundos
 end
 ----
@@ -477,15 +477,15 @@ Funções que funcionam com vários tipos são chamadas de _polimórficas_. Poli
 Por exemplo, a função embutida +sum+, que soma os elementos de uma sequência, funciona contanto que os elementos da sequência possam realizar a adição.
 (((sum)))
 
-Já que um método +pass:[+]+ é fornecido para os objetos +MeuTempo+, eles funcionam com +sum+:
+Já que um método +pass:[+]+ é fornecido para os objetos +MeuHorário+, eles funcionam com +sum+:
 
 [source,@julia-repl-test chap17b]
 ----
-julia> t1 = MeuTempo(1, 7, 2)
+julia> t1 = MeuHorário(1, 7, 2)
 01:07:02
-julia> t2 = MeuTempo(1, 5, 8)
+julia> t2 = MeuHorário(1, 5, 8)
 01:05:08
-julia> t3 = MeuTempo(1, 5, 0)
+julia> t3 = MeuHorário(1, 5, 0)
 01:05:00
 julia> sum((t1, t2, t3))
 03:17:10
@@ -504,9 +504,9 @@ Um dos objetivos do despacho múltiplo é facilitar a manutenção do software, 
 Um princípio de design que ajuda alcançar esse objetivo é manter as interfaces separadas das implementações. Isto significa que os métodos que possuem os argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
 (((interface)))(((implementação)))
 
-Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem +tempo_para_int+, +é_depois+ e +pass:[+]+.
+Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem +horário_para_int+, +é_depois+ e +pass:[+]+.
 
-Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos +MeuTempo+. Neste capítulo, os campos de um objeto +MeuTempo+ são +hora+, +minuto+ e +segundo+.
+Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos +MeuHorário+. Neste capítulo, os campos de um objeto +MeuHorário+ são +hora+, +minuto+ e +segundo+.
 
 Como uma alternativa, nós poderiamos substituir estes campos com um único inteiro representando o número de segundos a partir da meia-noite. Esta implementação faria com que algumas funções, como +é_depois, sejam mais facéis de escrever, mas também faz com que outras funções sejam mais dificéis.
 
@@ -524,13 +524,13 @@ Para saber quais os métodos disponíveis para uma dada função, você pode usa
 
 [source,jlcon]
 ----
-julia> methods(imprime_tempo)
-# 2 methods for generic function "imprime_tempo":
-[1] imprime_tempo(tempo::MeuTempo) in Main at REPL[3]:2
-[2] imprime_tempo(tempo) in Main at REPL[4]:2
+julia> methods(imprima_horário)
+# 2 methods for generic function "imprima_horário":
+[1] imprima_horário(tempo::MeuHorário) in Main at REPL[3]:2
+[2] imprima_horário(tempo) in Main at REPL[4]:2
 ----
 
-Neste exemplo, a função +imprime_tempo+ tem 2 métodos: um com o argumento +MeuTempo+ e um com o argumento +Any+.
+Neste exemplo, a função +imprima_horário+ tem 2 métodos: um com o argumento +MeuHorário+ e um com o argumento +Any+.
 
 
 === Glossário
@@ -585,7 +585,7 @@ Escrever código que pode funcionar com mais de um tipo.
 [[ex17-1]]
 ===== Exercício 17-4
 
-Mude os campos de +MeuTempo+ para ter apenas um único campo representando os segundos passados após a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.
+Mude os campos de +MeuHorário+ para ter apenas um único campo representando os segundos passados após a meia-noite. Em seguida modifique os métodos definidos neste capítulo para funcionar com a nova implementação.
 
 [[ex17-2]]
 ===== Exercício 17-5
