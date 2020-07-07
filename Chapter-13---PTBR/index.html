@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594057401238974e9</code></pre>
+1.594132044764901e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10188,7 +10188,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex13-5">Exercício 13-5</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>escolhidodohistograma</code> que recebe um histograma definido em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
+<p>Escreva uma função chamada <code>escolhido_do_histograma</code> que recebe um histograma definido em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> e retorna um valor aleatório do histograma, escolhido conforme a probabilidade proporcional à frequência. Por exemplo, para este histograma:
 </p>
 </div>
 <div class="listingblock">
@@ -10217,15 +10217,15 @@ Dict{Any,Any} with 2 entries:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function processaarquivo(nomedoarquivo)
+<pre class="pygments highlight"><code data-lang="julia">function processa_arquivo(nome_do_arquivo)
     hist = Dict()
-    for linha in eachline(nomedoarquivo)
-        processalinha(linha, hist)
+    for linha in eachline(nome_do_arquivo)
+        processa_linha(linha, hist)
     end
     hist
 end;
 
-function processalinha(linha, hist)
+function processa_linha(linha, hist)
     linha = replace(linha, '-' =&gt; ' ')
     for palavra in split(linha)
         palavra = string(filter(isletter, [palavra...])...)
@@ -10237,7 +10237,7 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">hist = processaarquivo("emma.txt");</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">hist = processa_arquivo("emma.txt");</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10245,15 +10245,15 @@ end;</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>A função <code>processaarquivo</code> percorre as linhas do arquivo passando-as uma vez de cada para <code>processalinha</code>. O histograma <code>hist</code> é utilizado como um acumulador.
+<p>A função <code>processa_arquivo</code> percorre as linhas do arquivo passando-as uma vez de cada para <code>processa_linha</code>. O histograma <code>hist</code> é utilizado como um acumulador.
 </p>
 </div>
 <div class="paragraph">
-<p>A função <code>processalinha</code> usa a função <code>replace</code> para substituir os hífens e espaços antes de usar <code>split</code> para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa <code>filter</code>, <code>isletter</code> e <code>lowercase</code> para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são “convertidas”, lembre-se de que as strings são imutáveis e portanto, uma função como <code>lowercase</code> retorna novas strings.)
+<p>A função <code>processa_linha</code> usa a função <code>replace</code> para substituir os hífens e espaços antes de usar <code>split</code> para separar a linha em uma lista de strings. Ela percorre a lista de palavras e usa <code>filter</code>, <code>isletter</code> e <code>lowercase</code> para remover as pontuações e converter em letras minúsculas. (Apesar de dizer que as strings são “convertidas”, lembre-se de que as strings são imutáveis e portanto, uma função como <code>lowercase</code> retorna novas strings.)
 </p>
 </div>
 <div class="paragraph">
-<p>Finalmente, <code>processalinha</code> atualiza o histograma criando um novo item ou incrementando um já existente.</p>
+<p>Finalmente, <code>processa_linha</code> atualiza o histograma criando um novo item ou incrementando um já existente.</p>
 </div>
 <div class="paragraph">
 <p>Para contar o número total de palavras no arquivo, podemos adicionar as frequências no histograma:
@@ -10261,7 +10261,7 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function totaldepalavras(hist)
+<pre class="pygments highlight"><code data-lang="julia">function total_de_palavras(hist)
     sum(values(hist))
 end</code></pre>
 </div>
@@ -10272,7 +10272,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function palavrasdiferentes(hist)
+<pre class="pygments highlight"><code data-lang="julia">function palavras_diferentes(hist)
     length(hist)
 end</code></pre>
 </div>
@@ -10282,10 +10282,10 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; println("Número total de palavras: ", totaldepalavras(hist))
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; println("Número total de palavras: ", total_de_palavras(hist))
 Número total de palavras: 162742
 
-julia&gt; println("Número de palavras diferentes: ", palavrasdiferentes(hist))
+julia&gt; println("Número de palavras diferentes: ", palavras_diferentes(hist))
 Número de palavras diferentes: 7380</code></pre>
 </div>
 </div>
@@ -10298,7 +10298,7 @@ Número de palavras diferentes: 7380</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function maiscomum(hist)
+<pre class="pygments highlight"><code data-lang="julia">function mais_comum(hist)
     t = []
     for (chave, valor) in hist
         push!(t, (valor, chave))
@@ -10312,7 +10312,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">t = maiscomum(hist)
+<pre class="pygments highlight"><code data-lang="julia">t = mais_comum(hist)
 println("As palavras mais frequentes são: ")
 for (freq, palavra) in t[1:10]
     println(palavra, "\t", freq)
@@ -10361,8 +10361,8 @@ she	2364</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function imprimemaisfrequentes(hist, num=10)
-    t = maiscomum(hist)
+<pre class="pygments highlight"><code data-lang="julia">function imprime_mais_frequentes(hist, num=10)
+    t = mais_comum(hist)
     println("As palavras mais frequentes são: ")
     for (freq, palavra) in t[1:num]
         println(palavra, "\t", freq)
@@ -10379,7 +10379,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">imprimemaisfrequentes(hist)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">imprime_mais_frequentes(hist)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10387,7 +10387,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">imprimemaisfrequentes(hist, 20)</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">imprime_mais_frequentes(hist, 20)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10421,11 +10421,11 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para encontrar as palavras do livro que não estão em <code>palavras.txt</code>, podemos usar <code>processaarquivo</code> para construir um histograma para <code>palavras.txt</code>, e depois <code>subtrair</code>:</p>
+<p>Para encontrar as palavras do livro que não estão em <code>palavras.txt</code>, podemos usar <code>processa_arquivo</code> para construir um histograma para <code>palavras.txt</code>, e depois <code>subtrair</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">palavras = processaarquivo("palavras.txt")
+<pre class="pygments highlight"><code data-lang="julia">palavras = processa_arquivo("palavras.txt")
 diff = subtrair(hist, palavras)
 
 println("Palavras do livro que não estão na lista de palavras: ")
@@ -10464,7 +10464,7 @@ outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons bet
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function palavraaleatória(h)
+<pre class="pygments highlight"><code data-lang="julia">function palavra_aleatória(h)
     t = []
     for (palavra, freq) in h
         for i in 1:freq
@@ -13597,9 +13597,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-J♣ 9♥ 6♣ 10♠ Q♠ K♥ A♠ K♦ 3♦ 8♣ Q♦ 4♣ 3♥ J♦ 5♥ J♥ 3♠ A♦ 8♠ 9♣ 5♣ 10♣ 2♥ 4♠ 6♦ 6♥ 3♣ 6♠ A♥ 5♠ 7♦ 4♥ K♣ 9♠ K♠ 2♦ 10♥ Q♣ 8♦ 4♦ J♠ 9♦ 5♦ 7♣ 2♠ 2♣ 7♠ 8♥ A♣ 7♥ Q♥ 10♦
+2♦ 8♥ 6♠ 10♥ Q♥ 7♠ 9♠ 7♦ 8♦ K♦ J♠ K♣ 6♥ 3♠ 3♦ 5♣ 10♦ A♥ Q♠ 2♥ J♦ 8♠ 9♣ Q♦ 7♥ 8♣ 5♠ A♠ 10♠ 4♠ 3♣ 3♥ 4♥ 4♦ 2♠ 5♥ J♣ 7♣ K♥ A♦ 6♦ J♥ 9♦ K♠ 10♣ 5♦ 2♣ 6♣ Q♣ A♣ 4♣ 9♥
 julia&gt; card = pop!(deck)
-10♦
+9♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16284,7 +16284,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-06 17:43:18 UTC
+Última atualização 2020-07-07 14:27:21 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
