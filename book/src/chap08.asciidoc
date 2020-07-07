@@ -1,22 +1,22 @@
 [[chap08]]
 == Strings
 
-Strings are not like integers, floats, and booleans. A string is a _sequence_, which means it is an ordered collection of other values. In this chapter you’ll see how to access the characters that make up a string, and you’ll learn about some of the string helper functions provided by Julia.
-(((string)))(((sequence)))
+Strings não são como inteiros, pontos flutuante e tipos booleanos. Uma string é uma _sequência_, o que significa que ela está em uma coleção ordenada de outros valores. Neste capítulo você verá como acessar os caracteres que compõem uma string e irá aprender sobre algumas funções auxiliares de strings fornecidas pelo Julia.
+(((string)))(((sequência)))
 
 [[characters]]
-=== Characters
+=== Caracteres
 
-English language speakers are familiar with characters such as the letters of the alphabet (A, B, C, ...), numerals, and common punctuation. These characters are standardized and mapped to integer values between 0 and 127 by the _ASCII standard_ (American Standard Code for Information Interchange).
-(((ASCII standard)))
+Falantes da língua portuguesa estão familiarizados com caracteres como as letras do alfabeto (A, B, C, ...), numerais e a pontuação comum. Esses caracteres são padronizados e mapeados para valores inteiros entre 0 e 127 pelo _padrão ASCII_ (American Standard Code for Information ou "Código Padrão Americano de Intercâmbio de Informações")
+(((padrão ASCII)))
 
-There are, of course, many other characters used in non-English languages, including variants of the ASCII characters with accents and other modifications, related scripts such as Cyrillic and Greek, and scripts completely unrelated to ASCII and English, including Arabic, Chinese, Hebrew, Hindi, Japanese, and Korean.
+Existem, é claro, muitos outros caracteres usados em línguas diferentes do Português, incluindo variantes dos caracteres ASCII com acentos e outras modificações, scripts relacionados como o Cirílico e o Grego e scripts completamente não relacionados ao ASCII e ao Português, incluindo Árabe, Chinês, Hebreu, Hindi, Japonês e Koreano.
 
-The _Unicode standard_ tackles the complexities of what exactly a character is, and is generally accepted as the definitive standard addressing this problem.  It provides a unique number for every character on a world-wide scale.
-(((Unicode standard)))
+O _padrão Unicode_ lida com as complexidades do que exatamente é um caractere e é geralmente aceitado como o padrão definitivo que resolve esse problema. Ele fornece um número único para todo caractere em uma escala mundial.
+(((padrão Unicode)))
 
-A +Char+ value represents a single character and is surrounded by single quotes:
-(((Char)))((("type", "Base", "Char", see="Char")))
+Um valor +Char+ representa um único caractere e está cercado por aspas simples:
+(((Char)))((("tipo", "Base", "Char", see="Char")))
 
 [source,@julia-repl-test]
 ----
@@ -28,87 +28,87 @@ julia> typeof('x')
 Char
 ----
 
-Even emojis are part of the Unicode standard. (*+\:banana: TAB+*)
+Até mesmo emojis fazem parte do padrão Unicode. (*+\:banana: TAB+*)
 (((emoji)))
 
 
-=== A String Is a Sequence
+=== Uma String é uma Sequência
 
-A string is a sequence of characters. You can access the characters one at a time with the bracket operator:
-(((string)))(((String)))(((sequence)))(((bracket operator)))((("[]", see="bracket operator")))((("operator", "Base", "[]", see="bracket operator")))
+Uma string é uma sequência de caracteres. Você pode acessar os caracteres um de cada vez com o operador colchetes:
+(((string)))(((String)))(((sequência)))(((operador colchetes)))((("[]", see="operador colchetes")))((("operador", "Base", "[]", see="operador colchetes")))
 
 [source,@julia-repl-test chap08]
 ----
-julia> fruit = "banana"
+julia> fruta = "banana"
 "banana"
-julia> letter = fruit[1]
+julia> letra = fruta[1]
 'b': ASCII/Unicode U+0062 (category Ll: Letter, lowercase)
 ----
 
-The second statement selects character number 1 from +fruit+ and assigns it to +letter+.
+O segundo comando seleciona o primeiro caractere de +fruta+ e o atribui para +letra+.
 
-The expression in brackets is called an _index_. The index indicates which character in the sequence you want (hence the name).
-(((index)))
+A expressão em colchetes é chamada de _índice_. O índice indica qual caractere da sequência você deseja (por isso o nome).
+(((índice)))
 
-All indexing in Julia is 1-based—the first element of any integer-indexed object is found at index 1 and the last element at index +end+:
+Toda indexação no Julia começa em 1, o primeiro elemento de qualquer objeto inteiramente indexado é encontrado no índice 1 e o último no índice +end+:
 (((end)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> fruit[end]
+julia> fruta[end]
 'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 
-As an index you can use an expression that contains variables and operators:
+Você pode usar como índice uma expressão que contém variáveis e operadores:
 
 [source,@julia-repl-test chap08]
 ----
 julia> i = 1
 1
-julia> fruit[i+1]
+julia> fruta[i+1]
 'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
-julia> fruit[end-1]
+julia> fruta[end-1]
 'n': ASCII/Unicode U+006E (category Ll: Letter, lowercase)
 ----
 
-But the value of the index has to be an integer. Otherwise you get:
-(((MethodError)))((("error", "Core", "MethodError", see="MethodError")))
+Mas o valor do índice precisa ser um inteiro. Caso contrário você recebe:
+(((MethodError)))((("erro", "Core", "MethodError", see="MethodError")))
 
 [source,@julia-repl-test chap08]
 ----
-julia> letter = fruit[1.5]
+julia> letra = fruta[1.5]
 ERROR: MethodError: no method matching getindex(::String, ::Float64)
 ----
 
 
 === +length+
 
-+length+ is a built-in function that returns the number of characters in a string:
++length+ é uma função interna que retorna o número de caracteres em uma string:
 (((length)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> fruits = "🍌 🍎 🍐"
+julia> frutas = "🍌 🍎 🍐"
 "🍌 🍎 🍐"
-julia> len = length(fruits)
+julia> tamanho = length(frutas)
 5
 ----
 
-To get the last letter of a string, you might be tempted to try something like this:
+Para obter a última letra da string, você pode ficar tentado a fazer algo como:
 
 [source,@julia-repl-test chap08]
 ----
-julia> last = fruits[len]
+julia> last = frutas[len]
 ' ': ASCII/Unicode U+0020 (category Zs: Separator, space)
 ----
 
-But you might not get what you expect.
+Mas você pode não conseguir o que espera.
 
-Strings are encoded using the _UTF-8 encoding_. UTF-8 is a variable-width encoding, meaning that not all characters are encoded in the same number of bytes.
-(((UTF-8 encoding)))
+Strings são codificadas usando a _codificação UTF-8_. UTF-8 é uma codificação de largura variável, o que significa que nem todos os caracteres estão codificados com o mesmo número de bytes.
+(((codificação UTF-8)))
 
-The function +sizeof+ gives the number of bytes in a string:
-(((sizeof)))((("function", "Base", "sizeof", see="sizeof")))
+A função +sizeof+ retorna o número de bytes em uma string:
+(((sizeof)))((("função", "Base", "sizeof", see="sizeof")))
 
 [source,@julia-repl-test chap08]
 ----
@@ -116,104 +116,104 @@ julia> sizeof("🍌")
 4
 ----
 
-Because an emoji is encoded in 4 bytes and string indexing is byte based, the 5th element of +fruits+ is a +SPACE+.
+Como um emoji é codificado em 4 bytes e a indexação de strings é baseado em bytes, o quinto elemento de +frutas+ é um +ESPAÇO+.
 (((emoji)))
 
-This means also that not every byte index into a UTF-8 string is necessarily a valid index for a character. If you index into a string at such an invalid byte index, an error is thrown:
-(((StringIndexError)))((("error", "Base", "StringIndexError", see="StringIndexError")))
+Isso significa também que nem todo índice de bytes em uma string UTF-8 é necessariamente um índice válido para um caractere. Se você indexar em uma string com um índice de bytes inválido, será gerado um erro:
+(((StringIndexError)))((("erro", "Base", "StringIndexError", see="StringIndexError")))
 
 [source,@julia-repl-test chap08]
 ----
-julia> fruits[2]
+julia> frutas[2]
 ERROR: StringIndexError("🍌 🍎 🍐", 2)
 ----
 
-In the case of +fruits+, the character +🍌+ is a four-byte character, so the indices 2, 3 and 4 are invalid and the next character's index is 5; this next valid index can be computed by +nextind(fruits, 1)+, and the next index after that by +nextind(fruits, 5)+ and so on.
-(((nextind)))((("function", "Base", "nextind", see="nextind")))
+No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então os índices 2, 3 e 4 são inválidos e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por +nextind(frutas, 1)+ e o índice depois dele por +nextind(frutas, 5)+ e assim por diante.
+(((nextind)))((("função", "Base", "nextind", see="nextind")))
 
 
-=== Traversal
+=== Travessia
 
-A lot of computations involve processing a string one character at a time. Often they start at the beginning, select each character in turn, do something to it, and continue until the end. This pattern of processing is called a _traversal_. One way to write a traversal is with a +while+ loop:
-(((traversal)))(((while statement)))
-
-[source,@julia-setup chap08]
-----
-index = firstindex(fruits)
-while index <= sizeof(fruits)
-    letter = fruits[index]
-    println(letter)
-    global index = nextind(fruits, index)
-end
-----
-
-This loop traverses the string and displays each letter on a line by itself. The loop condition is +index pass:[&lt;=] sizeof(fruit)+, so when index is larger than the number of bytes in the string, the condition is +false+, and the body of the loop doesn’t run. 
-
-The function +firstindex+ returns the first valid byte index. The keyword +global+ before +index+ indicates that we want to reassign the variable +index+ defined in +Main+ (see <<global_variables>>).
-(((global)))(((firstindex)))((("function", "Base", "firstindex", see="firstindex")))
-
-===== Exercise 8-1
-
-Write a function that takes a string as an argument and displays the letters backward, one per line.
-
-Another way to write a traversal is with a +for+ loop:
-(((for statement)))(((in)))
+Muitos problemas computacionais envolvem o processamento de uma string, um caractere de cada vez. Geralmente eles começam no início, selecionando cada caractere por vez, fazendo algo com ele, e continuando até o final. Esse padrão de processamento é denominado de _travessia_. Um jeito de escrever uma travessia é com um laço +while+:
+(((travessia)))(((declaração while)))
 
 [source,@julia-setup chap08]
 ----
-for letter in fruits
-    println(letter)
+índice = firstindex(frutas)
+while índice <= sizeof(frutas)
+    letra = frutas[índice]
+    println(letra)
+    global índice = nextind(frutas, índice)
 end
 ----
 
-Each time through the loop, the next character in the string is assigned to the variable +letter+. The loop continues until no characters are left.
+Esse laço faz a travessia da string e exibe cada letra em uma linha por si só. A condição do laço é +index pass:[&lt;=] sizeof(fruta)+, então quando o índice é maior que o número de bytes em uma string, a condição é +false+, e o corpo do laço não executa.
 
-The following example shows how to use concatenation (string multiplication) and a +for+ loop to generate an abecedarian series (that is, in alphabetical order). In Robert McCloskey’s book _Make Way for Ducklings_, the names of the ducklings are Jack, Kack, Lack, Mack, Nack, Ouack, Pack, and Quack. This loop outputs these names in order:
+A função +firstindex+ retorna o primeiro índice de bytes válido. A palavra-chave +global+ antes de +índice+ indica que nós queremos reatribuir a variável +índice+ definida em +Main+ (ver <<global_variables>>).
+(((global)))(((firstindex)))((("função", "Base", "firstindex", see="firstindex")))
+
+===== Exercício 8-1
+
+Escreva uma função que recebe uma string como argumento e exibe as letras ao contrário, uma por linha.
+
+Outra maneira de escrever uma travessia é com o laço +for+:
+(((declaração for)))(((in)))
+
+[source,@julia-setup chap08]
+----
+for letra in frutas
+    println(letra)
+end
+----
+
+Cada vez que o laço é percorrido, o próximo caractere na string é atribuido para a variável +letra+. O laço continua até que não haja mais caracteres sobrando.
+
+O próximo exemplo mostra como usar concatenação (multiplicação de strings) e um laço +for+ para gerar séries abecedárias (isto é, em ordem alfabética). No livro de Robert McCloskey, _Make way for Ducklings_ (Abram caminho para os Patinhos), os nomes dos patinhos são Jack, Kack, Lack, Mack, Nack, Ouack, Pack, e Quack. Esse laço gera os nomes em ordem:
 
 [source,@julia chap08-3]
 ----
-prefixes = "JKLMNOPQ"
-suffix = "ack"
+prefixos = "JKLMNOPQ"
+sufixo = "ack"
 
-for letter in prefixes
-    println(letter * suffix)
+for letra in prefixos
+    println(letra * sufixo)
 end
 ----
 
-Of course, that’s not quite right because “Ouack” and “Quack” are misspelled. 
+É claro, isso não está completamente correto pois “Ouack” e “Quack” estão incorretos.
 
-===== Exercise 8-2
+===== Exercício 8-2
 
-Modify the program to fix this error.
+Modifique o programa para consertar este erro.
 
 
-=== String Slices
+=== Fatias de Strings
 
-A segment of a string is called a _slice_. Selecting a slice is similar to selecting a character:
-(((slice)))
+Um segmento de uma string é chamado de _fatia_. Selecionar uma fatia é similar a selecionar um caractere:
+(((fatia)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> str = "Julius Caesar";
+julia> str = "Júlio César";
 
-julia> str[1:6]
-"Julius"
+julia> str[1:5]
+"Júlio"
 ----
 
-The operator +[n:m]+ returns the part of the string from the +n+-th byte to the +m+-th byte. So the same caution is needed as for simple indexing.
-(((bracket operator)))
+O operador +[n:m]+ retorna a parte da string do +n+-ésimo byte até o +m+-ésimo byte. Então o mesmo cuidado é necessário como para a indexação simples.
+(((operador colchetes)))
 
-The +end+ keyword can be used to indicate the last byte of the string:
+A palavra-chave +end+ pode ser usada para indicar o último byte da string:
 (((end)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> str[8:end]
-"Caesar"
+julia> str[7:end]
+"César"
 ----
 
-If the first index is greater than the second the result is an _empty string_, represented by two quotation marks:
-(((empty string)))((("&quot;&quot;", see="empty string")))
+Se o primeiro índice é maior que o segundo, o resultado é uma _string vazia_, representada por aspas duplas:
+(((string vazia)))((("&quot;&quot;", see="string vazia")))
 
 [source,@julia-repl-test chap08]
 ----
@@ -221,56 +221,56 @@ julia> str[8:7]
 ""
 ----
 
-An empty string contains no characters and has length 0, but other than that, it is the same as any other string.
+Uma string vazia não contém nenhum caractere e possui tamanho 0, mas fora isso, é igual a qualquer outra string.
 
-===== Exercise 8-3
+===== Exercício 8-3
 
-Continuing this example, what do you think +str[:]+ means? Try it and see.
+Continuando este exemplo, o que você acha que +str[:]+ significa? Experiemente e veja.
 
 
-=== Strings Are Immutable
+=== String são Imutáveis
 
-It is tempting to use the +[]+ operator on the left side of an assignment, with the intention of changing a character in a string. For example:
-(((bracket operator)))(((MethodError)))
+É tentador usar o operador +[]+ no lado esquerdo da atribuição, com a intenção de mudar um caractere de uma string. Por exemplo:
+(((operador colchetes)))(((MethodError)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> greeting = "Hello, world!"
-"Hello, world!"
-julia> greeting[1] = 'J'
+julia> cumprimento = "Olá, Mundo!"
+"Olá, Mundo!"
+julia> cumprimento[1] = 'E'
 ERROR: MethodError: no method matching setindex!(::String, ::Char, ::Int64)
 ----
 
-The reason for the error is that strings are _immutable_, which means you can’t change an existing string. The best you can do is create a new string that is a variation on the original:
-(((immutable)))
+O motivo deste erro é de que strings são _imutáveis_, o que significa que você não pode mudar uma string existente. O melhor que você pode fazer é criar uma nova string que é uma variação da original:
+(((imutável)))
 
 [source,@julia-repl-test chap08]
 ----
-julia> greeting = "J" * greeting[2:end]
-"Jello, world!"
+julia> cumprimento = "E" * cumprimento[2:end]
+"Elá, Mundo!"
 ----
 
-This example concatenates a new first letter onto a slice of greeting. It has no effect on the original string.
+Esse exemplo concatena uma nova primeira letra em uma fatia de cumprimento. Ele não tem efeito algum na string original.
 
 
-=== String Interpolation
+=== Interpolação de Strings
 
-Constructing strings using concatenation can become a bit cumbersome. To reduce the need for these verbose calls to +string+ or repeated multiplications, Julia allows _string interpolation_ using +$+:
-(((string interpolation)))((("$", see="string interpolation")))
+Construir strings usando concatenação pode vir a ser um incômodo. Para reduzir a necessidade dessas chamadas verbosas para +string+ ou multiplicações repetidas, o Julia permite _interpolação de strings_ usando +$+:
+(((interpolação de strings)))((("$", see="interpolação de strings")))
 
 [source,@julia-repl-test]
 ----
-julia> greet = "Hello"
-"Hello"
-julia> whom = "World"
-"World"
-julia> "$greet, $(whom)!"
-"Hello, World!"
+julia> cumprimento = "Olá"
+"Olá"
+julia> quem = "Mundo"
+"Mundo"
+julia> "$cumprimento, $(quem)!"
+"Olá, Mundo!"
 ----
 
-This is more readable and convenient than string concatenation: +pass:[greet * ", " * whom * "!"]+
+Isso é mais legível e conveniente do que concatenação de strings: +pass:[cumprimento * ", " * quem * "!"]+
 
-The shortest complete expression after the +$+ is taken as the expression whose value is to be interpolated into the string. Thus, you can interpolate any expression into a string using parentheses:
+O valor da menor expressão inteira após o +$+ é tomado como o valor que deve ser interpolado na sequência. Assim, você pode interpolar qualquer expressão em uma string usando parênteses:
 
 [source,@julia-repl-test]
 ----
@@ -279,79 +279,79 @@ julia> "1 + 2 = $(1 + 2)"
 ----
 
 [[searching]]
-=== Searching
+=== Buscando
 
-What does the following function do?
-(((find)))((("function", "programmer-defined", "find", see="find")))
+O que a função a seguir faz?
+(((buscar)))((("função", "definido pelo programador", "buscar", see="buscar")))
 
 [source,@julia-setup]
 ----
-function find(word, letter)
-    index = firstindex(word)
-    while index <= sizeof(word)
-        if word[index] == letter
-            return index
+function buscar(palavra, letra)
+    índice = firstindex(palavra)
+    while índice <= sizeof(palavra)
+        if palavra[índice] == letra
+            return índice
         end
-        index = nextind(word, index)
+        índice = nextind(palavra, índice)
     end
     -1
 end
 ----
 
-In a sense, find is the inverse of the +[]+ operator. Instead of taking an index and extracting the corresponding character, it takes a character and finds the index where that character appears. If the character is not found, the function returns -1.
+De certo modo, buscar é o inverso do operador +[]+. Ao invés de pegar um índice e extrair o caractere correspondente, ela recebe o caractere e busca o índice aonde este caractere aparece. Se o caractere não é encontrado, a função retorna -1.
 
-This is the first example we have seen of a return statement inside a loop. If +word[index] == letter+, the function breaks out of the loop and returns immediately.
+Esse é o primeiro exemplo que nós vimos de uma declaração return dentro de um laço. Se +palavra[índice] == letra+, a função sai do laço e retorna imediatamente.
 
-If the character doesn’t appear in the string, the program exits the loop normally and returns -1.
+Se o caractere não aparece na string, o programa sai do laço normalmente e retorna -1.
 
-This pattern of computation—traversing a sequence and returning when we find what we are looking for—is called a _search_.
-(((search)))
+Percorrer uma sequência e retornar o objeto que estamos procurando quando achamos-o é um padrão de computação chamado de _busca_.
+(((busca)))
 
-===== Exercise 8-4
+===== Exercício 8-4
 
-Modify +find+ so that it has a third parameter, the index in +word+ where it should start looking.
+Modifique +busca+ para que ela tenha um terceiro parâmetro, o índice em +palavra+ aonde ela deve começar a procurar.
 
 
 [[looping_and_counting]]
-=== Looping and Counting
+=== Realizando Laços e Contando
 
-The following program counts the number of times the letter +a+ appears in a string:
+O seguinte programa conta o número de vezes que a letra +a+ aparece em uma string:
 
 [source,@julia-setup]
 ----
-word = "banana"
-counter = 0
-for letter in word
-    if letter == 'a'
-        global counter = counter + 1
+palavra = "banana"
+contador = 0
+for letra in palavra
+    if letra == 'a'
+        global contador = contador + 1
     end
 end
-println(counter)
+println(contador)
 ----
 
-This program demonstrates another pattern of computation called a _counter_. The variable +counter+ is initialized to 0 and then incremented each time an +a+ is found. When the loop exits, +counter+ contains the result—the total number of +a+’s.
-(((counter)))
+Esse programa demonstra outro padrão de programação chamado _contador_. A variável +contador+ é inicializada com 0 e incrementada toda vez que um +a+ é encontrado. Quando a função sai do laço, +contador+ contém o resultado-o número total de +a+’s.
+(((contador)))
 
-===== Exercise 8-5
+===== Exercício 8-5
 
-Encapsulate this code in a function named +count+, and generalize it so that it accepts the string and the letter as arguments.
+Encapsule esse código em uma função chamada +conte+ e a generealize para que ela aceite a string e a letra como argumentos.
 
-Then rewrite the function so that instead of traversing the string, it uses the three-parameter version of +find+ from the previous section.
+Depois reescreva a função de modo que ao invés de percorrer a string, ela usa a versão com três parâmetros de +busca+ da seção anterior.
 
 
-=== String Library
+=== A Biblioteca de Strings
 
-Julia provides functions that perform a variety of useful operations on strings. For example, the function +uppercase+ takes a string and returns a new string with all uppercase letters.
-(((uppercase)))((("function", "Base", "uppercase", see="uppercase")))
+O Julia fornece funções que executam uma variedade de operações utéis com strings. Por exemplo, a função +uppercase+ recebe uma string e retorna uma nova string com todas suas letras maiúsculas.
+(((uppercase)))((("função", "Base", "uppercase", see="uppercase")))
 
 [source,@julia-repl-test]
 ----
-julia> uppercase("Hello, World!")
-"HELLO, WORLD!"
+julia> uppercase("Olá, Mundo!")
+"OLÁ, MUNDO!"
 ----
 
-As it turns out, there is a function named +findfirst+ that is remarkably similar to the function +find+ we wrote:
-(((findfirst)))((("function", "programmer-defined", "findfirst", see="findfirst")))
+Acontece que, existe uma função chamada +findfirst+ que é bastante similar a função +busca+ que nós escrevemos:
+(((findfirst)))((("função", "definido pelo programador", "findfirst", see="findfirst")))
 
 [source,@julia-repl-test]
 ----
@@ -359,7 +359,7 @@ julia> findfirst("a", "banana")
 2:2
 ----
 
-Actually, the +findfirst+ function is more general than our function; it can find substrings, not just characters:
+Na verdade, a função +findfirst+ é mais geral que a nossa função; ela pode achar substrings, não apenas caracteres:
 
 [source,@julia-repl-test]
 ----
@@ -367,8 +367,8 @@ julia> findfirst("na", "banana")
 3:4
 ----
 
-By default, +findfirst+ starts at the beginning of the string, but the function +findnext+ takes a third argument, the +index+ where it should start:
-(((findnext)))((("function", "programmer-defined", "findnext", see="findnext")))
+Por padrão, +findfirst+ começa no início da string, mas a função +findnext+ recebe um terceiro argumento, o +índice+ onde ela deve começar:
+(((findnext)))((("função", "definido pelo programador", "findnext", see="findnext")))
 
 [source,@julia-repl-test]
 ----
@@ -377,186 +377,186 @@ julia> findnext("na", "banana", 4)
 ----
 
 
-=== The +∈+ Operator
+=== O Operador +∈+
 
-The operator +∈+ (*+\in TAB+*) is a boolean operator that takes a character and a string and returns +true+ if the first appears in the second:
-((("∈", see="in")))((("operator", "Base", "in", see="in")))((("operator", "Base", "∈", see="in")))
+O operador +∈+ (*+\in TAB+*) é um operador booleano que recebe um caractere e uma string e retorna +true+ se o caractere aparece na string:
+((("∈", see="in")))((("operador", "Base", "in", see="in")))((("operador", "Base", "∈", see="in")))
 
 [source,@julia-repl-test]
 ----
-julia> 'a' ∈ "banana"    # 'a' in "banana"
+julia> 'a' ∈ "banana"    # 'a' em "banana"
 true
 ----
 
-For example, the following function prints all the letters from word1 that also appear in word2:
-(((inboth)))((("function", "programmer-defined", "inboth", see="inboth")))
+Por exemplo, a seguinte função imprime todas as letras da palavra1 que também aparecem na palavra2:
+(((em_ambos)))((("função", "definido pelo programador", "em_ambos", see="em_ambos")))
 
 [source,@julia-setup chap08-2]
 ----
-function inboth(word1, word2)
-    for letter in word1
-        if letter ∈ word2
-            print(letter, " ")
+function em_ambos(palavra1, palavra2)
+    for letra in palavra1
+        if letra ∈ palavra2
+            print(letra, " ")
         end
     end
 end
 ----
 
-With well-chosen variable names, Julia sometimes reads like English. You could read this loop, “for (each) letter in (the first) word, if (the) letter is an element of (the second) word, print (the) letter.”
+Com variáveis de nomes bem escolhidos, o Julia às vezes lê como Inglês. Você poderia ler este laço da seguinte forma: “para (cada) letra na (primeira) palavra, se (a) letra é um elemento da (segunda) palavra, imprima (a) letra”
 
-Here’s what you get if you compare +"apples"+ and +"oranges"+:
+Isso é o que você recebe se você compara +"maçãs"+ e +"laranjas"+:
 
 [source,@julia-repl-test chap08-2]
 ----
-julia> inboth("apples", "oranges")
-a e s
+julia> em_ambos("maçãs", "laranjas")
+a s
 ----
 
 
-=== String Comparison
+=== Comparação de Strings
 
-The relational operators work on strings. To see if two strings are equal:
-(((string comparison)))(((==)))
+O operador relacional funciona em strings. Para ver se duas strings são iguais:
+(((comparação de strings)))(((==)))
 
 [source,@julia-setup chap08]
 ----
-word = "Pineapple"
-if word == "banana"
-    println("All right, bananas.")
+palavra = "Abacaxi"
+if palavra == "banana"
+    println("Tudo certo, bananas.")
 end
 ----
 
-Other relational operations are useful for putting words in alphabetical order:
-(((alphabetical order)))
+Outras operações relacionais são utéis para colocar palavras em ordem alfabética:
+(((ordem alfabética)))
 
 [source,@julia-setup chap08]
 ----
-if word < "banana"
-    println("Your word, $word, comes before banana.")
-elseif word > "banana"
-    println("Your word, $word, comes after banana.")
+if palavra < "banana"
+    println("Sua palavra, $palavra, vem antes de banana.")
+elseif palavra > "banana"
+    println("Sua palavra, $palavra, vem depois de banana.")
 else
-    println("All right, bananas.")
+    println("Tudo certo, bananas.")
 end
 ----
 
-Julia does not handle uppercase and lowercase letters the same way people do. All the uppercase letters come before all the lowercase letters, so:
+O Julia não trata letras maiúsculas e minúsculas do mesmo jeito que as pessoas lidam. Todas as letras maiúsculas vem antes de todas as letras minúsculas, então:
 
 [source,@julia-eval chap08]
 ----
-if word < "banana"
-    println("Your word, $word, comes before banana.")
-elseif word > "banana"
-    println("Your word, $word, comes after banana.")
+if palavra < "banana"
+    println("Sua palavra, $palavra, vem antes de banana.")
+elseif palavra > "banana"
+    println("Sua palavra, $palavra, vem depois de banana.")
 else
-    println("All right, bananas.")
+    println("Tudo certo, bananas.")
 end
 ----
 
 [TIP]
 ====
-A common way to address this problem is to convert strings to a standard format, such as all lowercase, before performing the comparison.
+Uma maneira comum de resolver este problema é convertendo strings para um formato padrão, como todas minúsculas, antes de efetuar a comparação.
 ====
 
 
 [[deb08]]
-=== Debugging
+=== Depuração
 
-When you use indices to traverse the values in a sequence, it is tricky to get the beginning and end of the traversal right. Here is a function that is supposed to compare two words and return +true+ if one of the words is the reverse of the other, but it contains two errors:
-(((debugging)))(((traversal)))(((isreverse)))((("function", "programmer-defined", "isreverse", see="isreverse")))
+Quando você usa índices para percorrer os valores em uma sequência, é difícil de obter o começo e o fim da travessia direito. Aqui está uma função que deveria comparar duas palavras e retornar +true+ se uma das palavras é o inverso da outra, mas ela contém dois erros:
+(((depuração)))(((travessia)))(((é_inversa)))((("função", "definido pelo programador", "é_inversa", see="é_inversa")))
 
 [source,@julia-setup chap08]
 ----
-function isreverse(word1, word2)
-    if length(word1) != length(word2)
+function é_inversa(palavra1, palavra2)
+    if length(palavra1) != length(palavra2)
         return false
     end
-    i = firstindex(word1)
-    j = lastindex(word2)
+    i = firstindex(palavra1)
+    j = lastindex(palavra2)
     while j >= 0
-        j = prevind(word2, j)
-        if word1[i] != word2[j]
+        j = prevind(palavra2, j)
+        if palavra1[i] != palavra2[j]
             return false
         end
-        i = nextind(word1, i)
+        i = nextind(palavra1, i)
     end
     true
 end
 ----
 
-The first +if+ statement checks whether the words are the same length. If not, we can return +false+ immediately. Otherwise, for the rest of the function, we can assume that the words are the same length. This is an example of the guardian pattern.
+A primeira declaração +if+ verifica se as palavras são do mesmo tamanho. Se não, nós podemos retornar +false+ imediatamente. Caso contrário, para o resto da função, nós podemos assumir que as palavras são do mesmo tamanho. Isso é um exemplo do padrão guardião.
 
-+i+ and +j+ are indices: +i+ traverses +word1+ forward while +j+ traverses +word2+ backward. If we find two letters that don’t match, we can return +false+ immediately. If we get through the whole loop and all the letters match, we return +true+.
++i+ e +j+ são índices: +i+ percorre a +palavra1+ de frente para trás, enquanto +j+ percorre a +palavra2+ de trás para frente. Se nós acharmos duas letras que não são iguais, nós podemos retornar +false+ imediatamente. Se nós passarmos pelo laço inteiro e todas as letras forem iguais, nós retornamos +true+.
 
-The function +lastindex+ returns the last valid byte index of a string and +prevind+ the previous valid index of a character.
+A função +lastindex+ retorna o último índice de bytes válido de uma string e +prevind+ o último índice válido de um caractere.
 
-If we test this function with the words "pots" and "stop", we expect the return value +true+, but we get +false+:
+Se nós testarmos essa função com as palavras "pare" e "erap", nós esperamos que o valor de retorno seja +true+, mas nós obtemos +false+:
 
 [source,@julia-repl-test chap08]
 ----
-julia> isreverse("pots", "stop")
+julia> é_inversa("pare", "erap")
 false
 ----
 
-For debugging this kind of error, my first move is to print the values of the indices:
+Para depurar esse tipo de erro, o primeiro passo é imprimir os valores dos índices:
 
 [source,julia]
 ----
     while j >= 0
-        j = prevind(word2, j)
+        j = prevind(palavra2, j)
         @show i j
-        if word1[i] != word2[j]
+        if palavra1[i] != palavra2[j]
 ----
 
 [source,@julia-eval chap08]
 ----
-function isreverse(word1, word2)
-    if length(word1) != length(word2)
+function é_inversa(palavra1, palavra2)
+    if length(palavra1) != length(palavra2)
         return false
     end
-    i = firstindex(word1)
-    j = lastindex(word2)
+    i = firstindex(palavra1)
+    j = lastindex(palavra2)
     while j >= 0
-        j = prevind(word2, j)
+        j = prevind(palavra2, j)
         @show i j
-        if word1[i] != word2[j]
+        if palavra1[i] != palavra2[j]
             return false
         end
-        i = nextind(word1, i)
+        i = nextind(palavra1, i)
     end
     true
 end;
 ----
 
-Now when I run the program again, I get more information:
+Agora quando executamos novamente o programa, obtemos mais informações:
 
 [source,@julia-repl-test chap08]
 ----
-julia> isreverse("pots", "stop")
-i = 1 
+julia> é_inversa("pare", "erap")
+i = 1
 j = 3
 false
 ----
 
-The first time through the loop, the value of +j+ is 3, which has to be 4. This can be fixed by moving +j = prevind(word2, j)+ to the end of the +while+ loop.
+Na primeira iteração do laço, o valor de +j+ é 3, que tem que ser 4. Isso pode ser consertado movendo +j = prevind(palavra2, j)+ para o final do laço +while+.
 
-If I fix that error and run the program again, I get:
+Se consertamos este erro e executarmos novamente o programa, obtemos:
 
 [source,@julia-eval chap08]
 ----
-function isreverse(word1, word2)
-    if length(word1) != length(word2)
+function é_inversa(palavra1, palavra2)
+    if length(palavra1) != length(palavra2)
         return false
     end
-    i = firstindex(word1)
-    j = lastindex(word2)
+    i = firstindex(palavra1)
+    j = lastindex(palavra2)
     while j >= 0
         @show i j
-        if word1[i] != word2[j]
+        if palavra1[i] != palavra2[j]
             return false
         end
-        i = nextind(word1, i)
-        j = prevind(word2, j)
+        i = nextind(palavra1, i)
+        j = prevind(palavra2, j)
     end
     true
 end;
@@ -564,7 +564,7 @@ end;
 
 [source,@julia-repl-test chap08]
 ----
-julia> isreverse("pots", "stop")
+julia> é_inversa("pare", "erap")
 i = 1
 j = 4
 i = 2
@@ -579,108 +579,108 @@ ERROR: BoundsError: attempt to access String
   at index [5]
 ----
 
-This time a +BoundsError+ has been thrown. The value of +i+ is 5, which is out a range for the string +"pots"+.
-(((BoundsError)))((("error", "Core", "BoundsError", see="BoundsError")))
+Desta vez um +BoundsError+ foi gerado. O valor de +i+ é 5, que está fora do alcance para a string +"erap"+.
+(((BoundsError)))((("erro", "Core", "BoundsError", see="BoundsError")))
 
-===== Exercise 8-6
+===== Exercício 8-6
 
-Run the program on paper, changing the values of +i+ and +j+ during each iteration. Find and fix the second error in this function.
-
-
-=== Glossary
-
-sequence::
-An ordered collection of values where each value is identified by an integer index.
-(((sequence)))
-
-ASCII standard::
-A character encoding standard for electronic communication specifying 128 characters.
-(((ASCII standard)))
-
-Unicode standard::
-A computing industry standard for the consistent encoding, representation, and handling of text expressed in most of the world's writing systems.
-(((Unicode standard)))
-
-index::
-An integer value used to select an item in a sequence, such as a character in a string. In Julia indices start from 1.
-(((index)))
-
-UTF-8 encoding::
-A variable width character encoding capable of encoding all 1112064 valid code points in Unicode using one to four 8-bit bytes.
-(((UTF-8 encoding)))
-
-traverse::
-To iterate through the items in a sequence, performing a similar operation on each.
-(((traversal)))
-
-slice::
-A part of a string specified by a range of indices.
-(((slice)))
-
-empty string::
-A string with no characters and length 0, represented by two quotation marks.
-(((empty string)))
-
-immutable::
-The property of a sequence whose items cannot be changed.
-(((immutable)))
-
-string interpolation::
-The process of evaluating a string containing one or more placeholders, yielding a result in which the placeholders are replaced with their corresponding values.
-(((string interpolation)))
-
-search::
-A pattern of traversal that stops when it finds what it is looking for.
-(((search)))
-
-counter::
-A variable used to count something, usually initialized to zero and then incremented.
-(((counter)))
+Execute o programa em papel, mudando os valores de +i+ e +j+ durante cada iteração. Encontre e conserte o segundo erro nesta função.
 
 
-=== Exercises
+=== Glossário
+
+sequência::
+Uma coleção ordenada de valores no qual cada valor é identificado por um índice inteiro.
+(((sequência)))
+
+padrão ASCII::
+Um padrão de codificação de caracteres para comunicação eletrônica que especifica 128 caracteres.
+(((Padrão ASCII)))
+
+padrão Unicode::
+Um padrão da indústria da computação para a codificação consistente, representação, e tratamento de texto expressado na maioria dos sistemas de escrita do mundo.
+(((Padrão Unicode)))
+
+índice::
+Um valor inteiro usado para selecionar um item em uma sequência, como um caractere em uma string. Em Julia índices começam em 1.
+(((índice)))
+
+codificação UTF-8::
+Uma codificação de comprimento variável de caractere capaz de codificar todas as 1112064 pontos de código usando um a quatro bytes de 8-bit.
+(((Codificação UTF-8)))
+
+travessia::
+Iterar sobre os items de uma sequência, realizando operações similares em cada um deles.
+(((travessia)))
+
+fatia::
+Uma parte de uma string especificado por um alcance de índices.
+(((fatia)))
+
+string vazia::
+Uma string sem caracteres e comprimento 0, representada por aspas duplas.
+(((string vazia)))
+
+imutável::
+A propriedade de uma sequência no qual seus items não podem ser mudados.
+(((imutável)))
+
+interpolação de strings::
+O processo de avaliar uma string que contém um ou mais espaços reservados, produzindo um resultado no qual os espaços reservados são substituidos por seus valores correspondentes.
+(((interpolação de strings)))
+
+busca::
+Um padrão de travessia que para quando acha o que está procurando.
+(((busca)))
+
+contador::
+Uma variável usada para contar algo, geralmente inicializada para zero e em seguida incrementada.
+(((contador)))
+
+
+=== Exercícios
 
 [[ex08-1]]
-===== Exercise 8-7
+===== Exercício 8-7
 
-Read the documentation of the string functions at https://docs.julialang.org/en/v1/manual/strings/. You might want to experiment with some of them to make sure you understand how they work. +strip+ and +replace+ are particularly useful.
+Leia a documentação das funções de string em https://docs.julialang.org/en/v1/manual/strings/. Você talvez queira experimentar algumas delas para garantir que você entende como elas funcionam. +strip+ e +replace+ são particulamente utéis.
 
-The documentation uses a syntax that might be confusing. For example, in +search(string::AbstractString, chars::Chars, [start::Integer])+, the brackets indicate optional arguments. So +string+ and +chars+ are required, but +start+ is optional.
-(((search)))((("function", "Base", "search", see="search")))
+A documentação usa uma sintaxe que pode ser confusa. Por exemplo, em +search(string::AbstractString, chars::Chars, [start::Integer])+, os colchetes indicam argumentos opcionais. Então +string+ e +chars+ são obrigatórios, mas +start+ é opcional.
+(((search)))((("função", "Base", "search", see="search")))
 
 [[ex08-2]]
-===== Exercise 8-8
+===== Exercício 8-8
 
-There is a built-in function called +count+ that is similar to the function in <<looping_and_counting>>. Read the documentation of this function and use it to count the number of +a+’s in "banana".
-(((count)))((("function","Base", "count", see="count")))
+Existe uma função embutida chamada +count+ que é similar à função em <<looping_and_counting>>. Leia a documentação desta função e a use para contar o número de +a+’s em "banana".
+(((contar)))((("função","Base", "contar", see="contar")))
 
 [[ex08-3]]
-===== Exercise 8-9
+===== Exercício 8-9
 
-A string slice can take a third index. The first specifies the start, the third the end and the second the “step size”; that is, the number of spaces between successive characters. A step size of 2 means every other character; 3 means every third, etc.
-(((slice)))
+Uma fatia de string pode receber um terceiro índice. O primeiro especifica o começo, o terceiro o fim e o segundo o “tamanho do passo”; isto é, o número de espaços entre caracteres sucessivos. Um tamanho de passo de 2 significa que andamos de dois em dois; 3 significa de três em três e etc.
+(((fatia)))
 
 [source,@julia-repl-test]
 ----
-julia> fruit = "banana"
+julia> fruta = "banana"
 "banana"
-julia> fruit[1:2:6]
+julia> fruta[1:2:6]
 "bnn"
 ----
 
-A step size of -1 goes through the word backwards, so the slice +[end:-1:1]+ generates a reversed string.
+Um tamanho de passo -1 percorre a palavra ao contrário, então a fatia +[end:-1:1]+ gera uma string reversa.
 
-Use this idiom to write a one-line version of +ispalindrome+ from <<ex06-3>>.
-(((ispalindrome)))
+Use esse idioma para escrever uma versão de uma linha de +é_palíndromo+ do <<ex06-3>>.
+(((é_palíndromo)))
 
 [[ex08-4]]
-===== Exercise 8-10
+===== Exercício 8-10
 
-The following functions are all _intended_ to check whether a string contains any lowercase letters, but at least some of them are wrong. For each function, describe what the function actually does (assuming that the parameter is a string).
+As seguintes função são todas _planejadas_ para checar se a string contém alguma letra minúscula, mas pelo menos algumas delas estão erradas. Para cada função, descreva o que a função faz de fato (assumindo que o parâmetro é uma string).
 
 [source,@julia-setup]
 ----
-function anylowercase1(s)
+function qualquer_minúscula1(s)
     for c in s
         if islowercase(c)
             return true
@@ -690,7 +690,7 @@ function anylowercase1(s)
     end
 end
 
-function anylowercase2(s)
+function qualquer_minúscula2(s)
     for c in s
         if islowercase('c')
             return "true"
@@ -700,14 +700,14 @@ function anylowercase2(s)
     end
 end
 
-function anylowercase3(s)
+function qualquer_minúscula3(s)
     for c in s
         flag = islowercase(c)
     end
     flag
 end
 
-function anylowercase4(s)
+function qualquer_minúscula4(s)
     flag = false
     for c in s
         flag = flag || islowercase(c)
@@ -715,7 +715,7 @@ function anylowercase4(s)
     flag
 end
 
-function anylowercase5(s)
+function qualquer_minúscula5(s)
     for c in s
         if !islowercase(c)
             return false
@@ -726,19 +726,19 @@ end
 ----
 
 [[ex08-5]]
-===== Exercise 8-11
+===== Exercício 8-11
 
-A Caesar cypher is a weak form of encryption that involves “rotating” each letter by a fixed number of places. To rotate a letter means to shift it through the alphabet, wrapping around to the beginning if necessary, so +’A’+ rotated by 3 is +’D’+ and +’Z’+ rotated by 1 is +’A’+.
-(((Caesar cypher)))
+Uma cifra de César é uma forma fraca de criptografia que envolve “rotacionar” cada letra por um número fixo de lugares. Rotacionar uma letra significa deslocar ela através do alfabeto, retornando ao começo se necessário, então +’A’+ rotacionada por 3 é +’D’+ e +’Z’+ rotacionada por 1 é +’A’+.
+(((cifra de César)))
 
-To rotate a word, rotate each letter by the same amount. For example, +"cheer"+ rotated by 7 is +"jolly"+ and +"melon"+ rotated by -10 is +"cubed"+. In the movie _2001: A Space Odyssey, the ship computer_ is called HAL, which is IBM rotated by -1.
+Para rotacionar uma palavra, rotacione cada letra pelo mesmo valor. Por exemplo +"ovo"+ rotacionado por 16 é +"ele"+ e +"teve"+ rotacionado por 22 é +"para"+. No filme _2001: Odisseia no espaço, o computador de bordo_ é chamado de HAL, que é IBM rotacionado por -1.
 
-Write a function called +rotateword+ that takes a string and an integer as parameters, and returns a new string that contains the letters from the original string rotated by the given amount.
-(((rotateword)))((("function","programmer-defined", "rotateword", see="rotateword")))
+Escreva uma função chamada +rotacionapalavra+ que recebe uma string e um inteiro como parâmetros, e retorna uma nova string que contém as letras da string original rotacionada pela inteiro fornecido.
+(((rotacionapalavra)))((("função","definido pelo programador", "rotacionapalavra", see="rotacionapalavra")))
 
 [TIP]
 ====
-You might want to use the built-in function +Int+, which converts a character to a numeric code, and +Char+, which converts numeric codes to characters. Letters of the alphabet are encoded in alphabetical order, so for example:
+Você pode querer usar as funções embutidas +Int+, que converte um caractere para um código numérico, e +Char+, que converte códigos numéricos para caracteres. Letras do alfabeto são codificadas em ordem alfabética, então por exemplo:
 (((Int)))(((Char)))
 
 [source,@julia-repl-test]
@@ -747,7 +747,7 @@ julia> Int('c') - Int('a')
 2
 ----
 
-Because +'c'+ is the third letter of the alphabet. But beware: the numeric codes for uppercase letters are different.
+Por que +'c'+ é a terceira letra do alfabeto. Mas tome cuidado: os códigos numéricos para letras maiúsculas são diferentes.
 
 [source,@julia-repl-test]
 ----
@@ -756,4 +756,4 @@ julia> Char(Int('A') + 32)
 ----
 ====
 
-Potentially offensive jokes on the Internet are sometimes encoded in ROT13, which is a Caesar cypher with rotation 13. If you are not easily offended, find and decode some of them.
+Piadas potencialmente ofensivas na internet são algumas vezes codificadas em ROT13, que é uma cifra de César com rotação 13. Se você não é facilmente ofendido, encontre e codifique algumas delas.
