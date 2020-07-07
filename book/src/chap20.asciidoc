@@ -8,14 +8,14 @@ O Julia também fornece um grande número de módulos especializados em sua Bibl
 
 * +import _Módulo_+ importa o módulo, e +_Módulo.fn(x)_+ chama a função +_fn_+
 (((import)))((("palavra-chave", "import", see="import")))
-* +using _Módulo_+ importa todas as funções, tipos e macros exportados de +_Módulo_+.
+* +using _Módulo_+ importa todas as funções, tipos e macros exportadas de +_Módulo_+.
 (((using)))
 
 Funcionalidades extras podem ser adicionadas a partir de uma crescente coleção de pacotes (https://juliaobserver.com).
 
 Este capítulo não é uma substituição à documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em https://docs.julialang.org.
 
-=== Medindo Performance
+=== Mensurando Performance
 
 Nós vimos que alguns algoritmos executam melhor que outros. +fibonnaci+ em <<memos>> é muito mais rápido que +fib+ em <<one_more_example>>. A macro +@time+ permite quantificar a diferença:
 (((@time)))((("macro", "Base", "@time", see="@time")))
@@ -187,10 +187,10 @@ Aqui, outro exemplo do uso do operador ponto é mostrado. O Julia também permit
 
 === Strings
 
-Em <<chap08>> e <<chap09>>, nós fizemos algumas buscas elementares com objetos string. O Julia pode no entanto, lidar com expressões regulares compatíveis com o Perl, que facilita a tarefa de achar padrões complexos em objetos string.
+Em <<chap08>> e <<chap09>>, nós fizemos algumas buscas elementares com objetos string. O Julia pode no entanto, lidar com expressões regulares (_regexes_) compatíveis com o Perl, que facilita a tarefa de achar padrões complexos em objetos string.
 (((expressão regular)))
 
-A função +usa_somente+ pode ser implementada como uma regex(expressão regular):
+A função +usa_somente+ pode ser implementada como uma expressão regular:
 (((usa_somente)))(((Regex)))((("type", "Base", "Regex", see="Regex")))(((occursin)))((("função", "Base", "occursin", see="occursin")))
 
 [source,@julia-setup chap20]
@@ -244,7 +244,7 @@ Expressões regulares são extremamente poderosas e o página do manual PERL htt
 
 === Listas
 
-Em <<chap10>> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No Julia no entanto, listas são coleções multidimensionais.
+Em <<chap10>> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são coleções multidimensionais.
 
 Vamos criar uma _matriz_ 2 por 3 preenchida com zeros:
 (((zeros)))((("função", "Base", "zeros", see="zeros")))(((matrix)))
@@ -259,7 +259,7 @@ julia> typeof(z)
 Array{Float64,2}
 ----
 
-O tipo desta matriz é um Array que guarda pontos flutuantes com duas dimensões.
+O tipo desta matriz é um array que guarda pontos flutuantes com duas dimensões.
 (((dimensão)))
 
 A função +size+ retorna uma tupla com seus elementos sendo o número de elementos em cada dimensão da matriz:
@@ -351,7 +351,7 @@ O Julia específica algumas interfaces informais para definir comportamentos, is
 
 [quote]
 ____
-Se algo se parece com um pato, nada como um pato, e soa como um pato, então provavelmente _é_ um pato.
+Se algo se parece com um pato, nada como um pato e soa como um pato, então provavelmente _é_ um pato.
 ____
 
 Em <<one_more_example>> nós implementamos a função +fib+ retornando o latexmath:[\(n\)]-ésimo elemento da sequência de Fibonnaci.
@@ -495,7 +495,7 @@ julia> @code_native soma_de_quadrados(3.0, 4.0)
 
 === Depuração
 
-Os macros +Logging+ fornecem uma alternativa a andaimes com declarações print:
+As macros +Logging+ fornecem uma alternativa a andaimes com declarações print:
 (((@warn)))((("macro", "Base", "@warn", see="@warn")))(((debugging)))
 
 [source,jlcon]
