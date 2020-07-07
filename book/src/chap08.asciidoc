@@ -128,7 +128,7 @@ julia> frutas[2]
 ERROR: StringIndexError("🍌 🍎 🍐", 2)
 ----
 
-No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então os índices 2,3 e 4 são inválidos e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por +nextind(frutas, 1)+ e o índice depois dele por +nextind(frutas, 5)+ e assim por diante.
+No caso de +frutas+, o caractere +🍌+ é um caractere de quatro bytes, então os índices 2, 3 e 4 são inválidos e o índice do próximo caractere é 5; esse próximo índice válido pode ser calculado por +nextind(frutas, 1)+ e o índice depois dele por +nextind(frutas, 5)+ e assim por diante.
 (((nextind)))((("função", "Base", "nextind", see="nextind")))
 
 
@@ -149,7 +149,7 @@ end
 
 Esse laço faz a travessia da string e exibe cada letra em uma linha por si só. A condição do laço é +index pass:[&lt;=] sizeof(fruta)+, então quando o índice é maior que o número de bytes em uma string, a condição é +false+, e o corpo do laço não executa.
 
-A função +firstindex+ retorna o primeiro índice de bytes válido. A palavra-chave +global+ antes de +índice+ indica que nós queremos re-atribuir a variável +índice+ definida em +Main+ (ver <<global_variables>>).
+A função +firstindex+ retorna o primeiro índice de bytes válido. A palavra-chave +global+ antes de +índice+ indica que nós queremos reatribuir a variável +índice+ definida em +Main+ (ver <<global_variables>>).
 (((global)))(((firstindex)))((("função", "Base", "firstindex", see="firstindex")))
 
 ===== Exercício 8-1
@@ -208,7 +208,7 @@ A palavra-chave +end+ pode ser usada para indicar o último byte da string:
 
 [source,@julia-repl-test chap08]
 ----
-julia> str[8:end]
+julia> str[7:end]
 "César"
 ----
 
@@ -440,7 +440,7 @@ else
 end
 ----
 
-O Julia não lida letras maiúsculas e minúsculas do mesmo jeito que as pessoas lidam. Todas as letras maiúsculas vem antes de todas as letras minúsculas, então:
+O Julia não trata letras maiúsculas e minúsculas do mesmo jeito que as pessoas lidam. Todas as letras maiúsculas vem antes de todas as letras minúsculas, então:
 
 [source,@julia-eval chap08]
 ----
@@ -579,7 +579,7 @@ ERROR: BoundsError: attempt to access String
   at index [5]
 ----
 
-Desta vez um +BoundsError+ foi gerado. O valor de +i+ é 5, que está fora do alcance para a string +"pare"+.
+Desta vez um +BoundsError+ foi gerado. O valor de +i+ é 5, que está fora do alcance para a string +"erap"+.
 (((BoundsError)))((("erro", "Core", "BoundsError", see="BoundsError")))
 
 ===== Exercício 8-6
@@ -593,11 +593,11 @@ sequência::
 Uma coleção ordenada de valores no qual cada valor é identificado por um índice inteiro.
 (((sequência)))
 
-Padrão ASCII::
+padrão ASCII::
 Um padrão de codificação de caracteres para comunicação eletrônica que especifica 128 caracteres.
 (((Padrão ASCII)))
 
-Padrão Unicode::
+padrão Unicode::
 Um padrão da indústria da computação para a codificação consistente, representação, e tratamento de texto expressado na maioria dos sistemas de escrita do mundo.
 (((Padrão Unicode)))
 
@@ -605,7 +605,7 @@ Um padrão da indústria da computação para a codificação consistente, repre
 Um valor inteiro usado para selecionar um item em uma sequência, como um caractere em uma string. Em Julia índices começam em 1.
 (((índice)))
 
-Codificação UTF-8::
+codificação UTF-8::
 Uma codificação de comprimento variável de caractere capaz de codificar todas as 1112064 pontos de código usando um a quatro bytes de 8-bit.
 (((Codificação UTF-8)))
 
@@ -643,7 +643,7 @@ Uma variável usada para contar algo, geralmente inicializada para zero e em seg
 [[ex08-1]]
 ===== Exercício 8-7
 
-Leia a documentação das funções string em https://docs.julialang.org/en/v1/manual/strings/. Você talvez queira experimentar algumas delas para garantir que você entende como elas funcionam. +strip+ e +replace+ são particulamente utéis.
+Leia a documentação das funções de string em https://docs.julialang.org/en/v1/manual/strings/. Você talvez queira experimentar algumas delas para garantir que você entende como elas funcionam. +strip+ e +replace+ são particulamente utéis.
 
 A documentação usa uma sintaxe que pode ser confusa. Por exemplo, em +search(string::AbstractString, chars::Chars, [start::Integer])+, os colchetes indicam argumentos opcionais. Então +string+ e +chars+ são obrigatórios, mas +start+ é opcional.
 (((search)))((("função", "Base", "search", see="search")))
@@ -727,6 +727,7 @@ end
 
 [[ex08-5]]
 ===== Exercício 8-11
+
 Uma cifra de César é uma forma fraca de criptografia que envolve “rotacionar” cada letra por um número fixo de lugares. Rotacionar uma letra significa deslocar ela através do alfabeto, retornando ao começo se necessário, então +’A’+ rotacionada por 3 é +’D’+ e +’Z’+ rotacionada por 1 é +’A’+.
 (((cifra de César)))
 
