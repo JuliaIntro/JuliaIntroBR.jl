@@ -1,12 +1,12 @@
 [[chap09]]
-== Estudo de caso: jogo de palavras
+== Estudo de Caso: Jogo de Palavras
 
-Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um quebra-cabeças onde devemos encontrar palavras com certas propriedades. Por exemplo, encontraremos os palíndromos mais longos em inglês e as palavras cujas letras aparecem em ordem alfabética. Além disso, apresentarei outro plano de desenvolvimento de programa: redução até um problema previamente resolvido.
+Este capítulo apresenta o segundo estudo de caso, que envolve solucionar um quebra-cabeças onde devemos encontrar palavras com certas propriedades. Por exemplo, encontraremos os palíndromos mais longos em Inglês e as palavras cujas letras aparecem em ordem alfabética. Além disso, apresentaremos outro plano de desenvolvimento de programa: redução até um problema previamente resolvido.
 
 [[reading_word_lists]]
-=== Lendo listas de palavras
+=== Lendo Listas de Palavras
 
-Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Existem muitas listas de palavras disponíveis na internet, e a mais adequada para o nosso propósito é uma das listas de palavras coletadas e disponibilizadas em domínio público por Grady Ward como parte do projeto léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos com palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/words.txt.
+Para os exercícios deste capítulo, será necessária uma lista de palavras em inglês. Existem muitas listas de palavras disponíveis na internet, e a mais adequada para o nosso propósito é uma das listas de palavras coletadas e disponibilizadas em domínio público por Grady Ward como parte do projeto léxico da Moby (consulte https://wikipedia.org/wiki/Moby_Project). É uma lista com 113.809 palavras cruzadas oficiais; isto é, termos considerados válidos em palavras cruzadas e outros jogos com palavras. Na coleção de Moby, o nome do arquivo é _113809of.fic_ e você pode fazer o download de uma cópia, com o nome mais simples _palavras.txt_, em https://github.com/JuliaIntro/JuliaIntroBR.jl/blob/master/data/palavras.txt.
 (((Moby léxico)))
 
 Este arquivo está em texto não formatado e portanto, pode ser aberto com um editor de texto, inclusive também pode ser lido em Julia. A função interna +open+ precisa receber o nome do arquivo como parâmetro e retorna um _fluxo (stream) de arquivo_ usado para a leitura do arquivo.
@@ -34,7 +34,7 @@ O Julia fornece várias funções para leitura, como a +readline+, que lê os ca
 readline(arquivo_entrada)
 ----
 
-A primeira palavra em inglês nesta lista especial é "aa", que é uma espécie de lava.
+A primeira palavra em Inglês nesta lista especial é "aa", que é uma espécie de lava.
 
 O fluxo de arquivo monitora sua localização no arquivo; portanto, se chamarmos novamente o comando readline, recebemos a próxima palavra:
 
@@ -69,7 +69,7 @@ Escreva um programa que leia +palavras.txt+ e imprima somente as palavras com ma
 Em 1939, Ernest Vincent Wright publicou um romance de 50.000 palavras chamado Gadsby que não contém a letra +'e'+. Como +'e'+ é a letra mais usada em inglês, escrever um romance assim não é fácil.
 (((Wright, Ernest Vincent)))
 
-De fato, é difícil elaborar um único pensamento sem conter essa letra mais usada. É lento no início, mas com cautela e horas de treinamento, você pode gradualmente aprimorar essa habilidade até ficar mais fácil.
+De fato, é difícil elaborar um único pensamento sem conter essa letra mais usada. É lento no início, mas com cautela e horas de treinamento, você pode gradualmente aprimorar essa habilidade até ficar mais fácil. Em Inglês, este parágrafo não contém a letra e.
 
 Tudo bem, vou parar agora.
 
@@ -251,7 +251,7 @@ function é_abecedário(palavra)
 end
 ----
 
-O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j> sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caractere (que você pode pensar como sendo o caractere atual) com o ++j++-ésimo caractere (que você pode pensar como o próximo).
+O laço começa em +i=1+ e +j=nextind(palavra, 1)+ e termina quando +j>sizeof(palavra)+. A cada iteração no laço, ele compara o ++i++-ésimo caractere (que você pode pensar como sendo o caractere atual) com o ++j++-ésimo caractere (que você pode pensar como o próximo).
 
 Se a posição do próximo caractere é alfabeticamente antecedente à posição do caractere atual, descobrimos uma quebra na tendência alfabética e retornamos +false+.
 
@@ -337,7 +337,7 @@ ____
 Diga-me uma palavra com três letras duplas consecutivas. Darei a você algumas palavras que quase se qualificam, mas não são. Por exemplo, a palavra committee (comitê em inglês), c-o-m-m-i-t-t-e-e. Seria ótimo, exceto pelo 'i' que está infiltrado na palavra. Ou Mississippi: M-i-s-s-i-s-s-i-p-p-i. Se você pudesse tirar aqueles i's, funcionaria. Mas há uma palavra que possui três pares consecutivos de letras e, pelo que sei, essa pode ser a única palavra. Claro que há provavelmente mais 500, mas só consigo pensar em uma. Qual é a palavra?
 ____
 
-Escreva um programa para encontrar essa palavra em inglês.
+Escreva um programa para encontrar essa palavra em Inglês.
 
 [[ex09-8]]
 ===== Exercício 9-8
