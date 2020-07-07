@@ -518,7 +518,7 @@ Esse programa demonstra um padrão às vezes de _guardião_. Os dois primeiros c
 Em <<catching_exceptions>>, veremos uma alternativa mais flexível para mostrar uma mensagem de erro: levantando uma exceção.
 
 [[deb06]]
-=== Depurando
+=== Depuração
 
 Dividir um programa grande em funções menores cria pontos de verificação naturais para a depuração. Caso uma função não esteja funcionando, há três possibilidades para analisar:
 (((depurando)))

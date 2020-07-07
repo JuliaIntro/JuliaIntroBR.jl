@@ -202,7 +202,7 @@ O significado de um programa de computador é inequívoco e literal e pode ser e
 As linguagens formais são mais densas que as linguagens naturais, por isso leva mais tempo para lê-las. Além disso, a estrutura é importante, portanto nem sempre é melhor ler de cima para baixo, da esquerda para a direita. Em vez disso, você aprenderá a analisar o programa em sua cabeça, identificando os símbolos e interpretando a estrutura. Finalmente, os detalhes são importantes. Pequenos erros de ortografia e pontuação, com os quais você pode se dar bem em idiomas naturais, podem fazer uma grande diferença na linguagem formal. (((range="endofrange", startref="ch1nat")))(((range="endofrange", startref="ch1nat2")))(((range="endofrange", startref="ch1nat3")))(((range="endofrange", startref="ch1nat4")))(((range="endofrange", startref="ch1nat5")))(((range="endofrange", startref="ch1nat6")))
 
 
-=== Depurando
+=== Depuração
 
 Programadores ((("erros (bugs)")))((("depurar", "emoções de, lidando com")))cometem erros. Por motivos lúdicos, erros de programação são chamados de _bugs_ e o processo de rastreá-lo é chamado de _deburação_.
 

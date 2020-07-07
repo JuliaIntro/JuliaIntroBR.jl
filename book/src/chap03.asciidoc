@@ -479,7 +479,7 @@ Pode não estar claro o motivo de fragmentar um programa em funções, mas exist
 * Em Julia, as funções podem melhorar consideravelmente o desempenho.
 
 
-=== Depurando
+=== Depuração
 
 Uma das habilidades mais significativas que você vai adquirir é a depuração. Ainda que possa ser frustrante, a depuração é uma das partes da programação mais intelectualmente rica, desafiadora e interessante.
 (((depuração)))

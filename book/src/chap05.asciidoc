@@ -416,7 +416,7 @@ Veremos como lidar com esse tipo de erro posteriormente.
 (((ArgumentError)))
 
 
-=== Depurando
+=== Depuração
 
 Quando um erro de sintaxe ou de tempo de execução ocorrer, a mensagem de erro contém muitas informações, mas ela pode ser avassaladora. As partes mais úteis são geralmente:
 (((depurando)))

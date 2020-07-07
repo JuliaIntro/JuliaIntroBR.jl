@@ -440,7 +440,7 @@ Escrever esse tipo de documentação é uma parte importante do design de interf
 ====
 
 
-=== Depurando
+=== Depuração
 
 Uma interface é como um contrato entre a função e quem a chama. Quem chama concorda em fornecer certos parâmetros e a função concorda em fazer um certo trabalho.
 (((depurando)))

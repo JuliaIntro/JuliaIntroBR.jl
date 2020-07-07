@@ -278,7 +278,7 @@ Bons nomes de variável podem reduzir a necessidade de comentários, mas nomes l
 ====
 
 
-=== Depurando
+=== Depuração
 
 Três tipos de erros podem ocorrer em um programa: erros de sintaxe, erros de execução e erros de semântica. É útil distinguir entre eles a fim de localizá-los mais rapidamente.
 (((depurando)))
