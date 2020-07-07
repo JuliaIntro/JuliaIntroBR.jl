@@ -26,7 +26,7 @@ image::images/fig71.svg[]
 <<fig07-1>> mostra como uma _reatribuição_ funciona por meio de um diagrama de estado.
 (((reatribuição)))(((diagrama de estado)))
 
-Neste ponto, quero abordar um assunto comum de confusão. Como o Julia usa o sinal de igual (+=+) para a atribuição, é tentador interpretar uma afirmação como +a = b+ como uma proposição matemática de igualdade; isto é, a afirmação de que +a+ e +b+ são iguais. Mas essa interpretação está errada.
+Neste ponto, queremos abordar um assunto comum de confusão. Como o Julia usa o sinal de igual (+=+) para a atribuição, é tentador interpretar uma afirmação como +a = b+ como uma proposição matemática de igualdade; isto é, a afirmação de que +a+ e +b+ são iguais. Mas essa interpretação está errada.
 (((atribuição)))
 
 Primeiro que a igualdade é uma relação simétrica e a atribuição não é. Por exemplo, em matemática, se latexmath:[\(a=7\)] então latexmath:[\(7=a\)]. Mas em Julia, a atribuição +a=7+ é permitida e +7=a+ não.
@@ -66,7 +66,7 @@ julia> x = x + 1
 8
 ----
 
-Isso significa “pegar o valor atual de +x+, adicionar um, e então atualizar +x+ ao novo valor.”
+Isso significa “pegue o valor atual de +x+, adicione um, e então atualize +x+ ao novo valor.”
 
 Se você tenta atualizar uma variável que não existe, uma mensagem de erro aparecerá, porque o Julia avalia o lado direito antes de atribuir um valor a +x+:
 (((UndefVarError)))
@@ -114,7 +114,7 @@ function contagem_regressiva(n)
 end
 ----
 
-Você pode ler quase toda a declaração +while+ como se estivesse em inglês. Isso significa que “Enquanto +n+ for maior que 0, exiba o valor de +n+ e depois diminua +n+. Quando chegar a 0, imprima a palavra Decolar!”
+Você pode ler a declaração +while+ quase como se estivesse em Português, traduzindo _while_ por _enquanto_. Ela significa “Enquanto +n+ for maior que 0, exiba o valor de +n+ e depois diminua +n+. Quando chegar a 0, imprima a palavra Decolar!”
 (((contagem_regressiva)))
 
 Formalmente, segue abaixo o fluxo de execução de uma declaração +while+:
@@ -129,7 +129,7 @@ Formalmente, segue abaixo o fluxo de execução de uma declaração +while+:
 Esse tipo de fluxo é chamado de laço porque o terceiro passo retorna ao topo.
 (((laço)))
 
-O corpo do laço deve mudar o valor de uma ou mais variáveis até que eventualmente a condição se torna falsa e o laço é finalizado. Caso contrário, o laço irá se repetir para sempre, ou seja, um _laço infinito_. Uma fonte inesgotável de diversão para os cientistas da computação são as instruções nos frascos de shampoo, “ensaboar, enxaguar, repetir”, pois é um laço infinito.
+O corpo do laço deve mudar o valor de uma ou mais variáveis até que eventualmente a condição se torna falsa e o laço é finalizado. Caso contrário, o laço irá se repetir para sempre, ou seja, um _laço infinito_. Uma fonte inesgotável de diversão para os cientistas da computação são as instruções nos frascos de shampoo, “ensaboe, enxague, repita”, pois é um laço infinito.
 (((laço infinito)))
 
 No caso da função +contagem_regressiva+, podemos provar que o laço é finalizado: se +n+ é zero ou negativo, o laço nunca termina. Caso contrário, +n+ vai diminuindo durante o laço e então eventualmente chegará a 0.
@@ -153,7 +153,7 @@ end
 
 A condição para esse laço é +n != 1+, então esse laço irá continuar até que +n+ seja 1, o que faz a condição ser falsa.
 
-A cada turno do laço, o programa tem como saída o valor +n+ que é verificado se é par ou ímpar. Se é par, +n+ é dividido por 2. Se é ímpar, o valor de +n+ é substituído por +pass:[n*3 + 1]+. Por exemplo, se o argumento da sequência é 3, os valores de +n+ recebidos são 3, 10, 5, 16, 8, 4, 2, 1.
+A cada passada do laço, o programa tem como saída o valor +n+ que é verificado se é par ou ímpar. Se é par, +n+ é dividido por 2. Se é ímpar, o valor de +n+ é substituído por +pass:[n*3 + 1]+. Por exemplo, se o argumento da sequência é 3, os valores de +n+ recebidos são 3, 10, 5, 16, 8, 4, 2, 1.
 
 Já que +n+ às vezes cresce e às vezes decresce, não existe uma demonstração óbvia de que +n+ resultará em 1 ou que o programa termine. Para alguns valores particulares de +n+, podemos demonstrar que termina. Por exemplo, se o valor inicial é uma potência de dois, +n+ será sempre par durante o laço até que chega em 1. O exemplo anterior finaliza essa sequência, a partir de 16.
 
@@ -223,7 +223,7 @@ Se +i+ é divisível por 3, a declaração continue para na iteração atual e a
 
 Laços são frequentemente usados em programas que calculam resultados numéricos começando com um valor aproximado e aprimorando-o iterativamente.
 
-Por exemplo, uma maneira de computar raízes quadradas é através do método de Newton. Suponha que você queira saber a raiz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
+Por exemplo, uma maneira de calcular raízes quadradas é através do método de Newton. Suponha que você queira saber a raiz quadrada de latexmath:[\(a\)]. Se você começar com uma estimativa qualquer, latexmath:[\(x\)], pode-se calcular uma estimativa melhor com a seguinte fórmula:
 (((método de Newton)))
 
 [latexmath]
@@ -403,7 +403,7 @@ Copie o laço de <<square_roots>> e encapsule-o em uma função chamada +minha_r
 Para testá-la, escreva uma função chamada +avalia_raiz_quadrada+ que imprime uma tabela como esta:
 (((avalia_raiz_quadrada)))((("função", "definido pelo programador", "avalia_raiz_quadrada", see="avalia_raiz_quadrada")))
 
-[source, @ julia-eval]
+[source,@julia-eval]
 ----
 using ThinkJulia
 io = IOBuffer()
@@ -453,5 +453,5 @@ O matemático Srinivasa Ramanujan encontrou uma série infinita que pode ser usa
 \end{equation}
 ++++
 
-Escreva uma função chamada +estimativa_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ele deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação do Julia para latexmath:[\(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
-(((estimativa_pi)))((("função", "definido pelo programador", "estimativa_pi", see="estimativa_pi"))))
+Escreva uma função chamada +estima_pi+ que use essa fórmula para calcular e retornar uma estimativa de π. Ela deve usar um laço while para calcular os termos da soma até que o último termo seja menor que +1e-15+ (que é a notação do Julia para latexmath:[\(10^{-15}\)]). Você pode verificar o resultado comparando-o com +π+.
+(((estima_pi)))((("função", "definido pelo programador", "estima_pi", see="estima_pi"))))
