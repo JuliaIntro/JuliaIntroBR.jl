@@ -1045,6 +1045,9 @@ Escreva uma função chamada +em_bisseção+ que usa uma lista ordenada e um val
 Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa +par_reverso+ que encontre todos os pares reversos na lista de palavras.
 (((par_reverso)))((("função", "definido pelo programador", "par_reverso", see="par_reverso")))
 
+[[ex10-12]]
+===== Exercício 10-12
+
 Duas palavras "interligam" se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, "micro" e "ondas" se interligam para formar "microondas".
 (((interligar)))
 
