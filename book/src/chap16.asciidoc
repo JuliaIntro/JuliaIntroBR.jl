@@ -40,7 +40,7 @@ image::images/fig161.svg[]
 
 ===== Exercício 16-1
 
-Escreva uma função chamada +imprime_hora+ que recebe um objeto +minha_hora+ e imprima-o em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
+Escreva uma função chamada +imprime_horário+ que recebe um objeto +MeuHorário+ e imprima-o em forma de +hora:minuto:segundo+. A instrução +@printf+ do módulo StdLib +Printf+ imprime um inteiro com o formato de sequência `"%02d"` usando pelo menos dois dígitos, incluindo um zero inicial se necessário.
 (((imprime_horário)))((("função", "definido pelo programador", "imprime_horário", see="imprime_horário")))
 
 ===== Exercício 16-2
@@ -73,7 +73,7 @@ Para testar essa função, criaremos dois objetos +MeuHorário+: +início+ que c
 [source,@julia-eval chap16]
 ----
 using Printf
-function imprima_horário(tempo::MeuHorário)
+function imprime_horário(tempo::MeuHorário)
     @printf("%02d:%02d:%02d", tempo.hora, tempo.minuto, tempo.segundo)
 end;
 ----
@@ -86,7 +86,7 @@ julia> duração = MeuHorário(1, 35, 0);
 
 julia> fim = soma_horário(início, duração);
 
-julia> imprima_horário(fim)
+julia> imprime_horário(fim)
 10:80:00
 ----
 
@@ -94,7 +94,7 @@ O resultado, +10:80:00+ talvez não seja o que esperávamos. O problema é que e
 
 [source, @julia-setup chap16]
 ----
-function soma_tempo(t1, t2)
+function soma_horário(t1, t2)
     segundo = t1.segundo + t2.segundo
     minuto = t1.minuto + t2.minuto
     hora = t1.hora + t2.hora
@@ -118,7 +118,7 @@ Apesar desta função estar correta, ela está começando a ficar grande. Veremo
 Em certos momentos, é útil para uma função modificar os objetos que recebe como parâmetros. Neste caso, as mudanção são visíveis para quem a chama. Funções que funcionam dessa maneira são chamadas de _modificadoras_.
 (((modificador)))
 
-+incrementa!+, que adiciona um dado número de segundos à um objeto +minha_hora+, pode ser escrito naturalmente como um modificador. Aqui está um rascunho:
++incrementa!+, que adiciona um dado número de segundos à um objeto +MeuHorário+, pode ser escrito naturalmente como um modificador. Aqui está um rascunho:
 (((incrementa!)))((("função", "definido pelo programador", "incrementa!", see="incrementa!")))
 
 [source,@julia-setup chap16]
@@ -153,7 +153,7 @@ Em geral, recomendamos que você escreva funções puras sempre que for razoáve
 
 ===== Exercício 16-4
 
-Escreva uma versão “pura” de +incrementa+ que cria e retorna um novo objeto +minha_hora+ ao invéz de modificar o parâmetro.
+Escreva uma versão “pura” de +incrementa+ que cria e retorna um novo objeto +MeuHorário+ ao invéz de modificar o parâmetro.
 
 
 [[prototyping_versus_planning]]
@@ -169,9 +169,9 @@ Uma alternativa é o _desenvolvimento projetado_, no qual obter uma visão de al
 
 Quando escrevemos +soma_horário+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
 
-Essa observação nos sugere uma outra abordagem para todo o problema—podemos converter objetos +minha_hora+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
+Essa observação nos sugere uma outra abordagem para todo o problema—podemos converter objetos +MeuHorário+ para inteiros e obter uma vantagem do fato de que o computador sabe como realizar artimética inteira.
 
-Abaixo temos uma função que converte um objeto minha_hora para inteiros.
+Abaixo temos uma função que converte um objeto MeuHorário para inteiros.
 (((hora_para_int)))((("função", "definido pelo programador", "hora_para_int", see="hora_para_int")))
 
 [source, @julia-setup chap16]
@@ -182,7 +182,7 @@ function hora_para_int(tempo)
 end
 ----
 
-Aqui temos uma função que converte um inteiro para +minha_hora+ (lembre-se que +divrem+ divide o primeiro argumento pelo segundo e retorna o quociente e o resto como uma tupla):
+Aqui temos uma função que converte um inteiro para +MeuHorário+ (lembre-se que +divrem+ divide o primeiro argumento pelo segundo e retorna o quociente e o resto como uma tupla):
 (((int_para_hora)))((("função", "definido pelo programador", "int_para_hora", see="int_para_hora")))
 
 [source,@julia-setup chap16]
@@ -190,12 +190,12 @@ Aqui temos uma função que converte um inteiro para +minha_hora+ (lembre-se que
 function int_para_hora()
     (minutos, segundo) = divrem(segundos, 60)
     hora, minuto = divrem(minutos, 60)
-    minha_hora(hora, minuto, segundo)
+    MeuHorário(hora, minuto, segundo)
 end
 ----
 
 
-Talvez você tenha que pensar um pouco e executar alguns testes para se convencer de que essas funções estão corretas. Uma forma de testar é verificar que +int_para_hora(hora_para_int(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de verificação de consistência.
+Talvez você tenha que pensar um pouco e executar alguns testes para se convencer de que essas funções estão corretas. Uma forma de testar é verificar que +hora_para_int(int_para_hora(x)) == x+ para quaisquer valores de +x+. Esse é um exemplo de verificação de consistência.
 
 Uma vez que você esteja convencido de que elas estão corretas, você poderá usá-las para reescrever +soma_horário+
 
@@ -211,11 +211,11 @@ Essa versão é mais curta que a original e mais fácil de verificar.
 
 ===== Exercício 16-5
 
-Reescreva +incrementa!+ usando +tempo_para_int+ e +int_para_tempo+.
+Reescreva +incrementa!+ usando +hora_para_int+ e +int_para_hora+.
 
 Algumas vezes, converter da base 60 para a base 10 e vice-versa é mais difícil do que lidar com tempo. A conversão de base é mais abstrata; a nossa intuição para lidar com valores de tempo é melhor.
 
-Mas se nós tivermos a ideia de tratar horas como número de base 60 e investir na escrita de funções de conversão (+tempo_para_int+ e +int_para_tempo+), nós temos um programa que é menor, mais fácil de ler e depurar, e mais confiável.
+Mas se nós tivermos a ideia de tratar horas como número de base 60 e investir na escrita de funções de conversão (+hora_para_int+ e +int_para_hora+), nós temos um programa que é menor, mais fácil de ler e depurar, e mais confiável.
 
 Também é mais fácil acrescentar característica depois. Por exemplo, imagine subtrair dois objetos +MeuHorário+ para encontrar a duração entre eles. Uma abordagem ingênua seria implementar a subtração com empréstimo. Porém, usar funções de conversão seria mais fácil e, provavelmente, mais correto.
 
@@ -268,7 +268,7 @@ Ou você pode usar uma instrução +@asset+, que verifica determinado requisito 
 function soma_horário(t1, t2)
     @assert(hora_válida(t1) && hora_válida(t2), "objeto MeuHorário inválido em soma_horário")
     segundos = hora_para_int(t1) + hora_para_int(t2)
-    int_para_tempo(segundos)
+    int_para_hora(segundos)
 end
 ----
 
@@ -307,15 +307,15 @@ Uma condição que nunca deve mudar durante a execução de um programa.
 [[ex16-1]]
 ===== Exercício 16-6
 
-Escreva uma função chamada +multime+ que pega um objeto +minha_hora+ e um número, e retorna um novo objeto +minha_hora+ que contém o produto do +minha_hora+ original e do número.
+Escreva uma função chamada +multime+ que pega um objeto +MeuHorário+ e um número, e retorna um novo objeto +MeuHorário+ que contém o produto do +MeuHorário+ original e do número.
 (((multime)))((("função", "definido pelo programador", "multime", see="multime")))
 
-Em seguida use +mul_hora+ para escrever uma função que receba um objeto +minha_hora+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +minha_hora+ com o ritmo médio (tempo por quilômetro).
+Em seguida use +mulhora+ para escrever uma função que receba um objeto +MeuHorário+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +MeuHorário+ com o ritmo médio (tempo por quilômetro).
 
 [[ex16-2]]
 ===== Exercício 16-7
 
-O Julia fornece objetos de tempo que são similares aos objetos +minha_hora+ desse capítulo, mas eles fornecem um conjunto rico de funções e operadores. Leia a documentação em https://docs.julialang.org/en/v1/stdlib/Dates/.
+O Julia fornece objetos de tempo que são similares aos objetos +MeuHorário+ desse capítulo, mas eles fornecem um conjunto rico de funções e operadores. Leia a documentação em https://docs.julialang.org/en/v1/stdlib/Dates/.
 
 . Escreva um programa que obtenha a data atual e imprima o dia da semana.
 
