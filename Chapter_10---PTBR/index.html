@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594056192876629e9</code></pre>
+1.594134994123708e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7520,7 +7520,7 @@ julia&gt; print(t2)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function somatodos(t)
+<pre class="pygments highlight"><code data-lang="julia">function soma_todos(t)
     total = 0
     for x in t
         total += x
@@ -7572,7 +7572,7 @@ julia&gt; sum(t)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function todasmaiúsculas(t)
+<pre class="pygments highlight"><code data-lang="julia">function todas_maiúsculas(t)
     res = []
     for s in t
         push!(res, uppercase(s))
@@ -7585,7 +7585,7 @@ end</code></pre>
 <p><code>res</code> é inicializada com uma lista vazia; toda vez que laço é percorrido, anexamos o próximo elemento. Então, <code>res</code> é outro tipo de acumulador.</p>
 </div>
 <div class="paragraph">
-<p>Uma operação como <code>todasmaiúsculas</code> é por vezes chamado de <em>mapa</em> pois “mapeia” uma função (neste caso <code>uppercase</code>) a cada um dos elementos em uma sequência.
+<p>Uma operação como <code>todas_maiúsculas</code> é por vezes chamado de <em>mapa</em> pois “mapeia” uma função (neste caso <code>uppercase</code>) a cada um dos elementos em uma sequência.
 </p>
 </div>
 <div class="paragraph">
@@ -7594,7 +7594,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function apenasmaiúsculas(t)
+<pre class="pygments highlight"><code data-lang="julia">function apenas_maiúsculas(t)
     res = []
     for s in t
         if s == uppercase(s)
@@ -7606,7 +7606,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Uma operação como <code>apenasmaiúsculas</code> é chamada de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
+<p>Uma operação como <code>apenas_maiúsculas</code> é chamada de <em>filtro</em> pois seleciona alguns dos elementos e filtra outros.
 </p>
 </div>
 <div class="paragraph">
@@ -7638,12 +7638,12 @@ julia&gt; print(t)
 </div>
 </div>
 <div class="paragraph">
-<p>Esse é um jeito elegante de criar mapeamentos. A função <code>todasmaiúsculas</code> pode ser implementada em uma única linha:
+<p>Esse é um jeito elegante de criar mapeamentos. A função <code>todas_maiúsculas</code> pode ser implementada em uma única linha:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function todasmaiúsculas(t)
+<pre class="pygments highlight"><code data-lang="julia">function todas_maiúsculas(t)
     uppercase.(t)
 end</code></pre>
 </div>
@@ -7929,12 +7929,12 @@ b = "banana"</code></pre>
 <div class="sect2">
 <h3 id="_argumentos_de_listas">Argumentos de Listas</h3>
 <div class="paragraph">
-<p>Quando você passa uma lista para uma função, a função recebe uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, <code>deletacabeça!</code> remove o primeiro elemento de uma lista:
+<p>Quando você passa uma lista para uma função, a função recebe uma referência para a lista. Se a função modifica a lista, quem chama nota a diferença. Por exemplo, <code>deleta_cabeça!</code> remove o primeiro elemento de uma lista:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function deletacabeça!(t)
+<pre class="pygments highlight"><code data-lang="julia">function deleta_cabeça!(t)
     popfirst!(t)
 end</code></pre>
 </div>
@@ -7946,7 +7946,7 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; letras = ['a', 'b', 'c'];
 
-julia&gt; deletacabeça!(letras);
+julia&gt; deleta_cabeça!(letras);
 
 julia&gt; print(letters)
 ['b', 'c']</code></pre>
@@ -8010,7 +8010,7 @@ julia&gt; print(t3)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function nãodeletacabeça(t)
+<pre class="pygments highlight"><code data-lang="julia">function não_deleta_cabeça(t)
     t = t[2:end]                # ERRADO!
 end</code></pre>
 </div>
@@ -8021,7 +8021,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t4 = nãodeletacabeça(t3);
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t4 = não_deleta_cabeça(t3);
 
 julia&gt; print(t3)
 [1, 2, 3, 4]
@@ -8030,7 +8030,7 @@ julia&gt; print(t4)
 </div>
 </div>
 <div class="paragraph">
-<p>No início de <code>nãodeletacabeça</code>, <code>t</code> e <code>t3</code> referem-se à mesma lista. No final, <code>t</code> refere-se a uma nova lista, mas <code>t3</code> continua a referir-se à lista original, que não foi modificada.</p>
+<p>No início de <code>não_deleta_cabeça</code>, <code>t</code> e <code>t3</code> referem-se à mesma lista. No final, <code>t</code> refere-se a uma nova lista, mas <code>t3</code> continua a referir-se à lista original, que não foi modificada.</p>
 </div>
 <div class="paragraph">
 <p>Uma alternativa é escrever uma função que cria e retorna uma nova lista. Por exemplo, <code>calda</code> retorna todos, exceto o primeiro elemento de uma lista:
@@ -8260,14 +8260,14 @@ julia&gt; println(t2)
 <div class="sect4">
 <h5 id="ex10-1">Exercício 10-1</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>somaaninhada</code> que recebe uma lista de listas de números inteiros e some os elementos de todas as listas aninhadas. Por exemplo:
+<p>Escreva uma função chamada <code>soma_aninhada</code> que recebe uma lista de listas de números inteiros e some os elementos de todas as listas aninhadas. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t = [[1, 2], [3], [4, 5, 6]];
 
-julia&gt; somaaninhada(t)
+julia&gt; soma_aninhada(t)
 21</code></pre>
 </div>
 </div>
@@ -8275,14 +8275,14 @@ julia&gt; somaaninhada(t)
 <div class="sect4">
 <h5 id="ex10-2">Exercício 10-2</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>somacumulativa</code> que recebe uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o \(i\)-ésimo elemento é a soma do primeiro elemento \(i\) da lista original. Por exemplo:
+<p>Escreva uma função chamada <code>soma_cumulativa</code> que recebe uma lista de números e retorne a soma cumulativa; isto é, uma nova lista em que o \(i\)-ésimo elemento é a soma do primeiro elemento \(i\) da lista original. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; t = [1, 2, 3];
 
-julia&gt; print(somacumulativa(t))
+julia&gt; print(soma_cumulativa(t))
 Any[1, 3, 6]</code></pre>
 </div>
 </div>
@@ -8322,14 +8322,14 @@ julia&gt; print(t)
 <div class="sect4">
 <h5 id="ex10-5">Exercício 10-5</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>éordenada</code> que use uma lista como parâmetro e retorne <code>true</code> se a lista estiver ordenada em ordem crescente e <code>false</code> caso contrário. Por exemplo:
+<p>Escreva uma função chamada <code>é_ordenada</code> que use uma lista como parâmetro e retorne <code>true</code> se a lista estiver ordenada em ordem crescente e <code>false</code> caso contrário. Por exemplo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; éordenada([1, 2, 2])
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_ordenada([1, 2, 2])
 true
-julia&gt; éordenada(['b', 'a'])
+julia&gt; é_ordenada(['b', 'a'])
 false</code></pre>
 </div>
 </div>
@@ -8337,14 +8337,14 @@ false</code></pre>
 <div class="sect4">
 <h5 id="ex10-6">Exercício 10-6</h5>
 <div class="paragraph">
-<p>Duas palavras são anagramas se você puder reorganizar as letras de uma para formar a outra. Escreva uma função chamada <code>éanagrama</code> que recebe duas strings e retorne <code>true</code> se elas forem anagramas.
+<p>Duas palavras são anagramas se você puder reorganizar as letras de uma para formar a outra. Escreva uma função chamada <code>é_anagrama</code> que recebe duas strings e retorne <code>true</code> se elas forem anagramas.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex10-7">Exercise 10-7</h5>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>temduplicatas</code> que recebe uma lista e retorne <code>true</code> se houver algum elemento que apareça mais de uma vez. Ela não deve modificar a lista original.
+<p>Escreva uma função chamada <code>tem_duplicatas</code> que recebe uma lista e retorne <code>true</code> se houver algum elemento que apareça mais de uma vez. Ela não deve modificar a lista original.
 </p>
 </div>
 </div>
@@ -8392,19 +8392,16 @@ false</code></pre>
 <p>De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir 113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.</p>
 </div>
 <div class="paragraph">
-<p>Escreva uma função chamada <code>ébisseção</code> que usa uma lista ordenada e um valor-alvo e retorna <code>true</code> se a palavra estiver na lista e <code>false</code> se não estiver.
+<p>Escreva uma função chamada <code>em_bisseção</code> que usa uma lista ordenada e um valor-alvo e retorna <code>true</code> se a palavra estiver na lista e <code>false</code> se não estiver.
 </p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="ex10-11">Exercício 10-11</h5>
 <div class="paragraph">
-<p>Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa <code>parreverso</code> que encontre todos os pares reversos na lista de palavras.
+<p>Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva um programa <code>par_reverso</code> que encontre todos os pares reversos na lista de palavras.
 </p>
 </div>
-</div>
-<div class="sect4">
-<h5 id="ex10-12">Exercício 10-12</h5>
 <div class="paragraph">
 <p>Duas palavras "interligam" se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, "micro" e "ondas" se interligam para formar "microondas".
 </p>
@@ -13595,9 +13592,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-A♠ 7♥ Q♥ 10♥ 4♠ 8♠ 5♦ K♥ J♦ 5♠ 9♣ 10♦ 3♦ 7♣ 7♠ 8♦ 6♣ 4♣ 10♠ 2♥ 5♣ Q♦ 3♠ K♣ A♦ A♣ 6♥ 4♥ 8♥ 2♦ 3♥ 7♦ K♠ K♦ Q♣ 9♠ 5♥ A♥ 2♣ 8♣ J♣ Q♠ 9♦ 9♥ 6♠ 2♠ 3♣ 10♣ 4♦ 6♦ J♠ J♥
+3♣ K♠ Q♣ 7♥ A♠ 10♣ A♥ J♠ 2♥ 3♠ A♣ A♦ 9♥ 7♠ 2♠ 2♣ 5♥ 4♦ 8♦ 4♥ 9♣ J♣ 5♠ 7♦ 5♦ 8♣ J♦ 6♣ 5♣ 4♠ 7♣ 3♦ 6♥ 10♥ 8♥ Q♥ 6♠ 9♦ K♣ 3♥ Q♦ 2♦ Q♠ K♦ K♥ 9♠ 10♠ 6♦ 10♦ 8♠ J♥ 4♣
 julia&gt; card = pop!(deck)
-J♥
+4♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -16282,7 +16279,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-06 17:23:09 UTC
+Last updated 2020-07-07 15:16:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
