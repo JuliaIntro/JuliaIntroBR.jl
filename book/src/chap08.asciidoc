@@ -82,7 +82,8 @@ ERROR: MethodError: no method matching getindex(::String, ::Float64)
 
 
 === +length+
-+length+ é uma função embutida que retorna o número de caracteres em uma string:
+
++length+ é uma função interna que retorna o número de caracteres em uma string:
 (((length)))
 
 [source,@julia-repl-test chap08]
