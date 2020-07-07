@@ -307,8 +307,8 @@ Uma condição que nunca deve mudar durante a execução de um programa.
 [[ex16-1]]
 ===== Exercício 16-6
 
-Escreva uma função chamada +multime+ que pega um objeto +MeuHorário+ e um número, e retorna um novo objeto +MeuHorário+ que contém o produto do +MeuHorário+ original e do número.
-(((multime)))((("função", "definido pelo programador", "multime", see="multime")))
+Escreva uma função chamada +mulhora+ que pega um objeto +MeuHorário+ e um número, e retorna um novo objeto +MeuHorário+ que contém o produto do +MeuHorário+ original e do número.
+(((mulhora)))((("função", "definido pelo programador", "mulhora", see="mulhora")))
 
 Em seguida use +mulhora+ para escrever uma função que receba um objeto +MeuHorário+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +MeuHorário+ com o ritmo médio (tempo por quilômetro).
 
