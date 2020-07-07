@@ -202,11 +202,13 @@ O significado de um programa de computador é inequívoco e literal e pode ser e
 As linguagens formais são mais densas que as linguagens naturais, por isso leva mais tempo para lê-las. Além disso, a estrutura é importante, portanto nem sempre é melhor ler de cima para baixo, da esquerda para a direita. Em vez disso, você aprenderá a analisar o programa em sua cabeça, identificando os símbolos e interpretando a estrutura. Finalmente, os detalhes são importantes. Pequenos erros de ortografia e pontuação, com os quais você pode se dar bem em idiomas naturais, podem fazer uma grande diferença na linguagem formal. (((range="endofrange", startref="ch1nat")))(((range="endofrange", startref="ch1nat2")))(((range="endofrange", startref="ch1nat3")))(((range="endofrange", startref="ch1nat4")))(((range="endofrange", startref="ch1nat5")))(((range="endofrange", startref="ch1nat6")))
 
 
-=== Debug
+=== Depuração
 
-Programadores ((("erros (bugs)")))((("debugar", "emoções de, lidando com")))cometem erros. Por motivos lúdicos, erros de programação são chamados de _bugs_ e o processo de rastreá-lo é chamado de _debugar_.
+Programadores ((("erros (bugs)")))((("depurar", "emoções de, lidando com")))cometem erros. Por motivos lúdicos, erros de programação são chamados de _bugs_ e o processo de rastreá-lo é chamado de _deburação_.
 
-A programação e, especialmente, a debugação, às vezes traz emoções fortes. Se você está lutando com um bug difícil, pode sentir raiva, desânimo ou vergonha.
+_N.T.: Depurar em inglês é Debug, e comumente vemos a utilização de Debug e suas conjunções abrasileiradas. Note que Debugar (verbo) está incluso no dicionário brasileiro, mas Debug, o substantivo correspondente, não está._
+
+A programação e, especialmente, a depuração, às vezes traz emoções fortes. Se você está lutando com um bug difícil, pode sentir raiva, desânimo ou vergonha.
 
 Há evidências de que as pessoas respondem naturalmente aos computadores como se fossem pessoas. Quando eles funcionam bem, pensamos neles como companheiros de equipe e, quando são obstinados ou rudes, respondemos a eles da mesma maneira que respondemos a pessoas rudes e obstinadas.footnote:[Reeves, Byron, e Clifford Ivar Nass. 1996. “The Media Equation: How People Treat Computers, Television, and New Media Like Real People and Places.” Chicago, IL: Center for the Study of Language and Information; New York: Cambridge University Press.]
 
@@ -214,7 +216,7 @@ A preparação para essas reações pode ajudá-lo a lidar com elas. Uma abordag
 
 Seu trabalho é ser um bom gerente: encontre maneiras de aproveitar os pontos fortes e atenuar os pontos fracos. E encontre maneiras de usar suas emoções para se envolver com o problema, sem deixar que suas reações interfiram na sua capacidade de trabalhar de maneira eficaz.
 
-Aprender a depurar pode ser frustrante, mas é uma habilidade valiosa que é útil para muitas atividades além da programação. No final de cada capítulo, há uma seção, como esta, com minhas sugestões para debugar. Espero que eles ajudem!
+Aprender a depurar pode ser frustrante, mas é uma habilidade valiosa que é útil para muitas atividades além da programação. No final de cada capítulo, há uma seção, como esta, com minhas sugestões para depurar. Espero que eles ajudem!
 
 
 === Glossário
@@ -271,10 +273,10 @@ analisar::
 Para ((("analisar"))) examinar um programa e analisar uma estrutra de sintaxe.
 
 bug::
-Um ((("erros (bugs)", seealso="debug")))((("bugs", see="errors"))) erro de um programa.
+Um ((("erros (bugs)", seealso="depurar")))((("bugs", see="errors"))) erro de um programa.
 
-debugar::
-O ((("debugar", seealso="erros (bugs); testes"))) processo de encontrar e corrigir bugs.
+depurar::
+O ((("depurar", seealso="erros (bugs); testes"))) processo de encontrar e corrigir bugs.
 
 
 === Exercícios
