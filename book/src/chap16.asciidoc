@@ -4,7 +4,7 @@
 Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever funções que recebem objetos definidos pelo programador como parâmetro e retornam estes objetos como resultado. Neste capítulo apresentaremos um “estilo de programação funcional” e dois novos planos de desenvolvimento de programa.
 
 [[time]]
-=== Hora
+=== Horário
 
 Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +MeuHorário+ que guarda o horário do dia. A definição da estrutura se parece como:
 (((MeuHorário)))((("tipo", "definido pelo programador", "MeuHorário", see="MeuHorário")))
@@ -28,7 +28,7 @@ O nome +Time+ já é utilizado no Julia e para evitar um conflito de nomes, esco
 
 [source,@julia-repl-test chap16]
 ----
-julia> time = MeuHorário(11, 59, 30)
+julia> horario = MeuHorário(11, 59, 30)
 MeuHorário(11, 59, 30)
 ----
 
@@ -307,10 +307,10 @@ Uma condição que nunca deve mudar durante a execução de um programa.
 [[ex16-1]]
 ===== Exercício 16-6
 
-Escreva uma função chamada +mulhora+ que pega um objeto +MeuHorário+ e um número, e retorna um novo objeto +MeuHorário+ que contém o produto do +MeuHorário+ original e do número.
-(((mulhora)))((("função", "definido pelo programador", "mulhora", see="mulhora")))
+Escreva uma função chamada +mult_horário+ que pega um objeto +MeuHorário+ e um número, e retorna um novo objeto +MeuHorário+ que contém o produto do +MeuHorário+ original e do número.
+(((mult_horário)))((("função", "definido pelo programador", "mult_horário", see="mult_horário")))
 
-Em seguida use +mulhora+ para escrever uma função que receba um objeto +MeuHorário+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +MeuHorário+ com o ritmo médio (tempo por quilômetro).
+Em seguida use +mult_horário+ para escrever uma função que receba um objeto +MeuHorário+ representando o tempo até o fim de uma corrida e um número que represente a distância e retorne um objeto +MeuHorário+ com o ritmo médio (tempo por quilômetro).
 
 [[ex16-2]]
 ===== Exercício 16-7
