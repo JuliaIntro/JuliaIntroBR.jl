@@ -4254,7 +4254,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594243107193185e9</code></pre>
+1.594243788958949e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13587,9 +13587,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-3♣ A♦ 3♥ 8♥ 7♥ 5♣ 3♦ 9♣ 6♦ 4♣ 7♦ 7♠ Q♦ 8♠ J♠ J♣ 10♠ 6♣ 8♦ 4♥ 5♦ 10♣ 4♦ K♠ 5♥ 5♠ 8♣ 10♦ 4♠ A♠ 2♣ 9♥ K♦ 2♦ J♦ Q♣ J♥ 9♦ 3♠ 6♠ 10♥ 9♠ K♣ Q♥ 2♥ 2♠ A♣ A♥ 6♥ 7♣ K♥ Q♠
+7♥ 5♦ 5♣ A♥ 8♦ 2♠ 2♣ 7♦ K♣ 8♥ K♦ A♠ 8♣ 9♠ K♥ 10♥ 5♥ 10♦ A♦ 3♣ 6♠ 10♠ Q♠ 10♣ 3♦ 6♥ 4♦ Q♦ 2♥ 7♣ J♠ K♠ 9♣ A♣ 8♠ 6♣ 4♠ 3♠ 6♦ 3♥ 9♦ 7♠ Q♥ 2♦ Q♣ 5♠ J♥ 4♥ J♣ 4♣ 9♥ J♦
 julia&gt; card = pop!(deck)
-Q♠
+J♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -14417,7 +14417,7 @@ julia&gt; "Julia" :: IntOrString
 </div>
 </div>
 <div class="paragraph">
-<p>Uma união de tipos é na maioria das linguagens de computador uma construção interna para raciocinar sobre tipos. Julia, no entanto, expõe esse recurso a seus usuários porque um código eficiente pode ser gerado quando a união de tipos possui um pequeno número de tipos. Esse recurso oferece ao programador Julia uma tremenda flexibilidade para controlar o envio.</p>
+<p>Uma união de tipo é na maioria das linguagens de computador uma construção interna para raciocinar sobre tipos. Julia, no entanto, expõe esse recurso a seus usuários porque um código eficiente pode ser gerado quando a união de tipos possui um pequeno número de tipos. Esse recurso oferece ao programador Julia uma tremenda flexibilidade para controlar o envio.</p>
 </div>
 </div>
 </div>
@@ -15509,7 +15509,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20445(double, double) {
+define double @julia_squaresum_20444(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16274,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-08 21:18:23 UTC
+Última atualização 2020-07-08 21:29:45 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
