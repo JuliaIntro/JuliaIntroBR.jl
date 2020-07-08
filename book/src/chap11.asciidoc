@@ -6,7 +6,7 @@ Este capítulo apresenta outra estrutura de dados embutida chamado dicionário.
 
 === Um Dicionário é um Mapeamento
 
-Um _dicionário_ é como um array, mas mais geral. Em um array, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
+Um _dicionário_ é como uma lista, mas mais geral. Em uma lista, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
 (((dicionário)))
 
 Um dicionário contém uma coleção de índices, que são chamados de _chaves_, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de _par chave-valor_ ou, às vezes, de item.
@@ -125,7 +125,7 @@ julia> "uno" ∈ vs
 true
 ----
 
-O operador +∈+ utiliza algoritmos diferentes para os arrays e dicionários. Para os arrays, ele busca os elementos do array em ordem, como em <<searching>>. À medida que o array fica maior, o tempo de busca cresce diretamente proporcional.
+O operador +∈+ utiliza algoritmos diferentes para as listas e dicionários. Para as listas, ele busca os elementos da lista em ordem, como em <<searching>>. À medida que a lista fica maior, o tempo de busca cresce diretamente proporcional.
 
 Para os dicionários, o Julia usa um algoritmo chamado _tabela hash_ (ou tabela de dispersão ou tabela de espalhamento) que possui uma propriedade excepcional: o operador +∈+ leva aproximadamente o mesmo tempo independente da quantidade de itens do dicionário.
 (((tabela hash)))
@@ -137,7 +137,7 @@ Suponha que é dado a você uma string e você gostaria de contar quantas vezes 
 
 * Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provavelmente usando um condicional encadeado.
 
-* Você poderia criar um array com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida +Int+), usar o número como um índice para o array, e incrementar o contador adequado.
+* Você poderia criar uma lista com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida +Int+), usar o número como um índice para a lista, e incrementar o contador adequado.
 
 * Você poderia criar um dicionário com os caracteres como as chaves e os contadores como seus valores correspondentes. A primeira vez que você vê um caractere, adicionaria um item no dicionário. Após isso, você só incrementaria o valor de um item existente.
 
@@ -254,7 +254,7 @@ p 2
 Dado um dicionário +d+ e uma chave +k+, é fácil achar o valor correspondente +v = d[k]+. Esta operação é chamada de _consulta_.
 (((consulta)))
 
-Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta inversa_; você tem que procurar.
+Mas e se você tem +v+ e quer achar +k+? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor +v+. Dependendo do que é pedido, você poderia escolher um, ou teria que criar uma lista que contém todos eles. Segundo, não há uma sintaxe simples que faz uma _consulta inversa_; você tem que procurar.
 (((consulta inversa)))
 
 Aqui está uma função que recebe um valor e retorna a primeira chave que mapeia a este valor:
@@ -305,9 +305,9 @@ Uma consulta inversa é muito mais demorada que uma consulta normal; se você ti
 ====
 
 
-=== Dicionários e Arrays
+=== Dicionários e Listas
 
-Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.
+Listas podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser uma lista de letras.
 
 Aqui está uma função que inverte um dicionário:
 (((inverte_dict)))((("função", "definido pelo programador", "inverte_dict", see="inverte_dict")))
@@ -328,7 +328,7 @@ function inverte_dict(d)
 end
 ----
 
-Cada vez que o laço é percorrido, +chave+ recebe uma chave de +d+ e +valor+ recebe o valor correspondente. Se +valor+ não está em +inverso+, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um _singleton_ (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
+Cada vez que o laço é percorrido, +chave+ recebe uma chave de +d+ e +valor+ recebe o valor correspondente. Se +valor+ não está em +inverso+, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um _singleton_ (uma lista que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente à lista.
 (((singleton)))
 
 Aqui está um exemplo:
@@ -349,7 +349,7 @@ Dict{Any,Any} with 2 entries:
 image::images/fig111.svg[]
 
 
-<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverso+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
+<<fig11-1>> é um diagrama de estado mostrando +hist+ e +inverso+. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para as listas normalmente desenho fora da caixa, só para simplificar o diagrama.
 (((diagrama de estado)))
 
 [NOTE]
@@ -494,7 +494,7 @@ function exemplo4()
 end
 ----
 
-Então você pode adicionar, remover e substituir os elementos de um array global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:
+Então você pode adicionar, remover e substituir os elementos de uma lista global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:
 
 [source,@julia-setup]
 ----
@@ -537,14 +537,14 @@ Se existe um erro, você pode reduzir de latexmath:[\(n\)] para o menor valor qu
 
 * Verifique os resumos e os tipos:
 +
-Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de um array de números.
+Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de uma lista de números.
 (((verificação)))
 +
 Uma causa comum de erros de execução é um valor que não é do tipo correto. Para a depuração desse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.
 
 * Escreva auto-verificações:
 +
-Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não está acima do maior elemento do array ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
+Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de uma lista de números, você poderia checar que o resultado não está acima do maior elemento da lista ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
 (((auto-verificação)))(((verificação de sanidade)))
 +
 Outro tipo de verificação compara o resultado de dois cálculos diferentes para verificar se eles são consistentes. Isso é chamado de “verificação de consistência”.
@@ -610,7 +610,7 @@ Uma operação em um dicionário que recebe um valor e encontra uma ou mais chav
 (((consulta inversa)))
 
 singleton::
-Um array (ou outra sequência) com um único elemento.
+Uma lista (ou outra sequência) com um único elemento.
 (((singleton)))
 
 grafo de chamada::
@@ -650,7 +650,7 @@ Uma variável global que não pode ser reatribuída.
 Escreva uma função que leia as palavras em _palavras.txt_ e guarde-as como chaves em um dicionário. Não importa quais sejam os valores. Em seguida, você pode usar o operador +∈+ como uma maneira rápida de verificar se uma string está ou não no dicionário.
 (((in)))
 
-Se o exercício <<ex10-10>> foi feito, você pode comparar a velocidade desta implementação com o operador +∈+ em arrays e na busca em bissecção.
+Se o exercício <<ex10-10>> foi feito, você pode comparar a velocidade desta implementação com o operador +∈+ em listas e na busca em bissecção.
 
 [[ex11-2]]
 ===== Exercício 11-3
@@ -667,7 +667,7 @@ Memoize a função de Ackermann de <<ex06-2>> e verifique se a memoização poss
 [[ex11-4]]
 ===== Exercício 11-5
 
-Se <<ex10-7>> foi feito, então já possui uma função chamada +tem_duplas+ que recebe um array como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez no array.
+Se <<ex10-7>> foi feito, então já possui uma função chamada +tem_duplas+ que recebe uma lista como parâmetro e retorna +true+ se há qualquer objeto que aparece mais de uma vez na lista.
 (((tem_duplas)))
 
 Use um dicionário para escrever uma versão mais rápida e simplificada de +tem_duplas+.
@@ -678,7 +678,7 @@ Use um dicionário para escrever uma versão mais rápida e simplificada de +tem
 Duas palavras são “pares rotacionados” se você pode rotacionar um deles e obter o outro (ver +rotaciona_palavra+ em <<ex08-5>>).
 (((rotaciona_palavra)))
 
-Escreva um programa que lê um array e encontra todos os pares rotacionados.
+Escreva um programa que lê uma lista e encontra todos os pares rotacionados.
 
 [[ex11-6]]
 ===== Exercício 11-7
@@ -695,7 +695,7 @@ Agora irei dar um exemplo que não funciona. Vamos olhar para uma palavra de cin
 Mas há pelo menos uma palavra, que Dan e nós conhecemos, que irá produzir dois homófonos se você remover tanto as duas primeiras letras para criar duas novas palavras de quatro letras. A pergunta é, qual é a palavra?
 ____
 
-Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está no array de palavras.
+Você pode usar o dicionário de <<ex11-1>> para verificar se uma string está na lista de palavras.
 
 [TIP]
 ====
