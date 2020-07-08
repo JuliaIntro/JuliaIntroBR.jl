@@ -78,15 +78,15 @@ Ao contrário de strings, listas são _mutáveis_. Quando os colchetes aparecem 
 
 [source,@julia-repl-test chap10]
 ----
-julia> números[2] = 7
+julia> números[2] = 5
 5
 julia> print(números)
-[42, 7]
+[42, 5]
 ----
 
-O segundo elemento de +números+, que costumava ser 123, agora é 7.
+O segundo elemento de +números+, que costumava ser 123, agora é 5.
 
-<<fig10-1>> mostra o diagrama de estado para "vegetais", "números" e "vazia".
+<<fig10-1>> mostra o diagrama de estado para +vegetais+, +números+ e +vazia+.
 (((diagrama de estado)))
 
 [[fig10-1]]
