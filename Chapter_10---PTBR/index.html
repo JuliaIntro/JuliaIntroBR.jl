@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594181486506344e9</code></pre>
+1.594241808608624e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7292,17 +7292,17 @@ Array{Any,1}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; números[2] = 7
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; números[2] = 5
 5
 julia&gt; print(números)
-[42, 7]</code></pre>
+[42, 5]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O segundo elemento de <code>números</code>, que costumava ser 123, agora é 7.</p>
+<p>O segundo elemento de <code>números</code>, que costumava ser 123, agora é 5.</p>
 </div>
 <div class="paragraph">
-<p><a href="#fig10-1">Diagrama de estado</a> mostra o diagrama de estado para "vegetais", "números" e "vazia".
+<p><a href="#fig10-1">Diagrama de estado</a> mostra o diagrama de estado para <code>vegetais</code>, <code>números</code> e <code>vazia</code>.
 </p>
 </div>
 <div id="fig10-1" class="imageblock">
@@ -13595,9 +13595,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♠ Q♠ J♣ 2♠ 7♥ A♠ J♦ 8♥ 5♦ 10♠ 7♣ 9♥ K♠ 5♣ 5♠ K♥ 8♣ 6♥ 2♥ 3♠ A♣ 8♦ 6♠ 10♥ 4♠ 5♥ 9♦ 3♦ Q♦ 10♣ 7♦ 7♠ 3♥ K♦ 2♣ 6♦ K♣ 4♥ A♦ J♠ Q♣ 9♣ 6♣ 4♦ J♥ 3♣ 9♠ 10♦ 4♣ Q♥ A♥ 2♦
+4♦ 5♠ 6♠ 3♦ 10♦ Q♥ 3♥ 3♣ 6♦ 9♥ 8♣ Q♠ 10♥ Q♣ 5♥ 6♥ 8♠ 7♣ 9♣ 7♦ 6♣ 10♣ K♣ 7♥ 2♠ A♥ 5♣ 4♠ K♥ 3♠ A♦ K♠ 8♥ 9♦ Q♦ J♦ 9♠ 2♥ 4♣ J♣ A♣ A♠ 10♠ 5♦ 2♦ J♠ 2♣ 7♠ 8♦ 4♥ J♥ K♦
 julia&gt; card = pop!(deck)
-2♦
+K♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15517,7 +15517,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20435(double, double) {
+define double @julia_squaresum_20439(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16282,7 +16282,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-08 04:11:23 UTC
+Last updated 2020-07-08 20:56:45 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
