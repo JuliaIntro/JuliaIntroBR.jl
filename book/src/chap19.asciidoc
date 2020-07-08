@@ -1,11 +1,11 @@
 [[chap19]]
 == Extra: Sintaxe
 
-Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.
+Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhíamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.
 
-Agora queremos retornar a algumas coisas boas que ficaram para traz. O Julia oferece uma variadade de recursos que não são realmente necessários – você pode escrever um bom código sem eles – mas com eles é possível escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.
+Agora queremos retornar a algumas coisas boas que ficaram pra trás. O Julia oferece uma variadade de recursos que não são realmente necessários – você pode escrever um bom código sem eles – mas com eles é possível escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.
 
-Neste capítulo e no próximo, iremos discutir coisas que deixamos para trás nos capótulos anteriores:
+Neste capítulo e no próximo, iremos discutir coisas que deixamos para trás nos capítulos anteriores:
 
 * suplementos de sintaxe
 * funções, tipos e macros diretamente disponíveis em +Base+
@@ -54,7 +54,7 @@ julia> function (x)
 #3 (generic function with 1 method)
 ----
 
-Esses são exemplos de _funções anônimas_. Funções anonimas geralmente são usadas como argumentos para outras funções:
+Esses são exemplos de _funções anônimas_. Funções anônimas geralmente são usadas como argumentos para outras funções:
 (((funções anônimas)))(((Plots)))((("módulo", "Plots", see="Plots")))(((plot)))((("função", "Plots", "plot", see="plot")))
 
 [source,jlcon]
@@ -193,7 +193,7 @@ function open(f::Function, args...)
 end
 ----
 
-Um bloco +do+ pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável +dado+ no exemplo acima de +open pass:[...] do+ é capturado de outro escopo.
+Um bloco +do+ pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável +dado+ no exemplo acima de +open pass:[...] do+ é capturada de outro escopo.
 
 
 === Controle de Fluxo
