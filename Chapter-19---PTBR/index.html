@@ -4254,7 +4254,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.593192746274821e9</code></pre>
+1.594243107193185e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13587,9 +13587,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♦ 5♥ J♣ 3♥ 8♥ 9♥ 5♦ Q♠ A♣ 10♣ 6♠ 9♣ 10♠ A♠ 8♠ 4♦ K♥ 8♣ J♠ 9♠ J♦ 8♦ 2♥ 3♣ 6♣ 2♦ 4♠ 2♣ Q♣ 3♦ 7♦ 7♣ Q♥ 5♣ J♥ 6♥ 10♦ K♠ K♦ A♥ 10♥ 7♥ 4♣ K♣ 5♠ 7♠ A♦ 2♠ 9♦ 4♥ 3♠ Q♦
+3♣ A♦ 3♥ 8♥ 7♥ 5♣ 3♦ 9♣ 6♦ 4♣ 7♦ 7♠ Q♦ 8♠ J♠ J♣ 10♠ 6♣ 8♦ 4♥ 5♦ 10♣ 4♦ K♠ 5♥ 5♠ 8♣ 10♦ 4♠ A♠ 2♣ 9♥ K♦ 2♦ J♦ Q♣ J♥ 9♦ 3♠ 6♠ 10♥ 9♠ K♣ Q♥ 2♥ 2♠ A♣ A♥ 6♥ 7♣ K♥ Q♠
 julia&gt; card = pop!(deck)
-Q♦
+Q♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -13990,13 +13990,13 @@ addping(pong, ping)</code></pre>
 <h2 id="chap19">22. Extra: Sintaxe</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhiamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.</p>
+<p>Uma das metas deste livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhíamos uma e evitavamos mencionar a outra. Ou às vezes, utilizamos a segunda forma como exercício.</p>
 </div>
 <div class="paragraph">
-<p>Agora queremos retornar a algumas coisas boas que ficaram para traz. O Julia oferece uma variadade de recursos que não são realmente necessários – você pode escrever um bom código sem eles – mas com eles é possível escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.</p>
+<p>Agora queremos retornar a algumas coisas boas que ficaram pra trás. O Julia oferece uma variadade de recursos que não são realmente necessários – você pode escrever um bom código sem eles – mas com eles é possível escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.</p>
 </div>
 <div class="paragraph">
-<p>Neste capítulo e no próximo, iremos discutir coisas que deixamos para trás nos capótulos anteriores:</p>
+<p>Neste capítulo e no próximo, iremos discutir coisas que deixamos para trás nos capítulos anteriores:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -14058,7 +14058,7 @@ julia&gt; function (x)
 </div>
 </div>
 <div class="paragraph">
-<p>Esses são exemplos de <em>funções anônimas</em>. Funções anonimas geralmente são usadas como argumentos para outras funções:
+<p>Esses são exemplos de <em>funções anônimas</em>. Funções anônimas geralmente são usadas como argumentos para outras funções:
 </p>
 </div>
 <div class="listingblock">
@@ -14215,7 +14215,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um bloco <code>do</code> pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é capturado de outro escopo.</p>
+<p>Um bloco <code>do</code> pode "capturar" variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é capturada de outro escopo.</p>
 </div>
 </div>
 </div>
@@ -15509,7 +15509,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20448(double, double) {
+define double @julia_squaresum_20445(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16274,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-06-26 17:32:22 UTC
+Última atualização 2020-07-08 21:18:23 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
