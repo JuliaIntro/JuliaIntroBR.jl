@@ -346,10 +346,10 @@ Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter 
 Ter tipos concretos para campos de estrutura é absolutamente recomendado por motivos de desempenho, portanto, é uma boa maneira de tornar o +Point+ rápido e flexível.
 ====
 
-==== Tipo de União
+==== Tipo União
 
-Um _tipo de união_ é um tipo paramétrico abstrato que pode atuar como qualquer um dos seus tipos de argumento:
-(((tipo de união)))(((Union)))((("tipo", "Base", "Union", see="Union")))
+Um _tipo união_ é um tipo paramétrico abstrato que pode atuar como qualquer um dos seus tipos de argumento:
+(((tipo união)))(((Union)))((("tipo", "Base", "Union", see="Union")))
 
 [source,@julia-repl-test]
 ----
@@ -739,9 +739,9 @@ tipo primitivo::
 Tipo de concreto cujos dados consistem em bits antigos simples.
 (((tipo primitivo)))
 
-tipo de união::
+tipo união::
 Tipo que inclui como objetos todas as instâncias de qualquer um dos seus parâmetros de tipo.
-(((união de tipo)))
+(((tipo união)))
 
 tipo paramétrico::
 Tipo que está parametrizado.
