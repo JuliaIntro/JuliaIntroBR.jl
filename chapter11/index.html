@@ -608,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#dictionary_collection_counters">Dicionários como uma Coleção de Contadores</a></li>
 <li><a href="#_laços_e_dicionários">Laços e Dicionários</a></li>
 <li><a href="#_consulta_inversa">Consulta Inversa</a></li>
-<li><a href="#_dicionários_e_arrays">Dicionários e Arrays</a></li>
+<li><a href="#_dicionários_e_listas">Dicionários e Listas</a></li>
 <li><a href="#memos">Memos</a></li>
 <li><a href="#global_variables">Variáveis Globais</a></li>
 <li><a href="#_depuração">Depuração</a></li>
@@ -4259,7 +4259,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.591476044435308e9</code></pre>
+1.594226510446737e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8449,7 +8449,7 @@ false</code></pre>
 <div class="sect2">
 <h3 id="_um_dicionário_é_um_mapeamento">Um Dicionário é um Mapeamento</h3>
 <div class="paragraph">
-<p>Um <em>dicionário</em> é como um array, mas mais geral. Em um array, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
+<p>Um <em>dicionário</em> é como uma lista, mas mais geral. Em uma lista, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
 </p>
 </div>
 <div class="paragraph">
@@ -8592,7 +8592,7 @@ true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O operador <code>∈</code> utiliza algoritmos diferentes para os arrays e dicionários. Para os arrays, ele busca os elementos do array em ordem, como em <a href="#searching">Searching</a>. À medida que o array fica maior, o tempo de busca cresce diretamente proporcional.</p>
+<p>O operador <code>∈</code> utiliza algoritmos diferentes para as listas e dicionários. Para as listas, ele busca os elementos da lista em ordem, como em <a href="#searching">Searching</a>. À medida que a lista fica maior, o tempo de busca cresce diretamente proporcional.</p>
 </div>
 <div class="paragraph">
 <p>Para os dicionários, o Julia usa um algoritmo chamado <em>tabela hash</em> (ou tabela de dispersão ou tabela de espalhamento) que possui uma propriedade excepcional: o operador <code>∈</code> leva aproximadamente o mesmo tempo independente da quantidade de itens do dicionário.
@@ -8610,7 +8610,7 @@ true</code></pre>
 <p>Você poderia criar 26 variáveis, um para cada letra do alfabeto. Em seguida você poderia percorrer a string, e para cada caractere, incrementar o contador correspondente, provavelmente usando um condicional encadeado.</p>
 </li>
 <li>
-<p>Você poderia criar um array com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida <code>Int</code>), usar o número como um índice para o array, e incrementar o contador adequado.</p>
+<p>Você poderia criar uma lista com 26 elementos. Em seguida pode-se converter cada caractere para um número (usando a função embutida <code>Int</code>), usar o número como um índice para a lista, e incrementar o contador adequado.</p>
 </li>
 <li>
 <p>Você poderia criar um dicionário com os caracteres como as chaves e os contadores como seus valores correspondentes. A primeira vez que você vê um caractere, adicionaria um item no dicionário. Após isso, você só incrementaria o valor de um item existente.</p>
@@ -8745,7 +8745,7 @@ p 2</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo do que é pedido, você poderia escolher um, ou teria que criar um array que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta inversa</em>; você tem que procurar.
+<p>Mas e se você tem <code>v</code> e quer achar <code>k</code>? Você tem dois problemas: primeiro, pode haver mais de uma chave que mapeia para o valor <code>v</code>. Dependendo do que é pedido, você poderia escolher um, ou teria que criar uma lista que contém todos eles. Segundo, não há uma sintaxe simples que faz uma <em>consulta inversa</em>; você tem que procurar.
 </p>
 </div>
 <div class="paragraph">
@@ -8813,9 +8813,9 @@ ERROR: Erro de Consulta</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dicionários_e_arrays">Dicionários e Arrays</h3>
+<h3 id="_dicionários_e_listas">Dicionários e Listas</h3>
 <div class="paragraph">
-<p>Arrays podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser um array de letras.</p>
+<p>Listas podem aparecer como valores em um dicionário. Por exemplo, se você receber um dicionário que mapeia letras às frequências, você pode querer invertê-lo; isto é, criar um dicionário que mapeia frequências até as letras. Já que várias letras podem ter a mesma frequência, cada valor em um dicionário invertido deve ser uma lista de letras.</p>
 </div>
 <div class="paragraph">
 <p>Aqui está uma função que inverte um dicionário:
@@ -8838,7 +8838,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Cada vez que o laço é percorrido, <code>chave</code> recebe uma chave de <code>d</code> e <code>valor</code> recebe o valor correspondente. Se <code>valor</code> não está em <code>inverso</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (um array que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente ao array.
+<p>Cada vez que o laço é percorrido, <code>chave</code> recebe uma chave de <code>d</code> e <code>valor</code> recebe o valor correspondente. Se <code>valor</code> não está em <code>inverso</code>, isto significa que não a vimos ainda, então criamos um novo item e inicializamos com um <em>singleton</em> (uma lista que contém um único elemento). Caso contrário esse valor já foi visto, e então acrescentamos a chave correspondente à lista.
 </p>
 </div>
 <div class="paragraph">
@@ -8862,7 +8862,7 @@ Dict{Any,Any} with 2 entries:
 <div class="title">Figure 16. Diagrama de Estado</div>
 </div>
 <div class="paragraph">
-<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverso</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para os arrays normalmente desenho fora da caixa, só para simplificar o diagrama.
+<p><a href="#fig11-1">Diagrama de Estado</a> é um diagrama de estado mostrando <code>hist</code> e <code>inverso</code>. Um dicionário é representado como uma caixa com os pares chave-valor dentro. Para os valores que são inteiros, pontos flutuantes ou strings, eu os desenho dentro da caixa, já para as listas normalmente desenho fora da caixa, só para simplificar o diagrama.
 </p>
 </div>
 <div class="admonitionblock note">
@@ -9037,7 +9037,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Então você pode adicionar, remover e substituir os elementos de um array global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:</p>
+<p>Então você pode adicionar, remover e substituir os elementos de uma lista global ou dicionário, mas se você quiser reatribuir a variável, você deve declará-la como global:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9098,7 +9098,7 @@ end</code></pre>
 <li>
 <p>Verifique os resumos e os tipos:</p>
 <div class="paragraph">
-<p>Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de um array de números.
+<p>Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de uma lista de números.
 </p>
 </div>
 <div class="paragraph">
@@ -9108,7 +9108,7 @@ end</code></pre>
 <li>
 <p>Escreva auto-verificações:</p>
 <div class="paragraph">
-<p>Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de um array de números, você poderia checar que o resultado não está acima do maior elemento do array ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
+<p>Algumas vezes você pode escrever código para checar os erros automaticamente. Por exemplo, se você está calculando a média de uma lista de números, você poderia checar que o resultado não está acima do maior elemento da lista ou abaixo do menor elemento. Isso é chamado de “verificação de sanidade”.
 </p>
 </div>
 <div class="paragraph">
@@ -9196,7 +9196,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">singleton</dt>
 <dd>
-<p>Um array (ou outra sequência) com um único elemento.
+<p>Uma lista (ou outra sequência) com um único elemento.
 </p>
 </dd>
 <dt class="hdlist1">grafo de chamada</dt>
@@ -9246,7 +9246,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Se o exercício <a href="#ex10-10">Exercise 10-10</a> foi feito, você pode comparar a velocidade desta implementação com o operador <code>∈</code> em arrays e na busca em bissecção.</p>
+<p>Se o exercício <a href="#ex10-10">Exercise 10-10</a> foi feito, você pode comparar a velocidade desta implementação com o operador <code>∈</code> em listas e na busca em bissecção.</p>
 </div>
 </div>
 <div class="sect4">
@@ -9266,7 +9266,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="ex11-4">Exercício 11-5</h5>
 <div class="paragraph">
-<p>Se <a href="#ex10-7">Exercise 10-7</a> foi feito, então já possui uma função chamada <code>tem_duplas</code> que recebe um array como parâmetro e retorna <code>true</code> se há qualquer objeto que aparece mais de uma vez no array.
+<p>Se <a href="#ex10-7">Exercise 10-7</a> foi feito, então já possui uma função chamada <code>tem_duplas</code> que recebe uma lista como parâmetro e retorna <code>true</code> se há qualquer objeto que aparece mais de uma vez na lista.
 </p>
 </div>
 <div class="paragraph">
@@ -9280,7 +9280,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Escreva um programa que lê um array e encontra todos os pares rotacionados.</p>
+<p>Escreva um programa que lê uma lista e encontra todos os pares rotacionados.</p>
 </div>
 </div>
 <div class="sect4">
@@ -9303,7 +9303,7 @@ end</code></pre>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Você pode usar o dicionário de <a href="#ex11-1">Exercício 11-2</a> para verificar se uma string está no array de palavras.</p>
+<p>Você pode usar o dicionário de <a href="#ex11-1">Exercício 11-2</a> para verificar se uma string está na lista de palavras.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -13596,9 +13596,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-8♠ 5♠ 10♠ 9♦ J♥ K♠ K♦ Q♣ 3♠ K♥ 6♥ 7♠ 8♣ 2♠ 3♣ 3♦ 8♥ 10♦ Q♦ A♦ 6♦ 4♣ 6♣ 2♦ 4♥ 10♣ J♣ 2♣ A♥ A♣ 5♦ 7♣ K♣ 4♦ 2♥ J♠ 9♣ 8♦ 5♥ 9♥ 10♥ Q♥ 4♠ A♠ 7♦ 3♥ 9♠ 5♣ Q♠ 7♥ 6♠ J♦
+10♥ Q♦ A♦ A♣ K♠ K♦ 10♠ Q♣ 8♣ 8♠ 6♦ 3♦ J♠ 7♠ J♥ 8♦ Q♠ 6♣ A♥ 9♠ 4♠ 5♠ 9♥ 5♥ 7♣ J♣ 4♣ 4♦ 5♦ 3♥ 10♦ 9♦ 2♦ 6♠ 8♥ 4♥ Q♥ 9♣ J♦ 3♠ 7♦ 2♣ 6♥ A♠ 2♥ 5♣ 2♠ K♥ K♣ 7♥ 3♣ 10♣
 julia&gt; card = pop!(deck)
-J♦
+10♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15518,7 +15518,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20569(double, double) {
+define double @julia_squaresum_20440(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16283,7 +16283,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-06 20:40:41 UTC
+Last updated 2020-07-08 16:41:47 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
