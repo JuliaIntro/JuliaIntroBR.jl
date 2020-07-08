@@ -4,7 +4,7 @@
 O Julia vem com baterias inclusas. O módulo +Base+ contém as funções, tipos e macros mais utéis. Eles estão diretamente disponíveis no Julia.
 (((Base)))
 
-O Julia também fornece um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Algebra Linear, Profiling, Números Aleatórios, ...). Funções, tipos e macros definidos na Biblioteca Padrão precisam ser importados antes de poderem ser usados:
+O Julia também fornece um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Álgebra Linear, Profiling, Números Aleatórios, ...). Funções, tipos e macros definidas na Biblioteca Padrão precisam ser importados antes de poderem ser usados:
 
 * +import _Módulo_+ importa o módulo, e +_Módulo.fn(x)_+ chama a função +_fn_+
 (((import)))((("palavra-chave", "import", see="import")))
