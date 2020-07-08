@@ -1048,7 +1048,7 @@ Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva u
 [[ex10-12]]
 ===== Exercício 10-12
 
-Duas palavras "interligam" se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, "micro" e "ondas" se interligam para formar "microondas".
+Duas palavras “interligam” se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, “micro” e “ondas” se interligam para formar “microondas”.
 (((interligar)))
 
 Crédito: Este exercício é inspirado em um exemplo em http://puzzlers.org.
