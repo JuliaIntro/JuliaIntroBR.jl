@@ -1,20 +1,20 @@
 [[chap12]]
-== Tuples
+== Tuplas
 
-This chapter presents one more built-in type, the tuple, and then shows how arrays, dictionaries, and tuples work together. I also present a useful feature for variable-length argument arrays, the gather and scatter operators.
-
-[NOTE]
-====
-There is no consensus on how to pronounce “tuple”. Some people say “tuh-ple”, which rhymes with “supple”. But in the context of programming, most people say “too-ple”, which rhymes with “quadruple”.
-====
+Este capítulo apresenta mais um tipo interno, a tupla, e mostra como as listas, os dicionários e as tuplas trabalham juntos. Também apresento um recurso útil para as listas de argumentos de tamanho variável, operadores de agrupamento e de separação.
 
 
-=== Tuples Are Immutable
 
-A tuple is a sequence of values. The values can be of any type, and they are indexed by integers, so in that respect tuples are a lot like arrays. The important difference is that tuples are immutable and that each element can have its own type.
-(((tuple)))(((immutable)))
 
-Syntactically, a tuple is a comma-separated list of values:
+
+
+
+=== Tuplas são Imutáveis
+
+Uma tupla é uma sequência de valores. Estes valores podem ser de qualquer tipo e são indexados por números inteiros; logo, neste aspecto, as tuplas são muito similares às listas. A diferença importante é que as tuplas são imutáveis e que cada elemento pode ter seu próprio tipo.
+(((tupla)))(((imutável)))
+
+Sintaticamente, uma tupla é uma lista de valores separados por vírgula:
 
 [source,@julia-repl-test]
 ----
@@ -22,8 +22,8 @@ julia> t = 'a', 'b', 'c', 'd', 'e'
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-Although it is not necessary, it is common to enclose tuples in parentheses:
-(((parentheses)))
+Apesar de não ser necessário, é comum colocar tuplas entre parênteses:
+(((parênteses)))
 
 [source,@julia-repl-test]
 ----
@@ -31,8 +31,8 @@ julia> t = ('a', 'b', 'c', 'd', 'e')
 ('a', 'b', 'c', 'd', 'e')
 ----
 
-To create a tuple with a single element, you have to include a final comma:
-(((final comma)))(((typeof)))(((Tuple)))((("type", "Base", "Tuple", see="Tuple")))
+Para criar uma tupla com um único elemento, tem que inserir uma vírgula no final:
+(((vírgula no final)))(((typeof)))(((Tuple)))((("tipo", "Base", "Tuple", see="Tuple")))
 
 [source,@julia-repl-test]
 ----
@@ -44,7 +44,7 @@ Tuple{Char}
 
 [WARNING]
 ====
-A value in parentheses without comma is not a tuple:
+Um único valor entre parênteses sem vírgula não é uma tupla:
 
 [source,@julia-repl-test]
 ----
@@ -56,8 +56,8 @@ Char
 
 ====
 
-Another way to create a tuple is the built-in function tuple. With no argument, it creates an empty tuple:
-(((tuple)))((("function", "Base", "tuple", see="tuple")))
+Outra maneira de criar uma tupla é por meio da função interna +tuple+. Sem nenhum argumento, uma tupla vazia é criada:
+(((tupla)))((("função", "Base", "tuple", see="tuple")))
 
 [source,@julia-repl-test]
 ----
@@ -65,7 +65,7 @@ julia> tuple()
 ()
 ----
 
-If multiple arguments are provided, the result is a tuple with the given arguments:
+Se vários argumentos são fornecidos, o resultado é uma tupla com os argumentos dados:
 
 [source,@julia-repl-test]
 ----
@@ -73,10 +73,10 @@ julia> t3 = tuple(1, 'a', pi)
 (1, 'a', π)
 ----
 
-Because tuple is the name of a built-in function, you should avoid using it as a variable name.
+Já que +tuple+ é o nome de uma função interna, deve-se evitar usá-lo como o nome de variável.
 
-Most array operators also work on tuples. The bracket operator indexes an element:
-(((bracket operator)))
+A maioria dos operadores da lista também funciona com as tuplas. O operador colchete indexa um elemento:
+(((operador colchete)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -86,8 +86,8 @@ julia> t[1]
 'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
 ----
 
-And the slice operator selects a range of elements:
-(((slice operator)))
+E o operador de fatia seleciona uma faixa de elementos:
+(((operador de fatia)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -95,7 +95,7 @@ julia> t[2:4]
 ('b', 'c', 'd')
 ----
 
-But if you try to modify one of the elements of the tuple, you get an error:
+E caso você tente modificar um dos elementos da tupla, uma mensagem de erro aparecerá:
 (((MethodError)))
 
 [source,@julia-repl-test chap12]
@@ -104,10 +104,10 @@ julia> t[1] = 'A'
 ERROR: MethodError: no method matching setindex!(::NTuple{5,Char}, ::Char, ::Int64)
 ----
 
-Because tuples are immutable, you can’t modify the elements.
+Já que as tuplas são imutáveis, você não pode modificar os elementos.
 
-The relational operators work with tuples and other sequences; Julia starts by comparing the first element from each sequence. If they are equal, it goes on to the next elements, and so on, until it finds elements that differ. Subsequent elements are not considered (even if they are really big).
-(((relational operator)))
+Os operadores relacionais trabalham com tuplas e outras sequências; em Julia, começa-se comparando o primeiro elemento de cada sequência. Se forem iguais, passa-se para os elementos seguintes, e assim por diante, até encontrar elementos que diferem. Após isso, os elementos seguintes são desconsiderados (ainda que sejam realmente grandes).
+(((operador relacional)))
 
 [source,@julia-repl-test]
 ----
@@ -118,10 +118,10 @@ true
 ----
 
 
-=== Tuple Assignment
+=== Atribuição de Tuplas
 
-It is often useful to swap the values of two variables. With conventional assignments, you have to use a temporary variable. For example, to swap a and b:
-(((assignment)))
+Muitas vezes, deseja-se permutar os valores de duas variáveis. Nas atribuições convencionais, você tem que usar uma variável temporária. Por exemplo, para permutar as variáveis a e b:
+(((atribuição)))
 
 [source,julia]
 ----
@@ -130,17 +130,17 @@ a = b
 b = temp
 ----
 
-This solution is cumbersome; tuple assignment is more elegant:
-(((tuple assignment)))
+Essa solução é trabalhosa; já a atribuição da tupla é mais elegante:
+(((atribuição de tupla)))
 
 [source,julia]
 ----
 a, b = b, a
 ----
 
-The left side is a tuple of variables; the right side is a tuple of expressions. Each value is assigned to its respective variable. All the expressions on the right side are evaluated before any of the assignments.
+O lado esquerdo é uma tupla de variáveis; o lado direito é uma tupla de expressões. Cada valor é atribuído à sua correspondente variável. Todas as expressões no lado direito são avaliadas antes de qualquer uma das atribuições.
 
-The number of variables on the left has to be fewer than the number of values on the right:
+O número de variáveis do lado esquerdo não deve ser maior do que o número de valores do lado direito:
 (((BoundsError)))
 
 [source,@julia-repl-test]
@@ -152,35 +152,35 @@ ERROR: BoundsError: attempt to access (1, 2)
   at index [3]
 ----
 
-More generally, the right side can be any kind of sequence (string, array or tuple). For example, to split an email address into a user name and a domain, you could write:
-(((split)))
+Geralmente, o lado direito pode ser qualquer tipo de sequência (string, lista ou tupla). Por exemplo, ao dividir um endereço de e-mail em um nome de usuário e um domínio, poderia-se escrever:
+(((dividir)))
 
 [source,@julia-repl-test chap12]
 ----
-julia> addr = "julius.caesar@rome"
-"julius.caesar@rome"
-julia> uname, domain = split(addr, '@');
+julia> email = "julio.cesar@roma"
+"julio.cesar@roma"
+julia> nome_usuário, domínio = split(email, '@');
 
 ----
 
-The return value from +split+ is an array with two elements; the first element is assigned to +uname+, the second to +domain+.
+O valor de retorno de +split+ é uma lista com dois elementos; o primeiro elemento é atribuído a +nome_usuário+ e o segundo a +domínio+.
 
 [source,@julia-repl-test chap12]
 ----
-julia> uname
-"julius.caesar"
-julia> domain
-"rome"
+julia> nome_usuário
+"julio.cesar"
+julia> domínio
+"roma"
 ----
 
 
-=== Tuples as Return Values
+=== Tuplas como Valores de Retorno
 
-Strictly speaking, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. For example, if you want to divide two integers and compute the quotient and remainder, it is inefficient to compute +x ÷ y+ and then +x % y+. It is better to compute them both at the same time.
-(((÷)))(((%)))
+A princípio, uma função pode retornar apenas um valor, mas se o valor for uma tupla, é como se devolvesse vários valores. Por exemplo, se você deseja dividir dois números inteiros e calcular o quociente e o restante, é ineficiente calcular +x ÷ y+ e depois +x % y+. É melhor fazer os dois cálculos ao mesmo tempo.
+(((÷))) (((%)))
 
-The built-in function +divrem+ takes two arguments and returns a tuple of two values, the quotient and remainder. You can store the result as a tuple:
-(((divrem)))((("function", "Base", "divrem", see="divrem")))
+A função embutida +divrem+ recebe dois argumentos e retorna uma tupla de dois valores: o quociente e o restante, respectivamente. O resultado pode ser armazenado como uma tupla:
+(((divrem)))((("função", "Base", "divrem", see="divrem")))
 
 [source,@julia-repl-test]
 ----
@@ -188,7 +188,7 @@ julia> t = divrem(7, 3)
 (2, 1)
 ----
 
-Or use tuple assignment to store the elements separately:
+Ou use a atribuição de tupla para armazenar os elementos separadamente:
 
 [source,@julia-repl-test]
 ----
@@ -199,8 +199,8 @@ q = 2
 r = 1
 ----
 
-Here is an example of a function that returns a tuple:
-(((minmax)))((("function", "programmer-defined", "minmax", see="minmax")))
+Eis um exemplo de uma função que retorna uma tupla:
+(((minmax)))((("função","definido pelo programador","minmax", see="minmax")))
 
 [source,@julia-setup]
 ----
@@ -209,13 +209,13 @@ function minmax(t)
 end
 ----
 
-+maximum+ and +minimum+ are built-in functions that find the largest and smallest elements of a sequence. +minmax+ computes both and returns a tuple of two values. The built-in function +extrema+ is more efficient.
-(((maximum)))(((minimum)))(((extrema)))((("function", "Base", "maximum", see="maximum")))((("function", "Base", "minimum", see="minimum")))((("function", "Base", "extrema", see="extrema")))
+As funções internas +maximum+ e +minimum+ encontram o maior e o menor elemento de uma sequência. +minmax+ calcula os dois e retorna-os por meio de uma tupla. Já a função interna +extrema+ é mais eficiente.
+(((maximum)))(((minimum)))(((extrema)))((("função", "Base", "maximum", see="maximum")))((("função" , "Base", "minimum", see="minimum")))((("função","Base", "extrema", see="extrema")))
 
-=== Variable-length Argument Tuples
+=== Tuplas com Argumentos de Comprimento Variável
 
-Functions can take a variable number of arguments. A parameter name that ends with +pass:[...]+ _gathers_ arguments into a tuple. For example, +printall+ takes any number of arguments and prints them:
-(((gather)))(((...)))(((printall)))((("function", "programmer-defined", "printall", see="printall")))
+As funções podem receber um número variável de argumentos. Um nome de parâmetro que termina com +pass:[...]+ _agrupa_ argumentos em uma tupla. Por exemplo, +printall+ pega qualquer número de argumentos e os imprime:
+(((agrupa)))(((...)))(((printall)))((("função", "definido pelo programador", "printall", see="printall")))
 
 [source,@julia-setup chap12]
 ----
@@ -224,7 +224,7 @@ function printall(args...)
 end
 ----
 
-The gather parameter can have any name you like, but +args+ is conventional. Here’s how the function works:
+O parâmetro de agrupamento pode ter qualquer nome que você goste, mas +args+ é padronizado. Veja como funciona a função:
 
 [source,@julia-repl-test chap12]
 ----
@@ -232,8 +232,8 @@ julia> printall(1, 2.0, '3')
 (1, 2.0, '3')
 ----
 
-The complement of gather is _scatter_. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the +pass:[...]+ operator. For example, +divrem+ takes exactly two arguments; it doesn’t work with a tuple:
-(((scatter)))(((MethodError)))
+O complemento do agrupamento é a _separação_. Se você tem uma seqüência de valores e quiser passá-la para uma função com diversos argumentos, pode-se usar o operador +pass:[...]+. No exemplo seguinte, +divrem+ recebe exatamente dois argumentos e não funciona com uma tupla:
+(((separação)))(((MethodError)))
 
 [source,@julia-repl-test chap12]
 ----
@@ -243,7 +243,7 @@ julia> divrem(t)
 ERROR: MethodError: no method matching divrem(::Tuple{Int64,Int64})
 ----
 
-But if you scatter the tuple, it works:
+Mas se você separar a tupla, o comando funcionará:
 
 [source,@julia-repl-test chap12]
 ----
@@ -251,8 +251,8 @@ julia> divrem(t...)
 (2, 1)
 ----
 
-Many of the built-in functions use variable-length argument tuples. For example, +max+ and +min+ can take any number of arguments:
-(((max)))(((min)))((("function", "Base", "max", see="max")))((("function", "Base", "min", see="min")))
+Muitas das funções embutidas usam tuplas com argumentos de comprimento variável. Por exemplo, +max+ e +min+ podem receber qualquer número de argumentos:
+(((max)))(((min)))((("função", "Base", "max", see="max")))((("função", "Base", "min", see="min")))
 
 [source,@julia-repl-test]
 ----
@@ -260,7 +260,7 @@ julia> max(1, 2, 3)
 3
 ----
 
-But +sum+ does not:
+Mas +sum+, não:
 (((sum)))
 
 [source,@julia-repl-test]
@@ -269,20 +269,20 @@ julia> sum(1, 2, 3)
 ERROR: MethodError: no method matching sum(::Int64, ::Int64, ::Int64)
 ----
 
-===== Exercise 12-1
+===== Exercício 12-1
 
-Write a function called +sumall+ that takes any number of arguments and returns their sum.
-(((sumall)))((("function", "programmer-defined", "sumall", see="sumall")))
+Escreva uma função chamada +soma_tudo+ que recebe qualquer número de argumentos e devolve o resultado da soma deles.
+(((soma_tudo)))((("função", "definido pelo programador", "soma_tudo", see="soma_tudo")))
 
-In the Julia world, gather is often called “slurp” and scatter “splat”.
+No mundo de Julia, agrupar é chamado de "slurp" e separar de "splat".
 
 
-=== Arrays and Tuples
+=== Listas e Tuplas
 
-+zip+ is a built-in function that takes two or more sequences and returns a collection of tuples where each tuple contains one element from each sequence. The name of the function refers to a zipper, which joins and interleaves two rows of teeth.
-(((zip)))((("function", "Base", "zip", see="zip")))
++zip+ é uma função interna que recebe duas ou mais sequências e retorna uma coleção de tuplas em que cada tupla contém um elemento de cada sequência. O nome da função refere-se a um zíper, que une e intercala duas faixas de dentes.
+(((zip)))((("função", "Base", "zip", see="zip")))
 
-This example zips a string and an array:
+Este exemplo intercala uma string com uma lista:
 
 [source,@julia-repl-test chap12]
 ----
@@ -294,23 +294,23 @@ julia> zip(s, t)
 Base.Iterators.Zip{Tuple{String,Array{Int64,1}}}(("abc", [1, 2, 3]))
 ----
 
-The result is a _zip object_ that knows how to iterate through the pairs. The most common use of +zip+ is in a +for+ loop:
-(((zip object)))(((for statement)))
+O resultado é um _objeto zip_ que sabe como iterar através dos pares. O uso mais comum de +zip+ ocorre em um laço +for+:
+(((objeto zip)))(((declaração for)))
 
 [source,@julia-repl-test chap12]
 ----
-julia> for pair in zip(s, t)
-           println(pair)
+julia> for par in zip(s, t)
+           println(par)
        end
 ('a', 1)
 ('b', 2)
 ('c', 3)
 ----
 
-A zip object is a kind of _iterator_, which is any object that iterates through a sequence. Iterators are similar to arrays in some ways, but unlike arrays, you can’t use an index to select an element from an iterator.
-(((iterator)))
+O objeto zip é um tipo de _iterador_, um objeto usado para percorrer uma sequência. De uma certa forma, os iteradores são similares às listas, e o que difere das listas é que não se pode usar um índice para selecionar um elemento a partir de um iterador.
+(((iterador)))
 
-If you want to use array operators and functions, you can use a zip object to make an array:
+Se você quiser usar operadores e funções de listas, pode-se usar um objeto zip para gerar uma lista:
 (((collect)))
 
 [source,@julia-repl-test chap12]
@@ -322,43 +322,43 @@ julia> collect(zip(s, t))
  ('c', 3)
 ----
 
-The result is an array of tuples; in this example, each tuple contains a character from the string and the corresponding element from the array.
+O resultado é uma lista de tuplas; e neste exemplo, cada tupla contém um caractere da string e o elemento correspondente da lista.
 
-If the sequences are not the same length, the result has the length of the shorter one.
+Se as sequências não tiverem o mesmo comprimento, o resultado terá o comprimento da menor sequência.
 
 [source,@julia-repl-test]
 ----
-julia> collect(zip("Anne", "Elk"))
+julia> collect(zip("Anna", "Rui"))
 3-element Array{Tuple{Char,Char},1}:
- ('A', 'E')
- ('n', 'l')
- ('n', 'k')
+ ('A', 'R')
+ ('n', 'u')
+ ('n', 'i')
 ----
 
-You can use tuple assignment in a +for+ loop to traverse an array of tuples:
-(((tuple assignment)))
+Você pode usar a atribuição de tupla em um laço +for+ para percorrer uma lista de tupla:
+(((atribuição de tupla)))
 
 [source,@julia-repl-test]
 ----
 julia> t = [('a', 1), ('b', 2), ('c', 3)];
 
-julia> for (letter, number) in t
-           println(number, " ", letter)
+julia> for (letra, número) in t
+           println(número, " ", letra)
        end
 1 a
 2 b
 3 c
 ----
 
-Each time through the loop, Julia selects the next tuple in the array and assigns the elements to letter and number. The parentheses around +(letter, number)+ are compulsory.
-(((parentheses)))
+A cada iteração do laço, o Julia seleciona a próxima tupla na lista e atribui os elementos à letra e ao número. Os parênteses em torno de +(letra, número)+ são necessários.
+(((parênteses)))
 
-If you combine +zip+, +for+ and tuple assignment, you get a useful idiom for traversing two (or more) sequences at the same time. For example, +hasmatch+ takes two sequences, +t1+ and +t2+, and returns +true+ if there is an index +i+ such that +t1[i] == t2[i]+:
-(((hasmatch)))((("function", "Base", "hasmatch", see="hasmatch")))
+Se você combinar +zip+, +for+ e a atribuição de tuplas, obtém-se uma função prática para analisar duas (ou mais) seqüências ao mesmo tempo. Por exemplo, +tem_combinação+ considera duas seqüências, +t1+ e +t2+, e devolve +true+ se existir um índice +i+ tal que +t1[i] == t2[i]+:
+(((tem_combinação)))((("função", "definido pelo programador", "tem_combinação", see="tem_combinação")))
 
 [source,@julia-setup chap12]
 ----
-function hasmatch(t1, t2)
+function tem_combinação(t1, t2)
     for (x, y) in zip(t1, t2)
         if x == y
             return true
@@ -368,42 +368,42 @@ function hasmatch(t1, t2)
 end
 ----
 
-If you need to traverse the elements of a sequence and their indices, you can use the built-in function +enumerate+:
-(((enumerate)))((("function", "Base", "enumerate", see="enumerate")))
+Se você precisa percorrer os elementos de uma sequência e os seus índices, pode-se usar a função interna +enumerate+:
+(((enumerate)))((("função", "Base", "enumerate", see="enumerate")))
 
 [source,@julia-repl-test chap12]
 ----
-julia> for (index, element) in enumerate("abc")
-           println(index, " ", element)
+julia> for (índice, elemento) in enumerate("abc")
+           println(índice, " ", elemento)
        end
 1 a
 2 b
 3 c
 ----
 
-The result from +enumerate+ is an enumerate object, which iterates a sequence of pairs; each pair contains an index (starting from 1) and an element from the given sequence.
+O resultado de +enumerate+ é um objeto enumerado, que itera sobre uma seqüência de pares onde cada par contém um índice (a partir de 1) e um elemento da seqüência dada.
 
 
-=== Dictionaries and Tuples
+=== Dicionários e Tuplas
 
-Dictionaries can be used as iterators that iterate the key-value pairs. You can use it in a +for+ loop like this:
-(((key-value pair)))(((for statement)))
+Os dicionários podem ser usados como iteradores dos pares chave-valor. Você pode usá-lo em um laço +for+ como este:
+(((par chave-valor)))(((declaração for)))
 
 [source,@julia-repl-test]
 ----
 julia> d = Dict('a'=>1, 'b'=>2, 'c'=>3);
 
-julia> for (key, value) in d
-           println(key, " ", value)
+julia> for (chave, valor) in d
+           println(chave, " ", valor)
        end
 a 1
 c 3
 b 2
 ----
 
-As you should expect from a dictionary, the items are in no particular order.
+Como é de se esperar de um dicionário, os itens não estão em nenhuma específica ordem.
 
-Going in the other direction, you can use an array of tuples to initialize a new dictionary:
+Indo na outra direção, você pode usar uma lista de tuplas para inicializar um novo dicionário:
 
 [source,@julia-repl-test]
 ----
@@ -416,7 +416,7 @@ Dict{Char,Int64} with 3 entries:
   'b' => 2
 ----
 
-Combining +Dict+ with +zip+ yields a concise way to create a dictionary:
+A combinação de +Dict+ com +zip+ resulta numa maneira concisa de criar um dicionário:
 (((zip)))
 
 [source,@julia-repl-test]
@@ -428,127 +428,127 @@ Dict{Char,Int64} with 3 entries:
   'b' => 2
 ----
 
-It is common to use tuples as keys in dictionaries. For example, a telephone directory might map from last-name, first-name pairs to telephone numbers. Assuming that we have defined +last+, +first+ and +number+, we could write:
+É comum utilizar tuplas como chaves nos dicionários. Por exemplo, uma lista telefônica pode mapear os pares de sobrenome e nome até os números de telefone. Supondo que definimos +sobrenome+, +nome+ e +número+, poderíamos escrever:
 
 [source,julia]
 ----
-directory[last, first] = number
+diretório[sobrenome, nome] = número
 ----
 
-The expression in brackets is a tuple. We could use tuple assignment to traverse this dictionary.
+A expressão entre parênteses é uma tupla. Poderíamos usar a atribuição de tuplas para percorrer este dicionário.
 
 [source,julia]
 ----
-for ((last, first), number) in directory
-    println(first, " ", last, " ", number)
+for ((sobrenome, nome), número) in diretório
+    println(nome, " ", sobrenome, " ", número)
 end
 ----
 
-This loop traverses the key-value pairs in +directory+, which are tuples. It assigns the elements of the key in each tuple to +last+ and +first+, and the value to +number+, then prints the name and corresponding telephone number.
+Este laço percorre os pares chave-valor em +diretório+, que são tuplas. Ele atribui os elementos da chave em cada tupla +sobrenome+ e +nome+ ao valor em +número+, e então imprime o nome completo e o número de telefone correspondente.
 
-There are two ways to represent tuples in a state diagram. The more detailed version shows the indices and elements just as they appear in an array. For example, the tuple +("Cleese", "John")+ would appear as in <<fig12-1>>.
-(((state diagram)))
+Existem duas maneiras de representar tuplas em um diagrama de estados. A versão mais detalhada mostra os índices e os elementos exatamente como eles aparecem em uma lista. Por exemplo, a tupla +("Carlos", "João")+ apareceria como no <<fig12-1>>.
+(((diagrama de estado)))
 
 [[fig12-1]]
-.State diagram
+.Diagrama de estado
 image::images/fig121.svg[]
 
 
-But in a larger diagram you might want to leave out the details. For example, a diagram of the telephone directory might appear as in <<fig12-2>>.
-(((state diagram)))
+Mas em um diagrama maior, você pode ocultar os detalhes. Por exemplo, um diagrama da lista telefônica pode ser impresso como em <<fig12-2>>.
+(((diagrama de estado)))
 
 [[fig12-2]]
-.State diagram
+.Diagrama de estado
 image::images/fig122.svg[]
 
 
-Here the tuples are shown using Julia syntax as a graphical shorthand. The telephone number in the diagram is the complaints line for the BBC, so please don’t call it.
+Aqui, as tuplas são mostradas com a sintaxe do Julia para simplificar o diagrama. O número de telefone no diagrama é a linha de reclamações da BBC; sendo assim, não ligue para lá.
 
 
-=== Sequences of Sequences
+=== Sequências de Sequências
 
-I have focused on arrays of tuples, but almost all of the examples in this chapter also work with arrays of arrays, tuples of tuples, and tuples of arrays. To avoid enumerating the possible combinations, it is sometimes easier to talk about sequences of sequences.
-(((sequence of sequences)))
+Temos focado nas listas de tuplas, mas quase todos os exemplos neste capítulo também funcionam com as listas de listas, tuplas de tuplas, e tuplas de listas. Para evitar enumerar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
+(((sequência de sequências)))
 
-In many contexts, the different kinds of sequences (strings, arrays and tuples) can be used interchangeably. So how should you choose one over the others?
-(((string)))(((array)))(((tuple)))
+Em muitos contextos, os diferentes tipos de sequências (strings, listas e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
+(((string)))(((lista)))(((tupla)))
 
-To start with the obvious, strings are more limited than other sequences because the elements have to be characters. They are also immutable. If you need the ability to change the characters in a string (as opposed to creating a new string), you might want to use an array of characters instead.
-(((immutable)))
+Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), pode ser melhor usar uma lista de caracteres em seu lugar.
+(((imutável)))
 
-Arrays are more common than tuples, mostly because they are mutable. But there are a few cases where you might prefer tuples:
-(((mutable)))
+As listas são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
+(((mutável)))
 
-* In some contexts, like a return statement, it is syntactically simpler to create a tuple than an array.
+* Em algumas circunstâncias, como uma declaração return, sintaticamente é mais simples criar uma tupla do que uma lista.
 
-* If you are passing a sequence as an argument to a function, using tuples reduces the potential for unexpected behavior due to aliasing.
-(((aliasing)))
+* Se você estiver passando uma sequência como argumento para uma função, o uso de tuplas reduz potencialmente o comportamento inesperado causado por um alias.
+(((alias)))
 
-* For performance reasons. The compiler can specialize on the type.
+* Por motivos de desempenho. O compilador pode ser especializado neste tipo.
 
-Because tuples are immutable, they don’t provide functions like +sort!+ and +reverse!+, which modify existing arrays. But Julia provides the built-in function +sort+, which takes an array and returns a new array with the same elements in sorted order, and +reverse+, which takes any sequence and returns a sequence of the same type in reverse order.
-(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("function", "Base", "reverse", see="reverse")))(((zip)))((("function", "Base", "reverse!", see="reverse!")))
-
-
-=== Debugging
-
-Arrays, dictionaries and tuples are examples of _data structures_; in this lecture we are starting to see compound data structures, like arrays of tuples, or dictionaries that contain tuples as keys and arrays as values. Compound data structures are useful, but they are prone to what I call _shape errors_; that is, errors caused when a data structure has the wrong type, size, or structure. For example, if you are expecting an array with one integer and I give you a plain old integer (not in an array), it won’t work.
-(((debugging)))(((data structures)))(((shape error)))
-
-Julia allows to attach a type to elements of a sequence. How this is done is detailed in <<chap17>>. Specifying the type eliminates a lot of shape errors.
+Como as tuplas são imutáveis, elas não dispõem de funções como +sort!+ e +reverse!+, que modificam os arrays existentes. Mas o Julia possui a função interna +sort+, que recebe uma lista e devolve uma nova lista com os mesmos elementos na ordem classificada, e +reverse+, que recebe qualquer sequência e devolve uma sequência do mesmo tipo na ordem contrária.
+(((sort)))(((sort!)))(((reverse)))(((reverse!)))(((zip)))((("função", "Base", "reverse", see="reverse")))(((zip)))((("função", "Base", "reverse!", see="reverse!")))
 
 
-=== Glossary
+=== Depuração
 
-tuple::
-An immutable sequence of elements where every element can have its own type.
-(((tuple)))
+As listas, os dicionários e as tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamamos de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando uma lista com um número inteiro e for fornecido um número inteiro (que não é um lista), não funcionará.
+(((depuração)))(((estruturas de dados)))(((erro de forma)))
 
-tuple assignment::
-An assignment with a sequence on the right side and a tuple of variables on the left. The right side is evaluated and then its elements are assigned to the variables on the left.
-(((tuple assignment)))
-
-gather::
-The operation of assembling a variable-length argument tuple.
-(((gather)))
-
-scatter::
-The operation of treating a sequence as a list of arguments.
-(((scatter)))
-
-zip object::
-The result of calling a built-in function +zip+; an object that iterates through a sequence of tuples.
-(((zip object)))
-
-iterator::
-An object that can iterate through a sequence, but which does not provide array operators and functions.
-(((iterator)))
-
-data structure::
-A collection of related values, often organized in array, dictionaries, tuples, etc.
-(((data structure)))
-
-shape error::
-An error caused because a value has the wrong shape; that is, the wrong type or size.
-(((shape error)))
+Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está em <<chap17>>. A especificação do tipo elimina muitos erros de forma.
 
 
-=== Exercises
+=== Glossário
+
+tupla::
+Uma sequência imutável de elementos onde cada elemento pode ter seu próprio tipo.
+(((tupla)))
+
+atribuição de tupla::
+Uma atribuição com uma sequência no lado direito e uma tupla de variáveis no lado esquerdo. O lado direito é avaliado para que seus elementos sejam atribuídos às variáveis do lado esquerdo.
+(((atribuição de tupla)))
+
+agrupamento::
+A operação de geração de uma tupla com argumentos de comprimento variável.
+(((agrupamento)))
+
+separação::
+A operação de tratamento de uma sequência como uma lista de argumentos.
+(((separação)))
+
+objeto zip::
+O resultado da chamada de uma função interna +zip+; um objeto que itera através de uma sequência de tuplas.
+(((objeto zip)))
+
+iterador::
+Um objeto que pode iterar por uma sequência, mas que não dispõe de operadores e funções de lista.
+(((iterador)))
+
+estrutura de dados::
+Uma coleção de valores relacionados, frequentemente estruturados em lista, dicionários, tuplas, etc.
+(((estrutura de dados)))
+
+erro de forma::
+Um erro causado quando um valor tem a forma errada; ou seja, o tipo ou tamanho errado.
+(((erro de forma)))
+
+
+=== Exercícios
 
 [[ex12-1]]
-===== Exercise 12-2
+===== Exercício 12-2
 
-Write a function called +mostfrequent+ that takes a string and prints the letters in decreasing order of frequency. Find text samples from several different languages and see how letter frequency varies between languages. Compare your results with the tables at https://en.wikipedia.org/wiki/Letter_frequencies.
-(((mostfrequent)))((("function", "programmer-defined", "mostfrequent", see="mostfrequent")))
+Escreva uma função chamada +mais_frequente+ que recebe uma string e imprime as letras em ordem decrescente de frequência. Procure amostras de texto de diversos idiomas diferentes e verifique como a frequência das letras varia entre os idiomas. Compare seus resultados com as tabelas em https://pt.wikipedia.org/wiki/Frequência_de_letras.
+(((mais_frequente)))((("função", "definido pelo programador", "mais_frequente", see="mais_frequente")))
 
 [[ex12-2]]
-===== Exercise 12-3
+===== Exercício 12-3
 
-More anagrams!
+Mais anagramas!
 
-. Write a program that reads a word list from a file (see <<reading_word_lists>>) and prints all the sets of words that are anagrams.
+. Escreva um programa que leia uma lista de palavras de um arquivo (veja <<reading_word_lists>>) e mostre todos os conjuntos de palavras que são anagramas.
 +
-Here is an example of what the output might look like:
+Aqui está um exemplo de como pode ser a saída:
 +
 [source,julia]
 ----
@@ -560,55 +560,54 @@ Here is an example of what the output might look like:
 +
 [TIP]
 ====
-You might want to build a dictionary that maps from a collection of letters to an array of words that can be spelled with those letters. The question is, how can you represent the collection of letters in a way that can be used as a key?
+Você pode querer construir um dicionário que mapeia uma coleção de letras até uma lista de palavras que podem ser soletradas com essas letras. A questão é: como você pode representar a coleção de letras de uma forma que ela possa ser usada como chave?
 ====
 
-. Modify the previous program so that it prints the longest array of anagrams first, followed by the second longest, and so on.
+. Modifique o programa anterior para imprimir primeiro a maior lista de anagramas, seguida pela segunda mais longa e assim por diante.
 
-. In Scrabble a “bingo” is when you play all seven tiles in your rack, along with a letter on the board, to form an eight-letter word. What collection of 8 letters forms the most possible bingos?
+. No Scrabble, um “bingo” é quando você joga usa as sete peças do seu suporte, juntamente com uma letra no tabuleiro, para formar uma palavra de oito letras. Qual é a coleção de oito letras que forma o maior número possível de bingos?
 
 [[ex12-3]]
-===== Exercise 12-4
+===== Exercício 12-4
 
-Two words form a “metathesis pair” if you can transform one into the other by swapping two letters; for example, “converse” and “conserve”. Write a program that finds all of the metathesis pairs in the dictionary.
-(((metathesis pair)))
+Duas palavras formam um “par de metátese” se você puder transformar uma na outra trocando duas letras, como no caso de “converse“ e “conserve”. Escreva um programa que encontre todos os pares de metáteses no dicionário.
+(((par de metátese)))
 
 [TIP]
 ====
-Don’t test all pairs of words, and don’t test all possible swaps. 
+Não teste todos os pares de palavras e nem todas as trocas possíveis.
 ====
 
-Credit: This exercise is inspired by an example at http://puzzlers.org.
+Crédito: Este exercício é inspirado em um exemplo em http://puzzlers.org.
 
 [[ex12-4]]
-===== Exercise 12-5
+===== Exercício 12-5
 
-Here’s another Car Talk Puzzler (https://www.cartalk.com/puzzler/browse):
+Aqui está outro desafio do programa Car Talk (https://www.cartalk.com/puzzler/browse):
 (((Car Talk)))
 
 [quote]
 ____
-What is the longest English word, that remains a valid English word, as you remove its letters one at a time?
+Qual é a palavra em Inglês mais longa, que permanece uma palavra válida em Inglês à medida que você remove as letras uma de cada vez?
 
-Now, letters can be removed from either end, or the middle, but you can’t rearrange any of the letters. Every time you drop a letter, you wind up with another English word. If you do that, you’re eventually going to wind up with one letter and that too is going to be an English word—one that’s found in the dictionary. I want to know what’s the longest word and how many letters does it have?
+Agora, as letras podem ser removidas de qualquer posição e você não pode rearranjar nenhuma das letras. Toda vez que você retirar uma letra, você termina com outra palavra em Inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em Inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
 
-I’m going to give you a little modest example: Sprite. Ok? You start off with sprite, you take a letter off, one from the interior of the word, take the r away, and we’re left with the word spite, then we take the e off the end, we’re left with spit, we take the s off, we’re left with pit, it, and I.
+Vou dar um exemplo modesto: Sprite. OK? Você começa com sprite, tira a letra r no meio da palavra e ficamos com a palavra spite, depois tiramos a letra e no final e ficamos com spit, tiramos a letra s e ficamos com pit, it e I.
 ____
 
-Write a program to find all words that can be reduced in this way, and then find the longest one.
+Escreva um programa para encontrar todas as palavras em Inglês que podem ser reduzidas desta forma, e depois encontre a mais longa.
 
 [TIP]
 ====
-This exercise is a little more challenging than most, so here are some suggestions:
+Este exercício é um pouco mais desafiador do que a maioria, então aqui vai algumas sugestões:
 
-. You might want to write a function that takes a word and computes an array of all the words that can be formed by removing one letter. These are the “children” of the word.
+. Você pode escrever uma função que recebe uma palavra e obtenha uma lista de todas as palavras que podem ser formadas removendo uma letra. Esta lista contém os “filhos” da palavra.
 
-. Recursively, a word is reducible if any of its children are reducible. As a base case, you can consider the empty string reducible.
-(((reducible)))
+. Recursivamente, uma palavra é redutível se algum de seus filhos for redutível. Como caso base, pode-se considerar a string vazia redutível.
+(((redutível)))
 
-. The word list I provided, _words.txt_, doesn’t contain single letter words. So you might want to add “I”, “a”, and the empty string.
+. A lista de palavras que disponibilizei ( _palavras.txt_ do cap. 9) não contém palavras com uma única letra. Então, você pode querer colocar “I”, “a” e a string vazia.
 
-. To improve the performance of your program, you might want to memoize the words that are known to be reducible.
-(((memo)))
+. Para melhorar o desempenho do seu programa, convém guardar as palavras que são conhecidas por serem redutíveis.
+(((memorando)))
 ====
-
