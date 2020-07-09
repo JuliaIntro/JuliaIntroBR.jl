@@ -438,7 +438,7 @@ Para os prefixos, as opções mais óbvias são as strings, listas de strings ou
 
 Para os sufixos, uma opção é uma lista; outra é um histograma (dicionário).
 
-Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é "eu te" e a próxima palavra é "desejo", você precisa formar o próximo prefixo, "te desejo".
+Como você deve escolher? O primeiro passo é pensar nas operações que você precisará implementar para cada estrutura de dados. Para os prefixos, precisamos remover palavras do começo e adicionar ao final. Por exemplo, se o prefixo atual é “eu te” e a próxima palavra é “desejo”, você precisa formar o próximo prefixo, “te desejo”.
 
 Sua primeira escolha pode ser uma lista, pois é fácil adicionar e remover os elementos.
 
@@ -541,7 +541,7 @@ A lei de Zipf descreve a relação entre as posições e as frequências das pal
 {f = c r^{-s}}
 \end{equation}
 ++++
-onde latexmath:[\(s\)] e latexmath:[\(c\)] são parâmetros que dependem da linguagem e do texto. Se você pegar o logaritmo em ambos os lados desta equação, obtém-se:
+onde latexmath:[\(s\)] e latexmath:[\(c\)] são os parâmetros que dependem da linguagem e do texto. Se você pegar o logaritmo em ambos os lados desta equação, obtém-se:
 
 [latexmath]
 ++++
