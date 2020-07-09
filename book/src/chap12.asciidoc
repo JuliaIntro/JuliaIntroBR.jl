@@ -467,13 +467,13 @@ Aqui, as tuplas são mostradas com a sintaxe do Julia para simplificar o diagram
 
 === Sequências de Sequências
 
-Tenho focado nas listas de tuplas, mas quase todos os exemplos neste capítulo também funcionam com as listas de listas, tuplas de tuplas, e tuplas de listas. Para evitar enumerar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
+Temos focado nas listas de tuplas, mas quase todos os exemplos neste capítulo também funcionam com as listas de listas, tuplas de tuplas, e tuplas de listas. Para evitar enumerar as possíveis combinações, às vezes é mais fácil falar sobre seqüências de seqüências.
 (((sequência de sequências)))
 
 Em muitos contextos, os diferentes tipos de sequências (strings, listas e tuplas) podem ser usados de forma intercambiável. Então, como você deve escolher um ao invés dos outros?
 (((string)))(((lista)))(((tupla)))
 
-Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), convém usar uma lista de caracteres em seu lugar.
+Para começar com o óbvio, as strings são mais limitadas que as outras sequências porque os elementos precisam ser caracteres, além de serem imutáveis. Se você possivelmente precisar mudar os caracteres de uma string (ao invés de criar uma nova string), pode ser melhor usar uma lista de caracteres em seu lugar.
 (((imutável)))
 
 As listas são mais comuns que tuplas, principalmente porque são mutáveis. Mas existem algumas situações em que você pode preferir as tuplas:
@@ -492,7 +492,7 @@ Como as tuplas são imutáveis, elas não dispõem de funções como +sort!+ e +
 
 === Depuração
 
-As listas, os dicionários e as tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamo de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando um array com um número inteiro e eu fornecer um número inteiro (que não é um array), não funcionará.
+As listas, os dicionários e as tuplas são exemplos de _estruturas de dados_; neste capítulo, começamos a ver estruturas de dados compostas, como arrays de tuplas ou dicionários que contêm tuplas como chaves e arrays como valores. As estruturas de dados compostas são práticas, embora sejam propensas ao que chamamos de _erros de forma_; isto é, erros causados ​​quando uma estrutura de dados tem o tipo, tamanho ou estrutura incorreta. Por exemplo, se você está esperando uma lista com um número inteiro e for fornecido um número inteiro (que não é um lista), não funcionará.
 (((depuração)))(((estruturas de dados)))(((erro de forma)))
 
 Julia permite anexar um tipo aos elementos de uma sequência. As informações de como isso é feito está em <<chap17>>. A especificação do tipo elimina muitos erros de forma.
@@ -588,14 +588,14 @@ Aqui está outro desafio do programa Car Talk (https://www.cartalk.com/puzzler/b
 
 [quote]
 ____
-Qual é a palavra em inglês mais longa, que permanece uma palavra válida em inglês à medida que você remove as letras uma de cada vez?
+Qual é a palavra em Inglês mais longa, que permanece uma palavra válida em Inglês à medida que você remove as letras uma de cada vez?
 
-Agora, as letras podem ser removidas de qualquer posição e não pode rearranjar nenhuma das letras. Toda vez que você retira uma letra, você termina com outra palavra em inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
+Agora, as letras podem ser removidas de qualquer posição e você não pode rearranjar nenhuma das letras. Toda vez que você retirar uma letra, você termina com outra palavra em Inglês. Se você fizer isso, acabará terminando com uma letra e essa também será uma palavra em Inglês que pode ser encontrada no dicionário. Quero saber qual é a palavra mais longa e quantas letras ela tem?
 
 Vou dar um exemplo modesto: Sprite. OK? Você começa com sprite, tira a letra r no meio da palavra e ficamos com a palavra spite, depois tiramos a letra e no final e ficamos com spit, tiramos a letra s e ficamos com pit, it e I.
 ____
 
-Escreva um programa para encontrar todas as palavras em inglês que podem ser reduzidas desta forma, e depois encontre a mais longa.
+Escreva um programa para encontrar todas as palavras em Inglês que podem ser reduzidas desta forma, e depois encontre a mais longa.
 
 [TIP]
 ====
