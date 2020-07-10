@@ -1,18 +1,18 @@
 [[chap11]]
 == Dicionários
 
-Este capítulo apresenta outra estrutura de dados embutida chamado dicionário.
+Este capítulo apresenta outra estrutura de dados embutida chamada dicionário.
 
 
 === Um Dicionário é um Mapeamento
 
-Um _dicionário_ é como uma lista, mas mais geral. Em uma lista, os índices devem ser inteiros e em um dicionário, eles podem (quase) ser de qualquer tipo.
+Um _dicionário_ é como uma lista, mas mais geral. Em uma lista, os índices devem ser inteiros e em um dicionário, eles podem ser de (quase) qualquer tipo.
 (((dicionário)))
 
 Um dicionário contém uma coleção de índices, que são chamados de _chaves_, e uma coleção de valores. Cada chave é associada a um único valor. A associação de uma chave e um valor é chamada de _par chave-valor_ ou, às vezes, de item.
 (((chave)))(((valor)))(((par chave-valor)))(((item)))
 
-Na linguagem matemática, um dicionário representa um _mapeamento_ das chaves para os valores, então você também pode dizer que cada chave “é mapeado” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
+Na linguagem matemática, um dicionário representa um _mapeamento_ das chaves para os valores, então você também pode dizer que cada chave “é mapeada” para um valor. Como um exemplo, iremos construir um dicionário que mapeia palavras em Português para palavras em Espanhol, com as chaves e os valores todos strings.
 (((mapeamento)))
 
 A função +Dict+ cria um novo dicionário sem items. Como +Dict+ é um nome de uma função embutida, devemos evitar usar ele como um nome de variável.
@@ -32,7 +32,7 @@ O dicionário está vazio. Para adicionar items no dicionário, podemos usar os 
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp["um"] = "uno";
+julia> pt_para_esp["um"] = "uno";
 
 ----
 
@@ -41,7 +41,7 @@ Essa linha cria um item que mapeia a chave "um" para o valor "uno". Se imprimirm
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp
+julia> pt_para_esp
 Dict{Any,Any} with 1 entry:
   "um" => "uno"
 ----
@@ -50,7 +50,7 @@ Essa formatação de saída também é uma formatação de entrada. Por exemplo,
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp = Dict("um" => "uno", "dois" => "dos", "três" => "tres")
+julia> pt_para_esp = Dict("um" => "uno", "dois" => "dos", "três" => "tres")
 Dict{String,String} with 3 entries:
   "dois" => "dos"
   "um"   => "uno"
@@ -68,7 +68,7 @@ Mas isso não é um problema pois os elementos de um dicionário nunca são inde
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp["dois"]
+julia> pt_para_esp["dois"]
 "dos"
 ----
 
@@ -79,7 +79,7 @@ Se a chave não está no dicionário, nós recebemos uma exceção:
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp["quatro"]
+julia> pt_para_esp["quatro"]
 ERROR: KeyError: key "quatro" not found
 ----
 
@@ -88,7 +88,7 @@ A função +length+ funciona nos dicionários e retorna o número de pares chave
 
 [source,@julia-repl-test chap11]
 ----
-julia> length(por_para_esp)
+julia> length(pt_para_esp)
 3
 ----
 
@@ -97,7 +97,7 @@ A função +keys+ retorna uma lista com as chaves do dicionário:
 
 [source,@julia-repl-test chap11]
 ----
-julia> ks = keys(por_para_esp);
+julia> ks = keys(pt_para_esp);
 
 julia> print(ks)
 ["dois", "um", "três"]
@@ -119,7 +119,7 @@ Para verificar se algo aparece como um valor em um dicionário, você pode usar 
 
 [source,@julia-repl-test chap11]
 ----
-julia> vs = values(por_para_esp);
+julia> vs = values(pt_para_esp);
 
 julia> "uno" ∈ vs
 true
@@ -294,7 +294,7 @@ julia> chave = consulta_inversa(h, 4)
 ERROR: Erro de Consulta
 ----
 
-O resultado de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stracktrace e uma mensagem de erro.
+O resultado de uma exceção gerada é o mesmo quando o Julia gera um: ele exibe o stacktrace e uma mensagem de erro.
 
 Julia fornece uma maneira otimizada de fazer uma consulta inversa: +findall(isequal(3), h)+.
 (((findall)))((("função", "Base", "findall", see="findall")))(((isequal)))((("função", "Base", "isequal", see="isequal")))
@@ -354,7 +354,7 @@ image::images/fig111.svg[]
 
 [NOTE]
 ====
-Eu mencionei anteriormente que um dicionário é implementado usando uma tabela hash e isso significa que as chaves devem ser _hashable_, ou de um tipo que permite que uma função hash atuem sobre elas.
+Mencionamos anteriormente que um dicionário é implementado usando uma tabela hash e isso significa que as chaves devem ser _hashable_, isto é, de um tipo que permite que uma função hash atuem sobre elas.
 (((hashable)))
 
 Uma _hash_ é uma função que recebe um valor (de qualquer tipo) e retorna um inteiro. Dicionários usam estes inteiros, chamados de valores hash, para guardar e consultar pares chave-valor.
@@ -396,7 +396,7 @@ function fibonacci(n)
 end
 ----
 
-+conhecido+ é um dicionáro que guarda os números de Fibonacci que já sabemos. Ele começa com dois itens: +0+ mapeia para +0+ e +1+ mapeia para +1+.
++conhecidos+ é um dicionáro que guarda os números de Fibonacci que já sabemos. Ele começa com dois itens: +0+ mapeia para +0+ e +1+ mapeia para +1+.
 
 Toda vez que +fibonacci+ é chamada, ela checa +conhecidos+. Se o resultado já está lá, ela retorna imediatamente. Por outro lado ela tem que computar um novo valor, adicionar ele ao dicionário, e retorná-lo.
 
@@ -408,7 +408,7 @@ Se você executar esta versão de +fibonacci+ e comparar com a original, você v
 No exemplo anterior, conhecidos é criado fora da função, então ela pertence ao quadro especial chamado +Main+. Variáveis em +Main+ são às vezes chamadas de _globais_ pois podem ser acessadas de qualquer função. Diferente de variáveis locais, que desaparecem quando a função acaba, variáveis globais persistem de uma chamada de função para a próxima.
 (((global)))((("palavra-chave", "global", see="global")))(((variável global)))
 
-É comum usar variáveis globais para _flags_; isto é, variáveis booleanas que indicam (“sinal”) se uma condição é verdadeira. Por exemplo, alguns programas usam uma flag chamada +verbose+ para controlar o nível de detalhamento na saída:
+É comum usar variáveis globais para _flags_; isto é, variáveis booleanas que indicam (“sinalizam”) se uma condição é verdadeira. Por exemplo, alguns programas usam uma flag chamada +verbose+ para controlar o nível de detalhamento na saída:
 (((flag)))
 
 [source,@julia-setup]
@@ -525,19 +525,19 @@ Variáveis globais podem ser utéis, mas se tem muitas delas, e você modifica-a
 
 === Depuração
 
-Na medida em que você trabalha com datasets maiores, pode ser que seja difícil depurar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para depurar datasets maiores:
+Na medida em que você trabalha com conjuntos de dados maiores, pode ser que seja difícil depurar imprimindo e checando a saída na mão. Aqui estão algumas sugestões para depurar conjuntos de dados maiores:
 (((depuração)))
 
 * Diminua a entrada:
 +
-Se possível, reduza o tamanho do dataset. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que dá erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele leia somente as primeiras latexmath:[\(n\)] linhas.
+Se possível, reduza o tamanho do conjunto de dados. Por exemplo, se o programa lê um arquivo de texto, comece com apenas as 10 primeiras linhas, ou com o menor exemplo que dá erro. Você não deve editar os arquivos em si, mas modificar o programa para que ele leia somente as primeiras latexmath:[\(n\)] linhas.
 (((redução de tamanho)))
 +
 Se existe um erro, você pode reduzir de latexmath:[\(n\)] para o menor valor que dá erro, e em seguida incrementá-lo gradualmente à medida que você encontra e corrige os erros.
 
 * Verifique os resumos e os tipos:
 +
-Ao invés de imprimir e checar o dataset inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de uma lista de números.
+Ao invés de imprimir e checar o conjunto de dados inteiro, considere imprimir os resumos dos dados: por exemplo, o número de itens em um dicionário ou o total de uma lista de números.
 (((verificação)))
 +
 Uma causa comum de erros de execução é um valor que não é do tipo correto. Para a depuração desse tipo de erro, geralmente é suficiente imprimir o tipo de um valor.
