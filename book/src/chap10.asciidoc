@@ -100,7 +100,7 @@ Os índices das listas funcionam do mesmo jeito que os índices de strings (mas 
 
 * Qualquer expressão inteira pode ser utilizada como um índice.
 
-* Se você tentar ler ou escrever um elemento que não existe, um +BoundsError+ (erro de limite) será gerado.
+* Se você tentar ler ou escrever um elemento que não existe, um +BoundsError+ (erro de limites) será gerado.
 
 * A palavra-chave +end+ aponta para o último índice da lista.
 (((end)))
@@ -402,7 +402,7 @@ julia> print(t)
 +splice!+ modifica a lista e retorna o elemento que foi removido.
 
 +pop!+ deleta e retorna o último elemento:
-(((pop!)))((("função", "Base", "pop!", veja="pop!")))
+(((pop!)))((("função", "Base", "pop!", see="pop!")))
 
 [source,@julia-repl-test]
 ----
@@ -526,7 +526,7 @@ image::images/fig102.svg[]
 
 Em um caso, +a+ e +b+ referem-se a dois objetos diferentes que possuem o mesmo valor. No segundo caso, elas referem-se ao mesmo objeto.
 
-Para verificar se duas variáveis referem-se ao mesmo objeto, você pode usar o operador +=+ (*+\equiv TAB+*) ou +===+.
+Para verificar se duas variáveis referem-se ao mesmo objeto, você pode usar o operador +≡+ (*+\equiv TAB+*) ou +===+.
 (((≡)))((("operador", "Base", "≡", see="≡")))((("===", see="≡")))
 
 [source,@julia-repl-test]
@@ -724,7 +724,7 @@ Essa função deixa a lista original sem modificações. Veja como ela é usada:
 
 [source,@julia-repl-test chap10]
 ----
-julia> calda = ['a', 'b', 'c'];
+julia> letras = ['a', 'b', 'c'];
 
 julia> resto = calda(letras);
 
@@ -1032,12 +1032,12 @@ Escreva uma função que leia o arquivo +words.txt+ e crie uma lista com um elem
 
 Para verificar se uma palavra está na lista de palavras, você poderia usar o operador +∈+, mas isto seria lento porque as palavras seriam pesquisadas em ordem.
 
-Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma busca bissecção (também conhecida como busca binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.
+Como as palavras estão em ordem alfabética, podemos acelerar as coisas com uma busca por bissecção (também conhecida como busca binária), que é semelhante ao que você faz quando procura uma palavra no dicionário. Você começa no meio e verifica se a palavra que você procura vem antes da palavra no meio da lista. Nesse caso, você pesquisa a primeira metade da lista da mesma maneira. Caso contrário, você pesquisará a segunda metade.
 
 De qualquer forma, você reduz pela metade o espaço restante da busca. Se a lista de palavras possuir 113.809 palavras, serão necessárias 17 etapas para encontrar a palavra ou concluir que ela não está na lista.
 
 Escreva uma função chamada +em_bisseção+ que usa uma lista ordenada e um valor-alvo e retorna +true+ se a palavra estiver na lista e +false+ se não estiver.
-(((é_bisseção)))((("função", "definido pelo programador", "é_bisseção", see="é_bisseção")))
+(((em_bisseção)))((("função", "definido pelo programador", "em_bisseção", see="em_bisseção")))
 
 [[ex10-11]]
 ===== Exercício 10-11
@@ -1048,7 +1048,7 @@ Duas palavras são um “par reverso” se uma for o inverso da outra. Escreva u
 [[ex10-12]]
 ===== Exercício 10-12
 
-Duas palavras “interligam” se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, “micro” e “ondas” se interligam para formar “microondas”.
+Duas palavras “interligam” se receber letras alternadas de cada uma forma uma nova palavra. Por exemplo, “shoe” e “cold” se interligam para formar “schooled”.
 (((interligar)))
 
 Crédito: Este exercício é inspirado em um exemplo em http://puzzlers.org.
