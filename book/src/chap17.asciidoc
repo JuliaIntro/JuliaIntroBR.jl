@@ -1,9 +1,9 @@
 [[chap17]]
 == Despacho Múltiplo
 
-No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Isto é chamado de programação genérica.
+No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Esta habilidade é chamada de programação genérica.
 
-Neste capítulo irei discutir o uso de declarações de tipos em Julia, e também introduzirei métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
+Neste capítulo, irei discutir o uso de declarações de tipo em Julia, e também introduzirei métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
 
 
 === Declarações de Tipo
@@ -21,7 +21,7 @@ julia> (1 + 2) :: Int64
 
 Isso ajuda a confirmar que o seu programa funciona do jeito esperado.
 
-O operador +::+ também pode ser acrescentado ao lado esquerdo de uma atribuição, ou como uma parte de uma declaração.
+O operador +::+ também pode ser acrescentado ao fim do lado esquerdo de uma atribuição, ou como uma parte de uma declaração.
 (((retorna_float)))((("função", "definido pelo programador", "retorna_float", see="retorna_float")))
 
 [source,@julia-repl-test]
@@ -54,7 +54,7 @@ end
 
 O valor de retorno de +sinc+ é sempre convertido para o tipo +Float64+.
 
-Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que valores sejam de qualquer tipo (+Any+).
+Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que os valores sejam de qualquer tipo (+Any+).
 (((Any)))
 
 
@@ -90,7 +90,7 @@ julia> imprima_horário(início)
 09:45:00
 ----
 
-Para adicionar um _método_ à função +imprima_horário+ que apenas aceita um objeto +MeuHorário+ como argumento, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuHorário+ no argumento +tempo+ na definição de função:
+Para adicionar um _método_ à função +imprima_horário+ que apenas aceita um objeto +MeuHorário+ como argumento, tudo que precisamos fazer é acrescentar +::+ seguido de +MeuHorário+ no final do argumento +tempo+ na definição de função:
 (((método)))
 
 [source,@julia-setup chap17a]
@@ -151,11 +151,11 @@ end;
 === Exemplos Adicionais
 
 Aqui está uma versão de +incrementa+ (de <<modifiers>>) reescrita para especificar seus argumentos:
-(((incrementar)))
+(((incrementa)))
 
 [source,@julia-setup chap17a]
 ----
-function incrementar(tempo::MeuHorário, segundos::Int64)
+function incrementa(tempo::MeuHorário, segundos::Int64)
     segundos += horário_para_int(tempo)
     int_para_horário(segundos)
 end
@@ -169,11 +169,11 @@ Você pode invocar incrementar da seguinte maneira:
 ----
 julia> início = MeuHorário(9, 45, 0)
 MeuHorário(9, 45, 0)
-julia> incrementar(início, 1337)
+julia> incrementa(início, 1337)
 MeuHorário(10, 7, 17)
 ----
 
-Se você colocar os argumentos na ordem errada, você recebe um erro:
+Se você colocar os argumentos na ordem errada, um erro é gerado:
 (((MethodError)))
 
 [source,@julia-repl-test chap17a]
@@ -217,7 +217,7 @@ Estas expressões são definições de método válidas em Julia. E é uma nota�
 [[construtor]]
 === Construtores
 
-Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuHorário+ tem a seguinte assinatura:
+Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuHorário+ têm a seguinte assinatura:
 (((construtor)))
 
 [source,julia]
@@ -249,8 +249,8 @@ struct MeuHorário
     minuto :: Int64
     segundo :: Int64
     function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
-        @assert(0 ≤ minuto < 60, "minuto não está entre 0 e 60.")
-        @assert(0 ≤ segundo < 60, "segundo não está entre 0 e 60.")
+        @assert(0 ≤ minuto < 60, "Minuto não está entre 0 e 60.")
+        @assert(0 ≤ segundo < 60, "Segundo não está entre 0 e 60.")
         new(hora, minuto, segundo)
     end
 end
@@ -283,8 +283,8 @@ mutable struct MeuHorário
     minuto :: Int
     segundo :: Int
     function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
-        @assert(0 ≤ minuto < 60, "minuto está entre 0 e 60.")
-        @assert(0 ≤ segundo < 60, "segundo está entre 0 e 60.")
+        @assert(0 ≤ minuto < 60, "Minuto está entre 0 e 60.")
+        @assert(0 ≤ segundo < 60, "Segundo está entre 0 e 60.")
         tempo = new()
         tempo.hora = hora
         tempo.minuto = minuto
@@ -294,7 +294,7 @@ mutable struct MeuHorário
 end
 ----
 
-Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos também é uma struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
+Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
 (((estruturas de dados recorrentes)))
 
 
@@ -344,12 +344,12 @@ function int_para_horário(segundos::Int64)
 end;
 
 function incrementa(tempo::MeuHorário, segundos::Int64)
-    segundos += tempotoint(tempo)
-    inttotempo(segundos)
+    segundos += horário_para_int(tempo)
+    int_para_horário(segundos)
 end;
 ----
 
-=== Operador de Sobrecarga
+=== Sobrecarga de Operador
 
 Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuHorário+, você pode usar o operador +pass:[+]+ em objetos +MeuHorário+.
 
@@ -431,7 +431,7 @@ A escolha de qual método executar quando a função é aplicada é chamada de _
 
 Escreva métodos +pass:[+]+ para os objetos ponto:
 
-* Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada +x+ é a soma das coordenadas +x+ dos operandos, e proceder da mesma forma para as coordenadas +y+.
+* Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada +x+ é a soma das coordenadas +x+ dos operandos, e deve proceder da mesma forma para as coordenadas +y+.
 
 * Se o primeiro ou o segundo operando é uma tupla, o método deve somar o primeiro elemento da tupla à coordenada +x+ e o segundo elemento à coordenada +y+, e retornar um novo objeto ponto com o resultado.
 
@@ -472,7 +472,7 @@ Dict{Any,Any} with 3 entries:
 ----
 
 Funções que funcionam com vários tipos são chamadas de _polimórficas_. Polimorfismo pode facilitar o reuso de código.
-(((polymórfica)))
+(((polimórfica)))
 
 Por exemplo, a função embutida +sum+, que soma os elementos de uma sequência, funciona contanto que os elementos da sequência possam realizar a adição.
 (((sum)))
@@ -504,7 +504,7 @@ Um dos objetivos do despacho múltiplo é facilitar a manutenção do software, 
 Um princípio de design que ajuda alcançar esse objetivo é manter as interfaces separadas das implementações. Isto significa que os métodos que possuem os argumentos denotados com um tipo não devem depender de como os campos daquele tipo são representados.
 (((interface)))(((implementação)))
 
-Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem +horário_para_int+, +é_depois+ e +pass:[+]+.
+Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. E os métodos que possuem argumentos indicados com este tipo incluem +horário_para_int+, +é_depois+ e +pass:[+]+.
 
 Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos +MeuHorário+. Neste capítulo, os campos de um objeto +MeuHorário+ são +hora+, +minuto+ e +segundo+.
 
