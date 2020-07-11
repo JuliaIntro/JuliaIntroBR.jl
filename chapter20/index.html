@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59424804598014e9</code></pre>
+1.594507592878287e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-Q♣ K♠ 2♥ J♠ 4♠ A♦ 9♠ 6♥ 3♣ 7♠ 10♠ A♥ 9♦ K♦ 10♦ 7♣ A♣ 4♣ 5♥ 5♣ 5♦ 9♣ 4♦ 3♠ K♣ J♥ 7♦ 8♣ 2♦ A♠ 6♠ 10♥ J♦ J♣ 6♦ Q♦ 5♠ 8♠ 10♣ 6♣ Q♠ 7♥ 2♣ 8♦ 8♥ 2♠ 3♦ K♥ 9♥ Q♥ 3♥ 4♥
+4♣ Q♠ 2♦ 8♥ 6♠ 7♣ A♣ J♣ 6♥ 9♦ 5♦ K♠ 4♠ 2♣ 2♥ 3♥ 6♦ 9♠ 10♠ K♦ 7♠ A♦ Q♦ A♥ 10♣ 3♦ 7♥ J♠ 4♦ 9♣ K♥ 9♥ 5♠ 3♣ 8♣ 10♦ 5♥ 6♣ 7♦ 3♠ J♥ 10♥ J♦ Q♣ Q♥ 8♦ 5♣ 8♠ A♠ K♣ 4♥ 2♠
 julia&gt; card = pop!(deck)
-4♥
+2♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15242,7 +15242,7 @@ julia&gt; m.offset
 <div class="sect2">
 <h3 id="_listas">Listas</h3>
 <div class="paragraph">
-<p>Em <a href="#chap10">Arrays</a> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são coleções multidimensionais.</p>
+<p>Em <a href="#chap10">Arrays</a> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são do tipo Array, (em Inglês, não há distinção no nome) que são coleções multidimensionais.</p>
 </div>
 <div class="paragraph">
 <p>Vamos criar uma <em>matriz</em> 2 por 3 preenchida com zeros:
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm soma_de_quadrados(3.0, 4.0)
 ;  @ none:2 within `soma_de_quadrados'
-define double @julia_soma_de_quadrados_20460(double, double) {
+define double @julia_soma_de_quadrados_20445(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15597,7 +15597,7 @@ top:
 </dd>
 <dt class="hdlist1">matriz</dt>
 <dd>
-<p>Um array bidimensional.
+<p>Uma lista bidimensional.
 </p>
 </dd>
 <dt class="hdlist1">representação intermediária</dt>
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-08 22:40:42 UTC
+Última atualização 2020-07-11 22:46:29 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
