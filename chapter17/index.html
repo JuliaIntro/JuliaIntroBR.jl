@@ -694,7 +694,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exemplos_adicionais">Exemplos Adicionais</a></li>
 <li><a href="#construtor">Construtores</a></li>
 <li><a href="#__code_show_code"><code>show</code></a></li>
-<li><a href="#_operador_de_sobrecarga">Operador de Sobrecarga</a></li>
+<li><a href="#_sobrecarga_de_operador">Sobrecarga de Operador</a></li>
 <li><a href="#_despacho_múltiplo">Despacho Múltiplo</a></li>
 <li><a href="#_programação_genérica">Programação Genérica</a></li>
 <li><a href="#_interface_e_implementação">Interface e Implementação</a></li>
@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594052155577758e9</code></pre>
+1.594502652029736e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12507,10 +12507,10 @@ end</code></pre>
 <h2 id="chap17">20. Despacho Múltiplo</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Isto é chamado de programação genérica.</p>
+<p>No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Esta habilidade é chamada de programação genérica.</p>
 </div>
 <div class="paragraph">
-<p>Neste capítulo irei discutir o uso de declarações de tipos em Julia, e também introduzirei métodos que são maneiras de implementar comportamentos diferentes para uma função dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
+<p>Neste capítulo, irei discutir o uso de declarações de tipo em Julia, e também introduzirei métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
 </div>
 <div class="sect2">
 <h3 id="_declarações_de_tipo">Declarações de Tipo</h3>
@@ -12530,7 +12530,7 @@ julia&gt; (1 + 2) :: Int64
 <p>Isso ajuda a confirmar que o seu programa funciona do jeito esperado.</p>
 </div>
 <div class="paragraph">
-<p>O operador <code>::</code> também pode ser acrescentado ao lado esquerdo de uma atribuição, ou como uma parte de uma declaração.
+<p>O operador <code>::</code> também pode ser acrescentado ao fim do lado esquerdo de uma atribuição, ou como uma parte de uma declaração.
 </p>
 </div>
 <div class="listingblock">
@@ -12567,7 +12567,7 @@ end</code></pre>
 <p>O valor de retorno de <code>sinc</code> é sempre convertido para o tipo <code>Float64</code>.</p>
 </div>
 <div class="paragraph">
-<p>Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que valores sejam de qualquer tipo (<code>Any</code>).
+<p>Quando os tipos são omitidos, o comportamento padrão em Julia é permitir que os valores sejam de qualquer tipo (<code>Any</code>).
 </p>
 </div>
 </div>
@@ -12607,7 +12607,7 @@ julia&gt; imprima_horário(início)
 </div>
 </div>
 <div class="paragraph">
-<p>Para adicionar um <em>método</em> à função <code>imprima_horário</code> que apenas aceita um objeto <code>MeuHorário</code> como argumento, tudo que precisamos fazer é acrescentar <code>::</code> seguido de <code>MeuHorário</code> no argumento <code>tempo</code> na definição de função:
+<p>Para adicionar um <em>método</em> à função <code>imprima_horário</code> que apenas aceita um objeto <code>MeuHorário</code> como argumento, tudo que precisamos fazer é acrescentar <code>::</code> seguido de <code>MeuHorário</code> no final do argumento <code>tempo</code> na definição de função:
 </p>
 </div>
 <div class="listingblock">
@@ -12665,7 +12665,7 @@ Eu não sei como imprimir o argumento tempo.</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function incrementar(tempo::MeuHorário, segundos::Int64)
+<pre class="pygments highlight"><code data-lang="julia">function incrementa(tempo::MeuHorário, segundos::Int64)
     segundos += horário_para_int(tempo)
     int_para_horário(segundos)
 end</code></pre>
@@ -12681,12 +12681,12 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; início = MeuHorário(9, 45, 0)
 MeuHorário(9, 45, 0)
-julia&gt; incrementar(início, 1337)
+julia&gt; incrementa(início, 1337)
 MeuHorário(10, 7, 17)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Se você colocar os argumentos na ordem errada, você recebe um erro:
+<p>Se você colocar os argumentos na ordem errada, um erro é gerado:
 </p>
 </div>
 <div class="listingblock">
@@ -12736,7 +12736,7 @@ f() = f(1, 2)</code></pre>
 <div class="sect2">
 <h3 id="construtor">Construtores</h3>
 <div class="paragraph">
-<p>Um <em>construtor</em> é uma função especial chamada para criar um objeto. Os métodos construtores padrões de <code>MeuHorário</code> tem a seguinte assinatura:
+<p>Um <em>construtor</em> é uma função especial chamada para criar um objeto. Os métodos construtores padrões de <code>MeuHorário</code> têm a seguinte assinatura:
 </p>
 </div>
 <div class="listingblock">
@@ -12771,8 +12771,8 @@ end</code></pre>
     minuto :: Int64
     segundo :: Int64
     function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
-        @assert(0 ≤ minuto &lt; 60, "minuto não está entre 0 e 60.")
-        @assert(0 ≤ segundo &lt; 60, "segundo não está entre 0 e 60.")
+        @assert(0 ≤ minuto &lt; 60, "Minuto não está entre 0 e 60.")
+        @assert(0 ≤ segundo &lt; 60, "Segundo não está entre 0 e 60.")
         new(hora, minuto, segundo)
     end
 end</code></pre>
@@ -12817,8 +12817,8 @@ MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
     minuto :: Int
     segundo :: Int
     function MeuHorário(hora::Int64=0, minuto::Int64=0, segundo::Int64=0)
-        @assert(0 ≤ minuto &lt; 60, "minuto está entre 0 e 60.")
-        @assert(0 ≤ segundo &lt; 60, "segundo está entre 0 e 60.")
+        @assert(0 ≤ minuto &lt; 60, "Minuto está entre 0 e 60.")
+        @assert(0 ≤ segundo &lt; 60, "Segundo está entre 0 e 60.")
         tempo = new()
         tempo.hora = hora
         tempo.minuto = minuto
@@ -12829,7 +12829,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos também é uma struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
+<p>Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
 </p>
 </div>
 </div>
@@ -12872,7 +12872,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operador_de_sobrecarga">Operador de Sobrecarga</h3>
+<h3 id="_sobrecarga_de_operador">Sobrecarga de Operador</h3>
 <div class="paragraph">
 <p>Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado <code>+</code> com dois argumentos <code>MeuHorário</code>, você pode usar o operador <code>+</code> em objetos <code>MeuHorário</code>.</p>
 </div>
@@ -12967,7 +12967,7 @@ end</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada <code>x</code> é a soma das coordenadas <code>x</code> dos operandos, e proceder da mesma forma para as coordenadas <code>y</code>.</p>
+<p>Se ambos operandos são objetos ponto, o método deve retornar um novo objeto ponto cuja coordenada <code>x</code> é a soma das coordenadas <code>x</code> dos operandos, e deve proceder da mesma forma para as coordenadas <code>y</code>.</p>
 </li>
 <li>
 <p>Se o primeiro ou o segundo operando é uma tupla, o método deve somar o primeiro elemento da tupla à coordenada <code>x</code> e o segundo elemento à coordenada <code>y</code>, e retornar um novo objeto ponto com o resultado.</p>
@@ -13055,7 +13055,7 @@ julia&gt; sum((t1, t2, t3))
 </p>
 </div>
 <div class="paragraph">
-<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. Métodos que possuem argumentos indicados com este tipo incluem <code>horário_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
+<p>Por exemplo, neste capítulo nós desenvolvemos uma struct que representa um horário do dia. E os métodos que possuem argumentos indicados com este tipo incluem <code>horário_para_int</code>, <code>é_depois</code> e <code>+</code>.</p>
 </div>
 <div class="paragraph">
 <p>Nós poderíamos implementar estes métodos de muitas maneiras. Os detalhes da implementação dependem de como representamos <code>MeuHorário</code>. Neste capítulo, os campos de um objeto <code>MeuHorário</code> são <code>hora</code>, <code>minuto</code> e <code>segundo</code>.</p>
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-5♥ 6♥ 5♦ K♦ 10♠ K♣ Q♦ 3♣ K♥ 4♥ 3♥ 10♣ K♠ 8♣ Q♣ 8♠ 10♦ 7♥ 3♠ 6♦ J♠ 10♥ A♦ Q♥ 8♦ 8♥ J♥ 4♦ 7♠ 5♣ 4♠ 4♣ 9♥ A♣ 7♦ 2♠ 2♦ A♠ 3♦ 6♣ 7♣ 2♣ Q♠ 9♠ 9♦ 9♣ 2♥ 5♠ J♣ J♦ 6♠ A♥
+7♥ K♠ 10♣ A♥ J♦ 3♦ A♣ 2♥ J♥ 7♦ 5♠ K♦ 7♣ 2♣ 5♣ 10♦ 4♥ A♦ 9♠ 4♦ 5♦ 4♠ 2♦ 9♦ 3♥ Q♠ 6♦ 6♣ 2♠ 7♠ 8♣ Q♦ 9♣ Q♥ 3♠ K♥ 6♥ 9♥ 6♠ 10♥ J♣ 8♥ Q♣ 8♦ 3♣ A♠ 5♥ 4♣ J♠ 10♠ 8♠ K♣
 julia&gt; card = pop!(deck)
-A♥
+K♣
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20442(double, double) {
+define double @julia_squaresum_20441(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-06 16:15:52 UTC
+Última atualização 2020-07-11 21:24:09 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
