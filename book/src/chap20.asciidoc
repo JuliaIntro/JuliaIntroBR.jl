@@ -244,7 +244,7 @@ Expressões regulares são extremamente poderosas e o página do manual PERL htt
 
 === Listas
 
-Em <<chap10>> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são coleções multidimensionais.
+Em <<chap10>> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são do tipo Array, (em Inglês, não há distinção no nome) que são coleções multidimensionais.
 
 Vamos criar uma _matriz_ 2 por 3 preenchida com zeros:
 (((zeros)))((("função", "Base", "zeros", see="zeros")))(((matrix)))
@@ -496,7 +496,7 @@ julia> @code_native soma_de_quadrados(3.0, 4.0)
 === Depuração
 
 As macros +Logging+ fornecem uma alternativa a andaimes com declarações print:
-(((@warn)))((("macro", "Base", "@warn", see="@warn")))(((debugging)))
+(((@warn)))((("macro", "Base", "@warn", see="@warn")))(((depuração)))
 
 [source,jlcon]
 ----
@@ -537,7 +537,7 @@ Expressão regular, uma sequência de caracteres que definem um padrão de busca
 (((regex)))
 
 matriz::
-Um array bidimensional.
+Uma lista bidimensional.
 (((matriz)))
 
 representação intermediária::
