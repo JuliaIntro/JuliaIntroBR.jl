@@ -35,7 +35,7 @@ Eis algumas maneiras de evitar os erros de sintaxe mais comuns:
 
 . Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, ela pode não produzir uma mensagem de erro!
 
-. Quando não se fecha um operador aberto —+(+, +{+, ou +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
+. Um operador de abertura não fechado —+(+, +{+, ou +[+—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.
 
 . Confira o clássico +=+ em vez de +==+ dentro de um condicional.
 
@@ -66,7 +66,7 @@ Se você ficar preso e não conseguir descobrir o que está acontecendo, uma abo
 
 === Erros de Tempo de Execução
 
-Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar errado?
+Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar de errado?
 
 ==== Meu programa Não Faz Absolutamente Nada
 
@@ -162,7 +162,7 @@ Não é possível converter exatamente para um tipo.
 (((InexactError)))((("error", "Core", "InexactError", see="InexactError")))
 
 KeyError::
-Uma operação de indexação em um +AbstractDict+ (+Dict+) ou +Set+ como se um objeto tentasse acessar ou apagar um elemento inexistente.
+Uma operação de indexação em um objeto do tipo +AbstractDict+ (+Dict+) ou +Set+ tentou acessar ou apagar um elemento inexistente.
 (((KeyError)))
 
 MethodError::
@@ -203,7 +203,7 @@ Um dos problemas com o uso dos comandos de impressão para a depuração é que 
 
 Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.
 
-Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. No caso do programa receber a entrada do usuário, passe a entrada mais simples que cause o problema.
+Para simplificar o programa, existem muitas coisas que se pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. No caso do programa receber a entrada do usuário, passe a entrada mais simples que cause o problema.
 
 Segundo, limpe o programa. Remova o código morto e reorganize o programa para torná-lo o mais fácil possível de ler. Por exemplo, se você suspeita que o problema está em uma parte profundamente aninhada do programa, tente reescrever essa parte com uma estrutura mais simples. Mas se você suspeitar de uma função grande, tente dividi-la em funções menores e testá-las separadamente.
 (((código morto)))
