@@ -3,7 +3,7 @@
 
 Na depuração, você deve distinguir os diferentes tipos de erros a fim de rastreá-los mais rapidamente:
 
-* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte para código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de funções gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
+* Os erros de sintaxe são descobertos pelo interpretador quando ele está traduzindo o código fonte para código byte. Eles sinalizam que há algo errado com a estrutura do programa. Exemplo: omitir a palavra-chave +end+ no final de um bloco de função gera a mensagem um tanto redundante +ERROR: LoadError: syntax: incomplete: function requires end+.
 (((erro de sintaxe)))
 
 * Os erros de tempo de execução são produzidos pelo interpretador se algo der errado durante a execução do programa. A maioria das mensagens de erro de tempo de execução inclui as informações sobre o local da ocorrência do erro e quais as funções que estavam sendo executadas. Exemplo: Uma recursão infinita eventualmente gera o erro de tempo de execução +ERROR: StackOverflowError+.
@@ -29,9 +29,9 @@ Eis algumas maneiras de evitar os erros de sintaxe mais comuns:
 
 . Certifique-se que você não está usando uma palavra-chave do Julia para um nome de variável.
 
-. Certifique-se que você tem a palavra-chave +end+ no final de cada comando composto, incluindo os blocos de +for+, +while+, +if+, e +function+.
+. Certifique-se que você tem a palavra-chave +end+ no final de cada comando composto, incluindo os blocos +for+, +while+, +if+, e +function+.
 
-. Assegure-se que quaisquer strings no código estejam entre aspas. Certifique-se de que todas as aspas são "aspas retas", e não as “aspas encaracoladas” (ou “aspas inglesas”).
+. Assegure-se que quaisquer strings no código estejam entre aspas correspondentes. Certifique-se de que todas as aspas são "aspas retas", e não as “aspas encaracoladas” (ou “aspas inglesas”).
 
 . Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, ela pode não produzir uma mensagem de erro!
 
@@ -70,7 +70,7 @@ Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pe
 
 ==== Meu programa Não Faz Absolutamente Nada
 
-Esse problema é mais comum quando seu arquivo consiste em funções e classes, mas na verdade não chama uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e as funções.
+Esse problema é mais comum quando seu arquivo consiste de funções e classes, mas não chama uma função para iniciar a execução. Isto pode ser intencional se você planeja importar este módulo apenas para fornecer as classes e as funções.
 
 Se não for intencional, certifique-se que há uma chamada de função no programa, e que o fluxo de execução chega até ele (veja <<flow_of_execution>>).
 (((fluxo de execução)))
@@ -110,7 +110,7 @@ while x > 0 && y < 0
 end
 ----
 
-Agora, quando você executar o programa no modo de depuração, verá o valor das variáveis e a condição em cada iteração do laço. A última vez que o laço for percorrido, a condição deve ser +false+. Se o laço continuar, você poderá ver os valores de +x+ e +y+ e poderá descobrir por que eles não estão sendo atualizados corretamente.
+Agora, quando você executar o programa no modo de depuração, verá o valor das variáveis e a condição a cada iteração do laço. A última vez que o laço for percorrido, a condição deve ser +false+. Se o laço continuar, você poderá ver os valores de +x+ e +y+ e poderá descobrir por que eles não estão sendo atualizados corretamente.
 
 [[infinite_recursion]]
 ===== Recursão Infinita
@@ -120,14 +120,14 @@ Na maioria das vezes, a recursão infinita faz com que o programa funcione por u
 
 Se você desconfia que uma função está causando uma recursão infinita, certifique-se que há um caso base. Deve haver alguma condição que causa o retorno da função sem fazer uma chamada recursiva. Caso contrário, você precisa repensar o algoritmo e identificar um caso base.
 
-Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. No caso dos parâmetros não se moverem em direção ao caso base, você terá algumas idéias sobre o porquê disso ocorrer.
+Se existe um caso base mas o programa não parece alcançá-lo, adicione um comando de impressão no começo da função para imprimir os parâmetros. E quando você executar o programa, verá algumas linhas de saída toda vez que a função for chamada, e verá também os valores dos parâmetros. Se os parâmetros não se moverem em direção ao caso base, você terá algumas idéias sobre o porquê disso ocorrer.
 
 [[flow_of_execution]]
 ===== Fluxo de Execução
 
-Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione comandos de impressão no início de cada função com uma mensagem como “inserindo a função foo”, sendo foo o nome da função.
+Se você não tem certeza de como o fluxo de execução está se movendo pelo seu programa, adicione comandos de impressão no início de cada função com uma mensagem como “entrando na função foo”, sendo foo o nome da função.
 
-E quando você executar o programa, eles imprimirão cada função que for chamada.
+E quando você executar o programa, um rastro de cada função que for chamada será exibido.
 
 ==== Quando Executo o Programa, Recebo uma Exceção
 
@@ -186,7 +186,7 @@ Ocorrência de um erro ao tentar acessar um índice inválido em uma string.
 (((StringIndexError)))
 
 SystemError::
-Uma chamada de sistema falhou devido a um código errado.
+Uma chamada de sistema falhou com um código de erro.
 (((SystemError)))
 
 TypeError::
