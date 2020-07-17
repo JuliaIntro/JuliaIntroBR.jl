@@ -3,7 +3,7 @@
 
 No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação dos tipos dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.
 
-Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.
+Neste capítulo, demonstramos a subtipagem utilizando os tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.
 
 Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki/P%C3%B4quer, mas não precisa pois vamos lhe dizer o que se tem que saber para os exercícios.
 
@@ -14,8 +14,8 @@ Há 52 cartas em um baralho, cada uma pertencendo a um dos quatro naipes e uma d
 
 Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como +"Espadas"+ para os naipes e +"Rainha"+ para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais teriam maior valor ou naipe.
 
-Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
-(((codificação)))
+Uma alternativa é usar números inteiros para _codificar_ os valores e os naipes. Nesse contexto, “codificar” significa que vamos definir um mapeamento entre os números e naipes, ou entre os números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
+(((codificar)))
 
 Por exemplo, esta tabela mostra os naipes e os números inteiros correspondentes:
 
@@ -94,7 +94,7 @@ J♥
 
 Para os tipos embutidos, existem operadores relacionais (+<+, +>+, +==+ etc.) que comparam os valores e determinam quando um é maior que, menor que ou igual ao outro. Para os tipos definidos pelo programador, podemos sobrepor o comportamento dos operadores embutidos ao estabelecer um método chamado +<+.
 
-A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.
+A ordenação correta das cartas não é óbvia. Por exemplo, qual é o melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.
 
 A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante, significando que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.
 
@@ -211,7 +211,7 @@ end
 Um método como esse, que usa outro método sem fazer muito trabalho, às vezes é chamado de _folheado_. A metáfora vem do trabalho com madeira, onde um folheado de madeira é uma fina camada de madeira de boa qualidade colada à superfície de um pedaço de madeira mais barato para melhorar a aparência.
 (((folheado)))
 
-Neste caso, +push!+ é um método "fino" que expressa uma operação de lista relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.
+Neste caso, +push!+ é um método “fino” que expressa uma operação de lista relativamente apropriado para baralhos. Ele melhora a aparência, ou interface, da implementação.
 
 Como um outro exemplo, podemos escrever um método chamado +shuffle!+ usando a função +Random.shuffle!+:
 (((Random)))((("módulo", "Random", see="Random")))(((shuffle!)))((("função", "Random", "shuffle!", see="shuffle!")))
@@ -262,7 +262,7 @@ end;
 abstract type Conjunto_Carta end
 ----
 
-Um novo tipo abstrato é criado com a palavra-chave +abstract type+. Um tipo "progenitor" opcional pode ser especificado colocando +<:+ após o nome seguido do nome de um tipo abstrato já existente.
+Um novo tipo abstrato é criado com a palavra-chave +abstract type+. Um tipo “progenitor” opcional pode ser especificado colocando +<:+ após o nome seguido do nome de um tipo abstrato já existente.
 (((tipo abstrato)))((("palavra-chave", "abstract type", see="abstract type")))(((tipo)))
 
 Quando nenhum _supertipo_ é dado, o supertipo padrão é +Any+ - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são _subtipos_.
@@ -394,7 +394,7 @@ Em alguns jogos, as cartas são transferidas de uma mão para outra ou de uma m�
 
 === Diagramas de Tipos
 
-Até agora temos visto diagramas de pilha, que mostram o estado de um programa, e diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.
+Até agora temos visto os diagramas de pilha, que mostram o estado de um programa, e os diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.
 
 Eles também são muito detalhados e dependendo de alguns propósitos, demasiadamente detalhados. Um _diagrama de tipo_ é uma representação mais abstrata da estrutura de um programa. Ao invés de mostrar objetos individuais, ele mostra os tipos e as relações entre eles.
 (((diagrama de tipo)))((("diagrama", "tipo", see="diagrama de tipo")))
@@ -454,7 +454,7 @@ Portanto, o método +sort!+ para +mão+ recebe como argumento um objeto do tipo 
 
 Eis uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve receber os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas precondições e pós-condições. Se você seguir esta regra, verá que qualquer função elaborada para trabalhar com uma instância de um supertipo, como um +Conjunto_Carta+, também funcionará com instâncias de seus subtipos +Baralho+ e +Mão+.
 
-Se você violar essa regra, chamada de "princípio de substituição de Liskov", seu código tombará como (me desculpe) um castelo de cartas.
+Se você violar essa regra, chamada de “princípio de substituição de Liskov”, seu código tombará como (me desculpe) um castelo de cartas.
 (((princípio de substituição de Liskov)))
 
 A função +supertype+ pode ser usada para encontrar o supertipo direto de um tipo.
@@ -469,7 +469,7 @@ Conjunto_Carta
 
 === Encapsulamento de Dados
 
-Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MeuHorário+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
+Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de “design orientado a tipos”. Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MeuHorário+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
 (((design orientado a tipos)))
 
 Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, precisa-se de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir os tipos de interface por _encapsulamento de dados_.
@@ -527,7 +527,7 @@ Este exemplo sugere um plano de desenvolvimento para elaborar os tipos:
 
 * Uma vez que o programa esteja funcionando, procure por associações entre variáveis globais e as funções que as utilizam.
 
-* Encapsule as variáveis relacionadas como os campos de uma struct.
+* Encapsule as variáveis relacionadas como os campos de uma estrutura.
 
 * Transforme as funções associadas em métodos que recebem objetos do novo tipo como argumento.
 
