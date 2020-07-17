@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594014132971965e9</code></pre>
+1.594952039854162e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-6♥ 9♥ Q♠ 3♦ A♠ 10♣ 2♣ 2♠ 6♣ A♥ 5♠ J♦ 10♥ 7♣ 4♣ 6♠ K♦ 3♠ K♣ 4♦ 5♥ K♠ J♠ 4♠ A♣ 4♥ A♦ 10♠ 5♦ 6♦ 9♦ J♥ Q♥ 3♥ 2♦ Q♦ 9♠ 10♦ 7♠ 3♣ 9♣ 8♦ 7♦ K♥ Q♣ 8♥ J♣ 8♠ 7♥ 8♣ 2♥ 5♣
+5♣ Q♥ Q♣ K♥ A♥ 3♠ 7♦ 9♣ 5♥ 4♥ J♠ Q♠ 7♠ 3♦ 6♣ A♦ 8♠ 2♥ A♣ K♦ 6♠ 7♣ 5♦ 5♠ J♦ 2♦ 3♣ J♥ 4♣ 9♠ 10♦ 4♠ 6♥ 8♦ J♣ 7♥ K♣ 4♦ 10♠ K♠ Q♦ 10♥ 2♣ 10♣ 9♦ 9♥ 8♣ 6♦ 3♥ 8♥ 2♠ A♠
 julia&gt; card = pop!(deck)
-5♣
+A♠
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20441(double, double) {
+define double @julia_squaresum_20374(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15677,7 +15677,7 @@ top:
 <p>Se você tiver strings de múltiplas linhas com aspas triplas, confira se a string foi finalizada corretamente. Uma string não finalizada pode causar um erro de token inválido no final do seu programa, ou pode tratar a parte seguinte do programa como uma string até chegar à próxima string. No segundo caso, ela pode não produzir uma mensagem de erro!</p>
 </li>
 <li>
-<p>Quando não se fecha um operador aberto —<code>(</code>, <code>{</code>, ou <code>[</code>—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.</p>
+<p>Um operador de abertura não fechado —<code>(</code>, <code>{</code>, ou <code>[</code>—faz com que o Julia continue com a próxima linha como parte do comando atual. Geralmente, um erro ocorre quase imediatamente na próxima linha.</p>
 </li>
 <li>
 <p>Confira o clássico <code>=</code> em vez de <code>==</code> dentro de um condicional.</p>
@@ -15728,7 +15728,7 @@ top:
 <div class="sect2">
 <h3 id="_erros_de_tempo_de_execução">Erros de Tempo de Execução</h3>
 <div class="paragraph">
-<p>Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar errado?</p>
+<p>Quando seu programa estiver sintaticamente correto, o Julia poderá lê-lo e, pelo menos, começar a executá-lo. O que poderia dar de errado?</p>
 </div>
 <div class="sect3">
 <h4 id="_meu_programa_não_faz_absolutamente_nada">Meu programa Não Faz Absolutamente Nada</h4>
@@ -15859,7 +15859,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">KeyError</dt>
 <dd>
-<p>Uma operação de indexação em um <code>AbstractDict</code> (<code>Dict</code>) ou <code>Set</code> como se um objeto tentasse acessar ou apagar um elemento inexistente.
+<p>Uma operação de indexação em um objeto do tipo <code>AbstractDict</code> (<code>Dict</code>) ou <code>Set</code> tentou acessar ou apagar um elemento inexistente.
 </p>
 </dd>
 <dt class="hdlist1">MethodError</dt>
@@ -15914,7 +15914,7 @@ end</code></pre>
 <p>Para simplificar a saída, você pode remover ou comentar os comandos de impressão que não estão ajudando, ou combiná-las, ou formatar a saída para facilitar a compreensão.</p>
 </div>
 <div class="paragraph">
-<p>Para simplificar o programa, existem muitas coisas que você pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. No caso do programa receber a entrada do usuário, passe a entrada mais simples que cause o problema.</p>
+<p>Para simplificar o programa, existem muitas coisas que se pode fazer. Primeiro, reduza o problema no qual o programa está trabalhando. Por exemplo, se você estiver fazendo uma busca em uma lista, busque em uma pequena lista. No caso do programa receber a entrada do usuário, passe a entrada mais simples que cause o problema.</p>
 </div>
 <div class="paragraph">
 <p>Segundo, limpe o programa. Remova o código morto e reorganize o programa para torná-lo o mais fácil possível de ler. Por exemplo, se você suspeita que o problema está em uma parte profundamente aninhada do programa, tente reescrever essa parte com uma estrutura mais simples. Mas se você suspeitar de uma função grande, tente dividi-la em funções menores e testá-las separadamente.
@@ -16273,7 +16273,7 @@ return contagem</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-06 05:42:09 UTC
+Última atualização 2020-07-17 02:13:56 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
