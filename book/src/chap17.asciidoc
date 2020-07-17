@@ -3,7 +3,7 @@
 
 No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Esta habilidade é chamada de programação genérica.
 
-Neste capítulo, irei discutir o uso de declarações de tipo em Julia, e também introduzirei métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
+Neste capítulo, discutiremos o uso de declarações de tipo em Julia, e também introduziremos métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.
 
 
 === Declarações de Tipo
@@ -163,7 +163,7 @@ end
 
 Note que agora ela é uma função pura, e não um modificador.
 
-Você pode invocar incrementar da seguinte maneira:
+Você pode invocar incrementa da seguinte maneira:
 
 [source,@julia-repl-test chap17a]
 ----
@@ -178,11 +178,11 @@ Se você colocar os argumentos na ordem errada, um erro é gerado:
 
 [source,@julia-repl-test chap17a]
 ----
-julia> incrementar(1337, início)
-ERROR: MethodError: no method matching incrementar(::Int64, ::MeuHorário)
+julia> incrementa(1337, início)
+ERROR: MethodError: no method matching incrementa(::Int64, ::MeuHorário)
 ----
 
-A assinatura do método é +incrementar(tempo::MeuHorário, segundos::Int64)+ e não +incrementar(segundos::Int64, tempo::MeuHorário)+.
+A assinatura do método é +incrementa(tempo::MeuHorário, segundos::Int64)+ e não +incrementa(segundos::Int64, tempo::MeuHorário)+.
 
 Reescrever +é_depois+ para operar somente com objetos +MeuHorário+ é fácil:
 (((é_depois)))
@@ -203,7 +203,7 @@ function f(a=1, b=2)
 end
 ----
 
-traduz para os seguintes três métodos:
+é equivalente aos seguintes três métodos:
 
 [source,@julia-setup]
 ----
@@ -214,7 +214,7 @@ f() = f(1, 2)
 
 Estas expressões são definições de método válidas em Julia. E é uma notação mais enxuta para definir funções/métodos.
 
-[[construtor]]
+[[constructor]]
 === Construtores
 
 Um _construtor_ é uma função especial chamada para criar um objeto. Os métodos construtores padrões de +MeuHorário+ têm a seguinte assinatura:
@@ -226,7 +226,7 @@ MeuHorário(hora, minuto, segundo)
 MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
-Nós podemos também adicionar nossos próprios métodos _construtores externos_:
+Nós podemos também adicionar os nossos próprios métodos _construtores externos_:
 (((construtor externo)))((("construtor", "externo", see="construtor externo")))
 
 [source,@julia-setup chap17a]
@@ -266,7 +266,7 @@ MeuHorário(hora::Int64, minuto::Int64)
 MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)
 ----
 
-Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada +new+ que cria objetos de um novo tipo declarado.
+Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada +new+ que cria os objetos de um novo tipo declarado.
 
 [WARNING]
 ====
@@ -294,7 +294,7 @@ mutable struct MeuHorário
 end
 ----
 
-Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
+Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois os seus campos são modificados após serem instanciados.
 (((estruturas de dados recorrentes)))
 
 
@@ -438,7 +438,7 @@ Escreva métodos +pass:[+]+ para os objetos ponto:
 
 === Programação Genérica
 
-O despacho múltiplo é útil quando é necessário, apesar de (felizmente) ele não ser sempre necessário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para os argumentos com tipos diferentes.
+O despacho múltiplo é útil quando é necessário, apesar de (felizmente) ele não ser sempre necessário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para os argumentos com os tipos diferentes.
 
 Muitas das funções que nós escrevemos para as strings também funcionam para os outros tipos de sequência. Por exemplo, em <<dictionary_collection_counters>> nós usamos +histograma+ para contar o número de vezes de cada letra que aparece em uma palavra.
 (((histograma)))
