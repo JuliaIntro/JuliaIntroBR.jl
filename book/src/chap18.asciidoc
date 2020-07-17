@@ -5,7 +5,7 @@ No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimo
 
 Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.
 
-Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki/P%C3%B4quer, mas não precisa pois vou lhe dizer o que se tem que saber para os exercícios.
+Se você não joga pôquer, pode ler sobre isso em https://pt.wikipedia.org/wiki/P%C3%B4quer, mas não precisa pois vamos lhe dizer o que se tem que saber para os exercícios.
 
 
 === Cartas
@@ -29,7 +29,7 @@ Por exemplo, esta tabela mostra os naipes e os números inteiros correspondentes
 
 Este código facilita a comparação das cartas, já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.
 
-Estou usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.
+Estamos usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.
 
 A definição para struct +Carta+ é parecida com esta:
 (((Carta)))((("tipo", "definido pelo programador", "Carta", see="Carta")))
@@ -111,7 +111,7 @@ end
 
 ===== Exercício 18-1
 
-Escreva um método +<+ para os objetos +MyTime+. Você pode usar a comparação de tupla, mas também pode considerar a comparação de inteiros.
+Escreva um método +<+ para os objetos +MeuHorário+. Você pode usar a comparação de tupla, mas também pode considerar a comparação de inteiros.
 
 
 === Teste de Unidade
@@ -239,7 +239,7 @@ Queremos um tipo que represente uma “mão”, ou seja, as cartas que estão na
 Uma mão também é diferente de um baralho; existem operações que queremos para as mãos de cartas que não faz sentido para um baralho. Por exemplo, no pôquer, podemos comparar duas mãos para ver qual delas vence. No bridge, podemos calcular uma pontuação para uma mão para fazer um lance.
 
 Portanto, precisamos de uma maneira de agrupar os _tipos concretos_ relacionados. No Julia, isso é feito ao definir um _tipo abstrato_ que serve como o progenitor de +Baralho+ e +Mão+. Isso é chamado _subtipagem_.
-(((tipo concreto)))(((tipo abstrato)))(((subtipagem))))
+(((tipo concreto)))(((tipo abstrato)))(((subtipagem)))
 
 Vamos nomear esse tipo abstrato de +Conjunto_Carta+:
 (((Conjunto_Carta)))((("tipo", "definido pelo programador", "Conjunto_Carta", see="Conjunto_Carta")))
@@ -469,7 +469,7 @@ Conjunto_Carta
 
 === Encapsulamento de Dados
 
-Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MyTime+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
+Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como +Ponto+, +Retângulo+ e +MeuHorário+— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
 (((design orientado a tipos)))
 
 Mas, às vezes, é menos óbvio de quais objetos você precisa e como eles devem interagir. Nesse caso, precisa-se de um plano de desenvolvimento diferente. Da mesma maneira que descobrimos funções de interface por encapsulamento e generalização, podemos descobrir os tipos de interface por _encapsulamento de dados_.
