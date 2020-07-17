@@ -692,7 +692,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_declarações_de_tipo">Declarações de Tipo</a></li>
 <li><a href="#_métodos">Métodos</a></li>
 <li><a href="#_exemplos_adicionais">Exemplos Adicionais</a></li>
-<li><a href="#construtor">Construtores</a></li>
+<li><a href="#constructor">Construtores</a></li>
 <li><a href="#__code_show_code"><code>show</code></a></li>
 <li><a href="#_sobrecarga_de_operador">Sobrecarga de Operador</a></li>
 <li><a href="#_despacho_múltiplo">Despacho Múltiplo</a></li>
@@ -4253,7 +4253,7 @@ print(decibels)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.594502652029736e9</code></pre>
+1.59495615206306e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11688,7 +11688,7 @@ ERROR: setfield! immutable struct of type Point cannot be changed</code></pre>
 <p>It can be more efficient.</p>
 </li>
 <li>
-<p>It is not possible to violate the invariants provided by the type&#8217;s constructors (see <a href="#constructor">[constructor]</a>).</p>
+<p>It is not possible to violate the invariants provided by the type&#8217;s constructors (see <a href="#constructor">Construtores</a>).</p>
 </li>
 <li>
 <p>Code using immutable objects can be easier to reason about.</p>
@@ -12510,7 +12510,7 @@ end</code></pre>
 <p>No Julia você tem a habilidade de escrever código que opera em tipos diferentes. Esta habilidade é chamada de programação genérica.</p>
 </div>
 <div class="paragraph">
-<p>Neste capítulo, irei discutir o uso de declarações de tipo em Julia, e também introduzirei métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
+<p>Neste capítulo, discutiremos o uso de declarações de tipo em Julia, e também introduziremos métodos que implementam os comportamentos diferentes para uma função, dependendo dos tipos de seus argumentos. Isto é chamado de despacho múltiplo.</p>
 </div>
 <div class="sect2">
 <h3 id="_declarações_de_tipo">Declarações de Tipo</h3>
@@ -12675,7 +12675,7 @@ end</code></pre>
 <p>Note que agora ela é uma função pura, e não um modificador.</p>
 </div>
 <div class="paragraph">
-<p>Você pode invocar incrementar da seguinte maneira:</p>
+<p>Você pode invocar incrementa da seguinte maneira:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12691,12 +12691,12 @@ MeuHorário(10, 7, 17)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; incrementar(1337, início)
-ERROR: MethodError: no method matching incrementar(::Int64, ::MeuHorário)</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; incrementa(1337, início)
+ERROR: MethodError: no method matching incrementa(::Int64, ::MeuHorário)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A assinatura do método é <code>incrementar(tempo::MeuHorário, segundos::Int64)</code> e não <code>incrementar(segundos::Int64, tempo::MeuHorário)</code>.</p>
+<p>A assinatura do método é <code>incrementa(tempo::MeuHorário, segundos::Int64)</code> e não <code>incrementa(segundos::Int64, tempo::MeuHorário)</code>.</p>
 </div>
 <div class="paragraph">
 <p>Reescrever <code>é_depois</code> para operar somente com objetos <code>MeuHorário</code> é fácil:
@@ -12720,7 +12720,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>traduz para os seguintes três métodos:</p>
+<p>é equivalente aos seguintes três métodos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12734,7 +12734,7 @@ f() = f(1, 2)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="construtor">Construtores</h3>
+<h3 id="constructor">Construtores</h3>
 <div class="paragraph">
 <p>Um <em>construtor</em> é uma função especial chamada para criar um objeto. Os métodos construtores padrões de <code>MeuHorário</code> têm a seguinte assinatura:
 </p>
@@ -12746,7 +12746,7 @@ MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Nós podemos também adicionar nossos próprios métodos <em>construtores externos</em>:
+<p>Nós podemos também adicionar os nossos próprios métodos <em>construtores externos</em>:
 </p>
 </div>
 <div class="listingblock">
@@ -12790,7 +12790,7 @@ MeuHorário(hora::Int64, minuto::Int64, segundo::Int64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada <code>new</code> que cria objetos de um novo tipo declarado.</p>
+<p>Um método construtor interno é sempre definido dentro do bloco de uma declaração de tipo e tem acesso a uma função especial chamada <code>new</code> que cria os objetos de um novo tipo declarado.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -12829,7 +12829,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois seus campos são modificados após serem instanciados.
+<p>Isso permite a criação das estruturas de dados recorrentes, isto é, uma struct no qual um dos campos é a própria struct. Neste caso, a struct precisa ser mutável pois os seus campos são modificados após serem instanciados.
 </p>
 </div>
 </div>
@@ -12979,7 +12979,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_programação_genérica">Programação Genérica</h3>
 <div class="paragraph">
-<p>O despacho múltiplo é útil quando é necessário, apesar de (felizmente) ele não ser sempre necessário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para os argumentos com tipos diferentes.</p>
+<p>O despacho múltiplo é útil quando é necessário, apesar de (felizmente) ele não ser sempre necessário. Muitas vezes você pode evitá-lo escrevendo funções que funcionam corretamente para os argumentos com os tipos diferentes.</p>
 </div>
 <div class="paragraph">
 <p>Muitas das funções que nós escrevemos para as strings também funcionam para os outros tipos de sequência. Por exemplo, em <a href="#dictionary_collection_counters">Dictionary as a Collection of Counters</a> nós usamos <code>histograma</code> para contar o número de vezes de cada letra que aparece em uma palavra.
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-7♥ K♠ 10♣ A♥ J♦ 3♦ A♣ 2♥ J♥ 7♦ 5♠ K♦ 7♣ 2♣ 5♣ 10♦ 4♥ A♦ 9♠ 4♦ 5♦ 4♠ 2♦ 9♦ 3♥ Q♠ 6♦ 6♣ 2♠ 7♠ 8♣ Q♦ 9♣ Q♥ 3♠ K♥ 6♥ 9♥ 6♠ 10♥ J♣ 8♥ Q♣ 8♦ 3♣ A♠ 5♥ 4♣ J♠ 10♠ 8♠ K♣
+9♥ 8♠ 4♦ K♦ 9♠ Q♣ 8♦ A♦ J♥ 8♣ 3♦ 10♣ K♠ 6♠ 2♠ A♣ 3♣ Q♦ 5♥ 7♦ J♠ 4♣ 8♥ 5♣ Q♠ 2♣ A♥ 5♠ K♥ J♣ 10♠ 9♣ 7♣ 4♠ A♠ 10♦ K♣ 2♦ J♦ 3♠ Q♥ 7♠ 6♥ 2♥ 3♥ 7♥ 10♥ 6♣ 5♦ 4♥ 6♦ 9♦
 julia&gt; card = pop!(deck)
-K♣
+9♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20441(double, double) {
+define double @julia_squaresum_20371(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-11 21:24:09 UTC
+Última atualização 2020-07-17 03:22:28 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
