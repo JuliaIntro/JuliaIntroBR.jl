@@ -46,10 +46,10 @@ Modifique o programa anterior para ler uma lista de palavras e depois imprima to
 
 === Números Aleatórios
 
-Dadas as mesmas entradas, a maioria dos programas de computadores geram a mesma entrada o tempo todo e por isso eles são ditos _determinísticos_. O determinismo é geralmente uma coisa boa pois esperamos que o mesmo cálculo produza o mesmo resultado. Mas para algumas aplicações, queremos que o computador seja imprevisível. Os jogos são um exemplo óbvio, porém há mais exemplos.
+Dadas as mesmas entradas, a maioria dos programas de computadores sempre geram a mesma saída e por isso eles são ditos _determinísticos_. O determinismo é geralmente uma coisa boa pois esperamos que o mesmo cálculo produza o mesmo resultado. Mas para algumas aplicações, queremos que o computador seja imprevisível. Os jogos são um exemplo óbvio, porém há mais exemplos.
 (((determinístico)))
 
-Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele pareça não determinístico. Uma delas é usar algoritmos que geram números _pseudoaleatórios_. Os números pseudoaleatórios só não são exatamente aleatórios porque eles são gerados por um cálculo determinístico, mas só de olhá-los, é praticamente impossível distingui-los da aleatoriedade.
+Desenvolver um programa puramente não determinístico acaba sendo difícil, mas há maneiras de fazer pelo menos com que ele pareça não determinístico. Uma delas é usar algoritmos que geram números _pseudoaleatórios_. Os números pseudoaleatórios não são aleatórios de verdade porque eles são gerados por um cálculo determinístico, mas só olhando, é praticamente impossível distingui-los da aleatoriedade.
 (((pseudoaleatório)))
 
 A função +rand+ retorna um ponto flutuante aleatório entre +0.0+ e +1.0+ (incluindo 0.0 mas não 1.0). Toda vez que se usa o comando +rand+, você obtém o próximo número de uma longa série. Para ver uma amostra disso, execute este laço:
@@ -219,7 +219,7 @@ Esse código pode ser simplificado usando a palavra-chave +rev+ como argumento d
 
 === Parâmetros Opcionais
 
-Temos visto as funções embutidas que recebem os argumentos opcionais. É possível definir as funções com os argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
+Temos visto funções embutidas que recebem argumentos opcionais. É possível escrever as funções com argumentos opcionais também. Por exemplo, eis uma função que imprime as palavras mais frequentes em um histograma:
 (((argumento opcional)))(((imprime_mais_frequentes)))((("função", "definido pelo programador", "imprime_mais_frequentes", see="imprime_mais_frequentes")))
 
 [source,@julia-setup chap13]
@@ -281,10 +281,10 @@ Para encontrar as palavras do livro que não estão em +palavras.txt+, podemos u
 [source,julia]
 ----
 palavras = processa_arquivo("palavras.txt")
-diff = subtrair(hist, palavras)
+diferença = subtrair(hist, palavras)
 
 println("Palavras do livro que não estão na lista de palavras: ")
-for palavra in keys(diff)
+for palavra in keys(diferença)
     print(palavra, " ")
 end
 ----
@@ -325,7 +325,7 @@ function palavra_aleatória(h)
 end
 ----
 
-Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, apesar da lista continuar grande.
+Esse algoritmo funciona, mas não é muito eficiente; toda vez que você escolhe uma palavra aleatória, ele reconstrói a lista, o que é tão grande quanto o livro original. Uma melhoria óbvia é construir uma lista uma vez e então realizar múltiplas seleções, mas a lista continua grande.
 
 Uma alternativa é:
 
@@ -486,7 +486,7 @@ Programadores iniciantes às vezes ficam presos em uma dessas atividades e esque
 
 Por exemplo, a leitura do seu código pode ajudar se o problema é um erro tipográfico, mas não se o problema for conceitual. Se você não entende o que o seu programa faz, pode lê-lo cem vezes e nunca verá o erro, porque o erro está na sua cabeça.
 
-Realizar experiências pode ajudar, especialmente se você executar testes pequenos e simples. No entanto, se executar experiências sem pensar ou ler seu código, pode cair em um padrão que eu chamo de “programação aleatória”, que é o processo de fazer alterações aleatórias até que o programa faça a coisa certa. Obviamente, a programação aleatória pode levar muito tempo.
+Realizar experimentos pode ajudar, especialmente se você executar testes pequenos e simples. No entanto, se você executar experimentos sem pensar ou ler seu código, pode cair em um padrão que eu chamo de “programação aleatória”, que é o processo de fazer alterações aleatórias até que o programa faça a coisa certa. Obviamente, a programação aleatória pode levar muito tempo.
 (((programação aleatória)))
 
 Você precisa ter um tempo para pensar. Depuração é como um experimento científico. Deve haver pelo menos uma hipótese sobre qual é o problema. Se houver duas ou mais possibilidades, tente pensar em um teste que eliminaria uma delas.
@@ -530,9 +530,9 @@ Depuração ao explicar seu problema a um objeto inanimado como um pato de borra
 [[ex13-9]]
 ===== Exercício 13-9
 
-A “classificação” de uma palavra é a sua posição em uma lista ordenada pela frequência: a palavra mais comum tem classificação 1, a segunda mais comum tem classificação 2, etc.
+O “ranque” de uma palavra é a sua posição em uma lista ordenada pela frequência: a palavra mais comum tem ranque 1, a segunda mais comum tem ranque 2, etc.
 
-A lei de Zipf descreve a relação entre as posições e as frequências das palavras nas linguagens naturais (https://pt.wikipedia.org/wiki/Lei_de_Zipf). Especificamente, ela prediz que a frequência latexmath:[\(f\)] da palavra com o ranqueamento latexmath:[\(r\)] dada por:
+A lei de Zipf descreve a relação entre os ranque e as frequências das palavras nas linguagens naturais (https://pt.wikipedia.org/wiki/Lei_de_Zipf). Especificamente, ela prediz que a frequência latexmath:[\(f\)] da palavra com o ranque latexmath:[\(r\)] é dada por:
 (((Lei de Zipf)))
 
 [latexmath]
