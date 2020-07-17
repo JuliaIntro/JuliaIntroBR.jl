@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59494695447587e9</code></pre>
+1.594949940035542e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13196,7 +13196,7 @@ julia&gt; sum((t1, t2, t3))
 <p>No capítulo anterior, introduzimos o mecanismo de despacho múltiplo e o polimorfismo. A ausência da especificação dos tipos dos argumentos resulta em um método que pode ser chamado com argumentos de qualquer tipo. A especificação de um subconjunto dos tipos permitidos na assinatura de um método é um próximo passo lógico.</p>
 </div>
 <div class="paragraph">
-<p>Neste capítulo, eu demonstro a subtipagem utilizando tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.</p>
+<p>Neste capítulo, demonstramos a subtipagem utilizando os tipos que representam as cartas de jogo, os baralhos de cartas e as mãos de pôquer.</p>
 </div>
 <div class="paragraph">
 <p>Se você não joga pôquer, pode ler sobre isso em <a href="https://pt.wikipedia.org/wiki/P%C3%B4quer" class="bare">https://pt.wikipedia.org/wiki/P%C3%B4quer</a>, mas não precisa pois vamos lhe dizer o que se tem que saber para os exercícios.</p>
@@ -13210,7 +13210,7 @@ julia&gt; sum((t1, t2, t3))
 <p>Se queremos definir um novo objeto para representar uma carta de baralho, é óbvio quais devem ser os atributos: o valor e o naipe. Mas não é tão óbvio que tipo de atributo deve ser. Uma possibilidade é usar strings contendo palavras como <code>"Espadas"</code> para os naipes e <code>"Rainha"</code> para os valores. Um problema com essa implementação é que não seria fácil comparar as cartas para ver quais teriam maior valor ou naipe.</p>
 </div>
 <div class="paragraph">
-<p>Uma alternativa é usar números inteiros para <em>codificar</em> os valores e os naipes. Nesse contexto, "codificar" significa que vamos definir um mapeamento entre números e naipes, ou entre números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
+<p>Uma alternativa é usar números inteiros para <em>codificar</em> os valores e os naipes. Nesse contexto, “codificar” significa que vamos definir um mapeamento entre os números e naipes, ou entre os números e valores do baralho. Esse tipo de codificação não é para ser secreto (isso seria “criptografia”).
 </p>
 </div>
 <div class="paragraph">
@@ -13310,7 +13310,7 @@ J♥</code></pre>
 <p>Para os tipos embutidos, existem operadores relacionais (<code>&lt;</code>, <code>&gt;</code>, <code>==</code> etc.) que comparam os valores e determinam quando um é maior que, menor que ou igual ao outro. Para os tipos definidos pelo programador, podemos sobrepor o comportamento dos operadores embutidos ao estabelecer um método chamado <code>&lt;</code>.</p>
 </div>
 <div class="paragraph">
-<p>A ordenação correta das cartas não é óbvia. Por exemplo, qual é melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.</p>
+<p>A ordenação correta das cartas não é óbvia. Por exemplo, qual é o melhor, o 3 de Paus ou o 2 de Ouros? Um tem um valor mais alto, mas o outro tem um naipe mais alto. A fim de comparar as cartas, você tem que decidir se o valor ou o naipe é mais importante.</p>
 </div>
 <div class="paragraph">
 <p>A resposta pode depender de qual jogo você está jogando, mas para simplificar, faremos a escolha arbitrária de que naipe é mais importante, significando que todas cartas de Espadas são superiores as cartas de Diamantes e assim por diante.</p>
@@ -13443,7 +13443,7 @@ end</code></pre>
 </p>
 </div>
 <div class="paragraph">
-<p>Neste caso, <code>push!</code> é um método "fino" que expressa uma operação de lista relativamente apropriados para baralhos. Ele melhora a aparência, ou interface, da implementação.</p>
+<p>Neste caso, <code>push!</code> é um método “fino” que expressa uma operação de lista relativamente apropriado para baralhos. Ele melhora a aparência, ou interface, da implementação.</p>
 </div>
 <div class="paragraph">
 <p>Como um outro exemplo, podemos escrever um método chamado <code>shuffle!</code> usando a função <code>Random.shuffle!</code>:
@@ -13489,7 +13489,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um novo tipo abstrato é criado com a palavra-chave <code>abstract type</code>. Um tipo "progenitor" opcional pode ser especificado colocando <code>&lt;:</code> após o nome seguido do nome de um tipo abstrato já existente.
+<p>Um novo tipo abstrato é criado com a palavra-chave <code>abstract type</code>. Um tipo “progenitor” opcional pode ser especificado colocando <code>&lt;:</code> após o nome seguido do nome de um tipo abstrato já existente.
 </p>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(baralho)
-10♥ A♦ 4♣ 8♦ 2♣ 5♠ 2♦ A♣ J♣ 4♦ 3♣ 3♠ K♥ 6♠ 7♦ 9♣ 10♠ 7♠ Q♥ 8♣ 5♦ 2♥ 6♦ 4♠ J♦ 4♥ J♠ 9♦ 9♠ 7♣ 3♥ 8♥ K♣ 8♠ A♠ 10♦ K♦ J♥ 9♥ A♥ 5♣ 10♣ 3♦ Q♣ K♠ 6♥ Q♠ 2♠ 5♥ Q♦ 7♥ 6♣
+K♦ 5♠ J♠ 9♥ 5♥ K♣ 2♠ 10♦ 6♠ Q♥ Q♠ 7♥ 10♠ 8♦ 3♠ 8♥ A♣ 10♥ 4♠ 3♦ 6♥ 9♠ 6♦ 4♣ 9♦ J♣ 8♠ 2♦ 5♣ K♥ 10♣ 2♣ J♦ 7♣ 4♦ K♠ A♠ 9♣ 6♣ 3♣ 7♠ A♥ A♦ Q♣ 3♥ 4♥ 2♥ J♥ Q♦ 8♣ 7♦ 5♦
 julia&gt; carta = pop!(baralho)
-6♣
+5♦
 julia&gt; push!(mão, carta)
 ERROR: type Mão has no field cartas</code></pre>
 </div>
@@ -13619,7 +13619,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="_diagramas_de_tipos">Diagramas de Tipos</h3>
 <div class="paragraph">
-<p>Até agora temos visto diagramas de pilha, que mostram o estado de um programa, e diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.</p>
+<p>Até agora temos visto os diagramas de pilha, que mostram o estado de um programa, e os diagramas de objeto, que mostram os atributos de um objeto e os seus valores. Estes diagramas são como um retrato na execução de um programa, portanto eles mudam conforme o programa é executado.</p>
 </div>
 <div class="paragraph">
 <p>Eles também são muito detalhados e dependendo de alguns propósitos, demasiadamente detalhados. Um <em>diagrama de tipo</em> é uma representação mais abstrata da estrutura de um programa. Ao invés de mostrar objetos individuais, ele mostra os tipos e as relações entre eles.
@@ -13702,7 +13702,7 @@ sort!(mão::Mão) in Main at REPL[5]:1</code></pre>
 <p>Eis uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve receber os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas precondições e pós-condições. Se você seguir esta regra, verá que qualquer função elaborada para trabalhar com uma instância de um supertipo, como um <code>Conjunto_Carta</code>, também funcionará com instâncias de seus subtipos <code>Baralho</code> e <code>Mão</code>.</p>
 </div>
 <div class="paragraph">
-<p>Se você violar essa regra, chamada de "princípio de substituição de Liskov", seu código tombará como (me desculpe) um castelo de cartas.
+<p>Se você violar essa regra, chamada de “princípio de substituição de Liskov”, seu código tombará como (me desculpe) um castelo de cartas.
 </p>
 </div>
 <div class="paragraph">
@@ -13719,7 +13719,7 @@ Conjunto_Carta</code></pre>
 <div class="sect2">
 <h3 id="_encapsulamento_de_dados">Encapsulamento de Dados</h3>
 <div class="paragraph">
-<p>Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de "design orientado a tipos". Identificamos os objetos de que precisamos—como <code>Ponto</code>, <code>Retângulo</code> e <code>MeuHorário</code>— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
+<p>Os capítulos anteriores apresentam um plano de desenvolvimento que podemos chamar de “design orientado a tipos”. Identificamos os objetos de que precisamos—como <code>Ponto</code>, <code>Retângulo</code> e <code>MeuHorário</code>— e definimos estruturas para representá-los. Em cada caso, há uma correspondência óbvia entre o objeto e alguma entidade no mundo real (ou pelo menos em um mundo matemático).
 </p>
 </div>
 <div class="paragraph">
@@ -13789,7 +13789,7 @@ end</code></pre>
 <p>Uma vez que o programa esteja funcionando, procure por associações entre variáveis globais e as funções que as utilizam.</p>
 </li>
 <li>
-<p>Encapsule as variáveis relacionadas como os campos de uma struct.</p>
+<p>Encapsule as variáveis relacionadas como os campos de uma estrutura.</p>
 </li>
 <li>
 <p>Transforme as funções associadas em métodos que recebem objetos do novo tipo como argumento.</p>
@@ -15509,7 +15509,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20378(double, double) {
+define double @julia_squaresum_20395(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16274,7 +16274,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-17 00:49:10 UTC
+Última atualização 2020-07-17 01:38:57 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
