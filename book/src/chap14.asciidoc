@@ -91,7 +91,7 @@ julia> println(fout, "Eu vi $camelos camelos.")
 
 [TIP]
 ====
-Uma alternativa mais poderosa é a macro +@printf@+ que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em https://docs.julialang.org/en/v1/stdlib/Printf/
+Uma alternativa mais poderosa é a macro +@printf+ que imprime usando uma string de especificação de formato de estilo C, você pode ler mais a respeito em https://docs.julialang.org/en/v1/stdlib/Printf/
 (((@printf)))((("macro", "Printf", "@printf", see="@printf")))(((formatação)))
 ====
 
@@ -110,7 +110,7 @@ julia> cwd = pwd()
 "/home/ben"
 ----
 
-+cwd+ significa “current working directory” (diretório atual funcional). O resultado nesse exemplo é +home/ben+, que é o diretório home do usuário chamado +ben+.
++cwd+ significa “current working directory” (diretório de trabalho atual). O resultado nesse exemplo é +home/ben+, que é o diretório home do usuário chamado +ben+.
 
 Uma string como +"/home/ben"+ que identifica um arquivo ou diretório é chamada de _caminho_.
 (((caminho)))
@@ -173,7 +173,7 @@ function caminha(nomedir)
         if isfile(path)
             println(path)
         else
-            anda(path)
+            caminha(path)
         end
     end
 end
@@ -225,7 +225,7 @@ end
 
 O Julia inicia executando a cláusula +try+. Se tudo der certo, ele pula a cláusula +catch+ e segue adiante. Se ocorrer alguma exceção, ele pula fora da cláusula +try+ e executa a cláusula +catch+.
 
-Lidar com uma exceção com uma declaração +try+ é chamado de _capturar_ uma exceção. Neste exemplo, a cláusula exceto imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente ou pelo menos encerrar o programa graciosamente.
+Lidar com uma exceção com uma declaração +try+ é chamado de _capturar_ uma exceção. Neste exemplo, a cláusula de exceção imprime uma mensagem de erro que não é muito útil. Em geral, capturar uma exceção nos da uma chance de consertar o problema, ou tentar novamente ou pelo menos encerrar o programa graciosamente.
 (((capturar uma exceção)))
 
 Em código que realiza mudanças de estado ou usa recursos como arquivos, geralmente há um trabalho de limpeza (como fechar arquivos) que precisa ser feito quando o código é encerrado. Exceções potencialmente complicam esta tarefa, já que elas podem causar a saída de um bloco de código antes dele atingir seu fim normal. A palavra-chave +finally+ fornece uma maneira de executar código quando um dado bloco de código sai, independente de como ele saiu:
@@ -250,11 +250,11 @@ A função +close+ sempre será executada.
 Um _banco de dados_ é um arquivo que é organizado para guardar dados. Muitos bancos de dados são organizados como um dicionário no sentido de que eles mapeiam chave para valores. A maior diferença entre um banco de dados e um dicionário é de que o banco de dados está em disco (ou em armazenamento permanente), então ele persiste após o programa encerrar.
 (((banco de dados)))
 
-O ThinkJulia fornece uma interface para +GDBM+ (GNU dbm) para criar e atualizar arquivos de bancos de dados. Como um exemplo, irei criar um banco de dados que contém legendas para arquivos de imagens.
+O JuliaIntroBR fornece uma interface para +GDBM+ (GNU dbm) para criar e atualizar arquivos de bancos de dados. Como um exemplo, irei criar um banco de dados que contém legendas para arquivos de imagens.
 (((GDBM)))
 
 Abrir um banco de dados é similar a abrir outros arquivos:
-(((DBM)))((("tipo", "ThinkJulia", "DBM", see="DBM")))
+(((DBM)))((("tipo", "JuliaIntroBR", "DBM", see="DBM")))
 
 [source,@julia-repl-test chap14]
 ----
@@ -471,11 +471,11 @@ julia> include("wc.jl")
 O Julia introduz módulos para criar uma área de trabalho de variáveis separada, isto é, novos escopos globais.
 
 Um módulo inicia com a palavra-chave +module+ e termina com +end+. Conflitos de nomes são evitados entre suas próprias definições de alto nível e aquelas encontradas em código de outra pessoa. +import+ permite o controle de quais nomes de outros módulos são visíveis e +export+ específica quais nomes são públicos, isto é, podem ser usados fora do módulo sem a necessidade de serem prefixados com o nome do módulo.
-(((escopo)))(((módulo)))((("palavra-chave", "módulo", see="módulo")))(((end)))(((import)))((("palavra-chave", "import", see="import")))(((export)))((("palavra-chave", "export", see="export")))(((contalinha)))((("module", "contalinha", see="contalinha")))((("function", "contalinha", "contalinha", see="contalinha")))
+(((escopo)))(((módulo)))((("palavra-chave", "módulo", see="módulo")))(((end)))(((import)))((("palavra-chave", "import", see="import")))(((export)))((("palavra-chave", "export", see="export")))(((ContaLinha)))((("module", "ContaLinha", see="ContaLinha")))((("function", "ContaLinha", "contalinha", see="contalinha")))
 
 [source,julia]
 ----
-module contalinha
+module ContaLinha
     export contalinha
 
     function contalinha(nomedoarquivo)
@@ -488,11 +488,11 @@ module contalinha
 end
 ----
 
-O módulo objeto +contalinha+ fornece +contalinha+:
+O objeto de tipo módulo +ContaLinha+ fornece +contalinha+:
 
 [source,julia]
 ----
-julia> using contalinha
+julia> using ContaLinha
 
 julia> contalinha("wc.jl")
 11
@@ -500,7 +500,7 @@ julia> contalinha("wc.jl")
 
 ===== Exercício 14-1
 
-Digite este exemplo em um arquivo chamado _wc.jl_, inclua-o no REPL e insira +using contalinha+.
+Digite este exemplo em um arquivo chamado _wc.jl_, inclua-o no REPL e insira +using ContaLinha+.
 
 
 [WARNING]
@@ -545,7 +545,7 @@ String "1 2\t 3\n 4"
 Isso pode ser útil para depurar.
 (((depuração)))
 
-Um outro problema que você pode encontrar é que sistemas diferentes usam caracteres diferentes para indicar o final da linha. Alguns sistemas usam uma nova linha, representada por +\n+. Outros usam um caractere de retorno, representado por +\r. Alguns usam ambos. Se você move arquivos entre sistemas diferentes, essas inconsistências podem causar problemas.
+Um outro problema que você pode encontrar é que sistemas diferentes usam caracteres diferentes para indicar o final da linha. Alguns sistemas usam uma nova linha, representada por +\n+. Outros usam um caractere de retorno, representado por +\r+. Alguns usam ambos. Se você mover arquivos entre sistemas diferentes, essas inconsistências podem causar problemas.
 (((\r)))
 
 Para a maioria dos sistemas, existem aplicações que convertem de um formato para o outro. Você pode achá-los (e ler mais a respeito deste problema) em https://pt.wikipedia.org/wiki/Nova_linha. Ou, é claro, você pode escrever um por conta própria.
@@ -554,7 +554,7 @@ Para a maioria dos sistemas, existem aplicações que convertem de um formato pa
 === Glossário
 
 persistente::
-Pertencente a um programa que é executado indefinidamente e mantém pelo menos alguns de seus dados em armazenamento permanente.
+Referente a um programa que é executado indefinidamente e mantém pelo menos alguns de seus dados em armazenamento permanente.
 (((persistente)))
 
 arquivo de texto::
@@ -574,7 +574,7 @@ Um caminho que inicia no diretório atual.
 (((caminho relativo)))
 
 caminho absoluto::
-Um caminho que inicia do diretório mais a cima no sistema de arquivos.
+Um caminho que inicia do diretório mais acima no sistema de arquivos.
 (((caminho absoluto)))
 
 catch::
@@ -599,7 +599,7 @@ Um objeto que representa um comando shell, permitindo um programa em Julia a exe
 [[ex14-1]]
 ===== Exercício 14-2
 
-Escreva uma função chamada +sed+ que recebe como argumento uma string padrão, uma string de substituição e dois nomes de arquivos; ela deva ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (criando ele ser for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
+Escreva uma função chamada +sed+ que recebe como argumento uma string padrão, uma string de substituição e dois nomes de arquivos; ela deve ler o primeiro arquivo e escrever o conteúdo no segundo arquivo (o criando se for necessário). Se o padrão aparece em qualquer lugar no arquivo, ele deve ser substituido pela string de substituição.
 (((sed)))((("função", "definido pelo programador", "sed", see="sed")))
 
 Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivos, seu programa deve capturar a exceção, exibir a mensagem de erro e sair.
@@ -610,7 +610,7 @@ Se um erro ocorre durante a abertura, leitura, escrita ou fechamento dos arquivo
 Se você fez <<ex12-2>>, você verá que um dicionário é criado que mapeia uma string ordenada de letras para uma lista de palavras que podem ser escritas com estas letras. Por exemplo, +"opst"+ é mapeado para a lista +["opts", "post", "pots", "spot", "stop", "tops"]+.
 
 Escreva um módulo que importe +anagramsets+ e forneça duas novas funções: +guardaanagramas+ deve guardar o dicionário de anagramas usando +JLD2+; +leranagrams+ deve buscar uma palavra e retornar uma lista de seus anagramas.
-(((guardaanagramas)))((("função", "programmer-defined", "guardaanagramas", see="guardaanagramas")))(((leranagramas)))((("função", "definido pelo programador", "leranagramas", see="leranagramas")))
+(((guardaanagramas)))((("função", "definido pelo programador", "guardaanagramas", see="guardaanagramas")))(((leranagramas)))((("função", "definido pelo programador", "leranagramas", see="leranagramas")))
 
 [[ex14-3]]
 ===== Exercício 14-4
