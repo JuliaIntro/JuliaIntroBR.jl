@@ -29,9 +29,9 @@ Por exemplo, esta tabela mostra os naipes e os números inteiros correspondentes
 
 Este código facilita a comparação das cartas, já que os naipes mais valorizados estão relacionados com números mais altos e podemos comparar os naipes comparando os seus números.
 
-Estamos usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Eles fazem parte da formulação do programa, e não aparecem explicitamente no código.
+Estamos usando o símbolo latexmath:[\(\mapsto\)] para deixar claro que essas correspondências não fazem parte do programa Julia. Elas fazem parte da formulação do programa, e não aparecem explicitamente no código.
 
-A definição para struct +Carta+ é parecida com esta:
+A definição para a struct +Carta+ é parecida com esta:
 (((Carta)))((("tipo", "definido pelo programador", "Carta", see="Carta")))
 
 [source,@julia-setup chap18]
@@ -114,11 +114,11 @@ end
 Escreva um método +<+ para os objetos +MeuHorário+. Você pode usar a comparação de tupla, mas também pode considerar a comparação de inteiros.
 
 
-=== Teste de Unidade
+=== Teste Unitário```
 
 
-_Teste de unidade_ permite verificar a correção do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
-(((teste de unidade)))
+_Testes unitários_ permitem verificar a corretude do seu código, comparando os resultados do seu código com o que você espera. Isso pode ser útil para garantir que seu código ainda esteja correto após as modificações, e também é uma maneira de predefinir o comportamento correto do seu código durante o desenvolvimento.
+(((teste unitário)))
 
 Os testes unitários simples podem ser realizados com as macros +@test+:
 (((Test)))((("módulo", "Test", see="Test")))(((@test)))((("macro", "Test", "@test", see="@test")))
@@ -141,7 +141,7 @@ Test Passed
 Agora que temos Cartas, o próximo passo é a definição do Baralhos. Como um baralho é composto de cartas, é natural que cada Baralho contenha uma lista de cartas como um atributo.
 
 A seguir, define-se uma struct para +Baralho+. O construtor cria os campos das cartas e gera o conjunto padrão das cinquenta e dois cartas:
-(((Deck)))((("tipo", "definido pelo programador", "Deck", see="Deck")))
+(((Baralho)))((("tipo", "definido pelo programador", "Baralho", see="Baralho")))
 
 [source,@julia-setup chap18]
 ----
@@ -263,7 +263,7 @@ abstract type Conjunto_Carta end
 ----
 
 Um novo tipo abstrato é criado com a palavra-chave +abstract type+. Um tipo “progenitor” opcional pode ser especificado colocando +<:+ após o nome seguido do nome de um tipo abstrato já existente.
-(((tipo abstrato)))((("palavra-chave", "abstract type", see="abstract type")))(((tipo)))
+(((tipo abstrato)))((("palavra-chave", "abstract type", see="tipo abstrato")))(((tipo)))
 
 Quando nenhum _supertipo_ é dado, o supertipo padrão é +Any+ - um tipo abstrato predefinido do qual todos os objetos são instâncias e todos os tipos são _subtipos_.
 (((supertipo)))(((subtipo)))
@@ -454,7 +454,7 @@ Portanto, o método +sort!+ para +mão+ recebe como argumento um objeto do tipo 
 
 Eis uma sugestão de design: quando você substitui um método, a interface do novo método deve ser a mesma que a do antigo. Ele deve receber os mesmos parâmetros, retornar o mesmo tipo e obedecer às mesmas precondições e pós-condições. Se você seguir esta regra, verá que qualquer função elaborada para trabalhar com uma instância de um supertipo, como um +Conjunto_Carta+, também funcionará com instâncias de seus subtipos +Baralho+ e +Mão+.
 
-Se você violar essa regra, chamada de “princípio de substituição de Liskov”, seu código tombará como (me desculpe) um castelo de cartas.
+Se você violar essa regra, chamada de “princípio de substituição de Liskov”, seu código tombará como (desculpa) um castelo de cartas.
 (((princípio de substituição de Liskov)))
 
 A função +supertype+ pode ser usada para encontrar o supertipo direto de um tipo.
@@ -492,7 +492,7 @@ Para rodar várias análises e mantê-las separadas, podemos encapsular o estado
 ----
 struct Markov
     ordem :: Int64
-    suffixos :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
+    sufixos :: Dict{Tuple{String,Vararg{String}}, Array{String, 1}}
     prefixos :: Array{String, 1}
 end
 
@@ -511,8 +511,8 @@ function processa_palavra(markov::Markov, palavra::String)
         push!(markov.prefixo, palavra)
         return
     end
-    get!(markov.suffixos, (markov.prefixo...,), Array{String, 1}())
-    push!(markov.suffixos[(markov.prefixo...,)], palavra)
+    get!(markov.sufixos, (markov.prefixo...,), Array{String, 1}())
+    push!(markov.sufixos[(markov.prefixo...,)], palavra)
     popfirst!(markov.prefixo)
     push!(markov.prefixo, palavra)
 end
@@ -542,9 +542,9 @@ codificação::
 Representação de um conjunto de valores usando outro conjunto de valores através da construção de um mapeamento entre eles.
 (((codificação)))
 
-teste de unidade::
+teste unitário::
 Procedimento padronizado para testar o corretismo do código.
-(((teste de unidade)))
+(((teste unitário)))
 
 folheado::
 Um método ou uma função que disponibiliza uma interface diferente para outra função sem fazer muito cálculo.
