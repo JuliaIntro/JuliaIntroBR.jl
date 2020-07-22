@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.59500160059256e9</code></pre>
+1.595458907972638e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-Q♠ 5♣ 3♥ 3♠ A♣ 6♥ 5♥ A♠ 7♥ 10♦ 3♦ 4♣ A♥ 3♣ 7♠ 5♦ 9♦ 6♦ K♣ 9♥ Q♦ 4♦ A♦ 5♠ 4♥ 7♦ 8♦ 6♣ 2♠ 2♦ 4♠ 8♣ 9♣ J♣ J♠ 10♥ 2♣ J♥ 10♠ 9♠ Q♥ Q♣ J♦ 8♥ 2♥ K♥ 10♣ K♦ 7♣ 8♠ K♠ 6♠
+2♣ 4♦ J♠ 9♦ 10♦ 9♥ 6♠ 3♦ 3♥ 5♠ 6♥ 2♠ A♥ J♥ 8♠ A♠ 7♥ 9♠ 6♣ 7♦ 8♦ J♣ J♦ Q♦ 5♥ 3♣ 2♦ 8♣ 4♥ Q♣ 4♠ 5♦ A♣ 7♣ 10♠ 4♣ 3♠ 9♣ 5♣ A♦ 8♥ 7♠ 6♦ Q♠ K♠ K♦ K♣ 2♥ 10♥ K♥ 10♣ Q♥
 julia&gt; card = pop!(deck)
-6♠
+Q♥
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -14026,7 +14026,7 @@ julia&gt; x.a
 </div>
 </div>
 <div class="paragraph">
-<p>Com tuplas nomeadas, os campos podem ser acessados por nome usando a sintaxe do ponto <code>(x.a)</code>.
+<p>Nas tuplas nomeadas, os campos podem ser acessados pelo nome usando a sintaxe do ponto <code>(x.a)</code>.
 </p>
 </div>
 </div>
@@ -14084,11 +14084,11 @@ julia&gt; plot(x -&gt; x^2 + 2x - 1, 0, 10, xlabel="x", ylabel="y")</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; function myplot(x, y; style="solid", width=1, color="black")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; function meu_plot(x, y; style="solid", width=1, color="black")
            ###
        end
-myplot (generic function with 1 method)
-julia&gt; myplot(0:10, 0:10, style="dotted", color="blue")</code></pre>
+meu_plot (generic function with 1 method)
+julia&gt; meu_plot(0:10, 0:10, style="dotted", color="blue")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14230,8 +14230,8 @@ end</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; a = 150
 150
-julia&gt; a % 2 == 0 ? println("even") : println("odd")
-even</code></pre>
+julia&gt; a % 2 == 0 ? println("par") : println("ímpar")
+par</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14366,7 +14366,7 @@ Byte(0x01)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Point{T&lt;:Real}
+<pre class="pygments highlight"><code data-lang="julia">struct Ponto{T&lt;:Real}
     x::T
     y::T
 end</code></pre>
@@ -14377,8 +14377,8 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Point(0.0, 0.0)
-Point{Float64}(0.0, 0.0)</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Ponto(0.0, 0.0)
+Ponto{Float64}(0.0, 0.0)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14430,11 +14430,11 @@ julia&gt; "Julia" :: IntOrString
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; isintpoint(p::Point{T}) where {T} = (T === Int64)
-isintpoint (generic function with 1 method)
-julia&gt; p = Point(1, 2)
-Point{Int64}(1, 2)
-julia&gt; isintpoint(p)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; é_ponto_int(p::Ponto{T}) where {T} = (T === Int64)
+é_ponto_int (generic function with 1 method)
+julia&gt; p = Ponto(1, 2)
+Ponto{Int64}(1, 2)
+julia&gt; é_ponto_intt(p)
 true</code></pre>
 </div>
 </div>
@@ -14447,11 +14447,11 @@ true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Polynomial{R}
+<pre class="pygments highlight"><code data-lang="julia">struct Polinômio{R}
     coeff::Vector{R}
 end
 
-function (p::Polynomial)(x)
+function (p::Polinômio)(x)
     val = p.coeff[end]
     for coeff in p.coeff[end-1:-1:1]
         val = val * x + coeff
@@ -14465,8 +14465,8 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; p = Polynomial([1,10,100])
-Polynomial{Int64}([1, 10, 100])
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; p = Polinômio([1,10,100])
+Polinômio{Int64}([1, 10, 100])
 julia&gt; p(3)
 931</code></pre>
 </div>
@@ -14480,12 +14480,12 @@ julia&gt; p(3)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Point(1,2)         # implicit T
-Point{Int64}(1, 2)
-julia&gt; Point{Int64}(1, 2) # explicit T
-Point{Int64}(1, 2)
-julia&gt; Point(1,2.5)       # implicit T
-ERROR: MethodError: no method matching Point(::Int64, ::Float64)</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Ponto(1,2)         # implicit T
+Ponto{Int64}(1, 2)
+julia&gt; Ponto{Int64}(1, 2) # explicit T
+Ponto{Int64}(1, 2)
+julia&gt; Ponto(1,2.5)       # implicit T
+ERROR: MethodError: no method matching Ponto(::Int64, ::Float64)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14494,13 +14494,13 @@ ERROR: MethodError: no method matching Point(::Int64, ::Float64)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">struct Point{T&lt;:Real}
+<pre class="pygments highlight"><code data-lang="julia">struct Ponto{T&lt;:Real}
     x::T
     y::T
-    Point{T}(x,y) where {T&lt;:Real} = new(x,y)
+    Ponto{T}(x,y) where {T&lt;:Real} = new(x,y)
 end
 
-Point(x::T, y::T) where {T&lt;:Real} = Point{T}(x,y);</code></pre>
+Ponto(x::T, y::T) where {T&lt;:Real} = Ponto{T}(x,y);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14511,7 +14511,7 @@ Point(x::T, y::T) where {T&lt;:Real} = Point{T}(x,y);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">Point(x::Real, y::Real) = Point(promote(x,y)...);</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">Ponto(x::Real, y::Real) = Ponto(promote(x,y)...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14547,10 +14547,10 @@ UInt8</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Base.convert(::Type{Point{T}}, x::Array{T, 1}) where {T&lt;:Real} = Point(x...)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; Base.convert(::Type{Ponto{T}}, x::Array{T, 1}) where {T&lt;:Real} = Ponto(x...)
 
-julia&gt; convert(Point{Int64}, [1, 2])
-Point{Int64}(1, 2)</code></pre>
+julia&gt; convert(Ponto{Int64}, [1, 2])
+Ponto{Int64}(1, 2)</code></pre>
 </div>
 </div>
 </div>
@@ -14681,7 +14681,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">:(letters1 = letters[1])</code></pre>
+<pre class="pygments highlight"><code data-lang="julia">:(letras1 = letras[1])</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14718,7 +14718,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">@generated function square(x)
+<pre class="pygments highlight"><code data-lang="julia">@generated function quadrado(x)
     println(x)
     :(x * x)
 end</code></pre>
@@ -14835,7 +14835,7 @@ end</code></pre>
 <p>Função que captura as variáveis do seu escopo definido.
 </p>
 </dd>
-<dt class="hdlist1">bloqueio let</dt>
+<dt class="hdlist1">bloco let</dt>
 <dd>
 <p>Bloqueia a alocação de novas ligações de variáveis.
 </p>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20360(double, double) {
+define double @julia_squaresum_20372(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-17 15:59:57 UTC
+Última atualização 2020-07-22 23:01:44 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
