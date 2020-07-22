@@ -184,13 +184,13 @@ Você pode passar uma instância como um argumento da maneira tradicional. Por e
 (((imprimir_ponto)))((("função", "definido pelo programador", "imprimir_ponto", see="imprimir_ponto")))
 
 [source,@julia-setup chap15]
-function imprimir_ponto(p)
 ----
+function imprimir_ponto(p)
     println("($(p.x), $(p.y))")
 end
 ----
 
-A função +imprimir_ponto+ recebe como argumento um +ponto+ e apresenta-o em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
+A função +imprimir_ponto+ recebe como argumento um +Ponto+ e apresenta-o em notação matemática. Para chamá-lo, você pode passar +p+ como argumento:
 
 [source,@julia-repl-test chap15]
 ----
@@ -333,9 +333,6 @@ julia> p = Ponto(3.0, 4.0)
 Ponto(3.0, 4.0)
 julia> p.z = 1.0
 ERROR: type Ponto has no field z
-Stacktrace:
- [1] setproperty!(::Ponto, ::Symbol, ::Float64) at ./sysimg.jl:19
- [2] top-level scope at none:0
 ----
 
 Se você não tem certeza de qual é o tipo de objeto, pode-se perguntar:
