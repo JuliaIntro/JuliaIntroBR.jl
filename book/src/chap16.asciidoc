@@ -164,7 +164,7 @@ O plano de desenvolvimento que estamos demonstrando é chamado de “protótipo 
 
 Essa abordagem pode ser efetiva, especialmente quando você ainda não tem um entendimento profundo acerca do problema. Mas correções incrementais podem gerar código que é desnecessariamente complicado, já que ele lida com muitos casos especiais, e também que não é confiável, já que é difícil saber se você encontrou todos os erros.
 
-Uma alternativa é o _desenvolvimento projetado_, no qual obter uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, podemos perceber que um objeto Time é na verdade um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de ums”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
+Uma alternativa é o _desenvolvimento projetado_, no qual obter uma visão de alto nível do problema pode facilitar muito a programação. Neste caso, podemos perceber que um objeto Time é na verdade um número de três dígitos na base 60 (consulte https://pt.wikipedia.org/wiki/Sistema_de_numera%C3%A7%C3%A3o_sexagesimal)! O atributo dos segundos é a “coluna de uns”, o atributo de munutos é a “coluna de sessentas” e o atributo da hora é a “coluna de três mil e seiscentos”.
 (((desenvolvimento projetado)))
 
 Quando escrevemos +soma_horário+ e +incrementa!+, efetivamente estavamos realizando uma adição na base 60, que é a razão de termos carregado de uma coluna para a próxima.
@@ -260,7 +260,7 @@ function soma_horário(t1,t2)
 end
 ----
 
-Ou você pode usar uma instrução +@asset+, que verifica determinado requisito invariável e gera uma exceção se ele falhar:
+Ou você pode usar uma instrução +@assert+, que verifica determinado requisito invariável e gera uma exceção se ele falhar:
 (((@assert)))((("macro", "Base", "@assert", see="@assert")))
 
 [source,@julia-setup chap16]
@@ -321,6 +321,6 @@ O Julia fornece objetos de tempo que são similares aos objetos +MeuHorário+ de
 
 . Escreva um programa que aceite um aniversário como entrada e imprima a idade do usuário e o número de dias, horas, minutos e segundos até o próximo aniversário.
 
-. Para duas pessoas nascidas em dias diferentes, há um dia em que uma tem o dobro da idade da outra. Esse é o dia duplo deles. Escreva um programa que receba dois aniversários e calcule o dia duplo.
+. Para duas pessoas nascidas em dias diferentes, há um dia em que uma tem o dobro da idade da outra. Esse é o Dia do Dobro deles. Escreva um programa que receba dois aniversários e calcula o Dia do Dobro.
 
 . Para lhe desafiar um pouco, escreva a versão mais geral que calcula o dia em que uma pessoa é latexmath:[\(n\)] vezes mais velha que a outra.
