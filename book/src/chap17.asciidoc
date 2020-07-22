@@ -351,7 +351,7 @@ end;
 
 === Sobrecarga de Operador
 
-Ao definir os métodos operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuHorário+, você pode usar o operador +pass:[+]+ em objetos +MeuHorário+.
+Ao definir métodos para os operadores, você pode especificar o comportamento dos operadores em tipos definidos pelo programador. Por exemplo, ao definir um método chamado +pass:[+]+ com dois argumentos +MeuHorário+, você pode usar o operador +pass:[+]+ em objetos +MeuHorário+.
 
 A definição deve se parecer com algo como:
 
