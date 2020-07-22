@@ -2,7 +2,7 @@ function fig12_1(output::Symbol, font::String, scale::Float64)
   p = TikzPicture(L"""
   \node[draw, fill=mycolor, minimum width=3.5cm, minimum height=1cm] at(0,0){};
   \node[anchor=east] (a) at(-1.25, 0.25) {\tt 1};
-  \node[anchor=west] (av) at (-0.25, 0.25) {\tt "Silva"};
+  \node[anchor=west] (av) at (-0.25, 0.25) {\tt "Carlos"};
   \node[anchor=east] (b) at(-1.25, -0.25) {\tt 2};
   \node[anchor=west] (bv) at (-0.25, -0.25) {\tt "João"};
   \draw[-latex] (a) -- (av);
@@ -19,7 +19,7 @@ end
 function fig12_2(output::Symbol, font::String, scale::Float64)
   p = TikzPicture(L"""
   \node(hist) [draw, fill=mycolor, minimum width=7.5cm, minimum height=3cm]{};
-  \node[anchor=east](nc) at(-0.25,1.25) {\tt ("Silva","João")};
+  \node[anchor=east](nc) at(-0.25,1.25) {\tt ("Carlos","João")};
   \node[anchor=west](c) at(0.75,1.25) {\tt "08700 100 222"};
   \draw[-latex](nc)--(c);
   \node[anchor=east](ng) at(-0.25,0.75) {\tt ("Carvalho","Lucas")};

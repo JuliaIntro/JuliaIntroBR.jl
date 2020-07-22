@@ -17,7 +17,7 @@ function fig11_1(output::Symbol, font::String, scale::Float64)
   \node[anchor=east](a) at (-0.5, -1) {\tt 'a'};
   \node[anchor=west](av) at (0.5, -1) {\tt 3};
   \draw[-latex] (a)--(av);
-  \node[anchor=east](i) at(3.8, 0) {\tt inverse};
+  \node[anchor=east](i) at(3.8, 0) {\tt inverso};
   \node[draw, fill=mycolor, minimum width=1cm, minimum height=3.5cm](iv) at(4.5,-0.5){};
   \node(n1) at(4.5,0.5){\tt 1};
   \node(n2) at(4.5,-1.00){\tt 2};

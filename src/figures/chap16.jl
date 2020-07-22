@@ -2,7 +2,7 @@ function fig16_1(output::Symbol, font::String, scale::Float64)
   p = TikzPicture(L"""
   \node[anchor=east](time) at (-2.5, 0) {\tt tempo};
   \node[draw, fill=mycolor, minimum width=3.2cm, minimum height=1.5cm](MyTime) at(0,0){};
-  \node[anchor=west] at (-1.5, 1) {\tt minha\_hora};
+  \node[anchor=west] at (-1.5, 1) {\tt MeuHorário};
   \node[anchor=east] (h) at(-0.25, 0.5) {\tt hora};
   \node[anchor=west] (hv) at (0.75, 0.5) {\tt 11};
   \node[anchor=east] (m) at(-0.25, 0) {\tt minuto};
