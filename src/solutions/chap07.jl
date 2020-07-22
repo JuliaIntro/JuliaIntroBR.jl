@@ -18,7 +18,7 @@ function pad(str, n)
   str = str * " " ^ (n-len)
 end
 
-function testsquareroot(io::IO)
+function avalia_raiz_quadrada(io::IO)
   print(io, pad("a", 4))
   print(io, pad("mysqrt", 19))
   print(io, pad("sqrt", 19))
