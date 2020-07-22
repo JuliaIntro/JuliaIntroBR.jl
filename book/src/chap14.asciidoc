@@ -206,7 +206,7 @@ Se você não tem permissão para acessar o arquivo:
 [source,@julia-repl-test]
 ----
 julia> fout = open("/etc/passwd", "w")
-ERROR: SystemError: opening file "/etc/passwd": Operation not permitted
+ERROR: SystemError: opening file "/etc/passwd": Permission denied
 ----
 
 Para evitar estes erros, você pode usar funções como +ispath+ e +isfile+, porém, tomaria muito tempo e código para verificar todas as possibilidades.

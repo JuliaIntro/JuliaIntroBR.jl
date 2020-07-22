@@ -41,7 +41,7 @@ julia> números = [42, 123];
 
 julia> vazia = [];
 
-julia> print(vegetais, " ", números, " ", vazio)
+julia> print(vegetais, " ", números, " ", vazia)
 ["Cenoura", "Brócolis", "Alface"] [42, 123] Any[]
 ----
 
@@ -639,7 +639,7 @@ julia> letras = ['a', 'b', 'c'];
 
 julia> deleta_cabeça!(letras);
 
-julia> print(letters)
+julia> print(letras)
 ['b', 'c']
 ----
 
@@ -728,7 +728,7 @@ julia> letras = ['a', 'b', 'c'];
 
 julia> resto = calda(letras);
 
-julia> print(rest)
+julia> print(resto)
 ['b', 'c']
 ----
 

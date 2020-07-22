@@ -20,7 +20,7 @@ A função +Dict+ cria um novo dicionário sem items. Como +Dict+ é um nome de 
 
 [source,@julia-repl-test chap11]
 ----
-julia> por_para_esp = Dict()
+julia> pt_para_esp = Dict()
 Dict{Any,Any} with 0 entries
 ----
 
@@ -53,8 +53,8 @@ Essa formatação de saída também é uma formatação de entrada. Por exemplo,
 julia> pt_para_esp = Dict("um" => "uno", "dois" => "dos", "três" => "tres")
 Dict{String,String} with 3 entries:
   "dois" => "dos"
-  "um"   => "uno"
   "três" => "tres"
+  "um"   => "uno"
 ----
 
 Todas as chaves e os valores iniciais são strings, então um +Dict{String,String}+ é criado.
@@ -100,7 +100,7 @@ A função +keys+ retorna uma lista com as chaves do dicionário:
 julia> ks = keys(pt_para_esp);
 
 julia> print(ks)
-["dois", "um", "três"]
+["dois", "três", "um"]
 ----
 
 Agora você pode usar o operador +∈+ para verificar se algo aparece como uma _chave_ no dicionário:
@@ -226,10 +226,10 @@ Aqui está o resultado:
 julia> h = histograma("papagaio");
 
 julia> imprime_hist(h)
-a 3
 g 1
-p 2
+a 3
 i 1
+p 2
 o 1
 ----
 
@@ -283,7 +283,7 @@ Aqui está um exemplo de uma consulta inversa bem-sucedida:
 julia> h = histograma("papagaio");
 
 julia> chave = consulta_inversa(h, 2)
-'p': ASCII/Unicode U+0072 (category Ll: Letter, lowercase)
+'p': ASCII/Unicode U+0070 (category Ll: Letter, lowercase)
 ----
 
 E uma malsucedida:
@@ -338,9 +338,9 @@ Aqui está um exemplo:
 julia> hist = histograma("papagaio");
 
 julia> inverso = inverte_dict(hist)
-Dict{Any,Any} with 2 entries:
-  3 => ['a']
+Dict{Any,Any} with 3 entries:
   2 => ['p']
+  3 => ['a']
   1 => ['g', 'i', 'o']
 ----
 
