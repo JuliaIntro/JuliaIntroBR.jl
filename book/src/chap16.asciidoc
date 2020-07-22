@@ -9,7 +9,7 @@ Agora que sabemos como criar novos tipos compostos, o próximo passo é escrever
 Como outro exemplo de um tipo composto, definiremos uma +struct+ chamada +MeuHorário+ que guarda o horário do dia. A definição da estrutura se parece como:
 (((MeuHorário)))((("tipo", "definido pelo programador", "MeuHorário", see="MeuHorário")))
 
-[source, @julia-setup chap16]
+[source,@julia-setup chap16]
 ----
 """
 Representa o horário do dia.

@@ -30,7 +30,7 @@ module JuliaIntroBR
   export Turtle, forward, turn, penup, pendown, @svg
   #export countdown, printn, recurse
   #export area, absvalue, distance, circlearea, isdivisible, fact, fib
-  export mysqrt, testsquareroot
+  export mysqrt, avalia_raiz_quadrada
   #export inboth
   #export deletehead!, baddeletehead, tail, nestedsum, cumulsum, interior, interior!, issort
   #export histogram, printhist, reverselookup, invertdict

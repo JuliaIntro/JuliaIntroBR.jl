@@ -464,7 +464,7 @@ Esta função também funciona para as listas, as tuplas, e até mesmo os dicion
 ----
 julia> t = ("presunto", "ovo", "presunto", "presunto", "bacon", "presunto")
 ("presunto", "ovo", "presunto", "presunto", "bacon", "presunto")
-julia> histogram(t)
+julia> histograma(t)
 Dict{Any,Any} with 3 entries:
   "bacon"     => 1
   "presunto"  => 4

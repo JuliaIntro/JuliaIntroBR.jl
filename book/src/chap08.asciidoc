@@ -98,7 +98,7 @@ Para obter a última letra da string, você pode ficar tentado a fazer algo como
 
 [source,@julia-repl-test chap08]
 ----
-julia> last = frutas[len]
+julia> last = frutas[tamanho]
 ' ': ASCII/Unicode U+0020 (category Zs: Separator, space)
 ----
 
@@ -194,10 +194,10 @@ Um segmento de uma string é chamado de _fatia_. Selecionar uma fatia é similar
 
 [source,@julia-repl-test chap08]
 ----
-julia> str = "Júlio César";
+julia> str = "Chapolin Colorado";
 
-julia> str[1:5]
-"Júlio"
+julia> str[1:8]
+"Chapolin"
 ----
 
 O operador +[n:m]+ retorna a parte da string do +n+-ésimo byte até o +m+-ésimo byte. Então o mesmo cuidado é necessário como para a indexação simples.
@@ -208,8 +208,8 @@ A palavra-chave +end+ pode ser usada para indicar o último byte da string:
 
 [source,@julia-repl-test chap08]
 ----
-julia> str[7:end]
-"César"
+julia> str[10:end]
+"Colorado"
 ----
 
 Se o primeiro índice é maior que o segundo, o resultado é uma _string vazia_, representada por aspas duplas:
