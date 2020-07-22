@@ -25,7 +25,7 @@ julia> x.a
 1
 ----
 
-Com tuplas nomeadas, os campos podem ser acessados por nome usando a sintaxe do ponto +(x.a)+.
+Nas tuplas nomeadas, os campos podem ser acessados pelo nome usando a sintaxe do ponto +(x.a)+.
 (((tupla nomeada)))(((sintaxe do ponto)))
 
 
@@ -77,11 +77,11 @@ Argumentos de funções também podem ser nomeadas:
 
 [source,@julia-repl-test]
 ----
-julia> function myplot(x, y; style="solid", width=1, color="black")
+julia> function meu_plot(x, y; style="solid", width=1, color="black")
            ###
        end
-myplot (generic function with 1 method)
-julia> myplot(0:10, 0:10, style="dotted", color="blue")
+meu_plot (generic function with 1 method)
+julia> meu_plot(0:10, 0:10, style="dotted", color="blue")
 
 ----
 
@@ -207,8 +207,8 @@ O _operador ternário_, +?:+, é uma alternativa para uma declaração +if-else+
 ----
 julia> a = 150
 150
-julia> a % 2 == 0 ? println("even") : println("odd")
-even
+julia> a % 2 == 0 ? println("par") : println("ímpar")
+par
 ----
 
 A expressão antes de +?+ é uma condição. Se a condição for +true+, a expressão antes de +:+ é avaliada, caso contrário, a expressão depois de +:+ é avaliada.
@@ -325,7 +325,7 @@ Parâmetros do tipo são introduzidos depois do nome do tipo, cercado por chaves
 
 [source,@julia-setup chap19]
 ----
-struct Point{T<:Real}
+struct Ponto{T<:Real}
     x::T
     y::T
 end
@@ -335,8 +335,8 @@ Isso define um novo tipo paramétrico, +Ponto{T<:Real}+, segurando duas "coorden
 
 [source,@julia-repl-test chap19]
 ----
-julia> Point(0.0, 0.0)
-Point{Float64}(0.0, 0.0)
+julia> Ponto(0.0, 0.0)
+Ponto{Float64}(0.0, 0.0)
 ----
 
 Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro do tipo.
@@ -372,11 +372,11 @@ As definições de método também podem ter parâmetros de tipo que qualificam 
 
 [source,@julia-repl-test chap19]
 ----
-julia> isintpoint(p::Point{T}) where {T} = (T === Int64)
-isintpoint (generic function with 1 method)
-julia> p = Point(1, 2)
-Point{Int64}(1, 2)
-julia> isintpoint(p)
+julia> é_ponto_int(p::Ponto{T}) where {T} = (T === Int64)
+é_ponto_int (generic function with 1 method)
+julia> p = Ponto(1, 2)
+Ponto{Int64}(1, 2)
+julia> é_ponto_intt(p)
 true
 ----
 
@@ -387,11 +387,11 @@ Qualquer objeto arbitrário de Julia pode ser “chamado”. Tais objetos “cha
 
 [source,@julia-setup chap19]
 ----
-struct Polynomial{R}
+struct Polinômio{R}
     coeff::Vector{R}
 end
 
-function (p::Polynomial)(x)
+function (p::Polinômio)(x)
     val = p.coeff[end]
     for coeff in p.coeff[end-1:-1:1]
         val = val * x + coeff
@@ -404,8 +404,8 @@ Para calcular o polinômio, basta chamá-lo:
 
 [source,@julia-repl-test chap19]
 ----
-julia> p = Polynomial([1,10,100])
-Polynomial{Int64}([1, 10, 100])
+julia> p = Polinômio([1,10,100])
+Polinômio{Int64}([1, 10, 100])
 julia> p(3)
 931
 ----
@@ -416,12 +416,12 @@ Tipos paramétricos podem ser explicitamente ou implicitamente construídos:
 
 [source,@julia-repl-test chap19]
 ----
-julia> Point(1,2)         # implicit T
-Point{Int64}(1, 2)
-julia> Point{Int64}(1, 2) # explicit T
-Point{Int64}(1, 2)
-julia> Point(1,2.5)       # implicit T
-ERROR: MethodError: no method matching Point(::Int64, ::Float64)
+julia> Ponto(1,2)         # implicit T
+Ponto{Int64}(1, 2)
+julia> Ponto{Int64}(1, 2) # explicit T
+Ponto{Int64}(1, 2)
+julia> Ponto(1,2.5)       # implicit T
+ERROR: MethodError: no method matching Ponto(::Int64, ::Float64)
 ----
 
 Construtores internos e externos padrões são gerados para cada +T+:
@@ -429,13 +429,13 @@ Construtores internos e externos padrões são gerados para cada +T+:
 
 [source,julia]
 ----
-struct Point{T<:Real}
+struct Ponto{T<:Real}
     x::T
     y::T
-    Point{T}(x,y) where {T<:Real} = new(x,y)
+    Ponto{T}(x,y) where {T<:Real} = new(x,y)
 end
 
-Point(x::T, y::T) where {T<:Real} = Point{T}(x,y);
+Ponto(x::T, y::T) where {T<:Real} = Ponto{T}(x,y);
 ----
 
 e ambos +x+ e +y+ devem ser do mesmo tipo.
@@ -444,7 +444,7 @@ Quando +x+ e +y+ possuem tipos diferentes, o subsequente construtor externo pode
 
 [source,@julia-setup chap19]
 ----
-Point(x::Real, y::Real) = Point(promote(x,y)...);
+Ponto(x::Real, y::Real) = Ponto(promote(x,y)...);
 ----
 
 A função +promote+ é detalhada em <<promotion>>.
@@ -474,10 +474,10 @@ UInt8
 Podemos adicionar os nossos próprios métodos +convert+:
 [source,@julia-repl-test chap19]
 ----
-julia> Base.convert(::Type{Point{T}}, x::Array{T, 1}) where {T<:Real} = Point(x...)
+julia> Base.convert(::Type{Ponto{T}}, x::Array{T, 1}) where {T<:Real} = Ponto(x...)
 
-julia> convert(Point{Int64}, [1, 2])
-Point{Int64}(1, 2)
+julia> convert(Ponto{Int64}, [1, 2])
+Ponto{Int64}(1, 2)
 ----
 
 [[promotion]]
@@ -588,7 +588,7 @@ As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes
 
 [source,julia]
 ----
-:(letters1 = letters[1])
+:(letras1 = letras[1])
 ----
 
 +@macroexpand @containervariavel letras 1+ retorna essa expressão que é extremamente útil para a depuração.
@@ -611,7 +611,7 @@ A macro +@generated+ cria código especializado para os métodos, dependendo dos
 
 [source,@julia-setup chap19]
 ----
-@generated function square(x)
+@generated function quadrado(x)
     println(x)
     :(x * x)
 end
@@ -703,9 +703,9 @@ fechamento::
 Função que captura as variáveis do seu escopo definido.
 (((fechamento)))
 
-bloqueio let::
+bloco let::
 Bloqueia a alocação de novas ligações de variáveis.
-(((bloqueio let)))
+(((bloco let)))
 
 função anônima::
 Função definida sem ter um nome.
