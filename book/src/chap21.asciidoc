@@ -77,7 +77,7 @@ Se não for intencional, certifique-se que há uma chamada de função no progra
 
 ==== Meu Programa Trava
 
-Se um programa para e parece não estar fazendo nada, ele está “travando”. Frequentemente isso significa que ele está detido em um laço infinito ou em uma repetição infinita.
+Se um programa para e parece não estar fazendo nada, ele está “travado”. Frequentemente isso significa que ele está detido em um laço infinito ou em uma repetição infinita.
 
 * Se houver um laço em particular que você suspeita ser o problema, adicione um comando de impressão logo antes do laço que diz “entrando no laço” e outra logo depois que diz “saindo do laço”.
 +
