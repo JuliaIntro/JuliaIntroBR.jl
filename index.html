@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="author" content="Ben Lauwens, Allen Downey">
-<title>Think Julia: How to Think Like a Computer Scientist</title>
+<meta name="author" content="Ben Lauwens e Allen Downey ⋅ Tradução: Abel Soares Siqueira, Gustavo Sarturi, João Okimoto, Kally Chung">
+<title>Introdução à programação em Julia</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,18 +439,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Think Julia: How to Think Like a Computer Scientist</h1>
+<h1>Introdução à programação em Julia</h1>
 <div class="details">
-<span id="author" class="author">Ben Lauwens</span><br>
-<span id="email" class="email"><a href="mailto:ben.lauwens@gmail.com">ben.lauwens@gmail.com</a></span><br>
-<span id="author2" class="author">Allen Downey</span><br>
-<span id="email2" class="email"><a href="mailto:allendowney@gmail.com">allendowney@gmail.com</a></span><br>
+<span id="author" class="author">Ben Lauwens e Allen Downey ⋅ Tradução: Abel Soares Siqueira, Gustavo Sarturi, João Okimoto, Kally Chung</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Índice</div>
 <ul class="sectlevel1">
-<li><a href="#_copyright">Copyright</a></li>
-<li><a href="#_dedication">Dedication</a></li>
+<li><a href="#_licença">Licença</a></li>
+<li><a href="#_dedicatória">Dedicatória</a></li>
 <li><a href="#_preface">Preface</a>
 <ul class="sectlevel2">
 <li><a href="#_why_julia">Why Julia?</a></li>
@@ -771,32 +768,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_erros_semânticos">Erros Semânticos</a></li>
 </ul>
 </li>
-<li><a href="#_unicode_input">Apêndice A: Unicode Input</a></li>
-<li><a href="#juliabox">Apêndice B: JuliaBox</a></li>
+<li><a href="#_entrada_unicode">Apêndice A: Entrada Unicode</a></li>
+<li><a href="#editores-online">Apêndice B: Editores online</a></li>
+<li><a href="#diferencas-ptbr">Apêndice C: Diferenças na tradução</a></li>
 <li><a href="#_index">Index</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_copyright">Copyright</h2>
+<h2 id="_licença">Licença</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This book is available under the Creative Commons Attribution-NonCommercial 3.0 Unported License. The authors maintain an online version at <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html" class="bare">https://benlauwens.github.io/ThinkJulia.jl/latest/book.html</a></p>
+<p>Este livro está disponível sob a licença <a href="https://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR">Creative Commons Atribuição-NãoComercial 3.0 Não Adaptada</a>.
+Esta é uma tradução do <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">ThinkJulia</a>, que tem a mesma licença.
+Uma lista das diferenças na tradução deste livro estão disponíveis no <a href="#diferencas-ptbr">Apéndice C</a>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Ben Lauwens</strong> is a Professor of Mathematics at Royal Military Academy (RMA Belgium). He has a PhD in Engineering and Master’s degrees from KU Leuven and RMA and Bachelor’s degree from RMA.</p>
+<p>Os autores do ThinkJulia são:</p>
 </div>
 <div class="paragraph">
-<p><strong>Allen Downey</strong> is a Professor of Computer Science at Olin College of Engineering. He has taught at Wellesley College, Colby College and U.C. Berkeley. He has a PhD in Computer Science from U.C. Berkeley and Master’s and Bachelor’s degrees from MIT.</p>
+<p><strong>Ben Lauwens</strong> é professor de matemática na Rolay Military Academy (RMA Bélgica). Tem um doutorado em engenheria e um mestrado pela KU Leuven e RMA, e um bacharelado pela RMA.</p>
+</div>
+<div class="paragraph">
+<p><strong>Allen Downey</strong> é professor de ciência da computação na Olin College of Engineering. Ele lecionou na Wellesley College, Colby College e U.C. Berkeley. Tem um doutorado em ciência da computação pela U.C. Berkeley e mestrado e bacharelado pelo MIT.</p>
+</div>
+<div class="paragraph">
+<p>Os tradutores para a versão em português são:</p>
+</div>
+<div class="paragraph">
+<p><strong>Abel Soares Siqueira</strong> é professor de matemática na Universidade Federal do Paraná.</p>
+</div>
+<div class="paragraph">
+<p><strong>Gustavo Sarturi</strong> é aluno de graduação em matemática industrial na Universidade Federal do Paraná.</p>
+</div>
+<div class="paragraph">
+<p><strong>João Okimoto</strong> é aluno de graduação em ciência da computação na Universidade Federal do Paraná.</p>
+</div>
+<div class="paragraph">
+<p><strong>Kally Chung</strong>, mestranda em métodos numéricos da engenharia na Universidade Federal do Paraná.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dedication">Dedication</h2>
+<h2 id="_dedicatória">Dedicatória</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For Emeline, Arnaud and Tibo.</p>
+<p>Para Emeline, Arnaud e Tibo.</p>
 </div>
 </div>
 </div>
@@ -1071,10 +1089,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Para evitar esse problema, eu recomendo que você comece a executar o Julia em um navegador. Depois, quando se sentir mais confortável com o Julia, eu irei sugerir instalar o Julia em seu computador.</p>
 </div>
 <div class="paragraph">
-<p>No navegador, você pode executar o <a href="https://www.juliabox.com">JuliaBox</a>. Nenhuma instalação é necessária - Apenas escolha um navegador, faça o <em>log in</em> e comece a programar (veja <a href="#juliabox">JuliaBox</a>).</p>
+<p>No navegador, você pode executar o <a href="https://repl.it">Repl.it</a>. Nenhuma instalação é necessária - Apenas escolha um navegador, faça o <em>log in</em> e comece a programar (veja <a href="#editores-online">Editores online</a>).</p>
 </div>
 <div class="paragraph">
-<p>O <em>REPL</em> do Julia (Read-Eval-Print Loop, que traduzido ao pé da letra, significa Ler, Avaliar e Repetição de impressão) é um programa que lê e executa os códigos do Julia. Você pode começar o REPL abrindo o terminal no JuliaBox e escrevendo <strong><code>julia</code></strong> na linha de comando. Quando executar, você deverá ver uma saída como essa:</p>
+<p>O <em>REPL</em> do Julia (Read-Eval-Print Loop, que traduzido ao pé da letra, significa Ler, Avaliar e Repetição de impressão) é um programa que lê e executa os códigos do Julia. Você pode começar o REPL abrindo um terminal e escrevendo <strong><code>julia</code></strong> na linha de comando (depois de instalar o Julia). Alternativamente, o Repl.it já abre um terminal junto com o editor. Quando executar, você deverá ver uma saída como essa:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1625,7 +1643,7 @@ julia&gt; println(n)
 </p>
 </div>
 <div class="paragraph">
-<p>Se você sabe como criar e rodar um script no seu computador, você está pronto pra utilizar. No entanto eu recomendaria utilizar o JuliaBox novamente. Abrir um arquivo de texto, escrever um script e salvá-lo com a extensão <em>.jl</em>. O script pode ser executado em um terminal com o comando <strong><code>julia nome_do_script.jl</code></strong>.
+<p>Se você sabe como criar e rodar um script no seu computador, você está pronto pra utilizar. No entanto eu recomendaria utilizar o Repl.it novamente. Abrir um arquivo de texto, escrever um script e salvá-lo com a extensão <em>.jl</em>. O script pode ser executado em um terminal com o comando <strong><code>julia nome_do_script.jl</code></strong>.
 </p>
 </div>
 <div class="paragraph">
@@ -2890,10 +2908,6 @@ println("-")</code></pre>
 </div>
 <div class="paragraph">
 <p>Ele introduz o turtle graphics, um jeito de criar desenhos por meio de um programa. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo JuliaIntroBR tem que ser adicionado na sua configuração do Julia.</p>
-</div>
-<div class="paragraph">
-<p>Os exemplos neste capítulo podem ser executados em um notebook gráfico no JuliaBox, que combina código, texto formatado, matemática e multimídia em um único documento (ver <a href="#juliabox">JuliaBox</a>).
-</p>
 </div>
 <div class="sect2">
 <h3 id="_turtles">Turtles</h3>
@@ -4268,7 +4282,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.595510152235772e9</code></pre>
+1.595526802840952e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13600,9 +13614,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(baralho)
-3♦ J♣ 6♥ J♥ 2♣ 2♦ Q♣ A♦ 3♣ J♦ 2♥ 4♠ 6♦ 3♠ 5♣ 8♥ K♣ A♠ 6♣ 3♥ 4♦ 7♣ 9♦ 8♦ K♠ 10♠ 10♦ Q♠ 9♣ 6♠ A♣ 7♥ 4♥ 7♦ Q♥ 2♠ Q♦ 9♠ 5♦ J♠ 5♥ 7♠ 8♠ K♥ A♥ 8♣ 4♣ K♦ 5♠ 9♥ 10♥ 10♣
+2♥ 9♣ 3♣ 10♦ 6♦ 7♣ J♠ K♠ K♣ Q♦ 10♥ A♦ 2♣ 10♣ 9♥ 9♦ 8♥ 7♠ K♥ A♥ Q♠ 8♠ A♠ 7♥ 3♠ 6♠ J♥ 5♠ J♦ Q♥ 4♣ 5♥ 8♦ 5♣ 4♠ 5♦ 10♠ 8♣ 3♥ J♣ Q♣ 4♦ 2♠ 2♦ 3♦ 9♠ A♣ 6♥ 6♣ K♦ 4♥ 7♦
 julia&gt; carta = pop!(baralho)
-10♣
+7♦
 julia&gt; push!(mão, carta)</code></pre>
 </div>
 </div>
@@ -14192,7 +14206,7 @@ z = -1</code></pre>
 julia&gt; open("output.txt", "w") do fout
            write(fout, dado)
        end
-48</code></pre>
+50</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14208,7 +14222,7 @@ julia&gt; open("output.txt", "w") do fout
        end
 #3 (generic function with 1 method)
 julia&gt; open(f, "output.txt", "w")
-48</code></pre>
+50</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -16115,10 +16129,10 @@ return contagem</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_unicode_input">Apêndice A: Unicode Input</h2>
+<h2 id="_entrada_unicode">Apêndice A: Entrada Unicode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following table lists a few Unicode characters out of many that can be entered via tab completion of LaTeX-like abbreviations in the Julia REPL (and in various other editing environments).
+<p>A tabela a seguir lista alguns caracteres Unicode de muitos que podem ser introduzios usando completamente por TAB de abreviações tipo LaTeX no REPL do Julia (e em vários editores).
 </p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -16129,9 +16143,9 @@ return contagem</code></pre>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Character</th>
-<th class="tableblock halign-left valign-top">Tab completion sequence</th>
-<th class="tableblock halign-left valign-top">ASCII representation</th>
+<th class="tableblock halign-left valign-top">Caractere</th>
+<th class="tableblock halign-left valign-top">Sequência de completamento com TAB</th>
+<th class="tableblock halign-left valign-top">representação ASCII</th>
 </tr>
 </thead>
 <tbody>
@@ -16235,40 +16249,49 @@ return contagem</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="juliabox">Apêndice B: JuliaBox</h2>
+<h2 id="editores-online">Apêndice B: Editores online</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JuliaBox allows you to run Julia in your browser. Enter the url <a href="https://www.juliabox.com" class="bare">https://www.juliabox.com</a>, login and start using the Jupyter environment.</p>
+<p>Listamos algumas alternativas para a execução de código Julia online aqui. A lista não é exaustiva.
+Nossa preferência é o Repl.it, por ser o recomendado pelo organização do Julia.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://repl.it">Repl.it</a></p>
+</li>
+<li>
+<p><a href="https://nextjournal.com/">NextJournal</a></p>
+</li>
+<li>
+<p><a href="https://binder.org">Binder</a></p>
+</li>
+<li>
+<p><a href="https://codeocean.com">CodeOcean</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="diferencas-ptbr">Apêndice C: Diferenças na tradução</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Esta é uma tradução do <a href="https://benlauwens.github.io/ThinkJulia.jl/latest/book.html">ThinkJulia</a>.
+Tanto o original quanto este livro estão disponíveis sob a licença <a href="https://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR">Creative Commons Atribuição-NãoComercial 3.0 Não Adaptada</a>.</p>
 </div>
 <div class="paragraph">
-<p>The initial screen is shown in <a href="#figb-1">Initial screen</a>. The new button allows the creation of a Julia notebook, a text file, a folder or a terminal session.</p>
+<p>As diferenças significatives do ThinkJulia para esta versão são:</p>
 </div>
-<div class="paragraph">
-<p>In a terminal session, the command <strong><code>julia</code></strong> starts the REPL as shown in <a href="#figb-2">Terminal session</a>.</p>
-</div>
-<div class="paragraph">
-<p>The notebook interface allows to mix text in Markdown markup and highlighted code with associated output. <a href="#figb-3">Notebook</a> shows an example.</p>
-</div>
-<div class="paragraph">
-<p>Further documentation can be found on the website of Jupyter: <a href="http://jupyter.org/documentation" class="bare">http://jupyter.org/documentation</a>.</p>
-</div>
-<div id="figb-1" class="imageblock">
-<div class="content">
-<img src="images/screenshot0.png" alt="screenshot0">
-</div>
-<div class="title">Figura 25. Initial screen</div>
-</div>
-<div id="figb-2" class="imageblock">
-<div class="content">
-<img src="images/screenshot1.png" alt="screenshot1">
-</div>
-<div class="title">Figura 26. Terminal session</div>
-</div>
-<div id="figb-3" class="imageblock">
-<div class="content">
-<img src="images/screenshot2.png" alt="screenshot2">
-</div>
-<div class="title">Figura 27. Notebook</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Esta versão é uma tradução do inglês para o português brasileiro.</p>
+</li>
+<li>
+<p>Muitas frases idiomáticas foram adaptadas ou removidas, por não fazerem sentido literal no Brasil.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -16287,7 +16310,7 @@ return contagem</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-23 13:15:48 UTC
+Última atualização 2020-07-23 17:53:19 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
