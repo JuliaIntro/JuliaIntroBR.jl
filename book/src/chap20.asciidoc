@@ -400,7 +400,7 @@ end
 próximo = iterate(iter)
 while próximo !== nothing
     (i, estado) = próximo
-    # palavra
+    # corpo
     próximo = iterate(iter, estado)
 end
 ----
@@ -478,7 +478,7 @@ E finalmente, o _código de máquina_ é gerado:
 [source,@julia-repl-test chap20]
 ----
 julia> @code_native soma_de_quadrados(3.0, 4.0)
-        .text
+    .text
 ; ┌ @ none:2 within `soma_de_quadrados'
 ; │┌ @ intfuncs.jl:261 within `literal_pow'
 ; ││┌ @ none:2 within `*'
