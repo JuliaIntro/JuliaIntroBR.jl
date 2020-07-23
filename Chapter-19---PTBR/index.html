@@ -4253,7 +4253,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.595458907972638e9</code></pre>
+1.595506615779334e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13586,9 +13586,9 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; deck = Deck()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(deck)
-2♣ 4♦ J♠ 9♦ 10♦ 9♥ 6♠ 3♦ 3♥ 5♠ 6♥ 2♠ A♥ J♥ 8♠ A♠ 7♥ 9♠ 6♣ 7♦ 8♦ J♣ J♦ Q♦ 5♥ 3♣ 2♦ 8♣ 4♥ Q♣ 4♠ 5♦ A♣ 7♣ 10♠ 4♣ 3♠ 9♣ 5♣ A♦ 8♥ 7♠ 6♦ Q♠ K♠ K♦ K♣ 2♥ 10♥ K♥ 10♣ Q♥
+Q♠ 7♣ 2♣ 3♠ K♣ 4♣ A♦ 10♥ 10♣ K♥ 9♣ 7♠ 3♥ 3♦ 5♠ A♣ 6♠ 4♥ 4♠ 5♣ 5♥ 8♦ 8♠ 6♣ 8♣ J♣ Q♥ Q♣ 9♥ 5♦ 2♦ 9♠ A♠ 8♥ K♠ 2♠ 4♦ 6♥ K♦ 10♦ 10♠ A♥ J♥ J♠ Q♦ 2♥ 6♦ 7♥ 3♣ J♦ 9♦ 7♦
 julia&gt; card = pop!(deck)
-Q♥
+7♦
 julia&gt; push!(hand, card)</code></pre>
 </div>
 </div>
@@ -14000,14 +14000,14 @@ addping(pong, ping)</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>suplementos de sintaxe</p>
+<p>os suplementos de sintaxe</p>
 </li>
 <li>
-<p>funções, tipos e macros diretamente disponíveis em <code>Base</code>
+<p>as funções, os tipos e as macros diretamente disponíveis em <code>Base</code>
 </p>
 </li>
 <li>
-<p>funções, tipos e macros da Biblioteca Padrão
+<p>as funções, os tipos e as macros da Biblioteca Padrão
 </p>
 </li>
 </ul>
@@ -14099,7 +14099,7 @@ julia&gt; meu_plot(0:10, 0:10, style="dotted", color="blue")</code></pre>
 <div class="sect3">
 <h4 id="_fechamentos">Fechamentos</h4>
 <div class="paragraph">
-<p>Um <em>fechamento</em> é uma técnica que permite uma função capturar uma variável definida fora do escopo da chamada de função.</p>
+<p>Um <em>fechamento</em> é uma técnica que permite uma função capturar uma variável definida fora do escopo da chamada da função.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14121,7 +14121,7 @@ julia&gt; bar()
 <div class="sect2">
 <h3 id="_blocos">Blocos</h3>
 <div class="paragraph">
-<p>Um <em>bloco</em> é uma forma de agrupar diversos comandos. Um bloco começa com a palavra chave <code>begin</code> e termina com <code>end</code>.
+<p>Um <em>bloco</em> é uma forma de agrupar diversos comandos. Um bloco começa com a palavra-chave <code>begin</code> e termina com <code>end</code>.
 </p>
 </div>
 <div class="paragraph">
@@ -14162,7 +14162,7 @@ z = -1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>No exemplo, a primeira macro <code>@show</code> mostra o <code>x</code> local, a global <code>y</code> e a local indefinida <code>z</code>. As variáveis globais são intocáveis.</p>
+<p>Nesse exemplo, a primeira macro <code>@show</code> mostra o <code>x</code> local, a global <code>y</code> e a local indefinida <code>z</code>. As variáveis globais são intocáveis.</p>
 </div>
 </div>
 <div class="sect3">
@@ -14214,7 +14214,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Um bloco <code>do</code> pode “capturar” as variáveis de seus escopos anexos. Por exemplo, a variável <code>dado</code> no exemplo acima de <code>open ... do</code> é capturada de outro escopo.</p>
+<p>Um bloco <code>do</code> pode “capturar” as variáveis dos seus escopos anexos. Por exemplo, a variável <code>dado</code> em <code>open ... do</code> no exemplo acima é capturada de outro escopo.</p>
 </div>
 </div>
 </div>
@@ -14223,7 +14223,7 @@ end</code></pre>
 <div class="sect3">
 <h4 id="_operador_ternário">Operador Ternário</h4>
 <div class="paragraph">
-<p>O <em>operador ternário</em>, <code>?:</code>, é uma alternativa para uma declaração <code>if-else</code> usada quando você precisa fazer uma escolha entre valores de expressão única.
+<p>O <em>operador ternário</em> <code>?:</code> é uma alternativa para uma declaração <code>if-else</code> usada quando você precisa fazer uma escolha entre valores de expressão única.
 </p>
 </div>
 <div class="listingblock">
@@ -14259,7 +14259,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tarefas_também_conhecido_como_corrotina">Tarefas (também conhecido como Corrotina)</h4>
+<h4 id="_tarefas_também_conhecida_como_corrotina">Tarefas (também conhecida como Corrotina)</h4>
 <div class="paragraph">
 <p>Uma <em>tarefa</em> é uma estrutura de controle que pode passar pelo controle cooperativamente sem retornar. Em Julia, uma tarefa pode ser implementada como uma função tendo como o primeiro argumento um objeto de canal (<code>Channel</code>). Um canal é usado para passar valores de uma função para quem a chamou.</p>
 </div>
@@ -14301,7 +14301,7 @@ julia&gt; take!(fib_gen)
 </div>
 </div>
 <div class="paragraph">
-<p>O construtor <code>Channel</code> cria a tarefa. A função <code>fib</code> é suspendida aṕos cada chamada para <code>put!</code> e retorna depois de <code>take!</code>. Por questões de performance, diversos valores das sequências são armazenadas temporariamente no objeto de canal durante um ciclo de retomada/suspensão.</p>
+<p>O construtor <code>Channel</code> cria a tarefa. A função <code>fib</code> é suspendida aṕos cada chamada para <code>put!</code> e retorna depois de <code>take!</code>. Por questões de performance, diversos valores da sequência são armazenados temporariamente no objeto de canal durante um ciclo de retomada/suspensão.</p>
 </div>
 <div class="paragraph">
 <p>Um objeto de canal também pode ser usado como um iterador:</p>
@@ -14322,7 +14322,7 @@ julia&gt; take!(fib_gen)
 <div class="sect3">
 <h4 id="_tipos_primitivos">Tipos Primitivos</h4>
 <div class="paragraph">
-<p>Um tipo concreto que consiste em bits simples e antigos é chamado de <em>tipo primitivo</em>. Ao contrário da maioria das linguagens, no Julia, você pode declarar seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
+<p>Um tipo concreto que consiste em bits simples e antigos é chamado de <em>tipo primitivo</em>. Ao contrário da maioria das linguagens, no Julia você pode declarar os seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
 </p>
 </div>
 <div class="listingblock">
@@ -14361,7 +14361,7 @@ Byte(0x01)</code></pre>
 <p>O tipo de sistema do Julia é <em>paramétrico</em>, significando que os tipos podem possuir parâmetros.</p>
 </div>
 <div class="paragraph">
-<p>Parâmetros do tipo são introduzidos depois do nome do tipo, cercado por chaves:
+<p>Parâmetros de tipo são introduzidos depois do nome do tipo, cercado por chaves:
 </p>
 </div>
 <div class="listingblock">
@@ -14382,7 +14382,7 @@ Ponto{Float64}(0.0, 0.0)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro do tipo.</p>
+<p>Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro de tipo.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -14400,7 +14400,7 @@ Ponto{Float64}(0.0, 0.0)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_união_dos_tipos">União dos Tipos</h4>
+<h4 id="_união_de_tipo">União de Tipo</h4>
 <div class="paragraph">
 <p>Uma <em>união de tipo</em> é um tipo paramétrico abstrato que pode atuar como qualquer um dos tipos do seu argumento:
 </p>
@@ -14416,7 +14416,7 @@ julia&gt; "Julia" :: IntOrString
 </div>
 </div>
 <div class="paragraph">
-<p>Uma união de tipo é na maioria das linguagens de computador uma construção interna para refletir sobre os tipos. O Julia, no entanto, expõe esse recurso aos seus usuários porque um código eficiente pode ser gerado quando a união de tipos possui um pequeno número de tipos. Esse recurso oferece ao programador do Julia uma tremenda flexibilidade para controlar o despacho.</p>
+<p>Uma união de tipo é na maioria das linguagens de computador uma construção interna para pensar sobre os tipos. O Julia, no entanto, expõe esse recurso aos seus usuários porque um código eficiente pode ser gerado quando a união de tipo possui um pequeno número de tipos. Esse recurso oferece ao programador do Julia uma tremenda flexibilidade para controlar o despacho.</p>
 </div>
 </div>
 </div>
@@ -14651,7 +14651,7 @@ Expr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Quando você está usando muitas chamadas para a função <code>eval</code>, geralmente isso significa que algo está errado. A função <code>eval</code> é considerado do “mal”.</p>
+<p>Quando você está usando muitas chamadas para a função <code>eval</code>, geralmente isso significa que algo está errado. A função <code>eval</code> é considerada do “mal”.</p>
 </div>
 </td>
 </tr>
@@ -14665,18 +14665,18 @@ Expr
 </p>
 </div>
 <div class="paragraph">
-<p>Aqui está uma simples macro:
+<p>Aqui está uma macro simples:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">macro containervariavel(container, elemento)
+<pre class="pygments highlight"><code data-lang="julia">macro containervariável(container, elemento)
     return esc(:($(Symbol(container,elemento)) = $container[$elemento]))
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As macros são chamadas ao colocar o prefixo <code>@</code> (sinal de arroba) em seus nomes. A macro chamada <code>@containervariavel letras 1</code> é substituída por:
+<p>As macros são chamadas ao colocar o prefixo <code>@</code> (sinal de arroba) em seus nomes. A macro chamada <code>@containervariável letras 1</code> é substituída por:
 </p>
 </div>
 <div class="listingblock">
@@ -14685,11 +14685,11 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>@macroexpand @containervariavel letras 1</code> retorna essa expressão que é extremamente útil para a depuração.
+<p><code>@macroexpand @containervariável letras 1</code> retorna essa expressão que é extremamente útil para a depuração.
 </p>
 </div>
 <div class="paragraph">
-<p>Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “escapada” com <code>esc</code>, pois precisa ser resolvida no ambiente da chamada da macro.
+<p>Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “escapado” com <code>esc</code>, pois precisa ser resolvido no ambiente da chamada da macro.
 </p>
 </div>
 <div class="admonitionblock note">
@@ -14713,7 +14713,7 @@ end</code></pre>
 <div class="sect3">
 <h4 id="_funções_geradas">Funções Geradas</h4>
 <div class="paragraph">
-<p>A macro <code>@generated</code> cria código especializado para os métodos, dependendo dos tipos de argumentos:
+<p>A macro <code>@generated</code> cria código especializado para os métodos, dependendo dos tipos dos argumentos:
 </p>
 </div>
 <div class="listingblock">
@@ -14732,7 +14732,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; x = quadrado(2); # nota: output é da declaração println() no corpo
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; x = quadrado(2); # nota: a saída é da declaração println() no corpo
 Int64
 julia&gt; x              # agora imprimimos x
 4
@@ -14815,7 +14815,7 @@ end</code></pre>
 <p>o tipo de retorno: <code>Cvoid</code>,</p>
 </li>
 <li>
-<p>uma tupla com tipos de argumentos: <code>(Ptr{Cvoid},)</code> e</p>
+<p>uma tupla com os tipos de argumentos: <code>(Ptr{Cvoid},)</code> e</p>
 </li>
 <li>
 <p>os valores do argumento: <code>handle</code>.</p>
@@ -14823,7 +14823,7 @@ end</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>O mapeamento completo da biblioteca GDBM pode ser encontrada como um exemplo no repositório do JuliaIntroBR.</p>
+<p>O mapeamento completo da biblioteca GDBM pode ser encontrado como um exemplo no repositório do JuliaIntroBR.</p>
 </div>
 </div>
 <div class="sect2">
@@ -14837,7 +14837,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">bloco let</dt>
 <dd>
-<p>Bloqueia a alocação de novas ligações de variáveis.
+<p>Bloco que aloca novas ligações de variáveis.
 </p>
 </dd>
 <dt class="hdlist1">função anônima</dt>
@@ -14872,7 +14872,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">tarefa (também conhecida como Corrotina)</dt>
 <dd>
-<p>Recurso de fluxo de controle que permite a suspensão dos cálculos e a retomada deles de maneira flexível.
+<p>Recurso de fluxo de controle que permite a suspensão e a retomada dos cálculos de maneira flexível.
 </p>
 </dd>
 <dt class="hdlist1">tipo primitivo</dt>
@@ -14922,7 +14922,7 @@ end</code></pre>
 </dd>
 <dt class="hdlist1">valores ausentes</dt>
 <dd>
-<p>Instâncias que representam pontos de dados sem valor.
+<p>Instâncias que representam informações sem valor.
 </p>
 </dd>
 </dl>
@@ -15508,7 +15508,7 @@ CodeInfo(
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
 ;  @ none:2 within `squaresum'
-define double @julia_squaresum_20372(double, double) {
+define double @julia_squaresum_20371(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16273,7 +16273,7 @@ return count</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-22 23:01:44 UTC
+Última atualização 2020-07-23 12:16:52 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
