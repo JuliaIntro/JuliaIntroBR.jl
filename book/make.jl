@@ -75,7 +75,7 @@ if "pdf" in ARGS
   println("Run antennahouse")
   run(`/usr/local/AHFormatterV66/run.sh -d build/output.html -s ~/stack/Configs/styles/book.css -o build/$(title).pdf -i build/config.xml`)
 elseif "html" in ARGS
-  run(`asciidoctor -d book -b html5 -a compat-mode -a stem=latexmath -a sectnums -a sectnumlevels=1 -a source-highlighter=pygments -a toc -a toc=left -a toclevels=2 build/book.asciidoc`)
+  run(`asciidoctor -d book -b html5 -a compat-mode -a stem=latexmath -a sectnums -a sectnumlevels=1 -a source-highlighter=pygmentize -a toc -a toc=left -a toclevels=2 build/book.asciidoc`)
   book = read("build/book.html", String)
   book = replace(book, "\\(\\("=> "\\(")
   book = replace(book, "\\)\\)"=> "\\)")
