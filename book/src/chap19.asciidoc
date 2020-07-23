@@ -1,9 +1,9 @@
 [[chap19]]
-== Extra: Sintaxe
+== Extras: Sintaxe
 
-Uma das nossas metas para este livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhíamos uma e evitávamos mencionar a outra. Ou às vezes, propúnhamos a segunda forma como exercício.
+Uma das nossas metas para este livro é ensinar o mínimo possível de Julia. Quando havia duas formas de fazer algo, escolhíamos uma e evitávamos mencionar a outra. Ou às vezes, a segunda forma era proposta como exercício.
 
-Agora queremos retornar a algumas coisas boas que ficaram pra trás. O Julia oferece uma variadade de recursos que não são realmente necessários—você pode escrever um bom código sem eles—mas com eles pode-se escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.
+Agora queremos retornar a algumas coisas boas que ficaram pra trás. O Julia oferece uma variedade de recursos que não são realmente necessários—você pode escrever um bom código sem eles—mas com eles pode-se escrever um código mais conciso, legível ou eficiente e, às vezes, todos os três.
 
 Neste e no próximo capítulo, iremos discutir coisas dos capítulos anteriores que deixamos para trás:
 
@@ -146,7 +146,7 @@ y = -1
 z = -1
 ----
 
-Nesse exemplo, a primeira macro +@show+ mostra o +x+ local, a global +y+ e a local indefinida +z+. As variáveis globais são intocáveis.
+Nesse exemplo, a primeira macro +@show+ mostra o +x+ local, a global +y+ e a local indefinida +z+. As variáveis globais não são tocadas.
 
 
 ==== Blocos +do+
@@ -193,7 +193,7 @@ function open(f::Function, args...)
 end
 ----
 
-Um bloco +do+ pode “capturar” as variáveis dos seus escopos anexos. Por exemplo, a variável +dado+ em +open pass:[...] do+ no exemplo acima é capturada de outro escopo.
+Um bloco +do+ pode “capturar” as variáveis do escopo que o circunda. Por exemplo, a variável +dado+ em +open pass:[...] do+ no exemplo acima é capturada de escopo externo.
 
 
 === Controle de Fluxo
@@ -211,7 +211,7 @@ julia> a % 2 == 0 ? println("par") : println("ímpar")
 par
 ----
 
-A expressão antes de +?+ é uma condição. Se a condição for +true+, a expressão antes de +:+ é avaliada, caso contrário, a expressão depois de +:+ é avaliada.
+A expressão antes de +?+ é uma condição. Se a condição for verdadeira (+true+), a expressão antes de +:+ é avaliada, caso contrário, a expressão depois de +:+ é avaliada.
 
 ==== Avaliação de Curto-Circuíto
 
@@ -230,9 +230,9 @@ function fat(n::Integer)
 end
 ----
 
-==== Tarefas (também conhecida como Corrotina)
+==== Tarefas (também conhecidas como Corrotinas)
 
-Uma _tarefa_ é uma estrutura de controle que pode passar pelo controle cooperativamente sem retornar. Em Julia, uma tarefa pode ser implementada como uma função tendo como o primeiro argumento um objeto de canal (+Channel+). Um canal é usado para passar valores de uma função para quem a chamou.
+Uma _tarefa_ é uma estrutura de controle que pode passar o controle cooperativamente sem retornar. Em Julia, uma tarefa pode ser implementada como uma função tendo como o primeiro argumento um objeto de canal (+Channel+). Um canal é usado para passar valores de uma função para quem a chamou.
 
 A sequência de Fibonnaci pode ser gerada por uma tarefa.
 (((tarefa)))(((Channel)))((("tipo", "Base", "Channel", see="Channel")))(((put!)))((("função", "Base", "put!", see="put!")))
@@ -287,7 +287,7 @@ julia> for val in Channel(fib)
 
 ==== Tipos Primitivos
 
-Um tipo concreto que consiste em bits simples e antigos é chamado de _tipo primitivo_. Ao contrário da maioria das linguagens, no Julia você pode declarar os seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
+Um tipo concreto que consiste simplesmente de bits é chamado de _tipo primitivo_. Ao contrário da maioria das linguagens, no Julia você pode declarar os seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
 (((tipo primitivo)))((("palavra-chave", "tipo primitivo", see="tipo primitivo")))
 
 [source,julia]
@@ -353,11 +353,11 @@ Uma _união de tipo_ é um tipo paramétrico abstrato que pode atuar como qualqu
 
 [source,@julia-repl-test]
 ----
-julia> IntOrString = Union{Int64, String}
+julia> IntOuString = Union{Int64, String}
 Union{Int64, String}
-julia> 150 :: IntOrString
+julia> 150 :: IntOuString
 150
-julia> "Julia" :: IntOrString
+julia> "Julia" :: IntOuString
 "Julia"
 ----
 
@@ -376,25 +376,25 @@ julia> é_ponto_int(p::Ponto{T}) where {T} = (T === Int64)
 é_ponto_int (generic function with 1 method)
 julia> p = Ponto(1, 2)
 Ponto{Int64}(1, 2)
-julia> é_ponto_intt(p)
+julia> é_ponto_int(p)
 true
 ----
 
 ==== Objetos Semelhantes a Funções
 
-Qualquer objeto arbitrário de Julia pode ser “chamado”. Tais objetos “chamáveis” às vezes são denominados  _funtores_.
-(((funtor)))
+Qualquer objeto arbitrário de Julia pode ser “chamado”. Tais objetos “chamáveis” às vezes são denominados  _functores_.
+(((functor)))
 
 [source,@julia-setup chap19]
 ----
 struct Polinômio{R}
-    coeff::Vector{R}
+    coef::Vector{R}
 end
 
 function (p::Polinômio)(x)
-    val = p.coeff[end]
-    for coeff in p.coeff[end-1:-1:1]
-        val = val * x + coeff
+    val = p.coef[end]
+    for coef in p.coef[end-1:-1:1]
+        val = val * x + coef
     end
     val
 end
@@ -412,15 +412,15 @@ julia> p(3)
 
 === Construtores
 
-Tipos paramétricos podem ser explicitamente ou implicitamente construídos:
+Tipos paramétricos podem ser construídos explicitamente ou implicitamente:
 
 [source,@julia-repl-test chap19]
 ----
-julia> Ponto(1,2)         # implicit T
+julia> Ponto(1,2)         # T implícito
 Ponto{Int64}(1, 2)
-julia> Ponto{Int64}(1, 2) # explicit T
+julia> Ponto{Int64}(1, 2) # T explícito
 Ponto{Int64}(1, 2)
-julia> Ponto(1,2.5)       # implicit T
+julia> Ponto(1,2.5)       # T implícito
 ERROR: MethodError: no method matching Ponto(::Int64, ::Float64)
 ----
 
@@ -440,7 +440,7 @@ Ponto(x::T, y::T) where {T<:Real} = Ponto{T}(x,y);
 
 e ambos +x+ e +y+ devem ser do mesmo tipo.
 
-Quando +x+ e +y+ possuem tipos diferentes, o subsequente construtor externo pode ser definido como:
+Quando +x+ e +y+ possuem tipos diferentes, o construtor externo a seguir pode ser definido:
 
 [source,@julia-setup chap19]
 ----
@@ -514,8 +514,8 @@ julia> prog = "1 + 2"
 "1 + 2"
 ----
 
-A próxima etapa é analisar cada string em um objeto chamado _expression_, representado pelo tipo +Expr+ do Julia:
-(((expression)))(((Expr)))((("tipo", "Base", "Expr", see="Expr")))(((parse)))((("função", "Meta", "parse", see="parse")))
+A próxima etapa é traduzir cada string em um objeto chamado _expressão_, representado pelo tipo +Expr+ do Julia:
+(((expressão)))(((Expr)))((("tipo", "Base", "Expr", see="Expr")))(((parse)))((("função", "Meta", "parse", see="parse")))
 
 [source,@julia-repl-test chap19]
 ----
@@ -574,16 +574,16 @@ Macros podem incluir o código gerado em um programa. Uma _macro_ mapeia uma tup
 (((macro)))
 
 Aqui está uma macro simples:
-(((@containervariável)))((("macro", "definido pelo programador", "@containervariável", see="@containervariável")))
+(((@recipiente_variável)))((("macro", "definido pelo programador", "@recipiente_variável", see="@recipiente_variável")))
 
 [source,@julia-setup chap19]
 ----
-macro containervariável(container, elemento)
-    return esc(:($(Symbol(container,elemento)) = $container[$elemento]))
+macro recipiente_variável(recipiente, elemento)
+    return esc(:($(Symbol(recipiente,elemento)) = $recipiente[$elemento]))
 end
 ----
 
-As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes. A macro chamada +@containervariável letras 1+ é substituída por:
+As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes. A chamada de macro +@recipiente_variável letras 1+ é substituída por:
 (((@)))
 
 [source,julia]
@@ -591,17 +591,17 @@ As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes
 :(letras1 = letras[1])
 ----
 
-+@macroexpand @containervariável letras 1+ retorna essa expressão que é extremamente útil para a depuração.
++@macroexpand @recipiente_variável letras 1+ retorna essa expressão que é extremamente útil para a depuração.
 (((@macroexpand)))((("macro", "Base", "@macroexpand", see="@macroexpand")))
 
-Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “escapado” com +esc+, pois precisa ser resolvido no ambiente da chamada da macro.
+Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “circundado” com +esc+, pois precisa ser resolvido no ambiente da chamada da macro.
 (((esc)))((("função", "Base", "esc", see="esc")))
 
 [NOTE]
 ====
 Por que macros?
 
-As macros geram e incluem fragmentos de código personalizado durante o tempo de análise, portanto, _antes_ da execução do programa completo.
+As macros geram e incluem fragmentos de código personalizado durante o tempo de interpretação, portanto, _antes_ da execução do programa completo.
 ====
 
 ==== Funções Geradas
@@ -625,7 +625,7 @@ Para quem chama, a _função gerada_ se comporta como uma função regular:
 ----
 julia> x = quadrado(2); # nota: a saída é da declaração println() no corpo
 Int64
-julia> x              # agora imprimimos x
+julia> x                # agora imprimimos x
 4
 julia> y = quadrado("spam");
 String
@@ -635,7 +635,7 @@ julia> y
 
 === Valores Ausentes
 
-_Valores ausentes_ podem ser representados através do objeto +missing+, que é a instância singleton do tipo +Missing+.
+_Valores ausentes_ podem ser representados através do objeto +missing+, que é a instância singleton (única) do tipo +Missing+.
 (((valores ausentes)))(((missing)))(((Missing)))((("tipo", "Base", "Missing", see="Missing")))
 
 As listas podem conter valores ausentes:
@@ -731,12 +731,12 @@ avaliação de curto-circuíto::
 Avaliação de um operador booleano na qual o segundo argumento é executado ou avaliado apenas se o primeiro argumento não for suficiente para determinar o valor da expressão.
 (((avaliação de curto-circuíto)))
 
-tarefa (também conhecida como Corrotina)::
+tarefa (também conhecida como corrotina)::
 Recurso de fluxo de controle que permite a suspensão e a retomada dos cálculos de maneira flexível.
 (((tarefa)))
 
 tipo primitivo::
-Tipo concreto cujos dados consistem em bits simples e antigos.
+Tipo concreto cujos dados consistem simplesmente de bits.
 (((tipo primitivo)))
 
 união de tipo::
@@ -747,9 +747,9 @@ tipo paramétrico::
 Tipo que é parametrizado.
 (((tipo paramétrico)))
 
-funtor::
+functor::
 Objeto com um método associado, para que ele possa ser chamado.
-(((funtor)))
+(((functor)))
 
 conversão::
 A conversão permite converter um valor de um tipo para outro.
@@ -764,7 +764,7 @@ Tipo do Julia que contém uma construção de linguagem.
 (((expressão)))
 
 macro::
-Forma de incluir o código gerado no final do corpo de um programa.
+Forma de incluir o código gerado no corpo final de um programa.
 (((macro)))
 
 funções geradas::
