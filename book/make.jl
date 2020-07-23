@@ -35,6 +35,7 @@ const chaps = [
   "chap21.asciidoc",
   "appa.asciidoc",
   "appb.asciidoc",
+  "appc.asciidoc",
   "index.asciidoc"
 ]
 mkpath(img)

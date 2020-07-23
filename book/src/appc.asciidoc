@@ -1,0 +1,11 @@
+[appendix]
+[[diferencas-ptbr]]
+== Diferenças na tradução
+
+Esta é uma tradução do https://benlauwens.github.io/ThinkJulia.jl/latest/book.html[ThinkJulia].
+Tanto o original quanto este livro estão disponíveis sob a licença https://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR[Creative Commons Atribuição-NãoComercial 3.0 Não Adaptada].
+
+As diferenças significatives do ThinkJulia para esta versão são:
+
+- Esta versão é uma tradução do inglês para o português brasileiro.
+- Muitas frases idiomáticas foram adaptadas ou removidas, por não fazerem sentido literal no Brasil.

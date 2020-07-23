@@ -119,8 +119,8 @@ Até agora nós rodamos o Julia em _modo interativo_, o que significa que nós i
 A alternativa é salvar o código em um arquivo chamado _script_ e em seguida rodar o Julia em _modo script_ para executar o script. Por convenção, scripts Julia possuem nomes que terminam com _.jl_.
 (((script)))(((modo script)))
 
-Se você sabe como criar e rodar um script no seu computador, você está pronto pra utilizar. No entanto eu recomendaria utilizar o JuliaBox novamente. Abrir um arquivo de texto, escrever um script e salvá-lo com a extensão _.jl_. O script pode ser executado em um terminal com o comando *+julia nome_do_script.jl+*.
-(((extensão, .jl)))(((JuliaBox)))
+Se você sabe como criar e rodar um script no seu computador, você está pronto pra utilizar. No entanto eu recomendaria utilizar o Repl.it novamente. Abrir um arquivo de texto, escrever um script e salvá-lo com a extensão _.jl_. O script pode ser executado em um terminal com o comando *+julia nome_do_script.jl+*.
+(((extensão, .jl)))(((Repl.it)))
 
 Como o Julia nos fornece ambos os modos, podemos testar pequenos trechos de código no modo interativo antes de colocá-los num script. Mas há diferenças entre o modo interativo e o modo script que podem ser um pouco confusas.
 
