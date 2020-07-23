@@ -5,10 +5,6 @@ Este capítulo apresenta um estudo de caso que demonstra o processo de design de
 
 Ele introduz o turtle graphics, um jeito de criar desenhos por meio de um programa. O pacote turtle graphics não está incluso na biblioteca padrão do Julia, portanto o módulo JuliaIntroBR tem que ser adicionado na sua configuração do Julia.
 
-Os exemplos neste capítulo podem ser executados em um notebook gráfico no JuliaBox, que combina código, texto formatado, matemática e multimídia em um único documento (ver <<juliabox>>).
-(((JuliaBox, notebook gráfico)))
-
-
 === Turtles
 
 Um _módulo_ é um arquivo que contém uma coleção de funções relacionadas. O Julia fornece alguns módulos na sua biblioteca padrão. Mais funcionalidades podem ser adicionadas a partir de uma crescente coleção de _pacotes_ (https://juliaobserver.com).

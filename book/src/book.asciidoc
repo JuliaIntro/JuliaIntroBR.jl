@@ -22,8 +22,8 @@ ifdef::preface-title[:preface-title: Prefácio]
 :version-label: Versão
 :warning-caption: Atenção
 
-= Think Julia: How to Think Like a Computer Scientist
-Ben Lauwens <ben.lauwens@gmail.com>; Allen Downey <allendowney@gmail.com>
+= Introdução à programação em Julia
+Ben Lauwens e Allen Downey ⋅ Tradução: Abel Soares Siqueira, Gustavo Sarturi, João Okimoto, Kally Chung
 
 include::colophon.asciidoc[]
 
@@ -76,6 +76,8 @@ include::chap21.asciidoc[]
 include::appa.asciidoc[]
 
 include::appb.asciidoc[]
+
+include::appc.asciidoc[]
 
 include::index.asciidoc[]    
     

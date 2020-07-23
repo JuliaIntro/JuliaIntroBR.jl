@@ -39,9 +39,9 @@ Um ((("Julia", "executando")))dos desafios de começar com o Julia é que talvez
 
 Para evitar esse problema, eu recomendo que você comece a executar o Julia em um navegador. Depois, quando se sentir mais confortável com o Julia, eu irei sugerir instalar o Julia em seu computador.
 
-No ((("JuliaBox")))((("recursos online", "JuliaBox")))navegador, você pode executar o https://www.juliabox.com[JuliaBox]. Nenhuma instalação é necessária - Apenas escolha um navegador, faça o _log in_ e comece a programar (veja <<juliabox>>).
+No ((("Repl.It")))((("recursos online", "Repl.it")))navegador, você pode executar o https://repl.it[Repl.it]. Nenhuma instalação é necessária - Apenas escolha um navegador, faça o _log in_ e comece a programar (veja <<editores-online>>).
 
-O _REPL_ do Julia (Read-Eval-Print Loop, que traduzido ao pé da letra, significa Ler, Avaliar e Repetição de impressão) é um programa que lê e executa os códigos do Julia. Você pode começar o REPL abrindo o terminal no JuliaBox e escrevendo *+julia+* na linha de comando. Quando executar, você deverá ver uma saída como essa:
+O _REPL_ do Julia (Read-Eval-Print Loop, que traduzido ao pé da letra, significa Ler, Avaliar e Repetição de impressão) é um programa que lê e executa os códigos do Julia. Você pode começar o REPL abrindo um terminal e escrevendo *+julia+* na linha de comando (depois de instalar o Julia). Alternativamente, o Repl.it já abre um terminal junto com o editor. Quando executar, você deverá ver uma saída como essa:
 
 [source,@julia-eval]
 ----

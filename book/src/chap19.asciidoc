@@ -161,7 +161,7 @@ julia> dado = "O meu nome é Severino, \nnão tenho outro de pia.\n"
 julia> open("output.txt", "w") do fout
            write(fout, dado)
        end
-48
+50
 ----
 
 Nesse exemplo, +fout+ é um fluxo de arquivo usado para a saída.
@@ -175,7 +175,7 @@ julia> f = fout -> begin
        end
 #3 (generic function with 1 method)
 julia> open(f, "output.txt", "w")
-48
+50
 ----
 
 A função anônima é usada como o primeiro argumento da função +open+:

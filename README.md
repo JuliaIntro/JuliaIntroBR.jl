@@ -1,14 +1,17 @@
 ## Introdução à programação em Julia
 
-Uma introdução à programação na linguagem científica de computadores Julia.  Para a versão em inglês, consulte [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html).
+Uma introdução à programação na linguagem científica de computadores Julia.
+A versão mais atual está disponível aqui: [IntroJuliaBR](https://juliaintro.github.io/JuliaIntroBR.jl/).
+Para a versão em inglês, consulte [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html).
 
 ## JuliaIntroBR.jl
 
 Todo o código usado neste livro está disponível neste repositório. Este repositório contém o texto do livro e também funciona como um pacote Julia para fornecer o código usado no livro.
 
 ```julia
-Pkg.add(PackageSpec(url = "https://github.com/JuliaIntro/JuliaIntroBR.jl"))
-using JuliaIntroBR
+julia> # Aperte ] para que o terminal vire pkg>
+pkg> add https://github.com/JuliaIntro/JuliaIntroBR.jl
+julia> using JuliaIntroBR
 ```
 
 ## Como contribuir
