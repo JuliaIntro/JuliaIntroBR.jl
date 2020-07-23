@@ -466,9 +466,9 @@ julia> t = ("presunto", "ovo", "presunto", "presunto", "bacon", "presunto")
 ("presunto", "ovo", "presunto", "presunto", "bacon", "presunto")
 julia> histograma(t)
 Dict{Any,Any} with 3 entries:
-  "bacon"     => 1
-  "presunto"  => 4
-  "ovo"       => 1
+  "bacon"    => 1
+  "presunto" => 4
+  "ovo"      => 1
 ----
 
 Funções que funcionam com vários tipos são chamadas de _polimórficas_. Polimorfismo pode facilitar o reuso de código.

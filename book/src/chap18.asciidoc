@@ -321,7 +321,7 @@ Uma mão também é um tipo de +Conjunto_Carta+:
 [source,@julia-setup chap18a]
 ----
 struct Mão <: Conjunto_Carta
-    carta :: Array{Carta, 1}
+    cartas :: Array{Carta, 1}
     identificação :: String
 end
 
