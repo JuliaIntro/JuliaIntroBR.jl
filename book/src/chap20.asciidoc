@@ -1,5 +1,5 @@
 [[chap20]]
-== Extra: Base e a Biblioteca Padrão
+== Extras: Base e a Biblioteca Padrão
 
 O Julia vem com baterias inclusas. O módulo +Base+ contém as funções, tipos e macros mais utéis. Eles estão diretamente disponíveis no Julia.
 (((Base)))
@@ -13,7 +13,7 @@ O Julia também fornece um grande número de módulos especializados em sua Bibl
 
 Funcionalidades extras podem ser adicionadas a partir de uma crescente coleção de pacotes (https://juliaobserver.com).
 
-Este capítulo não é uma substituição à documentação oficial do Julia. Eu apenas dou alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em https://docs.julialang.org.
+Este capítulo não é uma substituição à documentação oficial do Julia. Apenas damos alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em https://docs.julialang.org.
 
 === Mensurando Performance
 
@@ -70,8 +70,8 @@ end
 
 Em todos estes dicionários, os valores são +nothing+ porque nós nunca usamos eles. Como resultado, nós desperdiçamos um pouco de espaço de armazenamento.
 
-O Julia fornece outro tipo embutido, chamado de conjunto, que se comporta como uma coleção de chaves de dicionário mas sem valores. Adicionar elementos à um conjunto é rápido; assim como verificar que um elemento pertence à ele. Além disso, conjuntos fornecem funções e operadores para computar operações comuns de conjunto.
-(((Conjunto)))((("tipo", "Base", "Conjunto", see="Conjunto")))
+O Julia fornece outro tipo embutido, chamado de conjunto (Set), que se comporta como uma coleção de chaves de dicionário mas sem valores. Adicionar elementos à um conjunto é rápido; assim como verificar que um elemento pertence à ele. Além disso, conjuntos fornecem funções e operadores para computar operações comuns de conjunto.
+(((Conjunto)))((("tipo", "Base", "Set", see="Conjunto")))
 
 Por exemplo, a subtração de conjuntos está disponível em uma função chamada +setdiff+. Então podemos reescrever +subtrai+ assim:
 (((setdiff)))((("função", "Base", "setdiff", see="setdiff")))
@@ -129,6 +129,7 @@ function usa_somente(word, disponível)
     true
 end
 ----
+
 +usa_somente+ verifica se todas as letras em +palavra+ estão em +disponível+. Nós podemos reescreve-la da seguinte forma:
 
 [source,@julia-setup]
@@ -240,9 +241,9 @@ julia> m.offset
 7
 ----
 
-Expressões regulares são extremamente poderosas e o página do manual PERL http://perldoc.perl.org/perlre.html fornece todos os detalhes para construir buscas bastante exóticas.
+Expressões regulares são extremamente poderosas e a página do manual PERL http://perldoc.perl.org/perlre.html fornece todos os detalhes para construir buscas bastante exóticas.
 
-=== Listas
+=== Arrays
 
 Em <<chap10>> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são do tipo Array, (em Inglês, não há distinção no nome) que são coleções multidimensionais.
 
@@ -413,7 +414,7 @@ Isto é um bom exemplo de como uma interface bem definida permite uma implementa
 Nós já conhecemos o módulo +InteractiveUtils+ em <<interactive>>. A macro +@which+ é somente a ponta do iceberg.
 (((InteractiveUtils)))(((@which)))
 
-O código Julia é transformada pela biblioteca LLVM para código de máquina em múltiplos passos. Nós podemos diretamente visualizar a saída de cada etapa.
+O código Julia é transformado pela biblioteca LLVM para código de máquina em múltiplos passos. Nós podemos diretamente visualizar a saída de cada etapa.
 
 Aqui está um exemplo simples:
 (((soma_de_quadrados)))((("função", "definido pelo programador", "soma_de_quadrados", see="soma_de_quadrados")))
@@ -425,7 +426,7 @@ function soma_de_quadrados(a::Float64, b::Float64)
 end
 ----
 
-O primeiro passo é ver o código lowered:
+O primeiro passo é ver o código em nível mais baixo:
 (((@code_lowered)))((("macro", "InteractiveUtils", "@code_lowered", see="@code_lowered")))
 
 [source,@julia-repl-test chap20]
@@ -464,7 +465,7 @@ CodeInfo(
 
 Nós podemos ver o tipo dos resultados intermediários e o valor de retorno é corretamente inferido.
 
-A representação do código é transformada em código LLVM:
+A representação do código a seguir é transformada em código LLVM:
 (((código LLVM)))(((@code_llvm)))((("macro", "InteractiveUtils", "@code_llvm", see="@code_llvm")))
 
 [source,@julia-repl chap20]
@@ -500,8 +501,8 @@ As macros +Logging+ fornecem uma alternativa a andaimes com declarações print:
 
 [source,jlcon]
 ----
-julia> @warn "Abandone a depuração com printf, saudações a quem entra aqui!"
-┌ Warning: Abandone a depuração com printf, saudações a quem entra aqui!
+julia> @warn "Abandone a depuração com printf, vós que entrais aqui!"
+┌ Warning: Abandone a depuração com printf, vós que entrais aqui!
 └ @ Main REPL[1]:1
 ----
 
@@ -537,7 +538,7 @@ Expressão regular, uma sequência de caracteres que definem um padrão de busca
 (((regex)))
 
 matriz::
-Uma lista bidimensional.
+Um array bidimensional.
 (((matriz)))
 
 representação intermediária::
