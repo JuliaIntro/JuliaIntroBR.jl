@@ -735,17 +735,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_glossary">Glossary</a></li>
 </ul>
 </li>
-<li><a href="#chap20">23. The Goodies: Base and Standard Library</a>
+<li><a href="#chap20">23. Extras: Base e a Biblioteca Padrão</a>
 <ul class="sectlevel2">
-<li><a href="#_measuring_performance">Measuring Performance</a></li>
-<li><a href="#collections_and_data_structures">Collections and Data Structures</a></li>
-<li><a href="#_mathematics">Mathematics</a></li>
+<li><a href="#_mensurando_performance">Mensurando Performance</a></li>
+<li><a href="#collections_and_data_structures">Coleções e Estruturas de Dados</a></li>
+<li><a href="#_matemática">Matemática</a></li>
 <li><a href="#_strings">Strings</a></li>
 <li><a href="#_arrays">Arrays</a></li>
 <li><a href="#_interfaces">Interfaces</a></li>
-<li><a href="#_interactive_utilities">Interactive Utilities</a></li>
-<li><a href="#_debugging">Debugging</a></li>
-<li><a href="#_glossary_2">Glossary</a></li>
+<li><a href="#_utilidades_interativas">Utilidades Interativas</a></li>
+<li><a href="#_depuração_15">Depuração</a></li>
+<li><a href="#_glossário_19">Glossário</a></li>
 </ul>
 </li>
 <li><a href="#chap21">24. Depuração</a>
@@ -4252,7 +4252,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; time()
-1.595462733336331e9</code></pre>
+1.595470018904637e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10435,7 +10435,7 @@ outree quicksighted outwardly adelaide rencontre jeffereys unreserved dixons bet
 <div class="sect4">
 <h5 id="ex13-6">Exercício 13-6</h5>
 <div class="paragraph">
-<p>O Julia fornece uma estrutura de dados chamado <code>Set</code> que fornece várias operações usuais de conjuntos. Você pode ler mais sobre elas em <a href="#collections_and_data_structures">Collections and Data Structures</a>, ou ler a documentação em <a href="https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1" class="bare">https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1</a>.</p>
+<p>O Julia fornece uma estrutura de dados chamado <code>Set</code> que fornece várias operações usuais de conjuntos. Você pode ler mais sobre elas em <a href="#collections_and_data_structures">Coleções e Estruturas de Dados</a>, ou ler a documentação em <a href="https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1" class="bare">https://docs.julialang.org/en/v1/base/collections/#Set-Like-Collections-1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Escreva um programa que usa a subtração de conjuntos para encontrar as palavras do livro que não estão na lista de palavras.</p>
@@ -13007,9 +13007,9 @@ end</code></pre>
 ("presunto", "ovo", "presunto", "presunto", "bacon", "presunto")
 julia&gt; histograma(t)
 Dict{Any,Any} with 3 entries:
-  "bacon"     =&gt; 1
-  "presunto"  =&gt; 4
-  "ovo"       =&gt; 1</code></pre>
+  "bacon"    =&gt; 1
+  "presunto" =&gt; 4
+  "ovo"      =&gt; 1</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13533,7 +13533,7 @@ true</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">struct Mão &lt;: Conjunto_Carta
-    carta :: Array{Carta, 1}
+    cartas :: Array{Carta, 1}
     identificação :: String
 end
 
@@ -13584,11 +13584,10 @@ end</code></pre>
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(baralho)
-2♠ Q♣ 4♣ 6♦ 7♣ K♥ 2♦ J♥ 8♥ 9♥ A♠ 8♣ 10♣ 9♣ J♦ Q♠ 9♠ J♣ 2♣ 3♥ 6♥ 9♦ 6♣ 8♦ 5♦ Q♥ J♠ 8♠ K♠ 10♠ 4♠ 3♠ 10♥ 3♣ 5♠ 7♠ K♣ Q♦ 10♦ 5♣ A♦ A♣ 7♦ 6♠ K♦ 4♥ 4♦ 2♥ 7♥ 5♥ A♥ 3♦
+3♣ 8♣ 10♥ 6♣ 9♠ 6♥ 2♦ J♥ A♥ 6♦ K♠ 5♥ 4♣ A♦ 2♠ 9♥ 7♦ 7♠ J♦ Q♠ 3♦ 9♦ A♠ Q♦ 8♥ K♣ J♣ Q♣ 4♠ K♦ 9♣ 4♥ 7♣ 3♥ 10♠ 2♣ A♣ 2♥ J♠ 6♠ 10♣ K♥ 7♥ Q♥ 8♠ 4♦ 3♠ 8♦ 5♠ 5♦ 10♦ 5♣
 julia&gt; carta = pop!(baralho)
-3♦
-julia&gt; push!(mão, carta)
-ERROR: type Mão has no field cartas</code></pre>
+5♣
+julia&gt; push!(mão, carta)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -14930,37 +14929,37 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="chap20">23. The Goodies: Base and Standard Library</h2>
+<h2 id="chap20">23. Extras: Base e a Biblioteca Padrão</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Julia comes with batteries included. The <code>Base</code> module contains the most useful functions, types and macros. These are directly available in Julia.
+<p>O Julia vem com baterias inclusas. O módulo <code>Base</code> contém as funções, tipos e macros mais utéis. Eles estão diretamente disponíveis no Julia.
 </p>
 </div>
 <div class="paragraph">
-<p>Julia provides also a large number of specialized modules in its Standard Library (Dates, Distributed Computing, Linear Algebra, Profiling, Random Numbers, &#8230;&#8203;). Functions, types and macros defined in the Standard Library have to be imported before they can be used:</p>
+<p>O Julia também fornece um grande número de módulos especializados em sua Biblioteca Padrão (Datas, Computação Distribuida, Álgebra Linear, Profiling, Números Aleatórios, &#8230;&#8203;). Funções, tipos e macros definidas na Biblioteca Padrão precisam ser importados antes de poderem ser usados:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>import <em>Module</em></code> imports the module, and <code><em>Module.fn</em>(x)</code> calls the function <code><em>fn</em></code>
+<p><code>import <em>Módulo</em></code> importa o módulo, e <code><em>Módulo.fn(x)</em></code> chama a função <code><em>fn</em></code>
 </p>
 </li>
 <li>
-<p><code>using <em>Module</em></code> imports all exported <code><em>Module</em></code> functions, types and macros.
+<p><code>using <em>Módulo</em></code> importa todas as funções, tipos e macros exportadas de <code><em>Módulo</em></code>.
 </p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Additional functionality can be added from a growing collection of packages (<a href="https://juliaobserver.com" class="bare">https://juliaobserver.com</a>).</p>
+<p>Funcionalidades extras podem ser adicionadas a partir de uma crescente coleção de pacotes (<a href="https://juliaobserver.com" class="bare">https://juliaobserver.com</a>).</p>
 </div>
 <div class="paragraph">
-<p>This chapter is not a replacement of the official Julia documentation. I give merely some examples to illustrate what is possible without being exhaustive.  Functions already introduced elsewhere are not included. A complete overview can be found in <a href="https://docs.julialang.org" class="bare">https://docs.julialang.org</a>.</p>
+<p>Este capítulo não é uma substituição à documentação oficial do Julia. Apenas damos alguns exemplos para ilustrar o que é possível sem tornar o processo exaustivo. Funções já introduzidas em algum outro lugar não estão inclusas. Uma visão geral pode ser encontrada em <a href="https://docs.julialang.org" class="bare">https://docs.julialang.org</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_measuring_performance">Measuring Performance</h3>
+<h3 id="_mensurando_performance">Mensurando Performance</h3>
 <div class="paragraph">
-<p>We have seen that some algorithms perform better than others. <code>fibonnaci</code> in <a href="#memos">Memos</a> is a lot faster than <code>fib</code> in <a href="#one_more_example">Mais Um Exemplo</a>. The <code>@time</code> macro allows to quantify the difference:
+<p>Nós vimos que alguns algoritmos executam melhor que outros. <code>fibonnaci</code> em <a href="#memos">Memos</a> é muito mais rápido que <code>fib</code> em <a href="#one_more_example">Mais Um Exemplo</a>. A macro <code>@time</code> permite quantificar a diferença:
 </p>
 </div>
 <div class="listingblock">
@@ -14978,12 +14977,12 @@ julia&gt; @time fibonacci(40)
 </div>
 </div>
 <div class="paragraph">
-<p><code>@time</code> prints the time the function took to execute, the number of allocations and the allocated memory before returning the result. The memoized version is effectively a lot faster but needs more memory.</p>
+<p><code>@time</code> exibe o tempo que a função levou para executar, o número de alocações (allocations) e a memória alocada antes de retornar o resultado. A versão memoizada é efetivamente muito mais rápida, mas requer mais memória.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>There ain&#8217;t no such thing as a free lunch!</p>
+<p>Não existem almoços grátis!</p>
 </div>
 </blockquote>
 </div>
@@ -14995,10 +14994,10 @@ julia&gt; @time fibonacci(40)
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A function in Julia is compiled the first time it is executed. So to compare two algorithms, they have to be implemented as functions to get compiled and the first time they are called has to be excluded from the performance measure, otherwise the compilation time is measured as well.</p>
+<p>Uma função no Julia é compilada na primeira vez que é executada. Então para comparar dois algoritmos, eles devem ser implementados como funções para serem compilados e a primeira vez que são chamadas precisa ser excluída da medida de performance, caso contrário o tempo de compilação também é medido.</p>
 </div>
 <div class="paragraph">
-<p>The package <code>BenchmarkTools</code> (<a href="https://github.com/JuliaCI/BenchmarkTools.jl" class="bare">https://github.com/JuliaCI/BenchmarkTools.jl</a>) provides the macro <code>@btime</code> that does benchmarking the right way. So just use it!</p>
+<p>O pacote <code>BenchmarkTools</code> (<a href="https://github.com/JuliaCI/BenchmarkTools.jl" class="bare">https://github.com/JuliaCI/BenchmarkTools.jl</a>) fornece a macro <code>@btime</code> que faz benchmarking da maneira certa. Então use-a!</p>
 </div>
 </td>
 </tr>
@@ -15006,18 +15005,18 @@ julia&gt; @time fibonacci(40)
 </div>
 </div>
 <div class="sect2">
-<h3 id="collections_and_data_structures">Collections and Data Structures</h3>
+<h3 id="collections_and_data_structures">Coleções e Estruturas de Dados</h3>
 <div class="paragraph">
-<p>In <a href="#dictionary_subtraction">Subtração de Dicionário</a> we used dictionaries to find the words that appear in a document but not in a word array. The function we wrote takes <code>d1</code>, which contains the words from the document as keys, and <code>d2</code>, which contains the array of words. It returns a dictionary that contains the keys from <code>d1</code> that are not in <code>d2</code>.
+<p>Em <a href="#dictionary_subtraction">Subtração de Dicionário</a> nós usamos dicionários para achar palavras que aparecem em um documento mas não em uma lista de palavra. A função que escrevemos recebe <code>d1</code>, que contém as palavras do documento como chaves, e <code>d2</code>, que contém a lista de palavras. Ela retorna um dicionário que contém chaves de <code>d1</code> que não estão em <code>d2</code>.
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function subtract(d1, d2)
+<pre class="pygments highlight"><code data-lang="julia">function subtrai(d1, d2)
     res = Dict()
-    for key in keys(d1)
-        if key ∉ keys(d2)
-            res[key] = nothing
+    for chave in keys(d1)
+        if chave ∉ keys(d2)
+            res[chave] = nothing
         end
     end
     res
@@ -15025,33 +15024,33 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In all of these dictionaries, the values are <code>nothing</code> because we never use them. As a result, we waste some storage space.</p>
+<p>Em todos estes dicionários, os valores são <code>nothing</code> porque nós nunca usamos eles. Como resultado, nós desperdiçamos um pouco de espaço de armazenamento.</p>
 </div>
 <div class="paragraph">
-<p>Julia provides another built-in type, called a set, that behaves like a collection of dictionary keys with no values. Adding elements to a set is fast; so is checking membership. And sets provide functions and operators to compute common set operations.
+<p>O Julia fornece outro tipo embutido, chamado de conjunto (Set), que se comporta como uma coleção de chaves de dicionário mas sem valores. Adicionar elementos à um conjunto é rápido; assim como verificar que um elemento pertence à ele. Além disso, conjuntos fornecem funções e operadores para computar operações comuns de conjunto.
 </p>
 </div>
 <div class="paragraph">
-<p>For example, set subtraction is available as a function called <code>setdiff</code>. So we can rewrite <code>subtract</code> like this:
+<p>Por exemplo, a subtração de conjuntos está disponível em uma função chamada <code>setdiff</code>. Então podemos reescrever <code>subtrai</code> assim:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function subtract(d1, d2)
+<pre class="pygments highlight"><code data-lang="julia">function subtrai(d1, d2)
     setdiff(d1, d2)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result is a set instead of a dictionary.</p>
+<p>O resultado é um conjunto ao invés de um dicionário.</p>
 </div>
 <div class="paragraph">
-<p>Some of the exercises in this book can be done concisely and efficiently with sets. For example, here is a solution to <code>hasduplicates</code>, from <a href="#ex10-7">Exercise 10-7</a>, that uses a dictionary:
+<p>Alguns dos exercicíos deste livro podem ser feitos de forma concisa e eficientemente utilizando conjuntos. Por exemplo, aqui está uma solução para <code>tem_duplicatas</code>, de <a href="#ex10-7">Exercise 10-7</a>, que usa um dicionário:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function hasduplicates(t)
+<pre class="pygments highlight"><code data-lang="julia">function tem_duplicatas(t)
     d = Dict()
     for x in t
         if x ∈ d
@@ -15064,30 +15063,30 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When an element appears for the first time, it is added to the dictionary. If the same element appears again, the function returns <code>true</code>.</p>
+<p>Quando um elemento aparece pela primeira vez, ele é adicionado ao dicionário. Se o mesmo elemento aparece novamente, a função retorna <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>Using sets, we can write the same function like this:</p>
+<p>Utilizando conjuntos, nós podemos escrever a mesma função assim:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function hasduplicates(t)
+<pre class="pygments highlight"><code data-lang="julia">function tem_duplicatas(t)
     length(Set(t)) &lt; length(t)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>An element can only appear in a set once, so if an element in <code>t</code> appears more than once, the set will be smaller than <code>t</code>. If there are no duplicates, the set will be the same size as <code>t</code>.</p>
+<p>Um elemento pode aparecer somente uma vez no conjunto, então se um elemento em <code>t</code> aparece mais de uma vez, o conjunto será menor que <code>t</code>. Se não há duplicatas, o conjunto terá o mesmo tamanho que <code>t</code>.</p>
 </div>
 <div class="paragraph">
-<p>We can also use sets to do some of the exercises in <a href="#chap09">Estudo de Caso: Jogo de Palavras</a>. For example, here’s a version of <code>usesonly</code> with a loop:
+<p>Nós também podemos usar conjuntos para fazer alguns exercícios de <a href="#chap09">Estudo de Caso: Jogo de Palavras</a>. Por exemplo, aqui está uma versão de <code>usa_somente</code> com um laço:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function usesonly(word, available)
-    for letter in word
-        if letter ∉ available
+<pre class="pygments highlight"><code data-lang="julia">function usa_somente(palavra, disponível)
+    for letra in palavra
+        if letra ∉ disponível
             return false
         end
     end
@@ -15096,35 +15095,35 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>usesonly</code> checks whether all letters in <code>word</code> are in <code>available</code>. We can rewrite it like this:</p>
+<p><code>usa_somente</code> verifica se todas as letras em <code>palavra</code> estão em <code>disponível</code>. Nós podemos reescreve-la da seguinte forma:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function usesonly(word, available)
-    Set(word) ⊆ Set(available)
+<pre class="pygments highlight"><code data-lang="julia">function usa_somente(palavra, disponível)
+    Set(palavra) ⊆ Set(disponível)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>⊆</code> (<strong><code>\subseteq TAB</code></strong>) operator checks whether one set is a subset or another, including the possibility that they are equal, which is true if all the letters in <code>word</code> appear in <code>available</code>.
+<p>O operador <code>⊆</code> (<strong><code>\subseteq TAB</code></strong>) verifica se um conjunto é um subconjunto ou algum outro conjunto, incluindo a possibilidade deles serem iguais, que ocorre se todas as letras em <code>palavra</code> aparecem em <code>disponível</code>.
 </p>
 </div>
 <div class="sect4">
-<h5 id="_exercise_20_1">Exercise 20-1</h5>
+<h5 id="_exercício_20_1">Exercício 20-1</h5>
 <div class="paragraph">
-<p>Rewrite <code>avoids</code> using sets.
+<p>Reescreva <code>evita</code> utilizando conjuntos.
 </p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mathematics">Mathematics</h3>
+<h3 id="_matemática">Matemática</h3>
 <div class="paragraph">
-<p>Complex numbers are also supported in Julia. The global constant <code>im</code> is bound to the complex number \($\mathrm{i}$\), representing the principal square root of \($-1$\).
+<p>Números complexos também são suportados pelo Julia. A constante global <code>im</code> é vinculada ao número complexo \($\mathrm{i}$\), representando a raiz quadrada de \($-1$\).
 </p>
 </div>
 <div class="paragraph">
-<p>We can now verify Euler&#8217;s identity,
+<p>Nós podemos agora verificar a identidade de Euler.
 </p>
 </div>
 <div class="listingblock">
@@ -15134,11 +15133,11 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The symbol <code>ℯ</code> (<strong><code>\euler TAB</code></strong>) is the base of natural logarithms.
+<p>O símbolo <code>ℯ</code> (<strong><code>\euler TAB</code></strong>) é a base dos logaritmos naturais.
 </p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s illustrate the complex nature of trigonometric functions:</p>
+<p>Vamos ilustrar a natureza complexa de funções trigonométricas:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -15148,7 +15147,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can test this formula for different values of \(x\).</p>
+<p>Nós podemos agora testar esta fórmula para valores diferentes de \(x\).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -15159,40 +15158,40 @@ true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Here, another example of the dot operator is shown. Julia also allows numeric literals to be juxtaposed with identifiers as coefficients as in <code>2π</code>.</p>
+<p>Aqui, outro exemplo do uso do operador ponto é mostrado. O Julia também permite que literais numéricos sejam justapostos com identificadores e coeficientes, como em <code>2π</code>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_strings">Strings</h3>
 <div class="paragraph">
-<p>In <a href="#chap08">Strings</a> and <a href="#chap09">Estudo de Caso: Jogo de Palavras</a>, we did some elementary searches in string objects. Julia can handle however Perl-compatible regular expressions (<em>regexes</em>), which eases the task of finding complex patterns in string objets.
+<p>Em <a href="#chap08">Strings</a> e <a href="#chap09">Estudo de Caso: Jogo de Palavras</a>, nós fizemos algumas buscas elementares com objetos string. O Julia pode no entanto, lidar com expressões regulares (<em>regexes</em>) compatíveis com o Perl, que facilita a tarefa de achar padrões complexos em objetos string.
 </p>
 </div>
 <div class="paragraph">
-<p>The <code>usesonly</code> function can be implemented as a regex:
+<p>A função <code>usa_somente</code> pode ser implementada como uma expressão regular:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function usesonly(word, available)
-  r = Regex("[^$(available)]")
-  !occursin(r, word)
+<pre class="pygments highlight"><code data-lang="julia">function usa_somente(palavra, disponível)
+  r = Regex("[^$(disponível)]")
+  !occursin(r, palavra)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The regex looks for a character that is not in the <code>available</code> string and <code>occursin</code> returns <code>true</code> if the pattern is found in <code>word</code>.</p>
+<p>A expressão regular procura um caractere que não está na string <code>disponível</code> e <code>occursin</code> retorna <code>true</code> se o padrão é achado em <code>palavra</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; usesonly("banana", "abn")
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; usa_somente("banana", "abn")
 true
-julia&gt; usesonly("bananas", "abn")
+julia&gt; usa_somente("bananas", "abn")
 false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Regexes can also be constructed as non-standard string literals prefixed with <code>r</code>:
+<p>Expressões regulares também podem ser construídas como literais strings não padronizadas prefixadas com <code>r</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -15204,25 +15203,25 @@ RegexMatch("s")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>String interpolation is not allowed in this case. The <code>match</code> function returns nothing if the pattern (a command) is not found and return a regexmatch object otherwise.
+<p>Interpolação de strings não é permitada neste caso. A função <code>match</code> retorna nada se o padrão (um comando) não é achado, e retorna um objeto regexmatch caso contrário.
 </p>
 </div>
 <div class="paragraph">
-<p>We can extract the following info from a regexmatch object:</p>
+<p>Nós podemos extrair a seguinte informação de um objeto regexmatch:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the entire substring matched: <code>m.match</code></p>
+<p>A substring correspondente inteira: <code>m.match</code></p>
 </li>
 <li>
-<p>the captured substrings as an array of strings: <code>m.captures</code></p>
+<p>as substrings capturadas como um lista de strings: <code>m.captures</code></p>
 </li>
 <li>
-<p>the offset at which the whole match begins: <code>m.offset</code></p>
+<p>o deslocamento no qual toda a correspondência inicia: <code>m.offset</code></p>
 </li>
 <li>
-<p>the offsets of the captured substrings as an array: <code>m.offsets</code></p>
+<p>os deslocamentos das substrings capturadas como uma lista: <code>m.offsets</code></p>
 </li>
 </ul>
 </div>
@@ -15235,16 +15234,16 @@ julia&gt; m.offset
 </div>
 </div>
 <div class="paragraph">
-<p>Regexes are extremely powerful and the PERL manpage <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> provides all the details to construct the most exotic searches.</p>
+<p>Expressões regulares são extremamente poderosas e a página do manual PERL <a href="http://perldoc.perl.org/perlre.html" class="bare">http://perldoc.perl.org/perlre.html</a> fornece todos os detalhes para construir buscas bastante exóticas.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_arrays">Arrays</h3>
 <div class="paragraph">
-<p>In <a href="#chap10">Listas</a> we used an array object as a one-dimensional container with an index to address its elements. In Julia however, arrays are multi-dimensional collections.</p>
+<p>Em <a href="#chap10">Listas</a> nós usamos um objeto lista como um container unidimensional com um índice para endereçar seus elementos. No entanto, no Julia as listas são do tipo Array, (em Inglês, não há distinção no nome) que são coleções multidimensionais.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s create a 2-by-3 zero <em>matrix</em>:
+<p>Vamos criar uma <em>matriz</em> 2 por 3 preenchida com zeros:
 </p>
 </div>
 <div class="listingblock">
@@ -15258,11 +15257,11 @@ Array{Float64,2}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The type of this matrix is an array holding floating points and having 2 dimensions.
+<p>O tipo desta matriz é um array que guarda pontos flutuantes com duas dimensões.
 </p>
 </div>
 <div class="paragraph">
-<p>The <code>size</code> function returns a tuple with as elements the number of elements in each dimension:
+<p>A função <code>size</code> retorna uma tupla com seus elementos sendo o número de elementos em cada dimensão da matriz:
 </p>
 </div>
 <div class="listingblock">
@@ -15272,7 +15271,7 @@ Array{Float64,2}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The function <code>ones</code> constructs a matrix with unit value elements:
+<p>A função <code>ones</code> constrói uma matriz com valores unitários:
 </p>
 </div>
 <div class="listingblock">
@@ -15283,7 +15282,7 @@ Array{Float64,2}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The string unit element is an empty string.</p>
+<p>Uma string unitária é uma string vazia.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -15293,7 +15292,7 @@ Array{Float64,2}</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>s</code> is not a one-dimensional array:</p>
+<p><code>s</code> não é um array unidimensional:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -15302,14 +15301,14 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>s</code> is a row matrix and <code>["", "", ""]</code> is a column matrix.</p>
+<p><code>s</code> é uma matriz linha e <code>["", "", ""]</code> é uma matriz coluna.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>A matrix can be entered directly using a space to separate elements in a row and a semicolon <code>;</code> to separate rows:
+<p>Uma matriz pode ser digitada diretamente usando a barra de espaço para separar os elementos em uma linha e um ponto e vírgula <code>;</code> para separar as linhas.
 </p>
 </div>
 <div class="listingblock">
@@ -15321,7 +15320,7 @@ false</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can use square brackets to address individual elements:
+<p>Você pode usar os colchetes para endereçar elementos individuais:
 </p>
 </div>
 <div class="listingblock">
@@ -15337,7 +15336,7 @@ julia&gt; z
 </div>
 </div>
 <div class="paragraph">
-<p>Slices can be used for each dimension to select a subgroup of elements:
+<p>Fatias podem ser usadas para cada dimensão para selecionar um subgrupo de elementos:
 </p>
 </div>
 <div class="listingblock">
@@ -15349,7 +15348,7 @@ julia&gt; z
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>.</code> operator broadcasts to all dimensions:
+<p>O operador <code>.</code> transmite a operação para todas as dimensões:
 </p>
 </div>
 <div class="listingblock">
@@ -15364,40 +15363,40 @@ julia&gt; z
 <div class="sect2">
 <h3 id="_interfaces">Interfaces</h3>
 <div class="paragraph">
-<p>Julia specifies some informal interfaces to define behaviors, i.e. methods with a specific goal. When you extend such a method for a type, objects of that type can be used to build upon these behaviors.
+<p>O Julia específica algumas interfaces informais para definir comportamentos, isto é, métodos com um objetivo específico. Quando você extende um destes métodos para um tipo, objetos daquele tipo podem ser usados para desenvolver estes comportamentos.
 </p>
 </div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>If it looks like a duck, swims like a duck, and quacks like a duck, then it probably <em>is</em> a duck.</p>
+<p>Se algo se parece com um pato, nada como um pato e soa como um pato, então provavelmente <em>é</em> um pato.</p>
 </div>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>In <a href="#one_more_example">Mais Um Exemplo</a> we implemented the <code>fib</code> function returning the \(n\)th element of the Fibonnaci sequence.</p>
+<p>Em <a href="#one_more_example">Mais Um Exemplo</a> nós implementamos a função <code>fib</code> retornando o \(n\)-ésimo elemento da sequência de Fibonnaci.</p>
 </div>
 <div class="paragraph">
-<p>Looping over the values of a collection, called iteration, is such an interface. Let&#8217;s make an iterator that returns lazily the Fibonacci sequence:
+<p>Percorrer os valores de uma coleção, chamada iteração, é essa interface. Vamos criar um iterando que retorna preguiçosamente a sequência de Fibonacci:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">struct Fibonacci{T&lt;:Real} end
-Fibonacci(d::DataType) = d&lt;:Real ? Fibonacci{d}() : error("No Real type!")
+Fibonacci(d::DataType) = d&lt;:Real ? Fibonacci{d}() : error("Não é um tipo real!")
 
 Base.iterate(::Fibonacci{T}) where {T&lt;:Real} = (zero(T), (one(T), one(T)))
-Base.iterate(::Fibonacci{T}, state::Tuple{T, T}) where {T&lt;:Real} = (state[1], (state[2], state[1] + state[2]))</code></pre>
+Base.iterate(::Fibonacci{T}, estado::Tuple{T, T}) where {T&lt;:Real} = (estado[1], (estado[2], estado[1] + estado[2]))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We implemented a parametric type with no fields <code>Fibonacci</code>, an outer constructor and two methods <code>iterate</code>. The first is called to initialize the iterator and returns a tuple consisting of the first value, 0, and a state. The state in this case is a tuple containing the second and the third value, 1 and 1.</p>
+<p>Nós implementamos um tipo parametrizado sem nenhum campo chamado <code>Fibonacci</code>, um construtor externo e dois métodos <code>iterate</code>. O primeiro é chamado para inicializar o iterando e retornar a tupla consistindo do primeiro valor, 0, e o estado. O estado neste caso é uma tupla contendo o segundo e o terceiro valor, 1 e 1.</p>
 </div>
 <div class="paragraph">
-<p>The second is called to get the next value of the Fibonacci sequence and returns a tuple having as first element the next value and as second element the state which is a tuple with the two following values.</p>
+<p>O segundo é chamado para obter o próximo valor da sequência de Fibonacci e retornar a tupla tendo como primeiro elemento o próximo valor e o segundo elemento o estado que é uma tupla com os dois próximos valores.</p>
 </div>
 <div class="paragraph">
-<p>We can use <code>Fibonacci</code> now in a <code>for</code> loop:
+<p>Nós podemos usar <code>Fibonacci</code> agora em um laço <code>for</code>:
 </p>
 </div>
 <div class="listingblock">
@@ -15410,61 +15409,61 @@ Base.iterate(::Fibonacci{T}, state::Tuple{T, T}) where {T&lt;:Real} = (state[1],
 </div>
 </div>
 <div class="paragraph">
-<p>It looks like magic has happened but the explanation is simple. A <code>for</code> loop in Julia</p>
+<p>Parece que alguma mágica aconteceu, mas a explicação é simples. Um laço <code>for</code> em Julia</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="julia">for i in iter
-    # body
+    # corpo
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>is translated into:</p>
+<p>é traduzido para:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">next = iterate(iter)
-while next !== nothing
-    (i, state) = next
-    # body
-    next = iterate(iter, state)
+<pre class="pygments highlight"><code data-lang="julia">próximo = iterate(iter)
+while próximo !== nothing
+    (i, estado) = próximo
+    # corpo
+    próximo = iterate(iter, estado)
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is a great example how a well defined interface allows an implementation to use all the functions that are aware of the interface.</p>
+<p>Isto é um bom exemplo de como uma interface bem definida permite uma implementação usar todas as funções que estão cientes da interface.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_interactive_utilities">Interactive Utilities</h3>
+<h3 id="_utilidades_interativas">Utilidades Interativas</h3>
 <div class="paragraph">
-<p>We have already met the <code>InteractiveUtils</code> module in <a href="#interactive">Depuração</a>. The <code>@which</code> macro is only the tip of the iceberg.
+<p>Nós já conhecemos o módulo <code>InteractiveUtils</code> em <a href="#interactive">Depuração</a>. A macro <code>@which</code> é somente a ponta do iceberg.
 </p>
 </div>
 <div class="paragraph">
-<p>Julia code is transformed by the LLVM library to machinecode in multiple steps. We can directly visualize the output of each stage.</p>
+<p>O código Julia é transformado pela biblioteca LLVM para código de máquina em múltiplos passos. Nós podemos diretamente visualizar a saída de cada etapa.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s give a simple example:
+<p>Aqui está um exemplo simples:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="julia">function squaresum(a::Float64, b::Float64)
+<pre class="pygments highlight"><code data-lang="julia">function soma_de_quadrados(a::Float64, b::Float64)
     a^2 + b^2
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first step is to look at the lowered code:
+<p>O primeiro passo é ver o código em nível mais baixo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="jlcon">julia&gt; using InteractiveUtils
 
-julia&gt; @code_lowered squaresum(3.0, 4.0)
+julia&gt; @code_lowered soma_de_quadrados(3.0, 4.0)
 CodeInfo(
 1 ─ %1 = Core.apply_type(Base.Val, 2)
 │   %2 = (%1)()
@@ -15478,16 +15477,16 @@ CodeInfo(
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>@code_lowered</code> macro returns an array of an <em>intermediate representation</em> of the code that is used by the compiler to generate optimised code.
+<p>A macro <code>@code_lowered</code> retorna uma lista de <em>representações intermediárias</em> do código que é usado pelo compilador para gerar código otimizado.
 </p>
 </div>
 <div class="paragraph">
-<p>The next step adds type information:
+<p>O próximo passo é adicionar a informação de tipo:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_typed squaresum(3.0, 4.0)
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_typed soma_de_quadrados(3.0, 4.0)
 CodeInfo(
 1 ─ %1 = Base.mul_float(a, a)::Float64
 │   %2 = Base.mul_float(b, b)::Float64
@@ -15497,17 +15496,17 @@ CodeInfo(
 </div>
 </div>
 <div class="paragraph">
-<p>We see that the type of the intermediate results and the return value is correctly inferred.</p>
+<p>Nós podemos ver o tipo dos resultados intermediários e o valor de retorno é corretamente inferido.</p>
 </div>
 <div class="paragraph">
-<p>This representation of the code is transformed into LLVM code:
+<p>A representação do código a seguir é transformada em código LLVM:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm squaresum(3.0, 4.0)
-;  @ none:2 within `squaresum'
-define double @julia_squaresum_20392(double, double) {
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_llvm soma_de_quadrados(3.0, 4.0)
+;  @ none:2 within `soma_de_quadrados'
+define double @julia_soma_de_quadrados_20372(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -15522,96 +15521,96 @@ top:
 </div>
 </div>
 <div class="paragraph">
-<p>And finally the <em>machine code</em> is generated:
+<p>E finalmente, o <em>código de máquina</em> é gerado:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_native squaresum(3.0, 4.0)
-	.section	__TEXT,__text,regular,pure_instructions
-; ┌ @ none:2 within `squaresum'
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @code_native soma_de_quadrados(3.0, 4.0)
+    .text
+; ┌ @ none:2 within `soma_de_quadrados'
 ; │┌ @ intfuncs.jl:261 within `literal_pow'
 ; ││┌ @ none:2 within `*'
-	vmulsd	%xmm0, %xmm0, %xmm0
-	vmulsd	%xmm1, %xmm1, %xmm1
+        vmulsd  %xmm0, %xmm0, %xmm0
+        vmulsd  %xmm1, %xmm1, %xmm1
 ; │└└
 ; │┌ @ float.jl:401 within `+'
-	vaddsd	%xmm1, %xmm0, %xmm0
+        vaddsd  %xmm1, %xmm0, %xmm0
 ; │└
-	retq
-	nopl	(%rax)
+        retq
+        nopl    (%rax)
 ; └</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_debugging">Debugging</h3>
+<h3 id="_depuração_15">Depuração</h3>
 <div class="paragraph">
-<p>The <code>Logging</code> macros provide an alternative to scaffolding with print statements:
+<p>As macros <code>Logging</code> fornecem uma alternativa a andaimes com declarações print:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @warn "Abandon printf debugging, all ye who enter here!"
-┌ Warning: Abandon printf debugging, all ye who enter here!
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @warn "Abandone a depuração com printf, vós que entrais aqui!"
+┌ Warning: Abandone a depuração com printf, vós que entrais aqui!
 └ @ Main REPL[1]:1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The debug statements don&#8217;t have to be removed from the source. For example, in contrast to the <code>@warn</code> above
+<p>As declarações debug não precisam ser removidas da fonte. Por exemplo, em contraste com o <code>@warn</code> acima:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @debug "The sum of some values $(sum(rand(100)))"</code></pre>
+<pre class="pygments highlight"><code data-lang="jlcon">julia&gt; @debug "A soma de alguns valores é $(sum(rand(100)))"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>will produce no output by default. In this case <code>sum(rand(100))</code> will never be evaluated unless <em>debug logging</em> is enabled.
+<p>Não irá gerar nenhuma saída por padrão. Neste caso <code>sum(rand(100))</code> nunca ira ser avaliada a não ser que o <em>debug logging</em> esteja habilitado.
 </p>
 </div>
 <div class="paragraph">
-<p>The level of logging can be selected by an environment variable <code>JULIA_DEBUG</code>:
+<p>O nível de logging pode ser selecionado por uma variável de ambiente chamada <code>JULIA_DEBUG</code>:
 </p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>$ JULIA_DEBUG=all julia -e '@debug "The sum of some values $(sum(rand(100)))"'
-┌ Debug: The sum of some values 47.116520814555024
+<pre class="pygments highlight"><code>$ JULIA_DEBUG=all julia -e '@debug "A soma de alguns valores é $(sum(rand(100)))"'
+┌ Debug:  A soma de alguns valores é 47.116520814555024
 └ @ Main none:1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Here, we have used <code>all</code> to get all debug information, but you can also choose to generate only output for a specific file or module.</p>
+<p>Aqui, nós usamos <code>all</code> para obter toda informação de depuração, mas você também pode escolher gerar somente a saída para um arquivo ou módulo específico.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_glossary_2">Glossary</h3>
+<h3 id="_glossário_19">Glossário</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">regex</dt>
 <dd>
-<p>Regular expression, a sequence of characters that define a search pattern.
+<p>Expressão regular, uma sequência de caracteres que definem um padrão de busca;
 </p>
 </dd>
-<dt class="hdlist1">matrix</dt>
+<dt class="hdlist1">matriz</dt>
 <dd>
-<p>Two-dimensional array.
+<p>Um array bidimensional.
 </p>
 </dd>
-<dt class="hdlist1">intermediate representation</dt>
+<dt class="hdlist1">representação intermediária</dt>
 <dd>
-<p>Data structure used internally by a compiler to represent source code.
+<p>Uma estrutura de dados usada internamente pelo compilador para representar código fonte.
 </p>
 </dd>
-<dt class="hdlist1">machine code</dt>
+<dt class="hdlist1">código de máquina</dt>
 <dd>
-<p>Language instructions that can be executed directly by a computer&#8217;s central processing unit.
+<p>Instruções de linguagem que podem ser executadas diretamente por uma unidade central de processamento (CPU) de um computador.
 </p>
 </dd>
 <dt class="hdlist1">debug logging</dt>
 <dd>
-<p>Storing debug messages in a log.
+<p>Guardar mensagem de depuração em um log
 </p>
 </dd>
 </dl>
@@ -16272,7 +16271,7 @@ return contagem</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-23 00:05:30 UTC
+Última atualização 2020-07-23 02:06:56 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
