@@ -7,10 +7,10 @@ Agora queremos retornar a algumas coisas boas que ficaram pra trás. O Julia ofe
 
 Neste e no próximo capítulo, iremos discutir coisas dos capítulos anteriores que deixamos para trás:
 
-* suplementos de sintaxe
-* funções, tipos e macros diretamente disponíveis em +Base+
+* os suplementos de sintaxe
+* as funções, os tipos e as macros diretamente disponíveis em +Base+
 (((Base)))
-* funções, tipos e macros da Biblioteca Padrão
+* as funções, os tipos e as macros da Biblioteca Padrão
 (((Biblioteca Padrão)))
 
 === Tuplas Nomeadas
@@ -90,7 +90,7 @@ _Argumentos de palavras-chave_ em uma função são especificados depois de um p
 
 ==== Fechamentos
 
-Um _fechamento_ é uma técnica que permite uma função capturar uma variável definida fora do escopo da chamada de função.
+Um _fechamento_ é uma técnica que permite uma função capturar uma variável definida fora do escopo da chamada da função.
 
 [source,@julia-repl-test]
 ----
@@ -109,7 +109,7 @@ Nesse exemplo, a função +foo+ retorna uma função anônima que possui acesso 
 
 === Blocos
 
-Um _bloco_ é uma forma de agrupar diversos comandos. Um bloco começa com a palavra chave +begin+ e termina com +end+.
+Um _bloco_ é uma forma de agrupar diversos comandos. Um bloco começa com a palavra-chave +begin+ e termina com +end+.
 (((begin)))((("palavra-chave", "begin", see="begin")))(((end)))(((bloco)))
 
 No <<chap04>>, a macro +@svg+ foi introduzida:
@@ -146,7 +146,7 @@ y = -1
 z = -1
 ----
 
-No exemplo, a primeira macro +@show+ mostra o +x+ local, a global +y+ e a local indefinida +z+. As variáveis globais são intocáveis.
+Nesse exemplo, a primeira macro +@show+ mostra o +x+ local, a global +y+ e a local indefinida +z+. As variáveis globais são intocáveis.
 
 
 ==== Blocos +do+
@@ -193,14 +193,14 @@ function open(f::Function, args...)
 end
 ----
 
-Um bloco +do+ pode “capturar” as variáveis de seus escopos anexos. Por exemplo, a variável +dado+ no exemplo acima de +open pass:[...] do+ é capturada de outro escopo.
+Um bloco +do+ pode “capturar” as variáveis dos seus escopos anexos. Por exemplo, a variável +dado+ em +open pass:[...] do+ no exemplo acima é capturada de outro escopo.
 
 
 === Controle de Fluxo
 
 ==== Operador Ternário
 
-O _operador ternário_, +?:+, é uma alternativa para uma declaração +if-else+ usada quando você precisa fazer uma escolha entre valores de expressão única.
+O _operador ternário_ +?:+ é uma alternativa para uma declaração +if-else+ usada quando você precisa fazer uma escolha entre valores de expressão única.
 (((?:)))((("operador", "Base", "?:", see="?:")))((("operador ternário", see="?:")))
 
 [source,@julia-repl-test]
@@ -230,7 +230,7 @@ function fat(n::Integer)
 end
 ----
 
-==== Tarefas (também conhecido como Corrotina)
+==== Tarefas (também conhecida como Corrotina)
 
 Uma _tarefa_ é uma estrutura de controle que pode passar pelo controle cooperativamente sem retornar. Em Julia, uma tarefa pode ser implementada como uma função tendo como o primeiro argumento um objeto de canal (+Channel+). Um canal é usado para passar valores de uma função para quem a chamou.
 
@@ -269,7 +269,7 @@ julia> take!(fib_gen)
 3
 ----
 
-O construtor +Channel+ cria a tarefa. A função +fib+ é suspendida aṕos cada chamada para +put!+ e retorna depois de +take!+. Por questões de performance, diversos valores das sequências são armazenadas temporariamente no objeto de canal durante um ciclo de retomada/suspensão.
+O construtor +Channel+ cria a tarefa. A função +fib+ é suspendida aṕos cada chamada para +put!+ e retorna depois de +take!+. Por questões de performance, diversos valores da sequência são armazenados temporariamente no objeto de canal durante um ciclo de retomada/suspensão.
 
 Um objeto de canal também pode ser usado como um iterador:
 
@@ -287,7 +287,7 @@ julia> for val in Channel(fib)
 
 ==== Tipos Primitivos
 
-Um tipo concreto que consiste em bits simples e antigos é chamado de _tipo primitivo_. Ao contrário da maioria das linguagens, no Julia, você pode declarar seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
+Um tipo concreto que consiste em bits simples e antigos é chamado de _tipo primitivo_. Ao contrário da maioria das linguagens, no Julia você pode declarar os seus próprios tipos primitivos. Os tipos primitivos padrões são definidos da mesma maneira:
 (((tipo primitivo)))((("palavra-chave", "tipo primitivo", see="tipo primitivo")))
 
 [source,julia]
@@ -320,7 +320,7 @@ A função +reinterpret+ é usada para armazenar os bits de um inteiro não assi
 
 O tipo de sistema do Julia é _paramétrico_, significando que os tipos podem possuir parâmetros.
 
-Parâmetros do tipo são introduzidos depois do nome do tipo, cercado por chaves:
+Parâmetros de tipo são introduzidos depois do nome do tipo, cercado por chaves:
 (((chaves)))
 
 [source,@julia-setup chap19]
@@ -339,14 +339,14 @@ julia> Ponto(0.0, 0.0)
 Ponto{Float64}(0.0, 0.0)
 ----
 
-Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro do tipo.
+Além dos tipos compostos, tipos abstratos e tipos primitivos também podem ter um parâmetro de tipo.
 
 [TIP]
 ====
 Ter tipos concretos nos campos da struct é absolutamente recomendado por motivos de desempenho, portanto essa é uma boa maneira de tornar +Ponto+ rápido e flexível.
 ====
 
-==== União dos Tipos
+==== União de Tipo
 
 Uma _união de tipo_ é um tipo paramétrico abstrato que pode atuar como qualquer um dos tipos do seu argumento:
 (((união de tipo)))(((Union)))((("tipo", "Base", "Union", see="Union")))
@@ -361,7 +361,7 @@ julia> "Julia" :: IntOrString
 "Julia"
 ----
 
-Uma união de tipo é na maioria das linguagens de computador uma construção interna para refletir sobre os tipos. O Julia, no entanto, expõe esse recurso aos seus usuários porque um código eficiente pode ser gerado quando a união de tipos possui um pequeno número de tipos. Esse recurso oferece ao programador do Julia uma tremenda flexibilidade para controlar o despacho.
+Uma união de tipo é na maioria das linguagens de computador uma construção interna para pensar sobre os tipos. O Julia, no entanto, expõe esse recurso aos seus usuários porque um código eficiente pode ser gerado quando a união de tipo possui um pequeno número de tipos. Esse recurso oferece ao programador do Julia uma tremenda flexibilidade para controlar o despacho.
 
 === Métodos
 
@@ -565,7 +565,7 @@ Cada módulo possui sua própria função +eval+ que avalia as expressões em se
 
 [WARNING]
 ====
-Quando você está usando muitas chamadas para a função +eval+, geralmente isso significa que algo está errado. A função +eval+ é considerado do “mal”.
+Quando você está usando muitas chamadas para a função +eval+, geralmente isso significa que algo está errado. A função +eval+ é considerada do “mal”.
 ====
 
 ==== Macros
@@ -573,17 +573,17 @@ Quando você está usando muitas chamadas para a função +eval+, geralmente iss
 Macros podem incluir o código gerado em um programa. Uma _macro_ mapeia uma tupla de objetos +Expr+ diretamente para uma expressão compilada:
 (((macro)))
 
-Aqui está uma simples macro:
-(((@containervariavel)))((("macro", "definido pelo programador", "@containervariavel", see="@containervariavel")))
+Aqui está uma macro simples:
+(((@containervariável)))((("macro", "definido pelo programador", "@containervariável", see="@containervariável")))
 
 [source,@julia-setup chap19]
 ----
-macro containervariavel(container, elemento)
+macro containervariável(container, elemento)
     return esc(:($(Symbol(container,elemento)) = $container[$elemento]))
 end
 ----
 
-As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes. A macro chamada +@containervariavel letras 1+ é substituída por:
+As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes. A macro chamada +@containervariável letras 1+ é substituída por:
 (((@)))
 
 [source,julia]
@@ -591,10 +591,10 @@ As macros são chamadas ao colocar o prefixo +@+ (sinal de arroba) em seus nomes
 :(letras1 = letras[1])
 ----
 
-+@macroexpand @containervariavel letras 1+ retorna essa expressão que é extremamente útil para a depuração.
++@macroexpand @containervariável letras 1+ retorna essa expressão que é extremamente útil para a depuração.
 (((@macroexpand)))((("macro", "Base", "@macroexpand", see="@macroexpand")))
 
-Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “escapada” com +esc+, pois precisa ser resolvida no ambiente da chamada da macro.
+Este exemplo ilustra como uma macro pode acessar o nome dos seus argumentos, algo que uma função não pode fazer. O comando return precisa ser “escapado” com +esc+, pois precisa ser resolvido no ambiente da chamada da macro.
 (((esc)))((("função", "Base", "esc", see="esc")))
 
 [NOTE]
@@ -606,7 +606,7 @@ As macros geram e incluem fragmentos de código personalizado durante o tempo de
 
 ==== Funções Geradas
 
-A macro +@generated+ cria código especializado para os métodos, dependendo dos tipos de argumentos:
+A macro +@generated+ cria código especializado para os métodos, dependendo dos tipos dos argumentos:
 (((funções geradas)))(((@generated)))((("macro", "Base", "@generated", see="@generated")))
 
 [source,@julia-setup chap19]
@@ -623,7 +623,7 @@ Para quem chama, a _função gerada_ se comporta como uma função regular:
 
 [source,@julia-repl-test chap19]
 ----
-julia> x = quadrado(2); # nota: output é da declaração println() no corpo
+julia> x = quadrado(2); # nota: a saída é da declaração println() no corpo
 Int64
 julia> x              # agora imprimimos x
 4
@@ -691,11 +691,11 @@ Um objeto dbm possui um campo +handle+ do tipo +Ptr{Cvoid}+. Este campo guarda u
 
 * o tipo de retorno: +Cvoid+,
 
-* uma tupla com tipos de argumentos: +(Ptr{Cvoid},)+ e
+* uma tupla com os tipos de argumentos: +(Ptr{Cvoid},)+ e
 
 * os valores do argumento: +handle+.
 
-O mapeamento completo da biblioteca GDBM pode ser encontrada como um exemplo no repositório do JuliaIntroBR.
+O mapeamento completo da biblioteca GDBM pode ser encontrado como um exemplo no repositório do JuliaIntroBR.
 
 === Glossário
 
@@ -704,7 +704,7 @@ Função que captura as variáveis do seu escopo definido.
 (((fechamento)))
 
 bloco let::
-Bloqueia a alocação de novas ligações de variáveis.
+Bloco que aloca novas ligações de variáveis.
 (((bloco let)))
 
 função anônima::
@@ -732,7 +732,7 @@ Avaliação de um operador booleano na qual o segundo argumento é executado ou 
 (((avaliação de curto-circuíto)))
 
 tarefa (também conhecida como Corrotina)::
-Recurso de fluxo de controle que permite a suspensão dos cálculos e a retomada deles de maneira flexível.
+Recurso de fluxo de controle que permite a suspensão e a retomada dos cálculos de maneira flexível.
 (((tarefa)))
 
 tipo primitivo::
@@ -772,5 +772,5 @@ Funções capazes de gerar código especializado, dependendo dos tipos dos argum
 (((funções geradas)))
 
 valores ausentes::
-Instâncias que representam pontos de dados sem valor.
+Instâncias que representam informações sem valor.
 (((valores ausentes)))
