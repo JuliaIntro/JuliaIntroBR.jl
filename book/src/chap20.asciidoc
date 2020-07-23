@@ -120,22 +120,21 @@ Nós também podemos usar conjuntos para fazer alguns exercícios de <<chap09>>.
 
 [source,@julia-setup]
 ----
-function usa_somente(word, disponível)
-    for letter in word
-        if letter ∉ disponível
+function usa_somente(palavra, disponível)
+    for letra in palavra
+        if letra ∉ disponível
             return false
         end
     end
     true
 end
 ----
-
 +usa_somente+ verifica se todas as letras em +palavra+ estão em +disponível+. Nós podemos reescreve-la da seguinte forma:
 
 [source,@julia-setup]
 ----
-function usa_somente(word, disponível)
-    Set(word) ⊆ Set(disponível)
+function usa_somente(palavra, disponível)
+    Set(palavra) ⊆ Set(disponível)
 end
 ----
 
@@ -202,7 +201,7 @@ function usa_somente(palavra, disponível)
 end
 ----
 
-A expressão regular procura um caractere que não está na string +disponível+ e +occursin+ retorna +true+ se o padrão é achado em +word+.
+A expressão regular procura um caractere que não está na string +disponível+ e +occursin+ retorna +true+ se o padrão é achado em +palavra+.
 
 [source,@julia-repl-test chap20]
 ----
@@ -390,7 +389,7 @@ Parece que alguma mágica aconteceu, mas a explicação é simples. Um laço +fo
 [source,julia]
 ----
 for i in iter
-    # body
+    # corpo
 end
 ----
 
@@ -400,8 +399,8 @@ end
 ----
 próximo = iterate(iter)
 while próximo !== nothing
-    (i, state) = próximo
-    # body
+    (i, estado) = próximo
+    # palavra
     próximo = iterate(iter, estado)
 end
 ----
@@ -479,18 +478,18 @@ E finalmente, o _código de máquina_ é gerado:
 [source,@julia-repl-test chap20]
 ----
 julia> @code_native soma_de_quadrados(3.0, 4.0)
-	.section	__TEXT,__text,regular,pure_instructions
+        .text
 ; ┌ @ none:2 within `soma_de_quadrados'
 ; │┌ @ intfuncs.jl:261 within `literal_pow'
 ; ││┌ @ none:2 within `*'
-	vmulsd	%xmm0, %xmm0, %xmm0
-	vmulsd	%xmm1, %xmm1, %xmm1
+        vmulsd  %xmm0, %xmm0, %xmm0
+        vmulsd  %xmm1, %xmm1, %xmm1
 ; │└└
 ; │┌ @ float.jl:401 within `+'
-	vaddsd	%xmm1, %xmm0, %xmm0
+        vaddsd  %xmm1, %xmm0, %xmm0
 ; │└
-	retq
-	nopl	(%rax)
+        retq
+        nopl    (%rax)
 ; └
 ----
 
