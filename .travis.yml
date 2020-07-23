@@ -13,6 +13,7 @@ jobs:
     - stage: deploy-site
       julia: 1
       os: linux
+      dist: focal
       if: type != pull_request
       script:
         - julia --project -e 'using Pkg; pkg"build"'
@@ -30,4 +31,3 @@ jobs:
           - ttf-ubuntu-font-family
           - texlive-xetex
           - texlive-latex-extra
-          - pgf
