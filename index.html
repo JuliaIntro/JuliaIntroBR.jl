@@ -448,14 +448,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_licença">Licença</a></li>
 <li><a href="#_dedicatória">Dedicatória</a></li>
-<li><a href="#_preface">Preface</a>
+<li><a href="#_prefácio">Prefácio</a>
 <ul class="sectlevel2">
-<li><a href="#_why_julia">Why Julia?</a></li>
-<li><a href="#_who_is_this_book_for">Who Is This Book For?</a></li>
-<li><a href="#_conventions_used_in_this_book">Conventions Used in This Book</a></li>
-<li><a href="#_using_code_examples">Using Code Examples</a></li>
-<li><a href="#_acknowledgments">Acknowledgments</a></li>
-<li><a href="#_contributor_list">Contributor List</a></li>
+<li><a href="#_por_que_julia">Por que Julia?</a></li>
+<li><a href="#_para_quem_é_este_livro">Para Quem é Este Livro?</a></li>
+<li><a href="#_convenções_adotadas_neste_livro">Convenções Adotadas Neste Livro</a></li>
+<li><a href="#_usando_exemplos_de_código">Usando Exemplos de Código</a></li>
+<li><a href="#_agradecimentos">Agradecimentos</a></li>
+<li><a href="#_lista_de_contribuidores">Lista de Contribuidores</a></li>
 </ul>
 </li>
 <li><a href="#chap01">1. O Caminho da Programação</a>
@@ -819,94 +819,94 @@ Uma lista das diferenças na tradução deste livro estão disponíveis no <a hr
 </div>
 </div>
 <div class="sect1">
-<h2 id="_preface">Preface</h2>
+<h2 id="_prefácio">Prefácio</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In January 2018 I started the preparation of a programming course targeting students without programming experience. I wanted to use Julia, but I found that there existed no book with the purpose of learning to program with Julia as the first programming language. There are wonderful tutorials that explain Julia&#8217;s key concepts, but none of them pay sufficient attention to learning how to think like a programmer.</p>
+<p>Em Janeiro de 2018 eu comecei a preparar um curso de programação voltado à estudantes sem experiência de programação. Eu queria usar o Julia, mas descobri que não existia livro com o objetivo de aprender a programar com Julia como a primeira linguagem de programação. Existem tutoriais muito bons que explicam os conceitos chave do Julia, mas nenhum deles dá atenção suficiente a como aprender a pensar como um programador.</p>
 </div>
 <div class="paragraph">
-<p>I knew the book <a href="http://shop.oreilly.com/product/0636920045267.do"><em>Think Python</em></a> by Allen Downey, which contains all the key ingredients to learn to program properly. However, this book was based on the Python programming language. My first draft of the course notes was a melting pot of all kinds of reference works, but the longer I worked on it, the more the content started to resemble the chapters of <em>Think Python</em>. Soon, the idea of developing my course notes as a port of that book to Julia came to fruition.</p>
+<p>Eu conhecia o livro <a href="http://shop.oreilly.com/product/0636920045267.do"><em>Think Python</em></a> de Allen Downey, que contém todos os ingredientes chave para aprender a programar corretamente. No entanto, este livro foi baseado na linguagem de programação Python. O meu primeiro rascunho das anotações do curso foi um caldeirão de todos os tipos de trabalhos de referência, mas quanto mais eu trabalhava nele, mais o seu conteúdo começava a se assemelhar aos capítulos de <em>Think Python</em>. Logo após isso, a ideia de desenvolver minhas anotações do curso como uma versão deste livro adaptado ao Julia se concretizou.</p>
 </div>
 <div class="paragraph">
-<p>All the material was available as Jupyter notebooks in a GitHub repository. After I posted a message on the Julia Discourse site about the progress of my course, the feedback was overwhelming. A book about basic programming concepts with Julia as the first programming language was apparently a missing link in the Julia universe. I contacted Allen to ask if I could start an official port of <em>Think Python</em> to Julia, and his answer was immediate: “Go for it!” He put me in touch with his editor at O&#8217;Reilly Media, and a year later I was putting the finishing touches on this book.</p>
+<p>Todo o material estava disponível em notebooks Jupyter em um repositório no Github. Depois que mandei uma mensagem ao site do Julia Discourse sobre o progresso do meu curso, o feedback foi fantástico. Um livro sobre conceitos básicos de programação com Julia sendo a primeira linguagem de programação era aparentemente um elo perdido no universo Julia. Eu contatei Allen para perguntar se eu poderia começar uma adaptação oficial do <em>Think Python</em> para o Julia, e sua resposta foi imediata: “Vá em frente!” ele me colocou em contato com o seu editor da O&#8217;Reilly Media, e um ano depois, eu estava colocando os toques finais neste livro.</p>
 </div>
 <div class="paragraph">
-<p>It was a bumpy ride. In August 2018 Julia v1.0 was released, and like all my fellow Julia programmers I had to do a migration of the code. All the examples in the book were tested during the conversion of the source files to O&#8217;Reilly-compatible AsciiDoc files. Both the toolchain and the example code had to be made Julia v1.0–compliant. Luckily, there are no lectures to give in August&#8230;&#8203;.</p>
+<p>Foi  uma jornada e tanto. Em Agosto de 2018 o Julia v1.0 foi lançado, e como todos meus companheiros que programam em Julia, eu tive que fazer uma migração do código. Todos os exemplos nesse livro foram testados durante a conversão dos arquivos fonte para arquivos AsciiDoc compativeís com a O&#8217;Reilly. Tanto o conjunto de ferramentas e o código exemplo teve que ser compatibilizado com o Julia v1.0. Por sorte, não há aulas para dar em Agosto&#8230;&#8203;.</p>
 </div>
 <div class="paragraph">
-<p>I hope you enjoy working with this book, and that it helps you learn to program and think like a computer scientist, at least a little bit.</p>
+<p>Eu espero que você aproveite trabalhar com este livro, e que ele o ajude a aprender a programar e a pensar como um cientista da computação, pelo menos um pouquinho.</p>
 </div>
 <div class="paragraph byline">
 <p>Ben Lauwens</p>
 </div>
 <div class="sect2">
-<h3 id="_why_julia">Why Julia?</h3>
+<h3 id="_por_que_julia">Por que Julia?</h3>
 <div class="paragraph">
-<p>Julia was originally released in 2012 by Alan Edelman, Stefan Karpinski, Jeff Bezanson, and Viral Shah. It is a free and open source programming language.</p>
+<p>O Julia  foi originalmente lançada em 2012 por Alan Edelman, Stefan Karpinski, Jeff Bezanson, e Viral Shah. Ela é uma linguagem de programação gratuita e open source.</p>
 </div>
 <div class="paragraph">
-<p>Choosing a programming language is always subjective. For me, the following characteristics of Julia are decisive:</p>
+<p>Escolher uma linguagem de programação é sempre subjetivo. Para mim, as seguintes características do Julia são decisivas:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Julia is developed as a high-performance programming language.</p>
+<p>O Julia é desenvolvida como uma linguagem de programação de alta performance.</p>
 </li>
 <li>
-<p>Julia uses multiple dispatch, which allows the programmer to choose from different programming patterns adapted to the application.</p>
+<p>O Julia usa despacho múltiplo, que permite ao programador escolher diferentes padrões de programação adaptados à aplicação.</p>
 </li>
 <li>
-<p>Julia is a dynamically typed language that can easily be used interactively.</p>
+<p>O Julia é uma linguagem dinamicamente tipada que pode ser facilmente usada interativamente.</p>
 </li>
 <li>
-<p>Julia has a nice high-level syntax that is easy to learn.</p>
+<p>O Julia possui uma boa sintaxe de alto nível que é fácil de aprender.</p>
 </li>
 <li>
-<p>Julia is an optionally typed programming language whose (user-defined) data types make the code clearer and more robust.</p>
+<p>O Julia é uma linguagem de programação de tipo opcional, cujos tipos de dados (definidos pelo usuário) tornam o código mais claro e robusto.</p>
 </li>
 <li>
-<p>Julia has an extended standard library and numerous third-party packages are available.</p>
+<p>O Julia possui uma biblioteca padrão extendida e numerosos pacotes de terceiros que estão disponíveis.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Julia is a unique programming language because it solves the so-called "two languages problem." No other programming language is needed to write high-performance code. This does not mean it happens automatically. It is the responsibility of the programmer to optimize the code that forms a bottleneck, but this can be done in Julia itself.</p>
+<p>O Julia é uma linguagem de programação única pois resolve o chamado "problema de duas linguagens". Nenhuma outra linguagem de programação é necessária para escrever código de alta performance. Isso não significa que isso acontece automaticamente. É de responsabilidade do programador otimizar o código que forma um gargalo, mas isso pode ser feito no próprio Julia.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_who_is_this_book_for">Who Is This Book For?</h3>
+<h3 id="_para_quem_é_este_livro">Para Quem é Este Livro?</h3>
 <div class="paragraph">
-<p>This book is for anyone who wants to learn to program. No formal prior knowledge is required.</p>
+<p>Este livro é para qualquer um que quer aprender a programar. Nenhum conhecimento prévio é requerido.</p>
 </div>
 <div class="paragraph">
-<p>New concepts are introduced gradually and more advanced topics are described in later chapters.</p>
+<p>Novos conceitos são introduzidos gradualmente e tópicos mais avançados são descritos em capítulos posteriores.</p>
 </div>
 <div class="paragraph">
-<p><em>Think Julia</em> can be used for a one-semester course at the high school or college level.</p>
+<p><em>Introdução à programação em Julia</em> (<em>Think Julia</em>) pode ser usado para um curso de um semestre em nível de ensino médio ou de universidade.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conventions_used_in_this_book">Conventions Used in This Book</h3>
+<h3 id="_convenções_adotadas_neste_livro">Convenções Adotadas Neste Livro</h3>
 <div class="paragraph">
-<p>The following typographical conventions are used in this book:</p>
+<p>As  seguintes conveções foram adotadas neste livro:</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><em>Italic</em></dt>
+<dt class="hdlist1"><em>Itálico</em></dt>
 <dd>
-<p>Indicates new terms, URLs, email addresses, filenames, and file extensions.</p>
+<p>indica novos termos, URLs, endereços de email, nomes de arquivo e extensões de arquivo.</p>
 </dd>
-<dt class="hdlist1"><code>Constant width</code></dt>
+<dt class="hdlist1"><code>Comprimento constante</code></dt>
 <dd>
-<p>Used for program listings, as well as within paragraphs to refer to program elements such as variable or function names, databases, data types, environment variables, statements, and keywords.</p>
+<p>Usado para listagens de programas, assim como dentro de paragráfos para referir a elementos de programas como variáveis ou nomes de função, banco de dados, tipos de dado, variáveis de ambiente, declarações e palavras-chave.</p>
 </dd>
-<dt class="hdlist1"><strong><code>Constant width bold</code></strong></dt>
+<dt class="hdlist1"><strong><code>Comprimento constante em negrito</code></strong></dt>
 <dd>
-<p>Shows commands or other text that should be typed literally by the user.</p>
+<p>Indica comandos ou outro texto que deve ser literalmente digitado pelo usuário.</p>
 </dd>
-<dt class="hdlist1"><em><code>Constant width italic</code></em></dt>
+<dt class="hdlist1"><em><code>Comprimento constante itálico</code></em></dt>
 <dd>
-<p>Shows text that should be replaced with user-supplied values or by values determined by context.</p>
+<p>Indica texto que deve ser substituido por valores fornecidos pelo usuário ou por valores determinados pelo contexto.</p>
 </dd>
 </dl>
 </div>
@@ -918,7 +918,7 @@ Uma lista das diferenças na tradução deste livro estão disponíveis no <a hr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This element signifies a tip or suggestion.</p>
+<p>Este elemento signfica uma dica ou sugestão.</p>
 </div>
 </td>
 </tr>
@@ -932,7 +932,7 @@ Uma lista das diferenças na tradução deste livro estão disponíveis no <a hr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This element signifies a general note.</p>
+<p>Este elemento significa uma observação geral.</p>
 </div>
 </td>
 </tr>
@@ -946,7 +946,7 @@ Uma lista das diferenças na tradução deste livro estão disponíveis no <a hr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This element indicates a warning or caution.</p>
+<p>Este elemento indica um aviso ou cuidado.</p>
 </div>
 </td>
 </tr>
@@ -954,76 +954,76 @@ Uma lista das diferenças na tradução deste livro estão disponíveis no <a hr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_using_code_examples">Using Code Examples</h3>
+<h3 id="_usando_exemplos_de_código">Usando Exemplos de Código</h3>
 <div class="paragraph">
-<p>All code used in this book is available from a Git repository on GitHub: <a href="https://github.com/JuliaIntro/JuliaIntroBR.jl" class="bare">https://github.com/JuliaIntro/JuliaIntroBR.jl</a>. If you are not familiar with Git, it is a version control system that allows you to keep track of the files that make up a project. A collection of files under Git&#8217;s control is called a “repository.” GitHub is a hosting service that provides storage for Git repositories and a convenient web interface.</p>
+<p>Todo código usado neste livro está disponível em um repositório Git no Github: <a href="https://github.com/JuliaIntro/JuliaIntroBR.jl" class="bare">https://github.com/JuliaIntro/JuliaIntroBR.jl</a>. Se você não esta familiarizado com o Git, ele é um sistema de controle de versão que permite ao usuário acompanhar os arquivos que fazem parte de um projeto. Um conjunto de arquivos sob controle do Git é chamado de “repositório”. O Github é um serviço de hospedamento que fornece armazenamento para repositórios Git e uma interface web conveniente.</p>
 </div>
 <div class="paragraph">
-<p>A convenience package is provided that can be directly added to Julia. Just type <code>add <a https://github.com/JuliaIntro/JuliaIntroBR.jl">https://github.com/JuliaIntro/JuliaIntroBR.jl</a></code> in the REPL in Pkg mode, see <a href="#turtles">[turtles]</a>.</p>
+<p>Um pacote de conveniência é fornecido que pode ser diretamente adicionado ao Julia. Apenas digite <code>add <a https://github.com/JuliaIntro/JuliaIntroBR.jl">https://github.com/JuliaIntro/JuliaIntroBR.jl</a></code> No REPL em modo Pkg, veja <a href="#turtles">[turtles]</a>.</p>
 </div>
 <div class="paragraph">
-<p>The easiest way to run Julia code is by going to <a href="https://juliabox.com" class="bare">https://juliabox.com</a> and starting a free session. Both the REPL and a notebook interface are available. If you want to have Julia locally installed on your computer, you can download <a href="https://juliacomputing.com/products/juliapro.html">JuliaPro</a> for free from Julia Computing. It consists of a recent Julia version, the Juno interactive development environment based on Atom, and a number of preinstalled Julia packages. If you are more adventurous, you can download Julia from <a href="https://julialang.org" class="bare">https://julialang.org</a>, install the editor you like (e.g., Atom or Visual Studio Code), and activate the plug-ins for Julia integration. To a local install, you can also add the <code>IJulia</code> package and run a Jupyter notebook on your computer.</p>
+<p>A  maneira mais fácil de executar código em Julia é indo para <a href="https://repl.it" class="bare">https://repl.it</a> e iniciar uma sessão gratuita. Tanto o REPL quanto um editor estão disponíveis. Se você quiser ter o Julia instalado localmente no seu computador, você pode fazer o download do <a href="https://juliacomputing.com/products/juliapro.html">JuliaPro</a> gratuitamente de Julia Computing. Ele consiste de uma versão recente do Julia, um ambiente interativo de desenvolvimento baseado no Atom e um número de pacotes Julia pré-instalados. Se você quiser se aventurar ainda mais, você pode fazer o download do Julia em <a href="https://julialang.org" class="bare">https://julialang.org</a>, instalar o editor que você quiser (ex. Atom ou Visual Studio Code), e ativar plug-ins para integração do Julia. Para uma instalação local, você também pode adicionar o pacote <code>IJulia</code> e executar um notebook Jupyter no seu computador.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_acknowledgments">Acknowledgments</h3>
+<h3 id="_agradecimentos">Agradecimentos</h3>
 <div class="paragraph">
-<p>I really want to thank Allen for writing <em>Think Python</em> and allowing me to port his book to Julia. Your enthusiasm is contagious!</p>
+<p>Eu realmente gostaria de agradecer ao Allen por escrever <em>Think Python</em> e permitir que eu pudesse adaptar o seu livro para o Julia. Seu entusiasmo é contagiante!</p>
 </div>
 <div class="paragraph">
-<p>I would also like to thank the technical reviewers for this book, who made many helpful suggestions: Tim Besard, Bart Janssens, and David P. Sanders.</p>
+<p>Eu também gostaria de agradecer aos revisores técnicos para este livro, que fizeram muitas sugestões utéis: Tim Besard, Bart Janssens, e David P. Sanders.</p>
 </div>
 <div class="paragraph">
-<p>Thanks to Melissa Potter from O&#8217;Reilly Media, who made this a better book. You forced me to do things right and make this book as original as possible.</p>
+<p>Obrigado à Melissa Potter da O&#8217;Reilly Media, que fez deste livro melhor. Você me forçou a fazer as coisas certo e fazer este livro o mais original possível.</p>
 </div>
 <div class="paragraph">
-<p>Thanks to Matt Hacker from O&#8217;Reilly Media, who helped me out with the Atlas toolchain and some syntax highlighting issues.</p>
+<p>Obrigado a Matt Hacker da O&#8217;Reilly Media, que me ajudou com o conjunto de ferramentas Atlas e alguns problemas de destacação de sintaxe.</p>
 </div>
 <div class="paragraph">
-<p>Thanks to all the students who worked with an early version of this book and all the contributors (listed below) who sent in corrections and suggestions.</p>
+<p>Obrigado a todos os estudantes que trabalharam com uma versão inicial deste livro e todos os contribuidores (listados abaixo) que mandaram correções e sugestões.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_contributor_list">Contributor List</h3>
+<h3 id="_lista_de_contribuidores">Lista de Contribuidores</h3>
 <div class="paragraph">
-<p>If you have a suggestion or correction, please send email to <a href="mailto:ben.lauwens@gmail.com">ben.lauwens@gmail.com</a> or open an issue on <a href="https://github.com/JuliaIntro/JuliaIntroBR.jl">GitHub</a>. If I make a change based on your feedback, I will add you to the contributor list (unless you ask to be omitted).</p>
+<p>Se você tem uma sugestão ou correção, porfavor mande um email à <a href="mailto:ben.lauwens@gmail.com">ben.lauwens@gmail.com</a> ou abra um issue em <a href="https://github.com/BenLauwens/ThinkJulia.jl">GitHub</a>. Se eu fizer uma mudança baseada no seu feedback, irei adicioná-lo na lista de contribuidores (a menos que você peça para ser omitido).</p>
 </div>
 <div class="paragraph">
-<p>Let me know what version of the book you are working with, and what format. If you include at least part of the sentence the error appears in, that will make it easy for me to search. Page and section numbers are fine, too, but not quite as easy to work with. Thanks!</p>
+<p>Me diga com qual versão do livro você esta trabalhando, e qual formato. Se você incluir ao menos parte da frase aonde o erro aparece, isso facilitará a minha busca. Páginas e número de seção também ajudam, mas não são tão facéis de trabalhar. Obrigado!</p>
 </div>
 <div class="openblock small">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Scott Jones pointed out the name change of <code>Void</code> to <code>Nothing</code>, and this started the migration to Julia v1.0.</p>
+<p>Scott Jones apontou à mudança de nome de <code>Void</code> para <code>Nothing</code>, e isso iniciou a migração para o Julia v1.0.</p>
 </li>
 <li>
-<p>Robin Deits found some typos in <a href="#chap02">Variáveis, Expressões e Declarações</a>.</p>
+<p>Robin Deits achou alguns erros de digitação em <a href="#chap02">Variáveis, Expressões e Declarações</a>.</p>
 </li>
 <li>
-<p>Mark Schmitz suggested turning on syntax highlighting.</p>
+<p>Mark Schmitz sugeriu ligar a sintaxe de destacação.</p>
 </li>
 <li>
-<p>Zigu Zhao caught some bugs in <a href="#chap08">Strings</a>.</p>
+<p>Zigu Zhao achou alguns bugs em <a href="#chap08">Strings</a>.</p>
 </li>
 <li>
-<p>Oleg Soloviev caught an error in the URL to add the <code>ThinkJulia</code> package.</p>
+<p>Oleg Soloviev achou um erro na URL para adicionar o pacote <code>ThinkJulia</code>.</p>
 </li>
 <li>
-<p>Aaron Ang found some rendering and naming issues.</p>
+<p>Aaron Ang achou alguns problema de renderização e nomeação.</p>
 </li>
 <li>
-<p>Sergey Volkov caught a broken link in <a href="#chap07">Iteração</a>.</p>
+<p>Sergey Volkov achou um link quebrado em <a href="#chap07">Iteração</a>.</p>
 </li>
 <li>
-<p>Sean McAllister suggested mentioning the excellent package <code>BenchmarkTools</code>.</p>
+<p>Sean McAllister sugeriu mencionar o excelente pacote <code>BenchmarkTools</code>.</p>
 </li>
 <li>
-<p>Carlos Bolech sent a long list of corrections and suggestions.</p>
+<p>Carlos Bolech mandou uma longa lista de correções e sugestões.</p>
 </li>
 <li>
-<p>Krishna Kumar corrected the Markov example in <a href="#chap18">Subtipagem</a>.</p>
+<p>Krishna Kumar corrigiu o exemplo de Markov em <a href="#chap18">Subtipagem</a>.</p>
 </li>
 </ul>
 </div>
@@ -4282,7 +4282,7 @@ print(decibéis)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-jlcon" data-lang="jlcon">julia&gt; time()
-1.595538580901609e9</code></pre>
+1.595552598838898e9</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13614,7 +13614,7 @@ end</code></pre>
 <pre class="highlight"><code class="language-jlcon" data-lang="jlcon">julia&gt; baralho = Baralho()
 A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥ A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠
 julia&gt; shuffle!(baralho)
-4♣ 8♥ 9♦ 8♦ 6♦ 4♠ Q♦ K♠ 3♥ J♠ 3♠ 8♣ 3♣ 2♣ 9♥ 7♥ J♦ A♦ 9♠ J♥ A♠ 6♣ 10♠ 7♦ 9♣ K♥ 10♥ 2♥ 10♦ Q♣ 10♣ 4♦ 2♦ A♣ 5♥ J♣ 4♥ 7♣ K♦ 2♠ 7♠ 5♣ 5♠ 8♠ 6♥ Q♠ 3♦ Q♥ 6♠ K♣ 5♦ A♥
+7♣ J♠ J♦ 5♦ 3♦ 8♠ 6♦ 4♥ 4♣ 2♠ J♣ 7♥ K♦ 5♠ 2♥ 5♥ Q♣ J♥ 10♣ 10♠ K♠ A♣ Q♠ Q♦ 3♥ 4♦ 10♥ 6♣ 8♥ 3♣ 2♣ A♦ 10♦ 7♦ 7♠ 4♠ K♥ A♠ 8♣ 5♣ 2♦ 9♣ 6♠ K♣ 9♦ Q♥ 6♥ 8♦ 9♠ 9♥ 3♠ A♥
 julia&gt; carta = pop!(baralho)
 A♥
 julia&gt; push!(mão, carta)</code></pre>
@@ -15536,7 +15536,7 @@ CodeInfo(
 <div class="content">
 <pre class="highlight"><code class="language-jlcon" data-lang="jlcon">julia&gt; @code_llvm soma_de_quadrados(3.0, 4.0)
 ;  @ none:2 within `soma_de_quadrados'
-define double @julia_soma_de_quadrados_20372(double, double) {
+define double @julia_soma_de_quadrados_20369(double, double) {
 top:
 ; ┌ @ intfuncs.jl:261 within `literal_pow'
 ; │┌ @ float.jl:405 within `*'
@@ -16310,7 +16310,7 @@ Tanto o original quanto este livro estão disponíveis sob a licença <a href="h
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-07-23 21:09:37 UTC
+Última atualização 2020-07-24 01:03:15 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
