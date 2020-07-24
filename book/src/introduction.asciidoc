@@ -1,106 +1,106 @@
 [preface]
-== Preface
+== Prefácio
 
-In January 2018 I started the preparation of a programming course targeting students without programming experience. I wanted to use Julia, but I found that there existed no book with the purpose of learning to program with Julia as the first programming language. There are wonderful tutorials that explain Julia's key concepts, but none of them pay sufficient attention to learning how to think like a programmer.
+Em Janeiro de 2018 eu comecei a preparar um curso de programação voltado à estudantes sem experiência de programação. Eu queria usar o Julia, mas descobri que não existia livro com o objetivo de aprender a programar com Julia como a primeira linguagem de programação. Existem tutoriais muito bons que explicam os conceitos chave do Julia, mas nenhum deles dá atenção suficiente a como aprender a pensar como um programador.
 
-I knew the book http://shop.oreilly.com/product/0636920045267.do[_Think Python_] by Allen Downey, which contains all the key ingredients to learn to program properly. However, this book was based on the Python programming language. My first draft of the course notes was a melting pot of all kinds of reference works, but the longer I worked on it, the more the content started to resemble the chapters of _Think Python_. Soon, the idea of developing my course notes as a port of that book to Julia came to fruition.
+Eu conhecia o livro http://shop.oreilly.com/product/0636920045267.do[_Think Python_] de Allen Downey, que contém todos os ingredientes chave para aprender a programar corretamente. No entanto, este livro foi baseado na linguagem de programação Python. O meu primeiro rascunho das anotações do curso foi um caldeirão de todos os tipos de trabalhos de referência, mas quanto mais eu trabalhava nele, mais o seu conteúdo começava a se assemelhar aos capítulos de _Think Python_. Logo após isso, a ideia de desenvolver minhas anotações do curso como uma versão deste livro adaptado ao Julia se concretizou.
 
-All the material was available as Jupyter notebooks in a GitHub repository. After I posted a message on the Julia Discourse site about the progress of my course, the feedback was overwhelming. A book about basic programming concepts with Julia as the first programming language was apparently a missing link in the Julia universe. I contacted Allen to ask if I could start an official port of _Think Python_ to Julia, and his answer was immediate: “Go for it!” He put me in touch with his editor at O'Reilly Media, and a year later I was putting the finishing touches on this book.
+Todo o material estava disponível em notebooks Jupyter em um repositório no Github. Depois que mandei uma mensagem ao site do Julia Discourse sobre o progresso do meu curso, o feedback foi fantástico. Um livro sobre conceitos básicos de programação com Julia sendo a primeira linguagem de programação era aparentemente um elo perdido no universo Julia. Eu contatei Allen para perguntar se eu poderia começar uma adaptação oficial do _Think Python_ para o Julia, e sua resposta foi imediata: “Vá em frente!” ele me colocou em contato com o seu editor da O'Reilly Media, e um ano depois, eu estava colocando os toques finais neste livro.
 
-It ((("Julia", "version of")))was a bumpy ride. In August 2018 Julia v1.0 was released, and like all my fellow Julia programmers I had to do a migration of the code. All the examples in the book were tested during the conversion of the source files to O'Reilly-compatible AsciiDoc files. Both the toolchain and the example code had to be made Julia v1.0–compliant. Luckily, there are no lectures to give in August....
+Foi ((("Julia", "versão do"))) uma jornada e tanto. Em Agosto de 2018 o Julia v1.0 foi lançado, e como todos meus companheiros que programam em Julia, eu tive que fazer uma migração do código. Todos os exemplos nesse livro foram testados durante a conversão dos arquivos fonte para arquivos AsciiDoc compativeís com a O'Reilly. Tanto o conjunto de ferramentas e o código exemplo teve que ser compatibilizado com o Julia v1.0. Por sorte, não há aulas para dar em Agosto....
 
-I hope you enjoy working with this book, and that it helps you learn to program and think like a computer scientist, at least a little bit.
+Eu espero que você aproveite trabalhar com este livro, e que ele o ajude a aprender a programar e a pensar como um cientista da computação, pelo menos um pouquinho.
 
 [role="byline"]
 Ben Lauwens
 
-=== Why Julia?
+=== Por que Julia?
 
-Julia ((("Julia", "about")))was originally released in 2012 by Alan Edelman, Stefan Karpinski, Jeff Bezanson, and Viral Shah. It is a free and open source programming language.
+O Julia ((("Julia", "sobre"))) foi originalmente lançada em 2012 por Alan Edelman, Stefan Karpinski, Jeff Bezanson, e Viral Shah. Ela é uma linguagem de programação gratuita e open source.
 
-Choosing a programming language is always subjective. For me, the following characteristics of Julia are decisive:
+Escolher uma linguagem de programação é sempre subjetivo. Para mim, as seguintes características do Julia são decisivas:
 
-- Julia is developed as a high-performance programming language.
-- Julia uses multiple dispatch, which allows the programmer to choose from different programming patterns adapted to the application.
-- Julia is a dynamically typed language that can easily be used interactively.
-- Julia has a nice high-level syntax that is easy to learn.
-- Julia is an optionally typed programming language whose (user-defined) data types make the code clearer and more robust.
-- Julia has an extended standard library and numerous third-party packages are available.
+- O Julia é desenvolvida como uma linguagem de programação de alta performance.
+- O Julia usa despacho múltiplo, que permite ao programador escolher diferentes padrões de programação adaptados à aplicação.
+- O Julia é uma linguagem dinamicamente tipada que pode ser facilmente usada interativamente.
+- O Julia possui uma boa sintaxe de alto nível que é fácil de aprender.
+- O Julia é uma linguagem de programação de tipo opcional, cujos tipos de dados (definidos pelo usuário) tornam o código mais claro e robusto.
+- O Julia possui uma biblioteca padrão extendida e numerosos pacotes de terceiros que estão disponíveis.
 
-Julia is a unique programming language because it solves the so-called "two languages problem." No other programming language is needed to write high-performance code. This does not mean it happens automatically. It is the responsibility of the programmer to optimize the code that forms a bottleneck, but this can be done in Julia itself.
+O Julia é uma linguagem de programação única pois resolve o chamado "problema de duas linguagens". Nenhuma outra linguagem de programação é necessária para escrever código de alta performance. Isso não significa que isso acontece automaticamente. É de responsabilidade do programador otimizar o código que forma um gargalo, mas isso pode ser feito no próprio Julia.
 
-=== Who Is This Book For?
+=== Para Quem é Este Livro?
 
-This book is for anyone who wants to learn to program. No formal prior knowledge is required.
+Este livro é para qualquer um que quer aprender a programar. Nenhum conhecimento prévio é requerido.
 
-New concepts are introduced gradually and more advanced topics are described in later chapters.
+Novos conceitos são introduzidos gradualmente e tópicos mais avançados são descritos em capítulos posteriores.
 
-_Think Julia_ can be used for a one-semester course at the high school or college level.
+_Introdução à programação em Julia_ (_Think Julia_) pode ser usado para um curso de um semestre em nível de ensino médio ou de universidade.
 
-=== Conventions Used in This Book
+=== Convenções Adotadas Neste Livro
 
-The ((("conventions used in this book")))((("typographical conventions in this book")))following typographical conventions are used in this book:
+As ((("convenções usadas neste livro")))((("convenções tipográficas deste livro"))) seguintes conveções foram adotadas neste livro:
 
-_Italic_:: Indicates new terms, URLs, email addresses, filenames, and file extensions.
+_Itálico_:: indica novos termos, URLs, endereços de email, nomes de arquivo e extensões de arquivo.
 
-+Constant width+:: Used for program listings, as well as within paragraphs to refer to program elements such as variable or function names, databases, data types, environment variables, statements, and keywords.
++Comprimento constante+:: Usado para listagens de programas, assim como dentro de paragráfos para referir a elementos de programas como variáveis ou nomes de função, banco de dados, tipos de dado, variáveis de ambiente, declarações e palavras-chave.
 
-**`Constant width bold`**:: Shows commands or other text that should be typed literally by the user.
+**`Comprimento constante em negrito`**:: Indica comandos ou outro texto que deve ser literalmente digitado pelo usuário.
 
-_++Constant width italic++_:: Shows text that should be replaced with user-supplied values or by values determined by context.
+_++Comprimento constante itálico++_:: Indica texto que deve ser substituido por valores fornecidos pelo usuário ou por valores determinados pelo contexto.
 
 
 [TIP]
 ====
-This ((("icons used in this book")))element signifies a tip or suggestion.
+Este ((("ícones usados neste livro")))elemento signfica uma dica ou sugestão.
 ====
 
 [NOTE]
 ====
-This element signifies a general note.
+Este elemento significa uma observação geral.
 ====
 
 [WARNING]
 ====
-This element indicates a warning or caution.
+Este elemento indica um aviso ou cuidado.
 ====
 
-=== Using Code Examples
+=== Usando Exemplos de Código
 
-All ((("code examples in this book")))((("Git")))((("GitHub")))((("repository")))((("online resources", "Julia")))code used in this book is available from a Git repository on GitHub: https://github.com/JuliaIntro/JuliaIntroBR.jl. If you are not familiar with Git, it is a version control system that allows you to keep track of the files that make up a project. A collection of files under Git's control is called a “repository.” GitHub is a hosting service that provides storage for Git repositories and a convenient web interface.
+Todo ((("exemplos de código neste livro")))((("Git")))((("GitHub")))((("repositório")))((("recursos online", "Julia")))código usado neste livro está disponível em um repositório Git no Github: https://github.com/JuliaIntro/JuliaIntroBR.jl. Se você não esta familiarizado com o Git, ele é um sistema de controle de versão que permite ao usuário acompanhar os arquivos que fazem parte de um projeto. Um conjunto de arquivos sob controle do Git é chamado de “repositório”. O Github é um serviço de hospedamento que fornece armazenamento para repositórios Git e uma interface web conveniente.
 
-A ((("packages", "installing")))((("add command, in REPL")))convenience package is provided that can be directly added to Julia. Just type pass:[<code>add <a https://github.com/JuliaIntro/JuliaIntroBR.jl">https://github.com/JuliaIntro/JuliaIntroBR.jl</a></code>] in the REPL in Pkg mode, see <<turtles>>.
+Um ((("pacotes", "instalando")))((("adicionar comando, no REPL")))pacote de conveniência é fornecido que pode ser diretamente adicionado ao Julia. Apenas digite pass:[<code>add <a https://github.com/JuliaIntro/JuliaIntroBR.jl">https://github.com/JuliaIntro/JuliaIntroBR.jl</a></code>] No REPL em modo Pkg, veja <<turtles>>.
 
-The ((("Julia", "running")))easiest way to run Julia code is by going to https://juliabox.com and starting a free session. Both the REPL and a notebook interface are available. If ((("Julia", "installing")))you want to have Julia locally installed on your computer, you can download https://juliacomputing.com/products/juliapro.html[JuliaPro] for free from Julia Computing. It consists of a recent Julia version, the Juno interactive development environment based on Atom, and a number of preinstalled Julia packages. If you are more adventurous, you can download Julia from https://julialang.org, install the editor you like (e.g., Atom or Visual Studio Code), and activate the plug-ins for Julia integration. To ((("IJulia package")))a local install, you can also add the +IJulia+ package and run a Jupyter notebook on your computer.
+A ((("Julia", "rodando"))) maneira mais fácil de executar código em Julia é indo para https://repl.it e iniciar uma sessão gratuita. Tanto o REPL quanto um editor estão disponíveis. Se ((("Julia", "instalando")))você quiser ter o Julia instalado localmente no seu computador, você pode fazer o download do https://juliacomputing.com/products/juliapro.html[JuliaPro] gratuitamente de Julia Computing. Ele consiste de uma versão recente do Julia, um ambiente interativo de desenvolvimento baseado no Atom e um número de pacotes Julia pré-instalados. Se você quiser se aventurar ainda mais, você pode fazer o download do Julia em https://julialang.org, instalar o editor que você quiser (ex. Atom ou Visual Studio Code), e ativar plug-ins para integração do Julia. Para ((("pacote IJulia")))uma instalação local, você também pode adicionar o pacote +IJulia+ e executar um notebook Jupyter no seu computador.
 
-=== Acknowledgments
+=== Agradecimentos
 
-I really want to thank Allen for writing _Think Python_ and allowing me to port his book to Julia. Your enthusiasm is contagious!
+Eu realmente gostaria de agradecer ao Allen por escrever _Think Python_ e permitir que eu pudesse adaptar o seu livro para o Julia. Seu entusiasmo é contagiante!
 
-I would also like to thank the technical reviewers for this book, who made many helpful suggestions: Tim Besard, Bart Janssens, and David P. Sanders.
+Eu também gostaria de agradecer aos revisores técnicos para este livro, que fizeram muitas sugestões utéis: Tim Besard, Bart Janssens, e David P. Sanders.
 
-Thanks to Melissa Potter from O'Reilly Media, who made this a better book. You forced me to do things right and make this book as original as possible.
+Obrigado à Melissa Potter da O'Reilly Media, que fez deste livro melhor. Você me forçou a fazer as coisas certo e fazer este livro o mais original possível.
 
-Thanks to Matt Hacker from O'Reilly Media, who helped me out with the Atlas toolchain and some syntax highlighting issues.
+Obrigado a Matt Hacker da O'Reilly Media, que me ajudou com o conjunto de ferramentas Atlas e alguns problemas de destacação de sintaxe.
 
-Thanks to all the students who worked with an early version of this book and all the contributors (listed below) who sent in corrections and suggestions.
+Obrigado a todos os estudantes que trabalharam com uma versão inicial deste livro e todos os contribuidores (listados abaixo) que mandaram correções e sugestões.
 
-=== Contributor List
+=== Lista de Contribuidores
 
-If you have a suggestion or correction, please send email to ben.lauwens@gmail.com or open an issue on https://github.com/JuliaIntro/JuliaIntroBR.jl[GitHub]. If I make a change based on your feedback, I will add you to the contributor list (unless you ask to be omitted).
+Se você tem uma sugestão ou correção, porfavor mande um email à ben.lauwens@gmail.com ou abra um issue em https://github.com/BenLauwens/ThinkJulia.jl[GitHub]. Se eu fizer uma mudança baseada no seu feedback, irei adicioná-lo na lista de contribuidores (a menos que você peça para ser omitido).
 
-Let me know what version of the book you are working with, and what format. If you include at least part of the sentence the error appears in, that will make it easy for me to search. Page and section numbers are fine, too, but not quite as easy to work with. Thanks!
+Me diga com qual versão do livro você esta trabalhando, e qual formato. Se você incluir ao menos parte da frase aonde o erro aparece, isso facilitará a minha busca. Páginas e número de seção também ajudam, mas não são tão facéis de trabalhar. Obrigado!
 
 [small]
 --
-- Scott Jones pointed out the name change of +Void+ to +Nothing+, and this started the migration to Julia v1.0.
-- Robin Deits found some typos in <<chap02>>.
-- Mark Schmitz suggested turning on syntax highlighting.
-- Zigu Zhao caught some bugs in <<chap08>>.
-- Oleg Soloviev caught an error in the URL to add the +ThinkJulia+ package.
-- Aaron Ang found some rendering and naming issues.
-- Sergey Volkov caught a broken link in <<chap07>>.
-- Sean McAllister suggested mentioning the excellent package +BenchmarkTools+.
-- Carlos Bolech sent a long list of corrections and suggestions.
-- Krishna Kumar corrected the Markov example in <<chap18>>.
+- Scott Jones apontou à mudança de nome de +Void+ para +Nothing+, e isso iniciou a migração para o Julia v1.0.
+- Robin Deits achou alguns erros de digitação em <<chap02>>.
+- Mark Schmitz sugeriu ligar a sintaxe de destacação.
+- Zigu Zhao achou alguns bugs em <<chap08>>.
+- Oleg Soloviev achou um erro na URL para adicionar o pacote +ThinkJulia+.
+- Aaron Ang achou alguns problema de renderização e nomeação.
+- Sergey Volkov achou um link quebrado em <<chap07>>.
+- Sean McAllister sugeriu mencionar o excelente pacote +BenchmarkTools+.
+- Carlos Bolech mandou uma longa lista de correções e sugestões.
+- Krishna Kumar corrigiu o exemplo de Markov em <<chap18>>.
 --
