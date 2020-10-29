@@ -1,8 +1,8 @@
-Se você acabou de começar a aprender programação, Julia é uma excelente linguagem dinâmica compilada just-in-time de sintaxe limpa. Esse guia hands-on usa Julia (versão 1.0) para ensinar a programar passo a passo, começando com os conceitos básicos de programação e prosseguindo até os conceitos avançados, como criação de novos tipos e despacho múltiplo.
+Se você acabou de começar a aprender programação, Julia é uma excelente linguagem dinâmica compilada just-in-time de sintaxe limpa. Este guia hands-on usa Julia (versão 1.0) para ensinar a programar passo a passo, começando com os conceitos básicos de programação e prosseguindo até os conceitos avançados, como criação de novos tipos e despacho múltiplo.
 
 Projetada para alta performance desde o início, Julia é uma linguagem de múltiplo propósito ideal não só para análise numérica e computação científica, mas também para desenvolvimento web e de scripts. Com execícios em cada capítulo, você vai aprender os conceitos de programação na prática.
 
-JuliaIntro é ideal para alunos de ensino médio ou superior, bem como autodidatas, quem estuda em casa e profissionais que precisam aprender o básico de programação.
+Introdução à Programação em Julia é ideal para alunos de ensino médio ou superior, bem como autodidatas, quem estuda em casa e profissionais que precisam aprender o básico de programação.
 
 * Comece com o básico, incluindo a sintaxe e semântica da linguagem
 
@@ -14,6 +14,6 @@ JuliaIntro é ideal para alunos de ensino médio ou superior, bem como autodidat
 
 * Entenda tipos, métodos e despacho múltiplo
 
-* Use técnicas de debugging pra corrigir a sintaxe, tempo de execução e erros de semântica
+* Use técnicas de depuração pra corrigir erros de sintaxe, de tempo de execução e de semântica
 
-* Explore o projeto de interfaces e estruturas de dados com estudos de caso
+* Explore o design de interfaces e estruturas de dados com estudos de caso
