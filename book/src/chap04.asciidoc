@@ -15,7 +15,7 @@ Pacotes podem ser instalados no REPL através do modo Pkg usando a tecla +]+.
 
 [source,jlcon]
 ----
-(v1.0) pkg> add https://github.com/JuliaIntro/JuliaIntroBR.jl
+(@v1.6) pkg> add https://github.com/JuliaIntro/JuliaIntroBR.jl
 ----
 
 Isso pode demorar um pouco.
