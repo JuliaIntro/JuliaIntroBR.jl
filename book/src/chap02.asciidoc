@@ -50,7 +50,7 @@ Se um nome inválido for dado a uma variável, recebemos um erro de sintaxe:
 [source,jlcon]
 ----
 julia> 76trombones = "grande desfile"
-ERROR: syntax: "76" is not a valid function argument name
+ERROR: syntax: "76" is not a valid function argument name around REPL[1]:1
 julia> mais@ = 1000000
 ERROR: syntax: extra token "@" after end of expression
 julia> struct = "Zimologia Teórica Avançado"
