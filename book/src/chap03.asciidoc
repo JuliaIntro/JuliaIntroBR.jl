@@ -145,7 +145,7 @@ horas = 2;
 julia> minutos = horas * 60 # correto
 120
 julia> horas * 60 = minutos # errado!
-ERROR: syntax: "60" is not a valid function argument name
+ERROR: syntax: "60" is not a valid function argument name around REPL[24]:1
 ----
 
 === Adicionando novas funções
