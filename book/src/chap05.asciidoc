@@ -350,7 +350,8 @@ Na maioria dos ambientes de programação, um programa com recursão infinita re
 julia> recursão()
 ERROR: StackOverflowError:
 Stacktrace:
- [1] recursão() at ./REPL[1]:2 (repeats 80000 times)
+ [1] recursão() (repeats 79984 times)
+ @ Main .\REPL[2]:2
 ----
 
 Esse rastreamento de pilha é um pouco maior do que vimos no capítulo anterior. Quando o erro ocorre, existem 80000 quadros de +recursão+ na pilha!
